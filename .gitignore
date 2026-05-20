@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+web-app/node_modules/
+
+# Build output
+dist/
+web-app/dist/
+build/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+**/.DS_Store
+
+# Env files
+.env
+.env.local
+.env.production
+
+# Vite cache
+.vite/
+
+# Firebase emulator
+.firebase/
+node_modules
