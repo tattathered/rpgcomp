@@ -1,0 +1,258 @@
+[
+  {
+    "grado abilità": 0,
+    "abilità primarie": -25,
+    "cogliere alle spalle": 0,
+    "resistenza fisica": 0,
+    "chiarimenti": null,
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": 1,
+    "abilità primarie": "+5",
+    "cogliere alle spalle": "+1",
+    "resistenza fisica": "+1d10",
+    "chiarimenti": "1d10 = random da 1 a 10",
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": 2,
+    "abilità primarie": "+5",
+    "cogliere alle spalle": "+1",
+    "resistenza fisica": "+1d10",
+    "chiarimenti": "1d10 = random da 1 a 10",
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": 3,
+    "abilità primarie": "+5",
+    "cogliere alle spalle": "+1",
+    "resistenza fisica": "+1d10",
+    "chiarimenti": "1d10 = random da 1 a 10",
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": 4,
+    "abilità primarie": "+5",
+    "cogliere alle spalle": "+1",
+    "resistenza fisica": "+1d10",
+    "chiarimenti": "1d10 = random da 1 a 10",
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": 5,
+    "abilità primarie": "+5",
+    "cogliere alle spalle": "+1",
+    "resistenza fisica": "+1d10",
+    "chiarimenti": "1d10 = random da 1 a 10",
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": 6,
+    "abilità primarie": "+5",
+    "cogliere alle spalle": "+1",
+    "resistenza fisica": "+1d10",
+    "chiarimenti": "1d10 = random da 1 a 10",
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": 7,
+    "abilità primarie": "+5",
+    "cogliere alle spalle": "+1",
+    "resistenza fisica": "+1d10",
+    "chiarimenti": "1d10 = random da 1 a 10",
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": 8,
+    "abilità primarie": "+5",
+    "cogliere alle spalle": "+1",
+    "resistenza fisica": "+1d10",
+    "chiarimenti": "1d10 = random da 1 a 10",
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": 9,
+    "abilità primarie": "+5",
+    "cogliere alle spalle": "+1",
+    "resistenza fisica": "+1d10",
+    "chiarimenti": "1d10 = random da 1 a 10",
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": 10,
+    "abilità primarie": "+5",
+    "cogliere alle spalle": "+1",
+    "resistenza fisica": "+1d10",
+    "chiarimenti": "1d10 = random da 1 a 10",
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": 11,
+    "abilità primarie": "+2",
+    "cogliere alle spalle": "+1",
+    "resistenza fisica": "+1d4",
+    "chiarimenti": "1d4 = random da 1 a 4",
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": 12,
+    "abilità primarie": "+2",
+    "cogliere alle spalle": "+1",
+    "resistenza fisica": "+1d4",
+    "chiarimenti": "1d4 = random da 1 a 4",
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": 13,
+    "abilità primarie": "+2",
+    "cogliere alle spalle": "+1",
+    "resistenza fisica": "+1d4",
+    "chiarimenti": "1d4 = random da 1 a 4",
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": 14,
+    "abilità primarie": "+2",
+    "cogliere alle spalle": "+1",
+    "resistenza fisica": "+1d4",
+    "chiarimenti": "1d4 = random da 1 a 4",
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": 15,
+    "abilità primarie": "+2",
+    "cogliere alle spalle": "+1",
+    "resistenza fisica": "+1d4",
+    "chiarimenti": "1d4 = random da 1 a 4",
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": 16,
+    "abilità primarie": "+2",
+    "cogliere alle spalle": "+1",
+    "resistenza fisica": "+1d4",
+    "chiarimenti": "1d4 = random da 1 a 4",
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": 17,
+    "abilità primarie": "+2",
+    "cogliere alle spalle": "+1",
+    "resistenza fisica": "+1d4",
+    "chiarimenti": "1d4 = random da 1 a 4",
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": 18,
+    "abilità primarie": "+2",
+    "cogliere alle spalle": "+1",
+    "resistenza fisica": "+1d4",
+    "chiarimenti": "1d4 = random da 1 a 4",
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": 19,
+    "abilità primarie": "+2",
+    "cogliere alle spalle": "+1",
+    "resistenza fisica": "+1d4",
+    "chiarimenti": "1d4 = random da 1 a 4",
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": 20,
+    "abilità primarie": "+2",
+    "cogliere alle spalle": "+1",
+    "resistenza fisica": "+1d4",
+    "chiarimenti": "1d4 = random da 1 a 4",
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": 21,
+    "abilità primarie": "+1",
+    "cogliere alle spalle": "+0.5",
+    "resistenza fisica": "+1",
+    "chiarimenti": null,
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": 22,
+    "abilità primarie": "+1",
+    "cogliere alle spalle": "+0.5",
+    "resistenza fisica": "+1",
+    "chiarimenti": null,
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": 23,
+    "abilità primarie": "+1",
+    "cogliere alle spalle": "+0.5",
+    "resistenza fisica": "+1",
+    "chiarimenti": null,
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": 24,
+    "abilità primarie": "+1",
+    "cogliere alle spalle": "+0.5",
+    "resistenza fisica": "+1",
+    "chiarimenti": null,
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": 25,
+    "abilità primarie": "+1",
+    "cogliere alle spalle": "+0.5",
+    "resistenza fisica": "+1",
+    "chiarimenti": null,
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": 26,
+    "abilità primarie": "+1",
+    "cogliere alle spalle": "+0.5",
+    "resistenza fisica": "+1",
+    "chiarimenti": null,
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": 27,
+    "abilità primarie": "+1",
+    "cogliere alle spalle": "+0.5",
+    "resistenza fisica": "+1",
+    "chiarimenti": null,
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": 28,
+    "abilità primarie": "+1",
+    "cogliere alle spalle": "+0.5",
+    "resistenza fisica": "+1",
+    "chiarimenti": null,
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": 29,
+    "abilità primarie": "+1",
+    "cogliere alle spalle": "+0.5",
+    "resistenza fisica": "+1",
+    "chiarimenti": null,
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": 30,
+    "abilità primarie": "+1",
+    "cogliere alle spalle": "+0.5",
+    "resistenza fisica": "+1",
+    "chiarimenti": null,
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  },
+  {
+    "grado abilità": "oltre 30",
+    "abilità primarie": "+0.5",
+    "cogliere alle spalle": 0,
+    "resistenza fisica": "+0.5",
+    "chiarimenti": null,
+    "note": "limiti Manovre in movimento: nessuna armatura 2, cuoio grezzo 3, cuoio rinforzato 5, corazza di maglie 7, corazza di piastre 9. Nessun bonus di Manovre in Movimento può eccedere il bonus di Agilità di +10"
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "categoria": "Caratteristiche fisiche e mentali",
+    "nome": "Forza",
+    "sigla": "FR",
+    "note": "calcolo 1d100"
+  },
+  {
+    "categoria": "Caratteristiche fisiche e mentali",
+    "nome": "Agilità",
+    "sigla": "AG",
+    "note": "calcolo 1d100"
+  },
+  {
+    "categoria": "Caratteristiche fisiche e mentali",
+    "nome": "Costituzione",
+    "sigla": "CO",
+    "note": "calcolo 1d100"
+  },
+  {
+    "categoria": "Caratteristiche fisiche e mentali",
+    "nome": "Intelligenza",
+    "sigla": "IT",
+    "note": "calcolo 1d100"
+  },
+  {
+    "categoria": "Caratteristiche fisiche e mentali",
+    "nome": "Intuizione",
+    "sigla": "IN",
+    "note": "calcolo 1d100"
+  },
+  {
+    "categoria": "Caratteristiche fisiche e mentali",
+    "nome": "Prontezza",
+    "sigla": "PR",
+    "note": "calcolo 1d100"
+  },
+  {
+    "categoria": "Caratteristiche fisiche e mentali",
+    "nome": "Aspetto",
+    "sigla": "AS",
+    "note": "calcolo 1d100 + bonus PR"
+  }
+]

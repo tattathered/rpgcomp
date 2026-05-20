@@ -1,0 +1,50 @@
+categoria,elemento,descrizione,nota,dato se presente,bonus_se_presente
+ATTRIBUTI/INFO,Nome,stringa testo,info testuale,,
+ATTRIBUTI/INFO,Popolo,"popolo di apparteneneza, influisce su creazione personaggio",,,
+ATTRIBUTI/INFO,Altezza,stringa testo,info testuale,,
+ATTRIBUTI/INFO,Peso,stringa testo,info testuale,,
+ATTRIBUTI/INFO,Capelli,stringa testo,info testuale,,
+ATTRIBUTI/INFO,Occhi,stringa testo,info testuale,,
+ATTRIBUTI/INFO,Carattere,stringa testo,info testuale,,
+ATTRIBUTI/INFO,Special,eventuali caratteristiche speciali,info testuale,,
+ATTRIBUTI/INFO,Professione,"professione scelta, influisce sulla creazione del personaggio",,,
+ATTRIBUTI/INFO,Livello,"determina livello esperienza e influisce su elementi di gioco - es. calcolo pun ti ferita, punti magia, livello incantesimi, etc",,,
+CARATTERISTICHE,FORZA,caratteristica iniziale,calcolata,##,##
+CARATTERISTICHE,AGILITÀ,caratteristica iniziale,calcolata,##,##
+CARATTERISTICHE,COSTITUZIONE,caratteristica iniziale,calcolata,##,##
+CARATTERISTICHE,INTELLIGENZA,caratteristica iniziale,calcolata,##,##
+CARATTERISTICHE,INTUIZIONE,caratteristica iniziale,calcolata,##,##
+CARATTERISTICHE,PRONTEZZA,caratteristica iniziale,calcolata,##,##
+CARATTERISTICHE,ASPETTO,caratteristica iniziale,calcolata + bonus PR,##,##
+CARATTERISTICHE,LEADERSHIP E INFLUENZA,"solo bonus, inizialmente equivalente bonus PR","per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)",,##
+CARATTERISTICHE,PERCEZIONE,"solo bonus, inizialmente equivalente bonus IT","per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)",,##
+ABILITÀ GENERALI,Arrampicarsi,"solo bonus, inizialmente equivalente bonus AG",calcolata sulla base dei gradi sviluppo,,##
+ABILITÀ GENERALI,Cavalcare,"solo bonus, inizialmente equivalente bonus IT",calcolata sulla base dei gradi sviluppo,,##
+ABILITÀ GENERALI,Nuotare,"solo bonus, inizialmente equivalente bonus AG",calcolata sulla base dei gradi sviluppo,,##
+ABILITÀ GENERALI,Seguire Tracce,"solo bonus, inizialmente equivalente bonus IN",calcolata sulla base dei gradi sviluppo,,##
+ASTUZIE & SOTTERFUGI,Cogliere alle spalle,solo bonus,"per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)",,##
+ASTUZIE & SOTTERFUGI,Muoversi silenziosamente e nascondersi,"solo bonus, inizialmente equivalente bonus PR",calcolata sulla base dei gradi sviluppo,,##
+ASTUZIE & SOTTERFUGI,Scassinare serrature,"solo bonus, inizialmente equivalente bonus IN",calcolata sulla base dei gradi sviluppo,,##
+ASTUZIE & SOTTERFUGI,Borseggiare,solo bonus,"per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)",,##
+ABILITÀ SECONDARIE,Orientamento,,,,##
+ABILITÀ SECONDARIE,Erboristeria,,,,##
+ABILITÀ SECONDARIE,Primo Soccorso,,,,##
+ABILITÀ SECONDARIE,Leggere le Labbra,,,,##
+ABILITÀ MAGICHE,Leggere Rune,"solo bonus, inizialmente equivalente bonus IN",calcolata sulla base dei gradi sviluppo,,##
+ABILITÀ MAGICHE,Uso Di Oggetti Magici,"solo bonus, inizialmente equivalente bonus IT",calcolata sulla base dei gradi sviluppo,,##
+ABILITÀ MAGICHE,Incantesimi Diretti,"solo bonus, inizialmente equivalente bonus AG",calcolata sulla base dei gradi sviluppo,,##
+ABILITÀ MAGICHE,Incantesimi Base,solo bonus,"per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)",,##
+VARIE,Disattivare Trappole,"solo bonus, inizialmente equivalente bonus IT",calcolata sulla base dei gradi sviluppo,,##
+VARIE,Resistenza fisica,"solo bonus, inizialmente equivalente bonus CO",calcolata sulla base dei gradi sviluppo,,##
+VARIE,Punti ferita,danno massimo che PG può subire prima di morire,calcolata sulla base dei gradi sviluppo,,##
+VARIE,Danni,danni ricevuti,variabile,,##
+VARIE,Bonus difensivo,inizialmente equivalente bonus AG,"per il calcolo sono da aggiungere bonus per scudo, bracciali, schinieri, elmo, etc e dipende da armatura",,##
+VARIE,Reame magico,essenza o flusso,,,essenza o flusso
+VARIE,Punti magia base,"calcolati sulla base di professione, popolo, bonus IT o IN",dipende dal ivello PG,,##
+VARIE,Punti magia base rimanenti,sono riportati al massimo dopo un riposo lungo,,,##
+TIRI RESISTENZA,RESISTENZA ALL'ESSENZA,equivalente bonus IN,"da aggiungere bonus popolo, professione, speciali",,##
+TIRI RESISTENZA,RESISTENZA AL FLUSSO,equivalente bonus IT,"da aggiungere bonus popolo, professione, speciali",,##
+TIRI RESISTENZA,RESISTENZA AI VELENI,equivalente bonus CO,"da aggiungere bonus popolo, professione, speciali",,##
+TIRI RESISTENZA,RESISTENZA ALLE MALATTIE,equivalente bonus CO,"da aggiungere bonus popolo, professione, speciali",,##
+TIRI RESISTENZA,RESISTENZA AL CALDO,equivalente bonus CO,"da aggiungere bonus popolo, professione, speciali",,##
+TIRI RESISTENZA,RESISTENZA ALLE FREDDO,equivalente bonus CO,"da aggiungere bonus popolo, professione, speciali",,##

@@ -1,0 +1,7 @@
+categoria,nome,sigla,bonus,note
+Tiri resistenza (TR),TR contro essenza,TR-ESS,equivalente bonus IN,"da aggiungere bonus popolo, professione, speciali"
+Tiri resistenza (TR),TR contro flusso,TR-FLU,equivalente bonus IT,"da aggiungere bonus popolo, professione, speciali"
+Tiri resistenza (TR),TR contro veleno,TR-VEL,equivalente bonus CO,"da aggiungere bonus popolo, professione, speciali"
+Tiri resistenza (TR),TR contro malattia,TR-MAL,equivalente bonus CO,"da aggiungere bonus popolo, professione, speciali"
+Tiri resistenza (TR),TR contro caldo,TR-CAL,equivalente bonus CO,"da aggiungere bonus popolo, professione, speciali"
+Tiri resistenza (TR),TR contro freddo,TR-FRE,equivalente bonus CO,"da aggiungere bonus popolo, professione, speciali"

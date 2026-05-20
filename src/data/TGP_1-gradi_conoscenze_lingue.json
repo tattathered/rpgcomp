@@ -1,0 +1,22 @@
+[
+  {
+    "grado": 1,
+    "conoscenza": "Semplici frasi che permettono una comunicazione a livello elementare (E buono da mangiare? C'è pericolo? Quanto costa? Dov'è il bagno?, ecc.). Nessuna conoscenza di lettura e scrittura."
+  },
+  {
+    "grado": 2,
+    "conoscenza": "Se entrambi i colloquianti parlano lentamente, scandendo le parole, consente di discutere su semplici concetti, senza troppi giri di parole. Uno sguardo ad una scrittura può far capire i concetti generali e singole frasi, ma non i particolari. Nessuna conoscenza della scrittura."
+  },
+  {
+    "grado": 3,
+    "conoscenza": "Consente di parlare, in modo scorrevole, come i madrelinqua di media educazione, ma con frequenti inflessioni dialettali (sbaglio di accenti, di tonalità, ecc.); di leggere e scrivere frasi non troppo difficili, ma non i concetti più complessi."
+  },
+  {
+    "grado": 4,
+    "conoscenza": "Consente di parlare come per il grado 3 e di leggere e scrivere come un uomo di buona cultura."
+  },
+  {
+    "grado": 5,
+    "conoscenza": "Conoscenza perfetta della lingua, che consente di senza alcun accento e di avere una padronanza totale nello scrivere e nel leggere."
+  }
+]

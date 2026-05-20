@@ -1,0 +1,191 @@
+[
+  {
+    "categoria": "di manovra e movimento",
+    "tipo": "Manovre in Movimento (MM)",
+    "nome": "nessuna armatura",
+    "valore iniziale": "equivalente bonus AG",
+    "calcolo": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)"
+  },
+  {
+    "categoria": "di manovra e movimento",
+    "tipo": "Manovre in Movimento (MM)",
+    "nome": "cuoio grezzo",
+    "valore iniziale": "equivalente bonus AG",
+    "calcolo": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)"
+  },
+  {
+    "categoria": "di manovra e movimento",
+    "tipo": "Manovre in Movimento (MM)",
+    "nome": "cuoio rinforzato",
+    "valore iniziale": "equivalente bonus AG",
+    "calcolo": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)"
+  },
+  {
+    "categoria": "di manovra e movimento",
+    "tipo": "Manovre in Movimento (MM)",
+    "nome": "corazza di maglia",
+    "valore iniziale": "equivalente bonus FR",
+    "calcolo": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)"
+  },
+  {
+    "categoria": "di manovra e movimento",
+    "tipo": "Manovre in Movimento (MM)",
+    "nome": "corazza di piastre",
+    "valore iniziale": "equivalente bonus FR",
+    "calcolo": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)"
+  },
+  {
+    "categoria": "con le armi",
+    "tipo": "Bonus Offensivi (BO)",
+    "nome": "taglio a 1 mano",
+    "valore iniziale": "equivalente bonus FR",
+    "calcolo": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)"
+  },
+  {
+    "categoria": "con le armi",
+    "tipo": "Bonus Offensivi (BO)",
+    "nome": "contundenti a 1 mano",
+    "valore iniziale": "equivalente bonus FR",
+    "calcolo": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)"
+  },
+  {
+    "categoria": "con le armi",
+    "tipo": "Bonus Offensivi (BO)",
+    "nome": "a 2 mani",
+    "valore iniziale": "equivalente bonus FR",
+    "calcolo": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)"
+  },
+  {
+    "categoria": "con le armi",
+    "tipo": "Bonus Offensivi (BO)",
+    "nome": "da tiro",
+    "valore iniziale": "equivalente bonus AG",
+    "calcolo": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)"
+  },
+  {
+    "categoria": "con le armi",
+    "tipo": "Bonus Offensivi (BO)",
+    "nome": "da lancio",
+    "valore iniziale": "equivalente bonus AG",
+    "calcolo": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)"
+  },
+  {
+    "categoria": "con le armi",
+    "tipo": "Bonus Offensivi (BO)",
+    "nome": "con asta",
+    "valore iniziale": "equivalente bonus FR",
+    "calcolo": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)"
+  },
+  {
+    "categoria": "generali",
+    "tipo": "Manovre in Movimento (MM)",
+    "nome": "arrampicarsi",
+    "valore iniziale": "equivalente bonus AG",
+    "calcolo": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)"
+  },
+  {
+    "categoria": "generali",
+    "tipo": "Manovre in Movimento (MM)",
+    "nome": "cavalcare",
+    "valore iniziale": "equivalente bonus IT",
+    "calcolo": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)"
+  },
+  {
+    "categoria": "generali",
+    "tipo": "Manovre in Movimento (MM)",
+    "nome": "nuotare",
+    "valore iniziale": "equivalente bonus AG",
+    "calcolo": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)"
+  },
+  {
+    "categoria": "generali",
+    "tipo": "Manovre Statiche(MS)",
+    "nome": "seguire tracce",
+    "valore iniziale": "equivalente bonus IN",
+    "calcolo": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)"
+  },
+  {
+    "categoria": "sotterfugio",
+    "tipo": "Manovre Statiche(MS)",
+    "nome": "cogliere alle spalle",
+    "valore iniziale": "n/a",
+    "calcolo": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)"
+  },
+  {
+    "categoria": "sotterfugio",
+    "tipo": "Manovre in Movimento (MM)",
+    "nome": "muoversi silenziosamente",
+    "valore iniziale": "equivalente bonus PR",
+    "calcolo": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)"
+  },
+  {
+    "categoria": "sotterfugio",
+    "tipo": "Manovre in Movimento (MM)",
+    "nome": "nascondersi",
+    "valore iniziale": "equivalente bonus PR",
+    "calcolo": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)"
+  },
+  {
+    "categoria": "sotterfugio",
+    "tipo": "Manovre Statiche(MS)",
+    "nome": "scassinare serrature",
+    "valore iniziale": "equivalente bonus IN",
+    "calcolo": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)"
+  },
+  {
+    "categoria": "sotterfugio",
+    "tipo": "Manovre Statiche(MS)",
+    "nome": "disattivare trappole",
+    "valore iniziale": "equivalente bonus IT",
+    "calcolo": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)"
+  },
+  {
+    "categoria": "magiche",
+    "tipo": "Azioni Speciali (AS)",
+    "nome": "lettura rune",
+    "valore iniziale": "equivalente bonus IN",
+    "calcolo": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)"
+  },
+  {
+    "categoria": "magiche",
+    "tipo": "Azioni Speciali (AS)",
+    "nome": "uso oggetti magici",
+    "valore iniziale": "equivalente bonus IT",
+    "calcolo": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)"
+  },
+  {
+    "categoria": "magiche",
+    "tipo": "Azioni Speciali (AS)",
+    "nome": "incantesimi diretti",
+    "valore iniziale": "equivalente bonus AG",
+    "calcolo": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)"
+  },
+  {
+    "categoria": "bonus e abilità varie",
+    "tipo": "Azioni Speciali (AS)",
+    "nome": "percezione",
+    "valore iniziale": "equivalente bonus IT",
+    "calcolo": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)"
+  },
+  {
+    "categoria": "bonus e abilità varie",
+    "tipo": "Altro",
+    "nome": "resistenza fisica",
+    "valore iniziale": "equivalente bonus CO",
+    "calcolo": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)"
+  },
+  {
+    "categoria": "bonus e abilità varie",
+    "tipo": "Azioni Speciali (AS)",
+    "nome": "incantesimi base",
+    "valore iniziale": "equivalente bonus AG",
+    "calcolo": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)"
+  },
+  {
+    "categoria": "bonus e abilità varie",
+    "tipo": "Azioni Speciali (AS)",
+    "nome": "leadership e influenza",
+    "valore iniziale": "equivalente bonus PR",
+    "calcolo": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)"
+  }
+]

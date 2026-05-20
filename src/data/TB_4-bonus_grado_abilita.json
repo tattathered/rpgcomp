@@ -1,0 +1,107 @@
+[
+  {
+    "grado": 0,
+    "bonus": -25,
+    "note": null
+  },
+  {
+    "grado": 1,
+    "bonus": 5,
+    "note": null
+  },
+  {
+    "grado": 2,
+    "bonus": 10,
+    "note": null
+  },
+  {
+    "grado": 3,
+    "bonus": 15,
+    "note": null
+  },
+  {
+    "grado": 4,
+    "bonus": 20,
+    "note": null
+  },
+  {
+    "grado": 5,
+    "bonus": 25,
+    "note": null
+  },
+  {
+    "grado": 6,
+    "bonus": 30,
+    "note": null
+  },
+  {
+    "grado": 7,
+    "bonus": 35,
+    "note": null
+  },
+  {
+    "grado": 8,
+    "bonus": 40,
+    "note": null
+  },
+  {
+    "grado": 9,
+    "bonus": 45,
+    "note": null
+  },
+  {
+    "grado": 10,
+    "bonus": 50,
+    "note": null
+  },
+  {
+    "grado": 11,
+    "bonus": 52,
+    "note": null
+  },
+  {
+    "grado": 12,
+    "bonus": 54,
+    "note": null
+  },
+  {
+    "grado": 13,
+    "bonus": 56,
+    "note": null
+  },
+  {
+    "grado": 14,
+    "bonus": 58,
+    "note": null
+  },
+  {
+    "grado": 15,
+    "bonus": 60,
+    "note": null
+  },
+  {
+    "grado": 16,
+    "bonus": 62,
+    "note": null
+  },
+  {
+    "grado": 17,
+    "bonus": 64,
+    "note": null
+  },
+  {
+    "grado": 18,
+    "bonus": 66,
+    "note": null
+  },
+  {
+    "grado": 19,
+    "bonus": 68,
+    "note": null
+  },
+  {
+    "grado": 20,
+    "bonus": 70,
+    "note": "+1 per ogni grado oltre il 20° (ad es.: al 22° grado corrisponde un bonus di +72)"
+  }
+]

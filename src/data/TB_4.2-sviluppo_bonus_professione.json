@@ -1,0 +1,17 @@
+[
+  {
+    "progressione": "bonus +3/livello",
+    "livello fino al 20": "+3/lvl",
+    "livello oltre al 20": "+1/lvl"
+  },
+  {
+    "progressione": "bonus +2/livello",
+    "livello fino al 20": "+2/lvl",
+    "livello oltre al 20": "+0.5/lvl"
+  },
+  {
+    "progressione": "bonus +1/livello",
+    "livello fino al 20": "+1/lvl",
+    "livello oltre al 20": "+0.25/lvl"
+  }
+]

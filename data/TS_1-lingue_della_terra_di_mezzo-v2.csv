@@ -1,0 +1,84 @@
+popolo,lingua madre,lingua,livello
+Beorniani,yes,Atliduk,5
+Beorniani,yes,Waildyth (Segnali naturali),5
+Beorniani,no,Nahaiduk,5
+Beorniani,no,Ovestron (Linguaggio Comune),5
+Uomini delle Città Eriadoriani,yes,Ovestron (Linguaggio Comune),5
+Uomini delle Campagne Eriadoriani,yes,Ovestron (Linguaggio Comune),5
+Uomini delle Città Gondoriani,yes,Ovestron (Linguaggio Comune),5
+Uomini delle Campagne Gondoriani,yes,Ovestron (Linguaggio Comune),5
+Uomini delle Città Rohirrim,yes,Rohirric,5
+Uomini delle Città Rohirrim,no,Dunael,1
+Uomini delle Città Rohirrim,no,Ovestron (Linguaggio Comune),5
+Uomini delle Campagne Rohirrim,yes,Rohirric,5
+Uomini delle Campagne Rohirrim,no,Dunael,1
+Uomini delle Campagne Rohirrim,no,Ovestron (Linguaggio Comune),5
+Corsari,yes,Adunaico,5
+Corsari,no,Haradaico,4
+Corsari,no,Ovestron (Linguaggio Comune),5
+Dorwinrim,yes,Logathig,5
+Dorwinrim,no,Ovestron (Linguaggio Comune),5
+Dúnedain,yes,Adunaico,5
+Dúnedain,no,Ovestron (Linguaggio Comune),5
+Dúnedain,no,Quenya (Altoelfico),1
+Dúnedain,no,Sindarin,4
+Dunlandiani,yes,Dunael,5
+Dunlandiani,no,Ovestron (Linguaggio Comune),4
+Elfi Noldor,yes,Quenya (Altoelfico),5
+Elfi Noldor,no,Adunaico,3
+Elfi Noldor,no,Ovestron (Linguaggio Comune),5
+Elfi Noldor,no,Sindarin,5
+Elfi Silvani,yes,Silvano (Bethteur),5
+Elfi Silvani,no,Ovestron (Linguaggio Comune),4
+Elfi Silvani,no,Quenya (Altoelfico),2
+Elfi Silvani,no,Sindarin,4
+Elfi Sindar,yes,Sindarin,5
+Elfi Sindar,no,Ovestron (Linguaggio Comune),5
+Elfi Sindar,no,Quenya (Altoelfico),3
+Elfi Sindar,no,Silvano (Bethteur),4
+Esterling,yes,Logathig,5
+Esterling,no,Ovestron (Linguaggio Comune),2
+Haradrim,yes,Haradaico,5
+Haradrim,no,Apysaico,4
+Haradrim,no,Ovestron (Linguaggio Comune),5
+Hobbit,yes,Kuduk (Variante dell'Ovestron usata dagli Hobbit),5
+Hobbit,no,Ovestron (Linguaggio Comune),5
+Lossoth,yes,Labba,5
+Lossoth,no,Ovestron (Linguaggio Comune),2
+Lossoth,no,Sindarin,2
+Mezzelfi,no,Ovestron (Linguaggio Comune),5
+Mezzelfi,no,Quenya (Altoelfico),3
+Mezzelfi,no,Sindarin,5
+Mezzotroll,no,Linguaggio Nero (Morbeth),4
+Mezzotroll,no,Ovestron (Linguaggio Comune),4
+Mezzorchi,no,Linguaggio Nero (Morbeth),4
+Mezzorchi,no,Orchesco,4
+Mezzorchi,no,Ovestron (Linguaggio Comune),4
+Nani,yes,Khuzdul (Nanesco),5
+Nani,no,Ovestron (Linguaggio Comune),5
+Nani,no,Sindarin,3
+Númenóreani Neri,yes,Adunaico,5
+Númenóreani Neri,no,Haradaico,5
+Númenóreani Neri,no,Ovestron (Linguaggio Comune),5
+Olog-hai,yes,Linguaggio Nero (Morbeth),5
+Olog-hai,no,Ovestron (Linguaggio Comune),3
+Orchetti,yes,Orchesco,5
+Orchetti,no,Ovestron (Linguaggio Comune),3
+Troll,yes,Linguaggio Nero (Morbeth),5
+Troll,no,Ovestron (Linguaggio Comune),3
+Umli,yes,Umitico,5
+Umli,no,Khuzdul (Nanesco),1
+Umli,no,Labba,2
+Umli,no,Ovestron (Linguaggio Comune),2
+Uomini dei Boschi,yes,Nahaiduk,5
+Uomini dei Boschi,no,Ovestron (Linguaggio Comune),2
+Uomini dei Boschi,no,Sindarin,2
+Uruk-hai,yes,Linguaggio Nero (Morbeth),5
+Uruk-hai,no,Orchesco,4
+Uruk-hai,no,Ovestron (Linguaggio Comune),4
+Variag,yes,Varadja,5
+Variag,no,Haradaico,3
+Variag,no,Ovestron (Linguaggio Comune),2
+Wose,yes,Pukael,5
+Wose,no,Dunael,2
+Wose,no,Ovestron (Linguaggio Comune),2

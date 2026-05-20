@@ -1,0 +1,8 @@
+categoria,nome,sigla,note
+Caratteristiche fisiche e mentali,Forza,FR,calcolo 1d100
+Caratteristiche fisiche e mentali,Agilità,AG,calcolo 1d100
+Caratteristiche fisiche e mentali,Costituzione,CO,calcolo 1d100
+Caratteristiche fisiche e mentali,Intelligenza,IT,calcolo 1d100
+Caratteristiche fisiche e mentali,Intuizione,IN,calcolo 1d100
+Caratteristiche fisiche e mentali,Prontezza,PR,calcolo 1d100
+Caratteristiche fisiche e mentali,Aspetto,AS,calcolo 1d100 + bonus PR

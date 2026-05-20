@@ -1,0 +1,35 @@
+tipologia,tiro del dado,opzione
+Gradi delle abilità,n/a,Aumenta una Abilità primaria di 2 Gradi oppure aumenta una Abilità secondaria di 5 Gradi
+Aumento delle caratteristiche,n/a,Aumenta una caratteristica di 2 Punti oppure aumenta 3 caratteristiche di 1 Punto ciascuna
+Lingue,n/a,Apprendi 1 lingua a Grado di Abilità 5
+abilità speciali,da 01 a 50,Un Bonus Speciale +5 in una qualsiasi delle Abilità primarie
+abilità speciali,da 51 a 55,Un Bonus Speciale +15 in una Abilità secondaria
+abilità speciali,da 56 a 60,"Empatia verso una specie animale: il PG inizia il gioco accompagnato d a un piccolo animale di quella specie (falco, gabbiano, gatto, cane, cavallo ecc.) che lo seguirà come fedele compagno. Ogni manovra in compagnia di tale animale beneficia di un Bonus Speciale +25."
+abilità speciali,da 61 a 65,"Infravisione: abilità di percepire sorgenti di calore nell'oscurità fino a 30 metri. Alternativamente, un altro senso qualsiasi può essere potenziato in maniera simile."
+abilità speciali,da 66 a 70,"Resistenza: un Bonus Speciale +10 ai TR contro un tipo di avversità (Di solito contro Incantesimi dell'Essenza, Incantesimi del Flusso, veleni o malattie)"
+abilità speciali,da 71 a 75,"Esperto di magia: inizia il gioco conoscendo una lista di incantesimi in più, (questa opzione di background può essere scelta una sola volta). La lista d'incantesimi prescelta è, naturalmente, limitata dalla professione e dalla razza del PG."
+abilità speciali,da 76 a 80,Abile nelle Manovre in Movimento: un Bonus Speciale +10 a tutte le Manovre di Movimento.
+abilità speciali,da 81 a 85,Attento osservatore: un Bonus Speciale +10 ai Tiri Percezione e all'abilità Seguire le Tracce.
+abilità speciali,da 86 a 90,Riflessi fulminei: +5 ai BD e +5 ai BO
+abilità speciali,da 91 a 95,Carismatico: un Bonus Speciale +10 alla leadership
+abilità speciali,da 96 a 00,Resistente al dolore: +3 per ogni D10 alla Resistenza Fisica.
+oggetti speciali,da 01 a 60,"Oggetto magico +10: +10 alla abilità utilizzata con l'oggetto (es. una mazza +10 aumenta il Bonus Offensivo della mazza di +10 quando è usata in combattimento; un grimaldello +10 darà un Bonus di +10 all'abilità di scassinare, una sella +10 darà un bonus +10 all'abilità di cavalcare). Il giocatore può scegliere il tipo di oggetto. Oppure un oggetto addizionatore di incantesimo +1: permette a chi lancia l'incantesimo di lanciarne 1 supplementare al giorno senza spendere Punti Magia."
+oggetti speciali,da 61 a 89,"Oggetto con incantesimo giornaliero: un oggetto che permette di lanciare uno specifico incantesimo, un certo numero di volte al giorno senza spendere punti magia; un incantesimo del primo livello 4 volte al giorno; un incantesimo del secondo 3 volte al giorno; un incantesimo del terzo 2 volte al giorno o un incantesimo del quarto 1 volta al giorno. La scelta dell'incantesimo è lasciata al giocatore con l'accordo del GM, oppure questi può concedere uno specifico oggetto magico di sua scelta (es. un cofanetto che si riempie una volta al giorno; una corda che si annoda e si snoda da sola ecc.)"
+oggetti speciali,da 99 a 100,"Oggetto magico +15: +15 alla abilità utilizzata con l'oggetto (es. una mazza +15 aumenta il Bonus Offensivo della mazza di +15 quando è usata in combattimento; un grimaldello +15 darà un Bonus di +15 all'abilità di scassinare, una sella +15 darà un bonus +15 all'abilità di cavalcare). Il giocatore può scegliere il tipo di oggetto. Oppure un oggetto addizionatore di incantesimo +2: permette a chi lancia l'incantesimo di lanciarne 2 supplementare al giorno senza spendere Punti Magia."
+denaro: monete d'oro,da 01 a 02,1
+denaro: monete d'oro,da 03 a 05,2
+denaro: monete d'oro,da 06 a 15,5
+denaro: monete d'oro,da 16 a 25,10
+denaro: monete d'oro,da 26 a 35,15
+denaro: monete d'oro,da 36 a 45,20
+denaro: monete d'oro,da 46 a 55,30
+denaro: monete d'oro,da 56 a 65,35
+denaro: monete d'oro,da 66 a 70,40
+denaro: monete d'oro,da 71 a 75,50
+denaro: monete d'oro,da 76 a 80,60
+denaro: monete d'oro,da 81 a 85,70
+denaro: monete d'oro,da 86 a 90,80
+denaro: monete d'oro,da 91 a 94,100
+denaro: monete d'oro,da 95 a 97,125
+denaro: monete d'oro,da 98 a 99,150
+denaro: monete d'oro,100,200

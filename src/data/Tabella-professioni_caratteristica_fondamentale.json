@@ -1,0 +1,32 @@
+[
+  {
+    "professione": "guerriero",
+    "caratteristica fondamentale": "FR",
+    "caratteristica secondaria": "AG"
+  },
+  {
+    "professione": "scout",
+    "caratteristica fondamentale": "AG",
+    "caratteristica secondaria": "IT"
+  },
+  {
+    "professione": "ranger",
+    "caratteristica fondamentale": "CO",
+    "caratteristica secondaria": "IT"
+  },
+  {
+    "professione": "bardo",
+    "caratteristica fondamentale": "PR",
+    "caratteristica secondaria": "IT"
+  },
+  {
+    "professione": "mago",
+    "caratteristica fondamentale": "IN",
+    "caratteristica secondaria": "IT"
+  },
+  {
+    "professione": "animista",
+    "caratteristica fondamentale": "IT",
+    "caratteristica secondaria": "IN"
+  }
+]

@@ -1,0 +1,82 @@
+[
+  {
+    "categoria": "Manovre in Movimento",
+    "guerriero": 3,
+    "mago": 0,
+    "animista": 1,
+    "scout": 1,
+    "ranger": 2,
+    "bardo": 1,
+    "note": "I Punti sviluppo (PS) si ottengono alla creazione del Personaggio e a ogni passaggio di livello. I PS possono essere usati per aumentare le abilità di un personaggio. A ogni passaggio di livello, aumentare un’abilità di un grado costa 1 PS; aumentare un’abilità di due gradi costa 3 PS. Nessuna abilità può essere aumentata più di due gradi per livello. Fanno eccezione le Manovra in Movimento; in questo caso ogni PS aumenta di un grado l’abilità e non ci sono limiti di aumento a ogni livello. L’abilità di Percezione può essere aumentata usando i PS di altre categorie, trasferiti al costo di uno a uno; il costo del suo avanzamento però è medesimo delle altre abilità. Si possono trasferire PS da una categoria all’altra; ogni PS ottenuto costa 2 PS se nella categoria in cui si trasferiscono la professione prevede già almeno un PS, altrimenti ogni PS ottenuto costa 4 PS di altre categorie."
+  },
+  {
+    "categoria": "Abilità armi",
+    "guerriero": 5,
+    "mago": 0,
+    "animista": 1,
+    "scout": 3,
+    "ranger": 3,
+    "bardo": 2,
+    "note": "I Punti sviluppo (PS) si ottengono alla creazione del Personaggio e a ogni passaggio di livello. I PS possono essere usati per aumentare le abilità di un personaggio. A ogni passaggio di livello, aumentare un’abilità di un grado costa 1 PS; aumentare un’abilità di due gradi costa 3 PS. Nessuna abilità può essere aumentata più di due gradi per livello. Fanno eccezione le Manovra in Movimento; in questo caso ogni PS aumenta di un grado l’abilità e non ci sono limiti di aumento a ogni livello. L’abilità di Percezione può essere aumentata usando i PS di altre categorie, trasferiti al costo di uno a uno; il costo del suo avanzamento però è medesimo delle altre abilità. Si possono trasferire PS da una categoria all’altra; ogni PS ottenuto costa 2 PS se nella categoria in cui si trasferiscono la professione prevede già almeno un PS, altrimenti ogni PS ottenuto costa 4 PS di altre categorie."
+  },
+  {
+    "categoria": "Abilità generiche",
+    "guerriero": 2,
+    "mago": 2,
+    "animista": 2,
+    "scout": 3,
+    "ranger": 4,
+    "bardo": 2,
+    "note": "I Punti sviluppo (PS) si ottengono alla creazione del Personaggio e a ogni passaggio di livello. I PS possono essere usati per aumentare le abilità di un personaggio. A ogni passaggio di livello, aumentare un’abilità di un grado costa 1 PS; aumentare un’abilità di due gradi costa 3 PS. Nessuna abilità può essere aumentata più di due gradi per livello. Fanno eccezione le Manovra in Movimento; in questo caso ogni PS aumenta di un grado l’abilità e non ci sono limiti di aumento a ogni livello. L’abilità di Percezione può essere aumentata usando i PS di altre categorie, trasferiti al costo di uno a uno; il costo del suo avanzamento però è medesimo delle altre abilità. Si possono trasferire PS da una categoria all’altra; ogni PS ottenuto costa 2 PS se nella categoria in cui si trasferiscono la professione prevede già almeno un PS, altrimenti ogni PS ottenuto costa 4 PS di altre categorie."
+  },
+  {
+    "categoria": "Abilità sotterfugio",
+    "guerriero": 2,
+    "mago": 0,
+    "animista": 1,
+    "scout": 5,
+    "ranger": 2,
+    "bardo": 2,
+    "note": "I Punti sviluppo (PS) si ottengono alla creazione del Personaggio e a ogni passaggio di livello. I PS possono essere usati per aumentare le abilità di un personaggio. A ogni passaggio di livello, aumentare un’abilità di un grado costa 1 PS; aumentare un’abilità di due gradi costa 3 PS. Nessuna abilità può essere aumentata più di due gradi per livello. Fanno eccezione le Manovra in Movimento; in questo caso ogni PS aumenta di un grado l’abilità e non ci sono limiti di aumento a ogni livello. L’abilità di Percezione può essere aumentata usando i PS di altre categorie, trasferiti al costo di uno a uno; il costo del suo avanzamento però è medesimo delle altre abilità. Si possono trasferire PS da una categoria all’altra; ogni PS ottenuto costa 2 PS se nella categoria in cui si trasferiscono la professione prevede già almeno un PS, altrimenti ogni PS ottenuto costa 4 PS di altre categorie."
+  },
+  {
+    "categoria": "Abilità magiche",
+    "guerriero": 0,
+    "mago": 5,
+    "animista": 2,
+    "scout": 0,
+    "ranger": 0,
+    "bardo": 2,
+    "note": "I Punti sviluppo (PS) si ottengono alla creazione del Personaggio e a ogni passaggio di livello. I PS possono essere usati per aumentare le abilità di un personaggio. A ogni passaggio di livello, aumentare un’abilità di un grado costa 1 PS; aumentare un’abilità di due gradi costa 3 PS. Nessuna abilità può essere aumentata più di due gradi per livello. Fanno eccezione le Manovra in Movimento; in questo caso ogni PS aumenta di un grado l’abilità e non ci sono limiti di aumento a ogni livello. L’abilità di Percezione può essere aumentata usando i PS di altre categorie, trasferiti al costo di uno a uno; il costo del suo avanzamento però è medesimo delle altre abilità. Si possono trasferire PS da una categoria all’altra; ogni PS ottenuto costa 2 PS se nella categoria in cui si trasferiscono la professione prevede già almeno un PS, altrimenti ogni PS ottenuto costa 4 PS di altre categorie."
+  },
+  {
+    "categoria": "Resistenza fisica",
+    "guerriero": 3,
+    "mago": 1,
+    "animista": 1,
+    "scout": 2,
+    "ranger": 2,
+    "bardo": 1,
+    "note": "I Punti sviluppo (PS) si ottengono alla creazione del Personaggio e a ogni passaggio di livello. I PS possono essere usati per aumentare le abilità di un personaggio. A ogni passaggio di livello, aumentare un’abilità di un grado costa 1 PS; aumentare un’abilità di due gradi costa 3 PS. Nessuna abilità può essere aumentata più di due gradi per livello. Fanno eccezione le Manovra in Movimento; in questo caso ogni PS aumenta di un grado l’abilità e non ci sono limiti di aumento a ogni livello. L’abilità di Percezione può essere aumentata usando i PS di altre categorie, trasferiti al costo di uno a uno; il costo del suo avanzamento però è medesimo delle altre abilità. Si possono trasferire PS da una categoria all’altra; ogni PS ottenuto costa 2 PS se nella categoria in cui si trasferiscono la professione prevede già almeno un PS, altrimenti ogni PS ottenuto costa 4 PS di altre categorie."
+  },
+  {
+    "categoria": "Lingue",
+    "guerriero": 0,
+    "mago": 2,
+    "animista": 2,
+    "scout": 1,
+    "ranger": 1,
+    "bardo": 3,
+    "note": "I Punti sviluppo (PS) si ottengono alla creazione del Personaggio e a ogni passaggio di livello. I PS possono essere usati per aumentare le abilità di un personaggio. A ogni passaggio di livello, aumentare un’abilità di un grado costa 1 PS; aumentare un’abilità di due gradi costa 3 PS. Nessuna abilità può essere aumentata più di due gradi per livello. Fanno eccezione le Manovra in Movimento; in questo caso ogni PS aumenta di un grado l’abilità e non ci sono limiti di aumento a ogni livello. L’abilità di Percezione può essere aumentata usando i PS di altre categorie, trasferiti al costo di uno a uno; il costo del suo avanzamento però è medesimo delle altre abilità. Si possono trasferire PS da una categoria all’altra; ogni PS ottenuto costa 2 PS se nella categoria in cui si trasferiscono la professione prevede già almeno un PS, altrimenti ogni PS ottenuto costa 4 PS di altre categorie."
+  },
+  {
+    "categoria": "Liste incantesimi",
+    "guerriero": 0,
+    "mago": 5,
+    "animista": 5,
+    "scout": 0,
+    "ranger": 1,
+    "bardo": 2,
+    "note": "I Punti sviluppo (PS) si ottengono alla creazione del Personaggio e a ogni passaggio di livello. I PS possono essere usati per aumentare le abilità di un personaggio. A ogni passaggio di livello, aumentare un’abilità di un grado costa 1 PS; aumentare un’abilità di due gradi costa 3 PS. Nessuna abilità può essere aumentata più di due gradi per livello. Fanno eccezione le Manovra in Movimento; in questo caso ogni PS aumenta di un grado l’abilità e non ci sono limiti di aumento a ogni livello. L’abilità di Percezione può essere aumentata usando i PS di altre categorie, trasferiti al costo di uno a uno; il costo del suo avanzamento però è medesimo delle altre abilità. Si possono trasferire PS da una categoria all’altra; ogni PS ottenuto costa 2 PS se nella categoria in cui si trasferiscono la professione prevede già almeno un PS, altrimenti ogni PS ottenuto costa 4 PS di altre categorie. Liste di Incantesimi. Ogni Punto Sviluppo usato per una lista di incantesimi corrisponde a un aumento del 20% delle probabilità di studiarla con successo: con 5 punti, quindi, l'apprendimento è automatico (100%)."
+  }
+]

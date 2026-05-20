@@ -1,0 +1,127 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.app-header {
+  height: 80px;
+  background-color: var(--color-surface);
+  border-bottom: 2px solid var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  box-shadow: var(--shadow-md);
+  z-index: 10;
+}
+
+.app-header h1 {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.app-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.app-sidebar {
+  width: 280px;
+  background-color: var(--color-surface);
+  border-right: 1px solid var(--color-surface-light);
+  padding: 40px 0;
+}
+
+.app-sidebar ul {
+  list-style: none;
+}
+
+.app-sidebar li {
+  padding: 15px 40px;
+  font-family: var(--font-title);
+  font-size: 0.9rem;
+  color: var(--color-text-dim);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  border-left: 4px solid transparent;
+  text-transform: uppercase;
+}
+
+.app-sidebar li:hover {
+  background-color: var(--color-surface-light);
+  color: var(--color-text);
+}
+
+.app-sidebar li.active {
+  color: var(--color-primary);
+  border-left-color: var(--color-primary);
+  background-color: rgba(212, 175, 55, 0.05);
+}
+
+.app-content {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+  background-image: radial-gradient(circle at center, #1a1a1a 0%, #0f0f0f 100%);
+}
+
+.section-header {
+  margin-bottom: 40px;
+}
+
+.section-header h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.section-header p {
+  color: var(--color-text-dim);
+  font-style: italic;
+}
+
+.card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-surface-light);
+  border-radius: var(--border-radius);
+  padding: 30px;
+  box-shadow: var(--shadow-md);
+  max-width: 600px;
+}
+
+.card h3 {
+  margin-bottom: 20px;
+}
+
+.card p {
+  margin-bottom: 30px;
+  color: var(--color-text-dim);
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+  border: none;
+  padding: 12px 24px;
+  border-radius: var(--border-radius);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.placeholder-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60%;
+  color: var(--color-text-dim);
+}

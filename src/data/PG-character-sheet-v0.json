@@ -1,0 +1,394 @@
+[
+  {
+    "categoria": "ATTRIBUTI/INFO",
+    "elemento": "Nome",
+    "descrizione": "stringa testo",
+    "nota": "info testuale",
+    "dato se presente": null,
+    "bonus_se_presente": null
+  },
+  {
+    "categoria": "ATTRIBUTI/INFO",
+    "elemento": "Popolo",
+    "descrizione": "popolo di apparteneneza, influisce su creazione personaggio",
+    "nota": null,
+    "dato se presente": null,
+    "bonus_se_presente": null
+  },
+  {
+    "categoria": "ATTRIBUTI/INFO",
+    "elemento": "Altezza",
+    "descrizione": "stringa testo",
+    "nota": "info testuale",
+    "dato se presente": null,
+    "bonus_se_presente": null
+  },
+  {
+    "categoria": "ATTRIBUTI/INFO",
+    "elemento": "Peso",
+    "descrizione": "stringa testo",
+    "nota": "info testuale",
+    "dato se presente": null,
+    "bonus_se_presente": null
+  },
+  {
+    "categoria": "ATTRIBUTI/INFO",
+    "elemento": "Capelli",
+    "descrizione": "stringa testo",
+    "nota": "info testuale",
+    "dato se presente": null,
+    "bonus_se_presente": null
+  },
+  {
+    "categoria": "ATTRIBUTI/INFO",
+    "elemento": "Occhi",
+    "descrizione": "stringa testo",
+    "nota": "info testuale",
+    "dato se presente": null,
+    "bonus_se_presente": null
+  },
+  {
+    "categoria": "ATTRIBUTI/INFO",
+    "elemento": "Carattere",
+    "descrizione": "stringa testo",
+    "nota": "info testuale",
+    "dato se presente": null,
+    "bonus_se_presente": null
+  },
+  {
+    "categoria": "ATTRIBUTI/INFO",
+    "elemento": "Special",
+    "descrizione": "eventuali caratteristiche speciali",
+    "nota": "info testuale",
+    "dato se presente": null,
+    "bonus_se_presente": null
+  },
+  {
+    "categoria": "ATTRIBUTI/INFO",
+    "elemento": "Professione",
+    "descrizione": "professione scelta, influisce sulla creazione del personaggio",
+    "nota": null,
+    "dato se presente": null,
+    "bonus_se_presente": null
+  },
+  {
+    "categoria": "ATTRIBUTI/INFO",
+    "elemento": "Livello",
+    "descrizione": "determina livello esperienza e influisce su elementi di gioco - es. calcolo pun ti ferita, punti magia, livello incantesimi, etc",
+    "nota": null,
+    "dato se presente": null,
+    "bonus_se_presente": null
+  },
+  {
+    "categoria": "CARATTERISTICHE",
+    "elemento": "FORZA",
+    "descrizione": "caratteristica iniziale",
+    "nota": "calcolata",
+    "dato se presente": "##",
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "CARATTERISTICHE",
+    "elemento": "AGILITÀ",
+    "descrizione": "caratteristica iniziale",
+    "nota": "calcolata",
+    "dato se presente": "##",
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "CARATTERISTICHE",
+    "elemento": "COSTITUZIONE",
+    "descrizione": "caratteristica iniziale",
+    "nota": "calcolata",
+    "dato se presente": "##",
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "CARATTERISTICHE",
+    "elemento": "INTELLIGENZA",
+    "descrizione": "caratteristica iniziale",
+    "nota": "calcolata",
+    "dato se presente": "##",
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "CARATTERISTICHE",
+    "elemento": "INTUIZIONE",
+    "descrizione": "caratteristica iniziale",
+    "nota": "calcolata",
+    "dato se presente": "##",
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "CARATTERISTICHE",
+    "elemento": "PRONTEZZA",
+    "descrizione": "caratteristica iniziale",
+    "nota": "calcolata",
+    "dato se presente": "##",
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "CARATTERISTICHE",
+    "elemento": "ASPETTO",
+    "descrizione": "caratteristica iniziale",
+    "nota": "calcolata + bonus PR",
+    "dato se presente": "##",
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "CARATTERISTICHE",
+    "elemento": "LEADERSHIP E INFLUENZA",
+    "descrizione": "solo bonus, inizialmente equivalente bonus PR",
+    "nota": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)",
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "CARATTERISTICHE",
+    "elemento": "PERCEZIONE",
+    "descrizione": "solo bonus, inizialmente equivalente bonus IT",
+    "nota": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)",
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "ABILITÀ GENERALI",
+    "elemento": "Arrampicarsi",
+    "descrizione": "solo bonus, inizialmente equivalente bonus AG",
+    "nota": "calcolata sulla base dei gradi sviluppo",
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "ABILITÀ GENERALI",
+    "elemento": "Cavalcare",
+    "descrizione": "solo bonus, inizialmente equivalente bonus IT",
+    "nota": "calcolata sulla base dei gradi sviluppo",
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "ABILITÀ GENERALI",
+    "elemento": "Nuotare",
+    "descrizione": "solo bonus, inizialmente equivalente bonus AG",
+    "nota": "calcolata sulla base dei gradi sviluppo",
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "ABILITÀ GENERALI",
+    "elemento": "Seguire Tracce",
+    "descrizione": "solo bonus, inizialmente equivalente bonus IN",
+    "nota": "calcolata sulla base dei gradi sviluppo",
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "ASTUZIE & SOTTERFUGI",
+    "elemento": "Cogliere alle spalle",
+    "descrizione": "solo bonus",
+    "nota": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)",
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "ASTUZIE & SOTTERFUGI",
+    "elemento": "Muoversi silenziosamente e nascondersi",
+    "descrizione": "solo bonus, inizialmente equivalente bonus PR",
+    "nota": "calcolata sulla base dei gradi sviluppo",
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "ASTUZIE & SOTTERFUGI",
+    "elemento": "Scassinare serrature",
+    "descrizione": "solo bonus, inizialmente equivalente bonus IN",
+    "nota": "calcolata sulla base dei gradi sviluppo",
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "ASTUZIE & SOTTERFUGI",
+    "elemento": "Borseggiare",
+    "descrizione": "solo bonus",
+    "nota": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)",
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "ABILITÀ SECONDARIE",
+    "elemento": "Orientamento",
+    "descrizione": null,
+    "nota": null,
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "ABILITÀ SECONDARIE",
+    "elemento": "Erboristeria",
+    "descrizione": null,
+    "nota": null,
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "ABILITÀ SECONDARIE",
+    "elemento": "Primo Soccorso",
+    "descrizione": null,
+    "nota": null,
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "ABILITÀ SECONDARIE",
+    "elemento": "Leggere le Labbra",
+    "descrizione": null,
+    "nota": null,
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "ABILITÀ MAGICHE",
+    "elemento": "Leggere Rune",
+    "descrizione": "solo bonus, inizialmente equivalente bonus IN",
+    "nota": "calcolata sulla base dei gradi sviluppo",
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "ABILITÀ MAGICHE",
+    "elemento": "Uso Di Oggetti Magici",
+    "descrizione": "solo bonus, inizialmente equivalente bonus IT",
+    "nota": "calcolata sulla base dei gradi sviluppo",
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "ABILITÀ MAGICHE",
+    "elemento": "Incantesimi Diretti",
+    "descrizione": "solo bonus, inizialmente equivalente bonus AG",
+    "nota": "calcolata sulla base dei gradi sviluppo",
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "ABILITÀ MAGICHE",
+    "elemento": "Incantesimi Base",
+    "descrizione": "solo bonus",
+    "nota": "per il calcolo sono da aggiungere: bonus popolo, bonus professione, bonus speciali (oggetti, background)",
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "VARIE",
+    "elemento": "Disattivare Trappole",
+    "descrizione": "solo bonus, inizialmente equivalente bonus IT",
+    "nota": "calcolata sulla base dei gradi sviluppo",
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "VARIE",
+    "elemento": "Resistenza fisica",
+    "descrizione": "solo bonus, inizialmente equivalente bonus CO",
+    "nota": "calcolata sulla base dei gradi sviluppo",
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "VARIE",
+    "elemento": "Punti ferita",
+    "descrizione": "danno massimo che PG può subire prima di morire",
+    "nota": "calcolata sulla base dei gradi sviluppo",
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "VARIE",
+    "elemento": "Danni",
+    "descrizione": "danni ricevuti",
+    "nota": "variabile",
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "VARIE",
+    "elemento": "Bonus difensivo",
+    "descrizione": "inizialmente equivalente bonus AG",
+    "nota": "per il calcolo sono da aggiungere bonus per scudo, bracciali, schinieri, elmo, etc e dipende da armatura",
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "VARIE",
+    "elemento": "Reame magico",
+    "descrizione": "essenza o flusso",
+    "nota": null,
+    "dato se presente": null,
+    "bonus_se_presente": "essenza o flusso"
+  },
+  {
+    "categoria": "VARIE",
+    "elemento": "Punti magia base",
+    "descrizione": "calcolati sulla base di professione, popolo, bonus IT o IN",
+    "nota": "dipende dal ivello PG",
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "VARIE",
+    "elemento": "Punti magia base rimanenti",
+    "descrizione": "sono riportati al massimo dopo un riposo lungo",
+    "nota": null,
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "TIRI RESISTENZA",
+    "elemento": "RESISTENZA ALL'ESSENZA",
+    "descrizione": "equivalente bonus IN",
+    "nota": "da aggiungere bonus popolo, professione, speciali",
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "TIRI RESISTENZA",
+    "elemento": "RESISTENZA AL FLUSSO",
+    "descrizione": "equivalente bonus IT",
+    "nota": "da aggiungere bonus popolo, professione, speciali",
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "TIRI RESISTENZA",
+    "elemento": "RESISTENZA AI VELENI",
+    "descrizione": "equivalente bonus CO",
+    "nota": "da aggiungere bonus popolo, professione, speciali",
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "TIRI RESISTENZA",
+    "elemento": "RESISTENZA ALLE MALATTIE",
+    "descrizione": "equivalente bonus CO",
+    "nota": "da aggiungere bonus popolo, professione, speciali",
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "TIRI RESISTENZA",
+    "elemento": "RESISTENZA AL CALDO",
+    "descrizione": "equivalente bonus CO",
+    "nota": "da aggiungere bonus popolo, professione, speciali",
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  },
+  {
+    "categoria": "TIRI RESISTENZA",
+    "elemento": "RESISTENZA ALLE FREDDO",
+    "descrizione": "equivalente bonus CO",
+    "nota": "da aggiungere bonus popolo, professione, speciali",
+    "dato se presente": null,
+    "bonus_se_presente": "##"
+  }
+]

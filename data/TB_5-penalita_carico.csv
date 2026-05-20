@@ -1,0 +1,17 @@
+penalità carico,PESO TRASPORTATO (in kg) oltre l'armatura ed i vestiti,,,,,,,,
+peso personaggio (kg),peso trasportato da 8 a 12 kg,peso trasportato da 13 a 17 kg,peso trasportato da 18 a 22 kg,peso trasportato da 23 a 30 kg,peso trasportato da 31 a 40 kg,peso trasportato da 41 a 50 kg,peso trasportato da 51 a 60 kg,peso trasportato da 61 a 70 kg,peso trasportato da 71 a 80 kg
+da 21 a 30,30,60,NA,NA,NA,NA,NA,NA,NA
+da 31 a 40,20,35,60,80,NA,NA,NA,NA,NA
+da 41 a 50,15,25,40,60,NA,NA,NA,NA,NA
+da 51 a 60,15,20,30,40,6A,NA,NA,NA,NA
+da 61 a 70,10,15,25,35,40,60,NA,NA,NA
+da 71 a 80,10,15,20,30,35,40,60,NA,NA
+da 81 a 90,5,10,15,25,30,35,45,60,NA
+da 91 a 100,5,10,15,20,25,30,35,50,60
+da 101 a 110,5,10,15,20,25,30,35,45,55
+da 111 a 120,0,10,10,15,20,25,30,40,50
+da 121 a 130,0,10,10,15,20,25,30,35,45
+da 131 a 140,0,5,10,15,15,20,25,30,40
+da 141 a 150,0,5,5,10,15,20,25,30,35
+da 151 a 175,0,0,5,10,10,20,25,25,35
+da 176 a 200,0,0,0,5,10,15,20,25,30

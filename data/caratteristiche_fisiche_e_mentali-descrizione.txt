@@ -1,0 +1,14 @@
+Caratteristiche fisiche e mentali: I fondamentali attributi fisici e mentali dei personaggi sono rappresentati da 6 aratteristiche: Forza (FR), Agilità (AG), Costituzione (CO), Intelligenza (IN), Intuizione (IT) e Prontezza (PR).
+
+FORZA (FR): Non è la semplice forza bruta, ma l'abilità di usare i muscoli nel modo più efficace. Condiziona le capacità di combattere in mischia, di trasportare carichi, ed altre attività che richiedono l'uso della forza. È la Caratteristica Fondamentale (CF) dei Guerrieri.
+
+AGILITÀ (AG): Questa caratteristica è la risultante di una serie di fattori: destrezza manuale, scioltezza, velocità, tempo di reazione e rapidità. Condiziona le capacità di difesa, di impiego delle armi da tiro, di movimento e di altre manovre. È la CF degli Scout.
+
+COSTITUZIONE (CO): È il grado di solidità fisica; condiziona la capacità di resistere alle malattie e ai veleni così come al dolore, allo shock ed alla perdita di sangue (Punti Stordimento). È la CF dei Ranger.
+
+INTELLIGENZA (IN): È la capacità di ragionamento, di memoria e di buon senso. Condiziona tutte
+le attività che richiedono riflessione e ragionamento: l'apprendimento delle Liste di Incantesimi, l'apprendimento delle lingue, la lettura delle rune, ecc. È la CF dei Maghi.
+
+INTUIZIONE (IT): Indica la relazione del personaggio con la forza che tutto pervade in natura (l'Ainulindale, il Canto che ha creato e plasmato Arda) e con i fatti soprannaturali, compresi quei fenomeni non facilmente definibili come la Saggezza, la Fortuna, la Genialità e in genere, il favore dei Valar. Condiziona la capacità di lanciare incantesimi, di usare oggetti magici, di percepire le cose (ad esempio: le trappole nascoste) e di compiere numerose altre azioni. È la CF degli Animisti.
+
+PRONTEZZA (PR): È la risultante di molti fattori: il coraggio, il comportamento, la stima di sè stessi, il carisma e l'autodisciplina. Condiziona l'aspetto del personaggio, la sua abilità di influire sugli altri, di mantenere il self control nelle situazioni più disperate e di saper dar fondo, al momento opportuno, alle riserve d'energia. È la CF dei Bardi.

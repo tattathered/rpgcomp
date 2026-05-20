@@ -1,0 +1,488 @@
+[
+  {
+    "popolo": "Beorniani",
+    "lingua madre": "yes",
+    "lingua": "Atliduk",
+    "livello": 5
+  },
+  {
+    "popolo": "Beorniani",
+    "lingua madre": "yes",
+    "lingua": "Waildyth (Segnali naturali)",
+    "livello": 5
+  },
+  {
+    "popolo": "Beorniani",
+    "lingua madre": "no",
+    "lingua": "Nahaiduk",
+    "livello": 5
+  },
+  {
+    "popolo": "Beorniani",
+    "lingua madre": "no",
+    "lingua": "Ovestron (Linguaggio Comune)",
+    "livello": 5
+  },
+  {
+    "popolo": "Cittadini",
+    "lingua madre": "yes",
+    "lingua": "Ovestron (Linguaggio Comune)",
+    "livello": 5
+  },
+  {
+    "popolo": "Contadini",
+    "lingua madre": "yes",
+    "lingua": "Ovestron (Linguaggio Comune)",
+    "livello": 5
+  },
+  {
+    "popolo": "Corsari",
+    "lingua madre": "yes",
+    "lingua": "Adunaico",
+    "livello": 5
+  },
+  {
+    "popolo": "Corsari",
+    "lingua madre": "no",
+    "lingua": "Haradaico",
+    "livello": 4
+  },
+  {
+    "popolo": "Corsari",
+    "lingua madre": "no",
+    "lingua": "Ovestron (Linguaggio Comune)",
+    "livello": 5
+  },
+  {
+    "popolo": "Dorwiniani",
+    "lingua madre": "yes",
+    "lingua": "Logathig",
+    "livello": 5
+  },
+  {
+    "popolo": "Dorwiniani",
+    "lingua madre": "no",
+    "lingua": "Ovestron (Linguaggio Comune)",
+    "livello": 5
+  },
+  {
+    "popolo": "Dúnedain",
+    "lingua madre": "yes",
+    "lingua": "Adunaico",
+    "livello": 5
+  },
+  {
+    "popolo": "Dúnedain",
+    "lingua madre": "no",
+    "lingua": "Ovestron (Linguaggio Comune)",
+    "livello": 5
+  },
+  {
+    "popolo": "Dúnedain",
+    "lingua madre": "no",
+    "lingua": "Quenya (Altoelfico)",
+    "livello": 1
+  },
+  {
+    "popolo": "Dúnedain",
+    "lingua madre": "no",
+    "lingua": "Sindarin",
+    "livello": 4
+  },
+  {
+    "popolo": "Dunlandiani",
+    "lingua madre": "yes",
+    "lingua": "Dunael",
+    "livello": 5
+  },
+  {
+    "popolo": "Dunlandiani",
+    "lingua madre": "no",
+    "lingua": "Ovestron (Linguaggio Comune)",
+    "livello": 4
+  },
+  {
+    "popolo": "Elfi Noldor",
+    "lingua madre": "yes",
+    "lingua": "Quenya (Altoelfico)",
+    "livello": 5
+  },
+  {
+    "popolo": "Elfi Noldor",
+    "lingua madre": "no",
+    "lingua": "Adunaico",
+    "livello": 3
+  },
+  {
+    "popolo": "Elfi Noldor",
+    "lingua madre": "no",
+    "lingua": "Ovestron (Linguaggio Comune)",
+    "livello": 5
+  },
+  {
+    "popolo": "Elfi Noldor",
+    "lingua madre": "no",
+    "lingua": "Sindarin",
+    "livello": 5
+  },
+  {
+    "popolo": "Elfi Silvani",
+    "lingua madre": "yes",
+    "lingua": "Silvano (Bethteur)",
+    "livello": 5
+  },
+  {
+    "popolo": "Elfi Silvani",
+    "lingua madre": "no",
+    "lingua": "Ovestron (Linguaggio Comune)",
+    "livello": 4
+  },
+  {
+    "popolo": "Elfi Silvani",
+    "lingua madre": "no",
+    "lingua": "Quenya (Altoelfico)",
+    "livello": 2
+  },
+  {
+    "popolo": "Elfi Silvani",
+    "lingua madre": "no",
+    "lingua": "Sindarin",
+    "livello": 4
+  },
+  {
+    "popolo": "Elfi Sindar",
+    "lingua madre": "yes",
+    "lingua": "Sindarin",
+    "livello": 5
+  },
+  {
+    "popolo": "Elfi Sindar",
+    "lingua madre": "no",
+    "lingua": "Ovestron (Linguaggio Comune)",
+    "livello": 5
+  },
+  {
+    "popolo": "Elfi Sindar",
+    "lingua madre": "no",
+    "lingua": "Quenya (Altoelfico)",
+    "livello": 3
+  },
+  {
+    "popolo": "Elfi Sindar",
+    "lingua madre": "no",
+    "lingua": "Silvano (Bethteur)",
+    "livello": 4
+  },
+  {
+    "popolo": "Esterling",
+    "lingua madre": "yes",
+    "lingua": "Logathig",
+    "livello": 5
+  },
+  {
+    "popolo": "Esterling",
+    "lingua madre": "no",
+    "lingua": "Ovestron (Linguaggio Comune)",
+    "livello": 2
+  },
+  {
+    "popolo": "Haradrim del Nord",
+    "lingua madre": "yes",
+    "lingua": "Haradaico",
+    "livello": 5
+  },
+  {
+    "popolo": "Haradrim del Nord",
+    "lingua madre": "no",
+    "lingua": "Apysaico",
+    "livello": 4
+  },
+  {
+    "popolo": "Haradrim del Nord",
+    "lingua madre": "no",
+    "lingua": "Ovestron (Linguaggio Comune)",
+    "livello": 5
+  },
+  {
+    "popolo": "Haradrim del Sud",
+    "lingua madre": "yes",
+    "lingua": "Apysaico",
+    "livello": 5
+  },
+  {
+    "popolo": "Haradrim del Sud",
+    "lingua madre": "no",
+    "lingua": "Haradaico",
+    "livello": 3
+  },
+  {
+    "popolo": "Haradrim del Sud",
+    "lingua madre": "no",
+    "lingua": "Ovestron (Linguaggio Comune)",
+    "livello": 3
+  },
+  {
+    "popolo": "Hobbit",
+    "lingua madre": "yes",
+    "lingua": "Kuduk (Variante dell'Ovestron usata dagli Hobbit)",
+    "livello": 5
+  },
+  {
+    "popolo": "Hobbit",
+    "lingua madre": "no",
+    "lingua": "Ovestron (Linguaggio Comune)",
+    "livello": 5
+  },
+  {
+    "popolo": "Lossoth",
+    "lingua madre": "yes",
+    "lingua": "Labba",
+    "livello": 5
+  },
+  {
+    "popolo": "Lossoth",
+    "lingua madre": "no",
+    "lingua": "Ovestron (Linguaggio Comune)",
+    "livello": 2
+  },
+  {
+    "popolo": "Lossoth",
+    "lingua madre": "no",
+    "lingua": "Sindarin",
+    "livello": 2
+  },
+  {
+    "popolo": "Mezzelfi",
+    "lingua madre": "no",
+    "lingua": "Ovestron (Linguaggio Comune)",
+    "livello": 5
+  },
+  {
+    "popolo": "Mezzelfi",
+    "lingua madre": "no",
+    "lingua": "Quenya (Altoelfico)",
+    "livello": 3
+  },
+  {
+    "popolo": "Mezzelfi",
+    "lingua madre": "no",
+    "lingua": "Sindarin",
+    "livello": 5
+  },
+  {
+    "popolo": "Mezzi troll",
+    "lingua madre": "no",
+    "lingua": "Linguaggio Nero (Morbeth)",
+    "livello": 4
+  },
+  {
+    "popolo": "Mezzi troll",
+    "lingua madre": "no",
+    "lingua": "Ovestron (Linguaggio Comune)",
+    "livello": 4
+  },
+  {
+    "popolo": "Mezzorchi",
+    "lingua madre": "no",
+    "lingua": "Linguaggio Nero (Morbeth)",
+    "livello": 4
+  },
+  {
+    "popolo": "Mezzorchi",
+    "lingua madre": "no",
+    "lingua": "Orchesco",
+    "livello": 4
+  },
+  {
+    "popolo": "Mezzorchi",
+    "lingua madre": "no",
+    "lingua": "Ovestron (Linguaggio Comune)",
+    "livello": 4
+  },
+  {
+    "popolo": "Nani",
+    "lingua madre": "yes",
+    "lingua": "Khuzdul (Nanesco)",
+    "livello": 5
+  },
+  {
+    "popolo": "Nani",
+    "lingua madre": "no",
+    "lingua": "Ovestron (Linguaggio Comune)",
+    "livello": 5
+  },
+  {
+    "popolo": "Nani",
+    "lingua madre": "no",
+    "lingua": "Sindarin",
+    "livello": 3
+  },
+  {
+    "popolo": "Númenóreani Neri",
+    "lingua madre": "yes",
+    "lingua": "Adunaico",
+    "livello": 5
+  },
+  {
+    "popolo": "Númenóreani Neri",
+    "lingua madre": "no",
+    "lingua": "Haradaico",
+    "livello": 5
+  },
+  {
+    "popolo": "Númenóreani Neri",
+    "lingua madre": "no",
+    "lingua": "Ovestron (Linguaggio Comune)",
+    "livello": 5
+  },
+  {
+    "popolo": "Olog-hai",
+    "lingua madre": "yes",
+    "lingua": "Linguaggio Nero (Morbeth)",
+    "livello": 5
+  },
+  {
+    "popolo": "Olog-hai",
+    "lingua madre": "no",
+    "lingua": "Ovestron (Linguaggio Comune)",
+    "livello": 3
+  },
+  {
+    "popolo": "Orchetti",
+    "lingua madre": "yes",
+    "lingua": "Orchesco",
+    "livello": 5
+  },
+  {
+    "popolo": "Orchetti",
+    "lingua madre": "no",
+    "lingua": "Ovestron (Linguaggio Comune)",
+    "livello": 3
+  },
+  {
+    "popolo": "Rohirrim",
+    "lingua madre": "yes",
+    "lingua": "Rohirric",
+    "livello": 5
+  },
+  {
+    "popolo": "Rohirrim",
+    "lingua madre": "no",
+    "lingua": "Dunael",
+    "livello": 1
+  },
+  {
+    "popolo": "Rohirrim",
+    "lingua madre": "no",
+    "lingua": "Ovestron (Linguaggio Comune)",
+    "livello": 5
+  },
+  {
+    "popolo": "Troll",
+    "lingua madre": "yes",
+    "lingua": "Linguaggio Nero (Morbeth)",
+    "livello": 5
+  },
+  {
+    "popolo": "Troll",
+    "lingua madre": "no",
+    "lingua": "Ovestron (Linguaggio Comune)",
+    "livello": 3
+  },
+  {
+    "popolo": "Umli",
+    "lingua madre": "yes",
+    "lingua": "Umitico",
+    "livello": 5
+  },
+  {
+    "popolo": "Umli",
+    "lingua madre": "no",
+    "lingua": "Khuzdul (Nanesco)",
+    "livello": 1
+  },
+  {
+    "popolo": "Umli",
+    "lingua madre": "no",
+    "lingua": "Labba",
+    "livello": 2
+  },
+  {
+    "popolo": "Umli",
+    "lingua madre": "no",
+    "lingua": "Ovestron (Linguaggio Comune)",
+    "livello": 2
+  },
+  {
+    "popolo": "Uomini dei boschi",
+    "lingua madre": "yes",
+    "lingua": "Nahaiduk",
+    "livello": 5
+  },
+  {
+    "popolo": "Uomini dei boschi",
+    "lingua madre": "no",
+    "lingua": "Ovestron (Linguaggio Comune)",
+    "livello": 2
+  },
+  {
+    "popolo": "Uomini dei boschi",
+    "lingua madre": "no",
+    "lingua": "Sindarin",
+    "livello": 2
+  },
+  {
+    "popolo": "Uruk-hai",
+    "lingua madre": "yes",
+    "lingua": "Linguaggio Nero (Morbeth)",
+    "livello": 5
+  },
+  {
+    "popolo": "Uruk-hai",
+    "lingua madre": "no",
+    "lingua": "Orchesco",
+    "livello": 4
+  },
+  {
+    "popolo": "Uruk-hai",
+    "lingua madre": "no",
+    "lingua": "Ovestron (Linguaggio Comune)",
+    "livello": 4
+  },
+  {
+    "popolo": "Variag",
+    "lingua madre": "yes",
+    "lingua": "Varadja",
+    "livello": 5
+  },
+  {
+    "popolo": "Variag",
+    "lingua madre": "no",
+    "lingua": "Haradaico",
+    "livello": 3
+  },
+  {
+    "popolo": "Variag",
+    "lingua madre": "no",
+    "lingua": "Ovestron (Linguaggio Comune)",
+    "livello": 2
+  },
+  {
+    "popolo": "Wose",
+    "lingua madre": "yes",
+    "lingua": "Pukael",
+    "livello": 5
+  },
+  {
+    "popolo": "Wose",
+    "lingua madre": "no",
+    "lingua": "Dunael",
+    "livello": 2
+  },
+  {
+    "popolo": "Wose",
+    "lingua madre": "no",
+    "lingua": "Ovestron (Linguaggio Comune)",
+    "livello": 2
+  }
+]

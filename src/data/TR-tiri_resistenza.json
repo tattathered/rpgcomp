@@ -1,0 +1,44 @@
+[
+  {
+    "categoria": "Tiri resistenza (TR)",
+    "nome": "TR contro essenza",
+    "sigla": "TR-ESS",
+    "bonus": "equivalente bonus IN",
+    "note": "da aggiungere bonus popolo, professione, speciali"
+  },
+  {
+    "categoria": "Tiri resistenza (TR)",
+    "nome": "TR contro flusso",
+    "sigla": "TR-FLU",
+    "bonus": "equivalente bonus IT",
+    "note": "da aggiungere bonus popolo, professione, speciali"
+  },
+  {
+    "categoria": "Tiri resistenza (TR)",
+    "nome": "TR contro veleno",
+    "sigla": "TR-VEL",
+    "bonus": "equivalente bonus CO",
+    "note": "da aggiungere bonus popolo, professione, speciali"
+  },
+  {
+    "categoria": "Tiri resistenza (TR)",
+    "nome": "TR contro malattia",
+    "sigla": "TR-MAL",
+    "bonus": "equivalente bonus CO",
+    "note": "da aggiungere bonus popolo, professione, speciali"
+  },
+  {
+    "categoria": "Tiri resistenza (TR)",
+    "nome": "TR contro caldo",
+    "sigla": "TR-CAL",
+    "bonus": "equivalente bonus CO",
+    "note": "da aggiungere bonus popolo, professione, speciali"
+  },
+  {
+    "categoria": "Tiri resistenza (TR)",
+    "nome": "TR contro freddo",
+    "sigla": "TR-FRE",
+    "bonus": "equivalente bonus CO",
+    "note": "da aggiungere bonus popolo, professione, speciali"
+  }
+]

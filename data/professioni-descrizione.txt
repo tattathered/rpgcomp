@@ -1,0 +1,72 @@
+SCOUT (Ladro)
+Caratteristica fondamentale Agilità
+Bonus della professione
++1 per livello nelle Abilità con le armi.
++1 per livello nelle Abilità generiche.
++2 per livello nelle Abilità di sotterfugio.
++3 per livello nella Percezione.
+Limiti agli incantesimi
+Può apprendere soltanto le Liste di Incantesimi accessibili di uno solo dei due regni (a scelta). Può pronunciare solo gli incantesimi dal 1° al 5° livello.
+Lo Scout è addestrato alle manovre, all'osservazione, al cogliere di sorpresa e in modo più limitato, al combattimento. Le sue specialità sono le Abilità generiche e di sotterfugio, ma può sviluppare anche quelle concernenti armi ed armature. È però molto difficile per lui, imparare l'uso di incantesimi e di oggetti magici. In particolari circostanze, è un ottimo
+ladro o assassino.
+
+GUERRIERO (Combattente)
+Caratteristica fondamentale Forza
+Bonus della professione
++3 per livello alle Abilità con le armi.
++1 per livello alle Abilità generiche.
++2 per livello allo Resistenza Fisica.
+Limiti agli incantesimi
+Può apprendere soltanto le Liste di Incantesimi aperte di uno solo dei due regni (a sua scelta). Può pronunciare solo gli incantesimi dal 1° al 3° livello.
+Il Guerriero è addestrato nelle arti del combattimento. Le sue specialità sono le Abilità con le armi, le manovre con le armature, e la Resistenza Fisica. È molto difficile, per un Guerriero, imparare ad usare sotterfugi, incantesimi, oggetti magici e altre lingue.
+Oltre alla sua scarsa attitudine, sono cose che non lo interessano.
+
+RANGER (Esploratore)
+Caratteristica fondamentale Costituzione
+Bonus della professione
++2 per livello alle Abilità con le armi.
++3 per livello alle Abilità generiche.
++2 per livello alla Percezione.
++2 per livello al muoversi in silenzio/ nascondersi.
+Limiti agli incantesimi
+Può apprendere le Liste di Incantesimi accessibili di Flusso e quelle dei Ranger. Nel primo caso, però, può pronunciare solo incantesimi dal 1° al 5° livello. (Nessuna restrizione per le liste dei Ranger).
+Il Ranger è addestrato al combattimento ed a tutte le Abilità concernenti la vita all'aria aperta. Le sue specialità sono le Abilità Generiche, ma può raggiungere un buon grado anche nelle Abilità con le armi. Può, infine, apprendere le Liste di Incantesimi dei Ranger e quelle accessibili del Flusso.
+
+BARDO (Eclettico)
+Caratteristica fondamentale Prontezza
+Bonus della professione
++1 per livello alle Abilità con le armi.
++1 per livello alle Abilità generiche.
++1 per livello alle Abilità di sotterfugio.
++1 per livello alle Abilità magiche.
++1 per livello agli attacchi con gli Incantesimi di Base.
++1 per livello alla Percezione.
+Limiti agli incantesimi
+Può apprendere le Liste di accessibili degli Incantesimi dell'Essenza e dei Bardi. Per quelle accessibili, però, può pronunciare solo gli incantesimi dal 1° al 5° livello. (Nessuna restrizione al livello delle liste dei Bardi).
+Il Bardo ha una discreta predisposizione per quasi tutte le categorie di Abilità. L'unica sua vera specialità è la conoscenza delle lingue, ma può anche apprendere incantesimi (liste Essenza aperte e dei Bardi). Può, infine, sviluppare, fino ad un grado limitato, le Abilità di manovra e di combattimento.
+
+MAGO (Stregone)
+Caratteristica fondamentale Intelligenza
+Bonus della professione
++2 per livello alla lettura delle Rune.
++2 per livello all'uso di oggetti magici.
++3 per livello agli attacchi con gli Incantesimi Diretti.
++2 per livello agli attacchi con gli Incantesimi di Base.
+Limiti agli incantesimi
+Può apprendere le Liste accessibili degli Incantesimi dell'Essenza e quelle dei Maghi. Il Mago è un personaggio addestrato a lanciare gli incantesimi che traggono il loro potere dall'Essenza, la forza immanente in tutto il creato. Le sue specialità
+sono le Abilità magiche e l'apprendimento delle Liste di Incantesimi. E molto difficile, per lui, imparare a usare armi e armature. Il Mago ha più fiducia nei suoi incantesimi che nelle armi o nelle manovre. Quando pronuncia incantesimi non può indossare nessun tipo di armatura, elmetto o gambali; ricordiamo che questa limitazione è valida per chiunque faccia uso di incantesimi dell'Essenza.
+
+ANIMISTA (Chierico)
+Caratteristica fondamentale Intuizione
+Bonus della professione
++1 per livello alla lettura delle Rune.
++1 per livello all'uso di oggetti magici.
++1 per livello alle Abilità generiche.
++2 per livello agli attacchi con Incantesimi Diretti.
++2 per livello agli attacchi con gli Incantesimi di Base.
++1 per livello alla Percezione.
+Limiti agli incantesimi
+Può apprendere le Liste accessibili degli Incantesimi di Flusso e quelle degli Animisti. L'Animista è un personaggio addestrato a lanciare gli incantesimi che traggono la loro forza dai Valar, tramite il Flusso. La sua specialità sta nell'apprendere gli incantesimi, ma può sviluppare qualsiasi altra Abilità a scelta.
+Non può indossare nessun tipo di armatura metallica quando lancia incantesimi.
+Questa limitazione vale per chiunque faccia uso degli incantesimi del Flusso.
+

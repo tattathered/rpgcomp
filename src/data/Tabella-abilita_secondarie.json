@@ -1,0 +1,137 @@
+[
+  {
+    "abilita_secondaria": "Acrobazia",
+    "caratteristica_associata": "AG",
+    "descrizione": "Questo bonus è usato nelle manovre in aria o quando si è appesi a qualcosa. Aiuta inoltre a limitare i danni di una eventuale caduta."
+  },
+  {
+    "abilita_secondaria": "Astronomia",
+    "caratteristica_associata": "IT",
+    "descrizione": "Questo bonus è usato per stabilire la data, la direzione e la posizione delle stelle, quando queste sono visibili. Molto utile per la navigazione."
+  },
+  {
+    "abilita_secondaria": "Conciare",
+    "caratteristica_associata": "AG",
+    "descrizione": "Questo bonus è usato per la lavorazione della pelle animale e per costruire oggetti di cuoio (armature, bolas, ecc.)."
+  },
+  {
+    "abilita_secondaria": "Contorsionismo",
+    "caratteristica_associata": "AG",
+    "descrizione": "Questo bonus è usato per adattare il proprio corpo a passare attraverso aperture molto piccole o per assorbire impatti improvvisi (escluse le cadute). Aiuta a liberarsi quando si è legati, ecc."
+  },
+  {
+    "abilita_secondaria": "Costruire frecce",
+    "caratteristica_associata": "AG",
+    "descrizione": "Questo bonus è usato per costruire frecce con il materiale disponibile: legno, metallo, carta, e/o piume."
+  },
+  {
+    "abilita_secondaria": "Costruzione trappole",
+    "caratteristica_associata": "IN",
+    "descrizione": "Questo bonus è usato per costruire trappole anche quando mancano i materiali necessari. Il bonus, inoltre, si sottrae ai Tiri Percezione effettuati per scoprire tali trappole."
+  },
+  {
+    "abilita_secondaria": "Cucinare",
+    "caratteristica_associata": "IT",
+    "descrizione": "Questo bonus è usato per individuare cibo avariato, oppure per preparare o neutralizzare erbe e cibi pericolosi. Comprende la preparazione dei veleni oltre la capacità di preparare dei normali cibi."
+  },
+  {
+    "abilita_secondaria": "Danza",
+    "caratteristica_associata": "IN",
+    "descrizione": "Questo bonus è usato per riprodurre un ballo al quale si sia assistito, compresi i rituali magici, ecc."
+  },
+  {
+    "abilita_secondaria": "Destrezza",
+    "caratteristica_associata": "PR",
+    "descrizione": "Questo bonus è usato per tutte le manovre che richiedono mano svelta: svuotare le tasche altrui, nascondere alla vista piccoli oggetti ed eseguire altri giochi di mano."
+  },
+  {
+    "abilita_secondaria": "Forgiare",
+    "caratteristica_associata": "FR",
+    "descrizione": "Questo bonus è usato per lavorare i metalli non magici al fine di fabbricare o riparare oggetti (armi, armature, ecc.)."
+  },
+  {
+    "abilita_secondaria": "Giocare d'azzardo",
+    "caratteristica_associata": "IT",
+    "descrizione": "Questo bonus è usato per partecipare ad un qualsiasi gioco con una significativa probabilità di successo."
+  },
+  {
+    "abilita_secondaria": "Intagliare",
+    "caratteristica_associata": "AG",
+    "descrizione": "Questo bonus è usato per fabbricare oggetti con legno, ossa o altri materiali simili."
+  },
+  {
+    "abilita_secondaria": "Meditazione",
+    "caratteristica_associata": "PR",
+    "descrizione": "Questo bonus è usato per entrare in trance, utilizzare la meditazione trascendentale ed uscirne."
+  },
+  {
+    "abilita_secondaria": "Musica",
+    "caratteristica_associata": "AG",
+    "descrizione": "Questo bonus è usato per suonare ogni strumento e comprendere ogni tipo di linguaggio musicale."
+  },
+  {
+    "abilita_secondaria": "Navigare",
+    "caratteristica_associata": "IT",
+    "descrizione": "Questo bonus è usato per tutte le manovre che concernono la navigazione e le conoscenze marinare (ad esempio: per individuare la presenza di secche, ecc.)."
+  },
+  {
+    "abilita_secondaria": "Oratoria",
+    "caratteristica_associata": "PR",
+    "descrizione": "Questo bonus è usato per impressionare, intrattenere e convincere altre persone, singole o in gruppo, per mezzo di un discorso."
+  },
+  {
+    "abilita_secondaria": "Pastorizia",
+    "caratteristica_associata": "PR",
+    "descrizione": "Questo bonus è usato per riunire, guidare, e condurre greggi e mandrie di animali (pecore, vacche, ecc.)."
+  },
+  {
+    "abilita_secondaria": "Prevedere il tempo",
+    "caratteristica_associata": "IT",
+    "descrizione": "Questo bonus è usato per determinare le condizioni atmosferiche locali per le successive 24 ore."
+  },
+  {
+    "abilita_secondaria": "Procurarsi cibo",
+    "caratteristica_associata": "IT",
+    "descrizione": "Questo bonus è usato per trovare le risorse locali di acqua potabile, erbe, piante e animali commestibili."
+  },
+  {
+    "abilita_secondaria": "Remare",
+    "caratteristica_associata": "FR",
+    "descrizione": "Questo bonus è usato per far procedere un'imbarcazione a forza di braccia, con remi, pali, ecc."
+  },
+  {
+    "abilita_secondaria": "Sciare",
+    "caratteristica_associata": "AG",
+    "descrizione": "Questo bonus è usato per sciare e scivolare."
+  },
+  {
+    "abilita_secondaria": "Segnalazione",
+    "caratteristica_associata": "IN",
+    "descrizione": "Questo bonus è usato per qualsiasi forma di comunicazione tramite segnali."
+  },
+  {
+    "abilita_secondaria": "Speleologia",
+    "caratteristica_associata": "IN",
+    "descrizione": "Questo bonus è usato per orizzontarsi in un complesso di grotte e di caverne, riconoscere la loro struttura naturale e per muoversi all'interno di esse o in spazi angusti."
+  },
+  {
+    "abilita_secondaria": "Travestimento",
+    "caratteristica_associata": "PR",
+    "descrizione": "Questo bonus è usato per assumere l'identità di un'altra persona, per truccarsi, mascherarsi ecc."
+  },
+  {
+    "abilita_secondaria": "Tuffarsi",
+    "caratteristica_associata": "AG",
+    "descrizione": "Questo bonus è usato nelle manovre che richiedono una caduta controllata."
+  },
+  {
+    "abilita_secondaria": "Uso funi",
+    "caratteristica_associata": "IN",
+    "descrizione": "Questo bonus è usato per riconoscere i nodi, annodare, sciogliere, intrecciare, impiombare, gettare una fune o per eseguire manovre quando si è appesi ad una corda o a qualcosa di analogo."
+  },
+  {
+    "abilita_secondaria": "Volteggiare",
+    "caratteristica_associata": "AG",
+    "descrizione": "Questo bonus è usato per balzare in senso orizzontale, rotolarsi o ruzzolare, o anche per stare in equilibrio su oggetti immobili, rami, pennoni, ecc."
+  }
+]

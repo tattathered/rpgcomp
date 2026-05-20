@@ -1,0 +1,31 @@
+popolo,note,bonus a FR,bonus a AG,bonus a CO,bonus a IN,bonus a IT,bonus a PR,bonus a TR-ESS,bonus a TR-FLS,bonus a TR-VEL,bonus a TR-MAL,bonus a MEN (non considerare)
+Dúnedain,umani,+10,0,+10,0,0,+5,0,0,+5,+15,0
+Uomini delle Città Eriadoriani,umani,+5,0,0,0,0,0,0,0,0,0,0
+Uomini delle Città Gondoriani,umani,+5,0,0,0,0,0,0,0,0,0,0
+Uomini delle Città Rohirrim,umani,+5,0,0,0,0,0,0,0,0,0,0
+Uomini delle Campagne Eriadoriani,umani,+5,0,0,0,0,0,0,0,0,0,0
+Uomini delle Campagne Gondoriani,umani,+5,0,0,0,0,0,0,0,0,0,0
+Uomini delle Campagne Rohirrim,umani,+5,0,0,0,0,0,0,0,0,0,0
+Uomini dei Boschi,umani,+5,0,0,0,0,0,0,0,0,0,0
+Dunlandiani,umani,+5,0,0,0,0,0,0,0,0,0,0
+Esterling,umani,+5,0,0,0,0,0,0,0,0,0,0
+Beorniani,umani,+5,0,0,0,0,0,0,0,0,0,0
+Dorwinrim,umani,+5,0,0,0,0,0,0,0,0,0,0
+Haradrim,umani,+5,0,0,0,0,0,0,0,0,0,0
+Corsari,umani,+5,0,0,0,0,0,0,0,0,0,0
+Númenóreani Neri,umani,+5,0,0,0,0,0,0,0,0,0,0
+Lossoth,umani,+5,0,0,0,0,0,0,0,0,0,0
+Wose,umani,0,0,+5,0,+5,-5,+20,0,0,0,0
+Mezzelfi,non umani,+5,+5,+5,0,0,+5,-5,-5,+5,+50,-5
+Elfi Sindar,non umani,0,+10,+5,0,+5,+10,-5,-5,+10,+100,-5
+Elfi Silvani,non umani,0,+10,0,+5,+5,+5,-5,-5,+10,+100,-5
+Elfi Noldor,non umani,0,+15,+10,+5,+5,+15,-5,-5,+10,+100,-5
+Hobbit,non umani,-20,+15,+15,0,-5,-5,+50,+20,+30,+15,+40
+Nani,non umani,+5,-5,+15,0,-5,-5,+40,0,+20,+10,+40
+Umli,non umani,+5,0,+10,0,-5,-5,+20,0,+5,+5,+20
+Mezzorchi,non umani,+5,0,+5,0,0,-5,0,0,+10,0,0
+Orchetti,non umani,+5,-5,+15,-10,-10,-10,0,0,+20,+5,0
+Uruk-hai,non umani,+10,0,+20,0,-5,-10,0,0,+20,+5,0
+Mezzotroll,non umani,+10,-5,+10,-5,-5,-5,0,0,+15,+5,0
+Troll,non umani,+15,-10,+15,-15,-15,-10,0,0,+30,+10,0
+Olog-hai,non umani,+20,-5,+15,-5,-10,-10,0,0,+20,+10,0

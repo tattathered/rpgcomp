@@ -1,0 +1,114 @@
+[
+  {
+    "abilità": "Movimento e Manovra Nessuna armatura",
+    "caratteristica": "AG"
+  },
+  {
+    "abilità": "Movimento e Manovra Cuoio grezzo",
+    "caratteristica": "AG"
+  },
+  {
+    "abilità": "Movimento e Manovra Cuoio rinforzato",
+    "caratteristica": "AG"
+  },
+  {
+    "abilità": "Movimento e Manovra Corazza di maglia",
+    "caratteristica": "FR"
+  },
+  {
+    "abilità": "Movimento e Manovra Corazza di piastre",
+    "caratteristica": "FR"
+  },
+  {
+    "abilità": "Bonus Offensivo in mischia ",
+    "caratteristica": "FR"
+  },
+  {
+    "abilità": "Bonus Offensivo armi da lancio e da tiro ",
+    "caratteristica": "AG"
+  },
+  {
+    "abilità": "Arrampicarsi ",
+    "caratteristica": "AG"
+  },
+  {
+    "abilità": "Cavalcare ",
+    "caratteristica": "IT"
+  },
+  {
+    "abilità": "Nuotare ",
+    "caratteristica": "AG"
+  },
+  {
+    "abilità": "Seguire tracce ",
+    "caratteristica": "IN"
+  },
+  {
+    "abilità": "Cogliere alle spalle ",
+    "caratteristica": "PR"
+  },
+  {
+    "abilità": "Muoversi silenziosamente/Nascondersi ",
+    "caratteristica": "PR"
+  },
+  {
+    "abilità": "Scassinare serrature ",
+    "caratteristica": "IN"
+  },
+  {
+    "abilità": "Disattivare trappole ",
+    "caratteristica": "IT"
+  },
+  {
+    "abilità": "Lettura rune ",
+    "caratteristica": "IN"
+  },
+  {
+    "abilità": "Uso di oggetti magici ",
+    "caratteristica": "IT"
+  },
+  {
+    "abilità": "Incantesimi diretti ",
+    "caratteristica": "AG"
+  },
+  {
+    "abilità": "Percezione ",
+    "caratteristica": "IT"
+  },
+  {
+    "abilità": "Leadership e Influenza ",
+    "caratteristica": "PR"
+  },
+  {
+    "abilità": "Resistenza Fisica ",
+    "caratteristica": "CO"
+  },
+  {
+    "abilità": "Bonus difensivo ",
+    "caratteristica": "AG"
+  },
+  {
+    "abilità": "Tiro Resistenza all'Essenza ",
+    "caratteristica": "IN"
+  },
+  {
+    "abilità": "Tiro Resistenza al Flusso ",
+    "caratteristica": "IT"
+  },
+  {
+    "abilità": "Tiro Resistenza al Veleno ",
+    "caratteristica": "CO"
+  },
+  {
+    "abilità": "Tiro Resistenza alle Malattie ",
+    "caratteristica": "CO"
+  },
+  {
+    "abilità": "Tiro Resistenza al Caldo ",
+    "caratteristica": "CO"
+  },
+  {
+    "abilità": "Tiro Resistenza al Freddo ",
+    "caratteristica": "CO"
+  }
+]
