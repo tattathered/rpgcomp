@@ -7,16 +7,18 @@ import StatsStep from './steps/StatsStep';
 import AdolescenceStep from './steps/AdolescenceStep';
 import ApprenticeshipLevel1Step from './steps/ApprenticeshipLevel1Step';
 import BackgroundStep from './steps/BackgroundStep';
+import CreationSummaryStep from './steps/CreationSummaryStep';
 
 const WIZARD_STEPS = [
-  { id: 'race', title: '1. Popolo e Cultura', icon: User },
-  { id: 'profession', title: '2. Professione', icon: Target },
-  { id: 'stats', title: '3. Caratteristiche', icon: Activity },
-  { id: 'adolescence', title: '4. Adolescenza', icon: Clock },
-  { id: 'level1', title: '5. Sviluppo Liv. 1', icon: BookOpen },
-  { id: 'background', title: '6. Background', icon: BookOpen },
-  { id: 'learning', title: '7. Apprendimento', icon: BookOpen },
-  { id: 'summary', title: '8. Riepilogo Scheda', icon: List },
+  { id: 'race',       title: '1. Popolo e Cultura',    icon: User },
+  { id: 'profession', title: '2. Professione',          icon: Target },
+  { id: 'stats',      title: '3. Caratteristiche',      icon: Activity },
+  { id: 'adolescence',title: '4. Adolescenza',          icon: Clock },
+  { id: 'level1',     title: '5. Sviluppo Liv. 1',     icon: BookOpen },
+  { id: 'background', title: '6. Background',           icon: BookOpen },
+  { id: 'creation_summary', title: '7. Riepilogo Creazione', icon: List },
+  { id: 'learning',   title: '8. Apprendimento',       icon: BookOpen },
+  { id: 'summary',    title: '9. Riepilogo Scheda',    icon: List },
 ];
 
 export default function CharacterWizard() {
@@ -124,7 +126,11 @@ export default function CharacterWizard() {
             <BackgroundStep characterData={characterData} setCharacterData={setCharacterData} />
           )}
 
-          {currentStep.id !== 'race' && currentStep.id !== 'profession' && currentStep.id !== 'stats' && currentStep.id !== 'adolescence' && currentStep.id !== 'level1' && currentStep.id !== 'background' && (
+          {currentStep.id === 'creation_summary' && (
+            <CreationSummaryStep characterData={characterData} />
+          )}
+
+          {currentStep.id !== 'race' && currentStep.id !== 'profession' && currentStep.id !== 'stats' && currentStep.id !== 'adolescence' && currentStep.id !== 'level1' && currentStep.id !== 'background' && currentStep.id !== 'creation_summary' && (
             <div className="p-8 border border-dashed border-gray-300 rounded flex items-center justify-center text-gray-500 bg-gray-50" style={{minHeight: '300px'}}>
               Contenuto per: {currentStep.title}
             </div>
