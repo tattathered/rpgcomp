@@ -89,15 +89,16 @@ export default function CreationSummaryStep({ characterData }) {
     );
   }
 
-  // ── Compute final stats (base + race + bg bonus) ──
+  // ── Compute final stats (base + bg bonus) and lookup bonuses ──
   const finalStats = useMemo(() => {
     return STAT_KEYS.reduce((acc, k) => {
       const raw = parseInt(stats[k] || 0);
-      const raceMod = parseBonusValue(race[`bonus a ${k}`] || 0);
       const bgMod = bgModifiers.statsBonus?.[k] || 0;
-      const finalVal = raw + raceMod + bgMod;
-      const bonus = getBonus(finalVal);
-      acc[k] = { raw, raceMod, bgMod, finalVal, bonus };
+      const statScore = raw + bgMod;
+      const bonusNaturale = getBonus(statScore);
+      const raceMod = parseBonusValue(race[`bonus a ${k}`] || 0);
+      const bonusTot = bonusNaturale + raceMod;
+      acc[k] = { raw, bgMod, statScore, bonusNaturale, raceMod, bonusTot, bonus: bonusTot };
       return acc;
     }, {});
   }, [stats, race, bgModifiers]);
@@ -120,7 +121,7 @@ export default function CreationSummaryStep({ characterData }) {
       // Stat bonus for this skill
       const carattSiglaMatch = (sk['valore iniziale'] || '').match(/([A-Z]{2})$/);
       const carattSigla = carattSiglaMatch ? carattSiglaMatch[1] : '';
-      const carattBonus = carattSigla ? finalStats[carattSigla]?.bonus || 0 : 0;
+      const carattBonus = carattSigla ? finalStats[carattSigla]?.bonusTot || 0 : 0;
 
       const bonusGradi = getRanksBonus(name, totalRanks);
       const ingombroBonus = getIngombroBonus(name);
@@ -179,10 +180,10 @@ export default function CreationSummaryStep({ characterData }) {
 
   // ── TR bonuses ──
   const trKeys = [
-    { key: 'bonus a TR-ESS', label: 'TR Essenza' },
-    { key: 'bonus a TR-FLS', label: 'TR Flusso' },
-    { key: 'bonus a TR-VEL', label: 'TR Veleno' },
-    { key: 'bonus a TR-MAL', label: 'TR Malattia' },
+    { key: 'bonus a TR-ESS', label: 'TR Essenza', statKey: 'IN' },
+    { key: 'bonus a TR-FLS', label: 'TR Flusso', statKey: 'IT' },
+    { key: 'bonus a TR-VEL', label: 'TR Veleno', statKey: 'CO' },
+    { key: 'bonus a TR-MAL', label: 'TR Malattia', statKey: 'CO' },
   ];
 
   return (
@@ -218,11 +219,11 @@ export default function CreationSummaryStep({ characterData }) {
             <thead>
               <tr style={{ borderBottom: '2px solid #d1fae5', background: '#f0fdf4' }}>
                 <th style={{ padding: '0.5rem 0.75rem', textAlign: 'left', color: '#065f46', fontWeight: 700 }}>Caratteristica</th>
-                <th style={{ padding: '0.5rem', textAlign: 'center', color: '#6b7280', fontSize: '0.75rem' }}>Base</th>
-                <th style={{ padding: '0.5rem', textAlign: 'center', color: '#6b7280', fontSize: '0.75rem' }}>Razza</th>
-                <th style={{ padding: '0.5rem', textAlign: 'center', color: '#7e22ce', fontSize: '0.75rem' }}>BG</th>
-                <th style={{ padding: '0.5rem', textAlign: 'center', color: '#065f46', fontWeight: 700 }}>Finale</th>
-                <th style={{ padding: '0.5rem 0.75rem', textAlign: 'center', color: '#065f46', fontWeight: 700 }}>Bonus</th>
+                <th style={{ padding: '0.5rem', textAlign: 'center', color: '#6b7280', fontSize: '0.75rem' }}>Statistiche</th>
+                <th style={{ padding: '0.5rem', textAlign: 'center', color: '#7e22ce', fontSize: '0.75rem' }}>Bonus BG</th>
+                <th style={{ padding: '0.5rem', textAlign: 'center', color: '#065f46', fontWeight: 700, fontSize: '0.75rem' }}>Bonus naturale</th>
+                <th style={{ padding: '0.5rem', textAlign: 'center', color: '#6b7280', fontSize: '0.75rem' }}>Bonus popolo</th>
+                <th style={{ padding: '0.5rem 0.75rem', textAlign: 'center', color: '#065f46', fontWeight: 700, fontSize: '0.8rem' }}>Bonus tot.</th>
               </tr>
             </thead>
             <tbody>
@@ -231,16 +232,25 @@ export default function CreationSummaryStep({ characterData }) {
                 return (
                   <tr key={k} style={{ borderBottom: '1px solid #e5e7eb' }}>
                     <td style={{ padding: '0.5rem 0.75rem', fontWeight: 600 }}>{STAT_NAMES[k]} <span style={{ color: '#9ca3af', fontWeight: 400 }}>({k})</span></td>
-                    <td style={{ padding: '0.5rem', textAlign: 'center', color: '#374151' }}>{s.raw}</td>
-                    <td style={{ padding: '0.5rem', textAlign: 'center', color: s.raceMod !== 0 ? '#1d4ed8' : '#9ca3af', fontWeight: s.raceMod !== 0 ? 600 : 400 }}>
-                      {s.raceMod !== 0 ? fmt(s.raceMod) : '—'}
+                    <td style={{ padding: '0.5rem', textAlign: 'center', color: '#374151' }}>
+                      <span style={{ fontWeight: 600 }}>{s.raw}</span>
+                      {s.bgMod !== 0 && (
+                        <span style={{ fontSize: '0.7rem', color: '#7e22ce', display: 'block', marginTop: '0.1rem' }}>
+                          (tot: {s.statScore})
+                        </span>
+                      )}
                     </td>
                     <td style={{ padding: '0.5rem', textAlign: 'center', color: s.bgMod !== 0 ? '#7e22ce' : '#9ca3af', fontWeight: s.bgMod !== 0 ? 700 : 400 }}>
                       {s.bgMod !== 0 ? fmt(s.bgMod) : '—'}
                     </td>
-                    <td style={{ padding: '0.5rem', textAlign: 'center', fontWeight: 900, fontSize: '1rem', color: '#065f46' }}>{s.finalVal}</td>
-                    <td style={{ padding: '0.5rem 0.75rem', textAlign: 'center', fontWeight: 900, fontSize: '1.05rem', color: s.bonus >= 0 ? '#15803d' : '#dc2626' }}>
-                      {fmt(s.bonus)}
+                    <td style={{ padding: '0.5rem', textAlign: 'center', fontWeight: 600, color: s.bonusNaturale >= 0 ? '#15803d' : '#dc2626' }}>
+                      {fmt(s.bonusNaturale)}
+                    </td>
+                    <td style={{ padding: '0.5rem', textAlign: 'center', color: s.raceMod !== 0 ? '#1d4ed8' : '#9ca3af', fontWeight: s.raceMod !== 0 ? 600 : 400 }}>
+                      {s.raceMod !== 0 ? fmt(s.raceMod) : '—'}
+                    </td>
+                    <td style={{ padding: '0.5rem 0.75rem', textAlign: 'center', fontWeight: 900, fontSize: '1.05rem', color: s.bonusTot >= 0 ? '#15803d' : '#dc2626' }}>
+                      {fmt(s.bonusTot)}
                     </td>
                   </tr>
                 );
@@ -249,15 +259,20 @@ export default function CreationSummaryStep({ characterData }) {
           </table>
         </div>
         {/* Tiri Resistenza */}
-        <div style={{ marginTop: '0.75rem', display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-          {trKeys.map(tr => {
-            const val = parseBonusValue(race[tr.key] || 0);
-            return (
-              <div key={tr.key} style={{ padding: '0.3rem 0.75rem', background: '#d1fae5', borderRadius: '99px', fontSize: '0.78rem', fontWeight: 600, color: '#065f46' }}>
-                {tr.label}: {fmt(val)}
-              </div>
-            );
-          })}
+        <div style={{ marginTop: '1rem' }}>
+          <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#065f46', marginBottom: '0.5rem' }}>Tiri Resistenza (TR):</div>
+          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+            {trKeys.map(tr => {
+              const raceTrBonus = parseBonusValue(race[tr.key] || 0);
+              const statBonus = finalStats[tr.statKey]?.bonusTot || 0;
+              const totalTrBonus = raceTrBonus + statBonus;
+              return (
+                <div key={tr.key} style={{ padding: '0.3rem 0.75rem', background: '#d1fae5', borderRadius: '99px', fontSize: '0.78rem', fontWeight: 600, color: '#065f46', border: '1px solid #a7f3d0' }}>
+                  <span style={{ color: '#047857' }}>{tr.label}:</span> {fmt(totalTrBonus)} <span style={{ fontSize: '0.7rem', fontWeight: 400, color: '#047857' }}>({fmt(raceTrBonus)} Popolo, {fmt(statBonus)} {tr.statKey})</span>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </SectionCard>
 

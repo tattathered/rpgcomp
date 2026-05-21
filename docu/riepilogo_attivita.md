@@ -25,6 +25,12 @@ I primi **5 passaggi** del flusso di creazione del personaggio (definito in [mer
 ### Risoluzione Bug Critici e Loop
 * **Separazione dei Modificatori di Background (`compiledModifiers`)**: In precedenza, la modifica delle abilità nel Background creava un loop infinito poiché tentava di aggiornare direttamente `characterData.skills` (che innescava lo useEffect di ricalcolo dell'adolescenza). Abbiamo spostato i modificatori in `characterData.background.compiledModifiers` (contenente `statsBonus`, `skillBgRanks`, `secondarySkills`, `gold`). Saranno sommati solo nella scheda finale.
 * **Correzione Sintassi Javascript**: Risolti errori di accesso a proprietà con spazi nel file `AdolescenceStep.jsx` (es. `profession['liste incantesimi']`).
+* **Correzione Tabella Caratteristiche & Bonus (Fase 7 - Riepilogo Creazione)**:
+  * Eliminata la colonna "Finale" per evitare la somma scorretta tra il punteggio della statistica (scala 1-100) e il bonus del popolo.
+  * Aggiunta la colonna "Bonus naturale" che effettua la ricerca del bonus sulla base delle statistiche (`raw + bgMod`).
+  * Rinominate le colonne per maggiore chiarezza e conformità con il regolamento MERP: `Base` -> `Statistiche`, `Razza` -> `Bonus popolo`, `BG` -> `Bonus BG`, `Bonus` -> `Bonus tot.` (somma di bonus naturale e bonus popolo).
+  * Aggiornati i Tiri Resistenza (TR) per sommare correttamente il modificatore del popolo e il bonus totale (`bonusTot`) della caratteristica associata (`IN` per Essenza, `IT` per Flusso, `CO` per Veleno e Malattia).
+  * Corretto il calcolo del bonus caratteristica delle abilità (`carattBonus`) affinché utilizzi il `bonusTot` della caratteristica anziché il solo bonus naturale.
 
 ### Ottimizzazione UI e CSS
 * **Fix Utility CSS**: Poiché Tailwind non è presente nel progetto, molte classi di layout (es. `flex-col`, `gap-5`, `grid-cols-3`) non avevano effetto. Abbiamo arricchito [index.css](file:///Users/yagni/Geek/antigravity/merpcomp/src/index.css) con un set completo di utility Tailwind-like esplicite.
