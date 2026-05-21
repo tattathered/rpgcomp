@@ -4,11 +4,12 @@ import gradiLingue from '../../../data/TGP_1-gradi_conoscenze_lingue.json';
 import bgOpzioni from '../../../data/TGP_2-opzioni_background-v1.json';
 import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
 import secondarySkillsList from '../../../data/Tabella-abilita_secondarie.json';
+import { getAvailableSpellLists } from '../../../utils/magicHelpers';
 import tb1 from '../../../data/TB_1-caratteristiche_bonus.json';
 
 const STAT_KEYS = ['FR', 'AG', 'CO', 'IN', 'IT', 'PR'];
 const STAT_NAMES = { FR: 'Forza', AG: 'Agilità', CO: 'Costituzione', IN: 'Intelligenza', IT: 'Intuizione', PR: 'Presenza' };
-const BG_CATEGORIES = ['Gradi delle abilità', 'Aumento delle caratteristiche', 'Lingue', 'abilità speciali', 'oggetti speciali', "denaro: monete d'oro", 'Incantesimi o Punti Magia'];
+const BG_CATEGORIES = ['Gradi delle abilità', 'Aumento delle caratteristiche', 'Lingue', 'abilità speciali', 'oggetti speciali', "denaro: monete d'oro", 'Lista incantesimi aggiuntiva'];
 
 // Helper: parse "da XX a YY" range strings from the JSON
 const parseRange = (s) => {
@@ -67,6 +68,14 @@ const ABILITA_SPECIALI_OPTIONS = [
 
 export default function BackgroundStep({ characterData, setCharacterData }) {
   const race = characterData.race;
+  const profession = characterData.profession;
+  const magicRealm = characterData.magicRealm || '—';
+  
+  const knownLists = Object.keys(characterData.spellListAllocations || {});
+  const rawAvailableLists = profession ? getAvailableSpellLists(profession.professione, magicRealm) : [];
+  const availableLists = rawAvailableLists.filter(l => !knownLists.includes(l.nome_lista));
+  
+  const bgSpellLists = characterData.background?.compiledModifiers?.bgSpellLists || [];
 
   const languagePointsTotal = characterData.skills?.['Punti Lingue Addizionali']?.totalRanks || 0;
   const backgroundPointsTotal = characterData.skills?.['Punti Background']?.totalRanks || 0;
@@ -149,12 +158,22 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
       if (opt.category === "denaro: monete d'oro" && opt.calculatedMO) gold += opt.calculatedMO;
     });
 
+    // Spell Lists from Esperto di magia (roll 71-75) or Lista incantesimi aggiuntiva
+    const bgSpellLists = [];
+    nextOptions.forEach(opt => {
+      if ((opt.category === 'abilità speciali' && opt.roll >= 71 && opt.roll <= 75) || opt.category === 'Lista incantesimi aggiuntiva') {
+        if (opt.skillName) {
+          bgSpellLists.push(opt.skillName);
+        }
+      }
+    });
+
     setCharacterData(prev => ({
       ...prev,
       background: {
         languages: nextLangs,
         options: nextOptions,
-        compiledModifiers: { statsBonus, skillBgRanks, secondarySkills, gold }
+        compiledModifiers: { statsBonus, skillBgRanks, secondarySkills, gold, bgSpellLists }
       }
     }));
   };
@@ -305,6 +324,8 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
                 primarySkillNames={primarySkillNames}
                 languages={languages}
                 allLanguages={allLanguages}
+                availableLists={availableLists}
+                bgSpellLists={bgSpellLists}
                 addLangFromBg={addLangFromBg}
                 onRemove={() => removeOption(opt.id)}
                 onPatch={(patch) => patchOption(opt.id, patch)}
@@ -330,15 +351,15 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
 }
 
 // ─── Sub-component: single option card ───────────────────────────────────────
-function OptionCard({ opt, idx, characterData, primarySkillNames, languages, allLanguages, addLangFromBg, onRemove, onPatch, onRoll }) {
+function OptionCard({ opt, idx, characterData, primarySkillNames, languages, allLanguages, availableLists, bgSpellLists, addLangFromBg, onRemove, onPatch, onRoll }) {
   const catColors = {
     'Gradi delle abilità':        { border:'#d8b4fe', bg:'#faf5ff', label:'#7e22ce' },
     'Aumento delle caratteristiche': { border:'#6ee7b7', bg:'#f0fdf4', label:'#065f46' },
     'Lingue':                     { border:'#93c5fd', bg:'#eff6ff', label:'#1e40af' },
     'abilità speciali':           { border:'#fcd34d', bg:'#fffbeb', label:'#92400e' },
-    'oggetti speciali':           { border:'#fca5a5', bg:'#fef2f2', label:'#991b1b' },
+    'oggetti speciali':           { border:'#34d399', bg:'#ecfdf5', label:'#065f46' },
     "denaro: monete d'oro":       { border:'#86efac', bg:'#f0fdf4', label:'#14532d' },
-    'Incantesimi o Punti Magia':  { border:'#c4b5fd', bg:'#f5f3ff', label:'#4c1d95' },
+    'Lista incantesimi aggiuntiva': { border:'#c4b5fd', bg:'#f5f3ff', label:'#4c1d95' },
   };
   const col = catColors[opt.category] || { border:'#e5e7eb', bg:'#f9fafb', label:'#374151' };
 
@@ -500,8 +521,9 @@ function OptionCard({ opt, idx, characterData, primarySkillNames, languages, all
             {opt.roll >= 71 && opt.roll <= 75 && (
               <div style={{marginTop:'0.5rem'}}>
                 <label style={{fontSize:'0.8rem',fontWeight:600,display:'block',marginBottom:'0.25rem'}}>Scegli Lista Incantesimi:</label>
-                <select className="block w-full rounded border-yellow-300 text-sm p-2 bg-white" disabled>
-                  <option>-- Seleziona Lista (Disponibile prossimamente) --</option>
+                <select value={opt.skillName||''} onChange={e=>onPatch({skillName:e.target.value})} style={{width:'100%',padding:'0.4rem',border:'1px solid #fcd34d',borderRadius:'0.375rem',fontSize:'0.875rem'}}>
+                  <option value="" disabled>-- Seleziona --</option>
+                  {availableLists.map(l=>(<option key={l.nome_lista} value={l.nome_lista}>{l.nome_lista} ({l.tipo_lista})</option>))}
                 </select>
               </div>
             )}
@@ -557,13 +579,14 @@ function OptionCard({ opt, idx, characterData, primarySkillNames, languages, all
           </>
         )}
 
-        {/* 7. INCANTESIMI O PUNTI MAGIA */}
-        {opt.category === 'Incantesimi o Punti Magia' && (
+        {/* 7. LISTA INCANTESIMI AGGIUNTIVA */}
+        {opt.category === 'Lista incantesimi aggiuntiva' && (
           <div style={{display:'flex',flexDirection:'column',gap:'0.5rem'}}>
             <div>
-              <label style={{fontSize:'0.8rem',fontWeight:600,color:'#374151',display:'block',marginBottom:'0.25rem'}}>Seleziona Lista Incantesimi (se applicabile):</label>
-              <select className="block w-full rounded border-purple-300 text-sm p-2 bg-white" disabled>
-                <option>-- Seleziona Lista (Disponibile prossimamente) --</option>
+              <label style={{fontSize:'0.8rem',fontWeight:600,color:'#374151',display:'block',marginBottom:'0.25rem'}}>Scegli Lista Incantesimi:</label>
+              <select value={opt.skillName||''} onChange={e=>onPatch({skillName:e.target.value})} style={{width:'100%',padding:'0.4rem',border:'1px solid #c4b5fd',borderRadius:'0.375rem',fontSize:'0.875rem'}}>
+                <option value="" disabled>-- Seleziona --</option>
+                {availableLists.filter(l => !bgSpellLists.includes(l.nome_lista) || l.nome_lista === opt.skillName).map(l=>(<option key={l.nome_lista} value={l.nome_lista}>{l.nome_lista} ({l.tipo_lista})</option>))}
               </select>
             </div>
             <div>

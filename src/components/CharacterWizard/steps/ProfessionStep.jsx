@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import profData from '../../../data/TB_6-professioni_bonus_abilita-2.json';
+import profData from '../../../data/TB_6-professioni_bonus_abilita-3.json';
 import profStats from '../../../data/Tabella-professioni_caratteristica_fondamentale.json';
 
 export default function ProfessionStep({ characterData, setCharacterData }) {

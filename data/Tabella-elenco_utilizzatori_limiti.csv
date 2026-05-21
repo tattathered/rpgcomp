@@ -1,0 +1,7 @@
+professione,liste_incantesimi,limite_incantesimi
+Guerriero,ESSENZA o FLUSSO,massimo livello 3
+Scout,ESSENZA o FLUSSO,massimo livello 5
+Ranger,FLUSSO e RANGER,FLUSSO: massimo livello 5
+Bardo,ESSENZA e BARDO,ESSENZA: massimo livello 5
+Mago,ESSENZA e MAGO,nessun limite livello incantesimi
+Animista,FLUSSO e ANIMISTA,nessun limite livello incantesimi

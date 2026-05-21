@@ -1,7 +1,7 @@
 professione,resistenza fisica,abilità armi,abilità generiche,abilità sotterfugio,abilità magiche,lettura rune,uso oggetti magici,incantesimi diretti,incantesimi base,percezione,liste incantesimi,limite incantesimi,note
 Guerriero,+3,+3,+1,0,0,0,0,0,0,0,ESSENZA o FLUSSO,massimo livello 3,per livello del PG
 Scout,0,+1,+1,+2,0,0,0,0,0,+3,ESSENZA o FLUSSO,massimo livello 5,per livello del PG
-Ranger,0,+2,+3,+2,0,0,0,0,0,+2,FLUSSO e RANGER,ESSENZA: massimo livello 5,per livello del PG
+Ranger,0,+2,+3,+2,0,0,0,0,0,+2,FLUSSO e RANGER,FLUSSO: massimo livello 5,per livello del PG
 Bardo,0,+1,+1,+1,+1,0,0,0,+1,+1,ESSENZA e BARDO,ESSENZA: massimo livello 5,per livello del PG
 Mago,0,0,0,0,+2,+2,+2,+3,+2,0,ESSENZA e MAGO,nessun limite livello incantesimi,per livello del PG
 Animista,0,0,+2,0,+1,+1,+1,+2,+2,+1,FLUSSO e ANIMISTA,nessun limite livello incantesimi,per livello del PG

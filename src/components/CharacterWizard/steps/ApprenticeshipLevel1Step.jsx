@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
 import tb1 from '../../../data/TB_1-caratteristiche_bonus.json';
 import tgp4Data from '../../../data/TGP_4-sviluppo_abilità_professioni.json';
+import { getAvailableSpellLists } from '../../../utils/magicHelpers';
 
 const parseBonusValue = (val) => {
   if (val === undefined || val === null) return 0;
@@ -96,6 +97,7 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
 
   const [tb6Distribution, setTb6Distribution] = useState(characterData.level1Tb6 || {});
   const [tgp4Distribution, setTgp4Distribution] = useState(characterData.level1Tgp4 || {});
+  const [selectedNewList, setSelectedNewList] = useState('');
 
   // Save distribution and combined skills to characterData when it changes
   useEffect(() => {
@@ -131,7 +133,6 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
     });
 
     setCharacterData(prev => {
-      // Check if actually changed to avoid loop
       if (JSON.stringify(prev.level1Tb6) === JSON.stringify(tb6Distribution) &&
           JSON.stringify(prev.level1Tgp4) === JSON.stringify(tgp4Distribution) &&
           JSON.stringify(prev.skills) === JSON.stringify(newSkills)) {
@@ -140,7 +141,10 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
       return {
         ...prev,
         level1Tb6: tb6Distribution,
-        level1Tgp4: tgp4Distribution,
+        level1Tgp4: {
+          ...tgp4Distribution,
+          'Liste incantesimi': tgp4Distribution['Liste incantesimi'] || 0
+        },
         skills: newSkills
       };
     });
@@ -154,8 +158,12 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
     );
   }
 
-  const isWarriorOrScout = ['guerriero', 'scout'].includes(profession.professione.toLowerCase());
+  const isWarriorOrScout = ['guerriero', 'scout'].includes(profession?.professione?.toLowerCase());
+
   const selectedRealm = characterData.magicRealm || '';
+  const knownLists = Object.keys(characterData.spellListAllocations || {});
+  const rawAvailableLists = getAvailableSpellLists(profession.professione, selectedRealm);
+  const availableLists = rawAvailableLists.filter(l => !knownLists.includes(l.nome_lista));
 
   const handleRealmChange = (realm) => {
     setCharacterData(prev => ({ ...prev, magicRealm: realm }));
@@ -234,6 +242,58 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
     }
   };
 
+  const listPS = tgp4Distribution['Liste incantesimi'] || 0;
+  const listPool = getTgp4Pool('Liste incantesimi', profession.professione);
+  const baseAccumulated = characterData.spellListChanceAccumulated || 0;
+  const totalChance = baseAccumulated + (listPS * 20);
+
+  const handleAddListPS = () => {
+    if (listPS < listPool) {
+      setTgp4Distribution(prev => ({ ...prev, 'Liste incantesimi': (prev['Liste incantesimi'] || 0) + 1 }));
+    }
+  };
+
+  const handleSubListPS = () => {
+    if (listPS > 0) {
+      setTgp4Distribution(prev => ({ ...prev, 'Liste incantesimi': prev['Liste incantesimi'] - 1 }));
+    }
+  };
+
+  const [rollResult, setRollResult] = useState(null);
+  
+  const handleRoll = () => {
+    const roll = Math.floor(Math.random() * 100) + 1;
+    setRollResult(roll);
+  };
+
+  const handleAcquireList = () => {
+    if (!selectedNewList) return;
+    
+    let newAccumulated = totalChance;
+    if (totalChance >= 100) {
+      newAccumulated = totalChance - 100;
+    } else if (rollResult && rollResult <= totalChance) {
+      newAccumulated = 0;
+    }
+
+    setCharacterData(prev => ({
+      ...prev,
+      spellListChanceAccumulated: newAccumulated,
+      spellListAllocations: {
+        ...(prev.spellListAllocations || {}),
+        [selectedNewList]: 'Apprendistato Liv. 1'
+      }
+    }));
+    setRollResult(null);
+    setSelectedNewList('');
+  };
+
+  const acquiredListEntry = Object.entries(characterData.spellListAllocations || {}).find(([name, source]) => source === 'Apprendistato Liv. 1');
+  const hasAcquiredInApprenticeship = !!acquiredListEntry;
+  const acquiredListName = hasAcquiredInApprenticeship ? acquiredListEntry[0] : '';
+  
+  const adolescenceListEntry = Object.entries(characterData.spellListAllocations || {}).find(([name, source]) => source === 'Adolescenza');
+
   return (
     <div>
       <div className="grid md:grid-cols-2 gap-4 mb-6">
@@ -272,14 +332,77 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
         </div>
 
         <div className="p-4 border border-indigo-200 rounded bg-indigo-50/50">
-          <span className="text-xs font-bold uppercase tracking-wider text-indigo-800">Liste Incantesimi</span>
-          <p className="text-xs mt-2 text-indigo-900">
-            Hai a disposizione <strong>{getTgp4Pool('Liste incantesimi', profession.professione)}</strong> Punti Sviluppo per le liste. 
-            (Selezione liste in sviluppo).
-          </p>
-          <select className="mt-2 block w-full rounded border-gray-300 text-sm p-2 bg-white" disabled>
-            <option>-- Seleziona Lista (Disponibile prossimamente) --</option>
-          </select>
+          <div className="flex justify-between items-center mb-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-indigo-800">Liste Incantesimi</span>
+            <span className="text-xs font-bold bg-indigo-200 text-indigo-800 px-2 py-0.5 rounded-full">PS: {listPS} / {listPool}</span>
+          </div>
+
+          <div className="text-xs text-indigo-900 mb-3 space-y-1">
+            {adolescenceListEntry && (
+              <p className="mb-2 text-indigo-700"><strong>Già appresa (Adolescenza):</strong> {adolescenceListEntry[0]}</p>
+            )}
+            <p><strong>Credito precedente:</strong> {baseAccumulated}%</p>
+            <div className="flex items-center gap-2">
+              <strong>Alloca PS:</strong>
+              <button type="button" onClick={handleSubListPS} className="px-2 py-0.5 bg-gray-100 border border-gray-300 rounded text-gray-700 hover:bg-gray-200">-</button>
+              <span className="font-bold w-4 text-center">{listPS}</span>
+              <button type="button" onClick={handleAddListPS} disabled={listPS >= listPool} className="px-2 py-0.5 bg-indigo-100 border border-indigo-300 rounded text-indigo-800 hover:bg-indigo-200 disabled:opacity-50">+</button>
+              <span>(+{listPS * 20}%)</span>
+            </div>
+            <p className="text-sm font-bold text-indigo-700 mt-2">Probabilità Totale: {totalChance}%</p>
+          </div>
+
+          {hasAcquiredInApprenticeship ? (
+            <div className="text-sm text-indigo-700 bg-indigo-100 p-2 rounded text-center font-medium border border-indigo-200">
+              Hai imparato con successo: <strong>{acquiredListName}</strong>
+            </div>
+          ) : (
+            <div className="mt-3 flex flex-col gap-2">
+              {totalChance >= 100 ? (
+                <div className="text-xs bg-green-100 text-green-800 p-2 rounded border border-green-300">
+                  Hai 100% o più! Puoi imparare automaticamente una lista (costerà 100%, il resto sarà conservato).
+                </div>
+              ) : rollResult && rollResult <= totalChance ? (
+                <div className="text-xs bg-green-100 text-green-800 p-2 rounded border border-green-300">
+                  Tiro: <strong>{rollResult}</strong> - Successo! Scegli la lista (il credito si azzererà).
+                </div>
+              ) : rollResult && rollResult > totalChance ? (
+                <div className="text-xs bg-red-100 text-red-800 p-2 rounded border border-red-300 flex justify-between items-center">
+                  <span>Tiro: <strong>{rollResult}</strong> - Fallito. Credito mantenuto.</span>
+                  <button onClick={() => setRollResult(null)} className="underline text-red-600 hover:text-red-900">Riprova/Annulla</button>
+                </div>
+              ) : totalChance > 0 ? (
+                <button type="button" onClick={handleRoll} className="bg-indigo-600 text-white px-3 py-1.5 rounded text-sm font-bold hover:bg-indigo-700">
+                  Tira 1d100 (≤ {totalChance}%)
+                </button>
+              ) : (
+                 <div className="text-xs text-indigo-500 italic">Alloca PS per avere una probabilità di imparare liste.</div>
+              )}
+
+              {(totalChance >= 100 || (rollResult && rollResult <= totalChance)) && (
+                <div className="flex gap-2 mt-1">
+                  <select 
+                    className="flex-1 rounded border-indigo-300 text-sm p-1.5 bg-white"
+                    value={selectedNewList}
+                    onChange={(e) => setSelectedNewList(e.target.value)}
+                  >
+                    <option value="">-- Seleziona Lista --</option>
+                    {availableLists.map(l => (
+                      <option key={l.nome_lista} value={l.nome_lista}>{l.nome_lista} ({l.tipo_lista})</option>
+                    ))}
+                  </select>
+                  <button 
+                    type="button"
+                    className="bg-green-600 text-white px-3 py-1.5 rounded text-sm font-bold hover:bg-green-700 disabled:opacity-50"
+                    disabled={!selectedNewList}
+                    onClick={handleAcquireList}
+                  >
+                    Acquisisci
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
 

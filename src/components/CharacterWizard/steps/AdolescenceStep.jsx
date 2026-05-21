@@ -1,5 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import adolescenceData from '../../../data/TGP_5-sviluppo_abilita_adolescenza-v2.json';
+import secondarySkillsList from '../../../data/Tabella-abilita_secondarie.json';
+import tgp5Data from '../../../data/TGP_5-sviluppo_abilita_adolescenza-v2.json';
+import { getAvailableSpellLists } from '../../../utils/magicHelpers';
 import tb1 from '../../../data/TB_1-caratteristiche_bonus.json';
 import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
 
@@ -167,6 +170,55 @@ export default function AdolescenceStep({ characterData, setCharacterData }) {
 
   const skills = characterData.skills || {};
   const categories = [...new Set(Object.values(skills).map(s => s.category))];
+  
+  // Spell Lists logic
+  const knownLists = Object.keys(characterData.spellListAllocations || {});
+  const rawAvailableLists = getAvailableSpellLists(profession.professione, selectedRealm);
+  const availableLists = rawAvailableLists.filter(l => !knownLists.includes(l.nome_lista));
+  
+  // Trova la probabilità base in TGP_5
+  const baseChanceRow = tgp5Data.find(d => d['abilità'] === '% Probabilità di Imparare una Lista di Incantesimi');
+  const baseChance = baseChanceRow ? (baseChanceRow[race.popolo] || 0) : 0;
+  
+  const currentAccumulated = characterData.spellListChanceAccumulated !== undefined 
+    ? characterData.spellListChanceAccumulated 
+    : baseChance;
+
+  const [rollResult, setRollResult] = useState(null);
+  const [selectedList, setSelectedList] = useState('');
+
+  const handleRoll = () => {
+    const roll = Math.floor(Math.random() * 100) + 1;
+    setRollResult(roll);
+    if (roll <= currentAccumulated) {
+      // Success, chance is consumed. It will be 0 after they pick a list, 
+      // but for now we wait for them to pick the list.
+    } else {
+      // Failure, chance is retained.
+      setCharacterData(prev => ({
+        ...prev,
+        spellListChanceAccumulated: currentAccumulated
+      }));
+    }
+  };
+
+  const handleAcquireList = () => {
+    if (!selectedList) return;
+    setCharacterData(prev => ({
+      ...prev,
+      spellListChanceAccumulated: 0,
+      spellListAllocations: {
+        ...(prev.spellListAllocations || {}),
+        [selectedList]: 'Adolescenza' // Mark as acquired
+      }
+    }));
+    setRollResult(null); // Reset UI
+  };
+
+  // Check if they already acquired one in adolescence
+  const acquiredListEntry = Object.entries(characterData.spellListAllocations || {}).find(([name, source]) => source === 'Adolescenza');
+  const hasAcquiredInAdolescence = !!acquiredListEntry;
+  const acquiredListName = hasAcquiredInAdolescence ? acquiredListEntry[0] : '';
 
   // Separate regular skills from special points
   const regularCategories = categories.filter(c => c !== 'Altre Abilità ' && c !== 'Altre Abilità' && c !== 'Altro Sviluppo');
@@ -237,6 +289,75 @@ export default function AdolescenceStep({ characterData, setCharacterData }) {
           </div>
         </div>
       </div>
+
+      {/* Box Apprendimento Liste Incantesimi Adolescenza */}
+      {selectedRealm && (
+        <div className="mb-6 p-4 border border-indigo-200 bg-indigo-50/50 rounded flex flex-col gap-3">
+          <div className="flex justify-between items-center">
+            <span className="text-sm font-bold uppercase tracking-wider text-indigo-800">Apprendimento Lista Incantesimi (Adolescenza)</span>
+            <span className="text-xs font-bold bg-indigo-200 text-indigo-900 px-2 py-1 rounded-full">
+              Probabilità Attuale: {currentAccumulated}%
+            </span>
+          </div>
+          
+          {hasAcquiredInAdolescence ? (
+            <div className="text-sm text-indigo-700 bg-indigo-100 p-3 rounded text-center font-medium border border-indigo-200">
+              Hai imparato con successo: <strong>{acquiredListName}</strong>
+            </div>
+          ) : rollResult && rollResult <= currentAccumulated ? (
+            <div className="flex flex-col gap-2">
+              <div className="text-sm text-green-700 bg-green-100 p-2 rounded text-center font-medium border border-green-300">
+                Tiro: <strong>{rollResult}</strong> - Successo! Scegli la lista da imparare:
+              </div>
+              <div className="flex gap-2 mt-1">
+                <select 
+                  className="flex-1 rounded border-indigo-300 text-sm p-1.5 bg-white"
+                  value={selectedList}
+                  onChange={(e) => setSelectedList(e.target.value)}
+                >
+                  <option value="">-- Seleziona Lista --</option>
+                  {availableLists.map(l => (
+                    <option key={l.nome_lista} value={l.nome_lista}>{l.nome_lista} ({l.tipo_lista})</option>
+                  ))}
+                </select>
+                <button 
+                  type="button"
+                  onClick={handleAcquireList}
+                  disabled={!selectedList}
+                  className="bg-green-600 text-white px-4 py-1.5 rounded text-sm font-bold hover:bg-green-700 disabled:opacity-50"
+                >
+                  Conferma
+                </button>
+              </div>
+            </div>
+          ) : rollResult && rollResult > currentAccumulated ? (
+            <div className="flex flex-col gap-2">
+              <div className="text-sm text-red-700 bg-red-100 p-2 rounded text-center font-medium border border-red-300">
+                Tiro: <strong>{rollResult}</strong> - Fallimento. Hai mantenuto il {currentAccumulated}% per il prossimo livello.
+              </div>
+              <button onClick={() => setRollResult(null)} className="text-xs text-indigo-600 hover:underline text-center">Nascondi esito</button>
+            </div>
+          ) : currentAccumulated > 0 ? (
+            <div className="flex justify-between items-center bg-white p-3 rounded border border-indigo-100">
+              <span className="text-sm text-indigo-900">
+                In base al tuo popolo ({race.popolo}), hai un <strong>{baseChance}%</strong> di base.
+                Tira 1d100. Se il risultato è ≤ {currentAccumulated}, impari una lista.
+              </span>
+              <button 
+                type="button"
+                onClick={handleRoll}
+                className="bg-indigo-600 text-white px-4 py-2 rounded text-sm font-bold hover:bg-indigo-700 transition"
+              >
+                Tenta (1d100)
+              </button>
+            </div>
+          ) : (
+            <div className="text-sm text-indigo-700 bg-indigo-100 p-2 rounded text-center font-medium">
+              Non hai probabilità di imparare liste in adolescenza.
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Warning se il Reame Magico non è ancora scelto */}
       {isWarriorOrScout && !selectedRealm && (

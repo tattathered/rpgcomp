@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import tb1 from '../../../data/TB_1-caratteristiche_bonus.json';
 import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
 import gradiLingue from '../../../data/TGP_1-gradi_conoscenze_lingue.json';
+import { getSpellLimitInfo, getSpellsForList } from '../../../utils/magicHelpers';
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 const STAT_KEYS = ['FR', 'AG', 'CO', 'IN', 'IT', 'PR'];
@@ -166,17 +167,28 @@ export default function CreationSummaryStep({ characterData }) {
     } else if (opt.category === 'abilità speciali') {
       if (opt.roll >= 1 && opt.roll <= 50) detail = `Bonus abilità +5 | ${opt.skillName || '—'}`;
       else if (opt.roll >= 51 && opt.roll <= 55) detail = `Bonus abilità +15 | ${opt.skillName || '—'}`;
-      else if (opt.roll >= 71 && opt.roll <= 75) detail = `Esperto Magia | Lista: (placeholder)`;
+      else if (opt.roll >= 71 && opt.roll <= 75) detail = `Esperto Magia | Lista: ${opt.skillName || '—'}`;
       else detail = opt.calculatedText || opt.oggetto || '—';
     } else if (opt.category === 'oggetti speciali') {
       detail = `${opt.oggetto || '—'} | ${opt.customNote || ''}`;
     } else if (opt.category === "denaro: monete d'oro") {
       detail = `${opt.calculatedMO || 0} MO (tiro ${opt.roll})`;
-    } else if (opt.category === 'Incantesimi o Punti Magia') {
-      detail = `Lista: (placeholder) | ${opt.customNote || ''}`;
+    } else if (opt.category === 'Incantesimi o Punti Magia' || opt.category === 'Lista incantesimi aggiuntiva') {
+      detail = `Lista: ${opt.skillName || '—'} | ${opt.customNote || ''}`;
     }
     return { idx: idx + 1, category: opt.category, detail };
   };
+
+  // ── Combine Spell Lists ──
+  const spellListAllocations = characterData.spellListAllocations || {};
+  const bgSpellLists = bgModifiers.bgSpellLists || [];
+  
+  const allLearnedLists = new Set([
+    ...Object.keys(spellListAllocations),
+    ...bgSpellLists
+  ]);
+  const learnedListsArray = Array.from(allLearnedLists).sort();
+  const spellLimitStr = profession ? getSpellLimitInfo(profession.professione) : null;
 
   // ── TR bonuses ──
   const trKeys = [
@@ -276,13 +288,68 @@ export default function CreationSummaryStep({ characterData }) {
         </div>
       </SectionCard>
 
-      {/* ── LISTE INCANTESIMI (placeholder) ── */}
+      {/* ── LISTE INCANTESIMI ── */}
       <SectionCard emoji="✨" title="Liste Incantesimi" color="#4c1d95" bg="#f5f3ff" border="#c4b5fd">
-        <div style={{ padding: '0.75rem', background: '#faf5ff', border: '1px dashed #a78bfa', borderRadius: '0.5rem', color: '#6d28d9', fontSize: '0.85rem' }}>
-          <strong>Placeholder:</strong> le liste incantesimi saranno disponibili quando verranno fornite le relative tabelle dati.
-          <br />
-          <span style={{ fontSize: '0.78rem', color: '#9ca3af' }}>Reame: <strong>{magicRealm}</strong> | Ammesse: {profession['liste incantesimi'] || '—'} | Limite: {profession['limite incantesimi'] || 'nessun limite'}</span>
+        <div style={{ marginBottom: '1rem', fontSize: '0.85rem', color: '#6d28d9' }}>
+          <span style={{ fontWeight: 600 }}>Reame:</span> {magicRealm} | <span style={{ fontWeight: 600 }}>Ammesse:</span> {profession['liste incantesimi'] || '—'} | <span style={{ fontWeight: 600 }}>Limite:</span> {profession['limite incantesimi'] || 'nessun limite'}
         </div>
+        
+        {learnedListsArray.length === 0 ? (
+          <div style={{ padding: '0.75rem', background: '#faf5ff', border: '1px dashed #a78bfa', borderRadius: '0.5rem', color: '#8b5cf6', fontSize: '0.85rem', textAlign: 'center' }}>
+            Nessuna lista di incantesimi appresa.
+          </div>
+        ) : (
+          <div style={{ display: 'grid', gap: '1rem' }}>
+            {learnedListsArray.map(listName => {
+              const spells = getSpellsForList(listName, spellLimitStr);
+              const isFromTgp4 = spellListAllocations[listName] !== undefined;
+              const isFromBg = bgSpellLists.includes(listName);
+              
+              let sourceText = [];
+              if (isFromTgp4) sourceText.push(spellListAllocations[listName]); // 'Adolescenza' or 'Apprendistato Liv. 1'
+              if (isFromBg) sourceText.push(`Background`);
+
+              return (
+                <div key={listName} style={{ border: '1px solid #ddd6fe', borderRadius: '0.5rem', overflow: 'hidden' }}>
+                  <div style={{ background: '#ede9fe', padding: '0.5rem 1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ fontWeight: 700, color: '#4c1d95' }}>{listName}</span>
+                    <span style={{ fontSize: '0.7rem', fontWeight: 600, background: '#c4b5fd', color: '#4c1d95', padding: '0.1rem 0.5rem', borderRadius: '99px' }}>
+                      {sourceText.join(' + ')}
+                    </span>
+                  </div>
+                  <div style={{ overflowX: 'auto' }}>
+                    <table style={{ width: '100%', fontSize: '0.8rem', borderCollapse: 'collapse' }}>
+                      <thead style={{ background: '#f5f3ff', borderBottom: '1px solid #ddd6fe' }}>
+                        <tr>
+                          <th style={{ padding: '0.4rem 1rem', textAlign: 'center', color: '#6d28d9', fontWeight: 600, width: '10%' }}>Liv.</th>
+                          <th style={{ padding: '0.4rem 1rem', textAlign: 'left', color: '#6d28d9', fontWeight: 600, width: '25%' }}>Incantesimo</th>
+                          <th style={{ padding: '0.4rem 0.5rem', textAlign: 'center', color: '#6d28d9', fontWeight: 600, width: '10%' }}>Area/Tipo</th>
+                          <th style={{ padding: '0.4rem 1rem', textAlign: 'left', color: '#6d28d9', fontWeight: 600 }}>Descrizione</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {spells.length === 0 ? (
+                          <tr>
+                            <td colSpan="4" style={{ padding: '1rem', textAlign: 'center', color: '#9ca3af' }}>Nessun incantesimo disponibile per questa lista con l'attuale limite di livello.</td>
+                          </tr>
+                        ) : (
+                          spells.map((s, i) => (
+                            <tr key={i} style={{ borderBottom: i === spells.length - 1 ? 'none' : '1px solid #f3f4f6' }}>
+                              <td style={{ padding: '0.4rem 1rem', textAlign: 'center', fontWeight: 700, color: '#4c1d95' }}>{s.livello}</td>
+                              <td style={{ padding: '0.4rem 1rem', fontWeight: 600, color: '#374151' }}>{s.nome_incantesimo}</td>
+                              <td style={{ padding: '0.4rem 0.5rem', textAlign: 'center', color: '#6b7280', fontSize: '0.75rem' }}>{s.tipo_incantesimo || '—'}</td>
+                              <td style={{ padding: '0.4rem 1rem', color: '#4b5563', fontSize: '0.75rem', lineHeight: '1.2' }}>{s.descrizione_incantesimo}</td>
+                            </tr>
+                          ))
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </SectionCard>
 
       {/* ── ABILITÀ PRIMARIE ── */}
@@ -358,6 +425,60 @@ export default function CreationSummaryStep({ characterData }) {
         </div>
       </SectionCard>
 
+      {/* ── ABILITÀ SECONDARIE (se presenti) ── */}
+      {Object.keys(bgModifiers.secondarySkills || {}).length > 0 && (
+        <SectionCard emoji="🛠️" title="Abilità Secondarie" color="#047857" bg="#ecfdf5" border="#a7f3d0">
+          <p style={{ fontSize: '0.8rem', color: '#6b7280', marginBottom: '1rem', marginTop: 0 }}>
+            Abilità acquisite tramite opzioni Background.
+          </p>
+          <div style={{ overflowX: 'auto' }}>
+            <table style={{ width: '100%', fontSize: '0.8rem', borderCollapse: 'collapse' }}>
+              <thead style={{ background: '#f9fafb', borderBottom: '1px solid #e5e7eb' }}>
+                <tr>
+                  <th style={{ padding: '0.4rem 1rem', textAlign: 'left', color: '#6b7280', fontWeight: 600, width: '20%' }}>Abilità</th>
+                  <th style={{ padding: '0.4rem 1rem', textAlign: 'left', color: '#6b7280', fontWeight: 600, width: '40%' }}>Descrizione</th>
+                  <th style={{ padding: '0.4rem 0.5rem', textAlign: 'center', color: '#6b7280', fontWeight: 600 }}>Caratt.</th>
+                  <th style={{ padding: '0.4rem 0.5rem', textAlign: 'center', color: '#7e22ce', fontWeight: 700 }}>Bonus BG</th>
+                  <th style={{ padding: '0.4rem 1rem', textAlign: 'right', color: '#047857', fontWeight: 900 }}>Totale</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.values(bgModifiers.secondarySkills).map(sk => {
+                  const carattSigla = sk.caratteristica_associata;
+                  const carattBonus = carattSigla ? (finalStats[carattSigla]?.bonusTot || 0) : 0;
+                  const ranksBonus = sk.bgRanks ? getRanksBonus(sk.abilita_secondaria, sk.bgRanks) : -25;
+                  const specialBonus = sk.specialBonus || 0;
+                  
+                  let bgTextParts = [];
+                  if (sk.bgRanks) bgTextParts.push(`Gradi: ${fmt(ranksBonus)}`);
+                  else bgTextParts.push(`Non addestrata: -25`);
+                  
+                  if (sk.specialBonus) bgTextParts.push(`Speciale: ${fmt(specialBonus)}`);
+                  
+                  const totalBonus = ranksBonus + specialBonus + carattBonus;
+                  
+                  return (
+                    <tr key={sk.abilita_secondaria} style={{ borderBottom: '1px solid #f3f4f6' }}>
+                      <td style={{ padding: '0.45rem 1rem', fontWeight: 600, color: '#1f2937' }}>{sk.abilita_secondaria}</td>
+                      <td style={{ padding: '0.45rem 1rem', color: '#4b5563', fontSize: '0.75rem', whiteSpace: 'normal', lineHeight: '1.2' }}>{sk.descrizione}</td>
+                      <td style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#374151' }}>
+                        {carattSigla} {fmt(carattBonus)}
+                      </td>
+                      <td style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#7e22ce', fontSize: '0.75rem' }}>
+                        {bgTextParts.join(', ')}
+                      </td>
+                      <td style={{ padding: '0.45rem 1rem', textAlign: 'right', fontWeight: 900, fontSize: '1rem', color: '#047857' }}>
+                        {fmt(totalBonus)}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </SectionCard>
+      )}
+
       {/* ── LINGUE ── */}
       <SectionCard emoji="🌐" title="Lingue Conosciute" color="#1e40af" bg="#eff6ff" border="#93c5fd">
         {langEntries.length === 0 ? (
@@ -396,6 +517,7 @@ export default function CreationSummaryStep({ characterData }) {
                 'oggetti speciali':               '#fecaca',
                 "denaro: monete d'oro":           '#bbf7d0',
                 'Incantesimi o Punti Magia':      '#e9d5ff',
+                'Lista incantesimi aggiuntiva':   '#e9d5ff',
               };
               const bg = catColors[opt.category] || '#f3f4f6';
               return (

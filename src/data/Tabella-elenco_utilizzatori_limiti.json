@@ -1,0 +1,32 @@
+[
+  {
+    "professione": "Guerriero",
+    "liste_incantesimi": "ESSENZA o FLUSSO",
+    "limite_incantesimi": "massimo livello 3"
+  },
+  {
+    "professione": "Scout",
+    "liste_incantesimi": "ESSENZA o FLUSSO",
+    "limite_incantesimi": "massimo livello 5"
+  },
+  {
+    "professione": "Ranger",
+    "liste_incantesimi": "FLUSSO e RANGER",
+    "limite_incantesimi": "FLUSSO: massimo livello 5"
+  },
+  {
+    "professione": "Bardo",
+    "liste_incantesimi": "ESSENZA e BARDO",
+    "limite_incantesimi": "ESSENZA: massimo livello 5"
+  },
+  {
+    "professione": "Mago",
+    "liste_incantesimi": "ESSENZA e MAGO",
+    "limite_incantesimi": "nessun limite livello incantesimi"
+  },
+  {
+    "professione": "Animista",
+    "liste_incantesimi": "FLUSSO e ANIMISTA",
+    "limite_incantesimi": "nessun limite livello incantesimi"
+  }
+]
