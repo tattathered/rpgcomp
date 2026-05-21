@@ -14,9 +14,13 @@ Il wizard di creazione personaggio è parzialmente implementato. Gli step comple
 | 2. Professione | 2) scelta professione | Selezione con requisiti caratteristica primaria/secondaria |
 | 3. Caratteristiche | 3) generazione caratteristiche | Tiri 1d100, metodo classico, bonus razza automatici |
 | 4. Adolescenza | 4.1) sviluppo adolescenza | Gradi fissi da TGP_5 per popolo |
-| 5. Sviluppo Liv. 1 | 4.2) sviluppo lvl 1 | Distribuzione TB_6 (1:1) + spesa TGP_4 (costi 1/3) |
+| 5. Sviluppo Liv. 1 (Da Rivedere ⚠️) | 4.2) sviluppo lvl 1 | Distribuzione TB_6 (1:1) + spesa TGP_4 (costi 1/3) - *Nota: richiede riscrittura completa per l'apprendistato e i livelli* |
 | 6. Background | 5.1) lingue + 5.2) background | Lingue addizionali + 7 categorie opzioni background |
 | 7. Riepilogo Creazione | — | Scheda intermedia con tutte le sezioni aggiornate dal BG |
+
+> [!WARNING]
+> **Sviluppo Liv. 1 & Apprendistato (Livelli)**
+> Lo Step 5 (Sviluppo Liv. 1) e l'intera gestione dello sviluppo in funzione dei livelli non sono ancora completati/corretti e dovranno essere completamente rivisti e riscritti in futuro.
 
 ---
 
@@ -121,8 +125,7 @@ Attualmente tutti i riferimenti alle liste incantesimi mostrano un placeholder. 
 - **Professione** (liste native vs liste accessibili con limitazioni)
 - **Livello massimo** degli incantesimi (es. Guerriero: max lv.3)
 
-> [!IMPORTANT]
-> Richiede che l'utente fornisca la tabella delle liste incantesimi con i relativi dati.
+✅ FATTO TASK 8 at 22-05-2026 (implementato con tiro 1d100, logica credito %, gestione reami/professioni e visualizzazione completa degli incantesimi).
 
 ---
 
@@ -139,6 +142,8 @@ Le abilità secondarie acquisite tramite Background (`bgModifiers.secondarySkill
 **Step coinvolto:** 5 (Sviluppo Liv. 1), 7 (Riepilogo)
 
 Dal `TGP_5` viene estratta la "Percentuale di Probabilità di Imparare una Lista di Incantesimi" per ogni popolo. Questo valore va mostrato accanto alla selezione della lista e usato per calcolare la probabilità base.
+
+✅ FATTO TASK 10 at 22-05-2026 (integrata nel flusso ad accumulo percentuale per Adolescenza e Sviluppo Liv. 1).
 
 ---
 
@@ -168,24 +173,21 @@ git config --global user.email "email@esempio.com"
 
 ---
 
-## Dipendenze e Ordine Consigliato
+## Dipendenze e Ordine Consigliato (Revisionato)
+
+Con il completamento del sistema delle liste incantesimi (Task 8 e 10), l'ordine delle dipendenze per completare il flusso di creazione è il seguente:
 
 ```
-Task 8 (Liste) ← dipende da: dati fornititi dall'utente
-Task 9 (Abilità sec. Riepilogo) ← può fare subito
-Task 10 (% Imparare lista) ← dipende da Task 8
-Task 1 (LevelUp) ← può fare subito
-Task 2 (Equipaggiamento) ← può fare subito
-Task 3 (Calcolo Finale Lv1) ← dipende da Task 1 + Task 2
-Task 4 (Sviluppo LVL N) ← dipende da Task 1
-Task 5 (Equip LVL N) ← dipende da Task 2
-Task 6 (Calcolo Finale LVL N) ← dipende da Task 3 + Task 4 + Task 5
-Task 7 (Scheda Finale) ← dipende da Task 6
-Task 11 (localStorage) ← indipendente, si può fare in qualsiasi momento
-Task 12 (Export) ← dipende da Task 7
-Task 13 (Git identity) ← indipendente
+Task 2 (Equipaggiamento Iniziale) ← indipendente, necessario per calcoli finali
+Task 3 (Calcolo Finale LVL 1) ← dipende da: Task 2 (per BO, DB, ingombro armatura)
+Task 1 (Step 8: Apprendimento Livello N) ← indipendente, per progressione di livello
+Task 5 (Modifica Equip LVL N) ← dipende da: Task 2 + Task 1
+Task 6 (Calcolo Finale LVL N) ← dipende da: Task 3 + Task 1 + Task 5
+Task 7 (Scheda Finale) ← dipende da: Task 3 o Task 6 (a seconda del livello finale)
+Task 11 (localStorage) ← indipendente, in qualsiasi momento
+Task 12 (Stampa/Esportazione) ← dipende da: Task 7
 ```
 
 ## Prossimo Step Consigliato
 
-Procedere con **Task 9** (abilità secondarie nel riepilogo — piccolo fix) e **Task 1** (Step 8: Apprendimento/LevelUp) che sono indipendenti dai dati delle liste e completano il cuore del workflow.
+Si consiglia di procedere con **Task 2 (Equipaggiamento Iniziale)** e **Task 3 (Calcolo Finale LVL 1)**. Questo permetterà di chiudere e testare il flusso completo di un personaggio di livello 1 con tutte le sue statistiche di gioco reali (BO, DB, PF, TR, ecc.) prima di avventurarsi nella progressione ai livelli successivi (Task 1).
