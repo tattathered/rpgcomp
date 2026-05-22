@@ -66,12 +66,13 @@ export default function AdolescenceStep({ characterData, setCharacterData }) {
 
       // 1. Process all primary skills from Tabella-abilita_primarie
       primarySkillsList.forEach(skill => {
+        const isCogliere = skill.nome.toLowerCase() === 'cogliere alle spalle';
         // Find adolescence ranks in race development
-        const adRanks = getTgp5AdolescenceRanks(skill.nome, race.popolo, adolescenceData);
+        const adRanks = isCogliere ? 0 : getTgp5AdolescenceRanks(skill.nome, race.popolo, adolescenceData);
         
         // Find profession ranks (distributed + fixed)
-        const distributedProf = characterData.level1Tb6?.[skill.nome] || 0;
-        const fixedProf = getSpecificTb6Ranks(skill.nome, profession);
+        const distributedProf = isCogliere ? 0 : (characterData.level1Tb6?.[skill.nome] || 0);
+        const fixedProf = isCogliere ? 0 : getSpecificTb6Ranks(skill.nome, profession);
         const profRanks = distributedProf + fixedProf;
 
         const totalRanks = adRanks + profRanks;
