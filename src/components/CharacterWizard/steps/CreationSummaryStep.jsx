@@ -128,16 +128,30 @@ export default function CreationSummaryStep({ characterData }) {
     } else if (opt.category === 'Lingue') {
       detail = `Grado 5 | ${opt.skillName || '—'}`;
     } else if (opt.category === 'abilità speciali') {
-      if (opt.roll >= 1 && opt.roll <= 50) detail = `Bonus abilità +5 | ${opt.skillName || '—'}`;
-      else if (opt.roll >= 51 && opt.roll <= 55) detail = `Bonus abilità +15 | ${opt.skillName || '—'}`;
-      else if (opt.roll >= 71 && opt.roll <= 75) detail = `Esperto Magia | Lista: ${opt.skillName || '—'}`;
-      else detail = opt.calculatedText || opt.oggetto || '—';
+      if (opt.oggetto === 'as1' || (opt.roll >= 1 && opt.roll <= 50)) {
+        detail = `Bonus abilità +5 | ${opt.skillName || '—'}`;
+      } else if (opt.oggetto === 'as2' || (opt.roll >= 51 && opt.roll <= 55)) {
+        detail = `Bonus abilità +15 | ${opt.skillName || '—'}`;
+      } else if (opt.oggetto === 'as6' || (opt.roll >= 71 && opt.roll <= 75)) {
+        detail = `Esperto Magia | Lista: ${opt.skillName || '—'}`;
+      } else {
+        detail = opt.calculatedText || opt.oggetto || '—';
+        if (opt.customNote) {
+          detail += ` | ${opt.customNote}`;
+        }
+      }
     } else if (opt.category === 'oggetti speciali') {
-      detail = `${opt.oggetto || '—'} | ${opt.customNote || ''}`;
+      detail = `${opt.oggetto || '—'}`;
+      if (opt.customNote) {
+        detail += ` | ${opt.customNote}`;
+      }
     } else if (opt.category === "denaro: monete d'oro") {
       detail = `${opt.calculatedMO || 0} MO (tiro ${opt.roll})`;
     } else if (opt.category === 'Incantesimi o Punti Magia' || opt.category === 'Lista incantesimi aggiuntiva') {
-      detail = `Lista: ${opt.skillName || '—'} | ${opt.customNote || ''}`;
+      detail = `Lista: ${opt.skillName || '—'}`;
+      if (opt.customNote) {
+        detail += ` | ${opt.customNote}`;
+      }
     }
     return { idx: idx + 1, category: opt.category, detail };
   };

@@ -73,4 +73,69 @@ export const getFinalStats = (stats, race, bgModifiers = {}) => {
   }, {});
 };
 
+export const getTgp5AdolescenceRanks = (skillName, popolo, adolescenceData) => {
+  if (!popolo || !adolescenceData) return 0;
+  const norm = skillName.toLowerCase().trim();
+  const mapping = {
+    'corazza di maglia': 'cotta di maglia',
+    'taglio a 1 mano': 'armi da taglio a 1 mano',
+    'contundenti a 1 mano': 'armi contundenti a 1 mano',
+    'a 2 mani': 'armi a 2 mani',
+    'da tiro': 'armi da tiro',
+    'da lancio': 'armi da lancio',
+    'con asta': 'armi con asta',
+    'cogliere alle spalle': 'colpire alle spalle',
+    'muoversi silenziosamente': 'muov. silenz. / nasc.',
+    'nascondersi': 'muov. silenz. / nasc.',
+    'scassinare serrature': 'scassinare',
+    'uso oggetti magici': 'uso di oggetti magici',
+  };
+  const targetTgp5Name = mapping[norm] || norm;
+  const match = adolescenceData.find(item => item.abilità?.toLowerCase().trim() === targetTgp5Name);
+  return match ? parseBonusValue(match[popolo] || 0) : 0;
+};
+
+export const getTb6CategoryKey = (categoryName) => {
+  const norm = categoryName.toLowerCase().trim();
+  if (norm === 'con le armi' || norm === 'abilità con le armi') return 'abilità armi';
+  if (norm === 'generali' || norm === 'abilità generali') return 'abilità generiche';
+  if (norm === 'sotterfugio' || norm === 'abilità di sotterfugio') return 'abilità sotterfugio';
+  if (norm === 'magiche' || norm === 'abilità magiche') return 'abilità magiche';
+  return null;
+};
+
+export const getTb6PoolSize = (categoryName, profession) => {
+  if (!profession) return 0;
+  const key = getTb6CategoryKey(categoryName);
+  if (!key) return 0;
+  return parseBonusValue(profession[key] || 0);
+};
+
+export const getTgp4CategoryKey = (categoryName, skillName) => {
+  const normCat = categoryName?.toLowerCase().trim();
+  const normSkill = skillName?.toLowerCase().trim();
+  
+  if (normSkill === 'resistenza fisica') return 'Resistenza fisica';
+  if (normSkill === 'percezione') return 'Percezione';
+  if (normSkill === 'incantesimi base') return 'Abilità magiche';
+  if (normCat === 'liste incantesimi' || normSkill === 'liste incantesimi') return 'Liste incantesimi';
+  if (normCat === 'lingue' || normSkill === 'lingue') return 'Lingue';
+  
+  if (normCat === 'di manovra e movimento' || normCat === 'abilità di movimento e manovra') return 'Manovre in Movimento';
+  if (normCat === 'con le armi' || normCat === 'abilità con le armi') return 'Abilità armi';
+  if (normCat === 'generali' || normCat === 'abilità generali') return 'Abilità generiche';
+  if (normCat === 'sotterfugio' || normCat === 'abilità di sotterfugio') return 'Abilità sotterfugio';
+  if (normCat === 'magiche' || normCat === 'abilità magiche') return 'Abilità magiche';
+  return null;
+};
+
+export const getTgp4PoolSize = (categoryName, skillName, professionName, tgp4Data) => {
+  if (!professionName || !tgp4Data) return 0;
+  const key = getTgp4CategoryKey(categoryName, skillName);
+  if (!key) return 0;
+  const record = tgp4Data.find(d => d.categoria?.toLowerCase().trim() === key.toLowerCase().trim());
+  return record ? parseBonusValue(record[professionName.toLowerCase()] || 0) : 0;
+};
+
 export const fmt = (n) => (typeof n === 'number' ? (n >= 0 ? `+${n}` : `${n}`) : n);
+

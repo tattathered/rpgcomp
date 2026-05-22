@@ -11,7 +11,8 @@ export function getAvailableSpellLists(professionName, realm) {
   
   let effectiveRules = rules;
   if (limitRule.liste_incantesimi === "ESSENZA o FLUSSO") {
-     effectiveRules = [realm?.toUpperCase() || 'ESSENZA']; // Default if not selected
+    const upperRealm = (realm || '').toUpperCase().trim();
+    effectiveRules = (upperRealm === 'ESSENZA' || upperRealm === 'FLUSSO') ? [upperRealm] : ['ESSENZA'];
   }
 
   const categoryMap = {

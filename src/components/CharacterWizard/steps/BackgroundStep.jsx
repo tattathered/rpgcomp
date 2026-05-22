@@ -143,7 +143,7 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
           secondarySkills[opt.skillName] = { ...def, bgRanks: prev.bgRanks + 5 };
         }
       }
-      if (opt.category === 'abilità speciali' && opt.roll >= 51 && opt.roll <= 55 && opt.skillName) {
+      if (opt.category === 'abilità speciali' && (opt.oggetto === 'as2' || (opt.roll >= 51 && opt.roll <= 55)) && opt.skillName) {
         const def = secondarySkillsList.find(s => s.abilita_secondaria === opt.skillName);
         if (def) {
           const prev = secondarySkills[opt.skillName] || { specialBonus: 0 };
@@ -161,7 +161,7 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
     // Spell Lists from Esperto di magia (roll 71-75) or Lista incantesimi aggiuntiva
     const bgSpellLists = [];
     nextOptions.forEach(opt => {
-      if ((opt.category === 'abilità speciali' && opt.roll >= 71 && opt.roll <= 75) || opt.category === 'Lista incantesimi aggiuntiva') {
+      if ((opt.category === 'abilità speciali' && (opt.oggetto === 'as6' || (opt.roll >= 71 && opt.roll <= 75))) || opt.category === 'Lista incantesimi aggiuntiva') {
         if (opt.skillName) {
           bgSpellLists.push(opt.skillName);
         }
@@ -498,7 +498,7 @@ function OptionCard({ opt, idx, characterData, primarySkillNames, languages, all
               ))}
             </div>
 
-            {opt.roll >= 1 && opt.roll <= 50 && (
+            {(opt.oggetto === 'as1' || (opt.roll >= 1 && opt.roll <= 50)) && (
               <div style={{marginTop:'0.5rem'}}>
                 <label style={{fontSize:'0.8rem',fontWeight:600,display:'block',marginBottom:'0.25rem'}}>Scegli Abilità Primaria (+5 Bonus Speciale):</label>
                 <select value={opt.skillName||''} onChange={e=>onPatch({skillName:e.target.value})} style={{width:'100%',padding:'0.4rem',border:'1px solid #fcd34d',borderRadius:'0.375rem',fontSize:'0.875rem'}}>
@@ -508,7 +508,7 @@ function OptionCard({ opt, idx, characterData, primarySkillNames, languages, all
               </div>
             )}
             
-            {opt.roll >= 51 && opt.roll <= 55 && (
+            {(opt.oggetto === 'as2' || (opt.roll >= 51 && opt.roll <= 55)) && (
               <div style={{marginTop:'0.5rem'}}>
                 <label style={{fontSize:'0.8rem',fontWeight:600,display:'block',marginBottom:'0.25rem'}}>Scegli Abilità Secondaria (+15 Bonus Speciale):</label>
                 <select value={opt.skillName||''} onChange={e=>onPatch({skillName:e.target.value})} style={{width:'100%',padding:'0.4rem',border:'1px solid #fcd34d',borderRadius:'0.375rem',fontSize:'0.875rem'}}>
@@ -518,7 +518,7 @@ function OptionCard({ opt, idx, characterData, primarySkillNames, languages, all
               </div>
             )}
 
-            {opt.roll >= 71 && opt.roll <= 75 && (
+            {(opt.oggetto === 'as6' || (opt.roll >= 71 && opt.roll <= 75)) && (
               <div style={{marginTop:'0.5rem'}}>
                 <label style={{fontSize:'0.8rem',fontWeight:600,display:'block',marginBottom:'0.25rem'}}>Scegli Lista Incantesimi:</label>
                 <select value={opt.skillName||''} onChange={e=>onPatch({skillName:e.target.value})} style={{width:'100%',padding:'0.4rem',border:'1px solid #fcd34d',borderRadius:'0.375rem',fontSize:'0.875rem'}}>
@@ -528,7 +528,7 @@ function OptionCard({ opt, idx, characterData, primarySkillNames, languages, all
               </div>
             )}
 
-            {opt.roll > 55 && opt.roll !== 71 && opt.roll !== 72 && opt.roll !== 73 && opt.roll !== 74 && opt.roll !== 75 && opt.calculatedText && (
+            {opt.oggetto && opt.oggetto !== 'as1' && opt.oggetto !== 'as2' && opt.oggetto !== 'as6' && opt.calculatedText && (
               <div style={{fontSize:'0.8rem',color:'#92400e',marginTop:'0.5rem'}}><em>Questa opzione aggiunge il bonus descritto alla tua scheda. Puoi specificare dettagli (es. animale scelto, tipo di TR) nelle note se vuoi.</em>
                 <input type="text" value={opt.customNote||''} onChange={e=>onPatch({customNote:e.target.value})} placeholder="Dettagli aggiuntivi..." style={{width:'100%',padding:'0.4rem',border:'1px solid #fcd34d',borderRadius:'0.375rem',fontSize:'0.875rem',marginTop:'0.5rem'}} />
               </div>

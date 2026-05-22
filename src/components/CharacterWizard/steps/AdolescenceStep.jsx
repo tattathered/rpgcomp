@@ -11,7 +11,9 @@ import {
   getIngombroBonus,
   getSpecificTb6Ranks,
   getFinalStats,
-  fmt
+  fmt,
+  getTgp5AdolescenceRanks,
+  getTb6PoolSize
 } from '../../../utils/skillHelpers';
 
 const STAT_KEYS = ['FR', 'AG', 'CO', 'IN', 'IT', 'PR'];
@@ -65,18 +67,21 @@ export default function AdolescenceStep({ characterData, setCharacterData }) {
       // 1. Process all primary skills from Tabella-abilita_primarie
       primarySkillsList.forEach(skill => {
         // Find adolescence ranks in race development
-        const adRecord = adolescenceData.find(item => item.abilità?.toLowerCase() === skill.nome?.toLowerCase());
-        const adRanks = adRecord ? (adRecord[race.popolo] || 0) : 0;
+        const adRanks = getTgp5AdolescenceRanks(skill.nome, race.popolo, adolescenceData);
+        
+        // Find profession ranks (distributed + fixed)
+        const distributedProf = characterData.level1Tb6?.[skill.nome] || 0;
+        const fixedProf = getSpecificTb6Ranks(skill.nome, profession);
+        const profRanks = distributedProf + fixedProf;
 
-        // Store just the adolescence ranks for this step
-        const totalRanks = adRanks;
+        const totalRanks = adRanks + profRanks;
 
         newSkills[skill.nome] = {
           category: skill.categoria,
           type: skill.tipo,
           valoreIniziale: skill['valore iniziale'],
           adolescenceRanks: adRanks,
-          professionRanks: 0,
+          professionRanks: profRanks,
           totalRanks: totalRanks,
           specialBonus: characterData.skills?.[skill.nome]?.specialBonus || 0,
           itemBonus: characterData.skills?.[skill.nome]?.itemBonus || 0,
@@ -118,7 +123,7 @@ export default function AdolescenceStep({ characterData, setCharacterData }) {
         }));
       }
     }
-  }, [race, profession, characterData.skills, setCharacterData]);
+  }, [race, profession, characterData.skills, characterData.level1Tb6, setCharacterData]);
 
   if (!race) {
     return (
@@ -150,13 +155,59 @@ export default function AdolescenceStep({ characterData, setCharacterData }) {
     return getFinalStats(characterData.stats || {}, race, {});
   }, [characterData.stats, race]);
 
+  const tb6Distribution = characterData.level1Tb6 || {};
+
+  const spentTb6ByCat = useMemo(() => {
+    const counts = {};
+    primarySkillsList.forEach(sk => {
+      const cat = sk.categoria;
+      const spent = tb6Distribution[sk.nome] || 0;
+      counts[cat] = (counts[cat] || 0) + spent;
+    });
+    return counts;
+  }, [tb6Distribution]);
+
+  const handleIncreaseTb6 = (skillName, cat) => {
+    const poolSize = getTb6PoolSize(cat, profession);
+    const spent = spentTb6ByCat[cat] || 0;
+    if (spent < poolSize) {
+      setCharacterData(prev => {
+        const dist = { ...(prev.level1Tb6 || {}) };
+        dist[skillName] = (dist[skillName] || 0) + 1;
+        return {
+          ...prev,
+          level1Tb6: dist
+        };
+      });
+    }
+  };
+
+  const handleDecreaseTb6 = (skillName, cat) => {
+    const current = tb6Distribution[skillName] || 0;
+    if (current > 0) {
+      setCharacterData(prev => {
+        const dist = { ...(prev.level1Tb6 || {}) };
+        if (dist[skillName] <= 1) {
+          delete dist[skillName];
+        } else {
+          dist[skillName] -= 1;
+        }
+        return {
+          ...prev,
+          level1Tb6: dist
+        };
+      });
+    }
+  };
+
   const finalSkills = useMemo(() => {
     const result = {};
     primarySkillsList.forEach(sk => {
       const name = sk.nome;
-      const base = skills[name] || {};
-      const adRanks = base.adolescenceRanks || 0;
-      const profRanks = getSpecificTb6Ranks(name, profession); // fixed profession ranks
+      const adRanks = getTgp5AdolescenceRanks(name, race.popolo, adolescenceData);
+      const profFixed = getSpecificTb6Ranks(name, profession);
+      const profDist = tb6Distribution[name] || 0;
+      const profRanks = profFixed + profDist;
       const tgp4Ranks = 0;
       const bgExtra = 0;
       const totalRanks = adRanks + profRanks;
@@ -192,7 +243,7 @@ export default function AdolescenceStep({ characterData, setCharacterData }) {
       };
     });
     return result;
-  }, [skills, finalStats, profession]);
+  }, [race.popolo, tb6Distribution, finalStats, profession]);
   
   // Spell Lists logic
   const knownLists = Object.keys(characterData.spellListAllocations || {});
@@ -440,10 +491,18 @@ export default function AdolescenceStep({ characterData, setCharacterData }) {
           const catSkills = primarySkillsList.filter(s => s.categoria === cat);
           if (catSkills.length === 0) return null;
 
+          const tb6PoolSize = getTb6PoolSize(cat, profession);
+          const spentTb6InCat = spentTb6ByCat[cat] || 0;
+
           return (
-            <div key={cat} className="card">
-              <div className="card-header bg-gray-50 border-b border-gray-200" style={{padding: '0.75rem 1rem'}}>
+            <div key={cat} className="card border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+              <div className="card-header bg-gray-50 border-b border-gray-200 flex justify-between items-center" style={{padding: '0.75rem 1rem'}}>
                 <h4 className="font-semibold text-gray-700 m-0 text-sm uppercase tracking-wider">{cat}</h4>
+                {tb6PoolSize > 0 && (
+                  <span className="text-xs font-bold px-2.5 py-1 bg-blue-100 text-blue-800 rounded-full">
+                    Punti Bonus Professione (TB_6): {spentTb6InCat} / {tb6PoolSize} spesi
+                  </span>
+                )}
               </div>
               <div className="card-body overflow-x-auto" style={{padding: '0'}}>
                 <table className="w-full text-left text-sm whitespace-nowrap">
@@ -471,13 +530,48 @@ export default function AdolescenceStep({ characterData, setCharacterData }) {
                       const hasIngombro = s.ingombroBonus !== null;
                       const totalBonusStr = typeof s.totalBonus === 'number' ? fmt(s.totalBonus) : s.totalBonus;
 
+                      const isFixedSkill = [
+                        'resistenza fisica', 'percezione', 'lettura rune', 
+                        'uso oggetti magici', 'incantesimi diretti', 'incantesimi base'
+                      ].includes(name.toLowerCase().trim());
+                      
+                      const availableTb6Pool = tb6PoolSize - spentTb6InCat;
+
                       return (
                         <tr key={name} className="border-b border-gray-100 last:border-0 hover:bg-gray-50">
                           <td className="px-4 py-2 font-medium text-gray-900">
                             {name} {max !== null ? <span className="text-[10px] text-gray-400">({max} max)</span> : ''}
                           </td>
                           <td className="px-2 py-2 text-center text-gray-700 font-semibold">{s.adRanks}</td>
-                          <td className="px-2 py-2 text-center text-blue-700 font-semibold">{s.profRanks > 0 ? `+${s.profRanks}` : '0'}</td>
+                          <td className="px-2 py-2 text-center text-blue-700 font-semibold">
+                            {isFixedSkill ? (
+                              s.profRanks > 0 ? `+${s.profRanks}` : '0'
+                            ) : tb6PoolSize > 0 ? (
+                              <div className="flex items-center justify-center gap-1.5">
+                                <button
+                                  type="button"
+                                  onClick={() => handleDecreaseTb6(name, cat)}
+                                  disabled={!tb6Distribution[name]}
+                                  className="w-5 h-5 flex items-center justify-center bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-full text-xs font-bold transition disabled:opacity-50"
+                                >
+                                  -
+                                </button>
+                                <span className="w-6 text-center text-sm font-bold text-blue-900">
+                                  {tb6Distribution[name] || 0}
+                                </span>
+                                <button
+                                  type="button"
+                                  onClick={() => handleIncreaseTb6(name, cat)}
+                                  disabled={availableTb6Pool <= 0}
+                                  className="w-5 h-5 flex items-center justify-center bg-blue-100 hover:bg-blue-200 text-blue-800 rounded-full text-xs font-bold transition disabled:opacity-50"
+                                >
+                                  +
+                                </button>
+                              </div>
+                            ) : (
+                              '0'
+                            )}
+                          </td>
                           <td className="px-2 py-2 text-center text-gray-400">—</td>
                           <td className="px-2 py-2 text-center text-gray-400">—</td>
                           <td className="px-2 py-2 text-center font-bold text-gray-800">{s.totalRanks}</td>
