@@ -21,9 +21,9 @@ export const getRanksBonus = (skillName, ranks) => {
   const name = skillName.toLowerCase();
   if (name === 'cogliere alle spalle') {
     if (ranks === 0) return 0;
-    if (ranks <= 10) return ranks;
-    if (ranks <= 20) return 10 + Math.floor((ranks - 10) * 0.5);
-    return 15 + Math.floor((ranks - 20) * 0.5);
+    if (ranks <= 10) return ranks * 5;
+    if (ranks <= 20) return 50 + (ranks - 10) * 2;
+    return 70 + (ranks - 20) * 1;
   }
   if (name === 'resistenza fisica') {
     if (ranks === 0) return 0;
@@ -76,6 +76,7 @@ export const getFinalStats = (stats, race, bgModifiers = {}) => {
 export const getTgp5AdolescenceRanks = (skillName, popolo, adolescenceData) => {
   if (!popolo || !adolescenceData) return 0;
   const norm = skillName.toLowerCase().trim();
+  if (norm === 'cogliere alle spalle') return 0;
   const mapping = {
     'corazza di maglia': 'cotta di maglia',
     'taglio a 1 mano': 'armi da taglio a 1 mano',

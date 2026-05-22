@@ -102,7 +102,7 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
       if (s.nome === 'resistenza fisica') {
         state['Resistenza fisica'].spentOnSkills += getTgp4Cost(ranks);
       } else if (s.nome === 'percezione') {
-        state['Percezione'].spentOnSkills += getTgp4Cost(ranks);
+        state['Percezione'].spentOnSkills += ranks; // 1:1 cost
       } else {
         const cat = s.categoria?.toLowerCase()?.trim();
         if (cat === 'di manovra e movimento') {
@@ -140,9 +140,10 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
     const newSkills = {};
     primarySkillsList.forEach(sk => {
       const name = sk.nome;
-      const adRanks = baseSkills[name]?.adolescenceRanks || 0;
-      const profFixedRanks = getSpecificTb6Ranks(name, profession);
-      const tb6Ranks = tb6Distribution[name] || 0;
+      const isCogliereAlleSpalle = name.toLowerCase() === 'cogliere alle spalle';
+      const adRanks = isCogliereAlleSpalle ? 0 : (baseSkills[name]?.adolescenceRanks || 0);
+      const profFixedRanks = isCogliereAlleSpalle ? 0 : getSpecificTb6Ranks(name, profession);
+      const tb6Ranks = isCogliereAlleSpalle ? 0 : (tb6Distribution[name] || 0);
       const tgp4Ranks = tgp4Distribution[name] || 0;
       const totalRanks = adRanks + profFixedRanks + tb6Ranks + tgp4Ranks;
 
@@ -210,10 +211,11 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
   const handleAddTgp4 = (skillName, category) => {
     const normCat = category?.toLowerCase()?.trim();
     const isMM = normCat === 'di manovra e movimento' || category === 'Abilità di Movimento e Manovra';
+    const isNoLimit = isMM || skillName.toLowerCase().trim() === 'percezione';
     const currentRanks = tgp4Distribution[skillName] || 0;
     
     // Check max ranks per level
-    if (!isMM && currentRanks >= 2) return;
+    if (!isNoLimit && currentRanks >= 2) return;
 
     let poolKey;
     if (skillName.toLowerCase().trim() === 'resistenza fisica') {
@@ -233,7 +235,7 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
     const pool = poolsState[poolKey];
     if (!pool) return;
 
-    const costOfNextRank = isMM ? 1 : (currentRanks === 0 ? 1 : 2);
+    const costOfNextRank = isNoLimit ? 1 : (currentRanks === 0 ? 1 : 2);
     
     if (pool.remaining >= costOfNextRank) {
       setTgp4Distribution(prev => ({
@@ -698,9 +700,11 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
                   <tbody>
                     {catSkills.map((sk) => {
                       const name = sk.nome;
-                      const adRanks = baseSkills[name]?.adolescenceRanks || 0;
-                      const profFixedRanks = getSpecificTb6Ranks(name, profession);
-                      const tb6Ranks = tb6Distribution[name] || 0;
+                      const isCogliereAlleSpalle = name.toLowerCase() === 'cogliere alle spalle';
+                      
+                      const adRanks = isCogliereAlleSpalle ? 0 : (baseSkills[name]?.adolescenceRanks || 0);
+                      const profFixedRanks = isCogliereAlleSpalle ? 0 : getSpecificTb6Ranks(name, profession);
+                      const tb6Ranks = isCogliereAlleSpalle ? 0 : (tb6Distribution[name] || 0);
                       const profRanks = profFixedRanks + tb6Ranks;
                       
                       const tgp4Ranks = tgp4Distribution[name] || 0;
@@ -728,14 +732,15 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
                       const pool = poolKey ? poolsState[poolKey] : null;
                       const hasTgp4Pool = pool !== null;
                       const isMM = poolKey === 'Manovre in Movimento';
+                      const isNoLimit = isMM || normName === 'percezione';
 
-                      const nextRankCost = isMM ? 1 : (tgp4Ranks === 0 ? 1 : 2);
-                      const canAddTgp4 = pool && (isMM || tgp4Ranks < 2) && (pool.remaining >= nextRankCost);
+                      const nextRankCost = isNoLimit ? 1 : (tgp4Ranks === 0 ? 1 : 2);
+                      const canAddTgp4 = pool && (isNoLimit || tgp4Ranks < 2) && (pool.remaining >= nextRankCost);
 
                       // Stat bonus for this skill
                       const carattSiglaMatch = (sk['valore iniziale'] || '').match(/([A-Z]{2})$/);
                       const carattSigla = carattSiglaMatch ? carattSiglaMatch[1] : '';
-                      const carattBonus = carattSigla ? finalStats[carattSigla]?.bonusTot || 0 : 0;
+                      const carattBonus = isCogliereAlleSpalle ? 0 : (carattSigla ? finalStats[carattSigla]?.bonusTot || 0 : 0);
 
                       const ingombroBonus = getIngombroBonus(name);
                       const hasIngombro = ingombroBonus !== null;

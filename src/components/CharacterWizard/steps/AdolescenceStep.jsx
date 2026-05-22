@@ -204,9 +204,10 @@ export default function AdolescenceStep({ characterData, setCharacterData }) {
     const result = {};
     primarySkillsList.forEach(sk => {
       const name = sk.nome;
-      const adRanks = getTgp5AdolescenceRanks(name, race.popolo, adolescenceData);
-      const profFixed = getSpecificTb6Ranks(name, profession);
-      const profDist = tb6Distribution[name] || 0;
+      const isCogliereAlleSpalle = name.toLowerCase() === 'cogliere alle spalle';
+      const adRanks = isCogliereAlleSpalle ? 0 : getTgp5AdolescenceRanks(name, race.popolo, adolescenceData);
+      const profFixed = isCogliereAlleSpalle ? 0 : getSpecificTb6Ranks(name, profession);
+      const profDist = isCogliereAlleSpalle ? 0 : (tb6Distribution[name] || 0);
       const profRanks = profFixed + profDist;
       const tgp4Ranks = 0;
       const bgExtra = 0;
@@ -215,7 +216,7 @@ export default function AdolescenceStep({ characterData, setCharacterData }) {
       // Stat bonus for this skill
       const carattSiglaMatch = (sk['valore iniziale'] || '').match(/([A-Z]{2})$/);
       const carattSigla = carattSiglaMatch ? carattSiglaMatch[1] : '';
-      const carattBonus = carattSigla ? finalStats[carattSigla]?.bonusTot || 0 : 0;
+      const carattBonus = isCogliereAlleSpalle ? 0 : (carattSigla ? finalStats[carattSigla]?.bonusTot || 0 : 0);
 
       const bonusGradi = getRanksBonus(name, totalRanks);
       const ingombroBonus = getIngombroBonus(name);
@@ -544,7 +545,9 @@ export default function AdolescenceStep({ characterData, setCharacterData }) {
                           </td>
                           <td className="px-2 py-2 text-center text-gray-700 font-semibold">{s.adRanks}</td>
                           <td className="px-2 py-2 text-center text-blue-700 font-semibold">
-                            {isFixedSkill ? (
+                            {isCogliereAlleSpalle ? (
+                              '0'
+                            ) : isFixedSkill ? (
                               s.profRanks > 0 ? `+${s.profRanks}` : '0'
                             ) : tb6PoolSize > 0 ? (
                               <div className="flex items-center justify-center gap-1.5">

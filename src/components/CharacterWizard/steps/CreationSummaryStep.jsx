@@ -76,16 +76,17 @@ export default function CreationSummaryStep({ characterData }) {
     primarySkillsList.forEach(sk => {
       const name = sk.nome;
       const base = skillsBase[name] || {};
-      const bgExtra = bgModifiers.skillBgRanks?.[name] || 0;
-      const adRanks = base.adolescenceRanks || 0;
-      const profRanks = base.professionRanks || 0;
+      const isCogliereAlleSpalle = name.toLowerCase() === 'cogliere alle spalle';
+      const bgExtra = isCogliereAlleSpalle ? 0 : (bgModifiers.skillBgRanks?.[name] || 0);
+      const adRanks = isCogliereAlleSpalle ? 0 : (base.adolescenceRanks || 0);
+      const profRanks = isCogliereAlleSpalle ? 0 : (base.professionRanks || 0);
       const tgp4Ranks = base.tgp4Ranks || 0;
       const totalRanks = adRanks + profRanks + tgp4Ranks + bgExtra;
 
       // Stat bonus for this skill
       const carattSiglaMatch = (sk['valore iniziale'] || '').match(/([A-Z]{2})$/);
       const carattSigla = carattSiglaMatch ? carattSiglaMatch[1] : '';
-      const carattBonus = carattSigla ? finalStats[carattSigla]?.bonusTot || 0 : 0;
+      const carattBonus = isCogliereAlleSpalle ? 0 : (carattSigla ? finalStats[carattSigla]?.bonusTot || 0 : 0);
 
       const bonusGradi = getRanksBonus(name, totalRanks);
       const ingombroBonus = getIngombroBonus(name);

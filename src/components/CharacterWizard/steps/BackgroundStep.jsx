@@ -236,7 +236,7 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
   const roll1d100 = (id) => patchOption(id, { roll: Math.floor(Math.random() * 100) + 1 });
 
   const primarySkillNames = primarySkillsList
-    .filter(s => s.nome && s.categoria && !s.categoria.includes('Altre Abilità'))
+    .filter(s => s.nome && s.categoria && !s.categoria.includes('Altre Abilità') && s.nome.toLowerCase() !== 'cogliere alle spalle')
     .map(s => ({ nome: s.nome, categoria: s.categoria }));
 
   return (
