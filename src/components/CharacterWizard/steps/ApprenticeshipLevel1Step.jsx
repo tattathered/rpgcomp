@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
-import tb1 from '../../../data/TB_1-caratteristiche_bonus.json';
 import tgp4Data from '../../../data/TGP_4-sviluppo_abilità_professioni.json';
 import { getAvailableSpellLists } from '../../../utils/magicHelpers';
-
-const parseBonusValue = (val) => {
-  if (val === undefined || val === null) return 0;
-  if (typeof val === 'number') return val;
-  const cleaned = val.toString().replace('+', '').trim();
-  const parsed = parseInt(cleaned);
-  return isNaN(parsed) ? 0 : parsed;
-};
+import {
+  getBonus,
+  parseBonusValue,
+  getRanksBonus,
+  getIngombroBonus,
+  getSpecificTb6Ranks,
+  getFinalStats,
+  fmt
+} from '../../../utils/skillHelpers';
 
 // Map primary skills categories to TB_6 keys
 const CAT_TO_TB6 = {
@@ -48,18 +48,6 @@ const getTb6Pool = (category, profession) => {
   return parseBonusValue(profession[key]);
 };
 
-const getSpecificTb6Ranks = (skillName, profession) => {
-  const nameL = skillName.toLowerCase();
-  const validKeys = [
-    'resistenza fisica', 'percezione', 'lettura rune', 
-    'uso oggetti magici', 'incantesimi diretti', 'incantesimi base'
-  ];
-  if (validKeys.includes(nameL)) {
-    return parseBonusValue(profession[nameL]);
-  }
-  return 0;
-};
-
 const getMaxRanks = (skillName) => {
   const limits = {
     'nessuna armatura': 2,
@@ -71,29 +59,14 @@ const getMaxRanks = (skillName) => {
   return limits[skillName.toLowerCase()] || null;
 };
 
-const getRanksBonus = (skillName, ranks) => {
-  const name = skillName.toLowerCase();
-  if (name === 'cogliere alle spalle') {
-    if (ranks === 0) return 0;
-    if (ranks <= 10) return ranks;
-    if (ranks <= 20) return 10 + Math.floor((ranks - 10) * 0.5);
-    return 15 + Math.floor((ranks - 20) * 0.5);
-  }
-  if (name === 'resistenza fisica') {
-    if (ranks === 0) return 0;
-    if (ranks <= 10) return `${ranks}d10`;
-    return `10d10+${ranks - 10}d4`;
-  }
-  if (ranks === 0) return -25;
-  if (ranks <= 10) return ranks * 5;
-  if (ranks <= 20) return 50 + (ranks - 10) * 2;
-  return 70 + (ranks - 20) * 1;
-};
-
 export default function ApprenticeshipLevel1Step({ characterData, setCharacterData }) {
   const race = characterData.race;
   const profession = characterData.profession;
   const baseSkills = characterData.adolescenceSkills || {};
+
+  const finalStats = useMemo(() => {
+    return getFinalStats(characterData.stats || {}, race, {});
+  }, [characterData.stats, race]);
 
   const [tb6Distribution, setTb6Distribution] = useState(characterData.level1Tb6 || {});
   const [tgp4Distribution, setTgp4Distribution] = useState(characterData.level1Tgp4 || {});
@@ -433,7 +406,6 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
           const isTb6Full = spentTb6 >= tb6Pool;
           const isTgp4Full = cat === 'Abilità Varie' ? (spentTgp4 >= tgp4PoolResistenza) : (spentTgp4 >= tgp4Pool);
           
-          // Only show category if it has skills that we actually display (skip empty ones if any)
           return (
             <div key={cat} className="card">
               <div className="card-header bg-gray-50 border-b border-gray-200 flex justify-between items-center" style={{padding: '0.75rem 1rem'}}>
@@ -462,12 +434,15 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
                   <thead className="bg-gray-50/50 border-b border-gray-200 text-[10px] text-gray-500 uppercase tracking-wider">
                     <tr>
                       <th className="px-4 py-2">Abilità</th>
-                      <th className="px-2 py-2 text-center" title="Gradi Adolescenza (Fissi)">Adol.</th>
-                      <th className="px-2 py-2 text-center bg-blue-50/30" title="Gradi Fissi da Professione (TB_6)">Prof. fissa</th>
-                      <th className="px-2 py-2 text-center bg-blue-50/50" title="Distribuzione Pool Professione (TB_6)">Distr. TB_6</th>
-                      <th className="px-2 py-2 text-center bg-purple-50/50" title="Sviluppo Apprendistato Livello 1 (TGP_4)">Lvl 1 (TGP_4)</th>
-                      <th className="px-2 py-2 text-center font-bold">Tot Gradi</th>
-                      <th className="px-2 py-2 text-center">Bonus Gradi</th>
+                      <th className="px-2 py-2 text-center">G. adolescenza</th>
+                      <th className="px-2 py-2 text-center bg-blue-50/30">G. bonus prof.</th>
+                      <th className="px-2 py-2 text-center bg-purple-50/50">G. svil. prof.</th>
+                      <th className="px-2 py-2 text-center">G. background</th>
+                      <th className="px-2 py-2 text-center font-bold">G. TOTALE</th>
+                      <th className="px-2 py-2 text-center">Bonus sviluppo</th>
+                      <th className="px-2 py-2 text-center">Bonus caratt.</th>
+                      <th className="px-2 py-2 text-center">Carico</th>
+                      <th className="px-2 py-2 text-center font-bold">Bonus TOTALE</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -480,7 +455,7 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
                       const tgp4Ranks = tgp4Distribution[name] || 0;
                       
                       const totalRanks = adRanks + profFixedRanks + tb6Ranks + tgp4Ranks;
-                      const bonus = getRanksBonus(name, totalRanks);
+                      const bonusGradi = getRanksBonus(name, totalRanks);
 
                       const max = getMaxRanks(name);
 
@@ -495,52 +470,83 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
                       const hasTb6Pool = tb6Pool > 0;
                       const hasTgp4Pool = currentPool > 0;
 
+                      // Stat bonus for this skill
+                      const carattSiglaMatch = (sk['valore iniziale'] || '').match(/([A-Z]{2})$/);
+                      const carattSigla = carattSiglaMatch ? carattSiglaMatch[1] : '';
+                      const carattBonus = carattSigla ? finalStats[carattSigla]?.bonusTot || 0 : 0;
+
+                      const ingombroBonus = getIngombroBonus(name);
+                      const hasIngombro = ingombroBonus !== null;
+
+                      let totalBonus;
+                      if (typeof bonusGradi === 'number') {
+                        totalBonus = bonusGradi + carattBonus + (ingombroBonus ?? 0);
+                      } else {
+                        totalBonus = bonusGradi;
+                      }
+                      const totalBonusStr = typeof totalBonus === 'number' ? fmt(totalBonus) : totalBonus;
+
                       return (
                         <tr key={name} className="border-b border-gray-100 last:border-0 hover:bg-gray-50">
                           <td className="px-4 py-2 font-medium text-gray-900">{name}</td>
                           <td className="px-2 py-2 text-center text-gray-500">{adRanks}</td>
-                          <td className="px-2 py-2 text-center text-blue-700 font-semibold bg-blue-50/30">
-                            {profFixedRanks > 0 ? `+${profFixedRanks}` : '-'}
-                          </td>
-                          <td className="px-2 py-2 text-center bg-blue-50/50">
+                          <td className="px-2 py-2 text-center bg-blue-50/30">
                             {hasTb6Pool ? (
                               <div className="flex items-center justify-center gap-2">
                                 <button 
+                                  type="button"
                                   onClick={() => handleSubTb6(name)}
                                   disabled={tb6Ranks === 0}
                                   className="w-5 h-5 flex items-center justify-center rounded-full bg-blue-200 text-blue-800 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-blue-300"
                                 >-</button>
-                                <span className="font-bold w-4">{tb6Ranks}</span>
+                                <span className="font-bold w-12 text-center text-blue-700">{profFixedRanks + tb6Ranks}</span>
                                 <button 
+                                  type="button"
                                   onClick={() => handleAddTb6(name, cat)}
                                   disabled={!canAddTb6}
                                   className="w-5 h-5 flex items-center justify-center rounded-full bg-blue-200 text-blue-800 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-blue-300"
                                 >+</button>
                               </div>
-                            ) : '-'}
+                            ) : (
+                              <span className="text-blue-700 font-semibold">
+                                {profFixedRanks > 0 ? `+${profFixedRanks}` : '0'}
+                              </span>
+                            )}
                           </td>
                           <td className="px-2 py-2 text-center bg-purple-50/50">
                             {hasTgp4Pool ? (
                               <div className="flex items-center justify-center gap-2">
                                 <button 
+                                  type="button"
                                   onClick={() => handleSubTgp4(name)}
                                   disabled={tgp4Ranks === 0}
                                   className="w-5 h-5 flex items-center justify-center rounded-full bg-purple-200 text-purple-800 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-purple-300"
                                 >-</button>
-                                <span className="font-bold w-4">{tgp4Ranks}</span>
+                                <span className="font-bold w-4 text-center text-purple-700">{tgp4Ranks}</span>
                                 <button 
+                                  type="button"
                                   onClick={() => handleAddTgp4(name, cat)}
                                   disabled={!canAddTgp4}
                                   className="w-5 h-5 flex items-center justify-center rounded-full bg-purple-200 text-purple-800 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-purple-300"
                                 >+</button>
                               </div>
-                            ) : '-'}
+                            ) : '—'}
                           </td>
+                          <td className="px-2 py-2 text-center text-gray-400">—</td>
                           <td className="px-2 py-2 text-center font-bold text-gray-800">
                             {totalRanks} {max !== null ? <span className="text-[10px] font-normal text-gray-500">({max} max)</span> : ''}
                           </td>
+                          <td className="px-2 py-2 text-center font-bold text-gray-700">
+                            {typeof bonusGradi === 'number' ? fmt(bonusGradi) : bonusGradi}
+                          </td>
+                          <td className="px-2 py-2 text-center text-gray-600">
+                            {carattSigla ? `${carattSigla} ${fmt(carattBonus)}` : '—'}
+                          </td>
+                          <td className="px-2 py-2 text-center text-gray-600">
+                            {hasIngombro ? fmt(ingombroBonus) : '—'}
+                          </td>
                           <td className="px-2 py-2 text-center font-black text-primary-color">
-                            {bonus > 0 && typeof bonus === 'number' ? `+${bonus}` : bonus}
+                            {totalBonusStr}
                           </td>
                         </tr>
                       );

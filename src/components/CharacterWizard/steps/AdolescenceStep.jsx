@@ -1,10 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import adolescenceData from '../../../data/TGP_5-sviluppo_abilita_adolescenza-v2.json';
 import secondarySkillsList from '../../../data/Tabella-abilita_secondarie.json';
 import tgp5Data from '../../../data/TGP_5-sviluppo_abilita_adolescenza-v2.json';
 import { getAvailableSpellLists } from '../../../utils/magicHelpers';
-import tb1 from '../../../data/TB_1-caratteristiche_bonus.json';
 import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
+import {
+  getBonus,
+  parseBonusValue,
+  getRanksBonus,
+  getIngombroBonus,
+  getSpecificTb6Ranks,
+  getFinalStats,
+  fmt
+} from '../../../utils/skillHelpers';
 
 const STAT_KEYS = ['FR', 'AG', 'CO', 'IN', 'IT', 'PR'];
 const STAT_NAMES = {
@@ -14,14 +22,6 @@ const STAT_NAMES = {
   'IN': 'Intelligenza',
   'IT': 'Intuizione',
   'PR': 'Presenza'
-};
-
-const parseBonusValue = (val) => {
-  if (val === undefined || val === null) return 0;
-  if (typeof val === 'number') return val;
-  const cleaned = val.toString().replace('+', '').trim();
-  const parsed = parseInt(cleaned);
-  return isNaN(parsed) ? 0 : parsed;
 };
 
 // profRanks will be handled in the next step
@@ -37,34 +37,9 @@ const getMaxRanks = (skillName) => {
   return limits[skillName.toLowerCase()] || null;
 };
 
-const getRanksBonus = (skillName, ranks) => {
-  const name = skillName.toLowerCase();
-  if (name === 'cogliere alle spalle') {
-    if (ranks === 0) return 0;
-    if (ranks <= 10) return ranks;
-    if (ranks <= 20) return 10 + Math.floor((ranks - 10) * 0.5);
-    return 15 + Math.floor((ranks - 20) * 0.5);
-  }
-  if (name === 'resistenza fisica') {
-    if (ranks === 0) return 0;
-    if (ranks <= 10) return `${ranks}d10`;
-    return `10d10+${ranks - 10}d4`;
-  }
-  if (ranks === 0) return -25;
-  if (ranks <= 10) return ranks * 5;
-  if (ranks <= 20) return 50 + (ranks - 10) * 2;
-  return 70 + (ranks - 20) * 1;
-};
-
 export default function AdolescenceStep({ characterData, setCharacterData }) {
   const race = characterData.race;
   const profession = characterData.profession;
-
-  const getBonus = (val) => {
-    if (!val) return 0;
-    const record = tb1.find(b => b.punteggio === parseInt(val));
-    return record ? record.bonus : 0;
-  };
 
   // Automatically determine realm for non-choosing professions
   useEffect(() => {
@@ -170,6 +145,54 @@ export default function AdolescenceStep({ characterData, setCharacterData }) {
 
   const skills = characterData.skills || {};
   const categories = [...new Set(Object.values(skills).map(s => s.category))];
+
+  const finalStats = useMemo(() => {
+    return getFinalStats(characterData.stats || {}, race, {});
+  }, [characterData.stats, race]);
+
+  const finalSkills = useMemo(() => {
+    const result = {};
+    primarySkillsList.forEach(sk => {
+      const name = sk.nome;
+      const base = skills[name] || {};
+      const adRanks = base.adolescenceRanks || 0;
+      const profRanks = getSpecificTb6Ranks(name, profession); // fixed profession ranks
+      const tgp4Ranks = 0;
+      const bgExtra = 0;
+      const totalRanks = adRanks + profRanks;
+
+      // Stat bonus for this skill
+      const carattSiglaMatch = (sk['valore iniziale'] || '').match(/([A-Z]{2})$/);
+      const carattSigla = carattSiglaMatch ? carattSiglaMatch[1] : '';
+      const carattBonus = carattSigla ? finalStats[carattSigla]?.bonusTot || 0 : 0;
+
+      const bonusGradi = getRanksBonus(name, totalRanks);
+      const ingombroBonus = getIngombroBonus(name);
+
+      let totalBonus;
+      if (typeof bonusGradi === 'number') {
+        totalBonus = bonusGradi + carattBonus + (ingombroBonus ?? 0);
+      } else {
+        totalBonus = bonusGradi; // e.g. "3d10"
+      }
+
+      result[name] = {
+        category: sk.categoria,
+        adRanks,
+        profRanks,
+        tgp4Ranks,
+        bgExtra,
+        totalRanks,
+        carattSigla,
+        carattBonus,
+        bonusGradi,
+        ingombroBonus,
+        totalBonus,
+        valoreIniziale: sk['valore iniziale'],
+      };
+    });
+    return result;
+  }, [skills, finalStats, profession]);
   
   // Spell Lists logic
   const knownLists = Object.keys(characterData.spellListAllocations || {});
@@ -379,11 +402,8 @@ export default function AdolescenceStep({ characterData, setCharacterData }) {
               <div>Bonus totale parziale</div>
             </div>
             {STAT_KEYS.map((key, idx) => {
-              const val = characterData.stats[key];
-              const natBonus = val ? getBonus(val) : 0;
-              const raceBonusStr = race ? race[`bonus a ${key}`] : 0;
-              const raceBonus = parseBonusValue(raceBonusStr);
-              const totalBonus = natBonus + raceBonus;
+              const s = finalStats[key];
+              if (!s) return null;
               const isLast = idx === STAT_KEYS.length - 1;
               return (
                 <div key={key} className={`grid grid-cols-5 gap-4 px-4 py-2 items-center text-sm ${!isLast ? 'border-b border-gray-100' : ''}`}>
@@ -391,16 +411,16 @@ export default function AdolescenceStep({ characterData, setCharacterData }) {
                     {STAT_NAMES[key]} ({key})
                   </div>
                   <div className="text-gray-800 font-bold">
-                    {val || '-'}
+                    {s.raw || '-'}
                   </div>
-                  <div className={`font-bold ${natBonus > 0 ? 'text-green-700' : natBonus < 0 ? 'text-red-700' : 'text-gray-500'}`}>
-                    {natBonus > 0 ? `+${natBonus}` : natBonus}
+                  <div className={`font-bold ${s.bonusNaturale > 0 ? 'text-green-700' : s.bonusNaturale < 0 ? 'text-red-700' : 'text-gray-500'}`}>
+                    {fmt(s.bonusNaturale)}
                   </div>
-                  <div className={`font-bold ${raceBonus > 0 ? 'text-blue-700' : raceBonus < 0 ? 'text-red-700' : 'text-gray-500'}`}>
-                    {raceBonus > 0 ? `+${raceBonus}` : raceBonus}
+                  <div className={`font-bold ${s.raceMod > 0 ? 'text-blue-700' : s.raceMod < 0 ? 'text-red-700' : 'text-gray-500'}`}>
+                    {fmt(s.raceMod)}
                   </div>
-                  <div className={`font-black ${totalBonus > 0 ? 'text-purple-700' : totalBonus < 0 ? 'text-red-700' : 'text-gray-800'}`}>
-                    {totalBonus > 0 ? `+${totalBonus}` : totalBonus}
+                  <div className={`font-black ${s.bonusTot > 0 ? 'text-purple-700' : s.bonusTot < 0 ? 'text-red-700' : 'text-gray-800'}`}>
+                    {fmt(s.bonusTot)}
                   </div>
                 </div>
               );
@@ -415,36 +435,69 @@ export default function AdolescenceStep({ characterData, setCharacterData }) {
 
       {/* Griglia delle abilità */}
       <h3 className="text-xl font-bold mb-4 text-gray-800">Sviluppo Adolescenza</h3>
-      <div className="grid grid-cols-1 gap-6 mb-8 md:grid-cols-2">
+      <div className="flex flex-col gap-6 mb-8">
         {regularCategories.map(cat => {
-          const catSkills = Object.entries(skills).filter(([_, data]) => data.category === cat);
+          const catSkills = primarySkillsList.filter(s => s.categoria === cat);
           if (catSkills.length === 0) return null;
 
           return (
-            <div key={cat} className="card h-full">
+            <div key={cat} className="card">
               <div className="card-header bg-gray-50 border-b border-gray-200" style={{padding: '0.75rem 1rem'}}>
                 <h4 className="font-semibold text-gray-700 m-0 text-sm uppercase tracking-wider">{cat}</h4>
               </div>
-              <div className="card-body" style={{padding: '0'}}>
-                <div className="grid grid-cols-4 gap-2 px-4 py-2 bg-gray-50/50 border-b border-gray-200 text-[10px] font-bold text-gray-500 uppercase tracking-wider">
-                  <div className="col-span-3">Abilità</div>
-                  <div className="text-center">Gradi Adol.</div>
-                </div>
-                <div className="m-0 p-0 text-sm">
-                  {catSkills.map(([name, data], idx) => {
-                    const max = getMaxRanks(name);
-                    return (
-                      <div key={name} className={`grid grid-cols-4 gap-2 items-center px-4 py-2 ${idx < catSkills.length - 1 ? 'border-b border-gray-100' : ''}`}>
-                        <div className="col-span-3 font-medium text-gray-900">
-                          {name}
-                        </div>
-                        <div className="text-center font-bold text-primary-color">
-                          {data.adolescenceRanks} {max !== null ? <span className="text-xs font-normal text-gray-500">({max} max)</span> : ''}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
+              <div className="card-body overflow-x-auto" style={{padding: '0'}}>
+                <table className="w-full text-left text-sm whitespace-nowrap">
+                  <thead className="bg-gray-50/50 border-b border-gray-200 text-[10px] text-gray-500 uppercase tracking-wider">
+                    <tr>
+                      <th className="px-4 py-2">Abilità</th>
+                      <th className="px-2 py-2 text-center">G. adolescenza</th>
+                      <th className="px-2 py-2 text-center">G. bonus prof.</th>
+                      <th className="px-2 py-2 text-center">G. svil. prof.</th>
+                      <th className="px-2 py-2 text-center">G. background</th>
+                      <th className="px-2 py-2 text-center font-bold">G. TOTALE</th>
+                      <th className="px-2 py-2 text-center">Bonus sviluppo</th>
+                      <th className="px-2 py-2 text-center">Bonus caratt.</th>
+                      <th className="px-2 py-2 text-center">Carico</th>
+                      <th className="px-2 py-2 text-center font-bold">Bonus TOTALE</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {catSkills.map((sk) => {
+                      const name = sk.nome;
+                      const s = finalSkills[name];
+                      if (!s) return null;
+
+                      const max = getMaxRanks(name);
+                      const hasIngombro = s.ingombroBonus !== null;
+                      const totalBonusStr = typeof s.totalBonus === 'number' ? fmt(s.totalBonus) : s.totalBonus;
+
+                      return (
+                        <tr key={name} className="border-b border-gray-100 last:border-0 hover:bg-gray-50">
+                          <td className="px-4 py-2 font-medium text-gray-900">
+                            {name} {max !== null ? <span className="text-[10px] text-gray-400">({max} max)</span> : ''}
+                          </td>
+                          <td className="px-2 py-2 text-center text-gray-700 font-semibold">{s.adRanks}</td>
+                          <td className="px-2 py-2 text-center text-blue-700 font-semibold">{s.profRanks > 0 ? `+${s.profRanks}` : '0'}</td>
+                          <td className="px-2 py-2 text-center text-gray-400">—</td>
+                          <td className="px-2 py-2 text-center text-gray-400">—</td>
+                          <td className="px-2 py-2 text-center font-bold text-gray-800">{s.totalRanks}</td>
+                          <td className="px-2 py-2 text-center font-bold text-gray-700">
+                            {typeof s.bonusGradi === 'number' ? fmt(s.bonusGradi) : s.bonusGradi}
+                          </td>
+                          <td className="px-2 py-2 text-center text-gray-600">
+                            {s.carattSigla ? `${s.carattSigla} ${fmt(s.carattBonus)}` : '—'}
+                          </td>
+                          <td className="px-2 py-2 text-center text-gray-600">
+                            {hasIngombro ? fmt(s.ingombroBonus) : '—'}
+                          </td>
+                          <td className="px-2 py-2 text-center font-black text-primary-color">
+                            {totalBonusStr}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
               </div>
             </div>
           );

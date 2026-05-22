@@ -1,58 +1,30 @@
 import { useMemo } from 'react';
-import tb1 from '../../../data/TB_1-caratteristiche_bonus.json';
 import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
 import gradiLingue from '../../../data/TGP_1-gradi_conoscenze_lingue.json';
 import { getSpellLimitInfo, getSpellsForList } from '../../../utils/magicHelpers';
+import {
+  getBonus,
+  parseBonusValue,
+  getRanksBonus,
+  getIngombroBonus,
+  getFinalStats,
+  fmt
+} from '../../../utils/skillHelpers';
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 const STAT_KEYS = ['FR', 'AG', 'CO', 'IN', 'IT', 'PR'];
 const STAT_NAMES = { FR: 'Forza', AG: 'Agilità', CO: 'Costituzione', IN: 'Intelligenza', IT: 'Intuizione', PR: 'Presenza' };
 
-const getBonus = (val) => {
-  if (!val) return 0;
-  const record = tb1.find(b => b.punteggio === parseInt(val));
-  return record ? record.bonus : 0;
+const getMaxRanks = (skillName) => {
+  const limits = {
+    'nessuna armatura': 2,
+    'cuoio grezzo': 3,
+    'cuoio rinforzato': 5,
+    'corazza di maglia': 7,
+    'corazza di piastre': 9
+  };
+  return limits[skillName.toLowerCase()] || null;
 };
-
-const parseBonusValue = (val) => {
-  if (val === undefined || val === null) return 0;
-  if (typeof val === 'number') return val;
-  const cleaned = val.toString().replace('+', '').trim();
-  const parsed = parseInt(cleaned);
-  return isNaN(parsed) ? 0 : parsed;
-};
-
-const getRanksBonus = (skillName, ranks) => {
-  const name = skillName.toLowerCase();
-  if (name === 'cogliere alle spalle') {
-    if (ranks === 0) return 0;
-    if (ranks <= 10) return ranks;
-    if (ranks <= 20) return 10 + Math.floor((ranks - 10) * 0.5);
-    return 15 + Math.floor((ranks - 20) * 0.5);
-  }
-  if (name === 'resistenza fisica') {
-    if (ranks === 0) return 0;
-    if (ranks <= 10) return `${ranks}d10`;
-    return `10d10+${ranks - 10}d4`;
-  }
-  if (ranks === 0) return -25;
-  if (ranks <= 10) return ranks * 5;
-  if (ranks <= 20) return 50 + (ranks - 10) * 2;
-  return 70 + (ranks - 20) * 1;
-};
-
-const getIngombroBonus = (skillName) => {
-  const name = skillName.toLowerCase();
-  if (name === 'nessuna armatura') return 0;
-  if (name === 'cuoio grezzo') return -15;
-  if (name === 'cuoio rinforzato') return -30;
-  if (name === 'corazza di maglia' || name === 'corazza di maglie') return -45;
-  if (name === 'corazza di piastre') return -60;
-  if (name === 'resistenza fisica') return 5;
-  return null; // not applicable
-};
-
-const fmt = (n) => (typeof n === 'number' ? (n >= 0 ? `+${n}` : `${n}`) : n);
 
 // ─── Section header ───────────────────────────────────────────────────────────
 const SectionHeader = ({ emoji, title, color = '#1e3a8a', bg = '#eff6ff', border = '#bfdbfe' }) => (
@@ -92,16 +64,7 @@ export default function CreationSummaryStep({ characterData }) {
 
   // ── Compute final stats (base + bg bonus) and lookup bonuses ──
   const finalStats = useMemo(() => {
-    return STAT_KEYS.reduce((acc, k) => {
-      const raw = parseInt(stats[k] || 0);
-      const bgMod = bgModifiers.statsBonus?.[k] || 0;
-      const statScore = raw + bgMod;
-      const bonusNaturale = getBonus(statScore);
-      const raceMod = parseBonusValue(race[`bonus a ${k}`] || 0);
-      const bonusTot = bonusNaturale + raceMod;
-      acc[k] = { raw, bgMod, statScore, bonusNaturale, raceMod, bonusTot, bonus: bonusTot };
-      return acc;
-    }, {});
+    return getFinalStats(stats, race, bgModifiers);
   }, [stats, race, bgModifiers]);
 
   // ── Compute final skills ──
@@ -370,16 +333,16 @@ export default function CreationSummaryStep({ characterData }) {
                   <table style={{ width: '100%', fontSize: '0.8rem', borderCollapse: 'collapse', whiteSpace: 'nowrap' }}>
                     <thead style={{ background: '#f9fafb', borderBottom: '1px solid #e5e7eb' }}>
                       <tr>
-                        <th style={{ padding: '0.4rem 1rem', textAlign: 'left', color: '#6b7280', fontWeight: 600 }}>Abilità</th>
-                        <th style={{ padding: '0.4rem 0.5rem', textAlign: 'center', color: '#6b7280', fontWeight: 600 }}>Adol.</th>
-                        <th style={{ padding: '0.4rem 0.5rem', textAlign: 'center', color: '#6b7280', fontWeight: 600 }}>Prof.</th>
-                        <th style={{ padding: '0.4rem 0.5rem', textAlign: 'center', color: '#6b7280', fontWeight: 600 }}>TGP_4</th>
-                        <th style={{ padding: '0.4rem 0.5rem', textAlign: 'center', color: '#7e22ce', fontWeight: 700 }}>BG</th>
-                        <th style={{ padding: '0.4rem 0.5rem', textAlign: 'center', color: '#1e3a8a', fontWeight: 700 }}>Gradi</th>
-                        <th style={{ padding: '0.4rem 0.5rem', textAlign: 'center', color: '#374151', fontWeight: 600 }}>Bonus Gradi</th>
-                        <th style={{ padding: '0.4rem 0.5rem', textAlign: 'center', color: '#374151', fontWeight: 600 }}>Caratt.</th>
-                        <th style={{ padding: '0.4rem 0.5rem', textAlign: 'center', color: '#374151', fontWeight: 600 }}>Ingombro</th>
-                        <th style={{ padding: '0.4rem 1rem', textAlign: 'right', color: '#1e3a8a', fontWeight: 900 }}>Totale</th>
+                        <th style={{ padding: '0.45rem 1rem', textAlign: 'left', color: '#6b7280', fontWeight: 600 }}>Abilità</th>
+                        <th style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#6b7280', fontWeight: 600 }}>G. adolescenza</th>
+                        <th style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#6b7280', fontWeight: 600 }}>G. bonus prof.</th>
+                        <th style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#6b7280', fontWeight: 600 }}>G. svil. prof.</th>
+                        <th style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#7e22ce', fontWeight: 700 }}>G. background</th>
+                        <th style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#1e3a8a', fontWeight: 700 }}>G. TOTALE</th>
+                        <th style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#374151', fontWeight: 600 }}>Bonus sviluppo</th>
+                        <th style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#374151', fontWeight: 600 }}>Bonus caratt.</th>
+                        <th style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#374151', fontWeight: 600 }}>Carico</th>
+                        <th style={{ padding: '0.45rem 1rem', textAlign: 'right', color: '#1e3a8a', fontWeight: 900 }}>Bonus TOTALE</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -393,12 +356,14 @@ export default function CreationSummaryStep({ characterData }) {
 
                         return (
                           <tr key={sk.nome} style={{ borderBottom: '1px solid #f3f4f6', background: bgHighlight ? '#faf5ff' : 'transparent' }}>
-                            <td style={{ padding: '0.45rem 1rem', fontWeight: 500, color: bgHighlight ? '#7e22ce' : '#1f2937' }}>{sk.nome}</td>
-                            <td style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#9ca3af' }}>{s.adRanks || '—'}</td>
-                            <td style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#3b82f6' }}>{s.profRanks || '—'}</td>
-                            <td style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#8b5cf6' }}>{s.tgp4Ranks || '—'}</td>
+                            <td style={{ padding: '0.45rem 1rem', fontWeight: 500, color: bgHighlight ? '#7e22ce' : '#1f2937' }}>
+                              {sk.nome} {getMaxRanks(sk.nome) !== null ? <span style={{ fontSize: '10px', color: '#9ca3af' }}>({getMaxRanks(sk.nome)} max)</span> : ''}
+                            </td>
+                            <td style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#9ca3af' }}>{s.adRanks}</td>
+                            <td style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#3b82f6' }}>{s.profRanks}</td>
+                            <td style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#8b5cf6' }}>{s.tgp4Ranks}</td>
                             <td style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#7e22ce', fontWeight: s.bgExtra > 0 ? 700 : 400 }}>
-                              {s.bgExtra > 0 ? `+${s.bgExtra}` : '—'}
+                              {s.bgExtra > 0 ? `+${s.bgExtra}` : '0'}
                             </td>
                             <td style={{ padding: '0.45rem 0.5rem', textAlign: 'center', fontWeight: 900, color: '#1e3a8a' }}>{s.totalRanks}</td>
                             <td style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#374151', fontWeight: 600 }}>
