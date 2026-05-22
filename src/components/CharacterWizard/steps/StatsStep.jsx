@@ -22,9 +22,9 @@ export default function StatsStep({ characterData, setCharacterData }) {
   });
 
   // Per metodo a punti
-  const [maxPoints, setMaxPoints] = useState(characterData.statsMaxPoints || 400); // Rende modificabile il pool
+  const [maxPoints, setMaxPoints] = useState(characterData.statsMaxPoints || 405); // Rende modificabile il pool
   const [pointStats, setPointStats] = useState(characterData.statsPointBuy || {
-    'FR': 20, 'AG': 20, 'CO': 20, 'IN': 20, 'IT': 20, 'PR': 20
+    'FR': 60, 'AG': 60, 'CO': 60, 'IN': 60, 'IT': 60, 'PR': 60
   });
 
   // Per metodo manuale
