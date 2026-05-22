@@ -96,6 +96,9 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
     }
   }, [race]);
 
+  // All language names
+  const allLanguages = useMemo(() => [...new Set(lingueTerraDiMezzo.map(l => l.lingua))].sort(), []);
+
   if (!race) return (
     <div style={{padding:'2rem',color:'#888',textAlign:'center'}}>Torna allo Step 1 e seleziona un Popolo.</div>
   );
@@ -107,9 +110,6 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
   const languagePointsSpent = Object.values(languages).reduce((s, l) => s + (l.added || 0), 0);
   const languagePointsLeft = languagePointsTotal - languagePointsSpent;
   const backgroundPointsLeft = backgroundPointsTotal - options.length;
-
-  // All language names
-  const allLanguages = useMemo(() => [...new Set(lingueTerraDiMezzo.map(l => l.lingua))].sort(), []);
 
   // Commit update helper
   const update = (nextLangs, nextOptions) => {

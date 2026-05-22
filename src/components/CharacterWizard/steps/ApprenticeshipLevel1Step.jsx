@@ -57,7 +57,13 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
   }, [characterData.stats, race]);
 
   const tb6Distribution = characterData.level1Tb6 || {};
-  const [tgp4Distribution, setTgp4Distribution] = useState(characterData.level1Tgp4 || {});
+  const [tgp4Distribution, setTgp4Distribution] = useState(() => {
+    const initial = { ...(characterData.level1Tgp4 || {}) };
+    if (initial['Liste incantesimi'] === undefined) {
+      initial['Liste incantesimi'] = 0;
+    }
+    return initial;
+  });
   const [tgp4Transfers, setTgp4Transfers] = useState(characterData.tgp4Transfers || []);
   
   const [selectedNewList, setSelectedNewList] = useState('');
@@ -167,9 +173,14 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
       }
     });
 
+    const nextLevel1Tgp4 = {
+      ...tgp4Distribution,
+      'Liste incantesimi': tgp4Distribution['Liste incantesimi'] || 0
+    };
+
     setCharacterData(prev => {
       if (JSON.stringify(prev.level1Tb6) === JSON.stringify(tb6Distribution) &&
-          JSON.stringify(prev.level1Tgp4) === JSON.stringify(tgp4Distribution) &&
+          JSON.stringify(prev.level1Tgp4) === JSON.stringify(nextLevel1Tgp4) &&
           JSON.stringify(prev.tgp4Transfers) === JSON.stringify(tgp4Transfers) &&
           JSON.stringify(prev.skills) === JSON.stringify(newSkills)) {
         return prev;
@@ -177,29 +188,18 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
       return {
         ...prev,
         level1Tb6: tb6Distribution,
-        level1Tgp4: {
-          ...tgp4Distribution,
-          'Liste incantesimi': tgp4Distribution['Liste incantesimi'] || 0
-        },
+        level1Tgp4: nextLevel1Tgp4,
         tgp4Transfers: tgp4Transfers,
         skills: newSkills
       };
     });
   }, [tb6Distribution, tgp4Distribution, tgp4Transfers, setCharacterData, baseSkills, profession, characterData.skills]);
 
-  if (!race || !profession) {
-    return (
-      <div className="p-8 border border-dashed border-gray-300 rounded flex items-center justify-center text-gray-500 bg-gray-50">
-        Completa gli step precedenti prima di procedere.
-      </div>
-    );
-  }
-
-  const isWarriorOrScout = ['guerriero', 'scout'].includes(profession?.professione?.toLowerCase());
+  const isWarriorOrScout = profession ? ['guerriero', 'scout'].includes(profession?.professione?.toLowerCase()) : false;
 
   const selectedRealm = characterData.magicRealm || '';
   const knownLists = Object.keys(characterData.spellListAllocations || {});
-  const rawAvailableLists = getAvailableSpellLists(profession.professione, selectedRealm);
+  const rawAvailableLists = profession ? getAvailableSpellLists(profession.professione, selectedRealm) : [];
   const availableLists = rawAvailableLists.filter(l => !knownLists.includes(l.nome_lista));
 
   const handleRealmChange = (realm) => {
@@ -317,7 +317,7 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
     }
     
     const destPool = TGP4_POOLS.find(p => p.key === destKey);
-    const destBase = destPool ? getTgp4PoolSize(destPool.catName, destPool.skillName, profession.professione, tgp4Data) : 0;
+    const destBase = destPool && profession ? getTgp4PoolSize(destPool.catName, destPool.skillName, profession.professione, tgp4Data) : 0;
     
     if (destBase > 0) {
       return { rate: '2:1', cost: pointsToReceive * 2 };
@@ -366,6 +366,14 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
 
     setTgp4Transfers(prev => prev.filter(t => t.id !== id));
   };
+
+  if (!race || !profession) {
+    return (
+      <div className="p-8 border border-dashed border-gray-300 rounded flex items-center justify-center text-gray-500 bg-gray-50">
+        Completa gli step precedenti prima di procedere.
+      </div>
+    );
+  }
 
   return (
     <div>

@@ -1,6 +1,44 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Scroll, Users, Book, Settings, Save } from 'lucide-react';
 import CharacterWizard from './components/CharacterWizard/CharacterWizard';
+
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null, errorInfo: null };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    this.setState({ errorInfo });
+    console.error("ErrorBoundary caught an error:", error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div style={{ padding: '2rem', background: '#fff0f0', border: '1px solid #ffcccc', borderRadius: '8px', margin: '2rem' }}>
+          <h2 style={{ color: '#cc0000' }}>Si è verificato un errore a runtime!</h2>
+          <p><strong>Messaggio:</strong> {this.state.error && this.state.error.message}</p>
+          <pre style={{ background: '#f9f9f9', padding: '1rem', overflowX: 'auto', fontSize: '0.85rem', whiteSpace: 'pre-wrap' }}>
+            {this.state.error && this.state.error.stack}
+          </pre>
+          <pre style={{ background: '#f9f9f9', padding: '1rem', overflowX: 'auto', fontSize: '0.85rem', whiteSpace: 'pre-wrap' }}>
+            {this.state.errorInfo && this.state.errorInfo.componentStack}
+          </pre>
+          <button onClick={() => window.location.reload()} style={{ marginTop: '1rem', padding: '0.5rem 1rem', background: '#cc0000', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
+            Ricarica la pagina
+          </button>
+        </div>
+      );
+    }
+
+    return this.props.children;
+  }
+}
 
 function App() {
   const [activeTab, setActiveTab] = useState('creation');
@@ -38,7 +76,11 @@ function App() {
       </nav>
 
       <main className="main-content">
-        {activeTab === 'creation' && <CharacterWizard />}
+        {activeTab === 'creation' && (
+          <ErrorBoundary>
+            <CharacterWizard />
+          </ErrorBoundary>
+        )}
         {activeTab === 'roster' && (
           <div className="card">
             <div className="card-header">

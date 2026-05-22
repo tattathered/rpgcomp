@@ -54,14 +54,6 @@ export default function CreationSummaryStep({ characterData }) {
   const bgOptions = bgData.options || [];
   const bgModifiers = bgData.compiledModifiers || { statsBonus: {}, skillBgRanks: {}, secondarySkills: {}, gold: 0 };
 
-  if (!race || !profession) {
-    return (
-      <div className="p-8 border border-dashed border-gray-300 rounded flex items-center justify-center text-gray-500 bg-gray-50" style={{ minHeight: 300 }}>
-        Completa gli step precedenti per visualizzare il riepilogo.
-      </div>
-    );
-  }
-
   // ── Compute final stats (base + bg bonus) and lookup bonuses ──
   const finalStats = useMemo(() => {
     return getFinalStats(stats, race, bgModifiers);
@@ -107,6 +99,14 @@ export default function CreationSummaryStep({ characterData }) {
     });
     return result;
   }, [skillsBase, finalStats, bgModifiers]);
+
+  if (!race || !profession) {
+    return (
+      <div className="p-8 border border-dashed border-gray-300 rounded flex items-center justify-center text-gray-500 bg-gray-50" style={{ minHeight: 300 }}>
+        Completa gli step precedenti per visualizzare il riepilogo.
+      </div>
+    );
+  }
 
   // ── Sort languages ──
   const langEntries = Object.entries(languages).sort((a, b) => {

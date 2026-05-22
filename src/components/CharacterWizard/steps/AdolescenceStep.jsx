@@ -126,23 +126,7 @@ export default function AdolescenceStep({ characterData, setCharacterData }) {
     }
   }, [race, profession, characterData.skills, characterData.level1Tb6, setCharacterData]);
 
-  if (!race) {
-    return (
-      <div className="p-8 border border-dashed border-gray-300 rounded flex items-center justify-center text-gray-500 bg-gray-50">
-        Torna allo Step 1 e seleziona un Popolo prima di procedere.
-      </div>
-    );
-  }
-
-  if (!profession) {
-    return (
-      <div className="p-8 border border-dashed border-gray-300 rounded flex items-center justify-center text-gray-500 bg-gray-50">
-        Torna allo Step 2 e seleziona una Professione prima di procedere.
-      </div>
-    );
-  }
-
-  const isWarriorOrScout = ['guerriero', 'scout'].includes(profession.professione.toLowerCase());
+  const isWarriorOrScout = profession ? ['guerriero', 'scout'].includes(profession.professione.toLowerCase()) : false;
   const selectedRealm = characterData.magicRealm || '';
 
   const handleRealmChange = (realm) => {
@@ -206,7 +190,7 @@ export default function AdolescenceStep({ characterData, setCharacterData }) {
     primarySkillsList.forEach(sk => {
       const name = sk.nome;
       const isCogliereAlleSpalle = name.toLowerCase() === 'cogliere alle spalle';
-      const adRanks = isCogliereAlleSpalle ? 0 : getTgp5AdolescenceRanks(name, race.popolo, adolescenceData);
+      const adRanks = isCogliereAlleSpalle ? 0 : getTgp5AdolescenceRanks(name, race?.popolo, adolescenceData);
       const profFixed = isCogliereAlleSpalle ? 0 : getSpecificTb6Ranks(name, profession);
       const profDist = isCogliereAlleSpalle ? 0 : (tb6Distribution[name] || 0);
       const profRanks = profFixed + profDist;
@@ -245,16 +229,16 @@ export default function AdolescenceStep({ characterData, setCharacterData }) {
       };
     });
     return result;
-  }, [race.popolo, tb6Distribution, finalStats, profession]);
+  }, [race?.popolo, tb6Distribution, finalStats, profession]);
   
   // Spell Lists logic
   const knownLists = Object.keys(characterData.spellListAllocations || {});
-  const rawAvailableLists = getAvailableSpellLists(profession.professione, selectedRealm);
+  const rawAvailableLists = profession ? getAvailableSpellLists(profession.professione, selectedRealm) : [];
   const availableLists = rawAvailableLists.filter(l => !knownLists.includes(l.nome_lista));
   
   // Trova la probabilità base in TGP_5
   const baseChanceRow = tgp5Data.find(d => d['abilità'] === '% Probabilità di Imparare una Lista di Incantesimi');
-  const baseChance = baseChanceRow ? (baseChanceRow[race.popolo] || 0) : 0;
+  const baseChance = baseChanceRow ? (baseChanceRow[race?.popolo] || 0) : 0;
   
   const currentAccumulated = characterData.spellListChanceAccumulated !== undefined 
     ? characterData.spellListChanceAccumulated 
@@ -262,6 +246,22 @@ export default function AdolescenceStep({ characterData, setCharacterData }) {
 
   const [rollResult, setRollResult] = useState(null);
   const [selectedList, setSelectedList] = useState('');
+
+  if (!race) {
+    return (
+      <div className="p-8 border border-dashed border-gray-300 rounded flex items-center justify-center text-gray-500 bg-gray-50">
+        Torna allo Step 1 e seleziona un Popolo prima di procedere.
+      </div>
+    );
+  }
+
+  if (!profession) {
+    return (
+      <div className="p-8 border border-dashed border-gray-300 rounded flex items-center justify-center text-gray-500 bg-gray-50">
+        Torna allo Step 2 e seleziona una Professione prima di procedere.
+      </div>
+    );
+  }
 
   const handleRoll = () => {
     const roll = Math.floor(Math.random() * 100) + 1;
@@ -528,6 +528,7 @@ export default function AdolescenceStep({ characterData, setCharacterData }) {
                       const s = finalSkills[name];
                       if (!s) return null;
 
+                      const isCogliereAlleSpalle = name.toLowerCase() === 'cogliere alle spalle';
                       const max = getMaxRanks(name);
                       const hasIngombro = s.ingombroBonus !== null;
                       const totalBonusStr = typeof s.totalBonus === 'number' ? fmt(s.totalBonus) : s.totalBonus;
