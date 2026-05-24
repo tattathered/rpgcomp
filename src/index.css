@@ -624,3 +624,17 @@ input[type=number] {
     page-break-after: auto;
   }
 }
+
+/* Custom background highlights for active equipment */
+.row-equipped {
+  background-color: #f0fdf4 !important;
+}
+.row-equipped:hover {
+  background-color: #dcfce7 !important;
+}
+.row-carried {
+  background-color: #fef2f2 !important;
+}
+.row-carried:hover {
+  background-color: #fee2e2 !important;
+}

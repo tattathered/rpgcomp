@@ -427,8 +427,10 @@ export default function EquipmentStep({ characterData, setCharacterData, equipme
                       const newTotal = state.qtyEquip + state.qtyCarico;
                       const isIncremented = newTotal > oldTotal;
 
+                      const rowClass = state.qtyEquip > 0 ? 'row-equipped' : (state.qtyCarico > 0 ? 'row-carried' : '');
+
                       return (
-                        <tr key={key} className="hover:bg-gray-50/50">
+                        <tr key={key} className={`hover:bg-gray-50/50 ${rowClass}`}>
                           <td className="px-3 py-2">
                             <div className="font-bold text-gray-800">{item.nome}</div>
                             {item.note && <div className="text-[10px] text-gray-500">{item.note}</div>}
@@ -527,8 +529,10 @@ export default function EquipmentStep({ characterData, setCharacterData, equipme
                 const newTotal = state.qtyEquip + state.qtyCarico;
                 const isIncremented = newTotal > oldTotal;
 
+                const rowClass = state.qtyEquip > 0 ? 'row-equipped' : (state.qtyCarico > 0 ? 'row-carried' : '');
+
                 return (
-                  <tr key={key} className="hover:bg-gray-50/50">
+                  <tr key={key} className={`hover:bg-gray-50/50 ${rowClass}`}>
                     <td className="px-3 py-2">
                       <div className="font-bold text-gray-800">{item.nome}</div>
                       {item.note && <div className="text-[10px] text-gray-500">{item.note}</div>}
