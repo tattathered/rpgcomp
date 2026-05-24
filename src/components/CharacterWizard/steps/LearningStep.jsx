@@ -385,7 +385,7 @@ export default function LearningStep({ characterData, setCharacterData }) {
   // Liste Incantesimi
   const listPS = activeLevel?.tgp4Distribution['Liste incantesimi'] || 0;
   const listPool = activePoolsState['Liste incantesimi']?.adjustedPool || 0;
-  const totalSpellChance = (activeLevel?.spellListChanceAccumulated || 0) + (listPS * 20);
+  const totalSpellChance = (activeLevel?.spellListChanceAccumulated || 0) + (listPool * 20);
 
 
 
@@ -437,6 +437,26 @@ export default function LearningStep({ characterData, setCharacterData }) {
         ...prev.spellListAllocations,
         [prev.selectedNewList]: `Livello ${prev.level}`
       },
+      selectedNewList: '',
+      spellListRollResult: null,
+      hasRolledSpellList: false
+    }));
+  };
+
+  const handleCancelSpellListAcquisition = () => {
+    let inheritedChance = characterData.spellListChanceAccumulated || 0;
+    if (levelDevelopments.length > 0) {
+      inheritedChance = levelDevelopments[levelDevelopments.length - 1].spellListChanceAccumulated;
+    }
+
+    setActiveLevel(prev => ({
+      ...prev,
+      spellListChanceAccumulated: inheritedChance,
+      tgp4Distribution: {
+        ...prev.tgp4Distribution,
+        'Liste incantesimi': 0
+      },
+      spellListAllocations: {},
       selectedNewList: '',
       spellListRollResult: null,
       hasRolledSpellList: false
@@ -910,8 +930,16 @@ export default function LearningStep({ characterData, setCharacterData }) {
                 </div>
 
                 {hasAcquiredInActiveLevel ? (
-                  <div className="text-xs p-2 rounded text-center font-medium border mt-2" style={{ backgroundColor: 'rgba(254, 226, 226, 0.5)', color: 'var(--theme-spell-lists-text)', borderColor: 'var(--theme-spell-lists-border)' }}>
-                    Hai imparato con successo: <strong>{acquiredListNameInActiveLevel}</strong>
+                  <div className="text-xs p-2 rounded font-medium border mt-2 flex justify-between items-center bg-white" style={{ color: 'var(--theme-spell-lists-text)', borderColor: 'var(--theme-spell-lists-border)' }}>
+                    <span>Hai imparato con successo: <strong>{acquiredListNameInActiveLevel}</strong></span>
+                    <button
+                      type="button"
+                      onClick={handleCancelSpellListAcquisition}
+                      className="text-[11px] underline font-bold hover:text-red-700 transition"
+                      style={{ border: 'none', background: 'none', cursor: 'pointer', color: 'var(--theme-spell-lists-text)' }}
+                    >
+                      Rimuovi
+                    </button>
                   </div>
                 ) : (
                   <div className="mt-2 flex flex-col gap-2">
