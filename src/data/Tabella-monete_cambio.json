@@ -1,0 +1,27 @@
+[
+  {
+    "moneta": "oro",
+    "moneta_sigla": "MO",
+    "moneta_valore_in_MB": 0.01
+  },
+  {
+    "moneta": "argento",
+    "moneta_sigla": "MA",
+    "moneta_valore_in_MB": 0.1
+  },
+  {
+    "moneta": "bronzo",
+    "moneta_sigla": "MB",
+    "moneta_valore_in_MB": 1
+  },
+  {
+    "moneta": "rame",
+    "moneta_sigla": "MR",
+    "moneta_valore_in_MB": 10
+  },
+  {
+    "moneta": "stagno",
+    "moneta_sigla": "MS",
+    "moneta_valore_in_MB": 100
+  }
+]

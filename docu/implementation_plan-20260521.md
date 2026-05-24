@@ -30,27 +30,12 @@ Il wizard di creazione personaggio è parzialmente implementato. Gli step comple
 
 ---
 
-#### Task 1 — Step 8: Apprendimento (Sviluppo Livello N)
-**Workflow:** passo *6) sviluppo abilità lvl N (apprendistato)*
-
-L'utente specifica il livello target del PG (es. livello 3). Il sistema propone N round di distribuzione TGP_4 consecutivi (uno per ogni livello dal 2 al target). Le regole di spesa sono identiche allo Step 5 (1° grado = 1 PS, 2° grado = 3 PS totali, max +2 gradi per livello eccetto MM).
-
-**Dati necessari:** `TGP_4-sviluppo_abilità_professioni.json` (già presente)
-
-**File da creare:**
-- `src/components/CharacterWizard/steps/LevelUpStep.jsx`
-
-**File da modificare:**
-- `src/components/CharacterWizard/CharacterWizard.jsx` → aggiungere step `learning`
-
----
-
 #### Task 2 — Step: Equipaggiamento Iniziale
 **Workflow:** passo *7) scelta equipaggiamento*
 
-Visualizza il catalogo dalla tabella `TS_4-equipaggiamento-TEMPORANEO.json`, filtrabile per tipo (armi, armature, oggetti vari). Il budget disponibile è il totale MO accumulato dal Background (`compiledModifiers.gold`). L'utente seleziona gli oggetti, il sistema calcola il costo residuo e applica le penalità di ingombro dell'armatura scelta.
+Visualizza il catalogo dalla tabella `TS_4-equipaggiamento.json`, filtrabile per tipo (armi, armature, oggetti vari). Il budget disponibile è il totale MO accumulato dal Background (`compiledModifiers.gold`). L'utente seleziona gli oggetti, il sistema calcola il costo residuo e applica le penalità di ingombro dell'armatura scelta.
 
-**Dati necessari:** `src/data/TS_4-equipaggiamento-TEMPORANEO.json` (già presente)
+**Dati necessari:** `src/data/TS_4-equipaggiamento.json` (già presente)
 
 **File da creare:**
 - `src/components/CharacterWizard/steps/EquipmentStep.jsx`
@@ -70,27 +55,6 @@ Schermata di riepilogo statistiche derivate per il personaggio di livello 1, cal
 
 **File da creare:**
 - `src/components/CharacterWizard/steps/FinalStatsLevel1Step.jsx`
-
----
-
-#### Task 4 — Step: Sviluppo LVL N (Esperienza)
-**Workflow:** passo *9) sviluppo abilità per apprendistato/esperienza LVL N*
-
-Analogo al Task 1 ma applicato dopo l'equipaggiamento. Permette ulteriori round di TGP_4 per portare il PG a livelli superiori. Da valutare se unificare con Task 1 o mantenere separato.
-
----
-
-#### Task 5 — Step: Modifica Equipaggiamento LVL N
-**Workflow:** passo *10) eventuali modifiche a equipaggiamento*
-
-Aggiornamento dell'inventario per PG di livello superiore: sostituire armi/armature, aggiungere oggetti avanzati, aggiornare il budget MO con eventuali premi d'esperienza.
-
----
-
-#### Task 6 — Step: Calcolo Finale LVL N
-**Workflow:** passo *11) calcolo finale statistiche bonus e penalità LVL N*
-
-Ricalcolo completo di tutte le statistiche derivate (come Task 3) applicato al livello finale del PG. Mostra il delta rispetto al LVL 1 per evidenziare la crescita del personaggio.
 
 ---
 
@@ -173,21 +137,46 @@ git config --global user.email "email@esempio.com"
 
 ---
 
+### ❌ Posticipati / Non Inclusi in v1 (Progressione Livelli Superiori a 1)
+
+> [!NOTE]
+> Questi task relativi allo sviluppo per crescita multi-livello consecutiva (Sviluppo Livello N) sono stati posticipati e non saranno inclusi nella v1.
+> 
+> **Motivazione:**
+> 1. Al momento la fase di sviluppo consente di iterare e far progredire il personaggio un livello alla volta.
+> 2. Sommare assieme più passaggi di livello consecutivi (es. dal livello 1 al livello N in un unico blocco) comporterebbe una complessità elevata per la gestione e la spesa dei punti sviluppo (TGP_4) da parte dell'utente, richiedendo una profonda revisione delle meccaniche di sviluppo.
+
+#### Task 1 — Step 8: Apprendimento (Sviluppo Livello N)
+**Workflow:** passo *6) sviluppo abilità lvl N (apprendistato)*
+L'utente specifica il livello target del PG (es. livello 3). Il sistema propone N round di distribuzione TGP_4 consecutivi (uno per ogni livello dal 2 al target). Le regole di spesa sono identiche allo Step 5 (1° grado = 1 PS, 2° grado = 3 PS totali, max +2 gradi per livello eccetto MM).
+
+#### Task 4 — Step: Sviluppo LVL N (Esperienza)
+**Workflow:** passo *9) sviluppo abilità per apprendistato/esperienza LVL N*
+Analogo al Task 1 ma applicato dopo l'equipaggiamento. Permette ulteriori round di TGP_4 per portare il PG a livelli superiori. Da valutare se unificare con Task 1 o mantenere separato.
+
+#### Task 5 — Step: Modifica Equipaggiamento LVL N
+**Workflow:** passo *10) eventuali modifiche a equipaggiamento*
+Aggiornamento dell'inventario per PG di livello superiore: sostituire armi/armature, aggiungere oggetti avanzati, aggiornare il budget MO con eventuali premi d'esperienza.
+
+#### Task 6 — Step: Calcolo Finale LVL N
+**Workflow:** passo *11) calcolo finale statistiche bonus e penalità LVL N*
+Ricalcolo completo di tutte le statistiche derivate (come Task 3) applicato al livello finale del PG. Mostra il delta rispetto al LVL 1 per evidenziare la crescita del personaggio.
+
+---
+
 ## Dipendenze e Ordine Consigliato (Revisionato)
 
-Con il completamento del sistema delle liste incantesimi (Task 8 e 10), l'ordine delle dipendenze per completare il flusso di creazione è il seguente:
+Con il completamento del sistema delle liste incantesimi (Task 8 e 10), l'ordine delle dipendenze per completare il flusso di creazione v1 è il seguente:
 
 ```
 Task 2 (Equipaggiamento Iniziale) ← indipendente, necessario per calcoli finali
 Task 3 (Calcolo Finale LVL 1) ← dipende da: Task 2 (per BO, DB, ingombro armatura)
-Task 1 (Step 8: Apprendimento Livello N) ← indipendente, per progressione di livello
-Task 5 (Modifica Equip LVL N) ← dipende da: Task 2 + Task 1
-Task 6 (Calcolo Finale LVL N) ← dipende da: Task 3 + Task 1 + Task 5
-Task 7 (Scheda Finale) ← dipende da: Task 3 o Task 6 (a seconda del livello finale)
+Task 7 (Scheda Finale) ← dipende da: Task 3
 Task 11 (localStorage) ← indipendente, in qualsiasi momento
 Task 12 (Stampa/Esportazione) ← dipende da: Task 7
 ```
 
 ## Prossimo Step Consigliato
 
-Si consiglia di procedere con **Task 2 (Equipaggiamento Iniziale)** e **Task 3 (Calcolo Finale LVL 1)**. Questo permetterà di chiudere e testare il flusso completo di un personaggio di livello 1 con tutte le sue statistiche di gioco reali (BO, DB, PF, TR, ecc.) prima di avventurarsi nella progressione ai livelli successivi (Task 1).
+Si consiglia di procedere con **Task 2 (Equipaggiamento Iniziale)** e **Task 3 (Calcolo Finale LVL 1)**. Questo permetterà di chiudere e testare il flusso completo di un personaggio di livello 1 con tutte le sue statistiche di gioco reali (BO, DB, PF, TR, ecc.).
+

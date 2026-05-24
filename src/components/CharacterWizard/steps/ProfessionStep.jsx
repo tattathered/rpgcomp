@@ -1,9 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import profData from '../../../data/TB_6-professioni_bonus_abilita-3.json';
 import profStats from '../../../data/Tabella-professioni_caratteristica_fondamentale.json';
 
 export default function ProfessionStep({ characterData, setCharacterData }) {
   const [selectedProf, setSelectedProf] = useState(characterData.profession?.professione || '');
+
+  useEffect(() => {
+    let err = null;
+    if (!selectedProf) {
+      err = 'Seleziona una professione prima di procedere.';
+    }
+
+    if (characterData.stepErrors?.profession !== err) {
+      setCharacterData(prev => ({
+        ...prev,
+        stepErrors: {
+          ...(prev.stepErrors || {}),
+          profession: err
+        }
+      }));
+    }
+  }, [selectedProf, characterData.stepErrors, setCharacterData]);
 
   const handleSelect = (prof) => {
     // Trova le caratteristiche primaria/secondaria per questa professione
@@ -22,12 +39,12 @@ export default function ProfessionStep({ characterData, setCharacterData }) {
   return (
     <div>
       {characterData.race && (
-        <div className="mb-6 p-4 border border-blue-200 rounded bg-blue-50 flex justify-between items-center">
+        <div className="mb-6 p-4 border rounded flex justify-between items-center" style={{ backgroundColor: 'var(--theme-race-bg)', borderColor: 'var(--theme-race-border)', color: 'var(--theme-race-text)' }}>
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-blue-800">Popolo Selezionato</span>
-            <h3 className="font-bold text-blue-900 m-0" style={{fontSize: '1.2rem', marginTop: '0.25rem'}}>{characterData.race.popolo}</h3>
+            <span className="text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--theme-race-text)' }}>Popolo Selezionato</span>
+            <h3 className="font-bold m-0" style={{fontSize: '1.2rem', marginTop: '0.25rem', color: 'var(--theme-race-text)'}}>{characterData.race.popolo}</h3>
           </div>
-          <div className="text-sm text-blue-800 font-medium">
+          <div className="text-sm font-medium" style={{ color: 'var(--theme-race-text)' }}>
             {characterData.race['note (umani/non umani)']}
           </div>
         </div>
@@ -49,13 +66,14 @@ export default function ProfessionStep({ characterData, setCharacterData }) {
               className="card"
               style={{
                 cursor: 'pointer',
-                borderColor: isSelected ? 'var(--primary-color)' : 'var(--border-color)',
-                backgroundColor: isSelected ? 'var(--primary-light)' : 'var(--surface-color)',
+                borderColor: isSelected ? 'var(--theme-profession-border)' : 'var(--border-color)',
+                backgroundColor: isSelected ? 'var(--theme-profession-bg)' : 'var(--surface-color)',
+                color: isSelected ? 'var(--theme-profession-text)' : 'inherit',
                 borderWidth: isSelected ? '2px' : '1px'
               }}
             >
-              <div className="card-header" style={{padding: '1rem', borderBottom: '1px solid var(--border-color)'}}>
-                <h3 className="card-title" style={{fontSize: '1.25rem', color: isSelected ? 'var(--primary-color)' : 'inherit'}}>{prof.professione}</h3>
+              <div className="card-header" style={{padding: '1rem', borderBottom: '1px solid var(--border-color)', backgroundColor: 'transparent'}}>
+                <h3 className="card-title" style={{fontSize: '1.25rem', color: isSelected ? 'var(--theme-profession-text)' : 'inherit'}}>{prof.professione}</h3>
                 {statsInfo && (
                   <div className="mt-2 flex gap-2">
                     <span className="text-xs font-semibold px-2 py-1 bg-blue-100 text-blue-800 rounded">

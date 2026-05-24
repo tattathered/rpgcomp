@@ -1,9 +1,13 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import adolescenceData from '../../../data/TGP_5-sviluppo_abilita_adolescenza-v2.json';
 import secondarySkillsList from '../../../data/Tabella-abilita_secondarie.json';
 import tgp5Data from '../../../data/TGP_5-sviluppo_abilita_adolescenza-v2.json';
 import { getAvailableSpellLists } from '../../../utils/magicHelpers';
 import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
+import lingueTerraDiMezzo from '../../../data/TS_1-lingue_della_terra_di_mezzo-v2.json';
+import gradiLingue from '../../../data/TGP_1-gradi_conoscenze_lingue.json';
+import catalogData from '../../../data/TS_4-equipaggiamento.json';
 import {
   getBonus,
   parseBonusValue,
@@ -39,9 +43,235 @@ const getMaxRanks = (skillName) => {
   return limits[skillName.toLowerCase()] || null;
 };
 
-export default function AdolescenceStep({ characterData, setCharacterData }) {
+const getWeaponsForSkill = (skillName, catalog) => {
+  const normalizedSkill = skillName.toLowerCase().trim();
+  const weapons = catalog.filter(item => item.categoria === 'armi');
+  
+  const matched = weapons.filter(item => {
+    const nome = (item.nome || '').toLowerCase();
+    const note = (item.note || '').toLowerCase();
+    
+    if (normalizedSkill === 'con asta') {
+      return note.includes('con asta') || nome.includes('lancia') || nome.includes('giavellotto');
+    }
+    
+    if (normalizedSkill === 'a 2 mani') {
+      const isConAsta = note.includes('con asta') || nome.includes('lancia') || nome.includes('giavellotto');
+      if (isConAsta) return false;
+      return note.includes('2 mani') || note.includes('due mani') || nome.includes('a 2 mani') || nome.includes('a due mani');
+    }
+    
+    if (normalizedSkill === 'da tiro') {
+      return note.includes('da tiro') || note.includes('tiro') || nome.includes('arco') || nome.includes('balestra') || nome.includes('fionda');
+    }
+    
+    if (normalizedSkill === 'da lancio') {
+      const isConAsta = note.includes('con asta') || nome.includes('lancia') || nome.includes('giavellotto');
+      if (isConAsta) return false;
+      return note.includes('lancio') || note.includes('da lancio') || nome.includes('bolas');
+    }
+    
+    if (normalizedSkill === 'taglio a 1 mano') {
+      if (note.includes('2 mani') || note.includes('due mani') || nome.includes('a 2 mani') || nome.includes('a due mani')) return false;
+      return note.includes('da taglio') || nome.includes('spada') || nome.includes('pugnale') || nome.includes('accetta') || nome.includes('scimitarra') || nome.includes('frusta');
+    }
+    
+    if (normalizedSkill === 'contundenti a 1 mano') {
+      if (note.includes('2 mani') || note.includes('due mani') || nome.includes('a 2 mani') || nome.includes('a due mani')) return false;
+      return note.includes('contundente') || nome.includes('randello') || nome.includes('mazzafrusto') || nome.includes('rete') || nome.includes('martello');
+    }
+    
+    return false;
+  });
+  
+  const names = matched.map(item => item.nome);
+  return [...new Set(names)].sort((a, b) => a.localeCompare(b));
+};
+
+function Tooltip({ content }) {
+  const [visible, setVisible] = useState(false);
+  const [coords, setCoords] = useState({ top: 0, left: 0 });
+  const triggerRef = useRef(null);
+
+  const handleMouseEnter = () => {
+    if (triggerRef.current) {
+      const rect = triggerRef.current.getBoundingClientRect();
+      setCoords({
+        top: rect.top - 8,
+        left: rect.left + rect.width / 2
+      });
+      setVisible(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setVisible(false);
+  };
+
+  const tooltipContent = (
+    <div
+      style={{
+        position: 'fixed',
+        top: coords.top,
+        left: coords.left,
+        transform: 'translate(-50%, -100%)',
+        zIndex: 9999,
+        backgroundColor: '#1e293b', // slate-800
+        color: '#f8fafc', // slate-50
+        padding: '0.6rem 0.8rem',
+        borderRadius: '0.375rem',
+        boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -4px rgba(0, 0, 0, 0.2)',
+        fontSize: '0.75rem',
+        pointerEvents: 'none',
+        maxWidth: '280px',
+        whiteSpace: 'normal',
+        wordWrap: 'break-word',
+        lineHeight: '1.4',
+        border: '1px solid #334155',
+        fontWeight: 'normal',
+        textAlign: 'left'
+      }}
+    >
+      <div style={{ fontWeight: '700', marginBottom: '0.35rem', borderBottom: '1px solid #475569', paddingBottom: '0.2rem', color: '#38bdf8' }}>
+        Armi incluse:
+      </div>
+      {content}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '-4px',
+          left: '50%',
+          transform: 'translateX(-50%) rotate(45deg)',
+          width: '8px',
+          height: '8px',
+          backgroundColor: '#1e293b',
+          borderRight: '1px solid #334155',
+          borderBottom: '1px solid #334155'
+        }}
+      />
+    </div>
+  );
+
+  return (
+    <span style={{ display: 'inline-flex', alignItems: 'center', marginLeft: '0.35rem', verticalAlign: 'middle' }}>
+      <button
+        ref={triggerRef}
+        type="button"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        className="w-4 h-4 rounded-full bg-slate-200 hover:bg-slate-300 text-slate-600 font-bold flex items-center justify-center text-[10px] transition-colors focus:outline-none"
+        style={{ cursor: 'help', border: 'none', padding: 0 }}
+      >
+        ?
+      </button>
+      {visible && createPortal(tooltipContent, document.body)}
+    </span>
+  );
+}
+
+export default function AdolescenceStep({ characterData, setCharacterData, equipmentCatalog }) {
   const race = characterData.race;
   const profession = characterData.profession;
+  const catalog = equipmentCatalog || catalogData;
+
+  // Init languages from race
+  useEffect(() => {
+    if (race && (!characterData.background?.languages)) {
+      const baseLangs = {};
+      lingueTerraDiMezzo.forEach(l => {
+        if (l.popolo === race.popolo) {
+          baseLangs[l.lingua] = { base: l.livello, addedAdolescenza: 0, addedLivello1: 0, added: 0 };
+        }
+      });
+      setCharacterData(prev => ({
+        ...prev,
+        background: {
+          ...(prev.background || {}),
+          languages: baseLangs,
+          options: prev.background?.options || []
+        }
+      }));
+    }
+  }, [race, characterData.background, setCharacterData]);
+
+  const allLanguages = useMemo(() => [...new Set(lingueTerraDiMezzo.map(l => l.lingua))].sort(), []);
+  const languages = characterData.background?.languages || {};
+  const languagePointsTotal = characterData.skills?.['Punti Lingue Addizionali']?.totalRanks || 0;
+  const languagePointsSpent = Object.values(languages).reduce((sum, l) => sum + (l.addedAdolescenza || 0), 0);
+  const languagePointsLeft = languagePointsTotal - languagePointsSpent;
+
+  const addLangPoint = (lang) => {
+    if (languagePointsLeft <= 0) return;
+    const cur = languages[lang] || { base: 0, addedAdolescenza: 0, addedLivello1: 0, added: 0 };
+    const total = (cur.base || 0) + (cur.addedAdolescenza || 0) + (cur.addedLivello1 || 0);
+    if (total >= 5) return;
+    
+    const nextLangs = {
+      ...languages,
+      [lang]: {
+        ...cur,
+        addedAdolescenza: (cur.addedAdolescenza || 0) + 1,
+        added: (cur.addedAdolescenza || 0) + 1 + (cur.addedLivello1 || 0)
+      }
+    };
+    setCharacterData(prev => ({
+      ...prev,
+      background: {
+        ...(prev.background || {}),
+        languages: nextLangs
+      }
+    }));
+  };
+
+  const removeLangPoint = (lang) => {
+    const cur = languages[lang];
+    if (!cur || cur.addedAdolescenza <= 0) return;
+    
+    const nextLangs = { ...languages };
+    const newAddedAdolescenza = cur.addedAdolescenza - 1;
+    const newAdded = newAddedAdolescenza + (cur.addedLivello1 || 0);
+    
+    if (cur.base === 0 && newAddedAdolescenza === 0 && !cur.addedLivello1 && !cur.fromBg) {
+      delete nextLangs[lang];
+    } else {
+      nextLangs[lang] = {
+        ...cur,
+        addedAdolescenza: newAddedAdolescenza,
+        added: newAdded
+      };
+    }
+    
+    setCharacterData(prev => ({
+      ...prev,
+      background: {
+        ...(prev.background || {}),
+        languages: nextLangs
+      }
+    }));
+  };
+
+  const addNewLang = (lang) => {
+    if (!lang || languagePointsLeft <= 0) return;
+    const cur = languages[lang] || { base: 0, addedAdolescenza: 0, addedLivello1: 0, added: 0 };
+    const total = (cur.base || 0) + (cur.addedAdolescenza || 0) + (cur.addedLivello1 || 0);
+    if (total >= 5) return;
+    
+    const nextLangs = {
+      ...languages,
+      [lang]: {
+        ...cur,
+        addedAdolescenza: (cur.addedAdolescenza || 0) + 1,
+        added: (cur.addedAdolescenza || 0) + 1 + (cur.addedLivello1 || 0)
+      }
+    };
+    setCharacterData(prev => ({
+      ...prev,
+      background: {
+        ...(prev.background || {}),
+        languages: nextLangs
+      }
+    }));
+  };
 
   // Automatically determine realm for non-choosing professions
   useEffect(() => {
@@ -186,6 +416,9 @@ export default function AdolescenceStep({ characterData, setCharacterData }) {
   };
 
   const finalSkills = useMemo(() => {
+    const bgModifiers = characterData.background?.compiledModifiers || {};
+    const primarySkillsSpecialBonus = bgModifiers.primarySkillsSpecialBonus || {};
+
     const result = {};
     primarySkillsList.forEach(sk => {
       const name = sk.nome;
@@ -205,10 +438,11 @@ export default function AdolescenceStep({ characterData, setCharacterData }) {
 
       const bonusGradi = getRanksBonus(name, totalRanks);
       const ingombroBonus = getIngombroBonus(name);
+      const specialBonus = primarySkillsSpecialBonus[name] || 0;
 
       let totalBonus;
       if (typeof bonusGradi === 'number') {
-        totalBonus = bonusGradi + carattBonus + (ingombroBonus ?? 0);
+        totalBonus = bonusGradi + carattBonus + specialBonus + (ingombroBonus ?? 0);
       } else {
         totalBonus = bonusGradi; // e.g. "3d10"
       }
@@ -224,12 +458,13 @@ export default function AdolescenceStep({ characterData, setCharacterData }) {
         carattBonus,
         bonusGradi,
         ingombroBonus,
+        specialBonus,
         totalBonus,
         valoreIniziale: sk['valore iniziale'],
       };
     });
     return result;
-  }, [race?.popolo, tb6Distribution, finalStats, profession]);
+  }, [race?.popolo, tb6Distribution, finalStats, profession, characterData]);
   
   // Spell Lists logic
   const knownLists = Object.keys(characterData.spellListAllocations || {});
@@ -296,75 +531,161 @@ export default function AdolescenceStep({ characterData, setCharacterData }) {
   const hasAcquiredInAdolescence = !!acquiredListEntry;
   const acquiredListName = hasAcquiredInAdolescence ? acquiredListEntry[0] : '';
 
+  useEffect(() => {
+    let err = null;
+
+    // 1. Magic realm
+    if (isWarriorOrScout && !selectedRealm) {
+      err = 'Seleziona un Reame Magico (Essenza o Flusso) in alto a destra.';
+    }
+
+    // 2. TB_6 points
+    if (!err) {
+      const categoriesList = ['di manovra e movimento', 'con le armi', 'generali', 'sotterfugio', 'magiche'];
+      const unspentTb6 = [];
+      categoriesList.forEach(cat => {
+        const poolSize = getTb6PoolSize(cat, profession);
+        const spent = spentTb6ByCat[cat] || 0;
+        if (spent < poolSize) {
+          unspentTb6.push(`${cat} (${spent}/${poolSize})`);
+        }
+      });
+      if (unspentTb6.length > 0) {
+        err = `Devi spendere tutti i Punti Bonus Professione (TB_6). Categorie incomplete: ${unspentTb6.join(', ')}.`;
+      }
+    }
+
+    // 3. Languages
+    if (!err) {
+      if (languagePointsLeft > 0) {
+        err = `Devi spendere tutti i Punti Lingue Addizionali (rimangono: ${languagePointsLeft}).`;
+      }
+    }
+
+    // 4. Spell list roll / selection
+    if (!err && selectedRealm) {
+      if (currentAccumulated > 0 && !hasAcquiredInAdolescence && rollResult === null) {
+        err = 'Devi effettuare il tentativo (tiro 1d100) per l\'apprendimento della lista incantesimi.';
+      } else if (rollResult && rollResult <= currentAccumulated && !hasAcquiredInAdolescence) {
+        err = 'Hai ottenuto con successo l\'apprendimento di una lista incantesimi! Selezionala ed acquisiscila.';
+      }
+    }
+
+    if (characterData.stepErrors?.adolescence !== err) {
+      setCharacterData(prev => ({
+        ...prev,
+        stepErrors: {
+          ...(prev.stepErrors || {}),
+          adolescence: err
+        }
+      }));
+    }
+  }, [
+    isWarriorOrScout, selectedRealm, spentTb6ByCat, profession,
+    languagePointsLeft, currentAccumulated, hasAcquiredInAdolescence, rollResult,
+    characterData.stepErrors, setCharacterData
+  ]);
+
   // Separate regular skills from special points
   const regularCategories = categories.filter(c => c !== 'Altre Abilità ' && c !== 'Altre Abilità' && c !== 'Altro Sviluppo');
   const otherSkills = Object.entries(skills).filter(([name, data]) => data.category.includes('Altre Abilità'));
 
   return (
     <div>
-      {/* Banner in alto con Professione, Popolo e Reame Magico */}
-      <div className="grid md:grid-cols-3 gap-4 mb-6">
-        {/* Box Popolo */}
-        <div className="p-4 border border-blue-200 rounded bg-blue-50/50 flex flex-col justify-between">
-          <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-blue-800">Popolo Selezionato</span>
-            <h3 className="font-bold text-blue-900 m-0" style={{fontSize: '1.2rem', marginTop: '0.25rem'}}>{race.popolo}</h3>
-          </div>
-          <div className="text-xs text-blue-800 font-medium mt-2">
-            {race['note (umani/non umani)']}
-          </div>
+      {/* ── HEADER BANNER ── */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '1.5rem' }}>
+        <div style={{ padding: '1rem', border: '1px solid var(--theme-race-border)', borderRadius: '0.6rem', background: 'var(--theme-race-bg)' }}>
+          <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-race-text)' }}>Popolo</div>
+          <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-race-text)', marginTop: '0.2rem' }}>{race.popolo}</div>
+          <div style={{ fontSize: '0.75rem', color: 'var(--theme-race-text)', opacity: 0.85, marginTop: '0.15rem' }}>{race['note (umani/non umani)']}</div>
         </div>
-
-        {/* Box Professione */}
-        <div className="p-4 border border-purple-200 rounded bg-purple-50/50 flex flex-col justify-between">
-          <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-purple-800">Professione Selezionata</span>
-            <h3 className="font-bold text-purple-900 m-0" style={{fontSize: '1.2rem', marginTop: '0.25rem'}}>{profession.professione}</h3>
-          </div>
-          <div className="text-xs text-purple-800 font-medium mt-2">
+        <div style={{ padding: '1rem', border: '1px solid var(--theme-profession-border)', borderRadius: '0.6rem', background: 'var(--theme-profession-bg)' }}>
+          <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-profession-text)' }}>Professione</div>
+          <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-profession-text)', marginTop: '0.2rem' }}>{profession.professione}</div>
+          <div style={{ fontSize: '0.75rem', color: 'var(--theme-profession-text)', opacity: 0.85, marginTop: '0.15rem' }}>
             Primaria: {profession.primaria} | Secondaria: {profession.secondaria}
           </div>
         </div>
-
-        {/* Box Reame Magico */}
-        <div className="p-4 border border-teal-200 rounded bg-teal-50/50 flex flex-col justify-between">
-          <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-teal-800">Reame Magico & Regole</span>
-            {isWarriorOrScout ? (
-              <div className="mt-2 flex gap-2">
-                <button
-                  type="button"
-                  onClick={() => handleRealmChange('Essenza')}
-                  className={`flex-1 py-1.5 px-3 rounded font-bold text-xs border transition ${
-                    selectedRealm === 'Essenza'
-                      ? 'bg-teal-600 text-white border-teal-600'
-                      : 'bg-white text-teal-800 border-teal-300 hover:bg-teal-100/50'
-                  }`}
-                >
-                  Essenza
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleRealmChange('Flusso')}
-                  className={`flex-1 py-1.5 px-3 rounded font-bold text-xs border transition ${
-                    selectedRealm === 'Flusso'
-                      ? 'bg-teal-600 text-white border-teal-600'
-                      : 'bg-white text-teal-800 border-teal-300 hover:bg-teal-100/50'
-                  }`}
-                >
-                  Flusso
-                </button>
-              </div>
-            ) : (
-              <h3 className="font-bold text-teal-950 m-0" style={{fontSize: '1.2rem', marginTop: '0.25rem'}}>{selectedRealm || 'Nessuno'}</h3>
-            )}
-          </div>
-          <div className="text-xs text-teal-900 font-medium mt-2">
+        <div style={{ padding: '1rem', border: '1px solid var(--theme-spell-lists-border)', borderRadius: '0.6rem', background: 'var(--theme-spell-lists-bg)' }}>
+          <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-spell-lists-text)' }}>Reame Magico</div>
+          {isWarriorOrScout ? (
+            <div className="mt-2 flex gap-2">
+              <button
+                type="button"
+                onClick={() => handleRealmChange('Essenza')}
+                className={`flex-1 py-1 px-2 rounded font-bold text-xs border transition ${
+                  selectedRealm === 'Essenza'
+                    ? 'bg-teal-600 text-white border-teal-600'
+                    : 'bg-white text-teal-800 border-teal-300 hover:bg-teal-100/50'
+                }`}
+              >
+                Essenza
+              </button>
+              <button
+                type="button"
+                onClick={() => handleRealmChange('Flusso')}
+                className={`flex-1 py-1 px-2 rounded font-bold text-xs border transition ${
+                  selectedRealm === 'Flusso'
+                    ? 'bg-teal-600 text-white border-teal-600'
+                    : 'bg-white text-teal-800 border-teal-300 hover:bg-teal-100/50'
+                }`}
+              >
+                Flusso
+              </button>
+            </div>
+          ) : (
+            <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-spell-lists-text)', marginTop: '0.2rem' }}>
+              {selectedRealm || 'Nessuno'}
+            </div>
+          )}
+          <div style={{ fontSize: '0.75rem', color: 'var(--theme-spell-lists-text)', opacity: 0.85, marginTop: '0.15rem' }}>
             {profession['liste incantesimi'] && <span>Liste: <strong>{profession['liste incantesimi']}</strong></span>}
-            {profession['limite incantesimi'] && <span className="block text-[11px] text-teal-800 italic">{profession['limite incantesimi']}</span>}
+            {profession['limite incantesimi'] && <span className="block text-[10px] italic opacity-85 mt-0.5">{profession['limite incantesimi']}</span>}
           </div>
         </div>
       </div>
+
+      {/* Box Caratteristiche */}
+      {characterData.stats && Object.keys(characterData.stats).length > 0 && (
+        <div className="p-4 border border-green-200 rounded bg-green-50/50 mb-6">
+          <span className="text-xs font-bold uppercase tracking-wider text-green-800">Caratteristiche & Bonus Naturali</span>
+          <div className="mt-3 bg-white border border-green-100 rounded overflow-hidden">
+            <div className="grid grid-cols-5 gap-4 bg-green-50/80 px-4 py-2 border-b border-green-100 text-xs font-bold text-green-800 uppercase tracking-wider text-left">
+              <div>Caratteristica</div>
+              <div>Valore</div>
+              <div>Bonus naturale</div>
+              <div>Bonus popolo</div>
+              <div>Bonus totale parziale</div>
+            </div>
+            {STAT_KEYS.map((key, idx) => {
+              const s = finalStats[key];
+              if (!s) return null;
+              const isLast = idx === STAT_KEYS.length - 1;
+              return (
+                <div key={key} className={`grid grid-cols-5 gap-4 px-4 py-2 items-center text-sm ${!isLast ? 'border-b border-gray-100' : ''}`}>
+                  <div className="text-gray-900 font-medium">
+                    {STAT_NAMES[key]} ({key})
+                  </div>
+                  <div className="text-gray-800 font-bold">
+                    {s.raw || '-'}
+                  </div>
+                  <div className={`font-bold ${s.bonusNaturale > 0 ? 'text-green-700' : s.bonusNaturale < 0 ? 'text-red-700' : 'text-gray-500'}`}>
+                    {fmt(s.bonusNaturale)}
+                  </div>
+                  <div className={`font-bold ${s.raceMod > 0 ? 'text-blue-700' : s.raceMod < 0 ? 'text-red-700' : 'text-gray-500'}`}>
+                    {fmt(s.raceMod)}
+                  </div>
+                  <div className={`font-black ${s.bonusTot > 0 ? 'text-purple-700' : s.bonusTot < 0 ? 'text-red-700' : 'text-gray-800'}`}>
+                    {fmt(s.bonusTot)}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+
 
       {/* Box Apprendimento Liste Incantesimi Adolescenza */}
       {selectedRealm && (
@@ -442,45 +763,76 @@ export default function AdolescenceStep({ characterData, setCharacterData }) {
         </div>
       )}
 
-      {/* Box Caratteristiche */}
-      {characterData.stats && Object.keys(characterData.stats).length > 0 && (
-        <div className="p-4 border border-green-200 rounded bg-green-50/50 mb-6">
-          <span className="text-xs font-bold uppercase tracking-wider text-green-800">Caratteristiche & Bonus Naturali</span>
-          <div className="mt-3 bg-white border border-green-100 rounded overflow-hidden">
-            <div className="grid grid-cols-5 gap-4 bg-green-50/80 px-4 py-2 border-b border-green-100 text-xs font-bold text-green-800 uppercase tracking-wider text-left">
-              <div>Caratteristica</div>
-              <div>Valore</div>
-              <div>Bonus naturale</div>
-              <div>Bonus popolo</div>
-              <div>Bonus totale parziale</div>
-            </div>
-            {STAT_KEYS.map((key, idx) => {
-              const s = finalStats[key];
-              if (!s) return null;
-              const isLast = idx === STAT_KEYS.length - 1;
+
+
+      {/* ── LINGUE ── */}
+      <div className="card mb-6" style={{borderColor:'var(--theme-languages-border)'}}>
+        <div className="card-header border-b" style={{background:'var(--theme-languages-bg)',borderBottomColor:'var(--theme-languages-border)',padding:'0.75rem 1rem',display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+          <h4 className="font-semibold m-0 text-sm uppercase tracking-wider" style={{color:'var(--theme-languages-text)'}}>🌐 Lingue Conosciute (Adolescenza)</h4>
+          <div style={{display:'flex',gap:'1rem'}}>
+            <span style={{fontSize:'0.8rem',background:'#fff',border:'1px solid var(--theme-languages-border)',padding:'0.25rem 0.75rem',borderRadius:'0.5rem',color:'var(--theme-languages-text)',fontWeight:'bold'}}>
+              Punti totali: <strong>{languagePointsTotal}</strong>
+            </span>
+            <span style={{
+              fontSize:'0.8rem',
+              backgroundColor: languagePointsLeft > 0 ? '#fee2e2' : '#dcfce7',
+              color: languagePointsLeft > 0 ? '#991b1b' : '#166534',
+              paddingLeft: '5px',
+              paddingRight: '5px',
+              paddingTop: '0.25rem',
+              paddingBottom: '0.25rem',
+              borderRadius:'0.5rem',
+              fontWeight:'bold'
+            }}>
+              Rimasti: <strong>{languagePointsLeft}</strong>
+            </span>
+          </div>
+        </div>
+        <div className="card-body" style={{padding:'1rem'}}>
+          <p className="text-xs text-muted mb-4">Usa i Punti Lingue Addizionali per migliorare le lingue conosciute o apprenderne di nuove (max Grado 5).</p>
+          <div className="flex flex-col gap-2">
+            {Object.entries(languages).sort((a,b)=>a[0].localeCompare(b[0])).map(([lang, data]) => {
+              const total = (data.base || 0) + (data.added || 0);
+              const gradeInfo = gradiLingue.find(g => g.grado === total);
               return (
-                <div key={key} className={`grid grid-cols-5 gap-4 px-4 py-2 items-center text-sm ${!isLast ? 'border-b border-gray-100' : ''}`}>
-                  <div className="text-gray-900 font-medium">
-                    {STAT_NAMES[key]} ({key})
+                <div key={lang} className="flex items-center justify-between p-2.5 border rounded-lg bg-white" style={{borderColor:'var(--theme-languages-border)'}}>
+                  <div>
+                    <strong className="text-sm text-gray-900">{lang}</strong>
+                    {data.base > 0 && <span className="ml-2 text-[10px] bg-gray-100 px-1.5 py-0.5 rounded text-gray-500">Base ({data.base})</span>}
+                    {data.addedAdolescenza > 0 && <span className="ml-2 text-[10px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded">+{data.addedAdolescenza} Adolescenza</span>}
+                    {data.addedLivello1 > 0 && <span className="ml-2 text-[10px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded">+{data.addedLivello1} Liv. 1</span>}
+                    {data.fromBg && <span className="ml-2 text-[10px] bg-indigo-100 text-indigo-700 px-1.5 py-0.5 rounded">BG</span>}
+                    <div className="text-[11px] text-gray-500 mt-1">{gradeInfo?.conoscenza || ''}</div>
                   </div>
-                  <div className="text-gray-800 font-bold">
-                    {s.raw || '-'}
-                  </div>
-                  <div className={`font-bold ${s.bonusNaturale > 0 ? 'text-green-700' : s.bonusNaturale < 0 ? 'text-red-700' : 'text-gray-500'}`}>
-                    {fmt(s.bonusNaturale)}
-                  </div>
-                  <div className={`font-bold ${s.raceMod > 0 ? 'text-blue-700' : s.raceMod < 0 ? 'text-red-700' : 'text-gray-500'}`}>
-                    {fmt(s.raceMod)}
-                  </div>
-                  <div className={`font-black ${s.bonusTot > 0 ? 'text-purple-700' : s.bonusTot < 0 ? 'text-red-700' : 'text-gray-800'}`}>
-                    {fmt(s.bonusTot)}
+                  <div className="flex items-center gap-2">
+                    <strong className="text-lg min-w-[1.5rem] text-center text-blue-900">{total}</strong>
+                    <button type="button" onClick={() => addLangPoint(lang)} disabled={languagePointsLeft<=0||total>=5} className="w-7 h-7 border rounded flex items-center justify-center bg-gray-50 hover:bg-gray-100 disabled:opacity-50 text-sm font-bold">+</button>
+                    <button type="button" onClick={() => removeLangPoint(lang)} disabled={!data.addedAdolescenza||data.addedAdolescenza<=0} className="w-7 h-7 border rounded flex items-center justify-center bg-gray-50 hover:bg-gray-100 disabled:opacity-50 text-sm font-bold">−</button>
                   </div>
                 </div>
               );
             })}
           </div>
+
+          {languagePointsLeft > 0 && (
+            <div className="mt-4 pt-4 border-t flex gap-2 items-center" style={{borderTopColor:'var(--theme-languages-border)'}}>
+              <select defaultValue="" id="lang-add-select-adolescence" className="flex-1 rounded border-gray-300 text-xs p-2 bg-white">
+                <option value="" disabled>-- Nuova lingua da apprendere --</option>
+                {allLanguages.filter(l => !languages[l] || ((languages[l].base || 0) + (languages[l].added || 0)) < 5).map(l => (
+                  <option key={l} value={l}>{l}</option>
+                ))}
+              </select>
+              <button 
+                type="button" 
+                className="bg-blue-600 text-white font-bold py-1.5 px-3 rounded text-xs hover:bg-blue-700 transition" 
+                onClick={() => { const s = document.getElementById('lang-add-select-adolescence'); if(s.value){ addNewLang(s.value); s.value=''; } }}
+              >
+                + Apprendi
+              </button>
+            </div>
+          )}
         </div>
-      )}
+      </div>
 
       <p className="mb-6 text-muted">
         In base alla cultura del tuo Popolo (<strong>{race.popolo}</strong>) hai ottenuto i seguenti Gradi di sviluppo delle abilità in fase adolescenziale.
@@ -495,31 +847,47 @@ export default function AdolescenceStep({ characterData, setCharacterData }) {
 
           const tb6PoolSize = getTb6PoolSize(cat, profession);
           const spentTb6InCat = spentTb6ByCat[cat] || 0;
+          const availableTb6Pool = tb6PoolSize - spentTb6InCat;
 
           return (
-            <div key={cat} className="card border border-gray-200 rounded-lg overflow-hidden shadow-sm">
-              <div className="card-header bg-gray-50 border-b border-gray-200 flex justify-between items-center" style={{padding: '0.75rem 1rem'}}>
-                <h4 className="font-semibold text-gray-700 m-0 text-sm uppercase tracking-wider">{cat}</h4>
-                {tb6PoolSize > 0 && (
-                  <span className="text-xs font-bold px-2.5 py-1 bg-blue-100 text-blue-800 rounded-full">
-                    Punti Bonus Professione (TB_6): {spentTb6InCat} / {tb6PoolSize} spesi
-                  </span>
-                )}
+            <div key={cat} style={{ border: '1px solid #e5e7eb', borderRadius: '0.5rem', overflow: 'hidden', background: '#fff' }}>
+              <div style={{ padding: '0.5rem 1rem', background: '#f8fafc', borderBottom: '1px solid #e5e7eb', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#374151', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                  {cat}
+                </div>
+                {tb6PoolSize > 0 && (() => {
+                  const isFull = spentTb6InCat === tb6PoolSize;
+                  return (
+                    <span
+                      className="text-xs font-bold rounded"
+                      style={{
+                        backgroundColor: isFull ? '#dcfce7' : '#fee2e2',
+                        color: isFull ? '#166534' : '#991b1b',
+                        paddingLeft: '5px',
+                        paddingRight: '5px',
+                        paddingTop: '0.25rem',
+                        paddingBottom: '0.25rem'
+                      }}
+                    >
+                      Punti Bonus Professione (TB_6): {spentTb6InCat} / {tb6PoolSize} spesi
+                    </span>
+                  );
+                })()}
               </div>
-              <div className="card-body overflow-x-auto" style={{padding: '0'}}>
-                <table className="w-full text-left text-sm whitespace-nowrap">
-                  <thead className="bg-gray-50/50 border-b border-gray-200 text-[10px] text-gray-500 uppercase tracking-wider">
+              <div style={{ overflowX: 'auto' }}>
+                <table style={{ width: '100%', fontSize: '0.8rem', borderCollapse: 'collapse', whiteSpace: 'nowrap' }}>
+                  <thead style={{ background: '#f9fafb', borderBottom: '1px solid #e5e7eb' }}>
                     <tr>
-                      <th className="px-4 py-2">Abilità</th>
-                      <th className="px-2 py-2 text-center">G. adolescenza</th>
-                      <th className="px-2 py-2 text-center">G. bonus prof.</th>
-                      <th className="px-2 py-2 text-center">G. svil. prof.</th>
-                      <th className="px-2 py-2 text-center">G. background</th>
-                      <th className="px-2 py-2 text-center font-bold">G. TOTALE</th>
-                      <th className="px-2 py-2 text-center">Bonus sviluppo</th>
-                      <th className="px-2 py-2 text-center">Bonus caratt.</th>
-                      <th className="px-2 py-2 text-center">Carico</th>
-                      <th className="px-2 py-2 text-center font-bold">Bonus TOTALE</th>
+                      <th style={{ padding: '0.45rem 1rem', textAlign: 'left', color: '#6b7280', fontWeight: 600 }}>Abilità</th>
+                      <th style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#6b7280', fontWeight: 600 }}>G. adolescenza</th>
+                      <th style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#6b7280', fontWeight: 600 }}>G. bonus prof.</th>
+                      <th style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#6b7280', fontWeight: 600 }}>G. svil. prof.</th>
+                      <th style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#7e22ce', fontWeight: 700 }}>G. background</th>
+                      <th style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#1e3a8a', fontWeight: 700 }}>G. TOTALE</th>
+                      <th style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#374151', fontWeight: 600 }}>Bonus sviluppo</th>
+                      <th style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#6b7280', fontWeight: 600 }}>Bonus caratt.</th>
+                      <th style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#6b7280', fontWeight: 600 }}>Speciale</th>
+                      <th style={{ padding: '0.45rem 1rem', textAlign: 'right', color: '#1e3a8a', fontWeight: 900 }}>Bonus TOTALE</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -531,22 +899,44 @@ export default function AdolescenceStep({ characterData, setCharacterData }) {
                       const isCogliereAlleSpalle = name.toLowerCase() === 'cogliere alle spalle';
                       const max = getMaxRanks(name);
                       const hasIngombro = s.ingombroBonus !== null;
-                      const totalBonusStr = typeof s.totalBonus === 'number' ? fmt(s.totalBonus) : s.totalBonus;
+                      const specialBonus = s.specialBonus || 0;
+                      const hasSpecialBonus = specialBonus !== 0;
+                      const displaySpecial = (hasIngombro || hasSpecialBonus) ? (specialBonus + (s.ingombroBonus ?? 0)) : null;
+
+                      let totalBonusStr = typeof s.totalBonus === 'number' ? fmt(s.totalBonus) : s.totalBonus;
+                      if (name.toLowerCase().trim() === 'resistenza fisica') {
+                        const coBonus = s.carattBonus || 0;
+                        const otherBonus = coBonus + 5 + specialBonus;
+                        totalBonusStr = `${s.bonusGradi} e ${fmt(otherBonus)}`;
+                      }
 
                       const isFixedSkill = [
-                        'resistenza fisica', 'percezione', 'lettura rune', 
-                        'uso oggetti magici', 'incantesimi diretti', 'incantesimi base'
+                        'resistenza fisica', 'percezione', 'incantesimi base'
                       ].includes(name.toLowerCase().trim());
-                      
-                      const availableTb6Pool = tb6PoolSize - spentTb6InCat;
 
                       return (
-                        <tr key={name} className="border-b border-gray-100 last:border-0 hover:bg-gray-50">
-                          <td className="px-4 py-2 font-medium text-gray-900">
-                            {name} {max !== null ? <span className="text-[10px] text-gray-400">({max} max)</span> : ''}
+                        <tr key={name} className="hover:bg-gray-50" style={{ borderBottom: '1px solid #f3f4f6' }}>
+                          <td style={{ padding: '0.45rem 1rem', fontWeight: 500, color: '#1f2937' }}>
+                            <span style={{ verticalAlign: 'middle' }}>{name}</span>
+                            {max !== null ? <span style={{ fontSize: '10px', color: '#9ca3af', marginLeft: '0.25rem', verticalAlign: 'middle' }}>({max} max)</span> : ''}
+                            {cat === 'con le armi' && (() => {
+                              const weaponsList = getWeaponsForSkill(name, catalog);
+                              if (weaponsList.length === 0) return null;
+                              return (
+                                <Tooltip
+                                  content={
+                                    <ul style={{ margin: 0, paddingLeft: '1rem', listStyleType: 'disc' }}>
+                                      {weaponsList.map(w => (
+                                        <li key={w} style={{ marginBottom: '0.15rem' }}>{w}</li>
+                                      ))}
+                                    </ul>
+                                  }
+                                />
+                              );
+                            })()}
                           </td>
-                          <td className="px-2 py-2 text-center text-gray-700 font-semibold">{s.adRanks}</td>
-                          <td className="px-2 py-2 text-center text-blue-700 font-semibold">
+                          <td style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#9ca3af' }}>{s.adRanks}</td>
+                          <td style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#3b82f6', fontWeight: 600 }}>
                             {isCogliereAlleSpalle ? (
                               '0'
                             ) : isFixedSkill ? (
@@ -577,19 +967,19 @@ export default function AdolescenceStep({ characterData, setCharacterData }) {
                               '0'
                             )}
                           </td>
-                          <td className="px-2 py-2 text-center text-gray-400">—</td>
-                          <td className="px-2 py-2 text-center text-gray-400">—</td>
-                          <td className="px-2 py-2 text-center font-bold text-gray-800">{s.totalRanks}</td>
-                          <td className="px-2 py-2 text-center font-bold text-gray-700">
+                          <td style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#9ca3af' }}>—</td>
+                          <td style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#9ca3af' }}>—</td>
+                          <td style={{ padding: '0.45rem 0.5rem', textAlign: 'center', fontWeight: 900, color: '#1e3a8a' }}>{s.totalRanks}</td>
+                          <td style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#374151', fontWeight: 600 }}>
                             {typeof s.bonusGradi === 'number' ? fmt(s.bonusGradi) : s.bonusGradi}
                           </td>
-                          <td className="px-2 py-2 text-center text-gray-600">
+                          <td style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#374151', fontSize: '0.75rem' }}>
                             {s.carattSigla ? `${s.carattSigla} ${fmt(s.carattBonus)}` : '—'}
                           </td>
-                          <td className="px-2 py-2 text-center text-gray-600">
-                            {hasIngombro ? fmt(s.ingombroBonus) : '—'}
+                          <td style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#6b7280' }}>
+                            {displaySpecial !== null ? fmt(displaySpecial) : '—'}
                           </td>
-                          <td className="px-2 py-2 text-center font-black text-primary-color">
+                          <td style={{ padding: '0.45rem 1rem', textAlign: 'right', fontWeight: 900, fontSize: '0.9rem', color: '#1e3a8a' }}>
                             {totalBonusStr}
                           </td>
                         </tr>
@@ -603,27 +993,35 @@ export default function AdolescenceStep({ characterData, setCharacterData }) {
         })}
       </div>
 
-      {otherSkills.length > 0 && (
-        <div className="card border-orange-200 mb-6">
-          <div className="card-header bg-orange-50 border-b border-orange-200" style={{padding: '1rem'}}>
-            <h4 className="font-semibold text-orange-900 m-0">Punti Speciali & Altre Abilità</h4>
+
+
+      {otherSkills.filter(([name]) => name.trim() !== 'Punti Lingue Addizionali').length > 0 && (
+        <div className="card mb-6" style={{ borderColor: 'var(--theme-primary-skills-border)' }}>
+          <div className="card-header border-b" style={{padding: '1rem', backgroundColor: 'var(--theme-primary-skills-bg)', borderBottomColor: 'var(--theme-primary-skills-border)'}}>
+            <h4 className="font-semibold m-0" style={{ color: 'var(--theme-primary-skills-text)' }}>Punti Speciali & Altre Abilità</h4>
           </div>
           <div className="card-body">
             <div className="grid-2">
-              {otherSkills.map(([name, data]) => (
-                <div key={name} className="flex items-start gap-4 p-4 border border-orange-100 rounded bg-white">
-                  <div className="flex-1">
-                    <h5 className="font-bold text-orange-800 m-0 mb-1">{name}</h5>
-                    {data.notes && <p className="text-xs text-muted m-0">{data.notes}</p>}
-                  </div>
-                  <div className="text-xl font-black text-orange-600 bg-orange-100 px-3 py-2 rounded">
-                    {data.totalRanks}
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="mt-4 p-3 bg-orange-50 text-orange-800 text-sm rounded border border-orange-200">
-              <strong>Nota:</strong> I "Punti Lingue Addizionali" e i "Punti Background" non sono abilità dirette, ma un pool di punti che potrai spendere negli step successivi.
+              {otherSkills
+                .filter(([name]) => name.trim() !== 'Punti Lingue Addizionali')
+                .map(([name, data]) => {
+                  const isBgPoints = name.trim() === 'Punti Background';
+                  return (
+                    <div key={name} className="flex items-start gap-4 p-4 border rounded bg-white" style={{ borderColor: 'var(--theme-primary-skills-border)' }}>
+                      <div className="flex-1">
+                        <h5 className="font-bold m-0 mb-1" style={{ color: 'var(--theme-primary-skills-text)' }}>{name}</h5>
+                        {isBgPoints ? (
+                          <p className="text-xs text-muted m-0">I Punti Background non sono abilità dirette, ma un pool di punti che potrai spendere nella fase successiva per caratterizzare e bilanciare il personaggio.</p>
+                        ) : (
+                          data.notes && <p className="text-xs text-muted m-0">{data.notes}</p>
+                        )}
+                      </div>
+                      <div className="text-xl font-black px-3 py-2 rounded" style={{ backgroundColor: 'var(--theme-primary-skills-bg)', color: 'var(--theme-primary-skills-text)' }}>
+                        {data.totalRanks}
+                      </div>
+                    </div>
+                  );
+                })}
             </div>
           </div>
         </div>

@@ -6,10 +6,18 @@ import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
 import secondarySkillsList from '../../../data/Tabella-abilita_secondarie.json';
 import { getAvailableSpellLists } from '../../../utils/magicHelpers';
 import tb1 from '../../../data/TB_1-caratteristiche_bonus.json';
+import WalletBox from '../shared/WalletBox';
 
 const STAT_KEYS = ['FR', 'AG', 'CO', 'IN', 'IT', 'PR'];
 const STAT_NAMES = { FR: 'Forza', AG: 'Agilità', CO: 'Costituzione', IN: 'Intelligenza', IT: 'Intuizione', PR: 'Presenza' };
 const BG_CATEGORIES = ['Gradi delle abilità', 'Aumento delle caratteristiche', 'Lingue', 'abilità speciali', 'oggetti speciali', "denaro: monete d'oro", 'Lista incantesimi aggiuntiva'];
+
+const TR_MAPPING = {
+  'Essenza': 'bonus a TR-ESS',
+  'Flusso': 'bonus a TR-FLS',
+  'Veleno': 'bonus a TR-VEL',
+  'Malattia': 'bonus a TR-MAL'
+};
 
 // Helper: parse "da XX a YY" range strings from the JSON
 const parseRange = (s) => {
@@ -77,7 +85,6 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
   
   const bgSpellLists = characterData.background?.compiledModifiers?.bgSpellLists || [];
 
-  const languagePointsTotal = characterData.skills?.['Punti Lingue Addizionali']?.totalRanks || 0;
   const backgroundPointsTotal = characterData.skills?.['Punti Background']?.totalRanks || 0;
 
   // Init languages from race
@@ -107,9 +114,90 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
   const languages = bgData.languages || {};
   const options = bgData.options || [];
 
-  const languagePointsSpent = Object.values(languages).reduce((s, l) => s + (l.added || 0), 0);
-  const languagePointsLeft = languagePointsTotal - languagePointsSpent;
   const backgroundPointsLeft = backgroundPointsTotal - options.length;
+
+  useEffect(() => {
+    let err = null;
+    if (backgroundPointsLeft > 0) {
+      err = `Devi spendere tutti i punti background. Ti rimangono ${backgroundPointsLeft} punti da spendere.`;
+    } else if (backgroundPointsLeft < 0) {
+      err = `Hai assegnato troppi punti background (${Math.abs(backgroundPointsLeft)} in eccesso). Rimuovi delle opzioni.`;
+    } else {
+      for (let i = 0; i < options.length; i++) {
+        const opt = options[i];
+        const prefix = `Opzione ${i + 1} (${opt.category}): `;
+        if (opt.category === 'Gradi delle abilità') {
+          if (!opt.skillName) {
+            err = prefix + "Seleziona l'abilità da incrementare.";
+            break;
+          }
+        } else if (opt.category === 'Aumento delle caratteristiche') {
+          if (opt.subChoice === 'A') {
+            if (!opt.stats || opt.stats.length !== 1 || !opt.stats[0]) {
+              err = prefix + "Seleziona una caratteristica.";
+              break;
+            }
+          } else if (opt.subChoice === 'B') {
+            const selectedStats = (opt.stats || []).filter(Boolean);
+            if (selectedStats.length !== 3) {
+              err = prefix + `Seleziona esattamente 3 caratteristiche (selezionate: ${selectedStats.length}/3).`;
+              break;
+            }
+          } else {
+            err = prefix + "Seleziona la modalità A o B.";
+            break;
+          }
+        } else if (opt.category === 'Lingue') {
+          if (!opt.skillName) {
+            err = prefix + "Seleziona la lingua da apprendere.";
+            break;
+          }
+        } else if (opt.category === 'abilità speciali') {
+          if (!opt.oggetto) {
+            err = prefix + "Seleziona l'abilità speciale.";
+            break;
+          }
+          if ((opt.oggetto === 'as1' || opt.oggetto === 'as2' || opt.oggetto === 'as5' || opt.oggetto === 'as6') && !opt.skillName) {
+            err = prefix + "Seleziona l'abilità, il tipo di TR o la lista incantesimi associata.";
+            break;
+          }
+        } else if (opt.category === 'oggetti speciali') {
+          if (!opt.oggetto) {
+            err = prefix + "Seleziona il tipo di oggetto.";
+            break;
+          }
+          if (!opt.customNote || !opt.customNote.trim()) {
+            err = prefix + "Inserisci la descrizione o il nome dell'oggetto speciale.";
+            break;
+          }
+        } else if (opt.category === "denaro: monete d'oro") {
+          const r = parseInt(opt.roll);
+          if (isNaN(r) || r < 1 || r > 100) {
+            err = prefix + "Inserisci o tira un valore valido per il dado (1-100).";
+            break;
+          }
+        } else if (opt.category === 'Lista incantesimi aggiuntiva') {
+          if (!opt.skillName) {
+            err = prefix + "Seleziona la lista incantesimi da apprendere.";
+            break;
+          }
+        } else {
+          err = prefix + "Categoria non riconosciuta.";
+          break;
+        }
+      }
+    }
+
+    if (characterData.stepErrors?.background !== err) {
+      setCharacterData(prev => ({
+        ...prev,
+        stepErrors: {
+          ...(prev.stepErrors || {}),
+          background: err
+        }
+      }));
+    }
+  }, [options, backgroundPointsLeft, characterData.stepErrors, setCharacterData]);
 
   // Commit update helper
   const update = (nextLangs, nextOptions) => {
@@ -143,11 +231,92 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
           secondarySkills[opt.skillName] = { ...def, bgRanks: prev.bgRanks + 5 };
         }
       }
-      if (opt.category === 'abilità speciali' && (opt.oggetto === 'as2' || (opt.roll >= 51 && opt.roll <= 55)) && opt.skillName) {
-        const def = secondarySkillsList.find(s => s.abilita_secondaria === opt.skillName);
-        if (def) {
-          const prev = secondarySkills[opt.skillName] || { specialBonus: 0 };
-          secondarySkills[opt.skillName] = { ...def, bgRanks: prev.bgRanks || 0, specialBonus: (prev.specialBonus || 0) + 15 };
+    });
+
+    // New special fields
+    const primarySkillsSpecialBonus = {};
+    const trSpecialBonus = { 'bonus a TR-ESS': 0, 'bonus a TR-FLS': 0, 'bonus a TR-VEL': 0, 'bonus a TR-MAL': 0 };
+    let bdSpecialBonus = 0;
+    let hpD10Modifier = 0;
+    const specialNotes = [];
+
+    const mmSkills = [
+      "nessuna armatura", "cuoio grezzo", "cuoio rinforzato",
+      "corazza di maglia", "corazza di piastre",
+      "arrampicarsi", "cavalcare", "nuotare",
+      "muoversi silenziosamente", "nascondersi"
+    ];
+
+    const boSkills = [
+      "taglio a 1 mano", "contundenti a 1 mano", "a 2 mani",
+      "da tiro", "da lancio", "con asta"
+    ];
+
+    nextOptions.forEach(opt => {
+      if (opt.category === 'abilità speciali') {
+        const isAS1 = opt.oggetto === 'as1' || (opt.roll >= 1 && opt.roll <= 50);
+        const isAS2 = opt.oggetto === 'as2' || (opt.roll >= 51 && opt.roll <= 55);
+        const isAS3 = opt.oggetto === 'as3' || (opt.roll >= 56 && opt.roll <= 60);
+        const isAS4 = opt.oggetto === 'as4' || (opt.roll >= 61 && opt.roll <= 65);
+        const isAS5 = opt.oggetto === 'as5' || (opt.roll >= 66 && opt.roll <= 70);
+        const isAS7 = opt.oggetto === 'as7' || (opt.roll >= 76 && opt.roll <= 80);
+        const isAS8 = opt.oggetto === 'as8' || (opt.roll >= 81 && opt.roll <= 85);
+        const isAS9 = opt.oggetto === 'as9' || (opt.roll >= 86 && opt.roll <= 90);
+        const isAS10 = opt.oggetto === 'as10' || (opt.roll >= 91 && opt.roll <= 95);
+        const isAS11 = opt.oggetto === 'as11' || (opt.roll >= 96 && opt.roll <= 100);
+
+        if (isAS1 && opt.skillName) {
+          primarySkillsSpecialBonus[opt.skillName] = (primarySkillsSpecialBonus[opt.skillName] || 0) + 5;
+        }
+        if (isAS2 && opt.skillName) {
+          const def = secondarySkillsList.find(s => s.abilita_secondaria === opt.skillName);
+          if (def) {
+            const prev = secondarySkills[opt.skillName] || { bgRanks: 0, specialBonus: 0 };
+            secondarySkills[opt.skillName] = {
+              ...def,
+              bgRanks: prev.bgRanks,
+              specialBonus: prev.specialBonus + 15
+            };
+          }
+        }
+        if (isAS3) {
+          const note = opt.customNote 
+            ? `Empatia verso una specie animale (${opt.customNote}): +25 manovre`
+            : "Empatia verso una specie animale: +25 manovre";
+          specialNotes.push(note);
+        }
+        if (isAS4) {
+          const note = opt.customNote
+            ? `Infravisione: percezione calore fino a 30m (${opt.customNote})`
+            : "Infravisione: percezione calore fino a 30m";
+          specialNotes.push(note);
+        }
+        if (isAS5 && opt.skillName) {
+          const trKey = TR_MAPPING[opt.skillName];
+          if (trKey) {
+            trSpecialBonus[trKey] = (trSpecialBonus[trKey] || 0) + 10;
+          }
+        }
+        if (isAS7) {
+          mmSkills.forEach(skill => {
+            primarySkillsSpecialBonus[skill] = (primarySkillsSpecialBonus[skill] || 0) + 10;
+          });
+        }
+        if (isAS8) {
+          primarySkillsSpecialBonus["percezione"] = (primarySkillsSpecialBonus["percezione"] || 0) + 10;
+          primarySkillsSpecialBonus["seguire tracce"] = (primarySkillsSpecialBonus["seguire tracce"] || 0) + 10;
+        }
+        if (isAS9) {
+          bdSpecialBonus += 5;
+          boSkills.forEach(skill => {
+            primarySkillsSpecialBonus[skill] = (primarySkillsSpecialBonus[skill] || 0) + 5;
+          });
+        }
+        if (isAS10) {
+          primarySkillsSpecialBonus["leadership e influenza"] = (primarySkillsSpecialBonus["leadership e influenza"] || 0) + 10;
+        }
+        if (isAS11) {
+          hpD10Modifier += 3;
         }
       }
     });
@@ -157,6 +326,11 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
     nextOptions.forEach(opt => {
       if (opt.category === "denaro: monete d'oro" && opt.calculatedMO) gold += opt.calculatedMO;
     });
+
+    const oldGold = characterData.background?.compiledModifiers?.gold || 0;
+    const deltaMB = (gold - oldGold) * 100;
+    const currentPortafoglio = characterData.portafoglioMB || 0;
+    const nextPortafoglio = Math.round((currentPortafoglio + deltaMB) * 100) / 100;
 
     // Spell Lists from Esperto di magia (roll 71-75) or Lista incantesimi aggiuntiva
     const bgSpellLists = [];
@@ -170,35 +344,27 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
 
     setCharacterData(prev => ({
       ...prev,
+      portafoglioMB: nextPortafoglio,
       background: {
         languages: nextLangs,
         options: nextOptions,
-        compiledModifiers: { statsBonus, skillBgRanks, secondarySkills, gold, bgSpellLists }
+        compiledModifiers: { 
+          statsBonus, 
+          skillBgRanks, 
+          secondarySkills, 
+          gold, 
+          bgSpellLists,
+          primarySkillsSpecialBonus,
+          trSpecialBonus,
+          bdSpecialBonus,
+          hpD10Modifier,
+          specialNotes
+        }
       }
     }));
   };
 
   // Language handlers
-  const addLangPoint = (lang) => {
-    if (languagePointsLeft <= 0) return;
-    const cur = languages[lang] || { base: 0, added: 0 };
-    if (cur.base + cur.added >= 5) return;
-    update({ ...languages, [lang]: { ...cur, added: (cur.added || 0) + 1 } }, options);
-  };
-  const removeLangPoint = (lang) => {
-    const cur = languages[lang];
-    if (!cur || cur.added <= 0) return;
-    const next = { ...languages };
-    if (cur.base === 0 && cur.added === 1) delete next[lang];
-    else next[lang] = { ...cur, added: cur.added - 1 };
-    update(next, options);
-  };
-  const addNewLang = (lang) => {
-    if (!lang || languagePointsLeft <= 0) return;
-    const cur = languages[lang] || { base: 0, added: 0 };
-    if (cur.base + cur.added >= 5) return;
-    update({ ...languages, [lang]: { ...cur, added: (cur.added || 0) + 1 } }, options);
-  };
   const addLangFromBg = (lang) => {
     // background 'Lingue' category → sets language to level 5
     if (!lang) return;
@@ -242,67 +408,15 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
   return (
     <div style={{display:'flex',flexDirection:'column',gap:'1.5rem'}}>
 
-      {/* ── LINGUE ── */}
-      <div className="card" style={{borderColor:'#bfdbfe'}}>
-        <div className="card-header" style={{background:'#eff6ff',borderBottom:'1px solid #bfdbfe',display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-          <h4 style={{margin:0,color:'#1e3a8a'}}>🌐 Lingue Conosciute</h4>
-          <div style={{display:'flex',gap:'1rem'}}>
-            <span style={{fontSize:'0.8rem',background:'#fff',border:'1px solid #dbeafe',padding:'0.25rem 0.75rem',borderRadius:'0.5rem'}}>
-              Punti totali: <strong>{languagePointsTotal}</strong>
-            </span>
-            <span style={{fontSize:'0.8rem',background: languagePointsLeft > 0 ? '#2563eb' : '#e5e7eb',color: languagePointsLeft > 0 ? '#fff' : '#6b7280',border:'1px solid transparent',padding:'0.25rem 0.75rem',borderRadius:'0.5rem'}}>
-              Rimasti: <strong>{languagePointsLeft}</strong>
-            </span>
-          </div>
-        </div>
-        <div className="card-body">
-          <p style={{fontSize:'0.875rem',color:'#64748b',marginBottom:'1rem'}}>Migliora le lingue base o apprendi nuove lingue (max Grado 5).</p>
-          <div style={{display:'flex',flexDirection:'column',gap:'0.5rem'}}>
-            {Object.entries(languages).sort((a,b)=>a[0].localeCompare(b[0])).map(([lang, data]) => {
-              const total = (data.base || 0) + (data.added || 0);
-              const gradeInfo = gradiLingue.find(g => g.grado === total);
-              return (
-                <div key={lang} style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'0.6rem 0.75rem',border:'1px solid #e5e7eb',borderRadius:'0.5rem',background:'#fff'}}>
-                  <div>
-                    <strong style={{fontSize:'0.9rem'}}>{lang}</strong>
-                    {data.base > 0 && <span style={{marginLeft:'0.5rem',fontSize:'0.7rem',background:'#f3f4f6',padding:'0.1rem 0.4rem',borderRadius:'99px'}}>Base ({data.base})</span>}
-                    {data.added > 0 && <span style={{marginLeft:'0.4rem',fontSize:'0.7rem',background:'#dbeafe',color:'#1d4ed8',padding:'0.1rem 0.4rem',borderRadius:'99px'}}>+{data.added}</span>}
-                    {data.fromBg && <span style={{marginLeft:'0.4rem',fontSize:'0.7rem',background:'#d8b4fe',color:'#6b21a8',padding:'0.1rem 0.4rem',borderRadius:'99px'}}>BG</span>}
-                    <div style={{fontSize:'0.75rem',color:'#6b7280',marginTop:'0.15rem'}}>{gradeInfo?.conoscenza || ''}</div>
-                  </div>
-                  <div style={{display:'flex',alignItems:'center',gap:'0.5rem'}}>
-                    <strong style={{fontSize:'1.1rem',minWidth:'1.5rem',textAlign:'center',color:'#1e3a8a'}}>{total}</strong>
-                    <button onClick={() => addLangPoint(lang)} disabled={languagePointsLeft<=0||total>=5} style={{width:'1.75rem',height:'1.75rem',border:'1px solid #d1d5db',borderRadius:'0.375rem',background:'#f9fafb',cursor:'pointer',fontSize:'1rem',display:'flex',alignItems:'center',justifyContent:'center'}}>+</button>
-                    <button onClick={() => removeLangPoint(lang)} disabled={!data.added||data.added<=0} style={{width:'1.75rem',height:'1.75rem',border:'1px solid #d1d5db',borderRadius:'0.375rem',background:'#f9fafb',cursor:'pointer',fontSize:'1rem',display:'flex',alignItems:'center',justifyContent:'center'}}>−</button>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {languagePointsLeft > 0 && (
-            <div style={{marginTop:'1rem',paddingTop:'1rem',borderTop:'1px solid #e5e7eb',display:'flex',gap:'0.75rem',alignItems:'center'}}>
-              <select defaultValue="" id="lang-add-select" style={{flex:1,padding:'0.5rem',border:'1px solid #d1d5db',borderRadius:'0.375rem',fontSize:'0.875rem'}}>
-                <option value="" disabled>-- Nuova lingua da apprendere --</option>
-                {allLanguages.filter(l => !languages[l] || (languages[l].base + languages[l].added) < 5).map(l => (
-                  <option key={l} value={l}>{l}</option>
-                ))}
-              </select>
-              <button className="btn btn-primary" onClick={() => { const s = document.getElementById('lang-add-select'); addNewLang(s.value); s.value=''; }}>+ Apprendi</button>
-            </div>
-          )}
-        </div>
-      </div>
-
       {/* ── OPZIONI DI BACKGROUND ── */}
-      <div className="card" style={{borderColor:'#e9d5ff'}}>
-        <div className="card-header" style={{background:'#faf5ff',borderBottom:'1px solid #e9d5ff',display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-          <h4 style={{margin:0,color:'#581c87'}}>🎒 Opzioni di Background</h4>
+      <div className="card" style={{borderColor:'var(--theme-background-border)'}}>
+        <div className="card-header" style={{background:'var(--theme-background-bg)',borderBottom:'1px solid var(--theme-background-border)',display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+          <h4 style={{margin:0,color:'var(--theme-background-text)'}}>🎒 Opzioni di Background</h4>
           <div style={{display:'flex',gap:'1rem'}}>
-            <span style={{fontSize:'0.8rem',background:'#fff',border:'1px solid #f3e8ff',padding:'0.25rem 0.75rem',borderRadius:'0.5rem'}}>
+            <span style={{fontSize:'0.8rem',background:'#fff',border:'1px solid var(--theme-background-border)',padding:'0.25rem 0.75rem',borderRadius:'0.5rem',color:'var(--theme-background-text)'}}>
               Punti totali: <strong>{backgroundPointsTotal}</strong>
             </span>
-            <span style={{fontSize:'0.8rem',background: backgroundPointsLeft > 0 ? '#9333ea' : '#e5e7eb',color: backgroundPointsLeft > 0 ? '#fff' : '#6b7280',padding:'0.25rem 0.75rem',borderRadius:'0.5rem'}}>
+            <span style={{fontSize:'0.8rem',background: backgroundPointsLeft > 0 ? 'var(--theme-background-text)' : 'var(--theme-background-bg)',color: backgroundPointsLeft > 0 ? '#fff' : 'var(--theme-background-text)',padding:'0.25rem 0.75rem',borderRadius:'0.5rem'}}>
               Rimasti: <strong>{backgroundPointsLeft}</strong>
             </span>
           </div>
@@ -346,6 +460,12 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
           )}
         </div>
       </div>
+
+      {/* Portafoglio interattivo */}
+      <WalletBox 
+        portafoglioMB={characterData.portafoglioMB || 0} 
+        onChange={(newVal) => setCharacterData(prev => ({ ...prev, portafoglioMB: newVal }))} 
+      />
     </div>
   );
 }
@@ -518,6 +638,19 @@ function OptionCard({ opt, idx, characterData, primarySkillNames, languages, all
               </div>
             )}
 
+            {(opt.oggetto === 'as5' || (opt.roll >= 66 && opt.roll <= 70)) && (
+              <div style={{marginTop:'0.5rem'}}>
+                <label style={{fontSize:'0.8rem',fontWeight:600,display:'block',marginBottom:'0.25rem'}}>Scegli Tipo di Tiro Resistenza (TR) (+10 Bonus):</label>
+                <select value={opt.skillName||''} onChange={e=>onPatch({skillName:e.target.value})} style={{width:'100%',padding:'0.4rem',border:'1px solid #fcd34d',borderRadius:'0.375rem',fontSize:'0.875rem'}}>
+                  <option value="" disabled>-- Seleziona TR --</option>
+                  <option value="Essenza">Essenza (TR Essenza)</option>
+                  <option value="Flusso">Flusso (TR Flusso)</option>
+                  <option value="Veleno">Veleno (TR Veleno)</option>
+                  <option value="Malattia">Malattia (TR Malattia)</option>
+                </select>
+              </div>
+            )}
+
             {(opt.oggetto === 'as6' || (opt.roll >= 71 && opt.roll <= 75)) && (
               <div style={{marginTop:'0.5rem'}}>
                 <label style={{fontSize:'0.8rem',fontWeight:600,display:'block',marginBottom:'0.25rem'}}>Scegli Lista Incantesimi:</label>
@@ -528,7 +661,7 @@ function OptionCard({ opt, idx, characterData, primarySkillNames, languages, all
               </div>
             )}
 
-            {opt.oggetto && opt.oggetto !== 'as1' && opt.oggetto !== 'as2' && opt.oggetto !== 'as6' && opt.calculatedText && (
+            {opt.oggetto && opt.oggetto !== 'as1' && opt.oggetto !== 'as2' && opt.oggetto !== 'as5' && opt.oggetto !== 'as6' && opt.calculatedText && (
               <div style={{fontSize:'0.8rem',color:'#92400e',marginTop:'0.5rem'}}><em>Questa opzione aggiunge il bonus descritto alla tua scheda. Puoi specificare dettagli (es. animale scelto, tipo di TR) nelle note se vuoi.</em>
                 <input type="text" value={opt.customNote||''} onChange={e=>onPatch({customNote:e.target.value})} placeholder="Dettagli aggiuntivi..." style={{width:'100%',padding:'0.4rem',border:'1px solid #fcd34d',borderRadius:'0.375rem',fontSize:'0.875rem',marginTop:'0.5rem'}} />
               </div>

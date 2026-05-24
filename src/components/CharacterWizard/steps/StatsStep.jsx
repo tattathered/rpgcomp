@@ -14,6 +14,29 @@ const STAT_NAMES = {
 
 export default function StatsStep({ characterData, setCharacterData }) {
   const [method, setMethod] = useState(characterData.statsMethod || 'classic'); // 'classic' | 'points'
+
+  useEffect(() => {
+    const keys = ['FR', 'AG', 'CO', 'IN', 'IT', 'PR'];
+    const missing = keys.some(k => !characterData.stats?.[k]);
+    let err = null;
+    if (missing) {
+      err = 'Devi assegnare tutte le 6 caratteristiche principali prima di procedere.';
+    } else if (!characterData.peso || isNaN(Number(characterData.peso)) || Number(characterData.peso) <= 0) {
+      err = 'Devi inserire un peso corporeo valido (maggiore di 0 kg) prima di procedere.';
+    } else if (!characterData.altezza || isNaN(Number(characterData.altezza)) || Number(characterData.altezza) <= 0) {
+      err = 'Devi inserire un\'altezza valida (maggiore di 0 cm) prima di procedere.';
+    }
+
+    if (characterData.stepErrors?.stats !== err) {
+      setCharacterData(prev => ({
+        ...prev,
+        stepErrors: {
+          ...(prev.stepErrors || {}),
+          stats: err
+        }
+      }));
+    }
+  }, [characterData.stats, characterData.peso, characterData.altezza, characterData.stepErrors, setCharacterData]);
   const [rolls, setRolls] = useState(characterData.statsRolls || []);
   
   // Per metodo classico: tiene traccia di quale tiro è assegnato a quale caratteristica
@@ -244,22 +267,59 @@ export default function StatsStep({ characterData, setCharacterData }) {
   return (
     <div>
       {characterData.race && (
-        <div className="mb-6 p-4 border border-blue-200 rounded bg-blue-50 flex justify-between items-center">
+        <div className="mb-6 p-4 border rounded flex justify-between items-center" style={{ backgroundColor: 'var(--theme-race-bg)', borderColor: 'var(--theme-race-border)', color: 'var(--theme-race-text)' }}>
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-blue-800">Popolo Selezionato</span>
-            <h3 className="font-bold text-blue-900 m-0" style={{fontSize: '1.2rem', marginTop: '0.25rem'}}>{characterData.race.popolo}</h3>
+            <span className="text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--theme-race-text)' }}>Popolo Selezionato</span>
+            <h3 className="font-bold m-0" style={{fontSize: '1.2rem', marginTop: '0.25rem', color: 'var(--theme-race-text)'}}>{characterData.race.popolo}</h3>
           </div>
-          <div className="text-sm text-blue-800 font-medium">
+          <div className="text-sm font-medium" style={{ color: 'var(--theme-race-text)' }}>
             {characterData.race['note (umani/non umani)']}
           </div>
         </div>
       )}
 
-      <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-md">
-        <h3 className="font-semibold text-blue-900 mb-2">Requisiti della Professione: {prof ? prof.professione : 'Nessuna'}</h3>
+      {/* Box Dimensioni Fisiche */}
+      <div className="mb-6 p-4 border rounded card" style={{ borderColor: 'var(--border-color)', backgroundColor: '#f8fafc' }}>
+        <span className="text-xs font-bold uppercase tracking-wider text-gray-500">Dimensioni Fisiche</span>
+        <div className="grid grid-cols-2 gap-4 mt-3">
+          <div>
+            <label className="block text-xs font-bold text-gray-700 mb-1">Peso (kg):</label>
+            <input 
+              type="number" 
+              min="1"
+              step="1"
+              className="w-full p-2 border rounded text-sm bg-white"
+              value={characterData.peso || ''}
+              onChange={e => {
+                const val = e.target.value === '' ? '' : Math.max(1, parseInt(e.target.value));
+                setCharacterData(prev => ({ ...prev, peso: val }));
+              }}
+              placeholder="Es: 75"
+            />
+          </div>
+          <div>
+            <label className="block text-xs font-bold text-gray-700 mb-1">Altezza (cm):</label>
+            <input 
+              type="number" 
+              min="1"
+              step="1"
+              className="w-full p-2 border rounded text-sm bg-white"
+              value={characterData.altezza || ''}
+              onChange={e => {
+                const val = e.target.value === '' ? '' : Math.max(1, parseInt(e.target.value));
+                setCharacterData(prev => ({ ...prev, altezza: val }));
+              }}
+              placeholder="Es: 180"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="mb-6 p-4 rounded-md border" style={{ backgroundColor: 'var(--theme-profession-bg)', borderColor: 'var(--theme-profession-border)', color: 'var(--theme-profession-text)' }}>
+        <h3 className="font-semibold mb-2" style={{ color: 'var(--theme-profession-text)' }}>Requisiti della Professione: {prof ? prof.professione : 'Nessuna'}</h3>
         <div className="flex gap-4">
-          <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded font-medium">Primaria: {primaryStat || '-'} (Minimo 90)</span>
-          <span className="px-3 py-1 bg-gray-200 text-gray-800 rounded font-medium">Secondaria: {secondaryStat || '-'} (Minimo 75)</span>
+          <span className="px-3 py-1 rounded font-medium" style={{ backgroundColor: 'rgba(107, 33, 168, 0.1)', color: 'var(--theme-profession-text)' }}>Primaria: {primaryStat || '-'} (Minimo 90)</span>
+          <span className="px-3 py-1 rounded font-medium" style={{ backgroundColor: 'rgba(107, 33, 168, 0.05)', color: 'var(--theme-profession-text)' }}>Secondaria: {secondaryStat || '-'} (Minimo 75)</span>
         </div>
       </div>
 
@@ -358,23 +418,24 @@ export default function StatsStep({ characterData, setCharacterData }) {
       )}
 
       {method === 'points' && (
-        <div className="card border-primary">
-          <div className="card-header bg-primary-light flex flex-col md:flex-row justify-between items-center gap-4" style={{padding: '1rem'}}>
+        <div className="card" style={{ borderColor: 'var(--theme-stats-border)' }}>
+          <div className="card-header flex flex-col md:flex-row justify-between items-center gap-4" style={{padding: '1rem', backgroundColor: 'var(--theme-stats-bg)', borderBottomColor: 'var(--theme-stats-border)'}}>
             <div className="flex items-center gap-4">
-              <h3 className="card-title text-primary-color m-0" style={{fontSize: '1rem'}}>Distribuzione Punti</h3>
-              <div className="flex items-center gap-2 text-sm bg-white p-1 px-3 rounded-full border border-blue-200">
-                <span className="text-blue-800 font-medium">Max Pool:</span>
+              <h3 className="card-title m-0" style={{fontSize: '1rem', color: 'var(--theme-stats-text)'}}>Distribuzione Punti</h3>
+              <div className="flex items-center gap-2 text-sm bg-white p-1 px-3 rounded-full border" style={{ borderColor: 'var(--theme-stats-border)' }}>
+                <span className="font-medium" style={{ color: 'var(--theme-stats-text)' }}>Max Pool:</span>
                 <input 
                   type="number" 
                   value={maxPoints} 
                   onChange={(e) => handleMaxPointsChange(e.target.value)} 
-                  className="w-16 border-b border-blue-300 text-center text-primary-color font-bold bg-transparent outline-none"
+                  className="w-16 text-center font-bold bg-transparent outline-none"
+                  style={{ border: 'none', borderBottom: '1px solid var(--theme-stats-border)', color: 'var(--theme-stats-text)' }}
                 />
               </div>
             </div>
             <div className="text-right">
-              <div className={`text-2xl font-bold ${remainingPoints < 0 ? 'text-red-500' : 'text-primary-color'}`}>{remainingPoints}</div>
-              <div className="text-xs font-semibold uppercase tracking-wider text-blue-800">Punti Rimanenti</div>
+              <div className="text-2xl font-bold" style={{ color: remainingPoints < 0 ? 'var(--danger-color)' : 'var(--theme-stats-text)' }}>{remainingPoints}</div>
+              <div className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--theme-stats-text)' }}>Punti Rimanenti</div>
             </div>
           </div>
           <div className="card-body">
@@ -392,7 +453,7 @@ export default function StatsStep({ characterData, setCharacterData }) {
                   <div key={key} className="flex items-center justify-between p-3 border rounded bg-white">
                     <div className="flex flex-col">
                       <span className="font-semibold">{STAT_NAMES[key]}</span>
-                      {key === primaryStat && <span className="text-xs font-bold text-primary-color">Primaria</span>}
+                      {key === primaryStat && <span className="text-xs font-bold" style={{ color: 'var(--theme-stats-text)' }}>Primaria</span>}
                       {key === secondaryStat && <span className="text-xs font-bold text-gray-500">Secondaria</span>}
                       <span className="text-xs text-muted mt-1">Costo: {cost} pt</span>
                     </div>
@@ -408,7 +469,8 @@ export default function StatsStep({ characterData, setCharacterData }) {
                       >-</button>
                       <div className="w-10 text-center font-bold text-xl">{val}</div>
                       <button 
-                        className={`w-8 h-8 rounded flex items-center justify-center font-bold text-lg ${isMax ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-primary-light hover:bg-blue-200 text-primary-color'}`}
+                        className={`w-8 h-8 rounded flex items-center justify-center font-bold text-lg ${isMax ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : ''}`}
+                        style={isMax ? {} : { backgroundColor: 'var(--theme-stats-bg)', color: 'var(--theme-stats-text)' }}
                         onClick={() => handlePointChange(key, 1)}
                         disabled={isMax}
                         title={val < 100 ? `Costo prossimo punto: ${nextCost}` : 'Massimo raggiunto'}
@@ -427,10 +489,10 @@ export default function StatsStep({ characterData, setCharacterData }) {
       )}
 
       {method === 'manual' && (
-        <div className="card">
-          <div className="card-header bg-gray-50 border-b border-gray-200" style={{padding: '1rem'}}>
-            <h3 className="card-title text-gray-800 m-0" style={{fontSize: '1rem'}}>Inserimento Manuale delle Caratteristiche</h3>
-            <p className="text-xs text-muted m-0 mt-1">Imposta liberamente i valori delle caratteristiche. I minimi di professione vengono applicati automaticamente.</p>
+        <div className="card" style={{ borderColor: 'var(--theme-stats-border)' }}>
+          <div className="card-header border-b" style={{padding: '1rem', backgroundColor: 'var(--theme-stats-bg)', borderBottomColor: 'var(--theme-stats-border)'}}>
+            <h3 className="card-title m-0" style={{fontSize: '1rem', color: 'var(--theme-stats-text)'}}>Inserimento Manuale delle Caratteristiche</h3>
+            <p className="text-xs m-0 mt-1" style={{ color: 'var(--theme-stats-text)', opacity: 0.85 }}>Imposta liberamente i valori delle caratteristiche. I minimi di professione vengono applicati automaticamente.</p>
           </div>
           <div className="card-body">
             <div className="grid-2">
@@ -519,13 +581,13 @@ export default function StatsStep({ characterData, setCharacterData }) {
         };
 
         return (
-          <div className="card border-green-300 bg-green-50/10 mt-8">
-            <div className="card-header bg-green-50 border-b border-green-200 flex justify-between items-center" style={{padding: '1rem'}}>
+          <div className="card mt-8" style={{ borderColor: 'var(--theme-stats-border)' }}>
+            <div className="card-header border-b flex justify-between items-center" style={{padding: '1rem', backgroundColor: 'var(--theme-stats-bg)', borderBottomColor: 'var(--theme-stats-border)'}}>
               <div>
-                <h3 className="card-title text-green-900 m-0" style={{fontSize: '1.1rem'}}>Riepilogo delle Caratteristiche & Modifiche GM</h3>
-                <p className="text-xs text-green-700 m-0 mt-0.5">Qui puoi visualizzare e modificare ulteriormente i valori delle caratteristiche finali. Totale Pool: <strong className="text-green-900 font-bold">{finalPoolTotal}</strong></p>
+                <h3 className="card-title m-0" style={{fontSize: '1.1rem', color: 'var(--theme-stats-text)'}}>Riepilogo delle Caratteristiche & Modifiche GM</h3>
+                <p className="text-xs m-0 mt-0.5" style={{ color: 'var(--theme-stats-text)', opacity: 0.85 }}>Qui puoi visualizzare e modificare ulteriormente i valori delle caratteristiche finali. Totale Pool: <strong style={{ color: 'var(--theme-stats-text)' }}>{finalPoolTotal}</strong></p>
               </div>
-              <span className="text-xs font-bold px-2.5 py-1 bg-green-100 text-green-800 rounded-full border border-green-200">
+              <span className="text-xs font-bold px-2.5 py-1 rounded-full border" style={{ backgroundColor: 'var(--theme-stats-bg)', color: 'var(--theme-stats-text)', borderColor: 'var(--theme-stats-border)' }}>
                 Punteggi Modificabili
               </span>
             </div>

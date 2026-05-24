@@ -1,4 +1,5 @@
 import tb1 from '../data/TB_1-caratteristiche_bonus.json';
+import penalitaCaricoData from '../data/TB_5-penalita_carico.json';
 
 export const STAT_KEYS = ['FR', 'AG', 'CO', 'IN', 'IT', 'PR'];
 export const STAT_NAMES = { FR: 'Forza', AG: 'Agilità', CO: 'Costituzione', IN: 'Intelligenza', IT: 'Intuizione', PR: 'Presenza' };
@@ -27,8 +28,7 @@ export const getRanksBonus = (skillName, ranks) => {
   }
   if (name === 'resistenza fisica') {
     if (ranks === 0) return 0;
-    if (ranks <= 10) return `${ranks}d10`;
-    return `10d10+${ranks - 10}d4`;
+    return `${ranks}d10`;
   }
   if (ranks === 0) return -25;
   if (ranks <= 10) return ranks * 5;
@@ -139,4 +139,87 @@ export const getTgp4PoolSize = (categoryName, skillName, professionName, tgp4Dat
 };
 
 export const fmt = (n) => (typeof n === 'number' ? (n >= 0 ? `+${n}` : `${n}`) : n);
+
+export const getProfessionRanksForLevel = (baseProfRanks, level) => {
+  if (!baseProfRanks || !level) return 0;
+  const base = parseFloat(baseProfRanks);
+  if (isNaN(base) || base === 0) return 0;
+  
+  const lvl = parseInt(level);
+  if (lvl <= 20) {
+    return base * lvl;
+  } else {
+    const first20 = base * 20;
+    const remaining = lvl - 20;
+    let factor = 0;
+    if (base === 3) factor = 1;
+    else if (base === 2) factor = 0.5;
+    else if (base === 1) factor = 0.25;
+    return first20 + factor * remaining;
+  }
+};
+
+export const getHpDiceForIncrement = (prevRanks, ranksGained) => {
+  const g = parseInt(ranksGained || 0);
+  return g > 0 ? g : 0;
+};
+
+export const getMagicPointsPerLevel = (statScore) => {
+  if (!statScore) return 0;
+  const score = parseInt(statScore);
+  const record = tb1.find(b => b.punteggio === score);
+  return record ? (record["punti magia"] || 0) : 0;
+};
+
+export const calculateCargoPenalty = (pesoPG, caricoKg) => {
+  const caricoArrotondato = Math.floor(caricoKg);
+  if (caricoArrotondato < 8) return { penalita: 0, caricoBloccato: false };
+  
+  const rows = penalitaCaricoData.filter(row => row['penalità carico'] !== 'peso personaggio (kg)');
+  const matchedRow = rows.find(row => {
+    const rangeText = row['penalità carico'];
+    if (!rangeText) return false;
+    const match = rangeText.match(/da\s+(\d+)\s+a\s+(\d+)/i);
+    if (match) {
+      const min = parseInt(match[1], 10);
+      const max = parseInt(match[2], 10);
+      if (min === 176 && pesoPG >= 176) return true;
+      return pesoPG >= min && pesoPG <= max;
+    }
+    return false;
+  });
+
+  if (!matchedRow) {
+    return { penalita: 0, caricoBloccato: true };
+  }
+
+  const columnRanges = [
+    { key: 'PESO TRASPORTATO (in kg) oltre l\'armatura ed i vestiti', min: 8, max: 12 },
+    { key: '', min: 13, max: 17 },
+    { key: '_1', min: 18, max: 22 },
+    { key: '_2', min: 23, max: 30 },
+    { key: '_3', min: 31, max: 40 },
+    { key: '_4', min: 41, max: 50 },
+    { key: '_5', min: 51, max: 60 },
+    { key: '_6', min: 61, max: 70 },
+    { key: '_7', min: 71, max: 80 }
+  ];
+
+  const matchedCol = columnRanges.find(col => caricoArrotondato >= col.min && caricoArrotondato <= col.max);
+  if (!matchedCol) {
+    return { penalita: 0, caricoBloccato: true };
+  }
+
+  const val = matchedRow[matchedCol.key];
+  if (val === 'NA' || val === undefined || val === '') {
+    return { penalita: 0, caricoBloccato: true };
+  }
+
+  const cleanVal = String(val).replace(/[^0-9]/g, '');
+  if (cleanVal === '') {
+    return { penalita: 0, caricoBloccato: true };
+  }
+
+  return { penalita: parseInt(cleanVal, 10), caricoBloccato: false };
+};
 

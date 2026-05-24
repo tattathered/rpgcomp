@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
 import gradiLingue from '../../../data/TGP_1-gradi_conoscenze_lingue.json';
 import { getSpellLimitInfo, getSpellsForList } from '../../../utils/magicHelpers';
@@ -10,6 +10,7 @@ import {
   getFinalStats,
   fmt
 } from '../../../utils/skillHelpers';
+import WalletBox from '../shared/WalletBox';
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 const STAT_KEYS = ['FR', 'AG', 'CO', 'IN', 'IT', 'PR'];
@@ -44,7 +45,7 @@ const SectionCard = ({ emoji, title, color, bg, border, children }) => (
 );
 
 // ─── Main component ───────────────────────────────────────────────────────────
-export default function CreationSummaryStep({ characterData }) {
+export default function CreationSummaryStep({ characterData, setCharacterData }) {
   const race = characterData.race;
   const profession = characterData.profession;
   const stats = characterData.stats || {};
@@ -59,11 +60,26 @@ export default function CreationSummaryStep({ characterData }) {
     return getFinalStats(stats, race, bgModifiers);
   }, [stats, race, bgModifiers]);
 
+  // ── Gestione Aspetto (PR) ──
+  const prBonus = finalStats['PR']?.bonusTot || 0;
+  const aspetto = characterData.aspetto || null;
+
+  const handleRollAspetto = () => {
+    const roll = Math.floor(Math.random() * 100) + 1;
+    const total = roll + prBonus;
+    setCharacterData(prev => ({ ...prev, aspetto: total }));
+  };
+
+  const handleManualAspetto = (val) => {
+    setCharacterData(prev => ({ ...prev, aspetto: val }));
+  };
+
   // ── Compute final skills ──
   const categories = [...new Set(primarySkillsList.map(s => s.categoria))];
   const skillsBase = characterData.skills || {};
 
   const finalSkills = useMemo(() => {
+    const primarySkillsSpecialBonus = bgModifiers.primarySkillsSpecialBonus || {};
     const result = {};
     primarySkillsList.forEach(sk => {
       const name = sk.nome;
@@ -82,10 +98,11 @@ export default function CreationSummaryStep({ characterData }) {
 
       const bonusGradi = getRanksBonus(name, totalRanks);
       const ingombroBonus = getIngombroBonus(name);
+      const specialBonus = primarySkillsSpecialBonus[name] || 0;
 
       let totalBonus;
       if (typeof bonusGradi === 'number') {
-        totalBonus = bonusGradi + carattBonus + (ingombroBonus ?? 0);
+        totalBonus = bonusGradi + carattBonus + specialBonus + (ingombroBonus ?? 0);
       } else {
         totalBonus = bonusGradi; // e.g. "3d10"
       }
@@ -93,7 +110,7 @@ export default function CreationSummaryStep({ characterData }) {
       result[name] = {
         category: sk.categoria,
         adRanks, profRanks, tgp4Ranks, bgExtra, totalRanks,
-        carattSigla, carattBonus, bonusGradi, ingombroBonus, totalBonus,
+        carattSigla, carattBonus, bonusGradi, ingombroBonus, specialBonus, totalBonus,
         valoreIniziale: sk['valore iniziale'],
       };
     });
@@ -181,34 +198,34 @@ export default function CreationSummaryStep({ characterData }) {
 
       {/* ── HEADER BANNER ── */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '1.5rem' }}>
-        <div style={{ padding: '1rem', border: '1px solid #bfdbfe', borderRadius: '0.6rem', background: '#eff6ff' }}>
-          <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: '#1e3a8a' }}>Popolo</div>
-          <div style={{ fontSize: '1.2rem', fontWeight: 900, color: '#1e3a8a', marginTop: '0.2rem' }}>{race.popolo}</div>
-          <div style={{ fontSize: '0.75rem', color: '#3b82f6', marginTop: '0.15rem' }}>{race['note (umani/non umani)']}</div>
+        <div style={{ padding: '1rem', border: '1px solid var(--theme-race-border)', borderRadius: '0.6rem', background: 'var(--theme-race-bg)' }}>
+          <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-race-text)' }}>Popolo</div>
+          <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-race-text)', marginTop: '0.2rem' }}>{race.popolo}</div>
+          <div style={{ fontSize: '0.75rem', color: 'var(--theme-race-text)', opacity: 0.85, marginTop: '0.15rem' }}>{race['note (umani/non umani)']}</div>
         </div>
-        <div style={{ padding: '1rem', border: '1px solid #e9d5ff', borderRadius: '0.6rem', background: '#faf5ff' }}>
-          <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: '#581c87' }}>Professione</div>
-          <div style={{ fontSize: '1.2rem', fontWeight: 900, color: '#581c87', marginTop: '0.2rem' }}>{profession.professione}</div>
-          <div style={{ fontSize: '0.75rem', color: '#9333ea', marginTop: '0.15rem' }}>
+        <div style={{ padding: '1rem', border: '1px solid var(--theme-profession-border)', borderRadius: '0.6rem', background: 'var(--theme-profession-bg)' }}>
+          <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-profession-text)' }}>Professione</div>
+          <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-profession-text)', marginTop: '0.2rem' }}>{profession.professione}</div>
+          <div style={{ fontSize: '0.75rem', color: 'var(--theme-profession-text)', opacity: 0.85, marginTop: '0.15rem' }}>
             Prim.: {profession.primaria} | Sec.: {profession.secondaria}
           </div>
         </div>
-        <div style={{ padding: '1rem', border: '1px solid #99f6e4', borderRadius: '0.6rem', background: '#f0fdfa' }}>
-          <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: '#134e4a' }}>Reame Magico</div>
-          <div style={{ fontSize: '1.2rem', fontWeight: 900, color: '#0f766e', marginTop: '0.2rem' }}>{magicRealm}</div>
-          <div style={{ fontSize: '0.75rem', color: '#14b8a6', marginTop: '0.15rem' }}>
+        <div style={{ padding: '1rem', border: '1px solid var(--theme-spell-lists-border)', borderRadius: '0.6rem', background: 'var(--theme-spell-lists-bg)' }}>
+          <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-spell-lists-text)' }}>Reame Magico</div>
+          <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-spell-lists-text)', marginTop: '0.2rem' }}>{magicRealm}</div>
+          <div style={{ fontSize: '0.75rem', color: 'var(--theme-spell-lists-text)', opacity: 0.85, marginTop: '0.15rem' }}>
             {profession['liste incantesimi'] || '—'}
           </div>
         </div>
       </div>
 
       {/* ── CARATTERISTICHE ── */}
-      <SectionCard emoji="🎯" title="Caratteristiche & Bonus" color="#065f46" bg="#f0fdf4" border="#a7f3d0">
+      <SectionCard emoji="🎯" title="Caratteristiche & Bonus" color="var(--theme-stats-text)" bg="var(--theme-stats-bg)" border="var(--theme-stats-border)">
         <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', fontSize: '0.85rem', borderCollapse: 'collapse' }}>
             <thead>
-              <tr style={{ borderBottom: '2px solid #d1fae5', background: '#f0fdf4' }}>
-                <th style={{ padding: '0.5rem 0.75rem', textAlign: 'left', color: '#065f46', fontWeight: 700 }}>Caratteristica</th>
+              <tr style={{ borderBottom: '2px solid var(--theme-stats-border)', background: 'var(--theme-stats-bg)' }}>
+                <th style={{ padding: '0.5rem 0.75rem', textAlign: 'left', color: 'var(--theme-stats-text)', fontWeight: 700 }}>Caratteristica</th>
                 <th style={{ padding: '0.5rem', textAlign: 'center', color: '#6b7280', fontSize: '0.75rem' }}>Statistiche</th>
                 <th style={{ padding: '0.5rem', textAlign: 'center', color: '#7e22ce', fontSize: '0.75rem' }}>Bonus BG</th>
                 <th style={{ padding: '0.5rem', textAlign: 'center', color: '#065f46', fontWeight: 700, fontSize: '0.75rem' }}>Bonus naturale</th>
@@ -250,15 +267,16 @@ export default function CreationSummaryStep({ characterData }) {
         </div>
         {/* Tiri Resistenza */}
         <div style={{ marginTop: '1rem' }}>
-          <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#065f46', marginBottom: '0.5rem' }}>Tiri Resistenza (TR):</div>
+          <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--theme-tr-text)', marginBottom: '0.5rem' }}>Tiri Resistenza (TR):</div>
           <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
             {trKeys.map(tr => {
               const raceTrBonus = parseBonusValue(race[tr.key] || 0);
               const statBonus = finalStats[tr.statKey]?.bonusTot || 0;
-              const totalTrBonus = raceTrBonus + statBonus;
+              const specialBonus = bgModifiers.trSpecialBonus || 0;
+              const totalTrBonus = raceTrBonus + statBonus + specialBonus;
               return (
-                <div key={tr.key} style={{ padding: '0.3rem 0.75rem', background: '#d1fae5', borderRadius: '99px', fontSize: '0.78rem', fontWeight: 600, color: '#065f46', border: '1px solid #a7f3d0' }}>
-                  <span style={{ color: '#047857' }}>{tr.label}:</span> {fmt(totalTrBonus)} <span style={{ fontSize: '0.7rem', fontWeight: 400, color: '#047857' }}>({fmt(raceTrBonus)} Popolo, {fmt(statBonus)} {tr.statKey})</span>
+                <div key={tr.key} style={{ padding: '0.3rem 0.75rem', background: 'var(--theme-tr-bg)', borderRadius: '99px', fontSize: '0.78rem', fontWeight: 600, color: 'var(--theme-tr-text)', border: '1px solid var(--theme-tr-border)' }}>
+                  <span style={{ color: 'var(--theme-tr-text)', fontWeight: 700 }}>{tr.label}:</span> {fmt(totalTrBonus)} <span style={{ fontSize: '0.7rem', fontWeight: 400, color: 'var(--theme-tr-text)', opacity: 0.85 }}>({fmt(raceTrBonus)} Popolo, {fmt(statBonus)} {tr.statKey}{specialBonus > 0 ? `, ${fmt(specialBonus)} Speciale` : ''})</span>
                 </div>
               );
             })}
@@ -266,14 +284,69 @@ export default function CreationSummaryStep({ characterData }) {
         </div>
       </SectionCard>
 
+      {/* ── ASPETTO ── */}
+      <SectionCard 
+        emoji="✨" 
+        title="Aspetto" 
+        color="var(--theme-appearance-text)" 
+        bg="var(--theme-appearance-bg)" 
+        border="var(--theme-appearance-border)"
+      >
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          {aspetto === null ? (
+            <div style={{ background: 'var(--theme-appearance-bg)', border: '1px solid var(--theme-appearance-border)', padding: '0.75rem', borderRadius: '0.5rem', fontSize: '0.85rem' }}>
+              <p style={{ color: 'var(--theme-appearance-text)', margin: '0 0 0.5rem 0', fontWeight: 600 }}>
+                Tira per determinare l'Aspetto fisico (tiro 1d100 + bonus Presenza (PR) di {fmt(prBonus)}).
+              </p>
+              <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                <button
+                  type="button"
+                  onClick={handleRollAspetto}
+                  className="btn btn-primary"
+                  style={{ background: 'var(--theme-appearance-text)', borderColor: 'var(--theme-appearance-text)', color: 'white', padding: '0.4rem 0.8rem', fontSize: '0.8rem' }}
+                >
+                  Tira 1d100
+                </button>
+                <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>oppure inserisci manuale:</span>
+                <input
+                  type="number"
+                  placeholder="Valore"
+                  onChange={(e) => handleManualAspetto(e.target.value === '' ? null : parseInt(e.target.value))}
+                  style={{ width: '4rem', padding: '0.3rem', border: '1px solid var(--border-color)', borderRadius: '4px', textAlign: 'center', fontSize: '0.8rem' }}
+                />
+              </div>
+            </div>
+          ) : (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: 'var(--theme-appearance-bg)', border: '1px solid var(--theme-appearance-border)', borderRadius: '0.5rem', padding: '0.75rem' }}>
+              <div style={{ width: '2.5rem', height: '2.5rem', borderRadius: '50%', background: 'var(--theme-appearance-text)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', fontWeight: 900 }}>
+                {aspetto}
+              </div>
+              <div style={{ fontSize: '0.85rem', color: 'var(--theme-appearance-text)' }}>
+                <p style={{ margin: 0, fontWeight: 700 }}>Aspetto Calcolato: {aspetto}</p>
+                <p style={{ margin: '0.1rem 0 0 0', fontSize: '0.75rem', opacity: 0.8 }}>
+                  Tiro calcolato come 1d100 + bonus Presenza (PR). Riflette il carisma e l'aspetto estetico.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setCharacterData(prev => ({ ...prev, aspetto: null }))}
+                style={{ marginLeft: 'auto', background: 'none', border: 'none', color: 'var(--danger-color)', cursor: 'pointer', fontSize: '0.75rem', textDecoration: 'underline' }}
+              >
+                Ricalcola / Cambia
+              </button>
+            </div>
+          )}
+        </div>
+      </SectionCard>
+
       {/* ── LISTE INCANTESIMI ── */}
-      <SectionCard emoji="✨" title="Liste Incantesimi" color="#4c1d95" bg="#f5f3ff" border="#c4b5fd">
-        <div style={{ marginBottom: '1rem', fontSize: '0.85rem', color: '#6d28d9' }}>
+      <SectionCard emoji="✨" title="Liste Incantesimi" color="var(--theme-spell-lists-text)" bg="var(--theme-spell-lists-bg)" border="var(--theme-spell-lists-border)">
+        <div style={{ marginBottom: '1rem', fontSize: '0.85rem', color: 'var(--theme-spell-lists-text)' }}>
           <span style={{ fontWeight: 600 }}>Reame:</span> {magicRealm} | <span style={{ fontWeight: 600 }}>Ammesse:</span> {profession['liste incantesimi'] || '—'} | <span style={{ fontWeight: 600 }}>Limite:</span> {profession['limite incantesimi'] || 'nessun limite'}
         </div>
         
         {learnedListsArray.length === 0 ? (
-          <div style={{ padding: '0.75rem', background: '#faf5ff', border: '1px dashed #a78bfa', borderRadius: '0.5rem', color: '#8b5cf6', fontSize: '0.85rem', textAlign: 'center' }}>
+          <div style={{ padding: '0.75rem', background: 'var(--theme-spell-lists-bg)', border: '1px dashed var(--theme-spell-lists-border)', borderRadius: '0.5rem', color: 'var(--theme-spell-lists-text)', fontSize: '0.85rem', textAlign: 'center' }}>
             Nessuna lista di incantesimi appresa.
           </div>
         ) : (
@@ -288,21 +361,21 @@ export default function CreationSummaryStep({ characterData }) {
               if (isFromBg) sourceText.push(`Background`);
 
               return (
-                <div key={listName} style={{ border: '1px solid #ddd6fe', borderRadius: '0.5rem', overflow: 'hidden' }}>
-                  <div style={{ background: '#ede9fe', padding: '0.5rem 1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{ fontWeight: 700, color: '#4c1d95' }}>{listName}</span>
-                    <span style={{ fontSize: '0.7rem', fontWeight: 600, background: '#c4b5fd', color: '#4c1d95', padding: '0.1rem 0.5rem', borderRadius: '99px' }}>
+                <div key={listName} style={{ border: '1px solid var(--theme-spell-lists-border)', borderRadius: '0.5rem', overflow: 'hidden' }}>
+                  <div style={{ background: 'var(--theme-spell-lists-bg)', padding: '0.5rem 1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ fontWeight: 700, color: 'var(--theme-spell-lists-text)' }}>{listName}</span>
+                    <span style={{ fontSize: '0.7rem', fontWeight: 600, background: 'var(--theme-spell-lists-text)', color: '#fff', padding: '0.1rem 0.5rem', borderRadius: '99px' }}>
                       {sourceText.join(' + ')}
                     </span>
                   </div>
                   <div style={{ overflowX: 'auto' }}>
                     <table style={{ width: '100%', fontSize: '0.8rem', borderCollapse: 'collapse' }}>
-                      <thead style={{ background: '#f5f3ff', borderBottom: '1px solid #ddd6fe' }}>
+                      <thead style={{ background: 'rgba(254, 226, 226, 0.3)', borderBottom: '1px solid var(--theme-spell-lists-border)' }}>
                         <tr>
-                          <th style={{ padding: '0.4rem 1rem', textAlign: 'center', color: '#6d28d9', fontWeight: 600, width: '10%' }}>Liv.</th>
-                          <th style={{ padding: '0.4rem 1rem', textAlign: 'left', color: '#6d28d9', fontWeight: 600, width: '25%' }}>Incantesimo</th>
-                          <th style={{ padding: '0.4rem 0.5rem', textAlign: 'center', color: '#6d28d9', fontWeight: 600, width: '10%' }}>Area/Tipo</th>
-                          <th style={{ padding: '0.4rem 1rem', textAlign: 'left', color: '#6d28d9', fontWeight: 600 }}>Descrizione</th>
+                          <th style={{ padding: '0.4rem 1rem', textAlign: 'center', color: 'var(--theme-spell-lists-text)', fontWeight: 600, width: '10%' }}>Liv.</th>
+                          <th style={{ padding: '0.4rem 1rem', textAlign: 'left', color: 'var(--theme-spell-lists-text)', fontWeight: 600, width: '25%' }}>Incantesimo</th>
+                          <th style={{ padding: '0.4rem 0.5rem', textAlign: 'center', color: 'var(--theme-spell-lists-text)', fontWeight: 600, width: '10%' }}>Area/Tipo</th>
+                          <th style={{ padding: '0.4rem 1rem', textAlign: 'left', color: 'var(--theme-spell-lists-text)', fontWeight: 600 }}>Descrizione</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -312,8 +385,8 @@ export default function CreationSummaryStep({ characterData }) {
                           </tr>
                         ) : (
                           spells.map((s, i) => (
-                            <tr key={i} style={{ borderBottom: i === spells.length - 1 ? 'none' : '1px solid #f3f4f6' }}>
-                              <td style={{ padding: '0.4rem 1rem', textAlign: 'center', fontWeight: 700, color: '#4c1d95' }}>{s.livello}</td>
+                            <tr key={i} style={{ borderBottom: i === spells.length - 1 ? 'none' : '1px solid var(--theme-spell-lists-border)' }}>
+                              <td style={{ padding: '0.4rem 1rem', textAlign: 'center', fontWeight: 700, color: 'var(--theme-spell-lists-text)', background: 'rgba(254, 226, 226, 0.1)' }}>{s.livello}</td>
                               <td style={{ padding: '0.4rem 1rem', fontWeight: 600, color: '#374151' }}>{s.nome_incantesimo}</td>
                               <td style={{ padding: '0.4rem 0.5rem', textAlign: 'center', color: '#6b7280', fontSize: '0.75rem' }}>{s.tipo_incantesimo || '—'}</td>
                               <td style={{ padding: '0.4rem 1rem', color: '#4b5563', fontSize: '0.75rem', lineHeight: '1.2' }}>{s.descrizione_incantesimo}</td>
@@ -331,7 +404,7 @@ export default function CreationSummaryStep({ characterData }) {
       </SectionCard>
 
       {/* ── ABILITÀ PRIMARIE ── */}
-      <SectionCard emoji="⚔️" title="Abilità Primarie" color="#1e3a8a" bg="#eff6ff" border="#bfdbfe">
+      <SectionCard emoji="⚔️" title="Abilità Primarie" color="var(--theme-primary-skills-text)" bg="var(--theme-primary-skills-bg)" border="var(--theme-primary-skills-border)">
         <p style={{ fontSize: '0.8rem', color: '#6b7280', marginBottom: '1rem', marginTop: 0 }}>
           Include gradi Adolescenza + Professione (TB_6) + Sviluppo Liv. 1 (TGP_4) + eventuali Bonus Background.
         </p>
@@ -355,8 +428,8 @@ export default function CreationSummaryStep({ characterData }) {
                         <th style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#7e22ce', fontWeight: 700 }}>G. background</th>
                         <th style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#1e3a8a', fontWeight: 700 }}>G. TOTALE</th>
                         <th style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#374151', fontWeight: 600 }}>Bonus sviluppo</th>
-                        <th style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#374151', fontWeight: 600 }}>Bonus caratt.</th>
-                        <th style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#374151', fontWeight: 600 }}>Carico</th>
+                        <th style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#6b7280', fontWeight: 600 }}>Bonus caratt.</th>
+                        <th style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#374151', fontWeight: 600 }}>Speciale</th>
                         <th style={{ padding: '0.45rem 1rem', textAlign: 'right', color: '#1e3a8a', fontWeight: 900 }}>Bonus TOTALE</th>
                       </tr>
                     </thead>
@@ -366,6 +439,9 @@ export default function CreationSummaryStep({ characterData }) {
                         if (!s) return null;
                         const isMM = cat === 'Abilità di Movimento e Manovra';
                         const hasIngombro = s.ingombroBonus !== null;
+                        const specialBonus = s.specialBonus || 0;
+                        const hasSpecialBonus = specialBonus !== 0;
+                        const displaySpecial = (hasIngombro || hasSpecialBonus) ? (specialBonus + (s.ingombroBonus ?? 0)) : null;
                         const totalBonusStr = typeof s.totalBonus === 'number' ? fmt(s.totalBonus) : s.totalBonus;
                         const bgHighlight = s.bgExtra > 0;
 
@@ -388,7 +464,7 @@ export default function CreationSummaryStep({ characterData }) {
                               {s.carattSigla ? `${s.carattSigla} ${fmt(s.carattBonus)}` : '—'}
                             </td>
                             <td style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#6b7280' }}>
-                              {hasIngombro ? fmt(s.ingombroBonus) : '—'}
+                              {displaySpecial !== null ? fmt(displaySpecial) : '—'}
                             </td>
                             <td style={{ padding: '0.45rem 1rem', textAlign: 'right', fontWeight: 900, fontSize: '0.9rem', color: '#1e3a8a' }}>
                               {totalBonusStr}
@@ -407,7 +483,7 @@ export default function CreationSummaryStep({ characterData }) {
 
       {/* ── ABILITÀ SECONDARIE (se presenti) ── */}
       {Object.keys(bgModifiers.secondarySkills || {}).length > 0 && (
-        <SectionCard emoji="🛠️" title="Abilità Secondarie" color="#047857" bg="#ecfdf5" border="#a7f3d0">
+        <SectionCard emoji="🛠️" title="Abilità Secondarie" color="var(--theme-secondary-skills-text)" bg="var(--theme-secondary-skills-bg)" border="var(--theme-secondary-skills-border)">
           <p style={{ fontSize: '0.8rem', color: '#6b7280', marginBottom: '1rem', marginTop: 0 }}>
             Abilità acquisite tramite opzioni Background.
           </p>
@@ -460,7 +536,7 @@ export default function CreationSummaryStep({ characterData }) {
       )}
 
       {/* ── LINGUE ── */}
-      <SectionCard emoji="🌐" title="Lingue Conosciute" color="#1e40af" bg="#eff6ff" border="#93c5fd">
+      <SectionCard emoji="🌐" title="Lingue Conosciute" color="var(--theme-languages-text)" bg="var(--theme-languages-bg)" border="var(--theme-languages-border)">
         {langEntries.length === 0 ? (
           <div style={{ color: '#9ca3af', textAlign: 'center', padding: '1rem' }}>Nessuna lingua registrata.</div>
         ) : (
@@ -469,11 +545,11 @@ export default function CreationSummaryStep({ characterData }) {
               const total = (data.base || 0) + (data.added || 0);
               const gradeInfo = gradiLingue.find(g => g.grado === total);
               return (
-                <div key={lang} style={{ padding: '0.4rem 0.85rem', border: '1px solid #bfdbfe', borderRadius: '99px', background: data.fromBg ? '#ede9fe' : '#f0f9ff', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                  <span style={{ fontWeight: 700, fontSize: '0.85rem', color: '#1e3a8a' }}>{lang}</span>
+                <div key={lang} style={{ padding: '0.4rem 0.85rem', border: '1px solid var(--theme-languages-border)', borderRadius: '99px', background: data.fromBg ? 'var(--theme-background-bg)' : 'var(--theme-languages-bg)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                  <span style={{ fontWeight: 700, fontSize: '0.85rem', color: 'var(--theme-languages-text)' }}>{lang}</span>
                   <span style={{ fontSize: '0.75rem', background: '#dbeafe', color: '#1d4ed8', padding: '0.1rem 0.4rem', borderRadius: '99px', fontWeight: 700 }}>Gr.{total}</span>
                   {gradeInfo && <span style={{ fontSize: '0.7rem', color: '#6b7280' }}>{gradeInfo.conoscenza}</span>}
-                  {data.fromBg && <span style={{ fontSize: '0.65rem', background: '#ddd6fe', color: '#6d28d9', padding: '0.1rem 0.3rem', borderRadius: '99px', fontWeight: 700 }}>BG</span>}
+                  {data.fromBg && <span style={{ fontSize: '0.65rem', background: 'var(--theme-background-border)', color: 'var(--theme-background-text)', padding: '0.1rem 0.3rem', borderRadius: '99px', fontWeight: 700 }}>BG</span>}
                 </div>
               );
             })}
@@ -481,8 +557,16 @@ export default function CreationSummaryStep({ characterData }) {
         )}
       </SectionCard>
 
+      {/* ── PORTAFOGLIO ── */}
+      <div style={{ marginBottom: '1.5rem' }}>
+        <WalletBox 
+          portafoglioMB={characterData.portafoglioMB || 0} 
+          onChange={(newVal) => setCharacterData(prev => ({ ...prev, portafoglioMB: newVal }))} 
+        />
+      </div>
+
       {/* ── OPZIONI BACKGROUND ── */}
-      <SectionCard emoji="🎒" title="Opzioni Background Scelte" color="#581c87" bg="#faf5ff" border="#e9d5ff">
+      <SectionCard emoji="🎒" title="Opzioni Background Scelte" color="var(--theme-background-text)" bg="var(--theme-background-bg)" border="var(--theme-background-border)">
         {bgOptions.length === 0 ? (
           <div style={{ color: '#9ca3af', textAlign: 'center', padding: '1rem' }}>Nessuna opzione background selezionata.</div>
         ) : (
@@ -490,14 +574,14 @@ export default function CreationSummaryStep({ characterData }) {
             {bgOptions.map((opt, idx) => {
               const formatted = formatBgOption(opt, idx);
               const catColors = {
-                'Gradi delle abilità':           '#ddd6fe',
-                'Aumento delle caratteristiche': '#bbf7d0',
-                'Lingue':                         '#bfdbfe',
-                'abilità speciali':               '#fde68a',
-                'oggetti speciali':               '#fecaca',
-                "denaro: monete d'oro":           '#bbf7d0',
-                'Incantesimi o Punti Magia':      '#e9d5ff',
-                'Lista incantesimi aggiuntiva':   '#e9d5ff',
+                'Gradi delle abilità':           'var(--theme-primary-skills-bg)',
+                'Aumento delle caratteristiche': 'var(--theme-stats-bg)',
+                'Lingue':                         'var(--theme-languages-bg)',
+                'abilità speciali':               'var(--theme-secondary-skills-bg)',
+                'oggetti speciali':               'var(--theme-background-bg)',
+                "denaro: monete d'oro":           '#dcfce7',
+                'Incantesimi o Punti Magia':      'var(--theme-spell-lists-bg)',
+                'Lista incantesimi aggiuntiva':   'var(--theme-spell-lists-bg)',
               };
               const bg = catColors[opt.category] || '#f3f4f6';
               return (
@@ -523,6 +607,17 @@ export default function CreationSummaryStep({ characterData }) {
           </div>
         )}
       </SectionCard>
+
+      {/* ── NOTE SPECIALI ── */}
+      {bgModifiers.specialNotes && bgModifiers.specialNotes.length > 0 && (
+        <SectionCard emoji="📝" title="Note Speciali" color="#1e293b" bg="#f1f5f9" border="#cbd5e1">
+          <ul style={{ margin: 0, paddingLeft: '1.25rem', fontSize: '0.85rem', color: '#334155', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+            {bgModifiers.specialNotes.map((note, idx) => (
+              <li key={idx}>{note}</li>
+            ))}
+          </ul>
+        </SectionCard>
+      )}
 
     </div>
   );

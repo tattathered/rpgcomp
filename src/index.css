@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 :root {
   --bg-color: #f8fafc;
@@ -23,6 +23,67 @@
 
   --radius-md: 8px;
   --radius-lg: 12px;
+
+  --theme-race-bg: #e0f2fe;
+  --theme-race-text: #0369a1;
+  --theme-race-border: #bae6fd;
+
+  /* Popoli specific theme colors */
+  --theme-race-blu-bg: #e0f2fe;
+  --theme-race-blu-text: #0369a1;
+  --theme-race-blu-border: #bae6fd;
+
+  --theme-race-giallo-bg: #fffbeb;
+  --theme-race-giallo-text: #854d0e;
+  --theme-race-giallo-border: #fef08a;
+
+  --theme-race-verde-bg: #f0fdf4;
+  --theme-race-verde-text: #166534;
+  --theme-race-verde-border: #bbf7d0;
+
+  --theme-race-rosso-bg: #fef2f2;
+  --theme-race-rosso-text: #991b1b;
+  --theme-race-rosso-border: #fecaca;
+
+  --theme-race-nero-bg: #1f2937;
+  --theme-race-nero-text: #f9fafb;
+  --theme-race-nero-border: #4b5563;
+
+  --theme-profession-bg: #f3e8ff;
+  --theme-profession-text: #6b21a8;
+  --theme-profession-border: #e9d5ff;
+
+  --theme-stats-bg: #dcfce7;
+  --theme-stats-text: #15803d;
+  --theme-stats-border: #bbf7d0;
+
+  --theme-appearance-bg: #d1fae5;
+  --theme-appearance-text: #047857;
+  --theme-appearance-border: #a7f3d0;
+
+  --theme-tr-bg: #ccfbf1;
+  --theme-tr-text: #0f766e;
+  --theme-tr-border: #99f6e4;
+
+  --theme-spell-lists-bg: #fee2e2;
+  --theme-spell-lists-text: #b91c1c;
+  --theme-spell-lists-border: #fecaca;
+
+  --theme-primary-skills-bg: #ffedd5;
+  --theme-primary-skills-text: #c2410c;
+  --theme-primary-skills-border: #fed7aa;
+
+  --theme-secondary-skills-bg: #fef9c3;
+  --theme-secondary-skills-text: #a16207;
+  --theme-secondary-skills-border: #fef08a;
+
+  --theme-languages-bg: #f3f4f6;
+  --theme-languages-text: #374151;
+  --theme-languages-border: #e5e7eb;
+
+  --theme-background-bg: #fce7f3;
+  --theme-background-text: #be185d;
+  --theme-background-border: #fbcfe8;
 }
 
 * {
@@ -114,9 +175,9 @@ body {
 .main-content {
   flex: 1;
   padding: 2rem;
-  max-width: 90%;
+  max-width: 90vw;
   margin: 0 auto;
-  width: 100%;
+  width: 90%;
 }
 
 /* UI Components */
@@ -129,7 +190,7 @@ body {
 }
 
 .card-header {
-  padding: 1.5rem;
+  padding: 0.5rem;
   border-bottom: 1px solid var(--border-color);
   background-color: var(--surface-hover);
 }
@@ -146,7 +207,7 @@ body {
 }
 
 .card-body {
-  padding: 1.5rem;
+  padding: 0.75rem;
 }
 
 .btn {
@@ -188,10 +249,10 @@ body {
   cursor: not-allowed;
 }
 
-/* Wizard Specifics */
 .wizard-layout {
   display: flex;
   gap: 2rem;
+  width: 100%;
 }
 
 .wizard-sidebar {
@@ -214,6 +275,15 @@ body {
   align-items: center;
   gap: 0.75rem;
   transition: all 0.2s;
+}
+
+.wizard-step.clickable {
+  cursor: pointer;
+}
+
+.wizard-step.clickable:hover {
+  background-color: var(--surface-hover);
+  color: var(--text-main);
 }
 
 .wizard-step.completed {
@@ -357,6 +427,11 @@ body {
 .bg-teal-600 { background-color: #0d9488; }
 .bg-amber-50 { background-color: #fffbeb; }
 .bg-red-50 { background-color: #fef2f2; }
+.bg-red-50\/50 { background-color: rgba(254, 226, 226, 0.45); }
+.bg-red-600 { background-color: #dc2626; }
+.bg-red-700 { background-color: #b91c1c; }
+.bg-blue-700 { background-color: #1d4ed8; }
+.bg-teal-700 { background-color: #0f766e; }
 
 /* Text utilities */
 .text-center { text-align: center; }
@@ -390,11 +465,13 @@ body {
 .text-purple-800 { color: #6b21a8; }
 .text-purple-900 { color: #581c87; }
 .text-purple-950 { color: #3b0764; }
+.text-teal-700 { color: #0f766e; }
 .text-teal-800 { color: #115e59; }
 .text-teal-900 { color: #134e4a; }
 .text-teal-950 { color: #042f2e; }
 .text-amber-900 { color: #78350f; }
 .text-red-500 { color: #ef4444; }
+.text-red-600 { color: #dc2626; }
 .text-red-700 { color: #b91c1c; }
 .text-white { color: #ffffff; }
 .text-green-800 { color: #166534; }
@@ -409,6 +486,7 @@ body {
 .rounded-full { border-radius: 9999px; }
 
 /* Shadow */
+.shadow-xs { box-shadow: var(--shadow-sm); }
 .shadow-sm { box-shadow: var(--shadow-sm); }
 .shadow-md { box-shadow: var(--shadow-md); }
 
@@ -445,6 +523,8 @@ button:disabled { opacity: 0.3; cursor: not-allowed; }
 .hover\:bg-purple-700:hover { background-color: #7e22ce; }
 .hover\:bg-teal-100\/50:hover { background-color: rgba(204, 251, 241, 0.5); }
 .hover\:bg-red-100:hover { background-color: #fee2e2; }
+.hover\:bg-red-700:hover { background-color: #b91c1c; }
+.hover\:bg-blue-700:hover { background-color: #1d4ed8; }
 .hover\:text-red-700:hover { color: #b91c1c; }
 .hover\:shadow-md:hover { box-shadow: var(--shadow-md); }
 
@@ -466,3 +546,81 @@ input[type=number] {
 .bg-orange-100 { background-color: #ffedd5; }
 .border-orange-100 { border-color: #ffedd5; }
 .border-orange-200 { border-color: #fed7aa; }
+
+/* Tailwind CSS utilities fallback */
+.text-left { text-align: left; }
+.border-collapse { border-collapse: collapse; }
+.divide-y > * + * { border-top: 1px solid #e5e7eb; }
+.divide-gray-100 > * + * { border-color: #f3f4f6; }
+.divide-y.divide-gray-100 tr { border-bottom: 1px solid #f3f4f6; }
+.hover\:bg-gray-50\/50:hover { background-color: rgba(249, 250, 251, 0.5); }
+.hover\:bg-gray-50:hover { background-color: #f9fafb; }
+.space-y-4 > * + * { margin-top: 1rem; }
+.space-y-6 > * + * { margin-top: 1.5rem; }
+.space-y-1\.5 > * + * { margin-top: 0.375rem; }
+.grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+
+/* Print styles for Character Sheet */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 11px !important;
+  }
+  
+  .top-nav,
+  .wizard-sidebar,
+  .wizard-footer,
+  .print\:hidden {
+    display: none !important;
+  }
+  
+  .app-container,
+  .main-content,
+  .wizard-layout,
+  .wizard-content {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+  
+  .sheet-print-container {
+    padding: 0 !important;
+  }
+  
+  .print\:border-0 {
+    border: 0 !important;
+  }
+  
+  .print\:shadow-none {
+    box-shadow: none !important;
+  }
+  
+  .print\:p-0 {
+    padding: 0 !important;
+  }
+  
+  .print\:break-inside-avoid {
+    break-inside: avoid !important;
+  }
+  
+  /* Force background colors to print for vitality/magic circles */
+  .bg-red-600, .bg-blue-700, .bg-teal-700 {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  
+  /* Ensure tables print nicely */
+  table {
+    page-break-inside: avoid;
+  }
+  
+  tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+}

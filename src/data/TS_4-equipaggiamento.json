@@ -1,0 +1,812 @@
+[
+  {
+    "categoria": "armi",
+    "nome": "Ascia da battaglia",
+    "abbreviazione": "(ab)",
+    "costo_MB": 130,
+    "peso in kg": 3,
+    "note": "A 2 mani",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armi",
+    "nome": "Bolas",
+    "abbreviazione": "(bo)",
+    "costo_MB": 50,
+    "peso in kg": 1.5,
+    "note": "Da lancio",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armi",
+    "nome": "Spada",
+    "abbreviazione": "(sp)",
+    "costo_MB": 100,
+    "peso in kg": 1.8,
+    "note": "A 1 mano, da taglio",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armi",
+    "nome": "Randello",
+    "abbreviazione": "(ra)",
+    "costo_MB": 0.1,
+    "peso in kg": 2.2,
+    "note": "A 1 mano, contundente",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armi",
+    "nome": "Arco a doppia curva",
+    "abbreviazione": "(ap)",
+    "costo_MB": 170,
+    "peso in kg": 1.3,
+    "note": "Da tiro",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armi",
+    "nome": "Balestra",
+    "abbreviazione": "(bl)",
+    "costo_MB": 250,
+    "peso in kg": 3.6,
+    "note": "Da tiro",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armi",
+    "nome": "Pugnale",
+    "abbreviazione": "(pu)",
+    "costo_MB": 30,
+    "peso in kg": 0.4,
+    "note": "A 1 mano, da taglio",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armi",
+    "nome": "Flagello",
+    "abbreviazione": "(fl)",
+    "costo_MB": 190,
+    "peso in kg": 2.7,
+    "note": "A 2 mani",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armi",
+    "nome": "Alabarda",
+    "abbreviazione": "(ad)",
+    "costo_MB": 140,
+    "peso in kg": 3.1,
+    "note": "Con asta, a 2 mani",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armi",
+    "nome": "Accetta",
+    "abbreviazione": "(at)",
+    "costo_MB": 50,
+    "peso in kg": 2.5,
+    "note": "A 1 mano, da taglio",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armi",
+    "nome": "Giavellotto",
+    "abbreviazione": "(gi)",
+    "costo_MB": 30,
+    "peso in kg": 1.8,
+    "note": "Con asta, a 1 mano",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armi",
+    "nome": "Arco lungo",
+    "abbreviazione": "(al)",
+    "costo_MB": 100,
+    "peso in kg": 1.3,
+    "note": "Da tiro",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armi",
+    "nome": "Mazzafrusto",
+    "abbreviazione": "(ma)",
+    "costo_MB": 60,
+    "peso in kg": 2.2,
+    "note": "A 1 mano, contundente",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armi",
+    "nome": "Mazzafrusto",
+    "abbreviazione": "(ms)",
+    "costo_MB": 160,
+    "peso in kg": 2.2,
+    "note": "A 1 mano, contundente",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armi",
+    "nome": "Lancia (da cavaliere)",
+    "abbreviazione": "(lc)",
+    "costo_MB": 50,
+    "peso in kg": 4.5,
+    "note": "Con asta, a 2 mani",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armi",
+    "nome": "Rete",
+    "abbreviazione": "(re)",
+    "costo_MB": 70,
+    "peso in kg": 1.3,
+    "note": "A 1 mano, contundente",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armi",
+    "nome": "Bastone a 2 mani",
+    "abbreviazione": "(ba)",
+    "costo_MB": 0.5,
+    "peso in kg": 1.8,
+    "note": "A 2 mani, contundente",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armi",
+    "nome": "Scimitarra",
+    "abbreviazione": "(sc)",
+    "costo_MB": 100,
+    "peso in kg": 1.8,
+    "note": "A 1 mano, da taglio",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armi",
+    "nome": "Arco corto",
+    "abbreviazione": "(ac)",
+    "costo_MB": 60,
+    "peso in kg": 0.9,
+    "note": "Da tiro",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armi",
+    "nome": "Spada corta",
+    "abbreviazione": "(ss)",
+    "costo_MB": 70,
+    "peso in kg": 1.3,
+    "note": "A 1 mano, da taglio",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armi",
+    "nome": "Fionda",
+    "abbreviazione": "(fi)",
+    "costo_MB": 9,
+    "peso in kg": 0.4,
+    "note": "Da tiro",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armi",
+    "nome": "Lancia",
+    "abbreviazione": "(la)",
+    "costo_MB": 23,
+    "peso in kg": 2.2,
+    "note": "Con asta, a 1 mano",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armi",
+    "nome": "Spadone a due mani",
+    "abbreviazione": "(sd)",
+    "costo_MB": 200,
+    "peso in kg": 3.6,
+    "note": "A 2 mani, da taglio",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armi",
+    "nome": "Martello da guerra",
+    "abbreviazione": "(mg)",
+    "costo_MB": 150,
+    "peso in kg": 2.2,
+    "note": "A 1 mano, contundente",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armi",
+    "nome": "Frusta",
+    "abbreviazione": "(fr)",
+    "costo_MB": 20,
+    "peso in kg": 1.3,
+    "note": "A 1 mano, da taglio",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armatura",
+    "nome": "Scudo",
+    "abbreviazione": "(scu)",
+    "costo_MB": 55,
+    "peso in kg": 6.8,
+    "note": "scudo",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armatura",
+    "nome": "Bracciali di cuoio",
+    "abbreviazione": "(brc)",
+    "costo_MB": 20,
+    "peso in kg": 0.9,
+    "note": "bracciali",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armatura",
+    "nome": "Schinieri di cuoio",
+    "abbreviazione": "(scc)",
+    "costo_MB": 20,
+    "peso in kg": 0.9,
+    "note": "schinieri",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armatura",
+    "nome": "Bracciali di metallo",
+    "abbreviazione": "(brm)",
+    "costo_MB": 40,
+    "peso in kg": 1.3,
+    "note": "bracciali",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armatura",
+    "nome": "Schinieri di metallo",
+    "abbreviazione": "(scm)",
+    "costo_MB": 40,
+    "peso in kg": 1.3,
+    "note": "schinieri",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armatura",
+    "nome": "Elmo di cuoio",
+    "abbreviazione": "(elc)",
+    "costo_MB": 25,
+    "peso in kg": 0.9,
+    "note": "elmo",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armatura",
+    "nome": "Elmo di metallo",
+    "abbreviazione": "(elm)",
+    "costo_MB": 40,
+    "peso in kg": 1.3,
+    "note": "elmo",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armatura",
+    "nome": "Armatura di cuoio grezzo",
+    "abbreviazione": "(acg)",
+    "costo_MB": 30,
+    "peso in kg": 5.4,
+    "note": "armatura",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armatura",
+    "nome": "Armatura di cuoio rinforzato",
+    "abbreviazione": "(acr)",
+    "costo_MB": 100,
+    "peso in kg": 6.3,
+    "note": "armatura",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armatura",
+    "nome": "Corazza di maglia",
+    "abbreviazione": "(com)",
+    "costo_MB": 350,
+    "peso in kg": 9,
+    "note": "armatura",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "armatura",
+    "nome": "Corazza di piastre",
+    "abbreviazione": "(cop)",
+    "costo_MB": 500,
+    "peso in kg": 11.3,
+    "note": "armatura",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "abbigliamento",
+    "nome": "Stivali",
+    "abbreviazione": null,
+    "costo_MB": 10,
+    "peso in kg": 1.3,
+    "note": null,
+    "dotazione_iniziale": "sì",
+    "carico": "no"
+  },
+  {
+    "categoria": "abbigliamento",
+    "nome": "Mantello",
+    "abbreviazione": null,
+    "costo_MB": 9,
+    "peso in kg": 0.9,
+    "note": null,
+    "dotazione_iniziale": "sì",
+    "carico": "no"
+  },
+  {
+    "categoria": "abbigliamento",
+    "nome": "Cappotto",
+    "abbreviazione": null,
+    "costo_MB": 15,
+    "peso in kg": 2.7,
+    "note": null,
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "abbigliamento",
+    "nome": "Pantaloni",
+    "abbreviazione": null,
+    "costo_MB": 2.5,
+    "peso in kg": 0.4,
+    "note": null,
+    "dotazione_iniziale": "sì",
+    "carico": "no"
+  },
+  {
+    "categoria": "abbigliamento",
+    "nome": "Maglia",
+    "abbreviazione": null,
+    "costo_MB": 3,
+    "peso in kg": 0.4,
+    "note": null,
+    "dotazione_iniziale": "sì",
+    "carico": "no"
+  },
+  {
+    "categoria": "abbigliamento",
+    "nome": "Soprabito",
+    "abbreviazione": null,
+    "costo_MB": 9,
+    "peso in kg": 0.4,
+    "note": null,
+    "dotazione_iniziale": "sì",
+    "carico": "no"
+  },
+  {
+    "categoria": "proiettili",
+    "nome": "Frecce (20)",
+    "abbreviazione": null,
+    "costo_MB": 4,
+    "peso in kg": 1.3,
+    "note": "Probabile rottura nell'uso: 40%",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "contenitori",
+    "nome": "Zaino",
+    "abbreviazione": null,
+    "costo_MB": 2,
+    "peso in kg": 0.9,
+    "note": "Capienza: 9 kg",
+    "dotazione_iniziale": "sì",
+    "carico": "no"
+  },
+  {
+    "categoria": "campo",
+    "nome": "Sacco a pelo (lana)",
+    "abbreviazione": null,
+    "costo_MB": 2,
+    "peso in kg": 2.2,
+    "note": "Coperta",
+    "dotazione_iniziale": "sì",
+    "carico": "sì"
+  },
+  {
+    "categoria": "strumenti",
+    "nome": "Chiodi a 3 punte (5)",
+    "abbreviazione": null,
+    "costo_MB": 8,
+    "peso in kg": 0.9,
+    "note": null,
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "proiettili",
+    "nome": "Dardi per balestra (20)",
+    "abbreviazione": null,
+    "costo_MB": 1,
+    "peso in kg": 1.3,
+    "note": "Probabile rottura nell'uso: 15%",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "strumenti",
+    "nome": "Archetto per il fuoco",
+    "abbreviazione": null,
+    "costo_MB": 80,
+    "peso in kg": 0.2,
+    "note": "Occorrono 5 minuti",
+    "dotazione_iniziale": "sì",
+    "carico": "sì"
+  },
+  {
+    "categoria": "strumenti",
+    "nome": "Scatola dell'acciarino",
+    "abbreviazione": null,
+    "costo_MB": 1,
+    "peso in kg": 0.2,
+    "note": "Occorrono 3 minut",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "contenitori",
+    "nome": "Zaino valigia con telaio",
+    "abbreviazione": null,
+    "costo_MB": 3.3,
+    "peso in kg": 1.3,
+    "note": "Capienza: 20 kg",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "strumenti",
+    "nome": "Attrezzi da scasso 1",
+    "abbreviazione": null,
+    "costo_MB": 10,
+    "peso in kg": 0.2,
+    "note": "Bonus di +5",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "strumenti",
+    "nome": "Fiasco d'olio per lanterna",
+    "abbreviazione": null,
+    "costo_MB": 3,
+    "peso in kg": 0.4,
+    "note": "Sufficiente per 6 ore",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "strumenti",
+    "nome": "Pioli/Chiodi (10)",
+    "abbreviazione": null,
+    "costo_MB": 0.9,
+    "peso in kg": 0.9,
+    "note": "Di legno",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "strumenti",
+    "nome": "Bullette/Chiodi (10)",
+    "abbreviazione": null,
+    "costo_MB": 2,
+    "peso in kg": 1.3,
+    "note": "Di legno",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "strumenti",
+    "nome": "Pertica (lunga 3 m)",
+    "abbreviazione": null,
+    "costo_MB": 0.5,
+    "peso in kg": 3.6,
+    "note": "Di legno",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "contenitori",
+    "nome": "Faretra (capienza: 20)",
+    "abbreviazione": null,
+    "costo_MB": 1,
+    "peso in kg": 0.2,
+    "note": null,
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "strumenti",
+    "nome": "Corda normale",
+    "abbreviazione": null,
+    "costo_MB": 4,
+    "peso in kg": 2.7,
+    "note": "Lunga 16 m",
+    "dotazione_iniziale": "sì",
+    "carico": "sì"
+  },
+  {
+    "categoria": "strumenti",
+    "nome": "Corda rinforzata",
+    "abbreviazione": null,
+    "costo_MB": 12,
+    "peso in kg": 2.7,
+    "note": "Lunga 16 m",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "contenitori",
+    "nome": "Sacco",
+    "abbreviazione": null,
+    "costo_MB": 0.8,
+    "peso in kg": 0.8,
+    "note": "Capienza: 2 kg",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "contenitori",
+    "nome": "Fodero",
+    "abbreviazione": null,
+    "costo_MB": 25,
+    "peso in kg": 0.2,
+    "note": null,
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "campo",
+    "nome": "Telo imperm. (1,5x2,5 m)",
+    "abbreviazione": null,
+    "costo_MB": 1,
+    "peso in kg": 1.8,
+    "note": null,
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "campo",
+    "nome": "Tenda",
+    "abbreviazione": null,
+    "costo_MB": 20,
+    "peso in kg": 4,
+    "note": "Per 2 persone",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "strumenti",
+    "nome": "Torcia",
+    "abbreviazione": null,
+    "costo_MB": 30,
+    "peso in kg": 0.4,
+    "note": "Illumina una zona di 6,5m diam.",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "contenitori",
+    "nome": "Borraccia (otre) da 1/2l.",
+    "abbreviazione": null,
+    "costo_MB": 0.1,
+    "peso in kg": 0.4,
+    "note": "Piena",
+    "dotazione_iniziale": "sì",
+    "carico": "sì"
+  },
+  {
+    "categoria": "contenitori",
+    "nome": "Cintura per armi",
+    "abbreviazione": null,
+    "costo_MB": 5,
+    "peso in kg": 0.4,
+    "note": null,
+    "dotazione_iniziale": "sì",
+    "carico": "no"
+  },
+  {
+    "categoria": "vitto",
+    "nome": "Birra chiara o scura",
+    "abbreviazione": null,
+    "costo_MB": 1.2,
+    "peso in kg": null,
+    "note": "1/2 litro",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "vitto",
+    "nome": "Brandy",
+    "abbreviazione": null,
+    "costo_MB": 1,
+    "peso in kg": null,
+    "note": "1/4 litro",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "vitto",
+    "nome": "Sidro",
+    "abbreviazione": null,
+    "costo_MB": 0.1,
+    "peso in kg": null,
+    "note": "1/2 litro",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "vitto",
+    "nome": "Idromele",
+    "abbreviazione": null,
+    "costo_MB": 0.5,
+    "peso in kg": null,
+    "note": "1/2 litro",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "vitto",
+    "nome": "Vino",
+    "abbreviazione": null,
+    "costo_MB": 0.6,
+    "peso in kg": null,
+    "note": "1/2 litro",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "vitto",
+    "nome": "Pasto leggero",
+    "abbreviazione": null,
+    "costo_MB": 0.06,
+    "peso in kg": null,
+    "note": null,
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "vitto",
+    "nome": "Pasto normale",
+    "abbreviazione": null,
+    "costo_MB": 0.1,
+    "peso in kg": null,
+    "note": null,
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "vitto",
+    "nome": "Pasto abbondante",
+    "abbreviazione": null,
+    "costo_MB": 1.2,
+    "peso in kg": null,
+    "note": null,
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "vitto",
+    "nome": "Razioni normali (7 gg.)",
+    "abbreviazione": null,
+    "costo_MB": 0.5,
+    "peso in kg": 8.1,
+    "note": "Deperibili",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "vitto",
+    "nome": "Razioni da viaggio (7 gg.)",
+    "abbreviazione": null,
+    "costo_MB": 1,
+    "peso in kg": 6.3,
+    "note": "In conserva",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "vitto",
+    "nome": "Carne secca (7 gg.)",
+    "abbreviazione": null,
+    "costo_MB": 300,
+    "peso in kg": 1.8,
+    "note": "In conserva",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "vitto",
+    "nome": "Pan di via (1 mese)",
+    "abbreviazione": null,
+    "costo_MB": 1500,
+    "peso in kg": 1.8,
+    "note": "In conserva",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "alloggio",
+    "nome": "Alloggio scadente",
+    "abbreviazione": null,
+    "costo_MB": 0.1,
+    "peso in kg": null,
+    "note": "Dormitorio comune",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "alloggio",
+    "nome": "Alloggio medio",
+    "abbreviazione": null,
+    "costo_MB": 0.1,
+    "peso in kg": null,
+    "note": "Letti separati",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "alloggio",
+    "nome": "Buon alloggio",
+    "abbreviazione": null,
+    "costo_MB": 0.2,
+    "peso in kg": null,
+    "note": "Stanze separate",
+    "dotazione_iniziale": null,
+    "carico": null
+  },
+  {
+    "categoria": "alloggio",
+    "nome": "Stalla",
+    "abbreviazione": null,
+    "costo_MB": 0.002,
+    "peso in kg": null,
+    "note": "con cibo per animali",
+    "dotazione_iniziale": null,
+    "carico": null
+  }
+]

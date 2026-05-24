@@ -7,7 +7,10 @@ import StatsStep from './steps/StatsStep';
 import AdolescenceStep from './steps/AdolescenceStep';
 import ApprenticeshipLevel1Step from './steps/ApprenticeshipLevel1Step';
 import BackgroundStep from './steps/BackgroundStep';
+import EquipmentStep from './steps/EquipmentStep';
 import CreationSummaryStep from './steps/CreationSummaryStep';
+import LearningStep from './steps/LearningStep';
+import CharacterSheetStep from './steps/CharacterSheetStep';
 
 const WIZARD_STEPS = [
   { id: 'race',       title: '1. Popolo e Cultura',    icon: User },
@@ -16,27 +19,39 @@ const WIZARD_STEPS = [
   { id: 'adolescence',title: '4. Adolescenza',          icon: Clock },
   { id: 'level1',     title: '5. Sviluppo Liv. 1',     icon: BookOpen },
   { id: 'background', title: '6. Background',           icon: BookOpen },
-  { id: 'creation_summary', title: '7. Riepilogo Creazione', icon: List },
-  { id: 'learning',   title: '8. Apprendimento',       icon: BookOpen },
-  { id: 'summary',    title: '9. Riepilogo Scheda',    icon: List },
+  { id: 'equipment',  title: '7. Equipaggiamento',      icon: Shield },
+  { id: 'creation_summary', title: '8. Riepilogo Creazione', icon: List },
+  { id: 'learning',   title: '9. Apprendimento',       icon: BookOpen },
+  { id: 'summary',    title: '10. Riepilogo Scheda',    icon: List },
 ];
 
-export default function CharacterWizard() {
-  const [currentStepIndex, setCurrentStepIndex] = useState(0);
-  const [characterData, setCharacterData] = useState({
-    race: null,
-    profession: null,
-    stats: {},
-    adolescenceSkills: {},
-    backgroundOptions: [],
-    learningSkills: {},
+export default function CharacterWizard({ initialData, onSave, initialStepIndex = 0, equipmentCatalog }) {
+  const [currentStepIndex, setCurrentStepIndex] = useState(initialStepIndex);
+  const [characterData, setCharacterData] = useState(() => {
+    return initialData || {
+      name: '',
+      race: null,
+      profession: null,
+      stats: {},
+      adolescenceSkills: {},
+      backgroundOptions: [],
+      learningSkills: {},
+    };
   });
 
   const currentStep = WIZARD_STEPS[currentStepIndex];
 
   const handleNext = () => {
+    const currentStep = WIZARD_STEPS[currentStepIndex];
+    const err = characterData.stepErrors?.[currentStep.id];
+    if (err) {
+      alert(err);
+      return;
+    }
     if (currentStepIndex < WIZARD_STEPS.length - 1) {
       setCurrentStepIndex(currentStepIndex + 1);
+    } else if (onSave) {
+      onSave(characterData);
     }
   };
 
@@ -58,11 +73,25 @@ export default function CharacterWizard() {
             const Icon = step.icon;
             const isCompleted = index < currentStepIndex;
             const isActive = index === currentStepIndex;
+            const isSavedCharacter = !!characterData.id;
             
             return (
               <div 
                 key={step.id} 
-                className={`wizard-step ${isActive ? 'active' : ''} ${isCompleted ? 'completed' : ''}`}
+                className={`wizard-step ${isActive ? 'active' : ''} ${isCompleted ? 'completed' : ''} ${isSavedCharacter ? 'clickable' : ''}`}
+                onClick={() => {
+                  if (isSavedCharacter) {
+                    if (index > currentStepIndex) {
+                      const currentStep = WIZARD_STEPS[currentStepIndex];
+                      const err = characterData.stepErrors?.[currentStep.id];
+                      if (err) {
+                        alert(err);
+                        return;
+                      }
+                    }
+                    setCurrentStepIndex(index);
+                  }
+                }}
               >
                 {isCompleted ? <Check className="w-4 h-4" /> : <Icon className="w-4 h-4" />}
                 <span style={{ fontSize: '0.875rem' }}>{step.title}</span>
@@ -115,7 +144,7 @@ export default function CharacterWizard() {
           )}
 
           {currentStep.id === 'adolescence' && (
-            <AdolescenceStep characterData={characterData} setCharacterData={setCharacterData} />
+            <AdolescenceStep characterData={characterData} setCharacterData={setCharacterData} equipmentCatalog={equipmentCatalog} />
           )}
 
           {currentStep.id === 'level1' && (
@@ -126,11 +155,23 @@ export default function CharacterWizard() {
             <BackgroundStep characterData={characterData} setCharacterData={setCharacterData} />
           )}
 
-          {currentStep.id === 'creation_summary' && (
-            <CreationSummaryStep characterData={characterData} />
+          {currentStep.id === 'equipment' && (
+            <EquipmentStep characterData={characterData} setCharacterData={setCharacterData} equipmentCatalog={equipmentCatalog} />
           )}
 
-          {currentStep.id !== 'race' && currentStep.id !== 'profession' && currentStep.id !== 'stats' && currentStep.id !== 'adolescence' && currentStep.id !== 'level1' && currentStep.id !== 'background' && currentStep.id !== 'creation_summary' && (
+          {currentStep.id === 'creation_summary' && (
+            <CreationSummaryStep characterData={characterData} setCharacterData={setCharacterData} equipmentCatalog={equipmentCatalog} />
+          )}
+
+          {currentStep.id === 'learning' && (
+            <LearningStep characterData={characterData} setCharacterData={setCharacterData} />
+          )}
+
+          {currentStep.id === 'summary' && (
+            <CharacterSheetStep characterData={characterData} setCharacterData={setCharacterData} />
+          )}
+
+          {currentStep.id !== 'race' && currentStep.id !== 'profession' && currentStep.id !== 'stats' && currentStep.id !== 'adolescence' && currentStep.id !== 'level1' && currentStep.id !== 'background' && currentStep.id !== 'creation_summary' && currentStep.id !== 'learning' && currentStep.id !== 'summary' && currentStep.id !== 'equipment' && (
             <div className="p-8 border border-dashed border-gray-300 rounded flex items-center justify-center text-gray-500 bg-gray-50" style={{minHeight: '300px'}}>
               Contenuto per: {currentStep.title}
             </div>
