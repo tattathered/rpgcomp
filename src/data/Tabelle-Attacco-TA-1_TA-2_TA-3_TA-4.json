@@ -1,0 +1,6002 @@
+[
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 1,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 2,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 3,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 4,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 5,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 6,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 7,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 8,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 9,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 10,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 11,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 12,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 13,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 14,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 15,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 16,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 17,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 18,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 19,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 20,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 21,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 22,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 23,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 24,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 25,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 26,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 27,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 28,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 29,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 30,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 31,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 32,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 33,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 34,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 35,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 36,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 37,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 38,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 39,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 40,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 41,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 42,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 43,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 44,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 45,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 46,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 47,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 48,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 49,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 50,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 51,
+    "corazza_di_piastre": 1,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 52,
+    "corazza_di_piastre": 1,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 53,
+    "corazza_di_piastre": 1,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 54,
+    "corazza_di_piastre": 1,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 55,
+    "corazza_di_piastre": 1,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 56,
+    "corazza_di_piastre": 2,
+    "corazza_di_maglie": 1,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 57,
+    "corazza_di_piastre": 2,
+    "corazza_di_maglie": 1,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 58,
+    "corazza_di_piastre": 2,
+    "corazza_di_maglie": 1,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 59,
+    "corazza_di_piastre": 2,
+    "corazza_di_maglie": 1,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 60,
+    "corazza_di_piastre": 2,
+    "corazza_di_maglie": 1,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 61,
+    "corazza_di_piastre": 2,
+    "corazza_di_maglie": 2,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 3,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 62,
+    "corazza_di_piastre": 2,
+    "corazza_di_maglie": 2,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 3,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 63,
+    "corazza_di_piastre": 2,
+    "corazza_di_maglie": 2,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 3,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 64,
+    "corazza_di_piastre": 2,
+    "corazza_di_maglie": 2,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 3,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 65,
+    "corazza_di_piastre": 2,
+    "corazza_di_maglie": 2,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 3,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 66,
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 3,
+    "cuoio_rinforzato": 2,
+    "cuoio_grezzo": 4,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 67,
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 3,
+    "cuoio_rinforzato": 2,
+    "cuoio_grezzo": 4,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 68,
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 3,
+    "cuoio_rinforzato": 2,
+    "cuoio_grezzo": 4,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 69,
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 3,
+    "cuoio_rinforzato": 2,
+    "cuoio_grezzo": 4,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 70,
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 3,
+    "cuoio_rinforzato": 2,
+    "cuoio_grezzo": 4,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 71,
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 4,
+    "cuoio_rinforzato": 3,
+    "cuoio_grezzo": 5,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 72,
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 4,
+    "cuoio_rinforzato": 3,
+    "cuoio_grezzo": 5,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 73,
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 4,
+    "cuoio_rinforzato": 3,
+    "cuoio_grezzo": 5,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 74,
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 4,
+    "cuoio_rinforzato": 3,
+    "cuoio_grezzo": 5,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 75,
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 4,
+    "cuoio_rinforzato": 3,
+    "cuoio_grezzo": 5,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 76,
+    "corazza_di_piastre": 4,
+    "corazza_di_maglie": 5,
+    "cuoio_rinforzato": 5,
+    "cuoio_grezzo": "7A",
+    "nessuna_armatura": 7
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 77,
+    "corazza_di_piastre": 4,
+    "corazza_di_maglie": 5,
+    "cuoio_rinforzato": 5,
+    "cuoio_grezzo": "7A",
+    "nessuna_armatura": 7
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 78,
+    "corazza_di_piastre": 4,
+    "corazza_di_maglie": 5,
+    "cuoio_rinforzato": 5,
+    "cuoio_grezzo": "7A",
+    "nessuna_armatura": 7
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 79,
+    "corazza_di_piastre": 4,
+    "corazza_di_maglie": 5,
+    "cuoio_rinforzato": 5,
+    "cuoio_grezzo": "7A",
+    "nessuna_armatura": 7
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 80,
+    "corazza_di_piastre": 4,
+    "corazza_di_maglie": 5,
+    "cuoio_rinforzato": 5,
+    "cuoio_grezzo": "7A",
+    "nessuna_armatura": 7
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 81,
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 6,
+    "cuoio_rinforzato": 6,
+    "cuoio_grezzo": "9A",
+    "nessuna_armatura": "9A"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 82,
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 6,
+    "cuoio_rinforzato": 6,
+    "cuoio_grezzo": "9A",
+    "nessuna_armatura": "9A"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 83,
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 6,
+    "cuoio_rinforzato": 6,
+    "cuoio_grezzo": "9A",
+    "nessuna_armatura": "9A"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 84,
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 6,
+    "cuoio_rinforzato": 6,
+    "cuoio_grezzo": "9A",
+    "nessuna_armatura": "9A"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 85,
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 6,
+    "cuoio_rinforzato": 6,
+    "cuoio_grezzo": "9A",
+    "nessuna_armatura": "9A"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 86,
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 7,
+    "cuoio_rinforzato": "7A",
+    "cuoio_grezzo": "10B",
+    "nessuna_armatura": "10A"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 87,
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 7,
+    "cuoio_rinforzato": "7A",
+    "cuoio_grezzo": "10B",
+    "nessuna_armatura": "10A"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 88,
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 7,
+    "cuoio_rinforzato": "7A",
+    "cuoio_grezzo": "10B",
+    "nessuna_armatura": "10A"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 89,
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 7,
+    "cuoio_rinforzato": "7A",
+    "cuoio_grezzo": "10B",
+    "nessuna_armatura": "10A"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 90,
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 7,
+    "cuoio_rinforzato": "7A",
+    "cuoio_grezzo": "10B",
+    "nessuna_armatura": "10A"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 91,
+    "corazza_di_piastre": 6,
+    "corazza_di_maglie": 8,
+    "cuoio_rinforzato": "9A",
+    "cuoio_grezzo": "12B",
+    "nessuna_armatura": "11B"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 92,
+    "corazza_di_piastre": 6,
+    "corazza_di_maglie": 8,
+    "cuoio_rinforzato": "9A",
+    "cuoio_grezzo": "12B",
+    "nessuna_armatura": "11B"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 93,
+    "corazza_di_piastre": 6,
+    "corazza_di_maglie": 8,
+    "cuoio_rinforzato": "9A",
+    "cuoio_grezzo": "12B",
+    "nessuna_armatura": "11B"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 94,
+    "corazza_di_piastre": 6,
+    "corazza_di_maglie": 8,
+    "cuoio_rinforzato": "9A",
+    "cuoio_grezzo": "12B",
+    "nessuna_armatura": "11B"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 95,
+    "corazza_di_piastre": 6,
+    "corazza_di_maglie": 8,
+    "cuoio_rinforzato": "9A",
+    "cuoio_grezzo": "12B",
+    "nessuna_armatura": "11B"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 96,
+    "corazza_di_piastre": 6,
+    "corazza_di_maglie": 9,
+    "cuoio_rinforzato": "10B",
+    "cuoio_grezzo": "13B",
+    "nessuna_armatura": "13C"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 97,
+    "corazza_di_piastre": 6,
+    "corazza_di_maglie": 9,
+    "cuoio_rinforzato": "10B",
+    "cuoio_grezzo": "13B",
+    "nessuna_armatura": "13C"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 98,
+    "corazza_di_piastre": 6,
+    "corazza_di_maglie": 9,
+    "cuoio_rinforzato": "10B",
+    "cuoio_grezzo": "13B",
+    "nessuna_armatura": "13C"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 99,
+    "corazza_di_piastre": 6,
+    "corazza_di_maglie": 9,
+    "cuoio_rinforzato": "10B",
+    "cuoio_grezzo": "13B",
+    "nessuna_armatura": "13C"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 100,
+    "corazza_di_piastre": 6,
+    "corazza_di_maglie": 9,
+    "cuoio_rinforzato": "10B",
+    "cuoio_grezzo": "13B",
+    "nessuna_armatura": "13C"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 101,
+    "corazza_di_piastre": 7,
+    "corazza_di_maglie": "10A",
+    "cuoio_rinforzato": "11B",
+    "cuoio_grezzo": "14C",
+    "nessuna_armatura": "15C"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 102,
+    "corazza_di_piastre": 7,
+    "corazza_di_maglie": "10A",
+    "cuoio_rinforzato": "11B",
+    "cuoio_grezzo": "14C",
+    "nessuna_armatura": "15C"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 103,
+    "corazza_di_piastre": 7,
+    "corazza_di_maglie": "10A",
+    "cuoio_rinforzato": "11B",
+    "cuoio_grezzo": "14C",
+    "nessuna_armatura": "15C"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 104,
+    "corazza_di_piastre": 7,
+    "corazza_di_maglie": "10A",
+    "cuoio_rinforzato": "11B",
+    "cuoio_grezzo": "14C",
+    "nessuna_armatura": "15C"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 105,
+    "corazza_di_piastre": 7,
+    "corazza_di_maglie": "10A",
+    "cuoio_rinforzato": "11B",
+    "cuoio_grezzo": "14C",
+    "nessuna_armatura": "15C"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 106,
+    "corazza_di_piastre": 8,
+    "corazza_di_maglie": "11A",
+    "cuoio_rinforzato": "12B",
+    "cuoio_grezzo": "15C",
+    "nessuna_armatura": "17D"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 107,
+    "corazza_di_piastre": 8,
+    "corazza_di_maglie": "11A",
+    "cuoio_rinforzato": "12B",
+    "cuoio_grezzo": "15C",
+    "nessuna_armatura": "17D"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 108,
+    "corazza_di_piastre": 8,
+    "corazza_di_maglie": "11A",
+    "cuoio_rinforzato": "12B",
+    "cuoio_grezzo": "15C",
+    "nessuna_armatura": "17D"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 109,
+    "corazza_di_piastre": 8,
+    "corazza_di_maglie": "11A",
+    "cuoio_rinforzato": "12B",
+    "cuoio_grezzo": "15C",
+    "nessuna_armatura": "17D"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 110,
+    "corazza_di_piastre": 8,
+    "corazza_di_maglie": "11A",
+    "cuoio_rinforzato": "12B",
+    "cuoio_grezzo": "15C",
+    "nessuna_armatura": "17D"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 111,
+    "corazza_di_piastre": "8A",
+    "corazza_di_maglie": "12B",
+    "cuoio_rinforzato": "13C",
+    "cuoio_grezzo": "17C",
+    "nessuna_armatura": "19D"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 112,
+    "corazza_di_piastre": "8A",
+    "corazza_di_maglie": "12B",
+    "cuoio_rinforzato": "13C",
+    "cuoio_grezzo": "17C",
+    "nessuna_armatura": "19D"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 113,
+    "corazza_di_piastre": "8A",
+    "corazza_di_maglie": "12B",
+    "cuoio_rinforzato": "13C",
+    "cuoio_grezzo": "17C",
+    "nessuna_armatura": "19D"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 114,
+    "corazza_di_piastre": "8A",
+    "corazza_di_maglie": "12B",
+    "cuoio_rinforzato": "13C",
+    "cuoio_grezzo": "17C",
+    "nessuna_armatura": "19D"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 115,
+    "corazza_di_piastre": "8A",
+    "corazza_di_maglie": "12B",
+    "cuoio_rinforzato": "13C",
+    "cuoio_grezzo": "17C",
+    "nessuna_armatura": "19D"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 116,
+    "corazza_di_piastre": "9A",
+    "corazza_di_maglie": "13B",
+    "cuoio_rinforzato": "15C",
+    "cuoio_grezzo": "18D",
+    "nessuna_armatura": "20D"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 117,
+    "corazza_di_piastre": "9A",
+    "corazza_di_maglie": "13B",
+    "cuoio_rinforzato": "15C",
+    "cuoio_grezzo": "18D",
+    "nessuna_armatura": "20D"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 118,
+    "corazza_di_piastre": "9A",
+    "corazza_di_maglie": "13B",
+    "cuoio_rinforzato": "15C",
+    "cuoio_grezzo": "18D",
+    "nessuna_armatura": "20D"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 119,
+    "corazza_di_piastre": "9A",
+    "corazza_di_maglie": "13B",
+    "cuoio_rinforzato": "15C",
+    "cuoio_grezzo": "18D",
+    "nessuna_armatura": "20D"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 120,
+    "corazza_di_piastre": "9A",
+    "corazza_di_maglie": "13B",
+    "cuoio_rinforzato": "15C",
+    "cuoio_grezzo": "18D",
+    "nessuna_armatura": "20D"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 121,
+    "corazza_di_piastre": "9A",
+    "corazza_di_maglie": "13C",
+    "cuoio_rinforzato": "16C",
+    "cuoio_grezzo": "19D",
+    "nessuna_armatura": "21E"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 122,
+    "corazza_di_piastre": "9A",
+    "corazza_di_maglie": "13C",
+    "cuoio_rinforzato": "16C",
+    "cuoio_grezzo": "19D",
+    "nessuna_armatura": "21E"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 123,
+    "corazza_di_piastre": "9A",
+    "corazza_di_maglie": "13C",
+    "cuoio_rinforzato": "16C",
+    "cuoio_grezzo": "19D",
+    "nessuna_armatura": "21E"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 124,
+    "corazza_di_piastre": "9A",
+    "corazza_di_maglie": "13C",
+    "cuoio_rinforzato": "16C",
+    "cuoio_grezzo": "19D",
+    "nessuna_armatura": "21E"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 125,
+    "corazza_di_piastre": "9A",
+    "corazza_di_maglie": "13C",
+    "cuoio_rinforzato": "16C",
+    "cuoio_grezzo": "19D",
+    "nessuna_armatura": "21E"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 126,
+    "corazza_di_piastre": "10B",
+    "corazza_di_maglie": "14C",
+    "cuoio_rinforzato": "17D",
+    "cuoio_grezzo": "20D",
+    "nessuna_armatura": "23E"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 127,
+    "corazza_di_piastre": "10B",
+    "corazza_di_maglie": "14C",
+    "cuoio_rinforzato": "17D",
+    "cuoio_grezzo": "20D",
+    "nessuna_armatura": "23E"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 128,
+    "corazza_di_piastre": "10B",
+    "corazza_di_maglie": "14C",
+    "cuoio_rinforzato": "17D",
+    "cuoio_grezzo": "20D",
+    "nessuna_armatura": "23E"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 129,
+    "corazza_di_piastre": "10B",
+    "corazza_di_maglie": "14C",
+    "cuoio_rinforzato": "17D",
+    "cuoio_grezzo": "20D",
+    "nessuna_armatura": "23E"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 130,
+    "corazza_di_piastre": "10B",
+    "corazza_di_maglie": "14C",
+    "cuoio_rinforzato": "17D",
+    "cuoio_grezzo": "20D",
+    "nessuna_armatura": "23E"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 131,
+    "corazza_di_piastre": "11B",
+    "corazza_di_maglie": "15C",
+    "cuoio_rinforzato": "18D",
+    "cuoio_grezzo": "22D",
+    "nessuna_armatura": "25E"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 132,
+    "corazza_di_piastre": "11B",
+    "corazza_di_maglie": "15C",
+    "cuoio_rinforzato": "18D",
+    "cuoio_grezzo": "22D",
+    "nessuna_armatura": "25E"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 133,
+    "corazza_di_piastre": "11B",
+    "corazza_di_maglie": "15C",
+    "cuoio_rinforzato": "18D",
+    "cuoio_grezzo": "22D",
+    "nessuna_armatura": "25E"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 134,
+    "corazza_di_piastre": "11B",
+    "corazza_di_maglie": "15C",
+    "cuoio_rinforzato": "18D",
+    "cuoio_grezzo": "22D",
+    "nessuna_armatura": "25E"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 135,
+    "corazza_di_piastre": "11B",
+    "corazza_di_maglie": "15C",
+    "cuoio_rinforzato": "18D",
+    "cuoio_grezzo": "22D",
+    "nessuna_armatura": "25E"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 136,
+    "corazza_di_piastre": "11C",
+    "corazza_di_maglie": "16D",
+    "cuoio_rinforzato": "20D",
+    "cuoio_grezzo": "24E",
+    "nessuna_armatura": "27E"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 137,
+    "corazza_di_piastre": "11C",
+    "corazza_di_maglie": "16D",
+    "cuoio_rinforzato": "20D",
+    "cuoio_grezzo": "24E",
+    "nessuna_armatura": "27E"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 138,
+    "corazza_di_piastre": "11C",
+    "corazza_di_maglie": "16D",
+    "cuoio_rinforzato": "20D",
+    "cuoio_grezzo": "24E",
+    "nessuna_armatura": "27E"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 139,
+    "corazza_di_piastre": "11C",
+    "corazza_di_maglie": "16D",
+    "cuoio_rinforzato": "20D",
+    "cuoio_grezzo": "24E",
+    "nessuna_armatura": "27E"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 140,
+    "corazza_di_piastre": "11C",
+    "corazza_di_maglie": "16D",
+    "cuoio_rinforzato": "20D",
+    "cuoio_grezzo": "24E",
+    "nessuna_armatura": "27E"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 141,
+    "corazza_di_piastre": "12D",
+    "corazza_di_maglie": "17D",
+    "cuoio_rinforzato": "21E",
+    "cuoio_grezzo": "26E",
+    "nessuna_armatura": "28E"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 142,
+    "corazza_di_piastre": "12D",
+    "corazza_di_maglie": "17D",
+    "cuoio_rinforzato": "21E",
+    "cuoio_grezzo": "26E",
+    "nessuna_armatura": "28E"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 143,
+    "corazza_di_piastre": "12D",
+    "corazza_di_maglie": "17D",
+    "cuoio_rinforzato": "21E",
+    "cuoio_grezzo": "26E",
+    "nessuna_armatura": "28E"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 144,
+    "corazza_di_piastre": "12D",
+    "corazza_di_maglie": "17D",
+    "cuoio_rinforzato": "21E",
+    "cuoio_grezzo": "26E",
+    "nessuna_armatura": "28E"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 145,
+    "corazza_di_piastre": "12D",
+    "corazza_di_maglie": "17D",
+    "cuoio_rinforzato": "21E",
+    "cuoio_grezzo": "26E",
+    "nessuna_armatura": "28E"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 146,
+    "corazza_di_piastre": "14E",
+    "corazza_di_maglie": "18E",
+    "cuoio_rinforzato": "22E",
+    "cuoio_grezzo": "28E",
+    "nessuna_armatura": "30E"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 147,
+    "corazza_di_piastre": "14E",
+    "corazza_di_maglie": "18E",
+    "cuoio_rinforzato": "22E",
+    "cuoio_grezzo": "28E",
+    "nessuna_armatura": "30E"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 148,
+    "corazza_di_piastre": "14E",
+    "corazza_di_maglie": "18E",
+    "cuoio_rinforzato": "22E",
+    "cuoio_grezzo": "28E",
+    "nessuna_armatura": "30E"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 149,
+    "corazza_di_piastre": "14E",
+    "corazza_di_maglie": "18E",
+    "cuoio_rinforzato": "22E",
+    "cuoio_grezzo": "28E",
+    "nessuna_armatura": "30E"
+  },
+  {
+    "tabella": "TA-1",
+    "tipologia_arma": "Armi da Taglio a una Mano",
+    "risultato_del_tiro": 150,
+    "corazza_di_piastre": "14E",
+    "corazza_di_maglie": "18E",
+    "cuoio_rinforzato": "22E",
+    "cuoio_grezzo": "28E",
+    "nessuna_armatura": "30E"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 1,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 2,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 3,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 4,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 5,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 6,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 7,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 8,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 9,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 10,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 11,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 12,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 13,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 14,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 15,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 16,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 17,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 18,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 19,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 20,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 21,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 22,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 23,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 24,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 25,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 26,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 27,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 28,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 29,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 30,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 31,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 32,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 33,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 34,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 35,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 36,
+    "corazza_di_piastre": 1,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 37,
+    "corazza_di_piastre": 1,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 38,
+    "corazza_di_piastre": 1,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 39,
+    "corazza_di_piastre": 1,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 40,
+    "corazza_di_piastre": 1,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 41,
+    "corazza_di_piastre": 1,
+    "corazza_di_maglie": 1,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 42,
+    "corazza_di_piastre": 1,
+    "corazza_di_maglie": 1,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 43,
+    "corazza_di_piastre": 1,
+    "corazza_di_maglie": 1,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 44,
+    "corazza_di_piastre": 1,
+    "corazza_di_maglie": 1,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 45,
+    "corazza_di_piastre": 1,
+    "corazza_di_maglie": 1,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 46,
+    "corazza_di_piastre": 2,
+    "corazza_di_maglie": 2,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 47,
+    "corazza_di_piastre": 2,
+    "corazza_di_maglie": 2,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 48,
+    "corazza_di_piastre": 2,
+    "corazza_di_maglie": 2,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 49,
+    "corazza_di_piastre": 2,
+    "corazza_di_maglie": 2,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 50,
+    "corazza_di_piastre": 2,
+    "corazza_di_maglie": 2,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 51,
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 3,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 52,
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 3,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 53,
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 3,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 54,
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 3,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 55,
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 3,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 56,
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 4,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 57,
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 4,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 58,
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 4,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 59,
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 4,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 60,
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 4,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 61,
+    "corazza_di_piastre": 4,
+    "corazza_di_maglie": 5,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 62,
+    "corazza_di_piastre": 4,
+    "corazza_di_maglie": 5,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 63,
+    "corazza_di_piastre": 4,
+    "corazza_di_maglie": 5,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 64,
+    "corazza_di_piastre": 4,
+    "corazza_di_maglie": 5,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 65,
+    "corazza_di_piastre": 4,
+    "corazza_di_maglie": 5,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 66,
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 6,
+    "cuoio_rinforzato": 2,
+    "cuoio_grezzo": 3,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 67,
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 6,
+    "cuoio_rinforzato": 2,
+    "cuoio_grezzo": 3,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 68,
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 6,
+    "cuoio_rinforzato": 2,
+    "cuoio_grezzo": 3,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 69,
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 6,
+    "cuoio_rinforzato": 2,
+    "cuoio_grezzo": 3,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 70,
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 6,
+    "cuoio_rinforzato": 2,
+    "cuoio_grezzo": 3,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 71,
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 7,
+    "cuoio_rinforzato": 3,
+    "cuoio_grezzo": 5,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 72,
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 7,
+    "cuoio_rinforzato": 3,
+    "cuoio_grezzo": 5,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 73,
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 7,
+    "cuoio_rinforzato": 3,
+    "cuoio_grezzo": 5,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 74,
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 7,
+    "cuoio_rinforzato": 3,
+    "cuoio_grezzo": 5,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 75,
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 7,
+    "cuoio_rinforzato": 3,
+    "cuoio_grezzo": 5,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 76,
+    "corazza_di_piastre": 6,
+    "corazza_di_maglie": 8,
+    "cuoio_rinforzato": 4,
+    "cuoio_grezzo": 6,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 77,
+    "corazza_di_piastre": 6,
+    "corazza_di_maglie": 8,
+    "cuoio_rinforzato": 4,
+    "cuoio_grezzo": 6,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 78,
+    "corazza_di_piastre": 6,
+    "corazza_di_maglie": 8,
+    "cuoio_rinforzato": 4,
+    "cuoio_grezzo": 6,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 79,
+    "corazza_di_piastre": 6,
+    "corazza_di_maglie": 8,
+    "cuoio_rinforzato": 4,
+    "cuoio_grezzo": 6,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 80,
+    "corazza_di_piastre": 6,
+    "corazza_di_maglie": 8,
+    "cuoio_rinforzato": 4,
+    "cuoio_grezzo": 6,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 81,
+    "corazza_di_piastre": 7,
+    "corazza_di_maglie": 9,
+    "cuoio_rinforzato": 6,
+    "cuoio_grezzo": "7A",
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 82,
+    "corazza_di_piastre": 7,
+    "corazza_di_maglie": 9,
+    "cuoio_rinforzato": 6,
+    "cuoio_grezzo": "7A",
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 83,
+    "corazza_di_piastre": 7,
+    "corazza_di_maglie": 9,
+    "cuoio_rinforzato": 6,
+    "cuoio_grezzo": "7A",
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 84,
+    "corazza_di_piastre": 7,
+    "corazza_di_maglie": 9,
+    "cuoio_rinforzato": 6,
+    "cuoio_grezzo": "7A",
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 85,
+    "corazza_di_piastre": 7,
+    "corazza_di_maglie": 9,
+    "cuoio_rinforzato": 6,
+    "cuoio_grezzo": "7A",
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 86,
+    "corazza_di_piastre": 8,
+    "corazza_di_maglie": 10,
+    "cuoio_rinforzato": "7A",
+    "cuoio_grezzo": "8A",
+    "nessuna_armatura": 8
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 87,
+    "corazza_di_piastre": 8,
+    "corazza_di_maglie": 10,
+    "cuoio_rinforzato": "7A",
+    "cuoio_grezzo": "8A",
+    "nessuna_armatura": 8
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 88,
+    "corazza_di_piastre": 8,
+    "corazza_di_maglie": 10,
+    "cuoio_rinforzato": "7A",
+    "cuoio_grezzo": "8A",
+    "nessuna_armatura": 8
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 89,
+    "corazza_di_piastre": 8,
+    "corazza_di_maglie": 10,
+    "cuoio_rinforzato": "7A",
+    "cuoio_grezzo": "8A",
+    "nessuna_armatura": 8
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 90,
+    "corazza_di_piastre": 8,
+    "corazza_di_maglie": 10,
+    "cuoio_rinforzato": "7A",
+    "cuoio_grezzo": "8A",
+    "nessuna_armatura": 8
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 91,
+    "corazza_di_piastre": 8,
+    "corazza_di_maglie": 11,
+    "cuoio_rinforzato": "8A",
+    "cuoio_grezzo": "9A",
+    "nessuna_armatura": "9A"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 92,
+    "corazza_di_piastre": 8,
+    "corazza_di_maglie": 11,
+    "cuoio_rinforzato": "8A",
+    "cuoio_grezzo": "9A",
+    "nessuna_armatura": "9A"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 93,
+    "corazza_di_piastre": 8,
+    "corazza_di_maglie": 11,
+    "cuoio_rinforzato": "8A",
+    "cuoio_grezzo": "9A",
+    "nessuna_armatura": "9A"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 94,
+    "corazza_di_piastre": 8,
+    "corazza_di_maglie": 11,
+    "cuoio_rinforzato": "8A",
+    "cuoio_grezzo": "9A",
+    "nessuna_armatura": "9A"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 95,
+    "corazza_di_piastre": 8,
+    "corazza_di_maglie": 11,
+    "cuoio_rinforzato": "8A",
+    "cuoio_grezzo": "9A",
+    "nessuna_armatura": "9A"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 96,
+    "corazza_di_piastre": 9,
+    "corazza_di_maglie": "12A",
+    "cuoio_rinforzato": "9B",
+    "cuoio_grezzo": "10B",
+    "nessuna_armatura": "10B"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 97,
+    "corazza_di_piastre": 9,
+    "corazza_di_maglie": "12A",
+    "cuoio_rinforzato": "9B",
+    "cuoio_grezzo": "10B",
+    "nessuna_armatura": "10B"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 98,
+    "corazza_di_piastre": 9,
+    "corazza_di_maglie": "12A",
+    "cuoio_rinforzato": "9B",
+    "cuoio_grezzo": "10B",
+    "nessuna_armatura": "10B"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 99,
+    "corazza_di_piastre": 9,
+    "corazza_di_maglie": "12A",
+    "cuoio_rinforzato": "9B",
+    "cuoio_grezzo": "10B",
+    "nessuna_armatura": "10B"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 100,
+    "corazza_di_piastre": 9,
+    "corazza_di_maglie": "12A",
+    "cuoio_rinforzato": "9B",
+    "cuoio_grezzo": "10B",
+    "nessuna_armatura": "10B"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 101,
+    "corazza_di_piastre": 10,
+    "corazza_di_maglie": "13A",
+    "cuoio_rinforzato": "10B",
+    "cuoio_grezzo": "11B",
+    "nessuna_armatura": "12B"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 102,
+    "corazza_di_piastre": 10,
+    "corazza_di_maglie": "13A",
+    "cuoio_rinforzato": "10B",
+    "cuoio_grezzo": "11B",
+    "nessuna_armatura": "12B"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 103,
+    "corazza_di_piastre": 10,
+    "corazza_di_maglie": "13A",
+    "cuoio_rinforzato": "10B",
+    "cuoio_grezzo": "11B",
+    "nessuna_armatura": "12B"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 104,
+    "corazza_di_piastre": 10,
+    "corazza_di_maglie": "13A",
+    "cuoio_rinforzato": "10B",
+    "cuoio_grezzo": "11B",
+    "nessuna_armatura": "12B"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 105,
+    "corazza_di_piastre": 10,
+    "corazza_di_maglie": "13A",
+    "cuoio_rinforzato": "10B",
+    "cuoio_grezzo": "11B",
+    "nessuna_armatura": "12B"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 106,
+    "corazza_di_piastre": "10A",
+    "corazza_di_maglie": "14B",
+    "cuoio_rinforzato": "11B",
+    "cuoio_grezzo": "12B",
+    "nessuna_armatura": "13C"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 107,
+    "corazza_di_piastre": "10A",
+    "corazza_di_maglie": "14B",
+    "cuoio_rinforzato": "11B",
+    "cuoio_grezzo": "12B",
+    "nessuna_armatura": "13C"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 108,
+    "corazza_di_piastre": "10A",
+    "corazza_di_maglie": "14B",
+    "cuoio_rinforzato": "11B",
+    "cuoio_grezzo": "12B",
+    "nessuna_armatura": "13C"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 109,
+    "corazza_di_piastre": "10A",
+    "corazza_di_maglie": "14B",
+    "cuoio_rinforzato": "11B",
+    "cuoio_grezzo": "12B",
+    "nessuna_armatura": "13C"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 110,
+    "corazza_di_piastre": "10A",
+    "corazza_di_maglie": "14B",
+    "cuoio_rinforzato": "11B",
+    "cuoio_grezzo": "12B",
+    "nessuna_armatura": "13C"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 111,
+    "corazza_di_piastre": "11A",
+    "corazza_di_maglie": "15B",
+    "cuoio_rinforzato": "12C",
+    "cuoio_grezzo": "13C",
+    "nessuna_armatura": "14D"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 112,
+    "corazza_di_piastre": "11A",
+    "corazza_di_maglie": "15B",
+    "cuoio_rinforzato": "12C",
+    "cuoio_grezzo": "13C",
+    "nessuna_armatura": "14D"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 113,
+    "corazza_di_piastre": "11A",
+    "corazza_di_maglie": "15B",
+    "cuoio_rinforzato": "12C",
+    "cuoio_grezzo": "13C",
+    "nessuna_armatura": "14D"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 114,
+    "corazza_di_piastre": "11A",
+    "corazza_di_maglie": "15B",
+    "cuoio_rinforzato": "12C",
+    "cuoio_grezzo": "13C",
+    "nessuna_armatura": "14D"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 115,
+    "corazza_di_piastre": "11A",
+    "corazza_di_maglie": "15B",
+    "cuoio_rinforzato": "12C",
+    "cuoio_grezzo": "13C",
+    "nessuna_armatura": "14D"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 116,
+    "corazza_di_piastre": "12B",
+    "corazza_di_maglie": "16C",
+    "cuoio_rinforzato": "13C",
+    "cuoio_grezzo": "14C",
+    "nessuna_armatura": "15D"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 117,
+    "corazza_di_piastre": "12B",
+    "corazza_di_maglie": "16C",
+    "cuoio_rinforzato": "13C",
+    "cuoio_grezzo": "14C",
+    "nessuna_armatura": "15D"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 118,
+    "corazza_di_piastre": "12B",
+    "corazza_di_maglie": "16C",
+    "cuoio_rinforzato": "13C",
+    "cuoio_grezzo": "14C",
+    "nessuna_armatura": "15D"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 119,
+    "corazza_di_piastre": "12B",
+    "corazza_di_maglie": "16C",
+    "cuoio_rinforzato": "13C",
+    "cuoio_grezzo": "14C",
+    "nessuna_armatura": "15D"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 120,
+    "corazza_di_piastre": "12B",
+    "corazza_di_maglie": "16C",
+    "cuoio_rinforzato": "13C",
+    "cuoio_grezzo": "14C",
+    "nessuna_armatura": "15D"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 121,
+    "corazza_di_piastre": "13B",
+    "corazza_di_maglie": "17C",
+    "cuoio_rinforzato": "15C",
+    "cuoio_grezzo": "15C",
+    "nessuna_armatura": "17D"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 122,
+    "corazza_di_piastre": "13B",
+    "corazza_di_maglie": "17C",
+    "cuoio_rinforzato": "15C",
+    "cuoio_grezzo": "15C",
+    "nessuna_armatura": "17D"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 123,
+    "corazza_di_piastre": "13B",
+    "corazza_di_maglie": "17C",
+    "cuoio_rinforzato": "15C",
+    "cuoio_grezzo": "15C",
+    "nessuna_armatura": "17D"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 124,
+    "corazza_di_piastre": "13B",
+    "corazza_di_maglie": "17C",
+    "cuoio_rinforzato": "15C",
+    "cuoio_grezzo": "15C",
+    "nessuna_armatura": "17D"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 125,
+    "corazza_di_piastre": "13B",
+    "corazza_di_maglie": "17C",
+    "cuoio_rinforzato": "15C",
+    "cuoio_grezzo": "15C",
+    "nessuna_armatura": "17D"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 126,
+    "corazza_di_piastre": "13C",
+    "corazza_di_maglie": "18C",
+    "cuoio_rinforzato": "16C",
+    "cuoio_grezzo": "16D",
+    "nessuna_armatura": "18E"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 127,
+    "corazza_di_piastre": "13C",
+    "corazza_di_maglie": "18C",
+    "cuoio_rinforzato": "16C",
+    "cuoio_grezzo": "16D",
+    "nessuna_armatura": "18E"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 128,
+    "corazza_di_piastre": "13C",
+    "corazza_di_maglie": "18C",
+    "cuoio_rinforzato": "16C",
+    "cuoio_grezzo": "16D",
+    "nessuna_armatura": "18E"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 129,
+    "corazza_di_piastre": "13C",
+    "corazza_di_maglie": "18C",
+    "cuoio_rinforzato": "16C",
+    "cuoio_grezzo": "16D",
+    "nessuna_armatura": "18E"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 130,
+    "corazza_di_piastre": "13C",
+    "corazza_di_maglie": "18C",
+    "cuoio_rinforzato": "16C",
+    "cuoio_grezzo": "16D",
+    "nessuna_armatura": "18E"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 131,
+    "corazza_di_piastre": "14C",
+    "corazza_di_maglie": "19D",
+    "cuoio_rinforzato": "17D",
+    "cuoio_grezzo": "17D",
+    "nessuna_armatura": "19E"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 132,
+    "corazza_di_piastre": "14C",
+    "corazza_di_maglie": "19D",
+    "cuoio_rinforzato": "17D",
+    "cuoio_grezzo": "17D",
+    "nessuna_armatura": "19E"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 133,
+    "corazza_di_piastre": "14C",
+    "corazza_di_maglie": "19D",
+    "cuoio_rinforzato": "17D",
+    "cuoio_grezzo": "17D",
+    "nessuna_armatura": "19E"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 134,
+    "corazza_di_piastre": "14C",
+    "corazza_di_maglie": "19D",
+    "cuoio_rinforzato": "17D",
+    "cuoio_grezzo": "17D",
+    "nessuna_armatura": "19E"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 135,
+    "corazza_di_piastre": "14C",
+    "corazza_di_maglie": "19D",
+    "cuoio_rinforzato": "17D",
+    "cuoio_grezzo": "17D",
+    "nessuna_armatura": "19E"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 136,
+    "corazza_di_piastre": "15D",
+    "corazza_di_maglie": "20D",
+    "cuoio_rinforzato": "18D",
+    "cuoio_grezzo": "19E",
+    "nessuna_armatura": "21E"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 137,
+    "corazza_di_piastre": "15D",
+    "corazza_di_maglie": "20D",
+    "cuoio_rinforzato": "18D",
+    "cuoio_grezzo": "19E",
+    "nessuna_armatura": "21E"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 138,
+    "corazza_di_piastre": "15D",
+    "corazza_di_maglie": "20D",
+    "cuoio_rinforzato": "18D",
+    "cuoio_grezzo": "19E",
+    "nessuna_armatura": "21E"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 139,
+    "corazza_di_piastre": "15D",
+    "corazza_di_maglie": "20D",
+    "cuoio_rinforzato": "18D",
+    "cuoio_grezzo": "19E",
+    "nessuna_armatura": "21E"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 140,
+    "corazza_di_piastre": "15D",
+    "corazza_di_maglie": "20D",
+    "cuoio_rinforzato": "18D",
+    "cuoio_grezzo": "19E",
+    "nessuna_armatura": "21E"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 141,
+    "corazza_di_piastre": "16D",
+    "corazza_di_maglie": "21E",
+    "cuoio_rinforzato": "19E",
+    "cuoio_grezzo": "21E",
+    "nessuna_armatura": "22E"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 142,
+    "corazza_di_piastre": "16D",
+    "corazza_di_maglie": "21E",
+    "cuoio_rinforzato": "19E",
+    "cuoio_grezzo": "21E",
+    "nessuna_armatura": "22E"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 143,
+    "corazza_di_piastre": "16D",
+    "corazza_di_maglie": "21E",
+    "cuoio_rinforzato": "19E",
+    "cuoio_grezzo": "21E",
+    "nessuna_armatura": "22E"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 144,
+    "corazza_di_piastre": "16D",
+    "corazza_di_maglie": "21E",
+    "cuoio_rinforzato": "19E",
+    "cuoio_grezzo": "21E",
+    "nessuna_armatura": "22E"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 145,
+    "corazza_di_piastre": "16D",
+    "corazza_di_maglie": "21E",
+    "cuoio_rinforzato": "19E",
+    "cuoio_grezzo": "21E",
+    "nessuna_armatura": "22E"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 146,
+    "corazza_di_piastre": "18E",
+    "corazza_di_maglie": "22E",
+    "cuoio_rinforzato": "20E",
+    "cuoio_grezzo": "23E",
+    "nessuna_armatura": "23E"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 147,
+    "corazza_di_piastre": "18E",
+    "corazza_di_maglie": "22E",
+    "cuoio_rinforzato": "20E",
+    "cuoio_grezzo": "23E",
+    "nessuna_armatura": "23E"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 148,
+    "corazza_di_piastre": "18E",
+    "corazza_di_maglie": "22E",
+    "cuoio_rinforzato": "20E",
+    "cuoio_grezzo": "23E",
+    "nessuna_armatura": "23E"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 149,
+    "corazza_di_piastre": "18E",
+    "corazza_di_maglie": "22E",
+    "cuoio_rinforzato": "20E",
+    "cuoio_grezzo": "23E",
+    "nessuna_armatura": "23E"
+  },
+  {
+    "tabella": "TA-2",
+    "tipologia_arma": "Armi Contundenti a una Mano",
+    "risultato_del_tiro": 150,
+    "corazza_di_piastre": "18E",
+    "corazza_di_maglie": "22E",
+    "cuoio_rinforzato": "20E",
+    "cuoio_grezzo": "23E",
+    "nessuna_armatura": "23E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 1,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 2,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 3,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 4,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 5,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 6,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 7,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 8,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 9,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 10,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 11,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 12,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 13,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 14,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 15,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 16,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 17,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 18,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 19,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 20,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 21,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 22,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 23,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 24,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 25,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 26,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 27,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 28,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 29,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 30,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 31,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 32,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 33,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 34,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 35,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 36,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 37,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 38,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 39,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 40,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 41,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 42,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 43,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 44,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 45,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 46,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 47,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 48,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 49,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 50,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 51,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 52,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 53,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 54,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 55,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 56,
+    "corazza_di_piastre": 2,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 57,
+    "corazza_di_piastre": 2,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 58,
+    "corazza_di_piastre": 2,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 59,
+    "corazza_di_piastre": 2,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 60,
+    "corazza_di_piastre": 2,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 61,
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 62,
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 63,
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 64,
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 65,
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 66,
+    "corazza_di_piastre": 4,
+    "corazza_di_maglie": 3,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 6,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 67,
+    "corazza_di_piastre": 4,
+    "corazza_di_maglie": 3,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 6,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 68,
+    "corazza_di_piastre": 4,
+    "corazza_di_maglie": 3,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 6,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 69,
+    "corazza_di_piastre": 4,
+    "corazza_di_maglie": 3,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 6,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 70,
+    "corazza_di_piastre": 4,
+    "corazza_di_maglie": 3,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 6,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 71,
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 5,
+    "cuoio_rinforzato": 2,
+    "cuoio_grezzo": "8A",
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 72,
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 5,
+    "cuoio_rinforzato": 2,
+    "cuoio_grezzo": "8A",
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 73,
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 5,
+    "cuoio_rinforzato": 2,
+    "cuoio_grezzo": "8A",
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 74,
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 5,
+    "cuoio_rinforzato": 2,
+    "cuoio_grezzo": "8A",
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 75,
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 5,
+    "cuoio_rinforzato": 2,
+    "cuoio_grezzo": "8A",
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 76,
+    "corazza_di_piastre": 6,
+    "corazza_di_maglie": 7,
+    "cuoio_rinforzato": "4A",
+    "cuoio_grezzo": "10A",
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 77,
+    "corazza_di_piastre": 6,
+    "corazza_di_maglie": 7,
+    "cuoio_rinforzato": "4A",
+    "cuoio_grezzo": "10A",
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 78,
+    "corazza_di_piastre": 6,
+    "corazza_di_maglie": 7,
+    "cuoio_rinforzato": "4A",
+    "cuoio_grezzo": "10A",
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 79,
+    "corazza_di_piastre": 6,
+    "corazza_di_maglie": 7,
+    "cuoio_rinforzato": "4A",
+    "cuoio_grezzo": "10A",
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 80,
+    "corazza_di_piastre": 6,
+    "corazza_di_maglie": 7,
+    "cuoio_rinforzato": "4A",
+    "cuoio_grezzo": "10A",
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 81,
+    "corazza_di_piastre": 7,
+    "corazza_di_maglie": 9,
+    "cuoio_rinforzato": "7A",
+    "cuoio_grezzo": "13B",
+    "nessuna_armatura": "10A"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 82,
+    "corazza_di_piastre": 7,
+    "corazza_di_maglie": 9,
+    "cuoio_rinforzato": "7A",
+    "cuoio_grezzo": "13B",
+    "nessuna_armatura": "10A"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 83,
+    "corazza_di_piastre": 7,
+    "corazza_di_maglie": 9,
+    "cuoio_rinforzato": "7A",
+    "cuoio_grezzo": "13B",
+    "nessuna_armatura": "10A"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 84,
+    "corazza_di_piastre": 7,
+    "corazza_di_maglie": 9,
+    "cuoio_rinforzato": "7A",
+    "cuoio_grezzo": "13B",
+    "nessuna_armatura": "10A"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 85,
+    "corazza_di_piastre": 7,
+    "corazza_di_maglie": 9,
+    "cuoio_rinforzato": "7A",
+    "cuoio_grezzo": "13B",
+    "nessuna_armatura": "10A"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 86,
+    "corazza_di_piastre": 8,
+    "corazza_di_maglie": 11,
+    "cuoio_rinforzato": "9B",
+    "cuoio_grezzo": "15B",
+    "nessuna_armatura": "13B"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 87,
+    "corazza_di_piastre": 8,
+    "corazza_di_maglie": 11,
+    "cuoio_rinforzato": "9B",
+    "cuoio_grezzo": "15B",
+    "nessuna_armatura": "13B"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 88,
+    "corazza_di_piastre": 8,
+    "corazza_di_maglie": 11,
+    "cuoio_rinforzato": "9B",
+    "cuoio_grezzo": "15B",
+    "nessuna_armatura": "13B"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 89,
+    "corazza_di_piastre": 8,
+    "corazza_di_maglie": 11,
+    "cuoio_rinforzato": "9B",
+    "cuoio_grezzo": "15B",
+    "nessuna_armatura": "13B"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 90,
+    "corazza_di_piastre": 8,
+    "corazza_di_maglie": 11,
+    "cuoio_rinforzato": "9B",
+    "cuoio_grezzo": "15B",
+    "nessuna_armatura": "13B"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 91,
+    "corazza_di_piastre": 9,
+    "corazza_di_maglie": "12A",
+    "cuoio_rinforzato": "12B",
+    "cuoio_grezzo": "17C",
+    "nessuna_armatura": "16C"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 92,
+    "corazza_di_piastre": 9,
+    "corazza_di_maglie": "12A",
+    "cuoio_rinforzato": "12B",
+    "cuoio_grezzo": "17C",
+    "nessuna_armatura": "16C"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 93,
+    "corazza_di_piastre": 9,
+    "corazza_di_maglie": "12A",
+    "cuoio_rinforzato": "12B",
+    "cuoio_grezzo": "17C",
+    "nessuna_armatura": "16C"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 94,
+    "corazza_di_piastre": 9,
+    "corazza_di_maglie": "12A",
+    "cuoio_rinforzato": "12B",
+    "cuoio_grezzo": "17C",
+    "nessuna_armatura": "16C"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 95,
+    "corazza_di_piastre": 9,
+    "corazza_di_maglie": "12A",
+    "cuoio_rinforzato": "12B",
+    "cuoio_grezzo": "17C",
+    "nessuna_armatura": "16C"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 96,
+    "corazza_di_piastre": 11,
+    "corazza_di_maglie": "14A",
+    "cuoio_rinforzato": "14C",
+    "cuoio_grezzo": "20C",
+    "nessuna_armatura": "19D"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 97,
+    "corazza_di_piastre": 11,
+    "corazza_di_maglie": "14A",
+    "cuoio_rinforzato": "14C",
+    "cuoio_grezzo": "20C",
+    "nessuna_armatura": "19D"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 98,
+    "corazza_di_piastre": 11,
+    "corazza_di_maglie": "14A",
+    "cuoio_rinforzato": "14C",
+    "cuoio_grezzo": "20C",
+    "nessuna_armatura": "19D"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 99,
+    "corazza_di_piastre": 11,
+    "corazza_di_maglie": "14A",
+    "cuoio_rinforzato": "14C",
+    "cuoio_grezzo": "20C",
+    "nessuna_armatura": "19D"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 100,
+    "corazza_di_piastre": 11,
+    "corazza_di_maglie": "14A",
+    "cuoio_rinforzato": "14C",
+    "cuoio_grezzo": "20C",
+    "nessuna_armatura": "19D"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 101,
+    "corazza_di_piastre": "12A",
+    "corazza_di_maglie": "16B",
+    "cuoio_rinforzato": "17C",
+    "cuoio_grezzo": "22C",
+    "nessuna_armatura": "22D"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 102,
+    "corazza_di_piastre": "12A",
+    "corazza_di_maglie": "16B",
+    "cuoio_rinforzato": "17C",
+    "cuoio_grezzo": "22C",
+    "nessuna_armatura": "22D"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 103,
+    "corazza_di_piastre": "12A",
+    "corazza_di_maglie": "16B",
+    "cuoio_rinforzato": "17C",
+    "cuoio_grezzo": "22C",
+    "nessuna_armatura": "22D"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 104,
+    "corazza_di_piastre": "12A",
+    "corazza_di_maglie": "16B",
+    "cuoio_rinforzato": "17C",
+    "cuoio_grezzo": "22C",
+    "nessuna_armatura": "22D"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 105,
+    "corazza_di_piastre": "12A",
+    "corazza_di_maglie": "16B",
+    "cuoio_rinforzato": "17C",
+    "cuoio_grezzo": "22C",
+    "nessuna_armatura": "22D"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 106,
+    "corazza_di_piastre": "13A",
+    "corazza_di_maglie": "18B",
+    "cuoio_rinforzato": "19C",
+    "cuoio_grezzo": "24C",
+    "nessuna_armatura": "25D"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 107,
+    "corazza_di_piastre": "13A",
+    "corazza_di_maglie": "18B",
+    "cuoio_rinforzato": "19C",
+    "cuoio_grezzo": "24C",
+    "nessuna_armatura": "25D"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 108,
+    "corazza_di_piastre": "13A",
+    "corazza_di_maglie": "18B",
+    "cuoio_rinforzato": "19C",
+    "cuoio_grezzo": "24C",
+    "nessuna_armatura": "25D"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 109,
+    "corazza_di_piastre": "13A",
+    "corazza_di_maglie": "18B",
+    "cuoio_rinforzato": "19C",
+    "cuoio_grezzo": "24C",
+    "nessuna_armatura": "25D"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 110,
+    "corazza_di_piastre": "13A",
+    "corazza_di_maglie": "18B",
+    "cuoio_rinforzato": "19C",
+    "cuoio_grezzo": "24C",
+    "nessuna_armatura": "25D"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 111,
+    "corazza_di_piastre": "14B",
+    "corazza_di_maglie": "20C",
+    "cuoio_rinforzato": "22C",
+    "cuoio_grezzo": "27D",
+    "nessuna_armatura": "28E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 112,
+    "corazza_di_piastre": "14B",
+    "corazza_di_maglie": "20C",
+    "cuoio_rinforzato": "22C",
+    "cuoio_grezzo": "27D",
+    "nessuna_armatura": "28E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 113,
+    "corazza_di_piastre": "14B",
+    "corazza_di_maglie": "20C",
+    "cuoio_rinforzato": "22C",
+    "cuoio_grezzo": "27D",
+    "nessuna_armatura": "28E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 114,
+    "corazza_di_piastre": "14B",
+    "corazza_di_maglie": "20C",
+    "cuoio_rinforzato": "22C",
+    "cuoio_grezzo": "27D",
+    "nessuna_armatura": "28E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 115,
+    "corazza_di_piastre": "14B",
+    "corazza_di_maglie": "20C",
+    "cuoio_rinforzato": "22C",
+    "cuoio_grezzo": "27D",
+    "nessuna_armatura": "28E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 116,
+    "corazza_di_piastre": "15B",
+    "corazza_di_maglie": "22C",
+    "cuoio_rinforzato": "24D",
+    "cuoio_grezzo": "29D",
+    "nessuna_armatura": "31E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 117,
+    "corazza_di_piastre": "15B",
+    "corazza_di_maglie": "22C",
+    "cuoio_rinforzato": "24D",
+    "cuoio_grezzo": "29D",
+    "nessuna_armatura": "31E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 118,
+    "corazza_di_piastre": "15B",
+    "corazza_di_maglie": "22C",
+    "cuoio_rinforzato": "24D",
+    "cuoio_grezzo": "29D",
+    "nessuna_armatura": "31E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 119,
+    "corazza_di_piastre": "15B",
+    "corazza_di_maglie": "22C",
+    "cuoio_rinforzato": "24D",
+    "cuoio_grezzo": "29D",
+    "nessuna_armatura": "31E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 120,
+    "corazza_di_piastre": "15B",
+    "corazza_di_maglie": "22C",
+    "cuoio_rinforzato": "24D",
+    "cuoio_grezzo": "29D",
+    "nessuna_armatura": "31E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 121,
+    "corazza_di_piastre": "16C",
+    "corazza_di_maglie": "24C",
+    "cuoio_rinforzato": "27D",
+    "cuoio_grezzo": "31D",
+    "nessuna_armatura": "33E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 122,
+    "corazza_di_piastre": "16C",
+    "corazza_di_maglie": "24C",
+    "cuoio_rinforzato": "27D",
+    "cuoio_grezzo": "31D",
+    "nessuna_armatura": "33E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 123,
+    "corazza_di_piastre": "16C",
+    "corazza_di_maglie": "24C",
+    "cuoio_rinforzato": "27D",
+    "cuoio_grezzo": "31D",
+    "nessuna_armatura": "33E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 124,
+    "corazza_di_piastre": "16C",
+    "corazza_di_maglie": "24C",
+    "cuoio_rinforzato": "27D",
+    "cuoio_grezzo": "31D",
+    "nessuna_armatura": "33E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 125,
+    "corazza_di_piastre": "16C",
+    "corazza_di_maglie": "24C",
+    "cuoio_rinforzato": "27D",
+    "cuoio_grezzo": "31D",
+    "nessuna_armatura": "33E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 126,
+    "corazza_di_piastre": "17C",
+    "corazza_di_maglie": "26D",
+    "cuoio_rinforzato": "29D",
+    "cuoio_grezzo": "33E",
+    "nessuna_armatura": "36E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 127,
+    "corazza_di_piastre": "17C",
+    "corazza_di_maglie": "26D",
+    "cuoio_rinforzato": "29D",
+    "cuoio_grezzo": "33E",
+    "nessuna_armatura": "36E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 128,
+    "corazza_di_piastre": "17C",
+    "corazza_di_maglie": "26D",
+    "cuoio_rinforzato": "29D",
+    "cuoio_grezzo": "33E",
+    "nessuna_armatura": "36E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 129,
+    "corazza_di_piastre": "17C",
+    "corazza_di_maglie": "26D",
+    "cuoio_rinforzato": "29D",
+    "cuoio_grezzo": "33E",
+    "nessuna_armatura": "36E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 130,
+    "corazza_di_piastre": "17C",
+    "corazza_di_maglie": "26D",
+    "cuoio_rinforzato": "29D",
+    "cuoio_grezzo": "33E",
+    "nessuna_armatura": "36E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 131,
+    "corazza_di_piastre": "19D",
+    "corazza_di_maglie": "28D",
+    "cuoio_rinforzato": "32E",
+    "cuoio_grezzo": "36E",
+    "nessuna_armatura": "39E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 132,
+    "corazza_di_piastre": "19D",
+    "corazza_di_maglie": "28D",
+    "cuoio_rinforzato": "32E",
+    "cuoio_grezzo": "36E",
+    "nessuna_armatura": "39E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 133,
+    "corazza_di_piastre": "19D",
+    "corazza_di_maglie": "28D",
+    "cuoio_rinforzato": "32E",
+    "cuoio_grezzo": "36E",
+    "nessuna_armatura": "39E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 134,
+    "corazza_di_piastre": "19D",
+    "corazza_di_maglie": "28D",
+    "cuoio_rinforzato": "32E",
+    "cuoio_grezzo": "36E",
+    "nessuna_armatura": "39E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 135,
+    "corazza_di_piastre": "19D",
+    "corazza_di_maglie": "28D",
+    "cuoio_rinforzato": "32E",
+    "cuoio_grezzo": "36E",
+    "nessuna_armatura": "39E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 136,
+    "corazza_di_piastre": "20D",
+    "corazza_di_maglie": "30E",
+    "cuoio_rinforzato": "34E",
+    "cuoio_grezzo": "38E",
+    "nessuna_armatura": "42E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 137,
+    "corazza_di_piastre": "20D",
+    "corazza_di_maglie": "30E",
+    "cuoio_rinforzato": "34E",
+    "cuoio_grezzo": "38E",
+    "nessuna_armatura": "42E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 138,
+    "corazza_di_piastre": "20D",
+    "corazza_di_maglie": "30E",
+    "cuoio_rinforzato": "34E",
+    "cuoio_grezzo": "38E",
+    "nessuna_armatura": "42E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 139,
+    "corazza_di_piastre": "20D",
+    "corazza_di_maglie": "30E",
+    "cuoio_rinforzato": "34E",
+    "cuoio_grezzo": "38E",
+    "nessuna_armatura": "42E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 140,
+    "corazza_di_piastre": "20D",
+    "corazza_di_maglie": "30E",
+    "cuoio_rinforzato": "34E",
+    "cuoio_grezzo": "38E",
+    "nessuna_armatura": "42E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 141,
+    "corazza_di_piastre": "22E",
+    "corazza_di_maglie": "33E",
+    "cuoio_rinforzato": "37E",
+    "cuoio_grezzo": "40E",
+    "nessuna_armatura": "44E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 142,
+    "corazza_di_piastre": "22E",
+    "corazza_di_maglie": "33E",
+    "cuoio_rinforzato": "37E",
+    "cuoio_grezzo": "40E",
+    "nessuna_armatura": "44E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 143,
+    "corazza_di_piastre": "22E",
+    "corazza_di_maglie": "33E",
+    "cuoio_rinforzato": "37E",
+    "cuoio_grezzo": "40E",
+    "nessuna_armatura": "44E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 144,
+    "corazza_di_piastre": "22E",
+    "corazza_di_maglie": "33E",
+    "cuoio_rinforzato": "37E",
+    "cuoio_grezzo": "40E",
+    "nessuna_armatura": "44E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 145,
+    "corazza_di_piastre": "22E",
+    "corazza_di_maglie": "33E",
+    "cuoio_rinforzato": "37E",
+    "cuoio_grezzo": "40E",
+    "nessuna_armatura": "44E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 146,
+    "corazza_di_piastre": "24E",
+    "corazza_di_maglie": "36E",
+    "cuoio_rinforzato": "40E",
+    "cuoio_grezzo": "42E",
+    "nessuna_armatura": "46E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 147,
+    "corazza_di_piastre": "24E",
+    "corazza_di_maglie": "36E",
+    "cuoio_rinforzato": "40E",
+    "cuoio_grezzo": "42E",
+    "nessuna_armatura": "46E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 148,
+    "corazza_di_piastre": "24E",
+    "corazza_di_maglie": "36E",
+    "cuoio_rinforzato": "40E",
+    "cuoio_grezzo": "42E",
+    "nessuna_armatura": "46E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 149,
+    "corazza_di_piastre": "24E",
+    "corazza_di_maglie": "36E",
+    "cuoio_rinforzato": "40E",
+    "cuoio_grezzo": "42E",
+    "nessuna_armatura": "46E"
+  },
+  {
+    "tabella": "TA-3",
+    "tipologia_arma": "Armi a Due Mani",
+    "risultato_del_tiro": 150,
+    "corazza_di_piastre": "24E",
+    "corazza_di_maglie": "36E",
+    "cuoio_rinforzato": "40E",
+    "cuoio_grezzo": "42E",
+    "nessuna_armatura": "46E"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 1,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 2,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 3,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 4,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 5,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 6,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 7,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 8,
+    "corazza_di_piastre": "Possibilità di Colpo Maldestro",
+    "corazza_di_maglie": "Possibilità di Colpo Maldestro",
+    "cuoio_rinforzato": "Possibilità di Colpo Maldestro",
+    "cuoio_grezzo": "Possibilità di Colpo Maldestro",
+    "nessuna_armatura": "Possibilità di Colpo Maldestro"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 9,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 10,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 11,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 12,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 13,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 14,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 15,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 16,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 17,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 18,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 19,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 20,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 21,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 22,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 23,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 24,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 25,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 26,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 27,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 28,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 29,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 30,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 31,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 32,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 33,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 34,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 35,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 36,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 37,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 38,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 39,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 40,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 41,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 42,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 43,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 44,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 45,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 46,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 47,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 48,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 49,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 50,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 51,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 52,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 53,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 54,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 55,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 56,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 57,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 58,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 59,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 60,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 61,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 62,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 63,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 64,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 65,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 66,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 67,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 68,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 69,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 70,
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 71,
+    "corazza_di_piastre": 1,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 72,
+    "corazza_di_piastre": 1,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 73,
+    "corazza_di_piastre": 1,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 74,
+    "corazza_di_piastre": 1,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 75,
+    "corazza_di_piastre": 1,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 76,
+    "corazza_di_piastre": 2,
+    "corazza_di_maglie": 2,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 4,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 77,
+    "corazza_di_piastre": 2,
+    "corazza_di_maglie": 2,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 4,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 78,
+    "corazza_di_piastre": 2,
+    "corazza_di_maglie": 2,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 4,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 79,
+    "corazza_di_piastre": 2,
+    "corazza_di_maglie": 2,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 4,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 80,
+    "corazza_di_piastre": 2,
+    "corazza_di_maglie": 2,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 4,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 81,
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 4,
+    "cuoio_rinforzato": 3,
+    "cuoio_grezzo": 6,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 82,
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 4,
+    "cuoio_rinforzato": 3,
+    "cuoio_grezzo": 6,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 83,
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 4,
+    "cuoio_rinforzato": 3,
+    "cuoio_grezzo": 6,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 84,
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 4,
+    "cuoio_rinforzato": 3,
+    "cuoio_grezzo": 6,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 85,
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 4,
+    "cuoio_rinforzato": 3,
+    "cuoio_grezzo": 6,
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 86,
+    "corazza_di_piastre": 4,
+    "corazza_di_maglie": 6,
+    "cuoio_rinforzato": 5,
+    "cuoio_grezzo": "8A",
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 87,
+    "corazza_di_piastre": 4,
+    "corazza_di_maglie": 6,
+    "cuoio_rinforzato": 5,
+    "cuoio_grezzo": "8A",
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 88,
+    "corazza_di_piastre": 4,
+    "corazza_di_maglie": 6,
+    "cuoio_rinforzato": 5,
+    "cuoio_grezzo": "8A",
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 89,
+    "corazza_di_piastre": 4,
+    "corazza_di_maglie": 6,
+    "cuoio_rinforzato": 5,
+    "cuoio_grezzo": "8A",
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 90,
+    "corazza_di_piastre": 4,
+    "corazza_di_maglie": 6,
+    "cuoio_rinforzato": 5,
+    "cuoio_grezzo": "8A",
+    "nessuna_armatura": 0
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 91,
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 7,
+    "cuoio_rinforzato": "7A",
+    "cuoio_grezzo": "10A",
+    "nessuna_armatura": "8A"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 92,
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 7,
+    "cuoio_rinforzato": "7A",
+    "cuoio_grezzo": "10A",
+    "nessuna_armatura": "8A"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 93,
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 7,
+    "cuoio_rinforzato": "7A",
+    "cuoio_grezzo": "10A",
+    "nessuna_armatura": "8A"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 94,
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 7,
+    "cuoio_rinforzato": "7A",
+    "cuoio_grezzo": "10A",
+    "nessuna_armatura": "8A"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 95,
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 7,
+    "cuoio_rinforzato": "7A",
+    "cuoio_grezzo": "10A",
+    "nessuna_armatura": "8A"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 96,
+    "corazza_di_piastre": 6,
+    "corazza_di_maglie": "8A",
+    "cuoio_rinforzato": "9A",
+    "cuoio_grezzo": "12B",
+    "nessuna_armatura": "10B"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 97,
+    "corazza_di_piastre": 6,
+    "corazza_di_maglie": "8A",
+    "cuoio_rinforzato": "9A",
+    "cuoio_grezzo": "12B",
+    "nessuna_armatura": "10B"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 98,
+    "corazza_di_piastre": 6,
+    "corazza_di_maglie": "8A",
+    "cuoio_rinforzato": "9A",
+    "cuoio_grezzo": "12B",
+    "nessuna_armatura": "10B"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 99,
+    "corazza_di_piastre": 6,
+    "corazza_di_maglie": "8A",
+    "cuoio_rinforzato": "9A",
+    "cuoio_grezzo": "12B",
+    "nessuna_armatura": "10B"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 100,
+    "corazza_di_piastre": 6,
+    "corazza_di_maglie": "8A",
+    "cuoio_rinforzato": "9A",
+    "cuoio_grezzo": "12B",
+    "nessuna_armatura": "10B"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 101,
+    "corazza_di_piastre": 7,
+    "corazza_di_maglie": "10A",
+    "cuoio_rinforzato": "10B",
+    "cuoio_grezzo": "13B",
+    "nessuna_armatura": "11C"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 102,
+    "corazza_di_piastre": 7,
+    "corazza_di_maglie": "10A",
+    "cuoio_rinforzato": "10B",
+    "cuoio_grezzo": "13B",
+    "nessuna_armatura": "11C"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 103,
+    "corazza_di_piastre": 7,
+    "corazza_di_maglie": "10A",
+    "cuoio_rinforzato": "10B",
+    "cuoio_grezzo": "13B",
+    "nessuna_armatura": "11C"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 104,
+    "corazza_di_piastre": 7,
+    "corazza_di_maglie": "10A",
+    "cuoio_rinforzato": "10B",
+    "cuoio_grezzo": "13B",
+    "nessuna_armatura": "11C"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 105,
+    "corazza_di_piastre": 7,
+    "corazza_di_maglie": "10A",
+    "cuoio_rinforzato": "10B",
+    "cuoio_grezzo": "13B",
+    "nessuna_armatura": "11C"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 106,
+    "corazza_di_piastre": "8A",
+    "corazza_di_maglie": "13B",
+    "cuoio_rinforzato": "12B",
+    "cuoio_grezzo": "14B",
+    "nessuna_armatura": "13C"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 107,
+    "corazza_di_piastre": "8A",
+    "corazza_di_maglie": "13B",
+    "cuoio_rinforzato": "12B",
+    "cuoio_grezzo": "14B",
+    "nessuna_armatura": "13C"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 108,
+    "corazza_di_piastre": "8A",
+    "corazza_di_maglie": "13B",
+    "cuoio_rinforzato": "12B",
+    "cuoio_grezzo": "14B",
+    "nessuna_armatura": "13C"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 109,
+    "corazza_di_piastre": "8A",
+    "corazza_di_maglie": "13B",
+    "cuoio_rinforzato": "12B",
+    "cuoio_grezzo": "14B",
+    "nessuna_armatura": "13C"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 110,
+    "corazza_di_piastre": "8A",
+    "corazza_di_maglie": "13B",
+    "cuoio_rinforzato": "12B",
+    "cuoio_grezzo": "14B",
+    "nessuna_armatura": "13C"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 111,
+    "corazza_di_piastre": "9A",
+    "corazza_di_maglie": "14B",
+    "cuoio_rinforzato": "13B",
+    "cuoio_grezzo": "16C",
+    "nessuna_armatura": "15C"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 112,
+    "corazza_di_piastre": "9A",
+    "corazza_di_maglie": "14B",
+    "cuoio_rinforzato": "13B",
+    "cuoio_grezzo": "16C",
+    "nessuna_armatura": "15C"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 113,
+    "corazza_di_piastre": "9A",
+    "corazza_di_maglie": "14B",
+    "cuoio_rinforzato": "13B",
+    "cuoio_grezzo": "16C",
+    "nessuna_armatura": "15C"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 114,
+    "corazza_di_piastre": "9A",
+    "corazza_di_maglie": "14B",
+    "cuoio_rinforzato": "13B",
+    "cuoio_grezzo": "16C",
+    "nessuna_armatura": "15C"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 115,
+    "corazza_di_piastre": "9A",
+    "corazza_di_maglie": "14B",
+    "cuoio_rinforzato": "13B",
+    "cuoio_grezzo": "16C",
+    "nessuna_armatura": "15C"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 116,
+    "corazza_di_piastre": "10A",
+    "corazza_di_maglie": "16B",
+    "cuoio_rinforzato": "15C",
+    "cuoio_grezzo": "17C",
+    "nessuna_armatura": "16D"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 117,
+    "corazza_di_piastre": "10A",
+    "corazza_di_maglie": "16B",
+    "cuoio_rinforzato": "15C",
+    "cuoio_grezzo": "17C",
+    "nessuna_armatura": "16D"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 118,
+    "corazza_di_piastre": "10A",
+    "corazza_di_maglie": "16B",
+    "cuoio_rinforzato": "15C",
+    "cuoio_grezzo": "17C",
+    "nessuna_armatura": "16D"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 119,
+    "corazza_di_piastre": "10A",
+    "corazza_di_maglie": "16B",
+    "cuoio_rinforzato": "15C",
+    "cuoio_grezzo": "17C",
+    "nessuna_armatura": "16D"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 120,
+    "corazza_di_piastre": "10A",
+    "corazza_di_maglie": "16B",
+    "cuoio_rinforzato": "15C",
+    "cuoio_grezzo": "17C",
+    "nessuna_armatura": "16D"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 121,
+    "corazza_di_piastre": "11B",
+    "corazza_di_maglie": "17C",
+    "cuoio_rinforzato": "17C",
+    "cuoio_grezzo": "19D",
+    "nessuna_armatura": "18D"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 122,
+    "corazza_di_piastre": "11B",
+    "corazza_di_maglie": "17C",
+    "cuoio_rinforzato": "17C",
+    "cuoio_grezzo": "19D",
+    "nessuna_armatura": "18D"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 123,
+    "corazza_di_piastre": "11B",
+    "corazza_di_maglie": "17C",
+    "cuoio_rinforzato": "17C",
+    "cuoio_grezzo": "19D",
+    "nessuna_armatura": "18D"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 124,
+    "corazza_di_piastre": "11B",
+    "corazza_di_maglie": "17C",
+    "cuoio_rinforzato": "17C",
+    "cuoio_grezzo": "19D",
+    "nessuna_armatura": "18D"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 125,
+    "corazza_di_piastre": "11B",
+    "corazza_di_maglie": "17C",
+    "cuoio_rinforzato": "17C",
+    "cuoio_grezzo": "19D",
+    "nessuna_armatura": "18D"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 126,
+    "corazza_di_piastre": "12C",
+    "corazza_di_maglie": "19C",
+    "cuoio_rinforzato": "19D",
+    "cuoio_grezzo": "20D",
+    "nessuna_armatura": "20D"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 127,
+    "corazza_di_piastre": "12C",
+    "corazza_di_maglie": "19C",
+    "cuoio_rinforzato": "19D",
+    "cuoio_grezzo": "20D",
+    "nessuna_armatura": "20D"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 128,
+    "corazza_di_piastre": "12C",
+    "corazza_di_maglie": "19C",
+    "cuoio_rinforzato": "19D",
+    "cuoio_grezzo": "20D",
+    "nessuna_armatura": "20D"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 129,
+    "corazza_di_piastre": "12C",
+    "corazza_di_maglie": "19C",
+    "cuoio_rinforzato": "19D",
+    "cuoio_grezzo": "20D",
+    "nessuna_armatura": "20D"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 130,
+    "corazza_di_piastre": "12C",
+    "corazza_di_maglie": "19C",
+    "cuoio_rinforzato": "19D",
+    "cuoio_grezzo": "20D",
+    "nessuna_armatura": "20D"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 131,
+    "corazza_di_piastre": "13C",
+    "corazza_di_maglie": "20D",
+    "cuoio_rinforzato": "21D",
+    "cuoio_grezzo": "22D",
+    "nessuna_armatura": "22E"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 132,
+    "corazza_di_piastre": "13C",
+    "corazza_di_maglie": "20D",
+    "cuoio_rinforzato": "21D",
+    "cuoio_grezzo": "22D",
+    "nessuna_armatura": "22E"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 133,
+    "corazza_di_piastre": "13C",
+    "corazza_di_maglie": "20D",
+    "cuoio_rinforzato": "21D",
+    "cuoio_grezzo": "22D",
+    "nessuna_armatura": "22E"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 134,
+    "corazza_di_piastre": "13C",
+    "corazza_di_maglie": "20D",
+    "cuoio_rinforzato": "21D",
+    "cuoio_grezzo": "22D",
+    "nessuna_armatura": "22E"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 135,
+    "corazza_di_piastre": "13C",
+    "corazza_di_maglie": "20D",
+    "cuoio_rinforzato": "21D",
+    "cuoio_grezzo": "22D",
+    "nessuna_armatura": "22E"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 136,
+    "corazza_di_piastre": "14D",
+    "corazza_di_maglie": "22D",
+    "cuoio_rinforzato": "23D",
+    "cuoio_grezzo": "25E",
+    "nessuna_armatura": "23E"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 137,
+    "corazza_di_piastre": "14D",
+    "corazza_di_maglie": "22D",
+    "cuoio_rinforzato": "23D",
+    "cuoio_grezzo": "25E",
+    "nessuna_armatura": "23E"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 138,
+    "corazza_di_piastre": "14D",
+    "corazza_di_maglie": "22D",
+    "cuoio_rinforzato": "23D",
+    "cuoio_grezzo": "25E",
+    "nessuna_armatura": "23E"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 139,
+    "corazza_di_piastre": "14D",
+    "corazza_di_maglie": "22D",
+    "cuoio_rinforzato": "23D",
+    "cuoio_grezzo": "25E",
+    "nessuna_armatura": "23E"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 140,
+    "corazza_di_piastre": "14D",
+    "corazza_di_maglie": "22D",
+    "cuoio_rinforzato": "23D",
+    "cuoio_grezzo": "25E",
+    "nessuna_armatura": "23E"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 141,
+    "corazza_di_piastre": "16D",
+    "corazza_di_maglie": "23E",
+    "cuoio_rinforzato": "25E",
+    "cuoio_grezzo": "27E",
+    "nessuna_armatura": "25E"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 142,
+    "corazza_di_piastre": "16D",
+    "corazza_di_maglie": "23E",
+    "cuoio_rinforzato": "25E",
+    "cuoio_grezzo": "27E",
+    "nessuna_armatura": "25E"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 143,
+    "corazza_di_piastre": "16D",
+    "corazza_di_maglie": "23E",
+    "cuoio_rinforzato": "25E",
+    "cuoio_grezzo": "27E",
+    "nessuna_armatura": "25E"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 144,
+    "corazza_di_piastre": "16D",
+    "corazza_di_maglie": "23E",
+    "cuoio_rinforzato": "25E",
+    "cuoio_grezzo": "27E",
+    "nessuna_armatura": "25E"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 145,
+    "corazza_di_piastre": "16D",
+    "corazza_di_maglie": "23E",
+    "cuoio_rinforzato": "25E",
+    "cuoio_grezzo": "27E",
+    "nessuna_armatura": "25E"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 146,
+    "corazza_di_piastre": "18E",
+    "corazza_di_maglie": "25E",
+    "cuoio_rinforzato": "27E",
+    "cuoio_grezzo": "30E",
+    "nessuna_armatura": "28E"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 147,
+    "corazza_di_piastre": "18E",
+    "corazza_di_maglie": "25E",
+    "cuoio_rinforzato": "27E",
+    "cuoio_grezzo": "30E",
+    "nessuna_armatura": "28E"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 148,
+    "corazza_di_piastre": "18E",
+    "corazza_di_maglie": "25E",
+    "cuoio_rinforzato": "27E",
+    "cuoio_grezzo": "30E",
+    "nessuna_armatura": "28E"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 149,
+    "corazza_di_piastre": "18E",
+    "corazza_di_maglie": "25E",
+    "cuoio_rinforzato": "27E",
+    "cuoio_grezzo": "30E",
+    "nessuna_armatura": "28E"
+  },
+  {
+    "tabella": "TA-4",
+    "tipologia_arma": "Armi da Tiro",
+    "risultato_del_tiro": 150,
+    "corazza_di_piastre": "18E",
+    "corazza_di_maglie": "25E",
+    "cuoio_rinforzato": "27E",
+    "cuoio_grezzo": "30E",
+    "nessuna_armatura": "28E"
+  }
+]

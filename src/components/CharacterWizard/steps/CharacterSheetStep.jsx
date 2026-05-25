@@ -612,16 +612,46 @@ export default function CharacterSheetStep({ characterData, setCharacterData }) 
                       </div>
                     </div>
                   ) : (
-                    <div className="flex items-center gap-4 bg-red-50/50 border border-red-100 rounded-lg p-3">
-                      <div className="w-12 h-12 rounded-full bg-white text-red-600 border border-red-200 flex items-center justify-center text-lg font-black shadow-xs shrink-0">
-                        {finalHitPoints}
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-4 bg-red-50/50 border border-red-100 rounded-lg p-3">
+                        <div className="w-12 h-12 rounded-full bg-white text-red-600 border border-red-200 flex items-center justify-center text-lg font-black shadow-xs shrink-0">
+                          {finalHitPoints}
+                        </div>
+                        <div className="text-xs text-red-900 space-y-0.5">
+                          <p><strong>Roll:</strong> {totalHpRolls} ({level1HpRoll} L1)</p>
+                          <p><strong>Bonus CO:</strong> {fmt(coBonus)}</p>
+                          <p><strong>Fisso:</strong> +5</p>
+                          {specialHpBonus > 0 && (
+                            <p><strong>Speciale:</strong> {fmt(specialHpBonus)}</p>
+                          )}
+                        </div>
                       </div>
-                      <div className="text-xs text-red-900 space-y-0.5">
-                        <p><strong>Roll:</strong> {totalHpRolls} ({level1HpRoll} L1)</p>
-                        <p><strong>Bonus CO:</strong> {fmt(coBonus)}</p>
-                        <p><strong>Fisso:</strong> +5</p>
-                        {specialHpBonus > 0 && (
-                          <p><strong>Speciale:</strong> {fmt(specialHpBonus)}</p>
+
+                      {/* Campo PF Subiti */}
+                      <div className="mt-2 pt-2 border-t border-red-200/40 text-xs">
+                        <label className="block text-[10px] font-bold text-red-950 uppercase mb-1">
+                          PF Subiti (Ferite):
+                        </label>
+                        <div className="flex items-center gap-2">
+                          <input
+                            type="number"
+                            min="0"
+                            max={finalHitPoints}
+                            value={characterData.hpSubiti || 0}
+                            onChange={(e) => {
+                              const val = Math.max(0, parseInt(e.target.value) || 0);
+                              setCharacterData(prev => ({ ...prev, hpSubiti: val }));
+                            }}
+                            className="w-16 p-1 border border-red-300 rounded text-center text-xs font-bold text-red-750 bg-white"
+                          />
+                          <span className="text-[10px] text-red-800 font-medium">
+                            PF Rimanenti: <strong>{Math.max(0, finalHitPoints - (characterData.hpSubiti || 0))}</strong>
+                          </span>
+                        </div>
+                        {(characterData.hpSubiti || 0) > (finalHitPoints / 2) && (
+                          <div className="text-[10px] text-red-700 font-bold mt-1.5 flex items-center gap-1 animate-pulse">
+                            ⚠️ Gravemente Ferito (-20 BO)
+                          </div>
                         )}
                       </div>
                     </div>

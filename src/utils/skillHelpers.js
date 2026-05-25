@@ -223,3 +223,28 @@ export const calculateCargoPenalty = (pesoPG, caricoKg) => {
   return { penalita: parseInt(cleanVal, 10), caricoBloccato: false };
 };
 
+export const getCharacterHpTot = (char) => {
+  if (!char) return 0;
+  const race = char.race;
+  const stats = char.stats || {};
+  const levelDevelopments = char.levelDevelopments || [];
+  
+  const bgData = char.background || { languages: {}, options: [] };
+  const bgModifiers = bgData.compiledModifiers || { statsBonus: {}, skillBgRanks: {}, secondarySkills: {}, gold: 0 };
+  
+  const finalStats = getFinalStats(stats, race, bgModifiers);
+  const coBonus = finalStats['CO']?.bonusTot || 0;
+  
+  const level1HpRoll = char.level1HpRoll || 0;
+  const totalHpRolls = level1HpRoll + levelDevelopments.reduce((sum, d) => sum + (d.hpRoll || 0), 0);
+  
+  const rfRanksL1 = char.skills?.['resistenza fisica']?.adolescenceRanks || 0;
+  const totalRanksRf = rfRanksL1 + levelDevelopments.reduce((sum, d) => sum + (d.tgp4Distribution?.['resistenza fisica'] || 0), 0);
+  const hpD10Modifier = bgModifiers.hpD10Modifier || 0;
+  const specialRfBonus = bgModifiers.primarySkillsSpecialBonus?.['resistenza fisica'] || 0;
+  const specialHpBonus = (totalRanksRf * hpD10Modifier) + specialRfBonus;
+  
+  return totalHpRolls + coBonus + 5 + specialHpBonus;
+};
+
+

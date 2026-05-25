@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Scroll, Users, Book, Settings, Save, Play, Trash2, Plus, FolderOpen, Copy, Edit, ArrowLeft } from 'lucide-react';
+import { Scroll, Users, Book, Settings, Save, Play, Trash2, Plus, FolderOpen, Copy, Edit, ArrowLeft, Swords } from 'lucide-react';
 import CharacterWizard from './components/CharacterWizard/CharacterWizard';
 import defaultEquipment from './data/TS_4-equipaggiamento.json';
 import EquipmentCatalogManager from './components/EquipmentCatalogManager';
+import CombatCalculator from './components/CombatCalculator';
+import { getCharacterHpTot } from './utils/skillHelpers';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -115,6 +117,19 @@ function App() {
     }
   };
 
+  const handleUpdateCharacterHpSubiti = (charId, hpSubiti) => {
+    setSavedCharacters(prev => {
+      const nextList = prev.map(c => {
+        if (c.id === charId) {
+          return { ...c, hpSubiti };
+        }
+        return c;
+      });
+      localStorage.setItem('merp_characters', JSON.stringify(nextList));
+      return nextList;
+    });
+  };
+
   const handleDuplicateCharacter = (charData) => {
     const defaultNewName = `${charData.name || 'Senza Nome'}_COPY`;
     const newName = prompt('Inserisci il nome per il personaggio duplicato:', defaultNewName);
@@ -176,6 +191,13 @@ function App() {
           >
             <Users className="w-4 h-4" />
             Roster PG / PNG
+          </button>
+          <button 
+            className={`nav-tab ${activeTab === 'combat' ? 'active' : ''}`}
+            onClick={() => setActiveTab('combat')}
+          >
+            <Swords className="w-4 h-4" />
+            Combattimento
           </button>
           <button 
             className={`nav-tab ${activeTab === 'settings' ? 'active' : ''}`}
@@ -253,6 +275,41 @@ function App() {
                           <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>
                             <p style={{ margin: '0.2rem 0' }}><strong>Popolo:</strong> {char.race?.popolo || '—'}</p>
                             <p style={{ margin: '0.2rem 0' }}><strong>Professione:</strong> {char.profession?.professione || '—'}</p>
+                            {char.stats && (
+                              <div style={{ marginTop: '0.75rem', borderTop: '1px dashed var(--border-color)', paddingTop: '0.5rem' }}>
+                                {(() => {
+                                  const hpTot = getCharacterHpTot(char);
+                                  const hpSub = char.hpSubiti || 0;
+                                  const hpRem = Math.max(0, hpTot - hpSub);
+                                  const isGrave = hpSub > (hpTot / 2);
+                                  return (
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', fontWeight: 650 }}>
+                                        <span>Punti Ferita (PF):</span>
+                                        <span style={{ color: isGrave ? '#b91c1c' : '#15803d', fontWeight: 'bold' }}>
+                                          {hpRem} / {hpTot} {hpSub > 0 && `(${hpSub} sub.)`}
+                                        </span>
+                                      </div>
+                                      <div style={{ height: '6px', width: '100%', backgroundColor: '#e5e7eb', borderRadius: '3px', overflow: 'hidden' }}>
+                                        <div 
+                                          style={{ 
+                                            height: '100%', 
+                                            width: `${Math.max(0, Math.min(100, (hpRem / hpTot) * 100))}%`,
+                                            backgroundColor: isGrave ? '#ef4444' : '#22c55e',
+                                            transition: 'width 0.3s ease'
+                                          }} 
+                                        />
+                                      </div>
+                                      {isGrave && (
+                                        <span style={{ fontSize: '0.65rem', color: '#b91c1c', fontWeight: 'bold', display: 'block', marginTop: '0.1rem' }}>
+                                          ⚠️ Gravemente Ferito (-20 BO)
+                                        </span>
+                                      )}
+                                    </div>
+                                  );
+                                })()}
+                              </div>
+                            )}
                           </div>
                         </div>
                         <div style={{ display: 'flex', gap: '0.5rem', marginTop: 'auto' }}>
@@ -289,6 +346,15 @@ function App() {
               )}
             </div>
           </div>
+        )}
+        {activeTab === 'combat' && (
+          <ErrorBoundary>
+            <CombatCalculator 
+              savedCharacters={savedCharacters}
+              equipmentCatalog={equipmentCatalog}
+              onUpdateHpSubiti={handleUpdateCharacterHpSubiti}
+            />
+          </ErrorBoundary>
         )}
         {activeTab === 'settings' && (
           <ErrorBoundary>
