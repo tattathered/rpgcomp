@@ -583,11 +583,11 @@ export default function CharacterSheetStep({ characterData, setCharacterData }) 
               <Heart className="w-4 h-4 text-red-600" />
               <span className="text-xs font-bold text-indigo-950 uppercase tracking-wider">Vitalità e Magia</span>
             </div>
-            <div className="p-4 space-y-4">
-              <div className="grid grid-cols-3 gap-4">
-                
-                {/* Punti Ferita */}
-                <div className="border border-gray-150 rounded-lg p-3 bg-gray-50/30">
+            <div className="p-4 grid grid-cols-3 gap-4 items-stretch">
+              
+              {/* Punti Ferita */}
+              <div className="border border-gray-150 rounded-lg p-3 bg-gray-50/30 flex flex-col justify-between">
+                <div>
                   <div className="flex justify-between items-center mb-1">
                     <span className="text-xs font-bold text-gray-700">Punti Ferita (HP)</span>
                     <span className="text-[10px] text-gray-500 font-medium">Tiri + CO ({fmt(coBonus)}) + 5 {specialHpBonus > 0 ? `+ Spec. (${fmt(specialHpBonus)})` : ''}</span>
@@ -627,9 +627,11 @@ export default function CharacterSheetStep({ characterData, setCharacterData }) 
                     </div>
                   )}
                 </div>
+              </div>
 
-                {/* Bonus Difensivo (BD) */}
-                <div className="border border-gray-150 rounded-lg p-3 bg-gray-50/30">
+              {/* Bonus Difensivo (BD) */}
+              <div className="border border-gray-150 rounded-lg p-3 bg-gray-50/30 flex flex-col justify-between">
+                <div>
                   <div className="flex justify-between items-center mb-1">
                     <span className="text-xs font-bold text-gray-700">Bonus Difensivo (BD)</span>
                     <span className="text-[10px] text-gray-500 font-medium">
@@ -647,8 +649,37 @@ export default function CharacterSheetStep({ characterData, setCharacterData }) 
                   </div>
                 </div>
 
-                {/* Punti Magia */}
-                <div className="border border-gray-155 rounded-lg p-3 bg-gray-50/30">
+                <div className="mt-3 pt-3 border-t border-gray-200 text-[11px] text-gray-750 space-y-1.5">
+                  <div className="flex justify-between items-center">
+                    <span>Scudo:</span>
+                    <span className={`font-semibold ${activeShield ? 'text-green-700' : 'text-gray-500'}`}>
+                      {activeShield ? 'Sì (+25 BD)' : 'No'}
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span>Bracciali:</span>
+                    <span className={`font-semibold ${activeBracciali ? 'text-red-700' : 'text-gray-500'}`}>
+                      {activeBracciali ? `Sì (${activeBracciali.material}) -5 BO` : 'No'}
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span>Schinieri:</span>
+                    <span className={`font-semibold ${activeSchinieri ? 'text-red-700' : 'text-gray-500'}`}>
+                      {activeSchinieri ? `Sì (${activeSchinieri.material}) -5 MM` : 'No'}
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span>Elmo:</span>
+                    <span className={`font-semibold ${activeElmo ? 'text-red-700' : 'text-gray-500'}`}>
+                      {activeElmo ? `Sì (${activeElmo.material}) -5 Percezione` : 'No'}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Punti Magia */}
+              <div className="border border-gray-155 rounded-lg p-3 bg-gray-50/30 flex flex-col justify-between">
+                <div>
                   <div className="flex justify-between items-center mb-1">
                     <span className="text-xs font-bold text-gray-700">Punti Magia (PM)</span>
                     <span className="text-[10px] text-gray-500 font-medium">Lvl {finalLevel} × PM/lvl ({pmPerLevel})</span>
@@ -661,69 +692,6 @@ export default function CharacterSheetStep({ characterData, setCharacterData }) 
                       <p><strong>Reame:</strong> {magicRealm}</p>
                       <p><strong>PM/lvl:</strong> x{pmPerLevel}</p>
                     </div>
-                  </div>
-                </div>
-
-              </div>
-
-              {/* Modificatori Equipaggiamento Indossato */}
-              <div className="border border-indigo-100 rounded-lg p-4 bg-indigo-50/10">
-                <span className="text-xs font-bold text-indigo-950 uppercase tracking-wider block">Modificatori Equipaggiamento Indossato</span>
-                <p className="text-[10px] text-gray-500 mt-0.5">I modificatori riportati qui sotto non si sommano automaticamente alle caratteristiche o ai totali soprastanti (eccetto armatura e scudo se calcolati a parte dal GM).</p>
-                <div className="grid grid-cols-5 gap-3 mt-3 text-xs">
-                  {/* Armatura */}
-                  <div className="p-3 border border-gray-150 rounded-lg bg-white/70 shadow-xs flex flex-col justify-between">
-                    <div>
-                      <span className="font-bold text-gray-500 uppercase tracking-wider text-[10px] block mb-1">Armatura</span>
-                      <span className="font-bold text-gray-900 block">{activeArmor}</span>
-                    </div>
-                    <span className={`text-[11px] font-bold mt-2 ${activeArmorMM < 0 ? 'text-red-600' : 'text-gray-500'}`}>
-                      {activeArmorMM < 0 ? `MM: ${activeArmorMM}` : 'MM: 0'}
-                    </span>
-                  </div>
-
-                  {/* Scudo */}
-                  <div className="p-3 border border-gray-150 rounded-lg bg-white/70 shadow-xs flex flex-col justify-between">
-                    <div>
-                      <span className="font-bold text-gray-500 uppercase tracking-wider text-[10px] block mb-1">Scudo</span>
-                      <span className="font-bold text-gray-900 block">{activeShield ? 'Sì' : 'No'}</span>
-                    </div>
-                    <span className={`text-[11px] font-bold mt-2 ${activeShield ? 'text-green-600' : 'text-gray-500'}`}>
-                      {activeShield ? '+25 BD' : '—'}
-                    </span>
-                  </div>
-
-                  {/* Bracciali */}
-                  <div className="p-3 border border-gray-150 rounded-lg bg-white/70 shadow-xs flex flex-col justify-between">
-                    <div>
-                      <span className="font-bold text-gray-500 uppercase tracking-wider text-[10px] block mb-1">Bracciali</span>
-                      <span className="font-bold text-gray-900 block">{activeBracciali ? `Sì (${activeBracciali.material})` : 'No'}</span>
-                    </div>
-                    <span className={`text-[11px] font-bold mt-2 ${activeBracciali ? 'text-red-600' : 'text-gray-500'}`}>
-                      {activeBracciali ? `${activeBracciali.malus} BO` : '—'}
-                    </span>
-                  </div>
-
-                  {/* Schinieri */}
-                  <div className="p-3 border border-gray-150 rounded-lg bg-white/70 shadow-xs flex flex-col justify-between">
-                    <div>
-                      <span className="font-bold text-gray-500 uppercase tracking-wider text-[10px] block mb-1">Schinieri</span>
-                      <span className="font-bold text-gray-900 block">{activeSchinieri ? `Sì (${activeSchinieri.material})` : 'No'}</span>
-                    </div>
-                    <span className={`text-[11px] font-bold mt-2 ${activeSchinieri ? 'text-red-600' : 'text-gray-500'}`}>
-                      {activeSchinieri ? `${activeSchinieri.malus} MM` : '—'}
-                    </span>
-                  </div>
-
-                  {/* Elmo */}
-                  <div className="p-3 border border-gray-150 rounded-lg bg-white/70 shadow-xs flex flex-col justify-between">
-                    <div>
-                      <span className="font-bold text-gray-500 uppercase tracking-wider text-[10px] block mb-1">Elmo</span>
-                      <span className="font-bold text-gray-900 block">{activeElmo ? `Sì (${activeElmo.material})` : 'No'}</span>
-                    </div>
-                    <span className={`text-[11px] font-bold mt-2 ${activeElmo ? 'text-red-600' : 'text-gray-500'}`}>
-                      {activeElmo ? `${activeElmo.malus} Percezione` : '—'}
-                    </span>
                   </div>
                 </div>
               </div>
