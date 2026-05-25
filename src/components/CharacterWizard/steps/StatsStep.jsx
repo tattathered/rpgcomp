@@ -12,6 +12,27 @@ const STAT_NAMES = {
   'PR': 'Prontezza'
 };
 
+const checkElfConstraint = (racePopolo, stats) => {
+  if (!stats) return { show: false, respected: false };
+  const keys = ['FR', 'AG', 'CO', 'IN', 'IT', 'PR'];
+  const hasAll = keys.every(k => stats[k] !== undefined && stats[k] !== null);
+  if (!hasAll) return { show: false, respected: false };
+
+  const vals = keys.map(k => Number(stats[k]) || 0).sort((a, b) => b - a);
+  const prVal = Number(stats.PR) || 0;
+
+  if (racePopolo === 'Elfi Noldor') {
+    return { show: true, respected: prVal >= vals[0] };
+  }
+  if (racePopolo === 'Elfi Sindar') {
+    return { show: true, respected: prVal >= vals[1] };
+  }
+  if (racePopolo === 'Elfi Silvani') {
+    return { show: true, respected: prVal >= vals[2] };
+  }
+  return { show: false, respected: false };
+};
+
 export default function StatsStep({ characterData, setCharacterData }) {
   const [method, setMethod] = useState(characterData.statsMethod || 'classic'); // 'classic' | 'points'
 
@@ -267,12 +288,27 @@ export default function StatsStep({ characterData, setCharacterData }) {
   return (
     <div>
       {characterData.race && (
-        <div className="mb-6 p-4 border rounded flex justify-between items-center" style={{ backgroundColor: 'var(--theme-race-bg)', borderColor: 'var(--theme-race-border)', color: 'var(--theme-race-text)' }}>
+        <div className="mb-6 p-4 border rounded flex flex-col md:flex-row justify-between items-start md:items-center gap-4" style={{ backgroundColor: 'var(--theme-race-bg)', borderColor: 'var(--theme-race-border)', color: 'var(--theme-race-text)' }}>
           <div>
             <span className="text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--theme-race-text)' }}>Popolo Selezionato</span>
             <h3 className="font-bold m-0" style={{fontSize: '1.2rem', marginTop: '0.25rem', color: 'var(--theme-race-text)'}}>{characterData.race.popolo}</h3>
+            {characterData.race.popolo === 'Elfi Noldor' && (
+              <p className="text-xs font-semibold mt-1 bg-white/20 px-2 py-1 rounded inline-block text-[11px]">
+                ⚠️ <strong>Vincolo Prontezza (PR):</strong> Deve essere attribuito il punteggio più alto.
+              </p>
+            )}
+            {characterData.race.popolo === 'Elfi Sindar' && (
+              <p className="text-xs font-semibold mt-1 bg-white/20 px-2 py-1 rounded inline-block text-[11px]">
+                ⚠️ <strong>Vincolo Prontezza (PR):</strong> Deve essere attribuito uno dei due punteggi più alti.
+              </p>
+            )}
+            {characterData.race.popolo === 'Elfi Silvani' && (
+              <p className="text-xs font-semibold mt-1 bg-white/20 px-2 py-1 rounded inline-block text-[11px]">
+                ⚠️ <strong>Vincolo Prontezza (PR):</strong> Deve essere attribuito uno dei tre punteggi più alti.
+              </p>
+            )}
           </div>
-          <div className="text-sm font-medium" style={{ color: 'var(--theme-race-text)' }}>
+          <div className="text-sm font-medium text-right" style={{ color: 'var(--theme-race-text)' }}>
             {characterData.race['note (umani/non umani)']}
           </div>
         </div>
@@ -602,9 +638,43 @@ export default function StatsStep({ characterData, setCharacterData }) {
                   return (
                     <div key={key} className="flex items-center justify-between p-3 border border-green-100 rounded bg-white shadow-sm">
                       <div className="flex flex-col">
-                        <span className="font-semibold text-gray-800">{STAT_NAMES[key]} ({key})</span>
-                        {key === primaryStat && <span className="text-xs font-bold text-primary-color">Primaria (Min 90)</span>}
-                        {key === secondaryStat && <span className="text-xs font-bold text-gray-500">Secondaria (Min 75)</span>}
+                        {(() => {
+                          const isPR = key === 'PR';
+                          const elfConstraint = isPR ? checkElfConstraint(characterData.race?.popolo, characterData.stats) : null;
+                          let labelStyle = {};
+                          let constraintBadge = null;
+
+                          if (elfConstraint && elfConstraint.show) {
+                            if (elfConstraint.respected) {
+                              labelStyle = { color: '#10b981', fontWeight: 'bold' };
+                              constraintBadge = (
+                                <span className="text-[10px] font-bold text-green-700 bg-green-50 px-1.5 py-0.5 rounded border border-green-200">
+                                  Vincolo PR Rispettato
+                                </span>
+                              );
+                            } else {
+                              labelStyle = { color: '#ef4444', fontWeight: 'bold' };
+                              constraintBadge = (
+                                <span className="text-[10px] font-bold text-red-700 bg-red-50 px-1.5 py-0.5 rounded border border-red-200">
+                                  Vincolo PR NON Rispettato
+                                </span>
+                              );
+                            }
+                          }
+
+                          return (
+                            <>
+                              <span className="font-semibold text-gray-800" style={labelStyle}>
+                                {STAT_NAMES[key]} ({key}):
+                              </span>
+                              <div className="flex items-center gap-1.5 mt-0.5">
+                                {key === primaryStat && <span className="text-xs font-bold text-primary-color">Primaria (Min 90)</span>}
+                                {key === secondaryStat && <span className="text-xs font-bold text-gray-500">Secondaria (Min 75)</span>}
+                                {constraintBadge}
+                              </div>
+                            </>
+                          );
+                        })()}
                       </div>
 
                       <div className="flex items-center gap-3">

@@ -1,0 +1,58 @@
+[
+  {
+    "tipologia": "protezioni",
+    "oggetto": "Scudo",
+    "bonus": "+25",
+    "abilità_bonus": "bonus difensivo",
+    "malus": null,
+    "abilità_malus": null
+  },
+  {
+    "tipologia": "protezioni",
+    "oggetto": "Bracciali di cuoio",
+    "bonus": null,
+    "abilità_bonus": null,
+    "malus": -5,
+    "abilità_malus": "bonus offensivo"
+  },
+  {
+    "tipologia": "protezioni",
+    "oggetto": "Schinieri di cuoio",
+    "bonus": null,
+    "abilità_bonus": null,
+    "malus": -5,
+    "abilità_malus": "manovre di movimento"
+  },
+  {
+    "tipologia": "protezioni",
+    "oggetto": "Bracciali di metallo",
+    "bonus": null,
+    "abilità_bonus": null,
+    "malus": -5,
+    "abilità_malus": "bonus offensivo"
+  },
+  {
+    "tipologia": "protezioni",
+    "oggetto": "Schinieri di metallo",
+    "bonus": null,
+    "abilità_bonus": null,
+    "malus": -5,
+    "abilità_malus": "manovre di movimento"
+  },
+  {
+    "tipologia": "protezioni",
+    "oggetto": "Elmo di cuoio",
+    "bonus": null,
+    "abilità_bonus": null,
+    "malus": -5,
+    "abilità_malus": "percezione"
+  },
+  {
+    "tipologia": "protezioni",
+    "oggetto": "Elmo di metallo",
+    "bonus": null,
+    "abilità_bonus": null,
+    "malus": -5,
+    "abilità_malus": "percezione"
+  }
+]

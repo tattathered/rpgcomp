@@ -33,6 +33,38 @@ const getMaxRanks = (skillName) => {
   return limits[skillName.toLowerCase()] || null;
 };
 
+const getArmorSkillName = (armorName) => {
+  if (!armorName) return 'nessuna armatura';
+  const name = armorName.toLowerCase();
+  if (name.includes('grezzo')) return 'cuoio grezzo';
+  if (name.includes('rinforzato')) return 'cuoio rinforzato';
+  if (name.includes('maglia') || name.includes('maglie')) return 'corazza di maglia';
+  if (name.includes('piastre')) return 'corazza di piastre';
+  return 'nessuna armatura';
+};
+
+const getSkillForWeapon = (item) => {
+  const nome = (item.nome || '').toLowerCase();
+  const note = (item.note || item.note_base || '').toLowerCase();
+  
+  if (note.includes('con asta') || nome.includes('lancia') || nome.includes('giavellotto')) {
+    return 'con asta';
+  }
+  if (note.includes('2 mani') || note.includes('due mani') || nome.includes('a 2 mani') || nome.includes('a due mani')) {
+    return 'a 2 mani';
+  }
+  if (note.includes('da tiro') || note.includes('tiro') || nome.includes('arco') || nome.includes('balestra') || nome.includes('fionda')) {
+    return 'da tiro';
+  }
+  if (note.includes('lancio') || note.includes('da lancio') || nome.includes('bolas')) {
+    return 'da lancio';
+  }
+  if (note.includes('contundente') || nome.includes('randello') || nome.includes('mazzafrusto') || nome.includes('rete') || nome.includes('martello')) {
+    return 'contundenti a 1 mano';
+  }
+  return 'taglio a 1 mano';
+};
+
 export default function CharacterSheetStep({ characterData, setCharacterData }) {
   const race = characterData.race;
   const profession = characterData.profession;
@@ -60,6 +92,66 @@ export default function CharacterSheetStep({ characterData, setCharacterData }) 
     const { penalita, caricoBloccato } = calculateCargoPenalty(pesoPG, caricoKg);
     return { penalitaCarico: penalita, caricoBloccato };
   }, [characterData.peso, caricoKg]);
+
+  const equippedItems = useMemo(() => {
+    return characterData.equipment?.filter(x => x.qtyEquip > 0) || [];
+  }, [characterData.equipment]);
+
+  const activeArmor = characterData.equippedArmor || 'Nessuna armatura';
+  const activeArmorMM = useMemo(() => {
+    const skillName = getArmorSkillName(activeArmor);
+    return getIngombroBonus(skillName) ?? 0;
+  }, [activeArmor]);
+
+  const activeShield = useMemo(() => {
+    return equippedItems.some(x => x.nome.toLowerCase().includes('scudo'));
+  }, [equippedItems]);
+
+  const activeBracciali = useMemo(() => {
+    const item = equippedItems.find(x => x.nome.toLowerCase().includes('bracciali'));
+    if (!item) return null;
+    const isMetal = item.nome.toLowerCase().includes('metallo');
+    return { material: isMetal ? 'metallo' : 'cuoio', malus: -5 };
+  }, [equippedItems]);
+
+  const activeSchinieri = useMemo(() => {
+    const item = equippedItems.find(x => x.nome.toLowerCase().includes('schinieri'));
+    if (!item) return null;
+    const isMetal = item.nome.toLowerCase().includes('metallo');
+    return { material: isMetal ? 'metallo' : 'cuoio', malus: -5 };
+  }, [equippedItems]);
+
+  const activeElmo = useMemo(() => {
+    const item = equippedItems.find(x => x.nome.toLowerCase().includes('elmo'));
+    if (!item) return null;
+    const isMetal = item.nome.toLowerCase().includes('metallo');
+    return { material: isMetal ? 'metallo' : 'cuoio', malus: -5 };
+  }, [equippedItems]);
+
+  const presentArmors = useMemo(() => {
+    const list = [];
+    const items = characterData.equipment || [];
+    items.forEach(item => {
+      const name = item.nome.toLowerCase();
+      if (name.includes('grezzo')) list.push('cuoio grezzo');
+      else if (name.includes('rinforzato')) list.push('cuoio rinforzato');
+      else if (name.includes('maglia') || name.includes('maglies')) list.push('corazza di maglia');
+      else if (name.includes('piastre')) list.push('corazza di piastre');
+    });
+    return list;
+  }, [characterData.equipment]);
+
+  const presentWeapons = useMemo(() => {
+    const list = [];
+    const items = characterData.equipment || [];
+    items.forEach(item => {
+      if (item.categoria === 'armi') {
+        const skillName = getSkillForWeapon(item);
+        list.push({ item, skillName });
+      }
+    });
+    return list;
+  }, [characterData.equipment]);
 
   // Calcolo caratteristiche finali consolidando i bonus del background
   const finalStats = useMemo(() => {
@@ -453,82 +545,147 @@ export default function CharacterSheetStep({ characterData, setCharacterData }) 
               <Heart className="w-4 h-4 text-red-600" />
               <span className="text-xs font-bold text-indigo-950 uppercase tracking-wider">Vitalità e Magia</span>
             </div>
-            <div className="p-4 grid grid-cols-3 gap-4">
-              
-              {/* Punti Ferita */}
-              <div className="border border-gray-150 rounded-lg p-3 bg-gray-50/30">
-                <div className="flex justify-between items-center mb-1">
-                  <span className="text-xs font-bold text-gray-700">Punti Ferita (HP)</span>
-                  <span className="text-[10px] text-gray-500 font-medium">Tiri + CO ({fmt(coBonus)}) + 5 {specialHpBonus > 0 ? `+ Spec. (${fmt(specialHpBonus)})` : ''}</span>
+            <div className="p-4 space-y-4">
+              <div className="grid grid-cols-3 gap-4">
+                
+                {/* Punti Ferita */}
+                <div className="border border-gray-150 rounded-lg p-3 bg-gray-50/30">
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-xs font-bold text-gray-700">Punti Ferita (HP)</span>
+                    <span className="text-[10px] text-gray-500 font-medium">Tiri + CO ({fmt(coBonus)}) + 5 {specialHpBonus > 0 ? `+ Spec. (${fmt(specialHpBonus)})` : ''}</span>
+                  </div>
+                  {level1HpRoll === null ? (
+                    <div className="bg-red-50 border border-red-150 p-2.5 rounded text-xs space-y-2">
+                      <p className="text-red-900">Devi lanciare gli HP iniziali. (RF: {rfRanksLevel1}d10)</p>
+                      <div className="flex gap-2">
+                        <button
+                          type="button"
+                          onClick={handleRollLevel1Hp}
+                          className="bg-red-600 hover:bg-red-700 text-white text-[11px] font-bold px-2 py-1 rounded transition"
+                        >
+                          Tira
+                        </button>
+                        <input
+                          type="number"
+                          placeholder="Manuale"
+                          onChange={(e) => handleManualLevel1Hp(e.target.value === '' ? null : parseInt(e.target.value))}
+                          className="w-16 text-[11px] p-1 border border-red-300 rounded bg-white text-center font-bold"
+                        />
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-4 bg-red-50/50 border border-red-100 rounded-lg p-3">
+                      <div className="w-12 h-12 rounded-full bg-white text-red-600 border border-red-200 flex items-center justify-center text-lg font-black shadow-xs shrink-0">
+                        {finalHitPoints}
+                      </div>
+                      <div className="text-xs text-red-900 space-y-0.5">
+                        <p><strong>Roll:</strong> {totalHpRolls} ({level1HpRoll} L1)</p>
+                        <p><strong>Bonus CO:</strong> {fmt(coBonus)}</p>
+                        <p><strong>Fisso:</strong> +5</p>
+                        {specialHpBonus > 0 && (
+                          <p><strong>Speciale:</strong> {fmt(specialHpBonus)}</p>
+                        )}
+                      </div>
+                    </div>
+                  )}
                 </div>
-                {level1HpRoll === null ? (
-                  <div className="bg-red-50 border border-red-150 p-2.5 rounded text-xs space-y-2">
-                    <p className="text-red-900">Devi lanciare gli HP iniziali. (RF: {rfRanksLevel1}d10)</p>
-                    <div className="flex gap-2">
-                      <button
-                        type="button"
-                        onClick={handleRollLevel1Hp}
-                        className="bg-red-600 hover:bg-red-700 text-white text-[11px] font-bold px-2 py-1 rounded transition"
-                      >
-                        Tira
-                      </button>
-                      <input
-                        type="number"
-                        placeholder="Manuale"
-                        onChange={(e) => handleManualLevel1Hp(e.target.value === '' ? null : parseInt(e.target.value))}
-                        className="w-16 text-[11px] p-1 border border-red-300 rounded bg-white text-center font-bold"
-                      />
+
+                {/* Bonus Difensivo (BD) */}
+                <div className="border border-gray-150 rounded-lg p-3 bg-gray-50/30">
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-xs font-bold text-gray-700">Bonus Difensivo (BD)</span>
+                    <span className="text-[10px] text-gray-500 font-medium">
+                      Agilità ({fmt(finalStats['AG']?.bonusTot || 0)}) + Spec. ({fmt(bgModifiers.bdSpecialBonus || 0)})
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-4 bg-blue-50/50 border border-blue-100 rounded-lg p-3">
+                    <div className="w-12 h-12 rounded-full bg-white text-blue-700 border border-blue-200 flex items-center justify-center text-lg font-black shadow-xs shrink-0">
+                      {fmt((finalStats['AG']?.bonusTot || 0) + (bgModifiers.bdSpecialBonus || 0))}
+                    </div>
+                    <div className="text-xs text-blue-900 space-y-0.5">
+                      <p><strong>Bonus Agilità:</strong> {fmt(finalStats['AG']?.bonusTot || 0)}</p>
+                      {bgModifiers.bdSpecialBonus > 0 && <p><strong>Speciale:</strong> {fmt(bgModifiers.bdSpecialBonus)}</p>}
                     </div>
                   </div>
-                ) : (
-                  <div className="flex items-center gap-4 bg-red-50/50 border border-red-100 rounded-lg p-3">
-                    <div className="w-12 h-12 rounded-full bg-white text-red-600 border border-red-200 flex items-center justify-center text-lg font-black shadow-xs shrink-0">
-                      {finalHitPoints}
+                </div>
+
+                {/* Punti Magia */}
+                <div className="border border-gray-155 rounded-lg p-3 bg-gray-50/30">
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-xs font-bold text-gray-700">Punti Magia (PM)</span>
+                    <span className="text-[10px] text-gray-500 font-medium">Lvl {finalLevel} × PM/lvl ({pmPerLevel})</span>
+                  </div>
+                  <div className="flex items-center gap-4 bg-teal-50/50 border border-teal-100 rounded-lg p-3">
+                    <div className="w-12 h-12 rounded-full bg-white text-teal-700 border border-teal-300 flex items-center justify-center text-lg font-black shadow-xs shrink-0">
+                      {finalMagicPoints}
                     </div>
-                    <div className="text-xs text-red-900 space-y-0.5">
-                      <p><strong>Roll:</strong> {totalHpRolls} ({level1HpRoll} L1)</p>
-                      <p><strong>Bonus CO:</strong> {fmt(coBonus)}</p>
-                      <p><strong>Fisso:</strong> +5</p>
-                      {specialHpBonus > 0 && (
-                        <p><strong>Speciale:</strong> {fmt(specialHpBonus)}</p>
-                      )}
+                    <div className="text-xs text-teal-900 space-y-0.5">
+                      <p><strong>Reame:</strong> {magicRealm}</p>
+                      <p><strong>PM/lvl:</strong> x{pmPerLevel}</p>
                     </div>
                   </div>
-                )}
+                </div>
+
               </div>
 
-              {/* Bonus Difensivo (BD) */}
-              <div className="border border-gray-150 rounded-lg p-3 bg-gray-50/30">
-                <div className="flex justify-between items-center mb-1">
-                  <span className="text-xs font-bold text-gray-700">Bonus Difensivo (BD)</span>
-                  <span className="text-[10px] text-gray-500 font-medium">
-                    Agilità ({fmt(finalStats['AG']?.bonusTot || 0)}) + Spec. ({fmt(bgModifiers.bdSpecialBonus || 0)})
-                  </span>
-                </div>
-                <div className="flex items-center gap-4 bg-blue-50/50 border border-blue-100 rounded-lg p-3">
-                  <div className="w-12 h-12 rounded-full bg-white text-blue-700 border border-blue-200 flex items-center justify-center text-lg font-black shadow-xs shrink-0">
-                    {fmt((finalStats['AG']?.bonusTot || 0) + (bgModifiers.bdSpecialBonus || 0))}
+              {/* Modificatori Equipaggiamento Indossato */}
+              <div className="border border-indigo-100 rounded-lg p-4 bg-indigo-50/10">
+                <span className="text-xs font-bold text-indigo-950 uppercase tracking-wider block">Modificatori Equipaggiamento Indossato</span>
+                <p className="text-[10px] text-gray-500 mt-0.5">I modificatori riportati qui sotto non si sommano automaticamente alle caratteristiche o ai totali soprastanti (eccetto armatura e scudo se calcolati a parte dal GM).</p>
+                <div className="grid grid-cols-5 gap-3 mt-3 text-xs">
+                  {/* Armatura */}
+                  <div className="p-3 border border-gray-150 rounded-lg bg-white/70 shadow-xs flex flex-col justify-between">
+                    <div>
+                      <span className="font-bold text-gray-500 uppercase tracking-wider text-[10px] block mb-1">Armatura</span>
+                      <span className="font-bold text-gray-900 block">{activeArmor}</span>
+                    </div>
+                    <span className={`text-[11px] font-bold mt-2 ${activeArmorMM < 0 ? 'text-red-600' : 'text-gray-500'}`}>
+                      {activeArmorMM < 0 ? `MM: ${activeArmorMM}` : 'MM: 0'}
+                    </span>
                   </div>
-                  <div className="text-xs text-blue-900 space-y-0.5">
-                    <p><strong>Bonus Agilità:</strong> {fmt(finalStats['AG']?.bonusTot || 0)}</p>
-                    {bgModifiers.bdSpecialBonus > 0 && <p><strong>Speciale:</strong> {fmt(bgModifiers.bdSpecialBonus)}</p>}
-                  </div>
-                </div>
-              </div>
 
-              {/* Punti Magia */}
-              <div className="border border-gray-155 rounded-lg p-3 bg-gray-50/30">
-                <div className="flex justify-between items-center mb-1">
-                  <span className="text-xs font-bold text-gray-700">Punti Magia (PM)</span>
-                  <span className="text-[10px] text-gray-500 font-medium">Lvl {finalLevel} × PM/lvl ({pmPerLevel})</span>
-                </div>
-                <div className="flex items-center gap-4 bg-teal-50/50 border border-teal-100 rounded-lg p-3">
-                  <div className="w-12 h-12 rounded-full bg-white text-teal-700 border border-teal-300 flex items-center justify-center text-lg font-black shadow-xs shrink-0">
-                    {finalMagicPoints}
+                  {/* Scudo */}
+                  <div className="p-3 border border-gray-150 rounded-lg bg-white/70 shadow-xs flex flex-col justify-between">
+                    <div>
+                      <span className="font-bold text-gray-500 uppercase tracking-wider text-[10px] block mb-1">Scudo</span>
+                      <span className="font-bold text-gray-900 block">{activeShield ? 'Sì' : 'No'}</span>
+                    </div>
+                    <span className={`text-[11px] font-bold mt-2 ${activeShield ? 'text-green-600' : 'text-gray-500'}`}>
+                      {activeShield ? '+25 BD' : '—'}
+                    </span>
                   </div>
-                  <div className="text-xs text-teal-900 space-y-0.5">
-                    <p><strong>Reame:</strong> {magicRealm}</p>
-                    <p><strong>PM/lvl:</strong> x{pmPerLevel}</p>
+
+                  {/* Bracciali */}
+                  <div className="p-3 border border-gray-150 rounded-lg bg-white/70 shadow-xs flex flex-col justify-between">
+                    <div>
+                      <span className="font-bold text-gray-500 uppercase tracking-wider text-[10px] block mb-1">Bracciali</span>
+                      <span className="font-bold text-gray-900 block">{activeBracciali ? `Sì (${activeBracciali.material})` : 'No'}</span>
+                    </div>
+                    <span className={`text-[11px] font-bold mt-2 ${activeBracciali ? 'text-red-600' : 'text-gray-500'}`}>
+                      {activeBracciali ? `${activeBracciali.malus} BO` : '—'}
+                    </span>
+                  </div>
+
+                  {/* Schinieri */}
+                  <div className="p-3 border border-gray-150 rounded-lg bg-white/70 shadow-xs flex flex-col justify-between">
+                    <div>
+                      <span className="font-bold text-gray-500 uppercase tracking-wider text-[10px] block mb-1">Schinieri</span>
+                      <span className="font-bold text-gray-900 block">{activeSchinieri ? `Sì (${activeSchinieri.material})` : 'No'}</span>
+                    </div>
+                    <span className={`text-[11px] font-bold mt-2 ${activeSchinieri ? 'text-red-600' : 'text-gray-500'}`}>
+                      {activeSchinieri ? `${activeSchinieri.malus} MM` : '—'}
+                    </span>
+                  </div>
+
+                  {/* Elmo */}
+                  <div className="p-3 border border-gray-150 rounded-lg bg-white/70 shadow-xs flex flex-col justify-between">
+                    <div>
+                      <span className="font-bold text-gray-500 uppercase tracking-wider text-[10px] block mb-1">Elmo</span>
+                      <span className="font-bold text-gray-900 block">{activeElmo ? `Sì (${activeElmo.material})` : 'No'}</span>
+                    </div>
+                    <span className={`text-[11px] font-bold mt-2 ${activeElmo ? 'text-red-600' : 'text-gray-500'}`}>
+                      {activeElmo ? `${activeElmo.malus} Percezione` : '—'}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -624,8 +781,17 @@ export default function CharacterSheetStep({ characterData, setCharacterData }) 
                           const hasIngombro = s.ingombroBonus !== null;
                           const hasSpecialBonus = specialBonus !== 0;
                           const displaySpecial = (hasIngombro || hasSpecialBonus) ? (specialBonus + (s.ingombroBonus ?? 0)) : null;
+
+                          let rowClass = "hover:bg-gray-50/30 transition-colors";
+                          const isArmorHighlight = cat === 'di manovra e movimento' && sk.nome.toLowerCase() === highlightedArmorSkill.toLowerCase();
+                          const isWeaponHighlight = cat === 'con le armi' && highlightedWeaponSkill && sk.nome.toLowerCase() === highlightedWeaponSkill.toLowerCase();
+                          
+                          if (isArmorHighlight || isWeaponHighlight) {
+                            rowClass = "bg-teal-50 hover:bg-teal-100/50 font-medium transition-colors";
+                          }
+
                           return (
-                            <tr key={sk.nome} className="hover:bg-gray-50/30">
+                            <tr key={sk.nome} className={rowClass}>
                               <td className="px-3 py-2 font-medium text-gray-800">{sk.nome}</td>
                               <td className="px-2 py-2 text-center text-gray-400">{s.adRanks}</td>
                               <td className="px-2 py-2 text-center text-blue-700">{s.profRanks}</td>
@@ -786,15 +952,18 @@ export default function CharacterSheetStep({ characterData, setCharacterData }) 
                 <div className="border border-gray-100 rounded-md p-3 bg-gray-50/30">
                   <h5 className="font-bold text-xs text-gray-700 uppercase tracking-wider mb-2 border-b pb-1">Equipaggiamento Indossato / Pronto (EQUIP)</h5>
                   <ul className="space-y-1.5 text-xs">
-                    {characterData.equipment.filter(x => x.qtyEquip > 0).map((item, idx) => (
-                      <li key={idx} className="flex justify-between items-start py-1 border-b border-gray-100/50 last:border-0">
-                        <div>
-                          <strong className="text-gray-900">{item.nome}</strong> {item.qtyEquip > 1 && <span className="text-gray-500 font-bold">x{item.qtyEquip}</span>}
-                          {item.note && <span className="text-[10px] text-gray-500 block italic">{item.note}</span>}
-                        </div>
-                        <span className="text-[10px] text-gray-450 font-semibold">(Non genera carico)</span>
-                      </li>
-                    ))}
+                    {characterData.equipment.filter(x => x.qtyEquip > 0).map((item, idx) => {
+                      const isScasso = item.nome.toLowerCase().includes('attrezzi da scasso');
+                      return (
+                        <li key={idx} className={`flex justify-between items-start py-1 border-b border-gray-100/50 last:border-0 px-2 rounded ${isScasso ? 'bg-teal-50' : ''}`}>
+                          <div>
+                            <strong className="text-gray-900">{item.nome}</strong> {item.qtyEquip > 1 && <span className="text-gray-500 font-bold">x{item.qtyEquip}</span>}
+                            {item.note && <span className="text-[10px] text-gray-500 block italic">{item.note}</span>}
+                          </div>
+                          <span className="text-[10px] text-gray-450 font-semibold">(Non genera carico)</span>
+                        </li>
+                      );
+                    })}
                     {characterData.equipment.filter(x => x.qtyEquip > 0).length === 0 && (
                       <li className="text-gray-400 italic">Nessun oggetto.</li>
                     )}
@@ -808,8 +977,9 @@ export default function CharacterSheetStep({ characterData, setCharacterData }) 
                     {characterData.equipment.filter(x => x.qtyCarico > 0).map((item, idx) => {
                       const itemPeso = item["peso in kg"] || 0;
                       const totPeso = item.qtyCarico * itemPeso;
+                      const isScasso = item.nome.toLowerCase().includes('attrezzi da scasso');
                       return (
-                        <li key={idx} className="flex justify-between items-start py-1 border-b border-gray-100/50 last:border-0">
+                        <li key={idx} className={`flex justify-between items-start py-1 border-b border-gray-100/50 last:border-0 px-2 rounded ${isScasso ? 'bg-teal-50' : ''}`}>
                           <div>
                             <strong className="text-gray-900">{item.nome}</strong> {item.qtyCarico > 1 && <span className="text-gray-500 font-bold">x{item.qtyCarico}</span>}
                             {item.note && <span className="text-[10px] text-gray-500 block italic">{item.note}</span>}

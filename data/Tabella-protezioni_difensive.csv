@@ -1,0 +1,8 @@
+tipologia,oggetto,bonus,abilità_bonus,malus,abilità_malus
+protezioni,Scudo,+25,bonus difensivo,,
+protezioni,Bracciali di cuoio,,,-5,bonus offensivo
+protezioni,Schinieri di cuoio,,,-5,manovre di movimento
+protezioni,Bracciali di metallo,,,-5,bonus offensivo
+protezioni,Schinieri di metallo,,,-5,manovre di movimento
+protezioni,Elmo di cuoio,,,-5,percezione
+protezioni,Elmo di metallo,,,-5,percezione
