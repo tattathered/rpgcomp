@@ -302,6 +302,44 @@ export default function CharacterSheetStep({ characterData, setCharacterData }) 
     return result;
   }, [characterData, profession, finalLevel, levelDevelopments, finalStats, bgModifiers]);
 
+  const highlightedArmorSkill = useMemo(() => {
+    if (presentArmors.length === 0) return 'nessuna armatura';
+    if (presentArmors.length === 1) return presentArmors[0];
+    
+    let bestSkill = presentArmors[0];
+    let maxBonus = -Infinity;
+    presentArmors.forEach(arm => {
+      const skillData = finalSkills[arm];
+      if (skillData) {
+        const bonusVal = typeof skillData.totalBonus === 'number' ? skillData.totalBonus : -999;
+        if (bonusVal > maxBonus) {
+          maxBonus = bonusVal;
+          bestSkill = arm;
+        }
+      }
+    });
+    return bestSkill;
+  }, [presentArmors, finalSkills]);
+
+  const highlightedWeaponSkill = useMemo(() => {
+    if (presentWeapons.length === 0) return null;
+    if (presentWeapons.length === 1) return presentWeapons[0].skillName;
+    
+    let bestSkill = presentWeapons[0].skillName;
+    let maxBonus = -Infinity;
+    presentWeapons.forEach(w => {
+      const skillData = finalSkills[w.skillName];
+      if (skillData) {
+        const bonusVal = typeof skillData.totalBonus === 'number' ? skillData.totalBonus : -999;
+        if (bonusVal > maxBonus) {
+          maxBonus = bonusVal;
+          bestSkill = w.skillName;
+        }
+      }
+    });
+    return bestSkill;
+  }, [presentWeapons, finalSkills]);
+
   // Consolidamento lingue finali
   const finalLanguages = useMemo(() => {
     const langs = {};
