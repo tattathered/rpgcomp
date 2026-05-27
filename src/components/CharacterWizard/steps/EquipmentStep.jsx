@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo, Fragment } from 'react';
 import { Shield, Heart, HelpCircle, Save, Info, AlertTriangle, AlertCircle } from 'lucide-react';
 import catalogData from '../../../data/TS_4-equipaggiamento.json';
 import WalletBox from '../shared/WalletBox';
+import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
 import { formatMBToCoins, formatCoinsToString } from '../../../utils/moneyHelpers';
 import { calculateCargoPenalty } from '../../../utils/skillHelpers';
 
@@ -300,10 +301,55 @@ export default function EquipmentStep({ characterData, setCharacterData, equipme
     return groups;
   }, [activeCategory, activeItems]);
 
+  const getMagicRealmSummaryStep7 = () => {
+    const spellListAllocations = characterData.spellListAllocations || {};
+    const bgSpellLists = characterData.background?.compiledModifiers?.bgSpellLists || [];
+    const allLists = [...new Set([...Object.keys(spellListAllocations), ...bgSpellLists])];
+    
+    if (allLists.length > 0) {
+      return (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+          {allLists.map((name, i) => (
+            <div key={i}>Lista incantesimi {name} appresa.</div>
+          ))}
+        </div>
+      );
+    }
+    
+    const inheritedChance = characterData.spellListChanceAccumulated !== undefined 
+      ? characterData.spellListChanceAccumulated 
+      : 0;
+    return <div>Nessuna lista incantesimi appresa - Credito ereditato: {inheritedChance}%</div>;
+  };
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+      <AnagraficaReadOnlyBox characterData={characterData} />
       
-      {/* Portafoglio in Cima */}
+      {/* ── HEADER BANNER ── */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '0.25rem' }}>
+        <div style={{ padding: '1rem', border: '1px solid var(--theme-race-border)', borderRadius: '0.6rem', background: 'var(--theme-race-bg)' }}>
+          <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-race-text)' }}>Popolo</div>
+          <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-race-text)', marginTop: '0.2rem' }}>{characterData.race?.popolo}</div>
+          <div style={{ fontSize: '0.75rem', color: 'var(--theme-race-text)', opacity: 0.85, marginTop: '0.15rem' }}>{characterData.race?.['note (umani/non umani)']}</div>
+        </div>
+        <div style={{ padding: '1rem', border: '1px solid var(--theme-profession-border)', borderRadius: '0.6rem', background: 'var(--theme-profession-bg)' }}>
+          <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-profession-text)' }}>Professione</div>
+          <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-profession-text)', marginTop: '0.2rem' }}>{characterData.profession?.professione}</div>
+          <div style={{ fontSize: '0.75rem', color: 'var(--theme-profession-text)', opacity: 0.85, marginTop: '0.15rem' }}>
+            {characterData.profession && `Primaria: ${characterData.profession.primaria} | Secondaria: ${characterData.profession.secondaria}`}
+          </div>
+        </div>
+        <div style={{ padding: '1rem', border: '1px solid var(--theme-spell-lists-border)', borderRadius: '0.6rem', background: 'var(--theme-spell-lists-bg)' }}>
+          <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-spell-lists-text)' }}>Reame Magico</div>
+          <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-spell-lists-text)', marginTop: '0.2rem' }}>{characterData.magicRealm || 'Nessuno'}</div>
+          <div style={{ fontSize: '0.75rem', color: 'var(--theme-spell-lists-text)', opacity: 0.85, marginTop: '0.15rem', fontWeight: 500 }}>
+            {getMagicRealmSummaryStep7()}
+          </div>
+        </div>
+      </div>
+
+      {/* Portafoglio */}
       <WalletBox 
         portafoglioMB={characterData.portafoglioMB || 0} 
         onChange={(newVal) => setCharacterData(prev => ({ ...prev, portafoglioMB: newVal }))}

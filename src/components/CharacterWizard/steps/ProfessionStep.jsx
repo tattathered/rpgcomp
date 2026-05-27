@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import profData from '../../../data/TB_6-professioni_bonus_abilita-3.json';
 import profStats from '../../../data/Tabella-professioni_caratteristica_fondamentale.json';
+import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
 
 export default function ProfessionStep({ characterData, setCharacterData }) {
   const [selectedProf, setSelectedProf] = useState(characterData.profession?.professione || '');
@@ -38,6 +39,7 @@ export default function ProfessionStep({ characterData, setCharacterData }) {
 
   return (
     <div>
+      <AnagraficaReadOnlyBox characterData={characterData} />
       {characterData.race && (
         <div className="mb-6 p-4 border rounded flex justify-between items-center" style={{ backgroundColor: 'var(--theme-race-bg)', borderColor: 'var(--theme-race-border)', color: 'var(--theme-race-text)' }}>
           <div>

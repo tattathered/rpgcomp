@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { Scroll, Users, Book, Settings, Save, Play, Trash2, Plus, FolderOpen, Copy, Edit, ArrowLeft, Swords } from 'lucide-react';
+import { Scroll, Users, Book, Settings, Save, Play, Trash2, Plus, FolderOpen, Copy, Edit, ArrowLeft, Swords, Compass, AlertTriangle } from 'lucide-react';
 import CharacterWizard from './components/CharacterWizard/CharacterWizard';
 import defaultEquipment from './data/TS_4-equipaggiamento.json';
 import EquipmentCatalogManager from './components/EquipmentCatalogManager';
 import CombatCalculator from './components/CombatCalculator';
+import MovementManoeuvreResolver from './components/MovementManoeuvreResolver';
+import FumbleResolver from './components/FumbleResolver';
+import StaticManoeuvreResolver from './components/StaticManoeuvreResolver';
 import { getCharacterHpTot } from './utils/skillHelpers';
 
 class ErrorBoundary extends React.Component {
@@ -44,8 +47,27 @@ class ErrorBoundary extends React.Component {
   }
 }
 
+const ACTION_SUB_TABS = [
+  { id: 'static', label: 'Manovre Statiche', icon: Scroll },
+  { id: 'movement', label: 'Manovre di Movimento', icon: Compass },
+  { id: 'combat', label: 'Combattimento', icon: Swords },
+  { id: 'criticals', label: 'Colpi Critici', icon: AlertTriangle },
+  { id: 'fumbles', label: 'Colpi Maldestri', icon: AlertTriangle },
+  { id: 'spells_base', label: 'Incantesimi Base', icon: Book },
+  { id: 'spells_direct', label: 'Incantesimi Diretti', icon: Book }
+];
+
 function App() {
   const [activeTab, setActiveTab] = useState('creation');
+  const [activeActionSubTab, setActiveActionSubTab] = useState('static');
+  const [fumbleRedirectData, setFumbleRedirectData] = useState(null);
+
+  const handleRedirectToFumble = (data) => {
+    setFumbleRedirectData(data);
+    setActiveTab('actions');
+    setActiveActionSubTab('fumbles');
+  };
+
   const [savedCharacters, setSavedCharacters] = useState(() => {
     try {
       const stored = localStorage.getItem('merp_characters');
@@ -130,6 +152,27 @@ function App() {
     });
   };
 
+  const handleUpdateCharacterBoSpesoParata = (charId, boSpesoParata) => {
+    setSavedCharacters(prev => {
+      const nextList = prev.map(c => {
+        if (c.id === charId) {
+          return { ...c, boSpesoParata };
+        }
+        return c;
+      });
+      localStorage.setItem('merp_characters', JSON.stringify(nextList));
+      return nextList;
+    });
+  };
+
+  const handleResetAllParries = () => {
+    setSavedCharacters(prev => {
+      const nextList = prev.map(c => ({ ...c, boSpesoParata: 0 }));
+      localStorage.setItem('merp_characters', JSON.stringify(nextList));
+      return nextList;
+    });
+  };
+
   const handleDuplicateCharacter = (charData) => {
     const defaultNewName = `${charData.name || 'Senza Nome'}_COPY`;
     const newName = prompt('Inserisci il nome per il personaggio duplicato:', defaultNewName);
@@ -193,11 +236,11 @@ function App() {
             Roster PG / PNG
           </button>
           <button 
-            className={`nav-tab ${activeTab === 'combat' ? 'active' : ''}`}
-            onClick={() => setActiveTab('combat')}
+            className={`nav-tab ${activeTab === 'actions' ? 'active' : ''}`}
+            onClick={() => setActiveTab('actions')}
           >
             <Swords className="w-4 h-4" />
-            Combattimento
+            Risoluzione azioni
           </button>
           <button 
             className={`nav-tab ${activeTab === 'settings' ? 'active' : ''}`}
@@ -208,6 +251,8 @@ function App() {
           </button>
         </div>
       </nav>
+
+
 
       <main className="main-content">
         {activeTab === 'creation' && (
@@ -347,14 +392,91 @@ function App() {
             </div>
           </div>
         )}
-        {activeTab === 'combat' && (
-          <ErrorBoundary>
-            <CombatCalculator 
-              savedCharacters={savedCharacters}
-              equipmentCatalog={equipmentCatalog}
-              onUpdateHpSubiti={handleUpdateCharacterHpSubiti}
-            />
-          </ErrorBoundary>
+        {activeTab === 'actions' && (
+          <div className="wizard-layout">
+            {/* Sidebar per Risoluzione azioni */}
+            <div className="wizard-sidebar card">
+              <div className="card-header">
+                <h3 className="card-title" style={{ fontSize: '1rem' }}>Risoluzione Azioni</h3>
+              </div>
+              <div className="card-body wizard-steps">
+                {ACTION_SUB_TABS.map(tab => {
+                  const Icon = tab.icon;
+                  const isActive = activeActionSubTab === tab.id;
+                  return (
+                    <div
+                      key={tab.id}
+                      className={`wizard-step clickable ${isActive ? 'active' : ''}`}
+                      onClick={() => {
+                        setActiveActionSubTab(tab.id);
+                        setFumbleRedirectData(null);
+                      }}
+                    >
+                      <Icon className="w-4 h-4" />
+                      <span style={{ fontSize: '0.875rem' }}>{tab.label}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Contenuto Attivo */}
+            <div className="wizard-content" style={{ flex: 1 }}>
+              {activeActionSubTab === 'combat' && (
+                <ErrorBoundary>
+                  <CombatCalculator 
+                    savedCharacters={savedCharacters}
+                    equipmentCatalog={equipmentCatalog}
+                    onUpdateHpSubiti={handleUpdateCharacterHpSubiti}
+                    onUpdateBoSpesoParata={handleUpdateCharacterBoSpesoParata}
+                    onResetAllParries={handleResetAllParries}
+                  />
+                </ErrorBoundary>
+              )}
+              {activeActionSubTab === 'movement' && (
+                <ErrorBoundary>
+                  <MovementManoeuvreResolver 
+                    savedCharacters={savedCharacters}
+                    onRedirectToFumble={handleRedirectToFumble}
+                  />
+                </ErrorBoundary>
+              )}
+              {activeActionSubTab === 'fumbles' && (
+                <ErrorBoundary>
+                  <FumbleResolver 
+                    key={fumbleRedirectData ? `${fumbleRedirectData.tableCode}-${fumbleRedirectData.difficulty}-${fumbleRedirectData.diceRoll}` : 'fumble-resolver-standalone'}
+                    initialTableCode={fumbleRedirectData?.tableCode || 'TTM-1'}
+                    initialManoeuvreDifficulty={fumbleRedirectData?.difficulty || 'Normale'}
+                    initialDiceRoll={fumbleRedirectData?.diceRoll || 50}
+                    initialModifierCustom={fumbleRedirectData?.modifierCustom || 0}
+                    showTitle={true}
+                  />
+                </ErrorBoundary>
+              )}
+              {activeActionSubTab === 'static' && (
+                <ErrorBoundary>
+                  <StaticManoeuvreResolver 
+                    savedCharacters={savedCharacters}
+                  />
+                </ErrorBoundary>
+              )}
+              {['criticals', 'spells_base', 'spells_direct'].includes(activeActionSubTab) && (
+                <div className="card p-8 text-center text-gray-500 max-w-lg mx-auto mt-10">
+                  <Compass className="w-16 h-16 mx-auto text-blue-500/30 mb-4 animate-pulse" />
+                  <h3 className="text-lg font-black text-gray-800 uppercase tracking-wider mb-2">Funzionalità in Arrivo</h3>
+                  <p className="text-sm text-gray-500 leading-relaxed mb-6">
+                    La risoluzione di questa specifica azione ({
+                      activeActionSubTab === 'criticals' ? 'Colpi Critici' :
+                      activeActionSubTab === 'spells_base' ? 'Incantesimi Base' : 'Incantesimi Diretti'
+                    }) sarà sviluppata e resa disponibile nella v2.
+                  </p>
+                  <button className="btn btn-primary text-xs uppercase font-extrabold px-6" onClick={() => setActiveActionSubTab('combat')}>
+                    Ritorna al Combattimento
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
         )}
         {activeTab === 'settings' && (
           <ErrorBoundary>

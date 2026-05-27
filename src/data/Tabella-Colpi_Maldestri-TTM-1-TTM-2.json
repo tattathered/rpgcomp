@@ -1,0 +1,1682 @@
+[
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 1,
+    "descrizione": "Perdi la presa. Nessun' altra azione nel round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 2,
+    "descrizione": "Perdi la presa. Nessun' altra azione nel round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 3,
+    "descrizione": "Perdi la presa. Nessun' altra azione nel round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 4,
+    "descrizione": "Perdi la presa. Nessun' altra azione nel round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 5,
+    "descrizione": "Perdi la presa. Nessun' altra azione nel round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 6,
+    "descrizione": "Scivoli. Se stai impugnando un'arma a una mano non magica, questa si rompe.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 7,
+    "descrizione": "Scivoli. Se stai impugnando un'arma a una mano non magica, questa si rompe.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 8,
+    "descrizione": "Scivoli. Se stai impugnando un'arma a una mano non magica, questa si rompe.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 9,
+    "descrizione": "Scivoli. Se stai impugnando un'arma a una mano non magica, questa si rompe.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 10,
+    "descrizione": "Scivoli. Se stai impugnando un'arma a una mano non magica, questa si rompe.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 11,
+    "descrizione": "Scivoli. Se stai impugnando un'arma a una mano non magica, questa si rompe.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 12,
+    "descrizione": "Scivoli. Se stai impugnando un'arma a una mano non magica, questa si rompe.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 13,
+    "descrizione": "Scivoli. Se stai impugnando un'arma a una mano non magica, questa si rompe.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 14,
+    "descrizione": "Scivoli. Se stai impugnando un'arma a una mano non magica, questa si rompe.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 15,
+    "descrizione": "Scivoli. Se stai impugnando un'arma a una mano non magica, questa si rompe.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 16,
+    "descrizione": "Scivoli. Se stai impugnando un'arma a una mano non magica, questa si rompe.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 17,
+    "descrizione": "Scivoli. Se stai impugnando un'arma a una mano non magica, questa si rompe.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 18,
+    "descrizione": "Scivoli. Se stai impugnando un'arma a una mano non magica, questa si rompe.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 19,
+    "descrizione": "Scivoli. Se stai impugnando un'arma a una mano non magica, questa si rompe.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 20,
+    "descrizione": "Scivoli. Se stai impugnando un'arma a una mano non magica, questa si rompe.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 21,
+    "descrizione": "Cattiva esecuzione. Perdi l'opportunità di colpire e ti infliggi da solo 2 Punti Ferita.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 22,
+    "descrizione": "Cattiva esecuzione. Perdi l'opportunità di colpire e ti infliggi da solo 2 Punti Ferita.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 23,
+    "descrizione": "Cattiva esecuzione. Perdi l'opportunità di colpire e ti infliggi da solo 2 Punti Ferita.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 24,
+    "descrizione": "Cattiva esecuzione. Perdi l'opportunità di colpire e ti infliggi da solo 2 Punti Ferita.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 25,
+    "descrizione": "Cattiva esecuzione. Perdi l'opportunità di colpire e ti infliggi da solo 2 Punti Ferita.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 26,
+    "descrizione": "Cattiva esecuzione. Perdi l'opportunità di colpire e ti infliggi da solo 2 Punti Ferita.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 27,
+    "descrizione": "Cattiva esecuzione. Perdi l'opportunità di colpire e ti infliggi da solo 2 Punti Ferita.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 28,
+    "descrizione": "Cattiva esecuzione. Perdi l'opportunità di colpire e ti infliggi da solo 2 Punti Ferita.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 29,
+    "descrizione": "Cattiva esecuzione. Perdi l'opportunità di colpire e ti infliggi da solo 2 Punti Ferita.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 30,
+    "descrizione": "Cattiva esecuzione. Perdi l'opportunità di colpire e ti infliggi da solo 2 Punti Ferita.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 31,
+    "descrizione": "Cattiva esecuzione. Perdi l'opportunità di colpire e ti infliggi da solo 2 Punti Ferita.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 32,
+    "descrizione": "Cattiva esecuzione. Perdi l'opportunità di colpire e ti infliggi da solo 2 Punti Ferita.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 33,
+    "descrizione": "Cattiva esecuzione. Perdi l'opportunità di colpire e ti infliggi da solo 2 Punti Ferita.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 34,
+    "descrizione": "Cattiva esecuzione. Perdi l'opportunità di colpire e ti infliggi da solo 2 Punti Ferita.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 35,
+    "descrizione": "Cattiva esecuzione. Perdi l'opportunità di colpire e ti infliggi da solo 2 Punti Ferita.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 36,
+    "descrizione": "L'arma ti cade di mano. Ci vogliono 2 round per raccoglierla, o 1 round per estrarne un'altra.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 37,
+    "descrizione": "L'arma ti cade di mano. Ci vogliono 2 round per raccoglierla, o 1 round per estrarne un'altra.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 38,
+    "descrizione": "L'arma ti cade di mano. Ci vogliono 2 round per raccoglierla, o 1 round per estrarne un'altra.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 39,
+    "descrizione": "L'arma ti cade di mano. Ci vogliono 2 round per raccoglierla, o 1 round per estrarne un'altra.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 40,
+    "descrizione": "L'arma ti cade di mano. Ci vogliono 2 round per raccoglierla, o 1 round per estrarne un'altra.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 41,
+    "descrizione": "L'arma ti cade di mano. Ci vogliono 2 round per raccoglierla, o 1 round per estrarne un'altra.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 42,
+    "descrizione": "L'arma ti cade di mano. Ci vogliono 2 round per raccoglierla, o 1 round per estrarne un'altra.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 43,
+    "descrizione": "L'arma ti cade di mano. Ci vogliono 2 round per raccoglierla, o 1 round per estrarne un'altra.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 44,
+    "descrizione": "L'arma ti cade di mano. Ci vogliono 2 round per raccoglierla, o 1 round per estrarne un'altra.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 45,
+    "descrizione": "L'arma ti cade di mano. Ci vogliono 2 round per raccoglierla, o 1 round per estrarne un'altra.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 46,
+    "descrizione": "L'arma ti cade di mano. Ci vogliono 2 round per raccoglierla, o 1 round per estrarne un'altra.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 47,
+    "descrizione": "L'arma ti cade di mano. Ci vogliono 2 round per raccoglierla, o 1 round per estrarne un'altra.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 48,
+    "descrizione": "L'arma ti cade di mano. Ci vogliono 2 round per raccoglierla, o 1 round per estrarne un'altra.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 49,
+    "descrizione": "L'arma ti cade di mano. Ci vogliono 2 round per raccoglierla, o 1 round per estrarne un'altra.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 50,
+    "descrizione": "L'arma ti cade di mano. Ci vogliono 2 round per raccoglierla, o 1 round per estrarne un'altra.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 51,
+    "descrizione": "Sbagli malamente il colpo e resti senza fiato. Hai bisogno di riposo. -40 all'attività per 2 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 52,
+    "descrizione": "Sbagli malamente il colpo e resti senza fiato. Hai bisogno di riposo. -40 all'attività per 2 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 53,
+    "descrizione": "Sbagli malamente il colpo e resti senza fiato. Hai bisogno di riposo. -40 all'attività per 2 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 54,
+    "descrizione": "Sbagli malamente il colpo e resti senza fiato. Hai bisogno di riposo. -40 all'attività per 2 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 55,
+    "descrizione": "Sbagli malamente il colpo e resti senza fiato. Hai bisogno di riposo. -40 all'attività per 2 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 56,
+    "descrizione": "Sbagli malamente il colpo e resti senza fiato. Hai bisogno di riposo. -40 all'attività per 2 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 57,
+    "descrizione": "Sbagli malamente il colpo e resti senza fiato. Hai bisogno di riposo. -40 all'attività per 2 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 58,
+    "descrizione": "Sbagli malamente il colpo e resti senza fiato. Hai bisogno di riposo. -40 all'attività per 2 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 59,
+    "descrizione": "Sbagli malamente il colpo e resti senza fiato. Hai bisogno di riposo. -40 all'attività per 2 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 60,
+    "descrizione": "Sbagli malamente il colpo e resti senza fiato. Hai bisogno di riposo. -40 all'attività per 2 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 61,
+    "descrizione": "Sbagli malamente il colpo e resti senza fiato. Hai bisogno di riposo. -40 all'attività per 2 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 62,
+    "descrizione": "Sbagli malamente il colpo e resti senza fiato. Hai bisogno di riposo. -40 all'attività per 2 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 63,
+    "descrizione": "Sbagli malamente il colpo e resti senza fiato. Hai bisogno di riposo. -40 all'attività per 2 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 64,
+    "descrizione": "Sbagli malamente il colpo e resti senza fiato. Hai bisogno di riposo. -40 all'attività per 2 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 65,
+    "descrizione": "Sbagli malamente il colpo e resti senza fiato. Hai bisogno di riposo. -40 all'attività per 2 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 66,
+    "descrizione": "Inciampi e restistordito per 2 round. Con un po' di fortuna potrai sopravvivere!",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 67,
+    "descrizione": "Inciampi e restistordito per 2 round. Con un po' di fortuna potrai sopravvivere!",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 68,
+    "descrizione": "Inciampi e restistordito per 2 round. Con un po' di fortuna potrai sopravvivere!",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 69,
+    "descrizione": "Inciampi e restistordito per 2 round. Con un po' di fortuna potrai sopravvivere!",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 70,
+    "descrizione": "Inciampi e restistordito per 2 round. Con un po' di fortuna potrai sopravvivere!",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 71,
+    "descrizione": "Inciampi e restistordito per 2 round. Con un po' di fortuna potrai sopravvivere!",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 72,
+    "descrizione": "Inciampi e restistordito per 2 round. Con un po' di fortuna potrai sopravvivere!",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 73,
+    "descrizione": "Inciampi e restistordito per 2 round. Con un po' di fortuna potrai sopravvivere!",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 74,
+    "descrizione": "Inciampi e restistordito per 2 round. Con un po' di fortuna potrai sopravvivere!",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 75,
+    "descrizione": "Inciampi e restistordito per 2 round. Con un po' di fortuna potrai sopravvivere!",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 76,
+    "descrizione": "Inciampi e restistordito per 2 round. Con un po' di fortuna potrai sopravvivere!",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 77,
+    "descrizione": "Inciampi e restistordito per 2 round. Con un po' di fortuna potrai sopravvivere!",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 78,
+    "descrizione": "Inciampi e restistordito per 2 round. Con un po' di fortuna potrai sopravvivere!",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 79,
+    "descrizione": "Inciampi e restistordito per 2 round. Con un po' di fortuna potrai sopravvivere!",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 80,
+    "descrizione": "Mossa incredibilmente sbagliata! Ti procuri da solo un Colpo Critico da Impatto di tipo B. Invece se il tuo avversario usa un'arma da taglio, la tua arma si rompe.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 81,
+    "descrizione": "Nella foga della lotta ti mordi la lingua. Stordito 2 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 82,
+    "descrizione": "Nella foga della lotta ti mordi la lingua. Stordito 2 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 83,
+    "descrizione": "Nella foga della lotta ti mordi la lingua. Stordito 2 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 84,
+    "descrizione": "Nella foga della lotta ti mordi la lingua. Stordito 2 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 85,
+    "descrizione": "Nella foga della lotta ti mordi la lingua. Stordito 2 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 86,
+    "descrizione": "Nella foga della lotta ti mordi la lingua. Stordito 2 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 87,
+    "descrizione": "Perdi la presa, non solo con l'arma, ma anche con la realtà! Resti stordito per 3 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 88,
+    "descrizione": "Perdi la presa, non solo con l'arma, ma anche con la realtà! Resti stordito per 3 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 89,
+    "descrizione": "Perdi la presa, non solo con l'arma, ma anche con la realtà! Resti stordito per 3 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 90,
+    "descrizione": "Cattivo gusto e scarsa l'esecuzione. Quasi riesci a mutilarti mentre la tua arma si rompe! Ti infliggi un Critico di tipo B da Taglio.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 91,
+    "descrizione": "Errore incredibile! Infliggi un Colpo Critico da Impatto di tipo B ad un tuo amico che combatte vicino a te.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 92,
+    "descrizione": "Errore incredibile! Infliggi un Colpo Critico da Impatto di tipo B ad un tuo amico che combatte vicino a te.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 93,
+    "descrizione": "Errore incredibile! Infliggi un Colpo Critico da Impatto di tipo B ad un tuo amico che combatte vicino a te.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 94,
+    "descrizione": "Errore incredibile! Infliggi un Colpo Critico da Impatto di tipo B ad un tuo amico che combatte vicino a te.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 95,
+    "descrizione": "Errore incredibile! Infliggi un Colpo Critico da Impatto di tipo B ad un tuo amico che combatte vicino a te.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 96,
+    "descrizione": "Errore incredibile! Infliggi un Colpo Critico da Impatto di tipo B ad un tuo amico che combatte vicino a te.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 97,
+    "descrizione": "Inciampi su un'immaginaria tartaruga morta. Sei molto confuso e resti stordito per 3 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 98,
+    "descrizione": "Inciampi su un'immaginaria tartaruga morta. Sei molto confuso e resti stordito per 3 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 99,
+    "descrizione": "Inciampi su un'immaginaria tartaruga morta. Sei molto confuso e resti stordito per 3 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 100,
+    "descrizione": "La peggior cosa vista da anni a questa parte. Ti dai una gran botta al basso ventre: -60 all'attività. Il tuo avversario resta stordito per 2 round dal gran ridere.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 101,
+    "descrizione": "Barcolli e cadi, in un apparente tentativo di suicidio. Resti stordito per 3 round. Se usi un'arma ad asta, l'asta va in frantumi.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 102,
+    "descrizione": "Barcolli e cadi, in un apparente tentativo di suicidio. Resti stordito per 3 round. Se usi un'arma ad asta, l'asta va in frantumi.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 103,
+    "descrizione": "Barcolli e cadi, in un apparente tentativo di suicidio. Resti stordito per 3 round. Se usi un'arma ad asta, l'asta va in frantumi.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 104,
+    "descrizione": "Barcolli e cadi, in un apparente tentativo di suicidio. Resti stordito per 3 round. Se usi un'arma ad asta, l'asta va in frantumi.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 105,
+    "descrizione": "Barcolli e cadi, in un apparente tentativo di suicidio. Resti stordito per 3 round. Se usi un'arma ad asta, l'asta va in frantumi.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 106,
+    "descrizione": "Barcolli e cadi, in un apparente tentativo di suicidio. Resti stordito per 3 round. Se usi un'arma ad asta, l'asta va in frantumi.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 107,
+    "descrizione": "Mossa veramente da incapaci! L'arma si rompe e resti stordito per 4 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 108,
+    "descrizione": "Mossa veramente da incapaci! L'arma si rompe e resti stordito per 4 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 109,
+    "descrizione": "Mossa veramente da incapaci! L'arma si rompe e resti stordito per 4 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 110,
+    "descrizione": "Inciampi e infilzi la punta della tua arma nel terreno. Vieni sbalzato a terra e picchi la testa. Stordito e a terra per 4 round. Se sei a cavalio la tua lancia ti catapulta a 10m di distanza e nella caduta ti infliggi un Critico di tipo C da Impatto.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 111,
+    "descrizione": "Perdi la presa sulla tua arma che viene sbalzata lontano. Ci vogliono 6 round per recuperarla. Se sei a cavallo, la tua cavalcatura s'impenna all'improvviso. Resti stordito per 3 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 112,
+    "descrizione": "Perdi la presa sulla tua arma che viene sbalzata lontano. Ci vogliono 6 round per recuperarla. Se sei a cavallo, la tua cavalcatura s'impenna all'improvviso. Resti stordito per 3 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 113,
+    "descrizione": "Perdi la presa sulla tua arma che viene sbalzata lontano. Ci vogliono 6 round per recuperarla. Se sei a cavallo, la tua cavalcatura s'impenna all'improvviso. Resti stordito per 3 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 114,
+    "descrizione": "Perdi la presa sulla tua arma che viene sbalzata lontano. Ci vogliono 6 round per recuperarla. Se sei a cavallo, la tua cavalcatura s'impenna all'improvviso. Resti stordito per 3 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 115,
+    "descrizione": "Perdi la presa sulla tua arma che viene sbalzata lontano. Ci vogliono 6 round per recuperarla. Se sei a cavallo, la tua cavalcatura s'impenna all'improvviso. Resti stordito per 3 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 116,
+    "descrizione": "Perdi la presa sulla tua arma che viene sbalzata lontano. Ci vogliono 6 round per recuperarla. Se sei a cavallo, la tua cavalcatura s'impenna all'improvviso. Resti stordito per 3 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 117,
+    "descrizione": "Non riesci a coordinare i movimenti e quasi ti sloghi una spalla provocandoti una leggera ferita. -30 alle attività e stordito per 3 r. Se sei a cavallo, non riesci a coordinare i movimenti con quelli del cavallo tentando di restare in sella, subisci una penalità di -90 alle attività per i prossimi 3 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 118,
+    "descrizione": "Non riesci a coordinare i movimenti e quasi ti sloghi una spalla provocandoti una leggera ferita. -30 alle attività e stordito per 3 r. Se sei a cavallo, non riesci a coordinare i movimenti con quelli del cavallo tentando di restare in sella, subisci una penalità di -90 alle attività per i prossimi 3 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 119,
+    "descrizione": "Non riesci a coordinare i movimenti e quasi ti sloghi una spalla provocandoti una leggera ferita. -30 alle attività e stordito per 3 r. Se sei a cavallo, non riesci a coordinare i movimenti con quelli del cavallo tentando di restare in sella, subisci una penalità di -90 alle attività per i prossimi 3 round.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-1",
+    "Colpo maldestro": "Armi da mischia",
+    "Risultato del tiro": 120,
+    "descrizione": "La tua arma si spezza e una parte ti colpisce. Subisci un C.C. di tipo C da Impatto. Se sei a cavallo sei disarcionato. Subisci un Colpo Critico da Impatto di tipo D.",
+    "note": "MODIFICHE:\n-20: Armi a 1 mano contundenti\n-10: Armi a 1 mano da taglio\n+0: Armi a 2 mani\n+10: A r m i a d asta\n+20: A cavallo"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 1,
+    "descrizione": "Perdi la presa. Non puoi eseguire altre azioni nel round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 2,
+    "descrizione": "Perdi la presa. Non puoi eseguire altre azioni nel round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 3,
+    "descrizione": "Perdi la presa. Non puoi eseguire altre azioni nel round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 4,
+    "descrizione": "Perdi la presa. Non puoi eseguire altre azioni nel round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 5,
+    "descrizione": "Perdi la presa. Non puoi eseguire altre azioni nel round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 6,
+    "descrizione": "Ti si sono intrecciate le dita! Non riesci a ricaricare e perdi il round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 7,
+    "descrizione": "Ti si sono intrecciate le dita! Non riesci a ricaricare e perdi il round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 8,
+    "descrizione": "Ti si sono intrecciate le dita! Non riesci a ricaricare e perdi il round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 9,
+    "descrizione": "Ti si sono intrecciate le dita! Non riesci a ricaricare e perdi il round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 10,
+    "descrizione": "Ti si sono intrecciate le dita! Non riesci a ricaricare e perdi il round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 11,
+    "descrizione": "Ti si sono intrecciate le dita! Non riesci a ricaricare e perdi il round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 12,
+    "descrizione": "Ti si sono intrecciate le dita! Non riesci a ricaricare e perdi il round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 13,
+    "descrizione": "Ti si sono intrecciate le dita! Non riesci a ricaricare e perdi il round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 14,
+    "descrizione": "Ti si sono intrecciate le dita! Non riesci a ricaricare e perdi il round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 15,
+    "descrizione": "Ti si sono intrecciate le dita! Non riesci a ricaricare e perdi il round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 16,
+    "descrizione": "Ti si sono intrecciate le dita! Non riesci a ricaricare e perdi il round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 17,
+    "descrizione": "Ti si sono intrecciate le dita! Non riesci a ricaricare e perdi il round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 18,
+    "descrizione": "Ti si sono intrecciate le dita! Non riesci a ricaricare e perdi il round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 19,
+    "descrizione": "Ti si sono intrecciate le dita! Non riesci a ricaricare e perdi il round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 20,
+    "descrizione": "Ti si sono intrecciate le dita! Non riesci a ricaricare e perdi il round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 21,
+    "descrizione": "Fai \"cilecca\" e perdi il round. -50 alle attività nel round successivo.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 22,
+    "descrizione": "Fai \"cilecca\" e perdi il round. -50 alle attività nel round successivo.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 23,
+    "descrizione": "Fai \"cilecca\" e perdi il round. -50 alle attività nel round successivo.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 24,
+    "descrizione": "Fai \"cilecca\" e perdi il round. -50 alle attività nel round successivo.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 25,
+    "descrizione": "Fai \"cilecca\" e perdi il round. -50 alle attività nel round successivo.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 26,
+    "descrizione": "Fai \"cilecca\" e perdi il round. -50 alle attività nel round successivo.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 27,
+    "descrizione": "Fai \"cilecca\" e perdi il round. -50 alle attività nel round successivo.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 28,
+    "descrizione": "Fai \"cilecca\" e perdi il round. -50 alle attività nel round successivo.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 29,
+    "descrizione": "Fai \"cilecca\" e perdi il round. -50 alle attività nel round successivo.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 30,
+    "descrizione": "Fai \"cilecca\" e perdi il round. -50 alle attività nel round successivo.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 31,
+    "descrizione": "Fai \"cilecca\" e perdi il round. -50 alle attività nel round successivo.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 32,
+    "descrizione": "Fai \"cilecca\" e perdi il round. -50 alle attività nel round successivo.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 33,
+    "descrizione": "Fai \"cilecca\" e perdi il round. -50 alle attività nel round successivo.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 34,
+    "descrizione": "Fai \"cilecca\" e perdi il round. -50 alle attività nel round successivo.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 35,
+    "descrizione": "Fai \"cilecca\" e perdi il round. -50 alle attività nel round successivo.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 36,
+    "descrizione": "Rompi il dardo e perdi la calma. 30 alle attività per i prossimi 3 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 37,
+    "descrizione": "Rompi il dardo e perdi la calma. 30 alle attività per i prossimi 3 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 38,
+    "descrizione": "Rompi il dardo e perdi la calma. 30 alle attività per i prossimi 3 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 39,
+    "descrizione": "Rompi il dardo e perdi la calma. 30 alle attività per i prossimi 3 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 40,
+    "descrizione": "Rompi il dardo e perdi la calma. 30 alle attività per i prossimi 3 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 41,
+    "descrizione": "Rompi il dardo e perdi la calma. 30 alle attività per i prossimi 3 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 42,
+    "descrizione": "Rompi il dardo e perdi la calma. 30 alle attività per i prossimi 3 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 43,
+    "descrizione": "Rompi il dardo e perdi la calma. 30 alle attività per i prossimi 3 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 44,
+    "descrizione": "Rompi il dardo e perdi la calma. 30 alle attività per i prossimi 3 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 45,
+    "descrizione": "Rompi il dardo e perdi la calma. 30 alle attività per i prossimi 3 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 46,
+    "descrizione": "Rompi il dardo e perdi la calma. 30 alle attività per i prossimi 3 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 47,
+    "descrizione": "Rompi il dardo e perdi la calma. 30 alle attività per i prossimi 3 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 48,
+    "descrizione": "Rompi il dardo e perdi la calma. 30 alle attività per i prossimi 3 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 49,
+    "descrizione": "Rompi il dardo e perdi la calma. 30 alle attività per i prossimi 3 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 50,
+    "descrizione": "Rompi il dardo e perdi la calma. 30 alle attività per i prossimi 3 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 51,
+    "descrizione": "Ti cade il dardo. Resti stordito per questo round ed il successivo, mentre pensi se raccoglierlo.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 52,
+    "descrizione": "Ti cade il dardo. Resti stordito per questo round ed il successivo, mentre pensi se raccoglierlo.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 53,
+    "descrizione": "Ti cade il dardo. Resti stordito per questo round ed il successivo, mentre pensi se raccoglierlo.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 54,
+    "descrizione": "Ti cade il dardo. Resti stordito per questo round ed il successivo, mentre pensi se raccoglierlo.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 55,
+    "descrizione": "Ti cade il dardo. Resti stordito per questo round ed il successivo, mentre pensi se raccoglierlo.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 56,
+    "descrizione": "Ti cade il dardo. Resti stordito per questo round ed il successivo, mentre pensi se raccoglierlo.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 57,
+    "descrizione": "Ti cade il dardo. Resti stordito per questo round ed il successivo, mentre pensi se raccoglierlo.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 58,
+    "descrizione": "Ti cade il dardo. Resti stordito per questo round ed il successivo, mentre pensi se raccoglierlo.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 59,
+    "descrizione": "Ti cade il dardo. Resti stordito per questo round ed il successivo, mentre pensi se raccoglierlo.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 60,
+    "descrizione": "Ti cade il dardo. Resti stordito per questo round ed il successivo, mentre pensi se raccoglierlo.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 61,
+    "descrizione": "Ti cade il dardo. Resti stordito per questo round ed il successivo, mentre pensi se raccoglierlo.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 62,
+    "descrizione": "Ti cade il dardo. Resti stordito per questo round ed il successivo, mentre pensi se raccoglierlo.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 63,
+    "descrizione": "Ti cade il dardo. Resti stordito per questo round ed il successivo, mentre pensi se raccoglierlo.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 64,
+    "descrizione": "Ti cade il dardo. Resti stordito per questo round ed il successivo, mentre pensi se raccoglierlo.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 65,
+    "descrizione": "Ti cade il dardo. Resti stordito per questo round ed il successivo, mentre pensi se raccoglierlo.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 66,
+    "descrizione": "Tiro davvero brutto! Per lo stupore resti stordito per 2 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 67,
+    "descrizione": "Tiro davvero brutto! Per lo stupore resti stordito per 2 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 68,
+    "descrizione": "Tiro davvero brutto! Per lo stupore resti stordito per 2 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 69,
+    "descrizione": "Tiro davvero brutto! Per lo stupore resti stordito per 2 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 70,
+    "descrizione": "Tiro davvero brutto! Per lo stupore resti stordito per 2 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 71,
+    "descrizione": "Tiro davvero brutto! Per lo stupore resti stordito per 2 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 72,
+    "descrizione": "Tiro davvero brutto! Per lo stupore resti stordito per 2 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 73,
+    "descrizione": "Tiro davvero brutto! Per lo stupore resti stordito per 2 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 74,
+    "descrizione": "Tiro davvero brutto! Per lo stupore resti stordito per 2 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 75,
+    "descrizione": "Tiro davvero brutto! Per lo stupore resti stordito per 2 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 76,
+    "descrizione": "Tiro davvero brutto! Per lo stupore resti stordito per 2 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 77,
+    "descrizione": "Tiro davvero brutto! Per lo stupore resti stordito per 2 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 78,
+    "descrizione": "Tiro davvero brutto! Per lo stupore resti stordito per 2 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 79,
+    "descrizione": "Tiro davvero brutto! Per lo stupore resti stordito per 2 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 80,
+    "descrizione": "Hai misurato male: 5 Punti Ferita per te! Se non stai usando una balestra, la freccia ti sfugge di mano e ti taglia un orecchio: subisci 2 Punti Ferita per round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 81,
+    "descrizione": "Si rompe la corda dell'arco. Ci vogliono 6 round per aggiustarlo o 2 round per estrarre un'altra arma.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 82,
+    "descrizione": "Si rompe la corda dell'arco. Ci vogliono 6 round per aggiustarlo o 2 round per estrarre un'altra arma.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 83,
+    "descrizione": "Si rompe la corda dell'arco. Ci vogliono 6 round per aggiustarlo o 2 round per estrarre un'altra arma.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 84,
+    "descrizione": "Si rompe la corda dell'arco. Ci vogliono 6 round per aggiustarlo o 2 round per estrarre un'altra arma.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 85,
+    "descrizione": "Si rompe la corda dell'arco. Ci vogliono 6 round per aggiustarlo o 2 round per estrarre un'altra arma.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 86,
+    "descrizione": "Si rompe la corda dell'arco. Ci vogliono 6 round per aggiustarlo o 2 round per estrarre un'altra arma.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 87,
+    "descrizione": "Mentre stai ricaricando l'arma, le munizioni ti sfuggono dalle mani, spargendosi in un raggio di 3 metri.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 88,
+    "descrizione": "Mentre stai ricaricando l'arma, le munizioni ti sfuggono dalle mani, spargendosi in un raggio di 3 metri.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 89,
+    "descrizione": "Mentre stai ricaricando l'arma, le munizioni ti sfuggono dalle mani, spargendosi in un raggio di 3 metri.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 90,
+    "descrizione": "L'arma si rompe. Resti stordito per 4 round. Buona fortuna, amico!",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 91,
+    "descrizione": "Fai partire la freccia troppo presto ed il tuo tiro risulta corto di ben 6 metri. -30 alle attività per 3 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 92,
+    "descrizione": "Fai partire la freccia troppo presto ed il tuo tiro risulta corto di ben 6 metri. -30 alle attività per 3 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 93,
+    "descrizione": "Fai partire la freccia troppo presto ed il tuo tiro risulta corto di ben 6 metri. -30 alle attività per 3 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 94,
+    "descrizione": "Fai partire la freccia troppo presto ed il tuo tiro risulta corto di ben 6 metri. -30 alle attività per 3 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 95,
+    "descrizione": "Fai partire la freccia troppo presto ed il tuo tiro risulta corto di ben 6 metri. -30 alle attività per 3 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 96,
+    "descrizione": "Fai partire la freccia troppo presto ed il tuo tiro risulta corto di ben 6 metri. -30 alle attività per 3 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 97,
+    "descrizione": "Sembra che tu pensi che l'arco sia un bastone! Ti scivola di mano e, per cercare di recuperarlo, ti sfugge di 2 metri in avanti.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 98,
+    "descrizione": "Sembra che tu pensi che l'arco sia un bastone! Ti scivola di mano e, per cercare di recuperarlo, ti sfugge di 2 metri in avanti.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 99,
+    "descrizione": "Sembra che tu pensi che l'arco sia un bastone! Ti scivola di mano e, per cercare di recuperarlo, ti sfugge di 2 metri in avanti.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 100,
+    "descrizione": "Il dardo scivola mentre fai partire il colpo, e ti trapassa la mano sinistra. Mano fuori uso, +8 Punti Ferita, e 2 Punti Ferita per round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 101,
+    "descrizione": "Scivoli e cadi a terra. Il colpo ne risulta deviato e resti stordito per 5 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 102,
+    "descrizione": "Scivoli e cadi a terra. Il colpo ne risulta deviato e resti stordito per 5 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 103,
+    "descrizione": "Scivoli e cadi a terra. Il colpo ne risulta deviato e resti stordito per 5 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 104,
+    "descrizione": "Scivoli e cadi a terra. Il colpo ne risulta deviato e resti stordito per 5 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 105,
+    "descrizione": "Scivoli e cadi a terra. Il colpo ne risulta deviato e resti stordito per 5 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 106,
+    "descrizione": "Scivoli e cadi a terra. Il colpo ne risulta deviato e resti stordito per 5 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 107,
+    "descrizione": "Mentre tiri la freccia, le alette ti feriscono ad un occhio. +5 Punti Ferita. -20 alle attività e resti stordito per 2 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 108,
+    "descrizione": "Mentre tiri la freccia, le alette ti feriscono ad un occhio. +5 Punti Ferita. -20 alle attività e resti stordito per 2 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 109,
+    "descrizione": "Mentre tiri la freccia, le alette ti feriscono ad un occhio. +5 Punti Ferita. -20 alle attività e resti stordito per 2 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 110,
+    "descrizione": "La punta della freccia si incastra nell'oggetto più vicino. L'oggetto subisce un Colpo Critico, se applicabile, da Punta di tipo \"A\".",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 111,
+    "descrizione": "Mentre sollevi l'arma, ti parte un colpo. Effettua un attacco (senza modifiche) contro il combattente più vicino, amico o nemico.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 112,
+    "descrizione": "Mentre sollevi l'arma, ti parte un colpo. Effettua un attacco (senza modifiche) contro il combattente più vicino, amico o nemico.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 113,
+    "descrizione": "Mentre sollevi l'arma, ti parte un colpo. Effettua un attacco (senza modifiche) contro il combattente più vicino, amico o nemico.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 114,
+    "descrizione": "Mentre sollevi l'arma, ti parte un colpo. Effettua un attacco (senza modifiche) contro il combattente più vicino, amico o nemico.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 115,
+    "descrizione": "Mentre sollevi l'arma, ti parte un colpo. Effettua un attacco (senza modifiche) contro il combattente più vicino, amico o nemico.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 116,
+    "descrizione": "Mentre sollevi l'arma, ti parte un colpo. Effettua un attacco (senza modifiche) contro il combattente più vicino, amico o nemico.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 117,
+    "descrizione": "Stai proprio dormendo ad occhi aperti! Metti la mano davanti all'arma mentre parte il colpo. Perdi un dito e subisci 4 Punti Ferita, oltre a 2 Punti Ferita per round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 118,
+    "descrizione": "Stai proprio dormendo ad occhi aperti! Metti la mano davanti all'arma mentre parte il colpo. Perdi un dito e subisci 4 Punti Ferita, oltre a 2 Punti Ferita per round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 119,
+    "descrizione": "Stai proprio dormendo ad occhi aperti! Metti la mano davanti all'arma mentre parte il colpo. Perdi un dito e subisci 4 Punti Ferita, oltre a 2 Punti Ferita per round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  },
+  {
+    "Tabella": "TTM-2",
+    "Colpo maldestro": "Armi da tiro e da lancio",
+    "Risultato del tiro": 120,
+    "descrizione": "Perdi l'equilibruio e il dardo ti inchioda un piede a terra. +10 Punti Ferita. 2 Punti Ferita per round. -30 alle attività. Stordito per 3 round.",
+    "note": "MODIFICHE:\n-20: Fionda\n-10: Arco corto\n+0: Arco composto\n+10: Arco lungo\n+20: Balestra"
+  }
+]

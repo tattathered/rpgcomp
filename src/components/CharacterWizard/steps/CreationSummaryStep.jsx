@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
 import gradiLingue from '../../../data/TGP_1-gradi_conoscenze_lingue.json';
 import { getSpellLimitInfo, getSpellsForList } from '../../../utils/magicHelpers';
@@ -11,6 +11,7 @@ import {
   fmt
 } from '../../../utils/skillHelpers';
 import WalletBox from '../shared/WalletBox';
+import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 const STAT_KEYS = ['FR', 'AG', 'CO', 'IN', 'IT', 'PR'];
@@ -74,6 +75,34 @@ export default function CreationSummaryStep({ characterData, setCharacterData })
     setCharacterData(prev => ({ ...prev, aspetto: val }));
   };
 
+  // ── Gestione Punti Ferita (HP) ──
+  const coBonus = finalStats['CO']?.bonusTot || 0;
+  const level1HpRoll = characterData.level1HpRoll ?? null;
+  const hpD10Modifier = bgModifiers.hpD10Modifier || 0;
+
+  // ── Validazione Step 8 ──
+  useEffect(() => {
+    let err = null;
+    if (aspetto === null) {
+      err = "Devi determinare l'Aspetto del personaggio prima di procedere.";
+    } else if (level1HpRoll === null) {
+      err = "Devi calcolare i Punti Ferita (HP) del personaggio prima di procedere.";
+    }
+
+    setCharacterData(prev => {
+      if (prev.stepErrors?.creation_summary === err) {
+        return prev;
+      }
+      return {
+        ...prev,
+        stepErrors: {
+          ...(prev.stepErrors || {}),
+          creation_summary: err
+        }
+      };
+    });
+  }, [aspetto, level1HpRoll, setCharacterData]);
+
   // ── Compute final skills ──
   const categories = [...new Set(primarySkillsList.map(s => s.categoria))];
   const skillsBase = characterData.skills || {};
@@ -116,6 +145,23 @@ export default function CreationSummaryStep({ characterData, setCharacterData })
     });
     return result;
   }, [skillsBase, finalStats, bgModifiers]);
+
+  const rfRanks = finalSkills['Resistenza fisica']?.totalRanks || 0;
+  const specialRfBonus = bgModifiers.primarySkillsSpecialBonus?.['Resistenza fisica'] || bgModifiers.primarySkillsSpecialBonus?.['resistenza fisica'] || 0;
+  const specialHpBonus = (rfRanks * hpD10Modifier) + specialRfBonus;
+  const finalHp = level1HpRoll !== null ? (level1HpRoll + coBonus + 5 + specialHpBonus) : null;
+
+  const handleRollHp = () => {
+    let sum = 0;
+    for (let i = 0; i < rfRanks; i++) {
+      sum += Math.floor(Math.random() * 10) + 1;
+    }
+    setCharacterData(prev => ({ ...prev, level1HpRoll: sum }));
+  };
+
+  const handleManualHp = (val) => {
+    setCharacterData(prev => ({ ...prev, level1HpRoll: val }));
+  };
 
   if (!race || !profession) {
     return (
@@ -185,6 +231,22 @@ export default function CreationSummaryStep({ characterData, setCharacterData })
   const learnedListsArray = Array.from(allLearnedLists).sort();
   const spellLimitStr = profession ? getSpellLimitInfo(profession.professione) : null;
 
+  const getMagicRealmSummaryStep8 = () => {
+    if (learnedListsArray.length > 0) {
+      return (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+          {learnedListsArray.map((name, i) => (
+            <div key={i}>Lista incantesimi {name} appresa.</div>
+          ))}
+        </div>
+      );
+    }
+    const inheritedChance = characterData.spellListChanceAccumulated !== undefined 
+      ? characterData.spellListChanceAccumulated 
+      : 0;
+    return <div>Nessuna lista incantesimi appresa - Credito ereditato: {inheritedChance}%</div>;
+  };
+
   // ── TR bonuses ──
   const trKeys = [
     { key: 'bonus a TR-ESS', label: 'TR Essenza', statKey: 'IN' },
@@ -195,6 +257,7 @@ export default function CreationSummaryStep({ characterData, setCharacterData })
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+      <AnagraficaReadOnlyBox characterData={characterData} />
 
       {/* ── HEADER BANNER ── */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '1.5rem' }}>
@@ -213,8 +276,8 @@ export default function CreationSummaryStep({ characterData, setCharacterData })
         <div style={{ padding: '1rem', border: '1px solid var(--theme-spell-lists-border)', borderRadius: '0.6rem', background: 'var(--theme-spell-lists-bg)' }}>
           <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-spell-lists-text)' }}>Reame Magico</div>
           <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-spell-lists-text)', marginTop: '0.2rem' }}>{magicRealm}</div>
-          <div style={{ fontSize: '0.75rem', color: 'var(--theme-spell-lists-text)', opacity: 0.85, marginTop: '0.15rem' }}>
-            {profession['liste incantesimi'] || '—'}
+          <div style={{ fontSize: '0.75rem', color: 'var(--theme-spell-lists-text)', opacity: 0.85, marginTop: '0.15rem', fontWeight: 500 }}>
+            {getMagicRealmSummaryStep8()}
           </div>
         </div>
       </div>
@@ -330,6 +393,70 @@ export default function CreationSummaryStep({ characterData, setCharacterData })
               <button
                 type="button"
                 onClick={() => setCharacterData(prev => ({ ...prev, aspetto: null }))}
+                style={{ marginLeft: 'auto', background: 'none', border: 'none', color: 'var(--danger-color)', cursor: 'pointer', fontSize: '0.75rem', textDecoration: 'underline' }}
+              >
+                Ricalcola / Cambia
+              </button>
+            </div>
+          )}
+        </div>
+      </SectionCard>
+
+      {/* ── PUNTI FERITA (HP) ── */}
+      <SectionCard 
+        emoji="❤️" 
+        title="Punti Ferita (HP)" 
+        color="#b91c1c" 
+        bg="#fef2f2" 
+        border="#fca5a5"
+      >
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          {level1HpRoll === null ? (
+            <div style={{ background: '#fef2f2', border: '1px solid #fca5a5', padding: '0.75rem', borderRadius: '0.5rem', fontSize: '0.85rem' }}>
+              <p style={{ color: '#991b1b', margin: '0 0 0.5rem 0', fontWeight: 600 }}>
+                Calcola i Punti Ferita (HP) iniziali.
+              </p>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0.5rem', marginBottom: '0.75rem', background: '#fff', padding: '0.5rem', borderRadius: '4px', border: '1px solid #fee2e2' }}>
+                <div><strong>Base:</strong> +5</div>
+                <div><strong>Bonus Costituzione (CO):</strong> {fmt(coBonus)}</div>
+                <div><strong>Gradi Resistenza Fisica:</strong> {rfRanks} {rfRanks > 0 ? `(${rfRanks}d10)` : '(0d10)'}</div>
+                {specialHpBonus > 0 && (
+                  <div><strong>Modificatori Speciali:</strong> {fmt(specialHpBonus)}</div>
+                )}
+              </div>
+              <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                <button
+                  type="button"
+                  onClick={handleRollHp}
+                  className="btn btn-primary"
+                  style={{ background: '#b91c1c', borderColor: '#b91c1c', color: 'white', padding: '0.4rem 0.8rem', fontSize: '0.8rem' }}
+                >
+                  {rfRanks > 0 ? `Tira ${rfRanks}d10` : 'Registra PF Iniziali'}
+                </button>
+                <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>oppure inserisci manuale:</span>
+                <input
+                  type="number"
+                  placeholder="Valore"
+                  min="0"
+                  onChange={(e) => handleManualHp(e.target.value === '' ? null : parseInt(e.target.value))}
+                  style={{ width: '4rem', padding: '0.3rem', border: '1px solid var(--border-color)', borderRadius: '4px', textAlign: 'center', fontSize: '0.8rem' }}
+                />
+              </div>
+            </div>
+          ) : (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: '#fef2f2', border: '1px solid #fca5a5', borderRadius: '0.5rem', padding: '0.75rem' }}>
+              <div style={{ width: '2.5rem', height: '2.5rem', borderRadius: '50%', background: '#b91c1c', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', fontWeight: 900 }}>
+                {finalHp}
+              </div>
+              <div style={{ fontSize: '0.85rem', color: '#991b1b' }}>
+                <p style={{ margin: 0, fontWeight: 700 }}>Punti Ferita Iniziali (Liv. 1): {finalHp}</p>
+                <p style={{ margin: '0.1rem 0 0 0', fontSize: '0.75rem', opacity: 0.8 }}>
+                  Calcolo: 5 (base) + {fmt(coBonus)} (CO) + {level1HpRoll} (tiro {rfRanks}d10) {specialHpBonus > 0 ? `+ ${specialHpBonus} (speciali)` : ''}
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setCharacterData(prev => ({ ...prev, level1HpRoll: null }))}
                 style={{ marginLeft: 'auto', background: 'none', border: 'none', color: 'var(--danger-color)', cursor: 'pointer', fontSize: '0.75rem', textDecoration: 'underline' }}
               >
                 Ricalcola / Cambia

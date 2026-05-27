@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Swords, RotateCcw, AlertTriangle, Play, HelpCircle, Heart, Shield, Sparkles, Target, User } from 'lucide-react';
 import attackTables from '../data/Tabelle-Attacco-TA-1_TA-2_TA-3_TA-4.json';
+import FumbleResolver from './FumbleResolver';
 import {
   getFinalStats,
   getSpecificTb6Ranks,
@@ -75,7 +76,26 @@ const getSkillForWeapon = (item) => {
   return 'taglio a 1 mano';
 };
 
-export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti }) {
+const getFumbleModifierForWeapon = (category, name) => {
+  const cat = (category || '').toLowerCase();
+  const n = (name || '').toLowerCase();
+  if (cat === 'da tiro' || cat === 'da lancio') {
+    if (n.includes('balestra')) return 20;
+    if (n.includes('arco lungo')) return 10;
+    if (n.includes('arco composto')) return 0;
+    if (n.includes('arco corto')) return -10;
+    if (n.includes('fionda')) return -20;
+    return 0;
+  } else {
+    if (cat === 'taglio a 1 mano') return -10;
+    if (cat === 'contundenti a 1 mano') return -20;
+    if (cat === 'con asta') return 10;
+    if (cat === 'a 2 mani') return 0;
+    return 0;
+  }
+};
+
+export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, onUpdateBoSpesoParata, onResetAllParries }) {
   // --- STATO ATTACCANTE ---
   const [attackerId, setAttackerId] = useState('custom');
   const [customAttackerName, setCustomAttackerName] = useState('Attaccante Generico');
@@ -93,6 +113,13 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti }) 
   const [defenderParry, setDefenderParry] = useState(0);
   const [defenderHpTot, setDefenderHpTot] = useState(40);
   const [defenderHpSubiti, setDefenderHpSubiti] = useState(0);
+  const [selectedDefenderWeaponIdx, setSelectedDefenderWeaponIdx] = useState(0);
+  const [customDefenderBO, setCustomDefenderBO] = useState(50);
+
+  // --- STATO FUMBLE ---
+  const [showFumbleResolver, setShowFumbleResolver] = useState(false);
+  const [fumbleTableCode, setFumbleTableCode] = useState('TTM-1');
+  const [fumbleDiceRoll, setFumbleDiceRoll] = useState(50);
 
   // --- MODIFICATORI E DADO ---
   const [flankAttack, setFlankAttack] = useState(false);
@@ -219,6 +246,7 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti }) 
         bd: finalBD,
         hpTot,
         hpSubiti: char.hpSubiti || 0,
+        boSpesoParata: char.boSpesoParata || 0,
         weapons: inventoryWeapons,
         skillBonuses
       };
@@ -242,6 +270,26 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti }) 
     return activeAttackerCharacter.weapons[selectedWeaponIdx] || activeAttackerCharacter.weapons[0] || null;
   }, [activeAttackerCharacter, selectedWeaponIdx]);
 
+  // Seleziona arma per difensore da roster
+  const activeDefenderWeapon = useMemo(() => {
+    if (!activeDefenderCharacter) return null;
+    return activeDefenderCharacter.weapons[selectedDefenderWeaponIdx] || activeDefenderCharacter.weapons[0] || null;
+  }, [activeDefenderCharacter, selectedDefenderWeaponIdx]);
+
+  const defenderWeaponBO = useMemo(() => {
+    if (defenderId === 'custom') {
+      return customDefenderBO;
+    }
+    return activeDefenderWeapon ? activeDefenderWeapon.bo : 0;
+  }, [defenderId, customDefenderBO, activeDefenderWeapon]);
+
+  // BO effettivo dell'attaccante detratto del BO speso per parare in precedenza
+  const attackerBoSpesoParata = activeAttackerCharacter ? (activeAttackerCharacter.boSpesoParata || 0) : 0;
+  
+  const attackerBOEffective = useMemo(() => {
+    return Math.max(0, attackerBO - attackerBoSpesoParata);
+  }, [attackerBO, attackerBoSpesoParata]);
+
   // --- SINCRONIZZAZIONE DATI ROSTER IN INPUTS ---
   useEffect(() => {
     if (activeAttackerCharacter) {
@@ -261,8 +309,7 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti }) 
       setDefenderArmor(activeDefenderCharacter.equippedArmor);
       setDefenderHpTot(activeDefenderCharacter.hpTot);
       setDefenderHpSubiti(activeDefenderCharacter.hpSubiti || 0);
-      // Imposta parata massima in base alla skill armi più alta
-      setDefenderParry(0); 
+      setDefenderParry(activeDefenderCharacter.boSpesoParata || 0); 
     }
   }, [activeDefenderCharacter]);
 
@@ -313,13 +360,35 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti }) 
   // Calcolo del risultato finale del tiro
   const finalAttackResult = useMemo(() => {
     const roll = parseInt(diceRoll) || 0;
-    const bo = parseInt(attackerBO) || 0;
+    const bo = parseInt(attackerBOEffective) || 0;
     const bd = parseInt(defenderBD) || 0;
     const parry = parseInt(defenderParry) || 0;
     
     let result = roll + bo - bd - parry + computedModifiers;
     return Math.min(150, Math.max(1, result));
-  }, [diceRoll, attackerBO, defenderBD, defenderParry, computedModifiers]);
+  }, [diceRoll, attackerBOEffective, defenderBD, defenderParry, computedModifiers]);
+
+
+  // Sincronizzazione ed eventuale clamp del valore di parata del difensore
+  useEffect(() => {
+    const maxBO = defenderWeaponBO;
+    if (defenderParry > maxBO) {
+      const clamped = maxBO;
+      setDefenderParry(clamped);
+      if (defenderId !== 'custom' && onUpdateBoSpesoParata) {
+        onUpdateBoSpesoParata(defenderId, clamped);
+      }
+    }
+  }, [defenderWeaponBO, defenderId, defenderParry, onUpdateBoSpesoParata]);
+
+  const handleDefenderParryChange = (val) => {
+    const maxBO = defenderWeaponBO;
+    const clamped = Math.max(0, Math.min(maxBO, val));
+    setDefenderParry(clamped);
+    if (defenderId !== 'custom' && onUpdateBoSpesoParata) {
+      onUpdateBoSpesoParata(defenderId, clamped);
+    }
+  };
 
   // --- LOGICA DI RISOLUZIONE ATTACCO ---
   const handleResolveAttack = () => {
@@ -360,7 +429,7 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti }) 
 
     const cellValue = String(row[armorColName] || '').trim();
 
-    if (cellValue === 'Possibilità di Colpo Maldestro' || diceRoll <= 2) {
+    if (cellValue === 'Possibilità di Colpo Maldestro' || diceRoll <= 8) {
       // Fumble! (In MERP, un tiro basso o un esito maldestro genera fumble)
       setCombatOutcome({
         type: 'fumble',
@@ -371,6 +440,11 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti }) 
         message: 'FALLIMENTO GRAVE - COLPO MALDESTRO!',
         details: 'Il colpo è andato malissimo. Il Master chiederà di effettuare un tiro d100 sulla tabella dei Colpi Maldestri per risolverne le conseguenze.'
       });
+      setShowFumbleResolver(true);
+      const fTable = isRangedOrThrown ? 'TTM-2' : 'TTM-1';
+      setFumbleTableCode(fTable);
+      const fRoll = Math.floor(Math.random() * 100) + 1;
+      setFumbleDiceRoll(fRoll);
     } else if (cellValue === '0' || cellValue === '') {
       setCombatOutcome({
         type: 'miss',
@@ -448,39 +522,60 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti }) 
     setDiceRoll(50);
     setManualRoll('50');
     setCombatOutcome(null);
+    setShowFumbleResolver(false);
+    setFumbleDiceRoll(50);
+    setFumbleManualRoll('50');
+    setFumbleModifierCustom(0);
+    setFumbleResultOverride(null);
+    setFumbleSpellClass('P');
+    setFumbleManoeuvreDifficulty('Difficile');
   };
 
   return (
     <div className="space-y-6">
       {/* Intestazione */}
-      <div className="border-b border-gray-200 pb-4">
-        <h3 className="text-xl font-bold text-gray-800 flex items-center gap-2">
-          <Swords className="text-indigo-600 w-5 h-5" />
-          Risoluzione Combattimenti (Calcolatore Attacchi)
-        </h3>
-        <p className="text-xs text-gray-500 mt-1">
-          Risolvi gli attacchi fisici in tempo reale. Seleziona i personaggi dal Roster per caricarne le statistiche BO/BD/Armatura o inserisci i dati manualmente.
-        </p>
+      <div className="border-b border-gray-200 pb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h3 className="text-xl font-bold text-gray-800 flex items-center gap-2">
+            <Swords className="text-indigo-600 w-5 h-5" />
+            Risoluzione Combattimenti (Calcolatore Attacchi)
+          </h3>
+          <p className="text-xs text-gray-500 mt-1">
+            Risolvi gli attacchi fisici in tempo reale. Seleziona i personaggi dal Roster per caricarne le statistiche BO/BD/Armatura o inserisci i dati manualmente.
+          </p>
+        </div>
+        <button
+          onClick={() => {
+            if (onResetAllParries) {
+              onResetAllParries();
+              setDefenderParry(0);
+              alert('Nuovo Round: tutte le parate dei personaggi sono state azzerate.');
+            }
+          }}
+          className="px-4 py-2 bg-indigo-100 hover:bg-indigo-200 text-indigo-700 font-bold text-xs rounded-lg border border-indigo-200 flex items-center gap-2 transition active:scale-95 shrink-0 self-start sm:self-auto"
+        >
+          <RotateCcw className="w-3.5 h-3.5" />
+          Nuovo Round (Azzera Parate)
+        </button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* --- PANNELLO ATTACCANTE --- */}
-        <div className="card p-5 border border-indigo-100 rounded-xl bg-slate-50/50 shadow-xs flex flex-col justify-between">
+        <div className="card p-5 border border-blue-200 rounded-xl bg-blue-50/15 shadow-xs flex flex-col justify-between">
           <div>
-            <div className="flex items-center gap-2 pb-3 border-b border-indigo-100/50 mb-4">
-              <div className="p-1.5 rounded-lg bg-indigo-50 text-indigo-700">
+            <div className="flex items-center gap-2 pb-3 border-b border-blue-150 mb-4">
+              <div className="p-1.5 rounded-lg bg-blue-100 text-blue-700">
                 <Swords className="w-4 h-4" />
               </div>
-              <h4 className="font-bold text-sm text-indigo-950 uppercase tracking-wider">Attaccante</h4>
+              <h4 className="font-bold text-sm text-blue-950 uppercase tracking-wider">Attaccante</h4>
             </div>
 
             <div className="space-y-4">
               {/* Selezione Attaccante */}
               <div>
-                <label className="block text-xs font-bold text-gray-700 mb-1">Seleziona Attaccante dal Roster:</label>
+                <label className="block text-xs font-bold text-blue-900 mb-1">Seleziona Attaccante dal Roster:</label>
                 <select
-                  className="w-full p-2 border border-gray-300 rounded text-sm bg-white"
+                  className="w-full p-2 border border-blue-250 rounded text-sm bg-white focus:ring-blue-500 focus:border-blue-500"
                   value={attackerId}
                   onChange={e => setAttackerId(e.target.value)}
                 >
@@ -495,20 +590,20 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti }) 
 
               {attackerId === 'custom' ? (
                 // Campi Custom Attaccante
-                <div className="grid grid-cols-2 gap-3 p-3 bg-white border border-gray-200 rounded-lg">
+                <div className="grid grid-cols-2 gap-3 p-3 bg-white border border-blue-200 rounded-lg">
                   <div className="col-span-2">
-                    <label className="block text-[10px] font-bold text-gray-500 uppercase">Nome Attaccante:</label>
+                    <label className="block text-[10px] font-bold text-blue-900 uppercase">Nome Attaccante:</label>
                     <input
                       type="text"
-                      className="w-full p-1.5 border rounded text-xs mt-0.5 bg-gray-50/50"
+                      className="w-full p-1.5 border border-blue-250 rounded text-xs mt-0.5 bg-blue-50/10 focus:ring-blue-500 focus:border-blue-500"
                       value={customAttackerName}
                       onChange={e => setCustomAttackerName(e.target.value)}
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-bold text-gray-500 uppercase">Arma & Tabella:</label>
+                    <label className="block text-[10px] font-bold text-blue-900 uppercase">Arma & Tabella:</label>
                     <select
-                      className="w-full p-1.5 border rounded text-xs mt-0.5 bg-white"
+                      className="w-full p-1.5 border border-blue-250 rounded text-xs mt-0.5 bg-white focus:ring-blue-500 focus:border-blue-500"
                       value={attackerWeaponCat}
                       onChange={e => setAttackerWeaponCat(e.target.value)}
                     >
@@ -521,28 +616,28 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti }) 
                     </select>
                   </div>
                   <div>
-                    <label className="block text-[10px] font-bold text-gray-500 uppercase">BO Base dell'Attacco:</label>
+                    <label className="block text-[10px] font-bold text-blue-900 uppercase">BO Base dell'Attacco:</label>
                     <input
                       type="number"
-                      className="w-full p-1.5 border rounded text-xs mt-0.5 text-center font-bold"
+                      className="w-full p-1.5 border border-blue-250 rounded text-xs mt-0.5 text-center font-bold focus:ring-blue-500 focus:border-blue-500"
                       value={attackerBO}
                       onChange={e => setAttackerBO(parseInt(e.target.value) || 0)}
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-bold text-gray-500 uppercase">HP Totali PG:</label>
+                    <label className="block text-[10px] font-bold text-blue-900 uppercase">HP Totali PG:</label>
                     <input
                       type="number"
-                      className="w-full p-1.5 border rounded text-xs mt-0.5 text-center"
+                      className="w-full p-1.5 border border-blue-250 rounded text-xs mt-0.5 text-center focus:ring-blue-500 focus:border-blue-500"
                       value={attackerHpTot}
                       onChange={e => setAttackerHpTot(Math.max(1, parseInt(e.target.value) || 1))}
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-bold text-gray-500 uppercase">HP Attuali Subiti:</label>
+                    <label className="block text-[10px] font-bold text-blue-900 uppercase">HP Attuali Subiti:</label>
                     <input
                       type="number"
-                      className="w-full p-1.5 border rounded text-xs mt-0.5 text-center font-semibold text-red-600"
+                      className="w-full p-1.5 border border-blue-250 rounded text-xs mt-0.5 text-center font-semibold text-red-650 focus:ring-blue-500 focus:border-blue-500"
                       value={attackerHpSubiti}
                       onChange={e => setAttackerHpSubiti(Math.max(0, parseInt(e.target.value) || 0))}
                     />
@@ -550,16 +645,16 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti }) 
                 </div>
               ) : (
                 // Dati caricati da Roster Attaccante
-                <div className="p-3 bg-indigo-50/30 border border-indigo-100 rounded-lg space-y-3">
-                  <div>
-                    <label className="block text-[10px] font-bold text-indigo-900 uppercase">Nome Attaccante:</label>
+                <div className="p-4 bg-blue-50/30 border border-blue-100 rounded-lg grid grid-cols-2 gap-4">
+                  <div className="col-span-2">
+                    <label className="block text-[10px] font-bold text-blue-900 uppercase">Nome Attaccante:</label>
                     <p className="text-sm font-bold text-gray-900 mt-0.5">{activeAttackerCharacter?.name}</p>
                   </div>
                   {activeAttackerCharacter && activeAttackerCharacter.weapons.length > 0 ? (
-                    <div>
-                      <label className="block text-[10px] font-bold text-indigo-900 uppercase mb-1">Seleziona Arma in Inventario:</label>
+                    <div className="col-span-2">
+                      <label className="block text-[10px] font-bold text-blue-900 uppercase mb-1">Seleziona Arma in Inventario:</label>
                       <select
-                        className="w-full p-1.5 border border-indigo-200 rounded text-xs bg-white font-medium"
+                        className="w-full p-1.5 border border-blue-200 rounded text-xs bg-white font-medium focus:ring-blue-500 focus:border-blue-500"
                         value={selectedWeaponIdx}
                         onChange={e => setSelectedWeaponIdx(parseInt(e.target.value))}
                       >
@@ -571,64 +666,66 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti }) 
                       </select>
                     </div>
                   ) : (
-                    <p className="text-xs italic text-orange-600">Nessuna arma in inventario. Caricata skill predefinita.</p>
+                    <div className="col-span-2">
+                      <p className="text-xs italic text-orange-600">Nessuna arma in inventario. Caricata skill predefinita.</p>
+                    </div>
                   )}
-                  <div className="grid grid-cols-3 gap-3 pt-1">
-                    <div>
-                      <span className="block text-[9px] font-bold text-gray-500 uppercase">BO Skill Arma</span>
-                      <strong className="text-sm text-gray-900">{fmt(attackerBO)}</strong>
-                    </div>
-                    <div>
-                      <span className="block text-[9px] font-bold text-gray-500 uppercase">HP Totali PG</span>
-                      <strong className="text-sm text-gray-900">{attackerHpTot}</strong>
-                    </div>
-                    <div>
-                      <span className="block text-[9px] font-bold text-gray-500 uppercase">HP Subiti (Ferite)</span>
-                      <input
-                        type="number"
-                        min="0"
-                        max={attackerHpTot}
-                        className="w-16 p-1 border rounded text-xs text-center font-bold text-red-600 bg-white"
-                        value={attackerHpSubiti}
-                        onChange={e => {
-                          const val = Math.max(0, parseInt(e.target.value) || 0);
-                          setAttackerHpSubiti(val);
-                          if (attackerId !== 'custom' && onUpdateHpSubiti) {
-                            onUpdateHpSubiti(attackerId, val);
-                          }
-                        }}
-                      />
-                    </div>
+                  <div>
+                    <span className="block text-[9px] font-bold text-gray-500 uppercase">BO Disponibile</span>
+                    <strong className="text-sm text-gray-950 block font-bold">{fmt(attackerBOEffective)}</strong>
+                    {attackerBoSpesoParata > 0 && (
+                      <span className="text-[9px] text-blue-700 block leading-tight">({fmt(attackerBO)} base - {attackerBoSpesoParata} parata)</span>
+                    )}
+                  </div>
+                  <div>
+                    <span className="block text-[9px] font-bold text-gray-500 uppercase">HP Totali PG</span>
+                    <strong className="text-sm text-gray-900 block">{attackerHpTot}</strong>
+                  </div>
+                  <div>
+                    <span className="block text-[9px] font-bold text-gray-500 uppercase mb-1">HP Subiti (Ferite)</span>
+                    <input
+                      type="number"
+                      min="0"
+                      max={attackerHpTot}
+                      className="w-16 p-1 border border-blue-200 rounded text-xs text-center font-bold text-red-655 bg-white focus:ring-blue-500 focus:border-blue-500"
+                      value={attackerHpSubiti}
+                      onChange={e => {
+                        const val = Math.max(0, parseInt(e.target.value) || 0);
+                        setAttackerHpSubiti(val);
+                        if (attackerId !== 'custom' && onUpdateHpSubiti) {
+                          onUpdateHpSubiti(attackerId, val);
+                        }
+                      }}
+                    />
                   </div>
                 </div>
               )}
             </div>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-gray-200/50 flex justify-between items-center text-xs">
-            <span className="text-gray-500 font-medium">Tabella Attacco:</span>
-            <span className="font-bold text-indigo-900 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-200">
+          <div className="mt-4 pt-3 border-t border-blue-200/50 flex justify-between items-center text-xs">
+            <span className="text-gray-550 font-medium">Tabella Attacco:</span>
+            <span className="font-bold text-blue-900 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
               {TABLE_NAMES[WEAPON_SKILL_TO_TABLE[attackerWeaponCategoryResolved]] || TABLE_NAMES['TA-1']}
             </span>
           </div>
         </div>
-
-        {/* --- PANNELLO DIFENSORE --- */}
-        <div className="card p-5 border border-indigo-100 rounded-xl bg-slate-50/50 shadow-xs flex flex-col justify-between">
+             {/* --- PANNELLO DIFENSORE --- */}
+        <div className="card p-5 border border-red-200 rounded-xl bg-red-50/15 shadow-xs flex flex-col justify-between">
           <div>
-            <div className="flex items-center gap-2 pb-3 border-b border-indigo-100/50 mb-4">
-              <div className="p-1.5 rounded-lg bg-indigo-50 text-indigo-700">
+            <div className="flex items-center gap-2 pb-3 border-b border-red-150 mb-4">
+              <div className="p-1.5 rounded-lg bg-red-100 text-red-700">
                 <Shield className="w-4 h-4" />
               </div>
-              <h4 className="font-bold text-sm text-indigo-950 uppercase tracking-wider">Difensore</h4>
+              <h4 className="font-bold text-sm text-red-950 uppercase tracking-wider">Difensore</h4>
             </div>
 
             <div className="space-y-4">
               {/* Selezione Difensore */}
               <div>
-                <label className="block text-xs font-bold text-gray-700 mb-1">Seleziona Difensore dal Roster:</label>
+                <label className="block text-xs font-bold text-red-900 mb-1">Seleziona Difensore dal Roster:</label>
                 <select
-                  className="w-full p-2 border border-gray-300 rounded text-sm bg-white"
+                  className="w-full p-2 border border-red-250 rounded text-sm bg-white focus:ring-red-500 focus:border-red-500"
                   value={defenderId}
                   onChange={e => setDefenderId(e.target.value)}
                 >
@@ -643,20 +740,20 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti }) 
 
               {defenderId === 'custom' ? (
                 // Campi Custom Difensore
-                <div className="grid grid-cols-2 gap-3 p-3 bg-white border border-gray-200 rounded-lg">
+                <div className="grid grid-cols-2 gap-3 p-3 bg-white border border-red-200 rounded-lg">
                   <div className="col-span-2">
-                    <label className="block text-[10px] font-bold text-gray-500 uppercase">Nome Difensore:</label>
+                    <label className="block text-[10px] font-bold text-red-900 uppercase">Nome Difensore:</label>
                     <input
                       type="text"
-                      className="w-full p-1.5 border rounded text-xs mt-0.5 bg-gray-50/50"
+                      className="w-full p-1.5 border border-red-250 rounded text-xs mt-0.5 bg-red-50/10 focus:ring-red-500 focus:border-red-500"
                       value={customDefenderName}
                       onChange={e => setCustomDefenderName(e.target.value)}
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-bold text-gray-500 uppercase">Tipo Armatura:</label>
+                    <label className="block text-[10px] font-bold text-red-900 uppercase">Tipo Armatura:</label>
                     <select
-                      className="w-full p-1.5 border rounded text-xs mt-0.5 bg-white"
+                      className="w-full p-1.5 border border-red-250 rounded text-xs mt-0.5 bg-white focus:ring-red-500 focus:border-red-500"
                       value={defenderArmor}
                       onChange={e => setDefenderArmor(e.target.value)}
                     >
@@ -668,28 +765,37 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti }) 
                     </select>
                   </div>
                   <div>
-                    <label className="block text-[10px] font-bold text-gray-500 uppercase">BD Base del Difensore:</label>
+                    <label className="block text-[10px] font-bold text-red-900 uppercase">BD Base del Difensore:</label>
                     <input
                       type="number"
-                      className="w-full p-1.5 border rounded text-xs mt-0.5 text-center font-bold"
+                      className="w-full p-1.5 border border-red-250 rounded text-xs mt-0.5 text-center font-bold focus:ring-red-500 focus:border-red-500"
                       value={defenderBD}
                       onChange={e => setDefenderBD(parseInt(e.target.value) || 0)}
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-bold text-gray-500 uppercase">HP Totali PG:</label>
+                    <label className="block text-[10px] font-bold text-red-900 uppercase">BO Base (Parata):</label>
                     <input
                       type="number"
-                      className="w-full p-1.5 border rounded text-xs mt-0.5 text-center"
+                      className="w-full p-1.5 border border-red-250 rounded text-xs mt-0.5 text-center font-bold focus:ring-red-500 focus:border-red-500"
+                      value={customDefenderBO}
+                      onChange={e => setCustomDefenderBO(parseInt(e.target.value) || 0)}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[10px] font-bold text-red-900 uppercase">HP Totali PG:</label>
+                    <input
+                      type="number"
+                      className="w-full p-1.5 border border-red-250 rounded text-xs mt-0.5 text-center focus:ring-red-500 focus:border-red-500"
                       value={defenderHpTot}
                       onChange={e => setDefenderHpTot(Math.max(1, parseInt(e.target.value) || 1))}
                     />
                   </div>
-                  <div>
-                    <label className="block text-[10px] font-bold text-gray-500 uppercase">HP Subiti (Ferite):</label>
+                  <div className="col-span-2">
+                    <label className="block text-[10px] font-bold text-red-900 uppercase">HP Subiti (Ferite):</label>
                     <input
                       type="number"
-                      className="w-full p-1.5 border rounded text-xs mt-0.5 text-center font-semibold text-red-650"
+                      className="w-full p-1.5 border border-red-250 rounded text-xs mt-0.5 text-center font-semibold text-red-650 focus:ring-red-500 focus:border-red-500"
                       value={defenderHpSubiti}
                       onChange={e => setDefenderHpSubiti(Math.max(0, parseInt(e.target.value) || 0))}
                     />
@@ -697,85 +803,102 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti }) 
                 </div>
               ) : (
                 // Dati caricati da Roster Difensore
-                <div className="p-3 bg-indigo-50/30 border border-indigo-100 rounded-lg space-y-3">
-                  <div>
-                    <label className="block text-[10px] font-bold text-indigo-900 uppercase">Nome Difensore:</label>
+                <div className="p-4 bg-red-50/30 border border-red-100 rounded-lg grid grid-cols-2 gap-4">
+                  <div className="col-span-2">
+                    <label className="block text-[10px] font-bold text-red-900 uppercase">Nome Difensore:</label>
                     <p className="text-sm font-bold text-gray-900 mt-0.5">{activeDefenderCharacter?.name}</p>
                   </div>
-                  <div className="grid grid-cols-2 gap-3">
-                    <div>
-                      <span className="block text-[10px] font-bold text-gray-500 uppercase">Armatura Attiva</span>
-                      <strong className="text-xs text-gray-800">{ARMOR_DISPLAY[defenderArmor] || 'Nessuna'}</strong>
+                  {activeDefenderCharacter && activeDefenderCharacter.weapons.length > 0 ? (
+                    <div className="col-span-2">
+                      <label className="block text-[10px] font-bold text-red-900 uppercase mb-1">Seleziona Arma per Parare:</label>
+                      <select
+                        className="w-full p-1.5 border border-red-200 rounded text-xs bg-white font-medium focus:ring-red-500 focus:border-red-500"
+                        value={selectedDefenderWeaponIdx}
+                        onChange={e => setSelectedDefenderWeaponIdx(parseInt(e.target.value))}
+                      >
+                        {activeDefenderCharacter.weapons.map((w, idx) => (
+                          <option key={idx} value={idx}>
+                            {w.nome} (BO: {fmt(w.bo)} | {w.skillName})
+                          </option>
+                        ))}
+                      </select>
                     </div>
-                    <div>
-                      <span className="block text-[10px] font-bold text-gray-500 uppercase">BD Consolidato</span>
-                      <strong className="text-xs text-gray-800">{fmt(defenderBD)}</strong>
+                  ) : (
+                    <div className="col-span-2">
+                      <p className="text-xs italic text-orange-600">Nessuna arma in inventario. Caricata skill predefinita.</p>
                     </div>
+                  )}
+                  <div>
+                    <span className="block text-[9px] font-bold text-gray-550 uppercase">Armatura Attiva</span>
+                    <strong className="text-sm text-gray-900 block font-semibold">{ARMOR_DISPLAY[defenderArmor] || 'Nessuna'}</strong>
                   </div>
-                  <div className="grid grid-cols-2 gap-3 pt-1">
-                    <div>
-                      <span className="block text-[9px] font-bold text-gray-500 uppercase">HP Totali PG</span>
-                      <strong className="text-sm text-gray-900">{defenderHpTot}</strong>
-                    </div>
-                    <div>
-                      <span className="block text-[9px] font-bold text-gray-500 uppercase">HP Subiti (Ferite)</span>
-                      <input
-                        type="number"
-                        min="0"
-                        max={defenderHpTot}
-                        className="w-16 p-1 border rounded text-xs text-center font-bold text-red-600 bg-white"
-                        value={defenderHpSubiti}
-                        onChange={e => {
-                          const val = Math.max(0, parseInt(e.target.value) || 0);
-                          setDefenderHpSubiti(val);
-                          if (defenderId !== 'custom' && onUpdateHpSubiti) {
-                            onUpdateHpSubiti(defenderId, val);
-                          }
-                        }}
-                      />
-                    </div>
+                  <div>
+                    <span className="block text-[9px] font-bold text-gray-555 uppercase">BD Consolidato</span>
+                    <strong className="text-sm text-gray-900 block font-semibold">{fmt(defenderBD)}</strong>
+                  </div>
+                  <div>
+                    <span className="block text-[9px] font-bold text-gray-555 uppercase">HP Totali PG</span>
+                    <strong className="text-sm text-gray-900 block">{defenderHpTot}</strong>
+                  </div>
+                  <div>
+                    <span className="block text-[9px] font-bold text-gray-555 uppercase mb-1">HP Subiti (Ferite)</span>
+                    <input
+                      type="number"
+                      min="0"
+                      max={defenderHpTot}
+                      className="w-16 p-1 border border-red-200 rounded text-xs text-center font-bold text-red-655 bg-white focus:ring-red-500 focus:border-red-500"
+                      value={defenderHpSubiti}
+                      onChange={e => {
+                        const val = Math.max(0, parseInt(e.target.value) || 0);
+                        setDefenderHpSubiti(val);
+                        if (defenderId !== 'custom' && onUpdateHpSubiti) {
+                          onUpdateHpSubiti(defenderId, val);
+                        }
+                      }}
+                    />
                   </div>
                 </div>
               )}
               
               {/* Campo di Parata (Dichiarazione di Parata del Difensore) */}
-              <div className="p-3 bg-amber-500/5 border border-amber-100 rounded-lg">
+              <div className="p-3 bg-red-500/5 border border-red-100 rounded-lg">
                 <div className="flex justify-between items-center mb-1">
-                  <label className="text-[11px] font-bold text-amber-900 uppercase">Quota BO spesa per Parare:</label>
-                  <span className="text-xs font-bold text-amber-700">-{defenderParry} al tiro</span>
+                  <label className="text-[11px] font-bold text-red-900 uppercase">Quota BO spesa per Parare:</label>
+                  <span className="text-xs font-bold text-red-700">-{defenderParry} al tiro</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <input
                     type="range"
                     min="0"
-                    max={100}
+                    max={defenderWeaponBO}
                     value={defenderParry}
-                    onChange={e => setDefenderParry(parseInt(e.target.value) || 0)}
-                    className="w-full accent-amber-600 h-1.5 bg-gray-200 rounded-lg cursor-pointer"
+                    onChange={e => handleDefenderParryChange(parseInt(e.target.value) || 0)}
+                    className="w-full accent-red-600 h-1.5 bg-gray-200 rounded-lg cursor-pointer"
                   />
                   <input
                     type="number"
                     min="0"
-                    max={150}
+                    max={defenderWeaponBO}
                     value={defenderParry}
-                    onChange={e => setDefenderParry(Math.max(0, parseInt(e.target.value) || 0))}
-                    className="w-12 p-1 border border-amber-300 rounded text-center text-xs font-bold text-amber-800 bg-white"
+                    onChange={e => handleDefenderParryChange(parseInt(e.target.value) || 0)}
+                    className="w-12 p-1 border border-red-300 rounded text-center text-xs font-bold text-red-800 bg-white focus:ring-red-500 focus:border-red-500"
                   />
                 </div>
-                <p className="text-[9px] text-amber-700 mt-1 italic">Sottrae questo valore dal tiro d'attacco finale.</p>
+                <p className="text-[9px] text-red-755 mt-1 italic">
+                  BO Max per Parare: {defenderWeaponBO}. Sottrae questo valore dal tiro d'attacco finale.
+                </p>
               </div>
 
             </div>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-gray-200/50 flex justify-between items-center text-xs">
-            <span className="text-gray-500 font-medium">Colonna Armatura:</span>
-            <span className="font-bold text-indigo-900 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-200">
+          <div className="mt-4 pt-3 border-t border-red-200/50 flex justify-between items-center text-xs">
+            <span className="text-gray-555 font-medium">Colonna Armatura:</span>
+            <span className="font-bold text-red-900 bg-red-50 px-2 py-0.5 rounded border border-red-200">
               {ARMOR_DISPLAY[defenderArmor] || 'Nessuna'}
             </span>
           </div>
         </div>
-
       </div>
 
       {/* --- PANNELLO MODIFICATORI DI CONTESTO --- */}
@@ -786,141 +909,130 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti }) 
           </div>
           <h4 className="font-bold text-sm text-gray-900 uppercase tracking-wider">Modificatori Situazionali (Attacco)</h4>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          
-          {/* Colonna Modificatori Posizionali / Stato */}
-          <div className="space-y-2">
-            <h5 className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Posizione & Stato Difensore</h5>
-            <label className={`flex items-center gap-2 p-2 border rounded-lg text-xs cursor-pointer transition ${isRangedOrThrown ? 'opacity-40 cursor-not-allowed bg-gray-50' : (flankAttack ? 'bg-indigo-50/50 border-indigo-200 font-medium' : 'bg-white hover:bg-gray-50')}`}>
-              <input
-                type="checkbox"
-                checked={flankAttack}
-                disabled={isRangedOrThrown}
-                onChange={e => setFlankAttack(e.target.checked)}
-                className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-              />
-              <div>
-                <span className="block font-bold">Attacco sul Fianco (+15 BO)</span>
-                <span className="text-[9px] text-gray-450">Non applicabile ad armi da tiro/lancio</span>
-              </div>
-            </label>
-
-            <label className={`flex items-center gap-2 p-2 border rounded-lg text-xs cursor-pointer transition ${isRangedOrThrown ? 'opacity-40 cursor-not-allowed bg-gray-50' : (backAttack ? 'bg-indigo-50/50 border-indigo-200 font-medium' : 'bg-white hover:bg-gray-50')}`}>
-              <input
-                type="checkbox"
-                checked={backAttack}
-                disabled={isRangedOrThrown}
-                onChange={e => setBackAttack(e.target.checked)}
-                className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-              />
-              <div>
-                <span className="block font-bold">Attacco da Dietro (+20 BO)</span>
-                <span className="text-[9px] text-gray-450">Oltre al bonus del fianco (+35 totale)</span>
-              </div>
-            </label>
-
-            <label className={`flex items-center gap-2 p-2 border rounded-lg text-xs cursor-pointer transition ${isRangedOrThrown ? 'opacity-40 cursor-not-allowed bg-gray-50' : (surprisedDefender ? 'bg-indigo-50/50 border-indigo-200 font-medium' : 'bg-white hover:bg-gray-50')}`}>
-              <input
-                type="checkbox"
-                checked={surprisedDefender}
-                disabled={isRangedOrThrown}
-                onChange={e => setSurprisedDefender(e.target.checked)}
-                className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-              />
-              <div>
-                <span className="block font-bold">Difensore Sorpreso (+20 BO)</span>
-                <span className="text-[9px] text-gray-450">Non applicabile ad armi da tiro/lancio</span>
-              </div>
-            </label>
-
-            <label className={`flex items-center gap-2 p-2 border rounded-lg text-xs cursor-pointer transition ${isRangedOrThrown ? 'opacity-40 cursor-not-allowed bg-gray-50' : (stunnedDefender ? 'bg-indigo-50/50 border-indigo-200 font-medium' : 'bg-white hover:bg-gray-50')}`}>
-              <input
-                type="checkbox"
-                checked={stunnedDefender}
-                disabled={isRangedOrThrown}
-                onChange={e => setStunnedDefender(e.target.checked)}
-                className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-              />
-              <div>
-                <span className="block font-bold">Difensore Stordito o a terra (+20 BO)</span>
-                <span className="text-[9px] text-gray-450">Non applicabile ad armi da tiro/lancio</span>
-              </div>
-            </label>
-          </div>
-
-          {/* Colonna Modificatori di Manovra Attaccante */}
-          <div className="space-y-2">
-            <h5 className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Manovre & Ferite Attaccante</h5>
-            
-            <div className="p-3 border rounded-lg bg-gray-50/30 text-xs">
-              <label className="block font-bold text-gray-700 mb-1">Distanza di Movimento nel Round:</label>
-              <div className="flex items-center gap-2">
-                <input
-                  type="number"
-                  min="0"
-                  step="3"
-                  className="w-16 p-1 border rounded text-center font-bold bg-white"
-                  value={movementMetres}
-                  onChange={e => setMovementMetres(Math.max(0, parseInt(e.target.value) || 0))}
-                />
-                <span className="text-gray-650 text-[10px]">
-                  metri (Penalità: <strong>-{movementMetres >= 3 ? Math.floor(movementMetres / 3) * 10 : 0} BO</strong>)
-                </span>
-              </div>
-              <p className="text-[9px] text-gray-450 mt-1 italic">-10 BO per ogni 3m percorsi nel round.</p>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          {/* Attacco sul Fianco */}
+          <label className={`flex items-center gap-2 p-2.5 border rounded-lg text-xs cursor-pointer transition ${isRangedOrThrown ? 'opacity-40 cursor-not-allowed bg-gray-50 border-gray-150' : (flankAttack ? 'bg-sky-100 border-sky-300 font-semibold text-sky-950' : 'bg-sky-50/60 border-sky-150 text-sky-900 hover:bg-sky-100/50')}`}>
+            <input
+              type="checkbox"
+              checked={flankAttack}
+              disabled={isRangedOrThrown}
+              onChange={e => setFlankAttack(e.target.checked)}
+              className="rounded border-sky-300 text-sky-600 focus:ring-sky-500"
+            />
+            <div>
+              <span className="block font-bold">Attacco sul Fianco (+15 BO)</span>
+              <span className="text-[9px] text-sky-750">Non per armi da tiro/lancio</span>
             </div>
+          </label>
 
-            <label className={`flex items-center gap-2 p-2 border rounded-lg text-xs cursor-pointer transition ${drawOrSwapWeapon ? 'bg-indigo-50/50 border-indigo-200 font-medium' : 'bg-white hover:bg-gray-50'}`}>
+          {/* Attacco da Dietro */}
+          <label className={`flex items-center gap-2 p-2.5 border rounded-lg text-xs cursor-pointer transition ${isRangedOrThrown ? 'opacity-40 cursor-not-allowed bg-gray-50' : (backAttack ? 'bg-purple-100 border-purple-300 font-semibold text-purple-950' : 'bg-purple-50/60 border-purple-150 text-purple-900 hover:bg-purple-100/50')}`}>
+            <input
+              type="checkbox"
+              checked={backAttack}
+              disabled={isRangedOrThrown}
+              onChange={e => setBackAttack(e.target.checked)}
+              className="rounded border-purple-300 text-purple-600 focus:ring-purple-500"
+            />
+            <div>
+              <span className="block font-bold">Attacco da Dietro (+20 BO)</span>
+              <span className="text-[9px] text-purple-750">Oltre a bonus fianco (+35 tot)</span>
+            </div>
+          </label>
+
+          {/* Difensore Sorpreso */}
+          <label className={`flex items-center gap-2 p-2.5 border rounded-lg text-xs cursor-pointer transition ${isRangedOrThrown ? 'opacity-40 cursor-not-allowed bg-gray-50' : (surprisedDefender ? 'bg-amber-100 border-amber-300 font-semibold text-amber-950' : 'bg-amber-50/60 border-amber-150 text-amber-900 hover:bg-amber-100/50')}`}>
+            <input
+              type="checkbox"
+              checked={surprisedDefender}
+              disabled={isRangedOrThrown}
+              onChange={e => setSurprisedDefender(e.target.checked)}
+              className="rounded border-amber-300 text-amber-600 focus:ring-amber-500"
+            />
+            <div>
+              <span className="block font-bold">Difensore Sorpreso (+20 BO)</span>
+              <span className="text-[9px] text-amber-750">Non per armi da tiro/lancio</span>
+            </div>
+          </label>
+
+          {/* Difensore Stordito o a terra */}
+          <label className={`flex items-center gap-2 p-2.5 border rounded-lg text-xs cursor-pointer transition ${isRangedOrThrown ? 'opacity-40 cursor-not-allowed bg-gray-50' : (stunnedDefender ? 'bg-pink-100 border-pink-300 font-semibold text-pink-950' : 'bg-pink-50/60 border-pink-150 text-pink-900 hover:bg-pink-100/50')}`}>
+            <input
+              type="checkbox"
+              checked={stunnedDefender}
+              disabled={isRangedOrThrown}
+              onChange={e => setStunnedDefender(e.target.checked)}
+              className="rounded border-pink-300 text-pink-600 focus:ring-pink-500"
+            />
+            <div>
+              <span className="block font-bold">Stordito o a terra (+20 BO)</span>
+              <span className="text-[9px] text-pink-750">Non per armi da tiro/lancio</span>
+            </div>
+          </label>
+
+          {/* Distanza di Movimento */}
+          <div className="p-2.5 border border-emerald-200 rounded-lg bg-emerald-50/50 text-emerald-950 text-xs flex flex-col justify-between">
+            <label className="block font-bold text-emerald-900 mb-1">Movimento Round (metri):</label>
+            <div className="flex items-center gap-2 justify-between">
               <input
-                type="checkbox"
-                checked={drawOrSwapWeapon}
-                onChange={e => setDrawOrSwapWeapon(e.target.checked)}
-                className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                type="number"
+                min="0"
+                step="3"
+                className="w-16 p-1 border border-emerald-300 rounded text-center font-bold bg-white text-emerald-900 focus:ring-emerald-500 focus:border-emerald-500"
+                value={movementMetres}
+                onChange={e => setMovementMetres(Math.max(0, parseInt(e.target.value) || 0))}
               />
-              <div>
-                <span className="block font-bold">Sfodera/Cambia Arma o Scudo (-30 BO)</span>
-                <span className="text-[9px] text-gray-450">Azione preparatoria eseguita nel round</span>
-              </div>
-            </label>
-
-            <div className={`p-3 border rounded-lg text-xs transition flex justify-between items-center ${isAttackerGravelyInjured ? 'bg-red-50 border-red-200 text-red-900 font-medium' : 'bg-gray-50/30 text-gray-700'}`}>
-              <div>
-                <span className="block font-bold">Attaccante Gravemente Ferito (-20 BO)</span>
-                <span className="text-[9px] text-gray-500">
-                  HP subiti ({attackerHpSubiti}) &gt; 50% di HP Totali ({attackerHpTot})
-                </span>
-              </div>
-              <span className={`text-[10px] font-black uppercase px-1.5 py-0.5 rounded-full ${isAttackerGravelyInjured ? 'bg-red-200 text-red-800' : 'bg-gray-200 text-gray-600'}`}>
-                {isAttackerGravelyInjured ? 'ATTIVO' : 'NO'}
+              <span className="text-[10px] text-red-600 font-bold">
+                -{movementMetres >= 3 ? Math.floor(movementMetres / 3) * 10 : 0} BO
               </span>
             </div>
           </div>
 
-          {/* Modificatore Libero GM */}
-          <div className="p-4 border border-dashed border-gray-200 rounded-xl bg-gray-50/20 flex flex-col justify-between">
+          {/* Cambio Arma */}
+          <label className={`flex items-center gap-2 p-2.5 border rounded-lg text-xs cursor-pointer transition ${drawOrSwapWeapon ? 'bg-indigo-100 border-indigo-300 font-semibold text-indigo-950' : 'bg-indigo-50/60 border-indigo-150 text-indigo-900 hover:bg-indigo-100/50'}`}>
+            <input
+              type="checkbox"
+              checked={drawOrSwapWeapon}
+              onChange={e => setDrawOrSwapWeapon(e.target.checked)}
+              className="rounded border-indigo-300 text-indigo-600 focus:ring-indigo-500"
+            />
             <div>
-              <h5 className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Altri Modificatori GM</h5>
-              <label className="block text-xs font-bold text-gray-700 mb-1">Modificatore personalizzato (GM):</label>
-              <div className="flex items-center gap-2">
-                <input
-                  type="number"
-                  className="w-20 p-2 border rounded font-bold text-sm bg-white text-center"
-                  placeholder="Es: -10"
-                  value={gmBonus}
-                  onChange={e => setGmBonus(parseInt(e.target.value) || 0)}
-                />
-                <span className="text-xs text-gray-500">BO</span>
-              </div>
-              <p className="text-[9px] text-gray-400 mt-2 italic">Aggiungi bonus (+10, +25) o malus (-15, -40) a discrezione del Game Master.</p>
+              <span className="block font-bold">Cambio Arma/Scudo (-30 BO)</span>
+              <span className="text-[9px] text-indigo-755">Eseguito nel round</span>
             </div>
+          </label>
 
-            <div className="bg-indigo-950/5 p-3 rounded-lg border border-indigo-200/50 mt-4">
-              <span className="text-[10px] font-bold text-indigo-950 uppercase tracking-wider block mb-1">Riepilogo Modificatori Attivi:</span>
-              <strong className="text-lg text-indigo-900 font-black">{computedModifiers >= 0 ? `+${computedModifiers}` : computedModifiers} BO</strong>
+          {/* Attaccante Ferito */}
+          <div className={`p-2.5 border rounded-lg text-xs transition flex justify-between items-center ${isAttackerGravelyInjured ? 'bg-red-100 border-red-300 text-red-950 font-semibold' : 'bg-red-50/40 border-red-150 text-red-900'}`}>
+            <div>
+              <span className="block font-bold">Gravemente Ferito (-20 BO)</span>
+              <span className="text-[9px] text-red-750">HP subiti &gt; 50% HP Totali</span>
             </div>
+            <span className={`text-[10px] font-black uppercase px-1.5 py-0.5 rounded-full ${isAttackerGravelyInjured ? 'bg-red-200 text-red-800' : 'bg-red-100 text-red-650'}`}>
+              {isAttackerGravelyInjured ? 'SÌ' : 'NO'}
+            </span>
           </div>
 
+          {/* Modificatore GM Custom */}
+          <div className="p-2.5 border border-slate-200 rounded-lg bg-slate-50 text-slate-950 flex flex-col justify-between">
+            <label className="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-1">GM Custom Modifier:</label>
+            <div className="flex items-center gap-2">
+              <input
+                type="number"
+                className="w-full p-1 border border-slate-350 rounded font-bold text-xs bg-white text-center text-slate-900 focus:ring-slate-500 focus:border-slate-500"
+                placeholder="Es: -10"
+                value={gmBonus}
+                onChange={e => setGmBonus(parseInt(e.target.value) || 0)}
+              />
+              <span className="text-xs text-slate-500 font-medium">BO</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Banner Riepilogo Modificatori */}
+        <div className="mt-4 p-3 bg-indigo-950/5 border border-indigo-200 rounded-lg flex justify-between items-center">
+          <span className="text-xs font-bold text-indigo-950 uppercase tracking-wider">Somma Modificatori Attivi:</span>
+          <strong className="text-base text-indigo-900 font-black">{computedModifiers >= 0 ? `+${computedModifiers}` : computedModifiers} BO</strong>
         </div>
       </div>
 
@@ -1075,6 +1187,36 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti }) 
           </div>
         </div>
       )}
+
+      {/* --- RISOLUTORE COLPI MALDESTRI (FUMBLE) --- */}
+      <div className="card p-5 border border-red-200 rounded-xl bg-red-50/20 shadow-xs mt-6">
+        <div className="flex items-center justify-between pb-3 border-b border-red-150 mb-4">
+          <div className="flex items-center gap-2">
+            <div className="p-1.5 rounded-lg bg-red-100 text-red-700">
+              <AlertTriangle className="w-4 h-4" />
+            </div>
+            <h4 className="font-bold text-sm text-red-950 uppercase tracking-wider">Risolutore Colpi Maldestri</h4>
+          </div>
+          
+          <button
+            onClick={() => setShowFumbleResolver(!showFumbleResolver)}
+            className="px-3 py-1 bg-white hover:bg-gray-100 text-gray-700 border border-gray-250 rounded text-xs font-bold transition"
+          >
+            {showFumbleResolver ? 'Nascondi Risolutore' : 'Mostra Risolutore'}
+          </button>
+        </div>
+
+        {showFumbleResolver && (
+          <FumbleResolver
+            key={`${fumbleTableCode}-${fumbleDiceRoll}`}
+            initialTableCode={fumbleTableCode}
+            initialDiceRoll={fumbleDiceRoll}
+            weaponCategory={attackerWeaponCategoryResolved}
+            weaponName={activeAttackerWeapon ? activeAttackerWeapon.nome : attackerWeaponName}
+            showTitle={false}
+          />
+        )}
+      </div>
 
     </div>
   );

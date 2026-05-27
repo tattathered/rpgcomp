@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
+import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
 import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
 import tgp4Data from '../../../data/TGP_4-sviluppo_abilità_professioni.json';
 import { getAvailableSpellLists } from '../../../utils/magicHelpers';
@@ -131,9 +132,10 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
       const ranks = tgp4Distribution[s.nome] || 0;
       if (ranks === 0) return;
 
-      if (s.nome === 'resistenza fisica') {
+      const normName = s.nome.toLowerCase().trim();
+      if (normName === 'resistenza fisica') {
         state['Resistenza fisica'].spentOnSkills += getTgp4Cost(ranks);
-      } else if (s.nome === 'percezione') {
+      } else if (normName === 'percezione') {
         state['Percezione'].spentOnSkills += ranks; // 1:1 cost
       } else {
         const cat = s.categoria?.toLowerCase()?.trim();
@@ -362,8 +364,19 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
   };
 
   // Spell Lists local variables
+  const listPool = useMemo(() => {
+    if (!profession) return 0;
+    const base = getTgp4PoolSize('liste incantesimi', null, profession.professione, tgp4Data);
+    let received = 0;
+    let transferredOut = 0;
+    tgp4Transfers.forEach(t => {
+      if (t.source === 'Liste incantesimi') transferredOut += t.cost;
+      if (t.dest === 'Liste incantesimi') received += t.points;
+    });
+    return base + received - transferredOut;
+  }, [profession, tgp4Transfers]);
+
   const listPS = tgp4Distribution['Liste incantesimi'] || 0;
-  const listPool = poolsState['Liste incantesimi']?.adjustedPool || 0;
   const baseAccumulated = characterData.spellListChanceAccumulated || 0;
   const totalChance = baseAccumulated + (listPool * 20);
 
@@ -373,53 +386,63 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
   
   const adolescenceListEntry = Object.entries(characterData.spellListAllocations || {}).find(([name, source]) => source === 'Adolescenza');
 
-  const [rollResult, setRollResult] = useState(null);
-  
-  const handleRoll = () => {
-    const roll = Math.floor(Math.random() * 100) + 1;
-    setRollResult(roll);
-  };
-
   const handleAcquireList = () => {
     if (!selectedNewList) return;
     
-    let newAccumulated = totalChance;
-    if (totalChance >= 100) {
-      newAccumulated = totalChance - 100;
-    } else if (rollResult && rollResult <= totalChance) {
-      newAccumulated = 0;
-    }
-
-    setTgp4Distribution(prev => ({
-      ...prev,
-      'Liste incantesimi': Math.min(5, listPool)
-    }));
-
     setCharacterData(prev => ({
       ...prev,
-      spellListChanceAccumulated: newAccumulated,
       spellListAllocations: {
         ...(prev.spellListAllocations || {}),
         [selectedNewList]: 'Apprendistato Liv. 1'
       }
     }));
-    setRollResult(null);
     setSelectedNewList('');
   };
 
-  // Sync carry-over spell list points to characterData
-  useEffect(() => {
-    const isFailed = rollResult && rollResult > totalChance;
-    const carriesOver = isFailed && characterData.carryOverSpellListPoints;
-    const carriedAmt = carriesOver ? listPool : 0;
-    
-    if (characterData.spellListPointsCarriedOver !== carriedAmt) {
-      setCharacterData(prev => ({
+  const handleRemoveSpellList = () => {
+    if (!hasAcquiredInApprenticeship) return;
+    setCharacterData(prev => {
+      const nextAlloc = { ...prev.spellListAllocations };
+      delete nextAlloc[acquiredListName];
+      return {
         ...prev,
-        spellListPointsCarriedOver: carriedAmt
+        spellListAllocations: nextAlloc
+      };
+    });
+  };
+
+  // Sync spell list points and accumulated probability
+  useEffect(() => {
+    let targetSpent = 0;
+    let targetChance = baseAccumulated;
+
+    if (hasAcquiredInApprenticeship) {
+      targetSpent = listPool;
+      targetChance = totalChance - 100;
+    } else {
+      if (totalChance < 100) {
+        targetSpent = listPool;
+        targetChance = totalChance;
+      } else {
+        targetSpent = 0;
+        targetChance = baseAccumulated;
+      }
+    }
+
+    if (tgp4Distribution['Liste incantesimi'] !== targetSpent) {
+      setTgp4Distribution(prev => ({
+        ...prev,
+        'Liste incantesimi': targetSpent
       }));
     }
-  }, [rollResult, totalChance, characterData.carryOverSpellListPoints, listPool, characterData.spellListPointsCarriedOver, setCharacterData]);
+
+    if (characterData.spellListChanceAccumulated !== targetChance) {
+      setCharacterData(prev => ({
+        ...prev,
+        spellListChanceAccumulated: targetChance
+      }));
+    }
+  }, [hasAcquiredInApprenticeship, listPool, totalChance, baseAccumulated, tgp4Distribution, characterData.spellListChanceAccumulated, setCharacterData]);
 
   // Validation useEffect for Level 1
   useEffect(() => {
@@ -434,30 +457,16 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
 
     // 2. Controlla pool con punti residui non spesi
     if (!err) {
-      const unspentPools = Object.values(poolsState).filter(p => {
-        if (p.remaining <= 0) return false;
-        if (p.key === 'Liste incantesimi') {
-          const isFailedRoll = rollResult && rollResult > totalChance;
-          if (isFailedRoll && characterData.carryOverSpellListPoints) {
-            return false; // consentito
-          }
-        }
-        return true; // non consentito
-      });
-
+      const unspentPools = Object.values(poolsState).filter(p => p.remaining > 0);
       if (unspentPools.length > 0) {
         const names = unspentPools.map(p => p.label).join(', ');
         err = `Devi spendere o trasferire tutti i punti nei seguenti pool: ${names}.`;
       }
     }
 
-    // 3. Controlla se ha ottenuto successo ma non ha scelto la lista
-    if (!err && selectedRealm) {
-      if (totalChance > 0 && !hasAcquiredInApprenticeship && rollResult === null) {
-        err = 'Devi effettuare il tiro 1d100 per l\'apprendimento della lista incantesimi.';
-      } else if (rollResult && rollResult <= totalChance && !hasAcquiredInApprenticeship) {
-        err = 'Hai ottenuto con successo l\'apprendimento di una lista incantesimi! Selezionala ed acquisiscila.';
-      }
+    // 3. Controlla se ha ottenuto l'apprendimento lista incantesimi ma non l'ha ancora scelta
+    if (!err && selectedRealm && totalChance >= 100 && !hasAcquiredInApprenticeship) {
+      err = 'Hai ottenuto con successo l\'apprendimento di una lista incantesimi! Selezionala ed acquisiscila.';
     }
 
     if (characterData.stepErrors?.level1 !== err) {
@@ -469,10 +478,7 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
         }
       }));
     }
-  }, [
-    poolsState, rollResult, totalChance, characterData.carryOverSpellListPoints,
-    selectedRealm, hasAcquiredInApprenticeship, characterData.stepErrors, setCharacterData
-  ]);
+  }, [poolsState, selectedRealm, totalChance, hasAcquiredInApprenticeship, characterData.stepErrors, setCharacterData]);
 
   // Point Transfer Helper
   const getTransferRateAndCost = (sourceKey, destKey, pointsToReceive) => {
@@ -543,6 +549,7 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
 
   return (
     <div>
+      <AnagraficaReadOnlyBox characterData={characterData} />
       {/* ── HEADER BANNER ── */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '1.5rem' }}>
         <div style={{ padding: '1rem', border: '1px solid var(--theme-race-border)', borderRadius: '0.6rem', background: 'var(--theme-race-bg)' }}>
@@ -590,76 +597,54 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
             ) : (
               <>
                 <p><strong>Lista incantesimo appresa!</strong> Costo: {listPS} PS</p>
-                {listPool - listPS > 0 && (
-                  <p className="text-xs text-indigo-700 mt-1">Rimangono {listPool - listPS} PS non spesi che devono essere trasferiti.</p>
-                )}
+                <p><strong>Credito rimanente per livello successivo:</strong> {characterData.spellListChanceAccumulated}%</p>
               </>
             )}
           </div>
 
           {hasAcquiredInApprenticeship ? (
-            <div className="text-sm text-indigo-700 bg-indigo-100 p-2 rounded text-center font-medium border border-indigo-200">
-              Hai imparato con successo: <strong>{acquiredListName}</strong>
+            <div className="text-sm text-indigo-700 bg-indigo-100 p-2.5 rounded border border-indigo-200 flex justify-between items-center font-medium">
+              <span>Hai imparato con successo: <strong>{acquiredListName}</strong></span>
+              <button
+                type="button"
+                onClick={handleRemoveSpellList}
+                className="text-xs bg-red-600 hover:bg-red-700 text-white px-2.5 py-1 rounded font-bold transition shadow-sm"
+              >
+                Rimuovi
+              </button>
             </div>
           ) : (
             <div className="mt-1 flex flex-col gap-2">
               {totalChance >= 100 ? (
-                <div className="text-xs bg-green-100 text-green-800 p-2 rounded border border-green-300">
-                  100% o più! Scegli una lista (costerà 5 PS o meno).
-                </div>
-              ) : rollResult && rollResult <= totalChance ? (
-                <div className="text-xs bg-green-100 text-green-800 p-2 rounded border border-green-300">
-                  Tiro: <strong>{rollResult}</strong> - Successo! Scegli la lista.
-                </div>
-              ) : rollResult && rollResult > totalChance ? (
                 <div className="space-y-2">
-                  <div className="text-xs bg-red-100 text-red-800 p-2 rounded border border-red-300 flex justify-between items-center">
-                    <span>Tiro: <strong>{rollResult}</strong> - Fallito.</span>
-                    <button onClick={() => setRollResult(null)} className="underline font-bold text-red-600 hover:text-red-900">Annulla tiro</button>
+                  <div className="text-xs bg-green-100 text-green-800 p-2 rounded border border-green-300">
+                    Probabilità totale ≥ 100%! Puoi scegliere e apprendere una nuova lista incantesimi.
                   </div>
-                  {listPool > 0 && (
-                    <div className="flex items-center gap-2 p-1.5 rounded border bg-indigo-50/50 border-indigo-100">
-                      <input
-                        type="checkbox"
-                        id="carryOverSpellListPoints"
-                        checked={characterData.carryOverSpellListPoints || false}
-                        onChange={(e) => setCharacterData(prev => ({ ...prev, carryOverSpellListPoints: e.target.checked }))}
-                        className="rounded text-indigo-600 focus:ring-indigo-500 w-4 h-4 cursor-pointer"
-                      />
-                      <label htmlFor="carryOverSpellListPoints" className="text-xs font-semibold text-indigo-900 cursor-pointer select-none">
-                        Conserva i {listPool} PS per il prossimo livello
-                      </label>
-                    </div>
-                  )}
+                  <div className="flex gap-2">
+                    <select 
+                      className="flex-1 rounded border-indigo-300 text-sm p-1.5 bg-white"
+                      value={selectedNewList}
+                      onChange={(e) => setSelectedNewList(e.target.value)}
+                    >
+                      <option value="">-- Seleziona Lista --</option>
+                      {availableLists.map(l => (
+                        <option key={l.nome_lista} value={l.nome_lista}>{l.nome_lista} ({l.tipo_lista})</option>
+                      ))}
+                    </select>
+                    <button 
+                      type="button"
+                      className="bg-green-600 text-white px-4 py-1.5 rounded text-sm font-bold hover:bg-green-700 disabled:opacity-50"
+                      disabled={!selectedNewList}
+                      onClick={handleAcquireList}
+                    >
+                      Conferma
+                    </button>
+                  </div>
                 </div>
-              ) : totalChance > 0 ? (
-                <button type="button" onClick={handleRoll} className="bg-indigo-600 px-3 py-1.5 rounded text-sm font-bold hover:bg-indigo-700 self-start" style={{ color: '#000000' }}>
-                  Tira 1d100 (≤ {totalChance}%)
-                </button>
               ) : (
-                <div className="text-xs text-indigo-500 italic">Nessun punto nel pool Liste Incantesimi.</div>
-              )}
-
-              {(totalChance >= 100 || (rollResult && rollResult <= totalChance)) && (
-                <div className="flex gap-2 mt-1">
-                  <select 
-                    className="flex-1 rounded border-indigo-300 text-sm p-1.5 bg-white"
-                    value={selectedNewList}
-                    onChange={(e) => setSelectedNewList(e.target.value)}
-                  >
-                    <option value="">-- Seleziona Lista --</option>
-                    {availableLists.map(l => (
-                      <option key={l.nome_lista} value={l.nome_lista}>{l.nome_lista} ({l.tipo_lista})</option>
-                    ))}
-                  </select>
-                  <button 
-                    type="button"
-                    className="bg-green-600 text-white px-3 py-1.5 rounded text-sm font-bold hover:bg-green-700 disabled:opacity-50"
-                    disabled={!selectedNewList}
-                    onClick={handleAcquireList}
-                  >
-                    Acquisisci
-                  </button>
+                <div className="text-xs bg-indigo-100 text-indigo-800 p-2 rounded border border-indigo-200">
+                  La probabilità totale ({totalChance}%) è inferiore al 100%. In questo livello non è possibile apprendere una nuova lista.
+                  I punti del pool Liste Incantesimi ({listPool} PS) sono stati convertiti automaticamente in credito (+{listPool * 20}%).
                 </div>
               )}
             </div>

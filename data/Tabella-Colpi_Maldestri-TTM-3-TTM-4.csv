@@ -1,0 +1,1921 @@
+Tabella,Colpo maldestro,Risultato del tiro,descrizione,note
+TTM-3,Incantesimi,1,"Perdi la concentrazione per lo sforzo eccessivo. Sprechi l'incantesimo, ma non perdi i Punti Magia.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,2,"Perdi la concentrazione per lo sforzo eccessivo. Sprechi l'incantesimo, ma non perdi i Punti Magia.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,3,"Perdi la concentrazione per lo sforzo eccessivo. Sprechi l'incantesimo, ma non perdi i Punti Magia.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,4,"Perdi la concentrazione per lo sforzo eccessivo. Sprechi l'incantesimo, ma non perdi i Punti Magia.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,5,"Perdi la concentrazione per lo sforzo eccessivo. Sprechi l'incantesimo, ma non perdi i Punti Magia.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,6,Stai pensando ad altro. Non riesci a lanciare né a preparare incantesimi nel prossimo round. ,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,7,Stai pensando ad altro. Non riesci a lanciare né a preparare incantesimi nel prossimo round. ,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,8,Stai pensando ad altro. Non riesci a lanciare né a preparare incantesimi nel prossimo round. ,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,9,Stai pensando ad altro. Non riesci a lanciare né a preparare incantesimi nel prossimo round. ,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,10,Stai pensando ad altro. Non riesci a lanciare né a preparare incantesimi nel prossimo round. ,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,11,Stai pensando ad altro. Non riesci a lanciare né a preparare incantesimi nel prossimo round. ,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,12,Stai pensando ad altro. Non riesci a lanciare né a preparare incantesimi nel prossimo round. ,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,13,Stai pensando ad altro. Non riesci a lanciare né a preparare incantesimi nel prossimo round. ,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,14,Stai pensando ad altro. Non riesci a lanciare né a preparare incantesimi nel prossimo round. ,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,15,Stai pensando ad altro. Non riesci a lanciare né a preparare incantesimi nel prossimo round. ,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,16,Stai pensando ad altro. Non riesci a lanciare né a preparare incantesimi nel prossimo round. ,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,17,Stai pensando ad altro. Non riesci a lanciare né a preparare incantesimi nel prossimo round. ,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,18,Stai pensando ad altro. Non riesci a lanciare né a preparare incantesimi nel prossimo round. ,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,19,Stai pensando ad altro. Non riesci a lanciare né a preparare incantesimi nel prossimo round. ,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,20,Stai pensando ad altro. Non riesci a lanciare né a preparare incantesimi nel prossimo round. ,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,21,"Resti indeciso, per un lapsus improvviso. L'incantesimo viene ritardato di un round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,22,"Resti indeciso, per un lapsus improvviso. L'incantesimo viene ritardato di un round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,23,"Resti indeciso, per un lapsus improvviso. L'incantesimo viene ritardato di un round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,24,"Resti indeciso, per un lapsus improvviso. L'incantesimo viene ritardato di un round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,25,"Resti indeciso, per un lapsus improvviso. L'incantesimo viene ritardato di un round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,26,"Resti indeciso, per un lapsus improvviso. L'incantesimo viene ritardato di un round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,27,"Resti indeciso, per un lapsus improvviso. L'incantesimo viene ritardato di un round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,28,"Resti indeciso, per un lapsus improvviso. L'incantesimo viene ritardato di un round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,29,"Resti indeciso, per un lapsus improvviso. L'incantesimo viene ritardato di un round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,30,"Resti indeciso, per un lapsus improvviso. L'incantesimo viene ritardato di un round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,31,"Resti indeciso, per un lapsus improvviso. L'incantesimo viene ritardato di un round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,32,"Resti indeciso, per un lapsus improvviso. L'incantesimo viene ritardato di un round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,33,"Resti indeciso, per un lapsus improvviso. L'incantesimo viene ritardato di un round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,34,"Resti indeciso, per un lapsus improvviso. L'incantesimo viene ritardato di un round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,35,"Resti indeciso, per un lapsus improvviso. L'incantesimo viene ritardato di un round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,36,"Grave lapsus mentale. Perdi l'incantesimo, ma non i Punti Magia. -30 alle attività per 3 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,37,"Grave lapsus mentale. Perdi l'incantesimo, ma non i Punti Magia. -30 alle attività per 3 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,38,"Grave lapsus mentale. Perdi l'incantesimo, ma non i Punti Magia. -30 alle attività per 3 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,39,"Grave lapsus mentale. Perdi l'incantesimo, ma non i Punti Magia. -30 alle attività per 3 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,40,"Grave lapsus mentale. Perdi l'incantesimo, ma non i Punti Magia. -30 alle attività per 3 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,41,"Grave lapsus mentale. Perdi l'incantesimo, ma non i Punti Magia. -30 alle attività per 3 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,42,"Grave lapsus mentale. Perdi l'incantesimo, ma non i Punti Magia. -30 alle attività per 3 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,43,"Grave lapsus mentale. Perdi l'incantesimo, ma non i Punti Magia. -30 alle attività per 3 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,44,"Grave lapsus mentale. Perdi l'incantesimo, ma non i Punti Magia. -30 alle attività per 3 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,45,"Grave lapsus mentale. Perdi l'incantesimo, ma non i Punti Magia. -30 alle attività per 3 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,46,"Grave lapsus mentale. Perdi l'incantesimo, ma non i Punti Magia. -30 alle attività per 3 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,47,"Grave lapsus mentale. Perdi l'incantesimo, ma non i Punti Magia. -30 alle attività per 3 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,48,"Grave lapsus mentale. Perdi l'incantesimo, ma non i Punti Magia. -30 alle attività per 3 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,49,"Grave lapsus mentale. Perdi l'incantesimo, ma non i Punti Magia. -30 alle attività per 3 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,50,"Grave lapsus mentale. Perdi l'incantesimo, ma non i Punti Magia. -30 alle attività per 3 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,51,"Sforzo moderato, ma serio. Perdi l'incantesimo ed i Punti Magia. Resti stordito per 1 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,52,"Sforzo moderato, ma serio. Perdi l'incantesimo ed i Punti Magia. Resti stordito per 1 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,53,"Sforzo moderato, ma serio. Perdi l'incantesimo ed i Punti Magia. Resti stordito per 1 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,54,"Sforzo moderato, ma serio. Perdi l'incantesimo ed i Punti Magia. Resti stordito per 1 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,55,"Sforzo moderato, ma serio. Perdi l'incantesimo ed i Punti Magia. Resti stordito per 1 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,56,"Sforzo moderato, ma serio. Perdi l'incantesimo ed i Punti Magia. Resti stordito per 1 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,57,"Sforzo moderato, ma serio. Perdi l'incantesimo ed i Punti Magia. Resti stordito per 1 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,58,"Sforzo moderato, ma serio. Perdi l'incantesimo ed i Punti Magia. Resti stordito per 1 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,59,"Sforzo moderato, ma serio. Perdi l'incantesimo ed i Punti Magia. Resti stordito per 1 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,60,"Sforzo moderato, ma serio. Perdi l'incantesimo ed i Punti Magia. Resti stordito per 1 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,61,"Sforzo moderato, ma serio. Perdi l'incantesimo ed i Punti Magia. Resti stordito per 1 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,62,"Sforzo moderato, ma serio. Perdi l'incantesimo ed i Punti Magia. Resti stordito per 1 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,63,"Sforzo moderato, ma serio. Perdi l'incantesimo ed i Punti Magia. Resti stordito per 1 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,64,"Sforzo moderato, ma serio. Perdi l'incantesimo ed i Punti Magia. Resti stordito per 1 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,65,"Sforzo moderato, ma serio. Perdi l'incantesimo ed i Punti Magia. Resti stordito per 1 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,66,li sorge un inspiegabile timore. Perdi l'incantesimo ed i Punti Magia. Resti stordito per 2 round.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,67,li sorge un inspiegabile timore. Perdi l'incantesimo ed i Punti Magia. Resti stordito per 2 round.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,68,li sorge un inspiegabile timore. Perdi l'incantesimo ed i Punti Magia. Resti stordito per 2 round.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,69,li sorge un inspiegabile timore. Perdi l'incantesimo ed i Punti Magia. Resti stordito per 2 round.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,70,li sorge un inspiegabile timore. Perdi l'incantesimo ed i Punti Magia. Resti stordito per 2 round.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,71,li sorge un inspiegabile timore. Perdi l'incantesimo ed i Punti Magia. Resti stordito per 2 round.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,72,li sorge un inspiegabile timore. Perdi l'incantesimo ed i Punti Magia. Resti stordito per 2 round.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,73,li sorge un inspiegabile timore. Perdi l'incantesimo ed i Punti Magia. Resti stordito per 2 round.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,74,li sorge un inspiegabile timore. Perdi l'incantesimo ed i Punti Magia. Resti stordito per 2 round.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,75,li sorge un inspiegabile timore. Perdi l'incantesimo ed i Punti Magia. Resti stordito per 2 round.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,76,li sorge un inspiegabile timore. Perdi l'incantesimo ed i Punti Magia. Resti stordito per 2 round.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,77,li sorge un inspiegabile timore. Perdi l'incantesimo ed i Punti Magia. Resti stordito per 2 round.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,78,li sorge un inspiegabile timore. Perdi l'incantesimo ed i Punti Magia. Resti stordito per 2 round.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,79,li sorge un inspiegabile timore. Perdi l'incantesimo ed i Punti Magia. Resti stordito per 2 round.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,80,L'incantesimo non riesce a sfogarsi all'esterno. Subisci 15 Punti Ferita e cadi a terra. Resti stordito per un'ora.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,81,"Grave sforzo. Perdi l'incantesimo, ma non i Punti Magia. Resti stordito per 3 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,82,"Grave sforzo. Perdi l'incantesimo, ma non i Punti Magia. Resti stordito per 3 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,83,"Grave sforzo. Perdi l'incantesimo, ma non i Punti Magia. Resti stordito per 3 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,84,"Grave sforzo. Perdi l'incantesimo, ma non i Punti Magia. Resti stordito per 3 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,85,"Grave sforzo. Perdi l'incantesimo, ma non i Punti Magia. Resti stordito per 3 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,86,"Grave sforzo. Perdi l'incantesimo, ma non i Punti Magia. Resti stordito per 3 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,87,L'incantesimo non trova sfogo all'esterno. Per lo shock accusi 20 Punti Ferita. Resti cieco e sordo per 10 minuti.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,88,L'incantesimo non trova sfogo all'esterno. Per lo shock accusi 20 Punti Ferita. Resti cieco e sordo per 10 minuti.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,89,L'incantesimo non trova sfogo all'esterno. Per lo shock accusi 20 Punti Ferita. Resti cieco e sordo per 10 minuti.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,90,Lo sforzo ti procura un attacco cardiaco e subisci 20 Punti Ferita. Resti privo di sensi per 12 ore.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,91,"Lo sforzo è eccessivo e l'incantesimo fa ""cilecca"". Subisci 5 Punti Ferita e resti stordito per 3 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,92,"Lo sforzo è eccessivo e l'incantesimo fa ""cilecca"". Subisci 5 Punti Ferita e resti stordito per 3 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,93,"Lo sforzo è eccessivo e l'incantesimo fa ""cilecca"". Subisci 5 Punti Ferita e resti stordito per 3 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,94,"Lo sforzo è eccessivo e l'incantesimo fa ""cilecca"". Subisci 5 Punti Ferita e resti stordito per 3 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,95,"Lo sforzo è eccessivo e l'incantesimo fa ""cilecca"". Subisci 5 Punti Ferita e resti stordito per 3 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,96,"Lo sforzo è eccessivo e l'incantesimo fa ""cilecca"". Subisci 5 Punti Ferita e resti stordito per 3 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,97,La forza magica del bersaglio ritorce contro di te gli effetti dell'incantesimo. Applicali invertendo i ruoli tra bersaglio e chi lancia.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,98,La forza magica del bersaglio ritorce contro di te gli effetti dell'incantesimo. Applicali invertendo i ruoli tra bersaglio e chi lancia.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,99,La forza magica del bersaglio ritorce contro di te gli effetti dell'incantesimo. Applicali invertendo i ruoli tra bersaglio e chi lancia.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,100,Crisi di identità. Perdi la capacità di lanciare incantesimi per 2 settimane.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,101,"L'incantesimo fa ""cilecca"" per l'enorme pressione mentale, cadi a terra e subisci 10 Punti Ferita. Resti stordito per 6 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,102,"L'incantesimo fa ""cilecca"" per l'enorme pressione mentale, cadi a terra e subisci 10 Punti Ferita. Resti stordito per 6 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,103,"L'incantesimo fa ""cilecca"" per l'enorme pressione mentale, cadi a terra e subisci 10 Punti Ferita. Resti stordito per 6 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,104,"L'incantesimo fa ""cilecca"" per l'enorme pressione mentale, cadi a terra e subisci 10 Punti Ferita. Resti stordito per 6 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,105,"L'incantesimo fa ""cilecca"" per l'enorme pressione mentale, cadi a terra e subisci 10 Punti Ferita. Resti stordito per 6 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,106,"L'incantesimo fa ""cilecca"" per l'enorme pressione mentale, cadi a terra e subisci 10 Punti Ferita. Resti stordito per 6 round.","MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,107,L'incantesimo non trova sfogo all'esterno. Subisci 25 Punti Ferita e perdi la capacità di lanciare incantesimi per 3 settimane. Resti privo di sensi per 3 ore.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,108,L'incantesimo non trova sfogo all'esterno. Subisci 25 Punti Ferita e perdi la capacità di lanciare incantesimi per 3 settimane. Resti privo di sensi per 3 ore.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,109,L'incantesimo non trova sfogo all'esterno. Subisci 25 Punti Ferita e perdi la capacità di lanciare incantesimi per 3 settimane. Resti privo di sensi per 3 ore.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,110,Lo sforzo ti procura un grave attacco cardiaco. Resti paralizzato dalla cintola in giù.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,111,L'incantesimo devia e colpisce un punto 6 metri a destra del bersaglio.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,112,L'incantesimo devia e colpisce un punto 6 metri a destra del bersaglio.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,113,L'incantesimo devia e colpisce un punto 6 metri a destra del bersaglio.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,114,L'incantesimo devia e colpisce un punto 6 metri a destra del bersaglio.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,115,L'incantesimo devia e colpisce un punto 6 metri a destra del bersaglio.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,116,L'incantesimo devia e colpisce un punto 6 metri a destra del bersaglio.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,117,L'incantesimo devia e colpisce un punto 6 metri a sinistra del bersaglio.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,118,L'incantesimo devia e colpisce un punto 6 metri a sinistra del bersaglio.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,119,L'incantesimo devia e colpisce un punto 6 metri a sinistra del bersaglio.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-3,Incantesimi,120,Collasso mentale. L'incantesimo viene lanciato in direzione opposta a quella voluta. Perdi ogni capacità di lanciare incantesimi per 3 mesi.,"MODIFICHE:
+-20: Incantesimi di Classe ""I""
+-10: Incantesimi di Classe ""U""
++0: Incantesimi di Classe ""P""
++10: Incantesimi di Classe ""F'
++20: Incantesimi di Classe ""E'"
+TTM-4,Manovre di movimento,1,Esiti troppo a lungo e non agisci.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,2,Esiti troppo a lungo e non agisci.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,3,Esiti troppo a lungo e non agisci.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,4,Esiti troppo a lungo e non agisci.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,5,Esiti troppo a lungo e non agisci.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,6,Qualcosa ti distrae e decidi di aspettare il prossimo round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,7,Qualcosa ti distrae e decidi di aspettare il prossimo round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,8,Qualcosa ti distrae e decidi di aspettare il prossimo round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,9,Qualcosa ti distrae e decidi di aspettare il prossimo round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,10,Qualcosa ti distrae e decidi di aspettare il prossimo round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,11,Qualcosa ti distrae e decidi di aspettare il prossimo round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,12,Qualcosa ti distrae e decidi di aspettare il prossimo round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,13,Qualcosa ti distrae e decidi di aspettare il prossimo round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,14,Qualcosa ti distrae e decidi di aspettare il prossimo round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,15,Qualcosa ti distrae e decidi di aspettare il prossimo round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,16,Qualcosa ti distrae e decidi di aspettare il prossimo round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,17,Qualcosa ti distrae e decidi di aspettare il prossimo round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,18,Qualcosa ti distrae e decidi di aspettare il prossimo round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,19,Qualcosa ti distrae e decidi di aspettare il prossimo round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,20,Qualcosa ti distrae e decidi di aspettare il prossimo round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,21,Scivoli (30% probabilità di cadere). -20 ad ogni manovra per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,22,Scivoli (30% probabilità di cadere). -20 ad ogni manovra per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,23,Scivoli (30% probabilità di cadere). -20 ad ogni manovra per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,24,Scivoli (30% probabilità di cadere). -20 ad ogni manovra per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,25,Scivoli (30% probabilità di cadere). -20 ad ogni manovra per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,26,Scivoli (30% probabilità di cadere). -20 ad ogni manovra per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,27,Scivoli (30% probabilità di cadere). -20 ad ogni manovra per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,28,Scivoli (30% probabilità di cadere). -20 ad ogni manovra per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,29,Scivoli (30% probabilità di cadere). -20 ad ogni manovra per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,30,Scivoli (30% probabilità di cadere). -20 ad ogni manovra per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,31,Scivoli (30% probabilità di cadere). -20 ad ogni manovra per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,32,Scivoli (30% probabilità di cadere). -20 ad ogni manovra per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,33,Scivoli (30% probabilità di cadere). -20 ad ogni manovra per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,34,Scivoli (30% probabilità di cadere). -20 ad ogni manovra per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,35,Scivoli (30% probabilità di cadere). -20 ad ogni manovra per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,36,Incespichi (45% probabilità di cadere). -30 ad ogni manovra per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,37,Incespichi (45% probabilità di cadere). -30 ad ogni manovra per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,38,Incespichi (45% probabilità di cadere). -30 ad ogni manovra per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,39,Incespichi (45% probabilità di cadere). -30 ad ogni manovra per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,40,Incespichi (45% probabilità di cadere). -30 ad ogni manovra per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,41,Incespichi (45% probabilità di cadere). -30 ad ogni manovra per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,42,Incespichi (45% probabilità di cadere). -30 ad ogni manovra per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,43,Incespichi (45% probabilità di cadere). -30 ad ogni manovra per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,44,Incespichi (45% probabilità di cadere). -30 ad ogni manovra per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,45,Incespichi (45% probabilità di cadere). -30 ad ogni manovra per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,46,Incespichi (45% probabilità di cadere). -30 ad ogni manovra per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,47,Incespichi (45% probabilità di cadere). -30 ad ogni manovra per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,48,Incespichi (45% probabilità di cadere). -30 ad ogni manovra per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,49,Incespichi (45% probabilità di cadere). -30 ad ogni manovra per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,50,Incespichi (45% probabilità di cadere). -30 ad ogni manovra per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,51,Ti pesti un piede (60% probabilità di cadere). Subisci 3 Punti Ferita. -10 alle attività.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,52,Ti pesti un piede (60% probabilità di cadere). Subisci 3 Punti Ferita. -10 alle attività.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,53,Ti pesti un piede (60% probabilità di cadere). Subisci 3 Punti Ferita. -10 alle attività.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,54,Ti pesti un piede (60% probabilità di cadere). Subisci 3 Punti Ferita. -10 alle attività.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,55,Ti pesti un piede (60% probabilità di cadere). Subisci 3 Punti Ferita. -10 alle attività.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,56,Ti pesti un piede (60% probabilità di cadere). Subisci 3 Punti Ferita. -10 alle attività.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,57,Ti pesti un piede (60% probabilità di cadere). Subisci 3 Punti Ferita. -10 alle attività.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,58,Ti pesti un piede (60% probabilità di cadere). Subisci 3 Punti Ferita. -10 alle attività.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,59,Ti pesti un piede (60% probabilità di cadere). Subisci 3 Punti Ferita. -10 alle attività.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,60,Ti pesti un piede (60% probabilità di cadere). Subisci 3 Punti Ferita. -10 alle attività.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,61,Ti pesti un piede (60% probabilità di cadere). Subisci 3 Punti Ferita. -10 alle attività.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,62,Ti pesti un piede (60% probabilità di cadere). Subisci 3 Punti Ferita. -10 alle attività.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,63,Ti pesti un piede (60% probabilità di cadere). Subisci 3 Punti Ferita. -10 alle attività.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,64,Ti pesti un piede (60% probabilità di cadere). Subisci 3 Punti Ferita. -10 alle attività.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,65,Ti pesti un piede (60% probabilità di cadere). Subisci 3 Punti Ferita. -10 alle attività.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,66,Scivoli (75% probabilità di cadere). Resti stordito per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,67,Scivoli (75% probabilità di cadere). Resti stordito per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,68,Scivoli (75% probabilità di cadere). Resti stordito per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,69,Scivoli (75% probabilità di cadere). Resti stordito per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,70,Scivoli (75% probabilità di cadere). Resti stordito per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,71,Scivoli (75% probabilità di cadere). Resti stordito per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,72,Scivoli (75% probabilità di cadere). Resti stordito per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,73,Scivoli (75% probabilità di cadere). Resti stordito per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,74,Scivoli (75% probabilità di cadere). Resti stordito per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,75,Scivoli (75% probabilità di cadere). Resti stordito per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,76,Scivoli (75% probabilità di cadere). Resti stordito per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,77,Scivoli (75% probabilità di cadere). Resti stordito per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,78,Scivoli (75% probabilità di cadere). Resti stordito per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,79,Scivoli (75% probabilità di cadere). Resti stordito per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,80,Prendi una storta ad una caviglia e subisci 5 Punti Ferita. -10 alle attività.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,81,Cadi a terra e subisci 3 Punti Ferita. -20 alle attività per 3 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,82,Cadi a terra e subisci 3 Punti Ferita. -20 alle attività per 3 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,83,Cadi a terra e subisci 3 Punti Ferita. -20 alle attività per 3 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,84,Cadi a terra e subisci 3 Punti Ferita. -20 alle attività per 3 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,85,Cadi a terra e subisci 3 Punti Ferita. -20 alle attività per 3 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,86,Cadi a terra e subisci 3 Punti Ferita. -20 alle attività per 3 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,87,Prendi una storta ad una caviglia e ti procuri uno stiramento ad un tendine. Subisci 7 Punti Ferita. -20 alle attività. Stordito per 1 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,88,Prendi una storta ad una caviglia e ti procuri uno stiramento ad un tendine. Subisci 7 Punti Ferita. -20 alle attività. Stordito per 1 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,89,Prendi una storta ad una caviglia e ti procuri uno stiramento ad un tendine. Subisci 7 Punti Ferita. -20 alle attività. Stordito per 1 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,90,Cadi e ti spezzi una gamba. Subisci 8 Punti Ferita. -30 alle attività. Resti stordito per 1 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,91,Cadi e ti rompi un polso. Subisci 12 Punti Ferita. -20 alle attività. Resti stordito per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,92,Cadi e ti rompi un polso. Subisci 12 Punti Ferita. -20 alle attività. Resti stordito per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,93,Cadi e ti rompi un polso. Subisci 12 Punti Ferita. -20 alle attività. Resti stordito per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,94,Cadi e ti rompi un polso. Subisci 12 Punti Ferita. -20 alle attività. Resti stordito per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,95,Cadi e ti rompi un polso. Subisci 12 Punti Ferita. -20 alle attività. Resti stordito per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,96,Cadi e ti rompi un polso. Subisci 12 Punti Ferita. -20 alle attività. Resti stordito per 2 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,97,Cadi sopra il tuo braccio e lo spezzi. Subisci 14 Punti Ferita. -30 alle attività. Resti stordito per 4 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,98,Cadi sopra il tuo braccio e lo spezzi. Subisci 14 Punti Ferita. -30 alle attività. Resti stordito per 4 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,99,Cadi sopra il tuo braccio e lo spezzi. Subisci 14 Punti Ferita. -30 alle attività. Resti stordito per 4 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,100,Cercando di attutire la caduta ti spezzi le due braccia. Subisci 15 Punti Ferita. -50 alle attività. Resti stordito per 3 round.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,101,Cadi sopra la tua gamba e la spezzi. Subisci 15 PF e resti stordito per 3 round. -50 alle attività.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,102,Cadi sopra la tua gamba e la spezzi. Subisci 15 PF e resti stordito per 3 round. -50 alle attività.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,103,Cadi sopra la tua gamba e la spezzi. Subisci 15 PF e resti stordito per 3 round. -50 alle attività.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,104,Cadi sopra la tua gamba e la spezzi. Subisci 15 PF e resti stordito per 3 round. -50 alle attività.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,105,Cadi sopra la tua gamba e la spezzi. Subisci 15 PF e resti stordito per 3 round. -50 alle attività.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,106,Cadi sopra la tua gamba e la spezzi. Subisci 15 PF e resti stordito per 3 round. -50 alle attività.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,107,Prendi una ginocchiata e ti rompi il ginocchio. Subisci 10 PF e resti stordito per 4 round. -80 alle attività.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,108,Prendi una ginocchiata e ti rompi il ginocchio. Subisci 10 PF e resti stordito per 4 round. -80 alle attività.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,109,Prendi una ginocchiata e ti rompi il ginocchio. Subisci 10 PF e resti stordito per 4 round. -80 alle attività.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,110,Prendi una botta terribile e resti in coma per un anno.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,111,Cadi a terra e ti rompi l'osso sacro. Subisci 30 PF e resti paralizzato dalla cintola in giù.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,112,Cadi a terra e ti rompi l'osso sacro. Subisci 30 PF e resti paralizzato dalla cintola in giù.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,113,Cadi a terra e ti rompi l'osso sacro. Subisci 30 PF e resti paralizzato dalla cintola in giù.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,114,Cadi a terra e ti rompi l'osso sacro. Subisci 30 PF e resti paralizzato dalla cintola in giù.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,115,Cadi a terra e ti rompi l'osso sacro. Subisci 30 PF e resti paralizzato dalla cintola in giù.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,116,Cadi a terra e ti rompi l'osso sacro. Subisci 30 PF e resti paralizzato dalla cintola in giù.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,117,Cadi e resti paralizzato dal collo in giù. Subisci 20 Punti Ferita.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,118,Cadi e resti paralizzato dal collo in giù. Subisci 20 Punti Ferita.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,119,Cadi e resti paralizzato dal collo in giù. Subisci 20 Punti Ferita.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"
+TTM-4,Manovre di movimento,120,La tua caduta è davvero rovinosa! Ti spacchi la testa e passi a miglior vita.,"MODIFICHE:
+-50: Banale 
+-35: Facile 
+-20: Normale
+-10: Media
++0: Difficile
++5: Molto difficle
++10: Difficilissima
++15: Puramente folle
++20: Assurda"

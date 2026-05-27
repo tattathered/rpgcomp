@@ -1,28 +1,28 @@
-abilita_secondaria,caratteristica_associata,descrizione
-Acrobazia,AG,Questo bonus è usato nelle manovre in aria o quando si è appesi a qualcosa. Aiuta inoltre a limitare i danni di una eventuale caduta.
-Astronomia,IT,"Questo bonus è usato per stabilire la data, la direzione e la posizione delle stelle, quando queste sono visibili. Molto utile per la navigazione."
-Conciare,AG,"Questo bonus è usato per la lavorazione della pelle animale e per costruire oggetti di cuoio (armature, bolas, ecc.)."
-Contorsionismo,AG,"Questo bonus è usato per adattare il proprio corpo a passare attraverso aperture molto piccole o per assorbire impatti improvvisi (escluse le cadute). Aiuta a liberarsi quando si è legati, ecc."
-Costruire frecce,AG,"Questo bonus è usato per costruire frecce con il materiale disponibile: legno, metallo, carta, e/o piume."
-Costruzione trappole,IN,"Questo bonus è usato per costruire trappole anche quando mancano i materiali necessari. Il bonus, inoltre, si sottrae ai Tiri Percezione effettuati per scoprire tali trappole."
-Cucinare,IT,"Questo bonus è usato per individuare cibo avariato, oppure per preparare o neutralizzare erbe e cibi pericolosi. Comprende la preparazione dei veleni oltre la capacità di preparare dei normali cibi."
-Danza,IN,"Questo bonus è usato per riprodurre un ballo al quale si sia assistito, compresi i rituali magici, ecc."
-Destrezza,PR,"Questo bonus è usato per tutte le manovre che richiedono mano svelta: svuotare le tasche altrui, nascondere alla vista piccoli oggetti ed eseguire altri giochi di mano."
-Forgiare,FR,"Questo bonus è usato per lavorare i metalli non magici al fine di fabbricare o riparare oggetti (armi, armature, ecc.)."
-Giocare d'azzardo,IT,Questo bonus è usato per partecipare ad un qualsiasi gioco con una significativa probabilità di successo.
-Intagliare,AG,"Questo bonus è usato per fabbricare oggetti con legno, ossa o altri materiali simili."
-Meditazione,PR,"Questo bonus è usato per entrare in trance, utilizzare la meditazione trascendentale ed uscirne."
-Musica,AG,Questo bonus è usato per suonare ogni strumento e comprendere ogni tipo di linguaggio musicale.
-Navigare,IT,"Questo bonus è usato per tutte le manovre che concernono la navigazione e le conoscenze marinare (ad esempio: per individuare la presenza di secche, ecc.)."
-Oratoria,PR,"Questo bonus è usato per impressionare, intrattenere e convincere altre persone, singole o in gruppo, per mezzo di un discorso."
-Pastorizia,PR,"Questo bonus è usato per riunire, guidare, e condurre greggi e mandrie di animali (pecore, vacche, ecc.)."
-Prevedere il tempo,IT,Questo bonus è usato per determinare le condizioni atmosferiche locali per le successive 24 ore.
-Procurarsi cibo,IT,"Questo bonus è usato per trovare le risorse locali di acqua potabile, erbe, piante e animali commestibili."
-Remare,FR,"Questo bonus è usato per far procedere un'imbarcazione a forza di braccia, con remi, pali, ecc."
-Sciare,AG,Questo bonus è usato per sciare e scivolare.
-Segnalazione,IN,Questo bonus è usato per qualsiasi forma di comunicazione tramite segnali.
-Speleologia,IN,"Questo bonus è usato per orizzontarsi in un complesso di grotte e di caverne, riconoscere la loro struttura naturale e per muoversi all'interno di esse o in spazi angusti."
-Travestimento,PR,"Questo bonus è usato per assumere l'identità di un'altra persona, per truccarsi, mascherarsi ecc."
-Tuffarsi,AG,Questo bonus è usato nelle manovre che richiedono una caduta controllata.
-Uso funi,IN,"Questo bonus è usato per riconoscere i nodi, annodare, sciogliere, intrecciare, impiombare, gettare una fune o per eseguire manovre quando si è appesi ad una corda o a qualcosa di analogo."
-Volteggiare,AG,"Questo bonus è usato per balzare in senso orizzontale, rotolarsi o ruzzolare, o anche per stare in equilibrio su oggetti immobili, rami, pennoni, ecc."
+id_abilita_secondaria,categoria_abilita_secondaria,tipo_abilita_secondaria,tipo_abilita_secondaria_sigla,nome_abilita_secondaria,caratteristica_abilita_secondaria,abilita_secondaria_descrizione,abilita_secondaria_bonus_valore_iniziale,abilita_secondaria_bonus_calcolo
+1,di manovra e movimento,Manovre in Movimento (MM),MM,Acrobazia,AG,Usato nelle manovre in aria o quando si è appesi a qualcosa. Aiuta inoltre a limitare i danni di una eventuale caduta.,bonus AG,aquisita e incrementata tramite background
+2,generali,Manovre Statiche (MS),MS,Astronomia,IT,"Usato per stabilire la data, la direzione e la posizione delle stelle, quando queste sono visibili. Molto utile per la navigazione.",bonus IT,aquisita e incrementata tramite background
+3,generali,Manovre Statiche (MS),MS,Conciare,AG,"Usato per la lavorazione della pelle animale e per costruire oggetti di cuoio (armature, bolas, ecc.).",bonus AG,aquisita e incrementata tramite background
+4,di manovra e movimento,Manovre in Movimento (MM),MM,Contorsionismo,AG,"Usato per adattare il proprio corpo a passare attraverso aperture molto piccole o per assorbire impatti improvvisi (escluse le cadute). Aiuta a liberarsi quando si è legati, ecc.",bonus AG,aquisita e incrementata tramite background
+5,generali,Manovre Statiche (MS),MS,Costruire frecce,AG,"Usato per costruire frecce con il materiale disponibile: legno, metallo, carta, e/o piume.",bonus AG,aquisita e incrementata tramite background
+6,generali,Manovre Statiche (MS),MS,Costruzione trappole,IN,"Usato per costruire trappole anche quando mancano i materiali necessari. Il bonus, inoltre, si sottrae ai Tiri Percezione effettuati per scoprire tali trappole.",bonus IN,aquisita e incrementata tramite background
+7,generali,Manovre Statiche (MS),MS,Cucinare,IT,"Usato per individuare cibo avariato, oppure per preparare o neutralizzare erbe e cibi pericolosi. Comprende la preparazione dei veleni oltre la capacità di preparare dei normali cibi.",bonus IT,aquisita e incrementata tramite background
+8,di manovra e movimento,Manovre in Movimento (MM),MM,Danza,IN,"Usato per riprodurre un ballo al quale si sia assistito, compresi i rituali magici, ecc.",bonus IN,aquisita e incrementata tramite background
+9,sotterfugio,Manovre Statiche (MS),MS,Destrezza,PR,"Usato per tutte le manovre che richiedono mano svelta: svuotare le tasche altrui, nascondere alla vista piccoli oggetti ed eseguire altri giochi di mano.",bonus PR,aquisita e incrementata tramite background
+10,generali,Manovre Statiche (MS),MS,Forgiare,FR,"Usato per lavorare i metalli non magici al fine di fabbricare o riparare oggetti (armi, armature, ecc.).",bonus FR,aquisita e incrementata tramite background
+11,generali,Manovre Statiche (MS),MS,Giocare d'azzardo,IT,Usato per partecipare ad un qualsiasi gioco con una significativa probabilità di successo.,bonus IT,aquisita e incrementata tramite background
+12,generali,Manovre Statiche (MS),MS,Intagliare,AG,"Usato per fabbricare oggetti con legno, ossa o altri materiali simili.",bonus AG,aquisita e incrementata tramite background
+13,generali,Manovre Statiche (MS),MS,Meditazione,PR,"Usato per entrare in trance, utilizzare la meditazione trascendentale ed uscirne.",bonus PR,aquisita e incrementata tramite background
+14,generali,Manovre Statiche (MS),MS,Musica,AG,Usato per suonare ogni strumento e comprendere ogni tipo di linguaggio musicale.,bonus AG,aquisita e incrementata tramite background
+15,generali,Manovre Statiche (MS),MS,Navigare,IT,"Usato per tutte le manovre che concernono la navigazione e le conoscenze marinare (ad esempio: per individuare la presenza di secche, ecc.).",bonus IT,aquisita e incrementata tramite background
+16,generali,Manovre Statiche (MS),MS,Oratoria,PR,"Usato per impressionare, intrattenere e convincere altre persone, singole o in gruppo, per mezzo di un discorso.",bonus PR,aquisita e incrementata tramite background
+17,generali,Manovre Statiche (MS),MS,Pastorizia,PR,"Usato per riunire, guidare, e condurre greggi e mandrie di animali (pecore, vacche, ecc.).",bonus PR,aquisita e incrementata tramite background
+18,generali,Manovre Statiche (MS),MS,Prevedere il tempo,IT,Usato per determinare le condizioni atmosferiche locali per le successive 24 ore.,bonus IT,aquisita e incrementata tramite background
+19,generali,Manovre Statiche (MS),MS,Procurarsi cibo,IT,"Usato per trovare le risorse locali di acqua potabile, erbe, piante e animali commestibili.",bonus IT,aquisita e incrementata tramite background
+20,di manovra e movimento,Manovre in Movimento (MM),MM,Remare,FR,"Usato per far procedere un'imbarcazione a forza di braccia, con remi, pali, ecc.",bonus FR,aquisita e incrementata tramite background
+21,di manovra e movimento,Manovre in Movimento (MM),MM,Sciare,AG,Usato per sciare e scivolare.,bonus AG,aquisita e incrementata tramite background
+22,generali,Manovre Statiche (MS),MS,Segnalazione,IN,Usato per qualsiasi forma di comunicazione tramite segnali.,bonus IN,aquisita e incrementata tramite background
+23,di manovra e movimento,Manovre in Movimento (MM),MM,Speleologia,IN,"Usato per orizzontarsi in un complesso di grotte e di caverne, riconoscere la loro struttura naturale e per muoversi all'interno di esse o in spazi angusti.",bonus IN,aquisita e incrementata tramite background
+24,sotterfugio,Manovre Statiche (MS),MS,Travestimento,PR,"Usato per assumere l'identità di un'altra persona, per truccarsi, mascherarsi ecc.",bonus PR,aquisita e incrementata tramite background
+25,di manovra e movimento,Manovre in Movimento (MM),MM,Tuffarsi,AG,Usato nelle manovre che richiedono una caduta controllata.,bonus AG,aquisita e incrementata tramite background
+26,generali,Manovre Statiche (MS),MS,Uso funi,IN,"Usato per riconoscere i nodi, annodare, sciogliere, intrecciare, impiombare, gettare una fune o per eseguire manovre quando si è appesi ad una corda o a qualcosa di analogo.",bonus IN,aquisita e incrementata tramite background
+27,di manovra e movimento,Manovre in Movimento (MM),MM,Volteggiare,AG,"Usato per balzare in senso orizzontale, rotolarsi o ruzzolare, o anche per stare in equilibrio su oggetti immobili, rami, pennoni, ecc.",bonus AG,aquisita e incrementata tramite background

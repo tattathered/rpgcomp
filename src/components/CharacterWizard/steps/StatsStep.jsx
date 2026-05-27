@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import profStatsList from '../../../data/Tabella-professioni_caratteristica_fondamentale.json';
 import tb1 from '../../../data/TB_1-caratteristiche_bonus.json';
+import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
 
 const STAT_KEYS = ['FR', 'AG', 'CO', 'IN', 'IT', 'PR'];
 const STAT_NAMES = {
@@ -42,10 +43,6 @@ export default function StatsStep({ characterData, setCharacterData }) {
     let err = null;
     if (missing) {
       err = 'Devi assegnare tutte le 6 caratteristiche principali prima di procedere.';
-    } else if (!characterData.peso || isNaN(Number(characterData.peso)) || Number(characterData.peso) <= 0) {
-      err = 'Devi inserire un peso corporeo valido (maggiore di 0 kg) prima di procedere.';
-    } else if (!characterData.altezza || isNaN(Number(characterData.altezza)) || Number(characterData.altezza) <= 0) {
-      err = 'Devi inserire un\'altezza valida (maggiore di 0 cm) prima di procedere.';
     }
 
     if (characterData.stepErrors?.stats !== err) {
@@ -57,7 +54,7 @@ export default function StatsStep({ characterData, setCharacterData }) {
         }
       }));
     }
-  }, [characterData.stats, characterData.peso, characterData.altezza, characterData.stepErrors, setCharacterData]);
+  }, [characterData.stats, characterData.stepErrors, setCharacterData]);
   const [rolls, setRolls] = useState(characterData.statsRolls || []);
   
   // Per metodo classico: tiene traccia di quale tiro è assegnato a quale caratteristica
@@ -287,6 +284,7 @@ export default function StatsStep({ characterData, setCharacterData }) {
 
   return (
     <div>
+      <AnagraficaReadOnlyBox characterData={characterData} />
       {characterData.race && (
         <div className="mb-6 p-4 border rounded flex flex-col md:flex-row justify-between items-start md:items-center gap-4" style={{ backgroundColor: 'var(--theme-race-bg)', borderColor: 'var(--theme-race-border)', color: 'var(--theme-race-text)' }}>
           <div>
@@ -313,43 +311,6 @@ export default function StatsStep({ characterData, setCharacterData }) {
           </div>
         </div>
       )}
-
-      {/* Box Dimensioni Fisiche */}
-      <div className="mb-6 p-4 border rounded card" style={{ borderColor: 'var(--border-color)', backgroundColor: '#f8fafc' }}>
-        <span className="text-xs font-bold uppercase tracking-wider text-gray-500">Dimensioni Fisiche</span>
-        <div className="grid grid-cols-2 gap-4 mt-3">
-          <div>
-            <label className="block text-xs font-bold text-gray-700 mb-1">Peso (kg):</label>
-            <input 
-              type="number" 
-              min="1"
-              step="1"
-              className="w-full p-2 border rounded text-sm bg-white"
-              value={characterData.peso || ''}
-              onChange={e => {
-                const val = e.target.value === '' ? '' : Math.max(1, parseInt(e.target.value));
-                setCharacterData(prev => ({ ...prev, peso: val }));
-              }}
-              placeholder="Es: 75"
-            />
-          </div>
-          <div>
-            <label className="block text-xs font-bold text-gray-700 mb-1">Altezza (cm):</label>
-            <input 
-              type="number" 
-              min="1"
-              step="1"
-              className="w-full p-2 border rounded text-sm bg-white"
-              value={characterData.altezza || ''}
-              onChange={e => {
-                const val = e.target.value === '' ? '' : Math.max(1, parseInt(e.target.value));
-                setCharacterData(prev => ({ ...prev, altezza: val }));
-              }}
-              placeholder="Es: 180"
-            />
-          </div>
-        </div>
-      </div>
 
       <div className="mb-6 p-4 rounded-md border" style={{ backgroundColor: 'var(--theme-profession-bg)', borderColor: 'var(--theme-profession-border)', color: 'var(--theme-profession-text)' }}>
         <h3 className="font-semibold mb-2" style={{ color: 'var(--theme-profession-text)' }}>Requisiti della Professione: {prof ? prof.professione : 'Nessuna'}</h3>

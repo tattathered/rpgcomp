@@ -7,6 +7,7 @@ import secondarySkillsList from '../../../data/Tabella-abilita_secondarie.json';
 import { getAvailableSpellLists } from '../../../utils/magicHelpers';
 import tb1 from '../../../data/TB_1-caratteristiche_bonus.json';
 import WalletBox from '../shared/WalletBox';
+import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
 
 const STAT_KEYS = ['FR', 'AG', 'CO', 'IN', 'IT', 'PR'];
 const STAT_NAMES = { FR: 'Forza', AG: 'Agilità', CO: 'Costituzione', IN: 'Intelligenza', IT: 'Intuizione', PR: 'Presenza' };
@@ -405,8 +406,53 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
     .filter(s => s.nome && s.categoria && !s.categoria.includes('Altre Abilità') && s.nome.toLowerCase() !== 'cogliere alle spalle')
     .map(s => ({ nome: s.nome, categoria: s.categoria }));
 
+  const getMagicRealmSummaryStep6 = () => {
+    const spellListAllocations = characterData.spellListAllocations || {};
+    const bgSpellLists = characterData.background?.compiledModifiers?.bgSpellLists || [];
+    const allLists = [...new Set([...Object.keys(spellListAllocations), ...bgSpellLists])];
+    
+    if (allLists.length > 0) {
+      return (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+          {allLists.map((name, i) => (
+            <div key={i}>Lista incantesimi {name} appresa.</div>
+          ))}
+        </div>
+      );
+    }
+    
+    const inheritedChance = characterData.spellListChanceAccumulated !== undefined 
+      ? characterData.spellListChanceAccumulated 
+      : 0;
+    return <div>Nessuna lista incantesimi appresa - Credito ereditato: {inheritedChance}%</div>;
+  };
+
   return (
     <div style={{display:'flex',flexDirection:'column',gap:'1.5rem'}}>
+      <AnagraficaReadOnlyBox characterData={characterData} />
+
+      {/* ── HEADER BANNER ── */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '1.5rem' }}>
+        <div style={{ padding: '1rem', border: '1px solid var(--theme-race-border)', borderRadius: '0.6rem', background: 'var(--theme-race-bg)' }}>
+          <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-race-text)' }}>Popolo</div>
+          <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-race-text)', marginTop: '0.2rem' }}>{race?.popolo}</div>
+          <div style={{ fontSize: '0.75rem', color: 'var(--theme-race-text)', opacity: 0.85, marginTop: '0.15rem' }}>{race?.['note (umani/non umani)']}</div>
+        </div>
+        <div style={{ padding: '1rem', border: '1px solid var(--theme-profession-border)', borderRadius: '0.6rem', background: 'var(--theme-profession-bg)' }}>
+          <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-profession-text)' }}>Professione</div>
+          <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-profession-text)', marginTop: '0.2rem' }}>{profession?.professione}</div>
+          <div style={{ fontSize: '0.75rem', color: 'var(--theme-profession-text)', opacity: 0.85, marginTop: '0.15rem' }}>
+            {profession && `Primaria: ${profession.primaria} | Secondaria: ${profession.secondaria}`}
+          </div>
+        </div>
+        <div style={{ padding: '1rem', border: '1px solid var(--theme-spell-lists-border)', borderRadius: '0.6rem', background: 'var(--theme-spell-lists-bg)' }}>
+          <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-spell-lists-text)' }}>Reame Magico</div>
+          <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-spell-lists-text)', marginTop: '0.2rem' }}>{magicRealm || 'Nessuno'}</div>
+          <div style={{ fontSize: '0.75rem', color: 'var(--theme-spell-lists-text)', opacity: 0.85, marginTop: '0.15rem', fontWeight: 500 }}>
+            {getMagicRealmSummaryStep6()}
+          </div>
+        </div>
+      </div>
 
       {/* ── OPZIONI DI BACKGROUND ── */}
       <div className="card" style={{borderColor:'var(--theme-background-border)'}}>

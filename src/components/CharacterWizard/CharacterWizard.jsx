@@ -25,6 +25,28 @@ const WIZARD_STEPS = [
   { id: 'summary',    title: '10. Riepilogo Scheda',    icon: List },
 ];
 
+const validateStep = (stepId, data) => {
+  switch (stepId) {
+    case 'race':
+      if (!data.race) return "Seleziona un popolo prima di procedere.";
+      if (!data.name?.trim()) return "Inserisci il nome del personaggio prima di procedere.";
+      return null;
+    case 'profession':
+      if (!data.profession) return "Seleziona una professione prima di procedere.";
+      return null;
+    case 'creation_summary':
+      if ((data.aspetto ?? null) === null) {
+        return "Devi determinare l'Aspetto del personaggio prima di procedere.";
+      }
+      if ((data.level1HpRoll ?? null) === null) {
+        return "Devi calcolare i Punti Ferita (HP) del personaggio prima di procedere.";
+      }
+      return null;
+    default:
+      return data.stepErrors?.[stepId] || null;
+  }
+};
+
 export default function CharacterWizard({ initialData, onSave, initialStepIndex = 0, equipmentCatalog }) {
   const [currentStepIndex, setCurrentStepIndex] = useState(initialStepIndex);
   const [characterData, setCharacterData] = useState(() => {
@@ -43,7 +65,7 @@ export default function CharacterWizard({ initialData, onSave, initialStepIndex 
 
   const handleNext = () => {
     const currentStep = WIZARD_STEPS[currentStepIndex];
-    const err = characterData.stepErrors?.[currentStep.id];
+    const err = validateStep(currentStep.id, characterData);
     if (err) {
       alert(err);
       return;
@@ -83,7 +105,7 @@ export default function CharacterWizard({ initialData, onSave, initialStepIndex 
                   if (isSavedCharacter) {
                     if (index > currentStepIndex) {
                       const currentStep = WIZARD_STEPS[currentStepIndex];
-                      const err = characterData.stepErrors?.[currentStep.id];
+                      const err = validateStep(currentStep.id, characterData);
                       if (err) {
                         alert(err);
                         return;

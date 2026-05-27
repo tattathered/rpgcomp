@@ -1,0 +1,233 @@
+[
+  {
+    "id": "atliduk",
+    "name": {
+      "it": "Atliduk",
+      "en": "Atliduk"
+    },
+    "description": {
+      "it": "Lingua nativa dei Beorniani.",
+      "en": "Native language of the Beornings."
+    }
+  },
+  {
+    "id": "waildyth",
+    "name": {
+      "it": "Waildyth (Segnali naturali)",
+      "en": "Waildyth (Nature Signals)"
+    },
+    "description": {
+      "it": "Linguaggio di comunicazione basato su segnali naturali.",
+      "en": "Communication language based on natural signals."
+    }
+  },
+  {
+    "id": "nahaiduk",
+    "name": {
+      "it": "Nahaiduk",
+      "en": "Nahaiduk"
+    },
+    "description": {
+      "it": "Lingua parlata dagli Uomini dei Boschi.",
+      "en": "Language spoken by the Woodmen."
+    }
+  },
+  {
+    "id": "westron",
+    "name": {
+      "it": "Ovestron (Linguaggio Comune)",
+      "en": "Westron (Common Speech)"
+    },
+    "description": {
+      "it": "La lingua franca della Terra di Mezzo.",
+      "en": "The lingua franca of Middle-earth."
+    }
+  },
+  {
+    "id": "rohirric",
+    "name": {
+      "it": "Rohirric",
+      "en": "Rohirric"
+    },
+    "description": {
+      "it": "La lingua dei Signori dei Cavalli di Rohan.",
+      "en": "The language of the Horse-lords of Rohan."
+    }
+  },
+  {
+    "id": "dunael",
+    "name": {
+      "it": "Dunael",
+      "en": "Dunael"
+    },
+    "description": {
+      "it": "La lingua dei Dunlandiani.",
+      "en": "The language of the Dunlendings."
+    }
+  },
+  {
+    "id": "adunaic",
+    "name": {
+      "it": "Adunaico",
+      "en": "Adunaic"
+    },
+    "description": {
+      "it": "La lingua ancestrale dei Numenoreani.",
+      "en": "The ancestral language of the Numenoreans."
+    }
+  },
+  {
+    "id": "quenya",
+    "name": {
+      "it": "Quenya (Altoelfico)",
+      "en": "Quenya (High Elven)"
+    },
+    "description": {
+      "it": "L'antico linguaggio cerimoniale degli Elfi Noldor.",
+      "en": "The ancient ceremonial language of the Noldor Elves."
+    }
+  },
+  {
+    "id": "sindarin",
+    "name": {
+      "it": "Sindarin",
+      "en": "Sindarin"
+    },
+    "description": {
+      "it": "Il linguaggio elfico parlato quotidianamente.",
+      "en": "The commonly spoken Elven tongue."
+    }
+  },
+  {
+    "id": "silvan",
+    "name": {
+      "it": "Silvano (Bethteur)",
+      "en": "Silvan (Bethteur)"
+    },
+    "description": {
+      "it": "La lingua degli Elfi Silvani.",
+      "en": "The language of the Sylvan Elves."
+    }
+  },
+  {
+    "id": "logathig",
+    "name": {
+      "it": "Logathig",
+      "en": "Logathig"
+    },
+    "description": {
+      "it": "La lingua degli Esterling e dei Dorwinrim.",
+      "en": "The language of the Easterlings and Dorwinrim."
+    }
+  },
+  {
+    "id": "haradaic",
+    "name": {
+      "it": "Haradaico",
+      "en": "Haradaic"
+    },
+    "description": {
+      "it": "La lingua degli Haradrim.",
+      "en": "The language of the Haradrim."
+    }
+  },
+  {
+    "id": "apysaic",
+    "name": {
+      "it": "Apysaico",
+      "en": "Apysaic"
+    },
+    "description": {
+      "it": "Una lingua meridionale imparentata con l'Haradaico.",
+      "en": "A southern tongue related to Haradaic."
+    }
+  },
+  {
+    "id": "kuduk",
+    "name": {
+      "it": "Kuduk (Variante dell'Ovestron)",
+      "en": "Kuduk (Hobbit Westron)"
+    },
+    "description": {
+      "it": "La parlata tipica degli Hobbit della Contea.",
+      "en": "The dialect spoken by the Hobbits of the Shire."
+    }
+  },
+  {
+    "id": "labba",
+    "name": {
+      "it": "Labba",
+      "en": "Labba"
+    },
+    "description": {
+      "it": "La lingua dei Lossoth (Uomini delle nevi).",
+      "en": "The tongue of the Lossoth (Snow-men)."
+    }
+  },
+  {
+    "id": "black_speech",
+    "name": {
+      "it": "Linguaggio Nero (Morbeth)",
+      "en": "Black Speech (Morbeth)"
+    },
+    "description": {
+      "it": "La lingua creata da Sauron per i suoi servitori.",
+      "en": "The language created by Sauron for his servants."
+    }
+  },
+  {
+    "id": "orkish",
+    "name": {
+      "it": "Orchesco",
+      "en": "Orkish"
+    },
+    "description": {
+      "it": "L'insieme dei dialetti parlati dagli Orchetti.",
+      "en": "The collection of dialects spoken by the Orcs."
+    }
+  },
+  {
+    "id": "khuzdul",
+    "name": {
+      "it": "Khuzdul (Nanesco)",
+      "en": "Khuzdul (Dwarven)"
+    },
+    "description": {
+      "it": "La lingua segreta creata da Aulë per i Nani.",
+      "en": "The secret language created by Aulë for the Dwarves."
+    }
+  },
+  {
+    "id": "umitic",
+    "name": {
+      "it": "Umitico",
+      "en": "Umitic"
+    },
+    "description": {
+      "it": "La lingua parlata dal popolo degli Umli.",
+      "en": "The language spoken by the Umli."
+    }
+  },
+  {
+    "id": "pukael",
+    "name": {
+      "it": "Pukael",
+      "en": "Pukael"
+    },
+    "description": {
+      "it": "La lingua parlata dai Wose (Uomini selvatici).",
+      "en": "The language spoken by the Woses."
+    }
+  },
+  {
+    "id": "varadja",
+    "name": {
+      "it": "Varadja",
+      "en": "Varadja"
+    },
+    "description": {
+      "it": "La lingua dei Variag del Khand.",
+      "en": "The tongue of the Variags of Khand."
+    }
+  }
+]

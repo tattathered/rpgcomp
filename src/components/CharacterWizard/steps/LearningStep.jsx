@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
+import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
 import { Plus, Minus, Trash2, Check, AlertCircle, ArrowRight, Sparkles, Languages, ArrowLeft } from 'lucide-react';
 import EquipmentStep from './EquipmentStep';
 import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
@@ -15,7 +16,8 @@ import {
   fmt,
   getTgp4PoolSize,
   getProfessionRanksForLevel,
-  getHpDiceForIncrement
+  getHpDiceForIncrement,
+  getCharacterHpTot
 } from '../../../utils/skillHelpers';
 
 const TGP4_POOLS = [
@@ -49,6 +51,28 @@ export default function LearningStep({ characterData, setCharacterData }) {
 
   // Calcoliamo il livello corrente complessivo del personaggio
   const currentCharacterLevel = 1 + levelDevelopments.length;
+
+  const getMagicRealmSummaryStep9 = () => {
+    const spellListAllocations = characterData.spellListAllocations || {};
+    const bgSpellLists = characterData.background?.compiledModifiers?.bgSpellLists || [];
+    const allLists = [...new Set([...Object.keys(spellListAllocations), ...bgSpellLists])];
+    
+    if (allLists.length > 0) {
+      return (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+          {allLists.map((name, i) => (
+            <div key={i}>Lista incantesimi {name} appresa.</div>
+          ))}
+        </div>
+      );
+    }
+    
+    const inheritedChance = levelDevelopments.length > 0
+      ? levelDevelopments[levelDevelopments.length - 1].spellListChanceAccumulated
+      : (characterData.spellListChanceAccumulated || 0);
+      
+    return <div>Nessuna lista incantesimi appresa - Credito ereditato: {inheritedChance}%</div>;
+  };
 
   // Stato per la gestione del livello attualmente in sviluppo (se presente)
   const [activeLevel, setActiveLevel] = useState(null);
@@ -91,10 +115,7 @@ export default function LearningStep({ characterData, setCharacterData }) {
       spellListAllocations: {},
       hpRoll: null,
       languages: {}, // lingua -> gradi acquistati
-      spellListRollResult: null,
-      selectedNewList: '',
-      hasRolledSpellList: false,
-      carryOverSpellListPoints: false
+      selectedNewList: ''
     });
   };
 
@@ -159,6 +180,7 @@ export default function LearningStep({ characterData, setCharacterData }) {
   const recalculateSkills = (developments, currentLangsState) => {
     const newSkills = {};
     const finalLevel = 1 + developments.length;
+    const bgModifiers = characterData.background?.compiledModifiers || { statsBonus: {}, skillBgRanks: {}, secondarySkills: {}, gold: 0 };
 
     primarySkillsList.forEach(sk => {
       const name = sk.nome;
@@ -180,7 +202,10 @@ export default function LearningStep({ characterData, setCharacterData }) {
         tgp4RanksLater += d.tgp4Distribution?.[name] || 0;
       });
 
-      const totalRanks = adRanks + professionRanks + tgp4RanksL1 + tgp4RanksLater;
+      // 5. Background extra ranks
+      const bgExtra = isCogliereAlleSpalle ? 0 : (bgModifiers.skillBgRanks?.[name] || 0);
+
+      const totalRanks = adRanks + professionRanks + tgp4RanksL1 + tgp4RanksLater + bgExtra;
 
       newSkills[name] = {
         category: sk.categoria,
@@ -189,6 +214,7 @@ export default function LearningStep({ characterData, setCharacterData }) {
         adolescenceRanks: adRanks,
         professionRanks: professionRanks,
         tgp4Ranks: tgp4RanksL1 + tgp4RanksLater,
+        bgExtra: bgExtra,
         totalRanks: totalRanks,
         specialBonus: characterData.skills?.[name]?.specialBonus || 0,
         itemBonus: characterData.skills?.[name]?.itemBonus || 0,
@@ -251,9 +277,10 @@ export default function LearningStep({ characterData, setCharacterData }) {
       const ranks = activeLevel.tgp4Distribution[s.nome] || 0;
       if (ranks === 0) return;
 
-      if (s.nome === 'resistenza fisica') {
+      const normName = s.nome.toLowerCase().trim();
+      if (normName === 'resistenza fisica') {
         state['Resistenza fisica'].spentOnSkills += getTgp4Cost(ranks);
-      } else if (s.nome === 'percezione') {
+      } else if (normName === 'percezione') {
         state['Percezione'].spentOnSkills += ranks; // 1:1
       } else {
         const cat = s.categoria?.toLowerCase()?.trim();
@@ -385,18 +412,17 @@ export default function LearningStep({ characterData, setCharacterData }) {
   // Liste Incantesimi
   const listPS = activeLevel?.tgp4Distribution['Liste incantesimi'] || 0;
   const listPool = activePoolsState['Liste incantesimi']?.adjustedPool || 0;
-  const totalSpellChance = (activeLevel?.spellListChanceAccumulated || 0) + (listPool * 20);
 
+  const baseAccumulated = useMemo(() => {
+    if (!activeLevel) return 0;
+    if (activeLevel.level === 2) {
+      return characterData.spellListChanceAccumulated || 0;
+    }
+    const prevLevelDev = levelDevelopments[activeLevel.level - 3];
+    return prevLevelDev ? (prevLevelDev.spellListChanceAccumulated || 0) : 0;
+  }, [activeLevel, characterData.spellListChanceAccumulated, levelDevelopments]);
 
-
-  const handleSpellListRoll = () => {
-    const roll = Math.floor(Math.random() * 100) + 1;
-    setActiveLevel(prev => ({
-      ...prev,
-      spellListRollResult: roll,
-      hasRolledSpellList: true
-    }));
-  };
+  const totalSpellChance = baseAccumulated + (listPool * 20);
 
   const selectedRealm = characterData.magicRealm || 'Essenza';
   const knownLists = useMemo(() => {
@@ -419,56 +445,77 @@ export default function LearningStep({ characterData, setCharacterData }) {
   const handleAcquireSpellList = () => {
     if (!activeLevel || !activeLevel.selectedNewList) return;
 
-    let newAccumulated = totalSpellChance;
-    if (totalSpellChance >= 100) {
-      newAccumulated = totalSpellChance - 100;
-    } else if (activeLevel.spellListRollResult && activeLevel.spellListRollResult <= totalSpellChance) {
-      newAccumulated = 0;
-    }
-
     setActiveLevel(prev => ({
       ...prev,
-      spellListChanceAccumulated: newAccumulated,
-      tgp4Distribution: {
-        ...prev.tgp4Distribution,
-        'Liste incantesimi': Math.min(5, listPool)
-      },
       spellListAllocations: {
         ...prev.spellListAllocations,
         [prev.selectedNewList]: `Livello ${prev.level}`
       },
-      selectedNewList: '',
-      spellListRollResult: null,
-      hasRolledSpellList: false
+      selectedNewList: ''
     }));
   };
 
   const handleCancelSpellListAcquisition = () => {
-    let inheritedChance = characterData.spellListChanceAccumulated || 0;
-    if (levelDevelopments.length > 0) {
-      inheritedChance = levelDevelopments[levelDevelopments.length - 1].spellListChanceAccumulated;
-    }
-
     setActiveLevel(prev => ({
       ...prev,
-      spellListChanceAccumulated: inheritedChance,
-      tgp4Distribution: {
-        ...prev.tgp4Distribution,
-        'Liste incantesimi': 0
-      },
       spellListAllocations: {},
-      selectedNewList: '',
-      spellListRollResult: null,
-      hasRolledSpellList: false
+      selectedNewList: ''
     }));
   };
 
   const hasAcquiredInActiveLevel = activeLevel ? Object.keys(activeLevel.spellListAllocations).length > 0 : false;
   const acquiredListNameInActiveLevel = hasAcquiredInActiveLevel ? Object.keys(activeLevel.spellListAllocations)[0] : '';
 
+  // Sync spell list points and accumulated probability for active level
+  useEffect(() => {
+    if (!activeLevel) return;
+
+    const calculatedTotalChance = baseAccumulated + (listPool * 20);
+    const hasAcquired = Object.keys(activeLevel.spellListAllocations || {}).length > 0;
+
+    let targetSpent = 0;
+    let targetChance = baseAccumulated;
+
+    if (hasAcquired) {
+      targetSpent = listPool;
+      targetChance = calculatedTotalChance - 100;
+    } else {
+      if (calculatedTotalChance < 100) {
+        targetSpent = listPool;
+        targetChance = calculatedTotalChance;
+      } else {
+        targetSpent = 0;
+        targetChance = baseAccumulated;
+      }
+    }
+
+    let needsUpdate = false;
+    const nextTgp4 = { ...activeLevel.tgp4Distribution };
+    if (nextTgp4['Liste incantesimi'] !== targetSpent) {
+      nextTgp4['Liste incantesimi'] = targetSpent;
+      needsUpdate = true;
+    }
+
+    if (activeLevel.spellListChanceAccumulated !== targetChance || needsUpdate) {
+      setActiveLevel(prev => {
+        if (!prev) return null;
+        return {
+          ...prev,
+          tgp4Distribution: nextTgp4,
+          spellListChanceAccumulated: targetChance
+        };
+      });
+    }
+  }, [
+    activeLevel ? Object.keys(activeLevel.spellListAllocations || {}).join(',') : null,
+    activeLevel ? activeLevel.level : null,
+    listPool,
+    baseAccumulated
+  ]);
+
   // Tiro Punti Ferita
-  const rfRanksInActiveLevel = activeLevel?.tgp4Distribution['resistenza fisica'] || 0;
-  const rfTotalRanksInActiveLevel = activeLevelSkillRanks['resistenza fisica']?.total || 0;
+  const rfRanksInActiveLevel = activeLevel?.tgp4Distribution['Resistenza fisica'] || 0;
+  const rfTotalRanksInActiveLevel = activeLevelSkillRanks['Resistenza fisica']?.total || 0;
   
   const handleRollHp = () => {
     if (!activeLevel) return;
@@ -616,18 +663,7 @@ export default function LearningStep({ characterData, setCharacterData }) {
     }
 
     // 2. Controlla se ci sono pool con punti non spesi (bloccante)
-    const unspentPools = Object.values(activePoolsState).filter(p => {
-      if (p.remaining <= 0) return false;
-      // Per il pool Liste incantesimi, è permesso avere punti rimanenti
-      // solo se il tentativo è fallito E la casella di conservazione è spuntata
-      if (p.key === 'Liste incantesimi') {
-        const isFailedRoll = activeLevel.spellListRollResult && activeLevel.spellListRollResult > totalSpellChance;
-        if (isFailedRoll && activeLevel.carryOverSpellListPoints) {
-          return false; // consentito
-        }
-      }
-      return true; // non consentito
-    });
+    const unspentPools = Object.values(activePoolsState).filter(p => p.remaining > 0);
 
     if (unspentPools.length > 0) {
       const poolNames = unspentPools.map(p => p.label).join(', ');
@@ -642,7 +678,7 @@ export default function LearningStep({ characterData, setCharacterData }) {
     }
 
     // 4. Se ha ottenuto l'apprendimento liste ma non ha scelto la lista
-    const shouldSelectSpellList = (totalSpellChance >= 100 || (activeLevel.spellListRollResult && activeLevel.spellListRollResult <= totalSpellChance)) && !hasAcquiredInActiveLevel;
+    const shouldSelectSpellList = totalSpellChance >= 100 && !hasAcquiredInActiveLevel;
     if (shouldSelectSpellList) {
       alert(`Hai ottenuto con successo l'apprendimento di una lista incantesimi! Selezionala ed acquisiscila prima di salvare il livello.`);
       return;
@@ -656,8 +692,7 @@ export default function LearningStep({ characterData, setCharacterData }) {
       spellListChanceAccumulated: activeLevel.spellListChanceAccumulated,
       spellListAllocations: activeLevel.spellListAllocations,
       hpRoll: activeLevel.hpRoll || 0,
-      languages: activeLevel.languages,
-      spellListPointsCarriedOver: activeLevel.carryOverSpellListPoints ? listPool : 0
+      languages: activeLevel.languages
     }];
 
     // Aggiorna le lingue globali nel background
@@ -716,6 +751,31 @@ export default function LearningStep({ characterData, setCharacterData }) {
 
   return (
     <div className="space-y-6">
+      <AnagraficaReadOnlyBox characterData={characterData} />
+
+      {/* ── HEADER BANNER ── */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '1.5rem' }}>
+        <div style={{ padding: '1rem', border: '1px solid var(--theme-race-border)', borderRadius: '0.6rem', background: 'var(--theme-race-bg)' }}>
+          <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-race-text)' }}>Popolo</div>
+          <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-race-text)', marginTop: '0.2rem' }}>{race?.popolo}</div>
+          <div style={{ fontSize: '0.75rem', color: 'var(--theme-race-text)', opacity: 0.85, marginTop: '0.15rem' }}>{race?.['note (umani/non umani)']}</div>
+        </div>
+        <div style={{ padding: '1rem', border: '1px solid var(--theme-profession-border)', borderRadius: '0.6rem', background: 'var(--theme-profession-bg)' }}>
+          <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-profession-text)' }}>Professione</div>
+          <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-profession-text)', marginTop: '0.2rem' }}>{profession?.professione}</div>
+          <div style={{ fontSize: '0.75rem', color: 'var(--theme-profession-text)', opacity: 0.85, marginTop: '0.15rem' }}>
+            {profession && `Primaria: ${profession.primaria} | Secondaria: ${profession.secondaria}`}
+          </div>
+        </div>
+        <div style={{ padding: '1rem', border: '1px solid var(--theme-spell-lists-border)', borderRadius: '0.6rem', background: 'var(--theme-spell-lists-bg)' }}>
+          <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-spell-lists-text)' }}>Reame Magico</div>
+          <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-spell-lists-text)', marginTop: '0.2rem' }}>{characterData.magicRealm || 'Nessuno'}</div>
+          <div style={{ fontSize: '0.75rem', color: 'var(--theme-spell-lists-text)', opacity: 0.85, marginTop: '0.15rem', fontWeight: 500 }}>
+            {getMagicRealmSummaryStep9()}
+          </div>
+        </div>
+      </div>
+
       {/* Dashboard dei Livelli */}
       {!activeLevel && (
         <div className="card p-6 border border-indigo-100 bg-white rounded-xl shadow-sm">
@@ -842,52 +902,71 @@ export default function LearningStep({ characterData, setCharacterData }) {
             <div className="grid md:grid-cols-3 gap-4 mb-6">
               {/* Box HP */}
               <div className="p-4 border rounded flex flex-col justify-between" style={{ borderColor: 'var(--theme-primary-skills-border)', backgroundColor: 'var(--theme-primary-skills-bg)' }}>
-                <div>
-                  <div className="flex justify-between items-center mb-1">
-                    <span className="text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--theme-primary-skills-text)' }}>Punti Ferita (HP)</span>
-                    {rfRanksInActiveLevel > 0 && (
-                      <span className="text-[10px] px-1.5 py-0.5 rounded font-bold" style={{ backgroundColor: 'var(--theme-primary-skills-text)', color: '#fff' }}>
-                        Gradi RF a liv. {activeLevel.level}: +{rfRanksInActiveLevel}
-                      </span>
-                    )}
-                  </div>
-                  {rfRanksInActiveLevel > 0 ? (
-                    <div className="space-y-3 mt-2">
-                      <p className="text-xs" style={{ color: 'var(--theme-primary-skills-text)' }}>
-                        Hai assegnato gradi in Resistenza Fisica! Devi lanciare <strong>{rfRanksInActiveLevel}d10</strong> per gli HP incrementali.
-                      </p>
-                      <div className="flex items-center gap-3">
-                        <button
-                          type="button"
-                          onClick={handleRollHp}
-                          className="text-white text-xs font-bold py-1.5 px-3 rounded shadow-sm transition"
-                          style={{ backgroundColor: 'var(--theme-primary-skills-text)', borderColor: 'var(--theme-primary-skills-text)' }}
-                        >
-                          Tira {rfRanksInActiveLevel}d10
-                        </button>
-                        <div className="flex items-center gap-1">
-                          <label className="text-xs font-bold" style={{ color: 'var(--theme-primary-skills-text)' }}>Tiro:</label>
-                          <input
-                            type="number"
-                            min="1"
-                            max={rfRanksInActiveLevel * 10}
-                            value={activeLevel.hpRoll === null ? '' : activeLevel.hpRoll}
-                            onChange={(e) => {
-                              const val = e.target.value === '' ? null : parseInt(e.target.value);
-                              setActiveLevel(prev => ({ ...prev, hpRoll: val }));
-                            }}
-                            className="w-16 rounded text-sm p-1 bg-white text-center font-bold"
-                            style={{ border: '1px solid var(--theme-primary-skills-border)' }}
-                          />
-                        </div>
+                {(() => {
+                  const currentHp = getCharacterHpTot(characterData);
+                  const hpD10Modifier = characterData.background?.compiledModifiers?.hpD10Modifier || 0;
+                  const activeLevelHpRoll = activeLevel?.hpRoll || 0;
+                  const newHp = currentHp + activeLevelHpRoll + (rfRanksInActiveLevel * hpD10Modifier);
+                  return (
+                    <div>
+                      <div className="flex justify-between items-center mb-1">
+                        <span className="text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--theme-primary-skills-text)' }}>Punti Ferita (HP)</span>
+                        {rfRanksInActiveLevel > 0 && (
+                          <span className="text-[10px] px-1.5 py-0.5 rounded font-bold" style={{ backgroundColor: 'var(--theme-primary-skills-text)', color: '#fff' }}>
+                            Gradi RF a liv. {activeLevel.level}: +{rfRanksInActiveLevel}
+                          </span>
+                        )}
                       </div>
+                      
+                      <div className="text-xs space-y-1 mb-2 font-medium" style={{ color: 'var(--theme-primary-skills-text)' }}>
+                        <p><strong>PF Attuali:</strong> {currentHp}</p>
+                        <p><strong>Nuovi PF Totali:</strong> <strong className="text-sm font-black">{newHp}</strong></p>
+                      </div>
+
+                      {rfRanksInActiveLevel > 0 ? (
+                        <div className="space-y-3 mt-2 border-t pt-2" style={{ borderTopColor: 'rgba(30, 58, 138, 0.1)' }}>
+                          <p className="text-xs font-medium" style={{ color: 'var(--theme-primary-skills-text)' }}>
+                            Hai assegnato gradi in Resistenza Fisica! Devi lanciare <strong>{rfRanksInActiveLevel}d10</strong> per gli HP incrementali.
+                          </p>
+                          {hpD10Modifier > 0 && (
+                            <p className="text-[11px] italic" style={{ color: 'var(--theme-primary-skills-text)', opacity: 0.85 }}>
+                              (Include bonus +{rfRanksInActiveLevel * hpD10Modifier} da Resistente al dolore)
+                            </p>
+                          )}
+                          <div className="flex items-center gap-3">
+                            <button
+                              type="button"
+                              onClick={handleRollHp}
+                              className="text-white text-xs font-bold py-1.5 px-3 rounded shadow-sm transition hover:opacity-90"
+                              style={{ backgroundColor: 'var(--theme-primary-skills-text)', borderColor: 'var(--theme-primary-skills-text)', cursor: 'pointer' }}
+                            >
+                              Tira {rfRanksInActiveLevel}d10
+                            </button>
+                            <div className="flex items-center gap-1">
+                              <label className="text-xs font-bold" style={{ color: 'var(--theme-primary-skills-text)' }}>Tiro:</label>
+                              <input
+                                type="number"
+                                min="1"
+                                max={rfRanksInActiveLevel * 10}
+                                value={activeLevel.hpRoll === null ? '' : activeLevel.hpRoll}
+                                onChange={(e) => {
+                                  const val = e.target.value === '' ? null : parseInt(e.target.value);
+                                  setActiveLevel(prev => ({ ...prev, hpRoll: val }));
+                                }}
+                                className="w-16 rounded text-sm p-1 bg-white text-center font-bold"
+                                style={{ border: '1px solid var(--theme-primary-skills-border)' }}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="text-xs italic mt-2 border-t pt-2 font-medium" style={{ color: 'var(--theme-primary-skills-text)', opacity: 0.85, borderTopColor: 'rgba(30, 58, 138, 0.1)' }}>
+                          Nessun grado in Resistenza Fisica assegnato in questo livello. Nessun tiro HP richiesto.
+                        </div>
+                      )}
                     </div>
-                  ) : (
-                    <div className="text-xs italic mt-2" style={{ color: 'var(--theme-primary-skills-text)', opacity: 0.85 }}>
-                      Nessun grado in Resistenza Fisica assegnato in questo livello. Nessun tiro HP richiesto.
-                    </div>
-                  )}
-                </div>
+                  );
+                })()}
               </div>
 
               {/* Box Spell Lists */}
@@ -915,16 +994,14 @@ export default function LearningStep({ characterData, setCharacterData }) {
                 <div className="text-xs space-y-1 mt-1 font-medium" style={{ color: 'var(--theme-spell-lists-text)' }}>
                   {!hasAcquiredInActiveLevel ? (
                     <>
-                      <p><strong>Credito ereditato:</strong> {activeLevel.spellListChanceAccumulated}%</p>
+                      <p><strong>Credito ereditato:</strong> {baseAccumulated}%</p>
                       <p><strong>Punti pool Liste ({listPool} PS):</strong> +{listPool * 20}%</p>
                       <p className="text-sm font-bold mt-2" style={{ color: 'var(--theme-spell-lists-text)' }}>Probabilità Totale: {totalSpellChance}%</p>
                     </>
                   ) : (
                     <>
                       <p><strong>Lista incantesimo appresa!</strong> Costo: {listPS} PS</p>
-                      {listPool - listPS > 0 && (
-                        <p className="text-xs text-indigo-700 mt-1">Rimangono {listPool - listPS} PS non spesi che devono essere trasferiti.</p>
-                      )}
+                      <p><strong>Credito rimanente per livello successivo:</strong> {activeLevel.spellListChanceAccumulated}%</p>
                     </>
                   )}
                 </div>
@@ -944,64 +1021,37 @@ export default function LearningStep({ characterData, setCharacterData }) {
                 ) : (
                   <div className="mt-2 flex flex-col gap-2">
                     {totalSpellChance >= 100 ? (
-                      <div className="text-[10px] p-1.5 rounded border" style={{ backgroundColor: 'var(--theme-spell-lists-bg)', borderColor: 'var(--theme-spell-lists-border)', color: 'var(--theme-spell-lists-text)' }}>
-                        100% o più! Scegli una lista (costerà 5 PS o meno).
-                      </div>
-                    ) : activeLevel.spellListRollResult && activeLevel.spellListRollResult <= totalSpellChance ? (
-                      <div className="text-[10px] p-1.5 rounded border" style={{ backgroundColor: 'var(--theme-spell-lists-bg)', borderColor: 'var(--theme-spell-lists-border)', color: 'var(--theme-spell-lists-text)' }}>
-                        Tiro: <strong>{activeLevel.spellListRollResult}</strong> - Successo! Scegli la lista.
-                      </div>
-                    ) : activeLevel.spellListRollResult && activeLevel.spellListRollResult > totalSpellChance ? (
                       <div className="space-y-2">
-                        <div className="text-[10px] p-1.5 rounded border flex justify-between items-center" style={{ backgroundColor: 'rgba(220, 38, 38, 0.05)', borderColor: 'rgba(220, 38, 38, 0.2)', color: 'var(--danger-color)' }}>
-                          <span>Tiro: <strong>{activeLevel.spellListRollResult}</strong> - Fallito.</span>
-                          <button onClick={() => setActiveLevel(prev => ({ ...prev, spellListRollResult: null, hasRolledSpellList: false }))} className="underline font-bold" style={{ color: 'var(--danger-color)', border: 'none', background: 'none', cursor: 'pointer' }}>Annulla tiro</button>
+                        <div className="text-[10px] p-1.5 rounded border" style={{ backgroundColor: 'var(--theme-spell-lists-bg)', borderColor: 'var(--theme-spell-lists-border)', color: 'var(--theme-spell-lists-text)' }}>
+                          Probabilità totale ≥ 100%! Puoi scegliere e apprendere una nuova lista incantesimi.
                         </div>
-                        {listPool > 0 && (
-                          <div className="flex items-center gap-2 p-1.5 rounded border bg-indigo-50/50 border-indigo-100">
-                            <input
-                              type="checkbox"
-                              id="carryOverSpellListPoints"
-                              checked={activeLevel.carryOverSpellListPoints || false}
-                              onChange={(e) => setActiveLevel(prev => ({ ...prev, carryOverSpellListPoints: e.target.checked }))}
-                              className="rounded text-indigo-600 focus:ring-indigo-500 w-4 h-4 cursor-pointer"
-                            />
-                            <label htmlFor="carryOverSpellListPoints" className="text-xs font-semibold text-indigo-900 cursor-pointer select-none">
-                              Conserva i {listPool} PS per il prossimo livello
-                            </label>
-                          </div>
-                        )}
+                        <div className="flex gap-2">
+                          <select
+                            className="flex-1 rounded text-xs p-1 bg-white"
+                            style={{ borderColor: 'var(--theme-spell-lists-border)', border: '1px solid var(--theme-spell-lists-border)' }}
+                            value={activeLevel.selectedNewList}
+                            onChange={(e) => setActiveLevel(prev => ({ ...prev, selectedNewList: e.target.value }))}
+                          >
+                            <option value="">-- Seleziona Lista --</option>
+                            {availableLists.map(l => (
+                              <option key={l.nome_lista} value={l.nome_lista}>{l.nome_lista} ({l.tipo_lista})</option>
+                            ))}
+                          </select>
+                          <button
+                            type="button"
+                            className="text-white px-2.5 py-1 rounded text-xs font-bold disabled:opacity-50"
+                            style={{ backgroundColor: 'var(--theme-spell-lists-text)', border: 'none', cursor: 'pointer' }}
+                            disabled={!activeLevel.selectedNewList}
+                            onClick={handleAcquireSpellList}
+                          >
+                            Conferma
+                          </button>
+                        </div>
                       </div>
-                    ) : totalSpellChance > 0 ? (
-                      <button type="button" onClick={handleSpellListRoll} className="text-white px-2 py-1 rounded text-xs font-bold mt-1" style={{ backgroundColor: 'var(--theme-spell-lists-text)', border: 'none', cursor: 'pointer' }}>
-                        Tira 1d100 (≤ {totalSpellChance}%)
-                      </button>
                     ) : (
-                      <div className="text-[10px] italic mt-1" style={{ color: 'var(--theme-spell-lists-text)', opacity: 0.8 }}>Nessun punto nel pool Liste Incantesimi.</div>
-                    )}
-
-                    {(totalSpellChance >= 100 || (activeLevel.spellListRollResult && activeLevel.spellListRollResult <= totalSpellChance)) && (
-                      <div className="flex gap-2 mt-1">
-                        <select
-                          className="flex-1 rounded text-xs p-1 bg-white"
-                          style={{ borderColor: 'var(--theme-spell-lists-border)', border: '1px solid var(--theme-spell-lists-border)' }}
-                          value={activeLevel.selectedNewList}
-                          onChange={(e) => setActiveLevel(prev => ({ ...prev, selectedNewList: e.target.value }))}
-                        >
-                          <option value="">-- Seleziona Lista --</option>
-                          {availableLists.map(l => (
-                            <option key={l.nome_lista} value={l.nome_lista}>{l.nome_lista} ({l.tipo_lista})</option>
-                          ))}
-                        </select>
-                        <button
-                          type="button"
-                          className="text-white px-2.5 py-1 rounded text-xs font-bold disabled:opacity-50"
-                          style={{ backgroundColor: 'var(--theme-spell-lists-text)', border: 'none', cursor: 'pointer' }}
-                          disabled={!activeLevel.selectedNewList}
-                          onClick={handleAcquireSpellList}
-                        >
-                          Acquisisci
-                        </button>
+                      <div className="text-[10px] p-2 rounded border border-indigo-200 bg-indigo-50/50" style={{ color: 'var(--theme-spell-lists-text)' }}>
+                        La probabilità totale ({totalSpellChance}%) è inferiore al 100%. In questo livello non è possibile apprendere una nuova lista.
+                        I punti del pool Liste Incantesimi ({listPool} PS) sono stati convertiti automaticamente in credito (+{listPool * 20}%).
                       </div>
                     )}
                   </div>

@@ -1,5 +1,6 @@
 import { useEffect, useState, useMemo, useRef } from 'react';
 import { createPortal } from 'react-dom';
+import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
 import adolescenceData from '../../../data/TGP_5-sviluppo_abilita_adolescenza-v2.json';
 import secondarySkillsList from '../../../data/Tabella-abilita_secondarie.json';
 import tgp5Data from '../../../data/TGP_5-sviluppo_abilita_adolescenza-v2.json';
@@ -478,9 +479,18 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
   const currentAccumulated = characterData.spellListChanceAccumulated !== undefined 
     ? characterData.spellListChanceAccumulated 
     : baseChance;
-
-  const [rollResult, setRollResult] = useState(null);
+  
+  const rollResult = characterData.adolescenceSpellListRoll !== undefined ? characterData.adolescenceSpellListRoll : null;
   const [selectedList, setSelectedList] = useState('');
+
+  useEffect(() => {
+    if (characterData.spellListChanceAccumulated === undefined && baseChance !== undefined) {
+      setCharacterData(prev => ({
+        ...prev,
+        spellListChanceAccumulated: baseChance
+      }));
+    }
+  }, [baseChance, characterData.spellListChanceAccumulated, setCharacterData]);
 
   if (!race) {
     return (
@@ -500,17 +510,14 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
 
   const handleRoll = () => {
     const roll = Math.floor(Math.random() * 100) + 1;
-    setRollResult(roll);
-    if (roll <= currentAccumulated) {
-      // Success, chance is consumed. It will be 0 after they pick a list, 
-      // but for now we wait for them to pick the list.
-    } else {
-      // Failure, chance is retained.
-      setCharacterData(prev => ({
+    setCharacterData(prev => {
+      const nextChance = roll <= currentAccumulated ? prev.spellListChanceAccumulated : currentAccumulated;
+      return {
         ...prev,
-        spellListChanceAccumulated: currentAccumulated
-      }));
-    }
+        spellListChanceAccumulated: nextChance !== undefined ? nextChance : baseChance,
+        adolescenceSpellListRoll: roll
+      };
+    });
   };
 
   const handleAcquireList = () => {
@@ -520,10 +527,23 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
       spellListChanceAccumulated: 0,
       spellListAllocations: {
         ...(prev.spellListAllocations || {}),
-        [selectedList]: 'Adolescenza' // Mark as acquired
+        [selectedList]: 'Adolescenza'
       }
     }));
-    setRollResult(null); // Reset UI
+  };
+
+  const handleRemoveSpellList = () => {
+    setCharacterData(prev => {
+      const nextAlloc = { ...prev.spellListAllocations };
+      delete nextAlloc[acquiredListName];
+      return {
+        ...prev,
+        spellListChanceAccumulated: baseChance,
+        adolescenceSpellListRoll: null,
+        spellListAllocations: nextAlloc
+      };
+    });
+    setSelectedList('');
   };
 
   // Check if they already acquired one in adolescence
@@ -592,6 +612,7 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
 
   return (
     <div>
+      <AnagraficaReadOnlyBox characterData={characterData} />
       {/* ── HEADER BANNER ── */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '1.5rem' }}>
         <div style={{ padding: '1rem', border: '1px solid var(--theme-race-border)', borderRadius: '0.6rem', background: 'var(--theme-race-bg)' }}>
@@ -698,8 +719,17 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
           </div>
           
           {hasAcquiredInAdolescence ? (
-            <div className="text-sm text-indigo-700 bg-indigo-100 p-3 rounded text-center font-medium border border-indigo-200">
-              Hai imparato con successo: <strong>{acquiredListName}</strong>
+            <div className="flex flex-col gap-2">
+              <div className="text-sm text-indigo-700 bg-indigo-100 p-3 rounded text-center font-medium border border-indigo-200 flex justify-between items-center">
+                <span>Hai imparato con successo: <strong>{acquiredListName}</strong></span>
+                <button
+                  type="button"
+                  onClick={handleRemoveSpellList}
+                  className="text-xs bg-red-600 hover:bg-red-700 text-white px-2.5 py-1 rounded font-bold transition shadow-sm"
+                >
+                  Rimuovi
+                </button>
+              </div>
             </div>
           ) : rollResult && rollResult <= currentAccumulated ? (
             <div className="flex flex-col gap-2">
@@ -729,10 +759,16 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
             </div>
           ) : rollResult && rollResult > currentAccumulated ? (
             <div className="flex flex-col gap-2">
-              <div className="text-sm text-red-700 bg-red-100 p-2 rounded text-center font-medium border border-red-300">
-                Tiro: <strong>{rollResult}</strong> - Fallimento. Hai mantenuto il {currentAccumulated}% per il prossimo livello.
+              <div className="text-sm text-red-700 bg-red-100 p-2 rounded text-center font-medium border border-red-300 flex justify-between items-center">
+                <span>Tiro: <strong>{rollResult}</strong> - Fallimento. Hai mantenuto il {currentAccumulated}% per il prossimo livello.</span>
+                <button
+                  type="button"
+                  onClick={() => setCharacterData(prev => ({ ...prev, adolescenceSpellListRoll: null }))}
+                  className="text-xs bg-red-600 hover:bg-red-700 text-white px-2.5 py-1 rounded font-bold transition shadow-sm"
+                >
+                  Annulla tiro
+                </button>
               </div>
-              <button onClick={() => setRollResult(null)} className="text-xs text-indigo-600 hover:underline text-center">Nascondi esito</button>
             </div>
           ) : currentAccumulated > 0 ? (
             <div className="flex justify-between items-center bg-white p-3 rounded border border-indigo-100">

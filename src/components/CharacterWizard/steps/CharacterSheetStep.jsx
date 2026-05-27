@@ -15,9 +15,11 @@ import {
   fmt,
   getProfessionRanksForLevel,
   getMagicPointsPerLevel,
-  calculateCargoPenalty
+  calculateCargoPenalty,
+  getCaseInsensitive
 } from '../../../utils/skillHelpers';
 import { formatMBToCoins, formatCoinsToString } from '../../../utils/moneyHelpers';
+import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
 
 const STAT_KEYS = ['FR', 'AG', 'CO', 'IN', 'IT', 'PR'];
 const STAT_NAMES = { FR: 'Forza', AG: 'Agilità', CO: 'Costituzione', IN: 'Intelligenza', IT: 'Intuizione', PR: 'Presenza' };
@@ -166,24 +168,22 @@ export default function CharacterSheetStep({ characterData, setCharacterData }) 
   // Calcolo Gradi Resistenza Fisica del Livello 1 per calcolare quanti d10 tirare
   const rfRanksLevel1 = useMemo(() => {
     if (!profession) return 0;
-    const name = 'resistenza fisica';
-    const base = characterData.skills?.[name] || {};
+    const name = 'Resistenza fisica';
+    const base = getCaseInsensitive(characterData.skills, name) || {};
     const adRanks = base.adolescenceRanks || 0;
-    const profRanks = base.professionRanks || 0; // fissi + L1 distribuiti
-    const tgp4Ranks = base.tgp4Ranks || 0;
-    const bgExtra = bgModifiers.skillBgRanks?.[name] || 0;
-    return adRanks + profRanks + tgp4Ranks + bgExtra;
-  }, [characterData.skills, profession, bgModifiers]);
+    const level1Tb6 = characterData.level1Tb6 || {};
+    const profRanks = getSpecificTb6Ranks(name, profession) + (getCaseInsensitive(level1Tb6, name) || 0);
+    const tgp4RanksL1 = getCaseInsensitive(characterData.level1Tgp4, name) || 0;
+    const bgExtra = getCaseInsensitive(bgModifiers.skillBgRanks, name) || 0;
+    return adRanks + profRanks + tgp4RanksL1 + bgExtra;
+  }, [characterData.skills, characterData.level1Tb6, characterData.level1Tgp4, profession, bgModifiers]);
 
   // Gestione tiro HP del Livello 1
-  const [level1HpRoll, setLevel1HpRoll] = useState(() => {
-    return characterData.level1HpRoll || null;
-  });
+  const level1HpRoll = characterData.level1HpRoll ?? null;
 
   const handleRollLevel1Hp = () => {
     const numD10 = rfRanksLevel1;
     if (numD10 <= 0) {
-      setLevel1HpRoll(0);
       setCharacterData(prev => ({ ...prev, level1HpRoll: 0 }));
       return;
     }
@@ -191,12 +191,10 @@ export default function CharacterSheetStep({ characterData, setCharacterData }) 
     for (let i = 0; i < numD10; i++) {
       sum += Math.floor(Math.random() * 10) + 1;
     }
-    setLevel1HpRoll(sum);
     setCharacterData(prev => ({ ...prev, level1HpRoll: sum }));
   };
 
   const handleManualLevel1Hp = (val) => {
-    setLevel1HpRoll(val);
     setCharacterData(prev => ({ ...prev, level1HpRoll: val }));
   };
 
@@ -210,19 +208,19 @@ export default function CharacterSheetStep({ characterData, setCharacterData }) 
   // Calcolo gradi totali Resistenza Fisica per calcolare bonus speciale Resistente al Dolore
   const totalRanksRf = useMemo(() => {
     if (!profession) return 0;
-    const name = 'resistenza fisica';
-    const base = characterData.skills?.[name] || {};
+    const name = 'Resistenza fisica';
+    const base = getCaseInsensitive(characterData.skills, name) || {};
     const adRanks = base.adolescenceRanks || 0;
-    const profRanks = base.professionRanks || 0;
-    const tgp4RanksL1 = characterData.level1Tgp4?.[name] || 0;
-    const tgp4RanksLater = levelDevelopments.reduce((sum, d) => sum + (d.tgp4Distribution?.[name] || 0), 0);
-    const bgExtra = bgModifiers.skillBgRanks?.[name] || 0;
+    const profRanks = base.professionRanks || 0; // fissi + L1 distribuiti
+    const tgp4RanksL1 = getCaseInsensitive(characterData.level1Tgp4, name) || 0;
+    const tgp4RanksLater = levelDevelopments.reduce((sum, d) => sum + (getCaseInsensitive(d.tgp4Distribution, name) || 0), 0);
+    const bgExtra = getCaseInsensitive(bgModifiers.skillBgRanks, name) || 0;
     return adRanks + profRanks + tgp4RanksL1 + tgp4RanksLater + bgExtra;
   }, [characterData.skills, profession, levelDevelopments, bgModifiers]);
 
   // Punti Ferita Totali: tiri HP + bonus CO + 5 + (gradi RF * hpD10Modifier) + specialRfBonus
   const hpD10Modifier = bgModifiers.hpD10Modifier || 0;
-  const specialRfBonus = bgModifiers.primarySkillsSpecialBonus?.['resistenza fisica'] || 0;
+  const specialRfBonus = getCaseInsensitive(bgModifiers.primarySkillsSpecialBonus, 'Resistenza fisica') || 0;
   const specialHpBonus = (totalRanksRf * hpD10Modifier) + specialRfBonus;
   const finalHitPoints = totalHpRolls + coBonus + 5 + specialHpBonus;
 
@@ -368,6 +366,23 @@ export default function CharacterSheetStep({ characterData, setCharacterData }) 
     return Array.from(list).sort();
   }, [spellListAllocations, bgSpellLists]);
 
+  const getMagicRealmSummaryStep10 = () => {
+    if (allLearnedLists.length > 0) {
+      return (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+          {allLearnedLists.map((name, i) => (
+            <div key={i}>Lista incantesimi {name} appresa.</div>
+          ))}
+        </div>
+      );
+    }
+    const inheritedChance = characterData.levelDevelopments?.length > 0
+      ? characterData.levelDevelopments[characterData.levelDevelopments.length - 1].spellListChanceAccumulated
+      : (characterData.spellListChanceAccumulated || 0);
+      
+    return <div>Nessuna lista incantesimi appresa - Credito ereditato: {inheritedChance}%</div>;
+  };
+
   // Limiti incantesimi per la professione
   const getSpellLimitForProfessionAndRealm = (profName, listTipo, charLevel) => {
     const p = (profName || '').toLowerCase().trim();
@@ -448,40 +463,28 @@ export default function CharacterSheetStep({ characterData, setCharacterData }) 
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-4 mt-6 bg-gray-50/50 rounded-lg p-4 border border-gray-100">
-            <div style={{ padding: '0.6rem 0.75rem', borderRadius: '6px', border: '1px solid var(--border-color)', backgroundColor: '#ffffff' }}>
-              <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider block mb-0.5">Nome Personaggio</span>
-              <p className="text-sm font-bold text-gray-900">{characterData.name || 'Senza Nome'}</p>
+          <AnagraficaReadOnlyBox characterData={characterData} />
+
+          {/* ── HEADER BANNER ── */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginTop: '1rem' }}>
+            <div style={{ padding: '1rem', border: '1px solid var(--theme-race-border)', borderRadius: '0.6rem', background: 'var(--theme-race-bg)' }}>
+              <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-race-text)' }}>Popolo</div>
+              <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-race-text)', marginTop: '0.2rem' }}>{race?.popolo}</div>
+              <div style={{ fontSize: '0.75rem', color: 'var(--theme-race-text)', opacity: 0.85, marginTop: '0.15rem' }}>{race?.['note (umani/non umani)']}</div>
             </div>
-            <div style={{ backgroundColor: 'var(--theme-race-bg)', border: '1px solid var(--theme-race-border)', padding: '0.6rem 0.75rem', borderRadius: '6px' }}>
-              <span className="text-[10px] font-bold var(--theme-race-text) uppercase tracking-wider block mb-0.5" style={{ color: 'var(--theme-race-text)' }}>Popolo</span>
-              <p className="text-sm font-bold" style={{ color: 'var(--theme-race-text)' }}>{race.popolo}</p>
+            <div style={{ padding: '1rem', border: '1px solid var(--theme-profession-border)', borderRadius: '0.6rem', background: 'var(--theme-profession-bg)' }}>
+              <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-profession-text)' }}>Professione</div>
+              <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-profession-text)', marginTop: '0.2rem' }}>{profession?.professione} (Liv. {finalLevel})</div>
+              <div style={{ fontSize: '0.75rem', color: 'var(--theme-profession-text)', opacity: 0.85, marginTop: '0.15rem' }}>
+                {profession && `Primaria: ${profession.primaria} | Secondaria: ${profession.secondaria}`}
+              </div>
             </div>
-            <div style={{ backgroundColor: 'var(--theme-profession-bg)', border: '1px solid var(--theme-profession-border)', padding: '0.6rem 0.75rem', borderRadius: '6px' }}>
-              <span className="text-[10px] font-bold var(--theme-profession-text) uppercase tracking-wider block mb-0.5" style={{ color: 'var(--theme-profession-text)' }}>Professione</span>
-              <p className="text-sm font-bold" style={{ color: 'var(--theme-profession-text)' }}>{profession.professione}</p>
-            </div>
-            <div style={{ backgroundColor: 'var(--theme-spell-lists-bg)', border: '1px solid var(--theme-spell-lists-border)', padding: '0.6rem 0.75rem', borderRadius: '6px' }}>
-              <span className="text-[10px] font-bold var(--theme-spell-lists-text) uppercase tracking-wider block mb-0.5" style={{ color: 'var(--theme-spell-lists-text)' }}>Reame Magico</span>
-              <p className="text-sm font-bold" style={{ color: 'var(--theme-spell-lists-text)' }}>{magicRealm}</p>
-            </div>
-            <div style={{ padding: '0.6rem 0.75rem', borderRadius: '6px', border: '1px solid var(--border-color)', backgroundColor: '#ffffff' }}>
-              <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider block mb-0.5">Altezza</span>
-              <p className="text-sm font-bold text-gray-900">{characterData.altezza ? `${characterData.altezza} cm` : '—'}</p>
-            </div>
-            <div style={{ padding: '0.6rem 0.75rem', borderRadius: '6px', border: '1px solid var(--border-color)', backgroundColor: '#ffffff' }}>
-              <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider block mb-0.5">Peso Corporeo</span>
-              <p className="text-sm font-bold text-gray-900">{characterData.peso ? `${characterData.peso} kg` : '—'}</p>
-            </div>
-            <div className="col-span-2" style={{ padding: '0.6rem 0.75rem', borderRadius: '6px', border: '1px solid #fcd34d', backgroundColor: '#fffbeb' }}>
-              <span className="text-[10px] font-bold text-amber-800 uppercase tracking-wider block mb-0.5">Portafoglio</span>
-              <p className="text-sm font-bold text-amber-700" title={formatCoinsToString(formatMBToCoins(characterData.portafoglioMB || 0))}>
-                💰 {(characterData.portafoglioMB || 0).toFixed(2)} MB ({formatCoinsToString(formatMBToCoins(characterData.portafoglioMB || 0))})
-              </p>
-            </div>
-            <div className="col-span-1" style={{ padding: '0.6rem 0.75rem', borderRadius: '6px', border: '1px solid var(--border-color)', backgroundColor: '#ffffff' }}>
-              <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider block mb-0.5">Livello</span>
-              <p className="text-sm font-bold text-gray-900">{finalLevel}</p>
+            <div style={{ padding: '1rem', border: '1px solid var(--theme-spell-lists-border)', borderRadius: '0.6rem', background: 'var(--theme-spell-lists-bg)' }}>
+              <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-spell-lists-text)' }}>Reame Magico</div>
+              <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-spell-lists-text)', marginTop: '0.2rem' }}>{characterData.magicRealm || 'Nessuno'}</div>
+              <div style={{ fontSize: '0.75rem', color: 'var(--theme-spell-lists-text)', opacity: 0.85, marginTop: '0.15rem', fontWeight: 500 }}>
+                {getMagicRealmSummaryStep10()}
+              </div>
             </div>
           </div>
         </div>

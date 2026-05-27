@@ -1,0 +1,488 @@
+[
+  {
+    "id": "no_armor",
+    "name": {
+      "it": "Nessuna armatura",
+      "en": "No Armor"
+    },
+    "category": {
+      "it": "di manovra e movimento",
+      "en": "Maneuver & Movement"
+    },
+    "type": "MM",
+    "associated_stat": "AG",
+    "description": {
+      "it": "Quanto e come un Personaggio riesce spostarsi nel corso di un Round di gioco. Ovvero, quanta strada un Personaggio riesce a percorrere nel lasso di dieci secondi. Dipende dal tipo di armatura che esso indossa. ",
+      "en": "Conditions physical maneuvers and movement rate when wearing no armor."
+    },
+    "is_primary": true
+  },
+  {
+    "id": "soft_leather",
+    "name": {
+      "it": "Cuoio grezzo",
+      "en": "Soft Leather"
+    },
+    "category": {
+      "it": "di manovra e movimento",
+      "en": "Maneuver & Movement"
+    },
+    "type": "MM",
+    "associated_stat": "AG",
+    "description": {
+      "it": "Quanto e come un Personaggio riesce spostarsi nel corso di un Round di gioco. Ovvero, quanta strada un Personaggio riesce a percorrere nel lasso di dieci secondi. Dipende dal tipo di armatura che esso indossa. ",
+      "en": "Conditions physical maneuvers and movement rate when wearing soft leather armor."
+    },
+    "is_primary": true
+  },
+  {
+    "id": "rigid_leather",
+    "name": {
+      "it": "Cuoio rinforzato",
+      "en": "Rigid Leather"
+    },
+    "category": {
+      "it": "di manovra e movimento",
+      "en": "Maneuver & Movement"
+    },
+    "type": "MM",
+    "associated_stat": "AG",
+    "description": {
+      "it": "Quanto e come un Personaggio riesce spostarsi nel corso di un Round di gioco. Ovvero, quanta strada un Personaggio riesce a percorrere nel lasso di dieci secondi. Dipende dal tipo di armatura che esso indossa. ",
+      "en": "Conditions physical maneuvers and movement rate when wearing rigid leather armor."
+    },
+    "is_primary": true
+  },
+  {
+    "id": "chain_mail",
+    "name": {
+      "it": "Corazza di maglia",
+      "en": "Chain Mail"
+    },
+    "category": {
+      "it": "di manovra e movimento",
+      "en": "Maneuver & Movement"
+    },
+    "type": "MM",
+    "associated_stat": "FR",
+    "description": {
+      "it": "Quanto e come un Personaggio riesce spostarsi nel corso di un Round di gioco. Ovvero, quanta strada un Personaggio riesce a percorrere nel lasso di dieci secondi. Dipende dal tipo di armatura che esso indossa. ",
+      "en": "Conditions physical maneuvers and movement rate when wearing chain mail."
+    },
+    "is_primary": true
+  },
+  {
+    "id": "plate_mail",
+    "name": {
+      "it": "Corazza di piastre",
+      "en": "Plate Mail"
+    },
+    "category": {
+      "it": "di manovra e movimento",
+      "en": "Maneuver & Movement"
+    },
+    "type": "MM",
+    "associated_stat": "FR",
+    "description": {
+      "it": "Quanto e come un Personaggio riesce spostarsi nel corso di un Round di gioco. Ovvero, quanta strada un Personaggio riesce a percorrere nel lasso di dieci secondi. Dipende dal tipo di armatura che esso indossa. ",
+      "en": "Conditions physical maneuvers and movement rate when wearing plate armor."
+    },
+    "is_primary": true
+  },
+  {
+    "id": "one_hand_slash",
+    "name": {
+      "it": "Taglio a 1 mano",
+      "en": "1-Handed Slash"
+    },
+    "category": {
+      "it": "con le armi",
+      "en": "Weapons"
+    },
+    "type": "BO",
+    "associated_stat": "FR",
+    "description": {
+      "it": "Capacità di combattere con un tipo specifico di arma.",
+      "en": "Combative skill with one-handed edged cutting weapons (e.g. broadsword, short sword, dagger)."
+    },
+    "is_primary": true
+  },
+  {
+    "id": "one_hand_crush",
+    "name": {
+      "it": "Contundenti a 1 mano",
+      "en": "1-Handed Crush"
+    },
+    "category": {
+      "it": "con le armi",
+      "en": "Weapons"
+    },
+    "type": "BO",
+    "associated_stat": "FR",
+    "description": {
+      "it": "Capacità di combattere con armi contundenti a una mano (es: mazzafrusto, randello, martello da guerra).",
+      "en": "Combative skill with one-handed crushing weapons (e.g. mace, war hammer, club)."
+    },
+    "is_primary": true
+  },
+  {
+    "id": "two_hands",
+    "name": {
+      "it": "A 2 mani",
+      "en": "2-Handed"
+    },
+    "category": {
+      "it": "con le armi",
+      "en": "Weapons"
+    },
+    "type": "BO",
+    "associated_stat": "FR",
+    "description": {
+      "it": "Capacità di combattere con armi a due mani (es: spadone a due mani, flagello, ascia da battaglia).",
+      "en": "Combative skill with massive weapons requiring two hands (e.g. greatsword, battle axe, flail)."
+    },
+    "is_primary": true
+  },
+  {
+    "id": "missile",
+    "name": {
+      "it": "Da tiro",
+      "en": "Missile"
+    },
+    "category": {
+      "it": "con le armi",
+      "en": "Weapons"
+    },
+    "type": "BO",
+    "associated_stat": "AG",
+    "description": {
+      "it": "Capacità di combattere con armi da tiro a distanza (es: arco corto, arco lungo, balestra, fionda).",
+      "en": "Combative skill with long-range projectile weapons (e.g. short bow, composite bow, longbow, crossbow)."
+    },
+    "is_primary": true
+  },
+  {
+    "id": "thrown",
+    "name": {
+      "it": "Da lancio",
+      "en": "Thrown"
+    },
+    "category": {
+      "it": "con le armi",
+      "en": "Weapons"
+    },
+    "type": "BO",
+    "associated_stat": "AG",
+    "description": {
+      "it": "Capacità di combattere con armi da lancio (es: bolas, giavellotto, pugnale da lancio).",
+      "en": "Combative skill with short-range thrown weapons (e.g. bolas, hand axe, dagger)."
+    },
+    "is_primary": true
+  },
+  {
+    "id": "polearms",
+    "name": {
+      "it": "Con asta",
+      "en": "Polearms"
+    },
+    "category": {
+      "it": "con le armi",
+      "en": "Weapons"
+    },
+    "type": "BO",
+    "associated_stat": "FR",
+    "description": {
+      "it": "Capacità di combattere con armi con asta (es: lancia, alabarda).",
+      "en": "Combative skill with weapons mounted on shafts, used for thrusting or hacking (e.g. spear, javelin, halberd)."
+    },
+    "is_primary": true
+  },
+  {
+    "id": "climb",
+    "name": {
+      "it": "Arrampicarsi",
+      "en": "Climb"
+    },
+    "category": {
+      "it": "generali",
+      "en": "General"
+    },
+    "type": "MM",
+    "associated_stat": "AG",
+    "description": {
+      "it": "Si ricorre a questa Abilità quando si deve affrontare u n arrampicata impegnativa (ad esempio: per salire su un albero, lungo una parete o una corda, ma non per salire le scale normali o a pioli). La velocità di salita lungo una parete, con adeguati appigli, è di 3 m/round, e costituisce una manovra di difficoltà \"Media\"",
+      "en": "Governs climbing walls, cliffs, trees, or ropes under stress."
+    },
+    "is_primary": true
+  },
+  {
+    "id": "ride",
+    "name": {
+      "it": "Cavalcare",
+      "en": "Ride"
+    },
+    "category": {
+      "it": "generali",
+      "en": "General"
+    },
+    "type": "MM",
+    "associated_stat": "IT",
+    "description": {
+      "it": "Abilità a cui si ricorre per montare ogni specie di animale (cavalli, muli, cammelli, o aquile giganti). In tali occasioni, occorre effettuare un Tiro Manovra solo quando si compiano azioni insolite oppure in ogni round nel quale si attacchi restando in sella.",
+      "en": "Ability to ride and command mounts (e.g. horses, ponies, exotic mounts) under difficult circumstances."
+    },
+    "is_primary": true
+  },
+  {
+    "id": "swim",
+    "name": {
+      "it": "Nuotare",
+      "en": "Swim"
+    },
+    "category": {
+      "it": "generali",
+      "en": "General"
+    },
+    "type": "MM",
+    "associated_stat": "AG",
+    "description": {
+      "it": "Si fa uso di questa Abilità quando si nuota. Se il personaggio indossa un' armatura, la manovra diventa più difficile, se non impossibile (a discrezione del GM). Ad esempio: Corazza di piastre =assurdo; Corazza di maglia =difficilissimo; Cuoio Rinforzato molto difficile; Cuoio Grezzo =difficile; Abiti pesanti =media. Altri fattori possono far aumentare la difficoltà (per es.: l'acqua agitata).",
+      "en": "Governs swimming in water, with difficulty increased by armor weight."
+    },
+    "is_primary": true
+  },
+  {
+    "id": "track",
+    "name": {
+      "it": "Seguire tracce",
+      "en": "Track"
+    },
+    "category": {
+      "it": "generali",
+      "en": "General"
+    },
+    "type": "MS",
+    "associated_stat": "IN",
+    "description": {
+      "it": "Viene usata quando si tenta di riconoscere delle tracce, o di seguirle.",
+      "en": "Ability to identify and follow animal or humanoid tracks across different terrains."
+    },
+    "is_primary": true
+  },
+  {
+    "id": "ambush",
+    "name": {
+      "it": "Cogliere alle spalle",
+      "en": "Ambush"
+    },
+    "category": {
+      "it": "sotterfugio",
+      "en": "Subterfuge"
+    },
+    "type": "AS",
+    "associated_stat": null,
+    "description": {
+      "it": "Quando il personaggio riesce a portarsi dietro un avversario, può effettuare un Tiro Manovra per \"coglierlo alle spalle\" con un normale attacco di mischia. Se il Tiro Manovra fallisce, si effettua un normale attacco di mischia; se ha successo, e al normale attacco segue un Colpo Critico, si lanciano normalmente i dadi per il Colpo Critico, ma l'attaccante, dopo averne conosciuto il risultato, può decidere se aggiungere ad esso il Grado dell'Abilità di \"Colpire alle spalle\".",
+      "en": "Allows striking unaware targets from behind for massive damage."
+    },
+    "is_primary": true
+  },
+  {
+    "id": "hide",
+    "name": {
+      "it": "Nascondersi",
+      "en": "Hide"
+    },
+    "category": {
+      "it": "sotterfugio",
+      "en": "Subterfuge"
+    },
+    "type": "MS",
+    "associated_stat": "PR",
+    "description": {
+      "it": "Questa Abilità condiziona l'efficacia con cui il personaggio si nasconde senza muoversi (Manovra Statica). Il Tiro Manovra viene modificato (in negativo) dal bonus di Percezione di coloro che si trovano nelle vicinanze e che tentano di vederlo o di sentirlo.",
+      "en": "Governs staying unseen while remaining stationary."
+    },
+    "is_primary": true
+  },
+  {
+    "id": "stalk",
+    "name": {
+      "it": "Muoversi silenziosamente",
+      "en": "Stalk"
+    },
+    "category": {
+      "it": "sotterfugio",
+      "en": "Subterfuge"
+    },
+    "type": "MM",
+    "associated_stat": "PR",
+    "description": {
+      "it": "Questa Abilità condiziona l'efficacia con cui il personaggio si muove in silenzio (senza essere visto nè udito: Manovra in Movimento). Il Tiro Manovra viene modificato (in negativo) dal bonus di Percezione di coloro che si trovano nelle vicinanze e che tentano di vederlo o di sentirlo.",
+      "en": "Governs moving without making noise."
+    },
+    "is_primary": true
+  },
+  {
+    "id": "lockpick",
+    "name": {
+      "it": "Scassinare serrature",
+      "en": "Lockpick"
+    },
+    "category": {
+      "it": "sotterfugio",
+      "en": "Subterfuge"
+    },
+    "type": "MS",
+    "associated_stat": "IN",
+    "description": {
+      "it": "Influisce sui tentativi di scassinare ogni genere di serratura.",
+      "en": "Governs picking mechanical locks on doors, chests, or shackles."
+    },
+    "is_primary": true
+  },
+  {
+    "id": "disarm_traps",
+    "name": {
+      "it": "Disattivare trappole",
+      "en": "Disarm Traps"
+    },
+    "category": {
+      "it": "sotterfugio",
+      "en": "Subterfuge"
+    },
+    "type": "MS",
+    "associated_stat": "IT",
+    "description": {
+      "it": "Influisce sui tentativi di disattivare ogni genere di trappola.",
+      "en": "Governs detecting, disarming, and bypassing traps."
+    },
+    "is_primary": true
+  },
+  {
+    "id": "read_runes",
+    "name": {
+      "it": "Lettura rune",
+      "en": "Read Runes"
+    },
+    "category": {
+      "it": "magiche",
+      "en": "Magic"
+    },
+    "type": "AS",
+    "associated_stat": "IN",
+    "description": {
+      "it": "È l'Abilità di decifrare l'incantesimo scritto con le Rune su di un foglio (o una pergamena) e quindi di lanciarlo. Per studiare e apprendere l'incantesimo occorre un Tiro Manovra Statica in base alla tabella TM-2 (modificato dal bonus di questa Abilità). Con un tiro analogo si determina se il personaggio può lanciare l'incantesimo scritto sulla pergamena.",
+      "en": "Allows reading and casting spells from written scrolls or runic inscriptions."
+    },
+    "is_primary": true
+  },
+  {
+    "id": "use_items",
+    "name": {
+      "it": "Uso oggetti magici",
+      "en": "Use Magic Items"
+    },
+    "category": {
+      "it": "magiche",
+      "en": "Magic"
+    },
+    "type": "AS",
+    "associated_stat": "IT",
+    "description": {
+      "it": "È l'Abilità di comprendere quali incantesimi e proprietà magiche sono infusi in un oggetto (diverso dalle pergamene runiche o altri oggetti speciali), e la conseguente Abilità di lanciarli. Il procedimento è identico a quello della Lettura delle Rune, ma in questo caso si deve far uso del bonus per l'Uso di Oggetti Magici.",
+      "en": "Governs identifying and activating magical items (wands, staves, rings)."
+    },
+    "is_primary": true
+  },
+  {
+    "id": "directed_spells",
+    "name": {
+      "it": "Incantesimi diretti",
+      "en": "Directed Spells"
+    },
+    "category": {
+      "it": "magiche",
+      "en": "Magic"
+    },
+    "type": "BO",
+    "associated_stat": "AG",
+    "description": {
+      "it": "Questa Abilità quantifica l'efficacia degli incantesimi elementali usati dal personaggio in combattimento (differenti dai normali incantesimi e dalle armi). Il bonus cui dà diritto viene applicato ai Tiri per Colpire di tali incantesimi. Sono \"diretti\" tutti gli incantesimi di \"dardo\" (pirodardo, gelodardo, ecc.) e l'incantesimo di \"lampo\". Non rientrano in questa categoria gli incantesimi \"sfera\" (ad es. Pirosfera, Gelosfera ecc.). Agli attacchi di quest'ultimo tipo si applica, infatti, il bonus per gli Incantesimi di Base. Contro di essi non è possibile ricorrere al Tiro Resistenza, ma la vittima dell'attacco (sia degli Incantesimi Diretti che quelli di Sfera) può ricorrere ad un Tiro Manovra in Movimento (come se la sua azione, per il round in corso, fosse mettersi al riparo). In questo modo potrà modificare il Tiro per Colpire da -10 a -60, a seconda del tipo di riparo disponibile.",
+      "en": "Offensive bonus when casting directed projectile spells (e.g. shock bolt, fire bolt)."
+    },
+    "is_primary": true
+  },
+  {
+    "id": "perception",
+    "name": {
+      "it": "Percezione",
+      "en": "Perception"
+    },
+    "category": {
+      "it": "bonus e abilità varie",
+      "en": "Special & Stats"
+    },
+    "type": "MS",
+    "associated_stat": "IT",
+    "description": {
+      "it": "È la misura della quantità di indizi ed informazioni che il personaggio può trarre dall'osservazione. Può essere usata per scoprire trappole, per vedere qualcuno che stia tentando di nascondersi o di muoversi in silenzio, per trovare porte segrete ecc. Il GM, se il personaggio dichiara di osservare o esaminare una zona o un luogo, deve effettuare un Tiro Manovra Statica, modificandolo col bonus di Percezione. Il bonus di Percezione diminuisce di -5 se il personaggio indossa un elmo. Il bonus può essere usato anche per modificare il Tiro Manovra di un avversario che tenta di nascondersi o di muoversi in silenzio.",
+      "en": "Governs general alertness, spotting hidden doors, traps, and stealthy characters."
+    },
+    "is_primary": true
+  },
+  {
+    "id": "body_development",
+    "name": {
+      "it": "Resistenza fisica",
+      "en": "Body Development"
+    },
+    "category": {
+      "it": "bonus e abilità varie",
+      "en": "Special & Stats"
+    },
+    "type": "AS",
+    "associated_stat": "CO",
+    "description": {
+      "it": "Indica la capacità di sopportare il dolore, lo shock e la perdita di sangue. Ogni volta che il Grado di questa Abilità aumenta di 1 punto, il personaggio tira 1D10 ed aggiunge il risultato al bonus (non si applicano i normali bonus dovuti al Grado di Abilità). Il bonus speciale di questa attività, all'inizio della carriera del personaggio, è pari a 5 (già inserito nella Scheda). L'ammontare del bonus rappresenta il \"Totale di Punti Ferita del personaggio\": cioè il numero di Punti Ferita che può sopportare (per i danni subiti dagli attacchi o in altro modo) prima di perdere i sensi. Se il personaggio subisce un quantitativo di Punti Ferita superiore alla somma dei suoi Punti Ferita e del punteggio della Costituzione, muore a causa del tremendo shock e per l'emorragia interna.",
+      "en": "Represents general physical endurance and hit point pool size."
+    },
+    "is_primary": true
+  },
+  {
+    "id": "base_spells",
+    "name": {
+      "it": "Incantesimi base",
+      "en": "Base Spells"
+    },
+    "category": {
+      "it": "magiche",
+      "en": "Magic"
+    },
+    "type": "BO",
+    "associated_stat": null,
+    "description": {
+      "it": "L'abilità denominata Incantesimi Base, invece contempla il Bonus Offensivo da utilizzarsi quando si lanciano degli incantesimi d'attacco diversi dagli Incantesimi Dardo.",
+      "en": "Offensive bonus when casting area or non-projectile attack spells."
+    },
+    "is_primary": true
+  },
+  {
+    "id": "leadership",
+    "name": {
+      "it": "Leadership e influenza",
+      "en": "Leadership & Influence"
+    },
+    "category": {
+      "it": "bonus e abilità varie",
+      "en": "Special & Stats"
+    },
+    "type": "AS",
+    "associated_stat": "PR",
+    "description": {
+      "it": "Abilità che esprime carisma e capacità di influenzare e acquisire consenso.",
+      "en": "Governs commanding allies, inspiring morale, and negotiating."
+    },
+    "is_primary": true
+  }
+]

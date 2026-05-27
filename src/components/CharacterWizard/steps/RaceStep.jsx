@@ -40,17 +40,46 @@ const COLUMNS_MAPPING = {
 };
 
 export default function RaceStep({ characterData, setCharacterData }) {
-  const [selectedRace, setSelectedRace] = useState(characterData.race || '');
+  const [selectedRace, setSelectedRace] = useState(characterData.race?.popolo || '');
   const [characterName, setCharacterName] = useState(characterData.name || '');
+  const [playerName, setPlayerName] = useState(characterData.playerName || '');
+  const [altezza, setAltezza] = useState(characterData.altezza || '');
+  const [peso, setPeso] = useState(characterData.peso || '');
+  const [hairColor, setHairColor] = useState(characterData.hairColor || '');
+  const [eyeColor, setEyeColor] = useState(characterData.eyeColor || '');
+  const [personality, setPersonality] = useState(characterData.personality || '');
+  const [specialFeature, setSpecialFeature] = useState(characterData.specialFeature || '');
 
   useEffect(() => {
     setCharacterName(characterData.name || '');
-  }, [characterData.name]);
+    setPlayerName(characterData.playerName || '');
+    setAltezza(characterData.altezza || '');
+    setPeso(characterData.peso || '');
+    setHairColor(characterData.hairColor || '');
+    setEyeColor(characterData.eyeColor || '');
+    setPersonality(characterData.personality || '');
+    setSpecialFeature(characterData.specialFeature || '');
+    setSelectedRace(characterData.race?.popolo || '');
+  }, [
+    characterData.name,
+    characterData.playerName,
+    characterData.altezza,
+    characterData.peso,
+    characterData.hairColor,
+    characterData.eyeColor,
+    characterData.personality,
+    characterData.specialFeature,
+    characterData.race
+  ]);
 
   useEffect(() => {
     let err = null;
     if (!characterName || !characterName.trim()) {
       err = 'Inserisci il nome del personaggio.';
+    } else if (!altezza || isNaN(Number(altezza)) || Number(altezza) <= 0) {
+      err = 'Devi inserire un\'altezza valida (maggiore di 0 cm) prima di procedere.';
+    } else if (!peso || isNaN(Number(peso)) || Number(peso) <= 0) {
+      err = 'Devi inserire un peso corporeo valido (maggiore di 0 kg) prima di procedere.';
     } else if (!selectedRace) {
       err = 'Seleziona il popolo di appartenenza.';
     }
@@ -64,12 +93,22 @@ export default function RaceStep({ characterData, setCharacterData }) {
         }
       }));
     }
-  }, [characterName, selectedRace, characterData.stepErrors, setCharacterData]);
+  }, [characterName, altezza, peso, selectedRace, characterData.stepErrors, setCharacterData]);
 
-  const handleNameChange = (e) => {
-    const val = e.target.value;
-    setCharacterName(val);
-    setCharacterData(prev => ({ ...prev, name: val }));
+  const handleFieldChange = (field, val) => {
+    if (field === 'name') setCharacterName(val);
+    else if (field === 'playerName') setPlayerName(val);
+    else if (field === 'altezza') setAltezza(val);
+    else if (field === 'peso') setPeso(val);
+    else if (field === 'hairColor') setHairColor(val);
+    else if (field === 'eyeColor') setEyeColor(val);
+    else if (field === 'personality') setPersonality(val);
+    else if (field === 'specialFeature') setSpecialFeature(val);
+
+    setCharacterData(prev => ({
+      ...prev,
+      [field]: val
+    }));
   };
 
   const handleSelect = (race) => {
@@ -177,15 +216,114 @@ export default function RaceStep({ characterData, setCharacterData }) {
   return (
     <div>
       <div className="mb-6 card p-4 bg-white border border-gray-200 rounded-lg shadow-sm">
-        <label className="block text-sm font-bold text-gray-700 mb-2">Nome del Personaggio</label>
-        <input 
-          type="text" 
-          value={characterName} 
-          onChange={handleNameChange} 
-          placeholder="Inserisci il nome del personaggio..." 
-          className="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600"
-          style={{ width: '100%', padding: '0.6rem 0.8rem', fontSize: '0.9rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}
-        />
+        <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-3" style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', marginTop: 0 }}>
+          Anagrafica personaggio
+        </h3>
+        
+        {/* Griglia a 3 colonne */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '1rem' }}>
+          <div>
+            <label className="block text-xs font-bold text-gray-700 mb-1">Nome personaggio</label>
+            <input 
+              type="text" 
+              value={characterName} 
+              onChange={(e) => handleFieldChange('name', e.target.value)} 
+              placeholder="Nome del personaggio" 
+              className="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600"
+              style={{ width: '100%', padding: '0.5rem 0.7rem', fontSize: '0.875rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}
+            />
+          </div>
+          <div>
+            <label className="block text-xs font-bold text-gray-700 mb-1">Altezza (in cm)</label>
+            <input 
+              type="number" 
+              min="1"
+              value={altezza} 
+              onChange={(e) => {
+                const val = e.target.value === '' ? '' : Math.max(1, parseInt(e.target.value) || 1);
+                handleFieldChange('altezza', val);
+              }} 
+              placeholder="Es: 180" 
+              className="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600"
+              style={{ width: '100%', padding: '0.5rem 0.7rem', fontSize: '0.875rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}
+            />
+          </div>
+          <div>
+            <label className="block text-xs font-bold text-gray-700 mb-1">Colore capelli</label>
+            <input 
+              type="text" 
+              value={hairColor} 
+              onChange={(e) => handleFieldChange('hairColor', e.target.value)} 
+              placeholder="Es: Castani" 
+              className="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600"
+              style={{ width: '100%', padding: '0.5rem 0.7rem', fontSize: '0.875rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-bold text-gray-700 mb-1">Nome giocatore</label>
+            <input 
+              type="text" 
+              value={playerName} 
+              onChange={(e) => handleFieldChange('playerName', e.target.value)} 
+              placeholder="Nome del giocatore" 
+              className="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600"
+              style={{ width: '100%', padding: '0.5rem 0.7rem', fontSize: '0.875rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}
+            />
+          </div>
+          <div>
+            <label className="block text-xs font-bold text-gray-700 mb-1">Peso (in kg)</label>
+            <input 
+              type="number" 
+              min="1"
+              value={peso} 
+              onChange={(e) => {
+                const val = e.target.value === '' ? '' : Math.max(1, parseInt(e.target.value) || 1);
+                handleFieldChange('peso', val);
+              }} 
+              placeholder="Es: 75" 
+              className="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600"
+              style={{ width: '100%', padding: '0.5rem 0.7rem', fontSize: '0.875rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}
+            />
+          </div>
+          <div>
+            <label className="block text-xs font-bold text-gray-700 mb-1">Colore occhi</label>
+            <input 
+              type="text" 
+              value={eyeColor} 
+              onChange={(e) => handleFieldChange('eyeColor', e.target.value)} 
+              placeholder="Es: Azzurri" 
+              className="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600"
+              style={{ width: '100%', padding: '0.5rem 0.7rem', fontSize: '0.875rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}
+            />
+          </div>
+        </div>
+
+        {/* Griglia a 2 colonne */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem', borderTop: '1px dashed var(--border-color)', paddingTop: '0.75rem' }}>
+          <div>
+            <label className="block text-xs font-bold text-gray-700 mb-1">Carattere/temperamento</label>
+            <input 
+              type="text" 
+              value={personality} 
+              onChange={(e) => handleFieldChange('personality', e.target.value)} 
+              placeholder="Es: Calmo, riflessivo" 
+              className="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600"
+              style={{ width: '100%', padding: '0.5rem 0.7rem', fontSize: '0.875rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}
+            />
+          </div>
+          <div>
+            <label className="block text-xs font-bold text-gray-700 mb-1">Caratteristica particolare</label>
+            <input 
+              type="text" 
+              value={specialFeature} 
+              onChange={(e) => handleFieldChange('specialFeature', e.target.value)} 
+              placeholder="Es: Cicatrice sull'occhio sinistro" 
+              className="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600"
+              style={{ width: '100%', padding: '0.5rem 0.7rem', fontSize: '0.875rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}
+            />
+          </div>
+        </div>
       </div>
 
       <p className="mb-4 text-muted">

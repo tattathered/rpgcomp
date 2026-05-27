@@ -23,6 +23,31 @@ fs.readdirSync(dataDir).forEach(file => {
     });
     
     const baseName = path.basename(file, '.csv');
+    
+    if (baseName === 'Tabella-abilita_primarie') {
+      parsed.data = parsed.data.map(row => {
+        if (row) {
+          row.nome = row.nome_abilita_primaria;
+          row.categoria = row.categoria_abilita_primaria;
+          row.tipo = row.tipo_abilita_primaria;
+          row['valore iniziale'] = row.abilita_primaria_bonus_valore_iniziale;
+          row.calcolo = row.abilita_primaria_bonus_calcolo;
+        }
+        return row;
+      });
+    } else if (baseName === 'Tabella-abilita_secondarie') {
+      parsed.data = parsed.data.map(row => {
+        if (row) {
+          row.abilita_secondaria = row.nome_abilita_secondaria;
+          row.caratteristica_associata = row.caratteristica_abilita_secondaria;
+          row.descrizione = row.abilita_secondaria_descrizione;
+          row.categoria = row.categoria_abilita_secondaria;
+          row.tipo = row.tipo_abilita_secondaria;
+        }
+        return row;
+      });
+    }
+
     const outPath = path.join(outputDir, `${baseName}.json`);
     fs.writeFileSync(outPath, JSON.stringify(parsed.data, null, 2), 'utf8');
     console.log(`Converted ${file} to ${baseName}.json`);

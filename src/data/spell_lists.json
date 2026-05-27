@@ -1,0 +1,562 @@
+[
+  {
+    "id": "physical_development",
+    "name": {
+      "it": "Sviluppo fisico",
+      "en": "Physical Development"
+    },
+    "realm": "essence",
+    "category": "open",
+    "profession_id": null,
+    "description": {
+      "it": "Lista degli incantesimi di Sviluppo fisico (Lista Aperta Essenza).",
+      "en": "Spell list of Physical Development (essence - open)."
+    }
+  },
+  {
+    "id": "manipulation",
+    "name": {
+      "it": "Manipolazione",
+      "en": "Manipulation"
+    },
+    "realm": "essence",
+    "category": "open",
+    "profession_id": null,
+    "description": {
+      "it": "Lista degli incantesimi di Manipolazione (Lista Aperta Essenza).",
+      "en": "Spell list of Manipulation (essence - open)."
+    }
+  },
+  {
+    "id": "illusions",
+    "name": {
+      "it": "Illusioni",
+      "en": "Illusions"
+    },
+    "realm": "essence",
+    "category": "open",
+    "profession_id": null,
+    "description": {
+      "it": "Lista degli incantesimi di Illusioni (Lista Aperta Essenza).",
+      "en": "Spell list of Illusions (essence - open)."
+    }
+  },
+  {
+    "id": "gateways",
+    "name": {
+      "it": "Formule di passaggio",
+      "en": "Gateways"
+    },
+    "realm": "essence",
+    "category": "open",
+    "profession_id": null,
+    "description": {
+      "it": "Lista degli incantesimi di Formule di passaggio (Lista Aperta Essenza).",
+      "en": "Spell list of Gateways (essence - open)."
+    }
+  },
+  {
+    "id": "spell_ways",
+    "name": {
+      "it": "Formule d'incantesimo",
+      "en": "Spell Ways"
+    },
+    "realm": "essence",
+    "category": "open",
+    "profession_id": null,
+    "description": {
+      "it": "Lista degli incantesimi di Formule d'incantesimo (Lista Aperta Essenza).",
+      "en": "Spell list of Spell Ways (essence - open)."
+    }
+  },
+  {
+    "id": "essence_ways",
+    "name": {
+      "it": "Formule dell'essenza",
+      "en": "Essence Ways"
+    },
+    "realm": "essence",
+    "category": "open",
+    "profession_id": null,
+    "description": {
+      "it": "Lista degli incantesimi di Formule dell'essenza (Lista Aperta Essenza).",
+      "en": "Spell list of Essence Ways (essence - open)."
+    }
+  },
+  {
+    "id": "spirit_mastery",
+    "name": {
+      "it": "Controllo spirituale",
+      "en": "Spirit Mastery"
+    },
+    "realm": "essence",
+    "category": "open",
+    "profession_id": null,
+    "description": {
+      "it": "Lista degli incantesimi di Controllo spirituale (Lista Aperta Essenza).",
+      "en": "Spell list of Spirit Mastery (essence - open)."
+    }
+  },
+  {
+    "id": "essence_perceptions",
+    "name": {
+      "it": "Percezione dell'essenza",
+      "en": "Essence Perceptions"
+    },
+    "realm": "essence",
+    "category": "open",
+    "profession_id": null,
+    "description": {
+      "it": "Lista degli incantesimi di Percezione dell'essenza (Lista Aperta Essenza).",
+      "en": "Spell list of Essence Perceptions (essence - open)."
+    }
+  },
+  {
+    "id": "earth_law",
+    "name": {
+      "it": "Geomanzia",
+      "en": "Earth Law"
+    },
+    "realm": "essence",
+    "category": "profession",
+    "profession_id": "mage",
+    "description": {
+      "it": "Lista degli incantesimi di Geomanzia (Maghi Maghi).",
+      "en": "Spell list of Earth Law (essence - profession)."
+    }
+  },
+  {
+    "id": "ice_law",
+    "name": {
+      "it": "Criomanzia",
+      "en": "Ice Law"
+    },
+    "realm": "essence",
+    "category": "profession",
+    "profession_id": "mage",
+    "description": {
+      "it": "Lista degli incantesimi di Criomanzia (Maghi Maghi).",
+      "en": "Spell list of Ice Law (essence - profession)."
+    }
+  },
+  {
+    "id": "light_law",
+    "name": {
+      "it": "Fotomanzia",
+      "en": "Light Law"
+    },
+    "realm": "essence",
+    "category": "profession",
+    "profession_id": "mage",
+    "description": {
+      "it": "Lista degli incantesimi di Fotomanzia (Maghi Maghi).",
+      "en": "Spell list of Light Law (essence - profession)."
+    }
+  },
+  {
+    "id": "fire_law",
+    "name": {
+      "it": "Piromanzia",
+      "en": "Fire Law"
+    },
+    "realm": "essence",
+    "category": "profession",
+    "profession_id": "mage",
+    "description": {
+      "it": "Lista degli incantesimi di Piromanzia (Maghi Maghi).",
+      "en": "Spell list of Fire Law (essence - profession)."
+    }
+  },
+  {
+    "id": "lofty_bridge",
+    "name": {
+      "it": "Ponte arcano",
+      "en": "Lofty Bridge"
+    },
+    "realm": "essence",
+    "category": "profession",
+    "profession_id": "mage",
+    "description": {
+      "it": "Lista degli incantesimi di Ponte arcano (Maghi Maghi).",
+      "en": "Spell list of Lofty Bridge (essence - profession)."
+    }
+  },
+  {
+    "id": "water_law",
+    "name": {
+      "it": "Idromanzia",
+      "en": "Water Law"
+    },
+    "realm": "essence",
+    "category": "profession",
+    "profession_id": "mage",
+    "description": {
+      "it": "Lista degli incantesimi di Idromanzia (Maghi Maghi).",
+      "en": "Spell list of Water Law (essence - profession)."
+    }
+  },
+  {
+    "id": "living_change",
+    "name": {
+      "it": "Adattamento",
+      "en": "Living Change"
+    },
+    "realm": "essence",
+    "category": "profession",
+    "profession_id": "mage",
+    "description": {
+      "it": "Lista degli incantesimi di Adattamento (Maghi Maghi).",
+      "en": "Spell list of Living Change (essence - profession)."
+    }
+  },
+  {
+    "id": "wind_law",
+    "name": {
+      "it": "Aeromanzia",
+      "en": "Wind Law"
+    },
+    "realm": "essence",
+    "category": "profession",
+    "profession_id": "mage",
+    "description": {
+      "it": "Lista degli incantesimi di Aeromanzia (Maghi Maghi).",
+      "en": "Spell list of Wind Law (essence - profession)."
+    }
+  },
+  {
+    "id": "controlling_songs",
+    "name": {
+      "it": "Canti del potere",
+      "en": "Controlling Songs"
+    },
+    "realm": "essence",
+    "category": "profession",
+    "profession_id": "bard",
+    "description": {
+      "it": "Lista degli incantesimi di Canti del potere (Bardi Bardi).",
+      "en": "Spell list of Controlling Songs (essence - profession)."
+    }
+  },
+  {
+    "id": "lures",
+    "name": {
+      "it": "Conoscenza",
+      "en": "Lures"
+    },
+    "realm": "essence",
+    "category": "profession",
+    "profession_id": "bard",
+    "description": {
+      "it": "Lista degli incantesimi di Conoscenza (Bardi Bardi).",
+      "en": "Spell list of Lures (essence - profession)."
+    }
+  },
+  {
+    "id": "lore",
+    "name": {
+      "it": "Sapienza",
+      "en": "Lore"
+    },
+    "realm": "essence",
+    "category": "profession",
+    "profession_id": "bard",
+    "description": {
+      "it": "Lista degli incantesimi di Sapienza (Bardi Bardi).",
+      "en": "Spell list of Lore (essence - profession)."
+    }
+  },
+  {
+    "id": "sound_mastery",
+    "name": {
+      "it": "Controllo sonico",
+      "en": "Sound Mastery"
+    },
+    "realm": "essence",
+    "category": "profession",
+    "profession_id": "bard",
+    "description": {
+      "it": "Lista degli incantesimi di Controllo sonico (Bardi Bardi).",
+      "en": "Spell list of Sound Mastery (essence - profession)."
+    }
+  },
+  {
+    "id": "nature_guise",
+    "name": {
+      "it": "Topomanzia",
+      "en": "Nature's Guise"
+    },
+    "realm": "channeling",
+    "category": "profession",
+    "profession_id": "ranger",
+    "description": {
+      "it": "Lista degli incantesimi di Topomanzia (Ranger Ranger).",
+      "en": "Spell list of Nature's Guise (channeling - profession)."
+    }
+  },
+  {
+    "id": "pathways",
+    "name": {
+      "it": "Formule di movimento",
+      "en": "Pathways"
+    },
+    "realm": "channeling",
+    "category": "profession",
+    "profession_id": "ranger",
+    "description": {
+      "it": "Lista degli incantesimi di Formule di movimento (Ranger Ranger).",
+      "en": "Spell list of Pathways (channeling - profession)."
+    }
+  },
+  {
+    "id": "nature_ways",
+    "name": {
+      "it": "Aspetti naturali",
+      "en": "Nature's Ways"
+    },
+    "realm": "channeling",
+    "category": "profession",
+    "profession_id": "ranger",
+    "description": {
+      "it": "Lista degli incantesimi di Aspetti naturali (Ranger Ranger).",
+      "en": "Spell list of Nature's Ways (channeling - profession)."
+    }
+  },
+  {
+    "id": "nature_lore",
+    "name": {
+      "it": "Arti naturali",
+      "en": "Nature's Lore"
+    },
+    "realm": "channeling",
+    "category": "profession",
+    "profession_id": "ranger",
+    "description": {
+      "it": "Lista degli incantesimi di Arti naturali (Ranger Ranger).",
+      "en": "Spell list of Nature's Lore (channeling - profession)."
+    }
+  },
+  {
+    "id": "spell_discovery",
+    "name": {
+      "it": "Indagine",
+      "en": "Spell Discovery"
+    },
+    "realm": "channeling",
+    "category": "open",
+    "profession_id": null,
+    "description": {
+      "it": "Lista degli incantesimi di Indagine (Lista Aperta Flusso).",
+      "en": "Spell list of Spell Discovery (channeling - open)."
+    }
+  },
+  {
+    "id": "detection_mastery",
+    "name": {
+      "it": "Formule sensorie",
+      "en": "Detection Mastery"
+    },
+    "realm": "channeling",
+    "category": "open",
+    "profession_id": null,
+    "description": {
+      "it": "Lista degli incantesimi di Formule sensorie (Lista Aperta Flusso).",
+      "en": "Spell list of Detection Mastery (channeling - open)."
+    }
+  },
+  {
+    "id": "calm_law",
+    "name": {
+      "it": "Pacificazione",
+      "en": "Calm Law"
+    },
+    "realm": "channeling",
+    "category": "open",
+    "profession_id": null,
+    "description": {
+      "it": "Lista degli incantesimi di Pacificazione (Lista Aperta Flusso).",
+      "en": "Spell list of Calm Law (channeling - open)."
+    }
+  },
+  {
+    "id": "surface_ways",
+    "name": {
+      "it": "Arti della guarigione",
+      "en": "Surface Ways"
+    },
+    "realm": "channeling",
+    "category": "open",
+    "profession_id": null,
+    "description": {
+      "it": "Lista degli incantesimi di Arti della guarigione (Lista Aperta Flusso).",
+      "en": "Spell list of Surface Ways (channeling - open)."
+    }
+  },
+  {
+    "id": "protections",
+    "name": {
+      "it": "Protezioni",
+      "en": "Protections"
+    },
+    "realm": "channeling",
+    "category": "open",
+    "profession_id": null,
+    "description": {
+      "it": "Lista degli incantesimi di Protezioni (Lista Aperta Flusso).",
+      "en": "Spell list of Protections (channeling - open)."
+    }
+  },
+  {
+    "id": "spell_defense",
+    "name": {
+      "it": "Difesa magica",
+      "en": "Spell Defense"
+    },
+    "realm": "channeling",
+    "category": "open",
+    "profession_id": null,
+    "description": {
+      "it": "Lista degli incantesimi di Difesa magica (Lista Aperta Flusso).",
+      "en": "Spell list of Spell Defense (channeling - open)."
+    }
+  },
+  {
+    "id": "nature_movement",
+    "name": {
+      "it": "Moti naturali",
+      "en": "Nature's Movement"
+    },
+    "realm": "channeling",
+    "category": "open",
+    "profession_id": null,
+    "description": {
+      "it": "Lista degli incantesimi di Moti naturali (Lista Aperta Flusso).",
+      "en": "Spell list of Nature's Movement (channeling - open)."
+    }
+  },
+  {
+    "id": "eco_law",
+    "name": {
+      "it": "Ecomanzia",
+      "en": "Eco Law"
+    },
+    "realm": "channeling",
+    "category": "open",
+    "profession_id": null,
+    "description": {
+      "it": "Lista degli incantesimi di Ecomanzia (Lista Aperta Flusso).",
+      "en": "Spell list of Eco Law (channeling - open)."
+    }
+  },
+  {
+    "id": "plant_law",
+    "name": {
+      "it": "Botanomanzia",
+      "en": "Plant Law"
+    },
+    "realm": "channeling",
+    "category": "profession",
+    "profession_id": "animist",
+    "description": {
+      "it": "Lista degli incantesimi di Botanomanzia (Animisti Animisti).",
+      "en": "Spell list of Plant Law (channeling - profession)."
+    }
+  },
+  {
+    "id": "direct_channeling",
+    "name": {
+      "it": "Flusso diretto",
+      "en": "Direct Channeling"
+    },
+    "realm": "channeling",
+    "category": "profession",
+    "profession_id": "animist",
+    "description": {
+      "it": "Lista degli incantesimi di Flusso diretto (Animisti Animisti).",
+      "en": "Spell list of Direct Channeling (channeling - profession)."
+    }
+  },
+  {
+    "id": "animal_mastery",
+    "name": {
+      "it": "Controllo animale",
+      "en": "Animal Mastery"
+    },
+    "realm": "channeling",
+    "category": "profession",
+    "profession_id": "animist",
+    "description": {
+      "it": "Lista degli incantesimi di Controllo animale (Animisti Animisti).",
+      "en": "Spell list of Animal Mastery (channeling - profession)."
+    }
+  },
+  {
+    "id": "body_reunion",
+    "name": {
+      "it": "Fisiorigenerazione",
+      "en": "Body Reunion"
+    },
+    "realm": "channeling",
+    "category": "profession",
+    "profession_id": "animist",
+    "description": {
+      "it": "Lista degli incantesimi di Fisiorigenerazione (Animisti Animisti).",
+      "en": "Spell list of Body Reunion (channeling - profession)."
+    }
+  },
+  {
+    "id": "blood_ways",
+    "name": {
+      "it": "Emorigenerazione",
+      "en": "Blood Ways"
+    },
+    "realm": "channeling",
+    "category": "profession",
+    "profession_id": "animist",
+    "description": {
+      "it": "Lista degli incantesimi di Emorigenerazione (Animisti Animisti).",
+      "en": "Spell list of Blood Ways (channeling - profession)."
+    }
+  },
+  {
+    "id": "organ_ways",
+    "name": {
+      "it": "Rigenerazione organica",
+      "en": "Organ Ways"
+    },
+    "realm": "channeling",
+    "category": "profession",
+    "profession_id": "animist",
+    "description": {
+      "it": "Lista degli incantesimi di Rigenerazione organica (Animisti Animisti).",
+      "en": "Spell list of Organ Ways (channeling - profession)."
+    }
+  },
+  {
+    "id": "purifications",
+    "name": {
+      "it": "Purificazioni",
+      "en": "Purifications"
+    },
+    "realm": "channeling",
+    "category": "profession",
+    "profession_id": "animist",
+    "description": {
+      "it": "Lista degli incantesimi di Purificazioni (Animisti Animisti).",
+      "en": "Spell list of Purifications (channeling - profession)."
+    }
+  },
+  {
+    "id": "creations",
+    "name": {
+      "it": "Creazioni",
+      "en": "Creations"
+    },
+    "realm": "channeling",
+    "category": "profession",
+    "profession_id": "animist",
+    "description": {
+      "it": "Lista degli incantesimi di Creazioni (Animisti Animisti).",
+      "en": "Spell list of Creations (channeling - profession)."
+    }
+  }
+]
