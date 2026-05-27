@@ -1,0 +1,41 @@
+id,name_it,name_en,realm,category,profession_id,description_it,description_en
+physical_development,Sviluppo fisico,Physical Development,essence,open,,Lista degli incantesimi di Sviluppo fisico (Lista Aperta Essenza).,Spell list of Physical Development (essence - open).
+manipulation,Manipolazione,Manipulation,essence,open,,Lista degli incantesimi di Manipolazione (Lista Aperta Essenza).,Spell list of Manipulation (essence - open).
+illusions,Illusioni,Illusions,essence,open,,Lista degli incantesimi di Illusioni (Lista Aperta Essenza).,Spell list of Illusions (essence - open).
+gateways,Formule di passaggio,Gateways,essence,open,,Lista degli incantesimi di Formule di passaggio (Lista Aperta Essenza).,Spell list of Gateways (essence - open).
+spell_ways,Formule d'incantesimo,Spell Ways,essence,open,,Lista degli incantesimi di Formule d'incantesimo (Lista Aperta Essenza).,Spell list of Spell Ways (essence - open).
+essence_ways,Formule dell'essenza,Essence Ways,essence,open,,Lista degli incantesimi di Formule dell'essenza (Lista Aperta Essenza).,Spell list of Essence Ways (essence - open).
+spirit_mastery,Controllo spirituale,Spirit Mastery,essence,open,,Lista degli incantesimi di Controllo spirituale (Lista Aperta Essenza).,Spell list of Spirit Mastery (essence - open).
+essence_perceptions,Percezione dell'essenza,Essence Perceptions,essence,open,,Lista degli incantesimi di Percezione dell'essenza (Lista Aperta Essenza).,Spell list of Essence Perceptions (essence - open).
+earth_law,Geomanzia,Earth Law,essence,profession,mage,Lista degli incantesimi di Geomanzia (Maghi Maghi).,Spell list of Earth Law (essence - profession).
+ice_law,Criomanzia,Ice Law,essence,profession,mage,Lista degli incantesimi di Criomanzia (Maghi Maghi).,Spell list of Ice Law (essence - profession).
+light_law,Fotomanzia,Light Law,essence,profession,mage,Lista degli incantesimi di Fotomanzia (Maghi Maghi).,Spell list of Light Law (essence - profession).
+fire_law,Piromanzia,Fire Law,essence,profession,mage,Lista degli incantesimi di Piromanzia (Maghi Maghi).,Spell list of Fire Law (essence - profession).
+lofty_bridge,Ponte arcano,Lofty Bridge,essence,profession,mage,Lista degli incantesimi di Ponte arcano (Maghi Maghi).,Spell list of Lofty Bridge (essence - profession).
+water_law,Idromanzia,Water Law,essence,profession,mage,Lista degli incantesimi di Idromanzia (Maghi Maghi).,Spell list of Water Law (essence - profession).
+living_change,Adattamento,Living Change,essence,profession,mage,Lista degli incantesimi di Adattamento (Maghi Maghi).,Spell list of Living Change (essence - profession).
+wind_law,Aeromanzia,Wind Law,essence,profession,mage,Lista degli incantesimi di Aeromanzia (Maghi Maghi).,Spell list of Wind Law (essence - profession).
+controlling_songs,Canti del potere,Controlling Songs,essence,profession,bard,Lista degli incantesimi di Canti del potere (Bardi Bardi).,Spell list of Controlling Songs (essence - profession).
+lures,Conoscenza,Lures,essence,profession,bard,Lista degli incantesimi di Conoscenza (Bardi Bardi).,Spell list of Lures (essence - profession).
+lore,Sapienza,Lore,essence,profession,bard,Lista degli incantesimi di Sapienza (Bardi Bardi).,Spell list of Lore (essence - profession).
+sound_mastery,Controllo sonico,Sound Mastery,essence,profession,bard,Lista degli incantesimi di Controllo sonico (Bardi Bardi).,Spell list of Sound Mastery (essence - profession).
+nature_guise,Topomanzia,Nature's Guise,channeling,profession,ranger,Lista degli incantesimi di Topomanzia (Ranger Ranger).,Spell list of Nature's Guise (channeling - profession).
+pathways,Formule di movimento,Pathways,channeling,profession,ranger,Lista degli incantesimi di Formule di movimento (Ranger Ranger).,Spell list of Pathways (channeling - profession).
+nature_ways,Aspetti naturali,Nature's Ways,channeling,profession,ranger,Lista degli incantesimi di Aspetti naturali (Ranger Ranger).,Spell list of Nature's Ways (channeling - profession).
+nature_lore,Arti naturali,Nature's Lore,channeling,profession,ranger,Lista degli incantesimi di Arti naturali (Ranger Ranger).,Spell list of Nature's Lore (channeling - profession).
+spell_discovery,Indagine,Spell Discovery,channeling,open,,Lista degli incantesimi di Indagine (Lista Aperta Flusso).,Spell list of Spell Discovery (channeling - open).
+detection_mastery,Formule sensorie,Detection Mastery,channeling,open,,Lista degli incantesimi di Formule sensorie (Lista Aperta Flusso).,Spell list of Detection Mastery (channeling - open).
+calm_law,Pacificazione,Calm Law,channeling,open,,Lista degli incantesimi di Pacificazione (Lista Aperta Flusso).,Spell list of Calm Law (channeling - open).
+surface_ways,Arti della guarigione,Surface Ways,channeling,open,,Lista degli incantesimi di Arti della guarigione (Lista Aperta Flusso).,Spell list of Surface Ways (channeling - open).
+protections,Protezioni,Protections,channeling,open,,Lista degli incantesimi di Protezioni (Lista Aperta Flusso).,Spell list of Protections (channeling - open).
+spell_defense,Difesa magica,Spell Defense,channeling,open,,Lista degli incantesimi di Difesa magica (Lista Aperta Flusso).,Spell list of Spell Defense (channeling - open).
+nature_movement,Moti naturali,Nature's Movement,channeling,open,,Lista degli incantesimi di Moti naturali (Lista Aperta Flusso).,Spell list of Nature's Movement (channeling - open).
+eco_law,Ecomanzia,Eco Law,channeling,open,,Lista degli incantesimi di Ecomanzia (Lista Aperta Flusso).,Spell list of Eco Law (channeling - open).
+plant_law,Botanomanzia,Plant Law,channeling,profession,animist,Lista degli incantesimi di Botanomanzia (Animisti Animisti).,Spell list of Plant Law (channeling - profession).
+direct_channeling,Flusso diretto,Direct Channeling,channeling,profession,animist,Lista degli incantesimi di Flusso diretto (Animisti Animisti).,Spell list of Direct Channeling (channeling - profession).
+animal_mastery,Controllo animale,Animal Mastery,channeling,profession,animist,Lista degli incantesimi di Controllo animale (Animisti Animisti).,Spell list of Animal Mastery (channeling - profession).
+body_reunion,Fisiorigenerazione,Body Reunion,channeling,profession,animist,Lista degli incantesimi di Fisiorigenerazione (Animisti Animisti).,Spell list of Body Reunion (channeling - profession).
+blood_ways,Emorigenerazione,Blood Ways,channeling,profession,animist,Lista degli incantesimi di Emorigenerazione (Animisti Animisti).,Spell list of Blood Ways (channeling - profession).
+organ_ways,Rigenerazione organica,Organ Ways,channeling,profession,animist,Lista degli incantesimi di Rigenerazione organica (Animisti Animisti).,Spell list of Organ Ways (channeling - profession).
+purifications,Purificazioni,Purifications,channeling,profession,animist,Lista degli incantesimi di Purificazioni (Animisti Animisti).,Spell list of Purifications (channeling - profession).
+creations,Creazioni,Creations,channeling,profession,animist,Lista degli incantesimi di Creazioni (Animisti Animisti).,Spell list of Creations (channeling - profession).

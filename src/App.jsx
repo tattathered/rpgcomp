@@ -8,6 +8,7 @@ import MovementManoeuvreResolver from './components/MovementManoeuvreResolver';
 import FumbleResolver from './components/FumbleResolver';
 import StaticManoeuvreResolver from './components/StaticManoeuvreResolver';
 import { getCharacterHpTot } from './utils/skillHelpers';
+import CsvExportManager from './components/CsvExportManager';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -480,6 +481,7 @@ function App() {
         )}
         {activeTab === 'settings' && (
           <ErrorBoundary>
+            <CsvExportManager />
             <EquipmentCatalogManager 
               catalog={equipmentCatalog} 
               onUpdate={handleUpdateCatalog} 
