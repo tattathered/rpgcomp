@@ -1,9 +1,12 @@
 import { Download, FileSpreadsheet, CheckCircle2 } from 'lucide-react';
-import racesData from '../data/races.json';
-import professionsData from '../data/professions.json';
-import skillsPrimaryData from '../data/skills_primary.json';
-import skillsSecondaryData from '../data/skills_secondary.json';
 import languagesData from '../data/languages.json';
+import racesData from '../data/races.json';
+import raceLanguagesData from '../data/race_languages.json';
+import raceAdSkillsData from '../data/race_adolescence_skills.json';
+import professionsData from '../data/professions.json';
+import devCostsData from '../data/profession_development_costs.json';
+import levelBonusesData from '../data/profession_level_bonuses.json';
+import skillsData from '../data/skills.json';
 import spellListsData from '../data/spell_lists.json';
 import spellsData from '../data/spells.json';
 import equipmentData from '../data/equipment.json';
@@ -36,110 +39,143 @@ export default function CsvExportManager() {
     document.body.removeChild(link);
   };
 
-  const exportRaces = () => {
-    const headers = [
-      'id', 'name_it', 'name_en', 'category_it', 'category_en', 'is_human',
-      'mod_FR', 'mod_AG', 'mod_CO', 'mod_IN', 'mod_IT', 'mod_PR',
-      'mod_tr_ESS', 'mod_tr_FLS', 'mod_tr_VEL', 'mod_tr_MAL',
-      'starting_languages', 'description_it', 'description_en'
-    ];
-    const rows = racesData.map(r => [
-      r.id, r.name.it, r.name.en, r.category.it, r.category.en, r.is_human,
-      r.stats_modifiers.FR, r.stats_modifiers.AG, r.stats_modifiers.CO,
-      r.stats_modifiers.IN, r.stats_modifiers.IT, r.stats_modifiers.PR,
-      r.resistance_modifiers.ESS, r.resistance_modifiers.FLS, r.resistance_modifiers.VEL, r.resistance_modifiers.MAL,
-      r.starting_languages.map(l => `${l.language_id}:${l.is_native ? 'native' : 'second'}:${l.level}`).join(' | '),
-      r.description.it, r.description.en
-    ]);
-    downloadCSV('races.csv', headers, rows);
-  };
-
-  const exportProfessions = () => {
-    const headers = [
-      'id', 'name_it', 'name_en', 'primary_stat', 'secondary_stat',
-      'bonus_physical_resistance', 'bonus_weapons_skills', 'bonus_general_skills', 'bonus_subterfuge_skills', 'bonus_magic_skills',
-      'bonus_runes_reading', 'bonus_items_use', 'bonus_directed_spells', 'bonus_base_spells', 'bonus_perception',
-      'cost_movement_maneuvers', 'cost_weapons_skills', 'cost_general_skills', 'cost_subterfuge_skills', 'cost_magic_skills',
-      'cost_physical_resistance', 'cost_languages', 'cost_spell_lists',
-      'spell_realms', 'spell_max_level', 'spell_notes_it', 'spell_notes_en',
-      'description_it', 'description_en'
-    ];
-    const rows = professionsData.map(p => [
-      p.id, p.name.it, p.name.en, p.primary_stat, p.secondary_stat,
-      p.level_bonuses.physical_resistance, p.level_bonuses.weapons_skills, p.level_bonuses.general_skills, p.level_bonuses.subterfuge_skills, p.level_bonuses.magic_skills,
-      p.level_bonuses.runes_reading, p.level_bonuses.items_use, p.level_bonuses.directed_spells, p.level_bonuses.base_spells, p.level_bonuses.perception,
-      p.development_costs.movement_maneuvers, p.development_costs.weapons_skills, p.development_costs.general_skills, p.development_costs.subterfuge_skills, p.development_costs.magic_skills,
-      p.development_costs.physical_resistance, p.development_costs.languages, p.development_costs.spell_lists,
-      p.spell_requirements.realms.join(' | '), p.spell_requirements.max_spell_level, p.spell_requirements.notes.it, p.spell_requirements.notes.en,
-      p.description.it, p.description.en
-    ]);
-    downloadCSV('professions.csv', headers, rows);
-  };
-
-  const exportSkillsPrimary = () => {
-    const headers = ['id', 'name_it', 'name_en', 'category_it', 'category_en', 'type', 'associated_stat', 'description_it', 'description_en', 'is_primary'];
-    const rows = skillsPrimaryData.map(s => [
-      s.id, s.name.it, s.name.en, s.category.it, s.category.en, s.type, s.associated_stat || '', s.description.it, s.description.en, s.is_primary
-    ]);
-    downloadCSV('skills_primary.csv', headers, rows);
-  };
-
-  const exportSkillsSecondary = () => {
-    const headers = ['id', 'name_it', 'name_en', 'category_it', 'category_en', 'type', 'associated_stat', 'description_it', 'description_en', 'is_primary'];
-    const rows = skillsSecondaryData.map(s => [
-      s.id, s.name.it, s.name.en, s.category.it, s.category.en, s.type, s.associated_stat || '', s.description.it, s.description.en, s.is_primary
-    ]);
-    downloadCSV('skills_secondary.csv', headers, rows);
-  };
-
   const exportLanguages = () => {
     const headers = ['id', 'name_it', 'name_en', 'description_it', 'description_en'];
     const rows = languagesData.map(l => [
-      l.id, l.name.it, l.name.en, l.description.it, l.description.en
+      l.id, l.name_it, l.name_en, l.description_it || '', l.description_en || ''
     ]);
     downloadCSV('languages.csv', headers, rows);
   };
 
+  const exportRaces = () => {
+    const headers = [
+      'id', 'name_it', 'name_en', 'category_it', 'category_en', 'is_human',
+      'mod_fr', 'mod_ag', 'mod_co', 'mod_in', 'mod_it', 'mod_pr',
+      'mod_tr_ess', 'mod_tr_fls', 'mod_tr_vel', 'mod_tr_mal',
+      'background_points', 'extra_language_points', 'spell_list_learn_chance',
+      'description_it', 'description_en'
+    ];
+    const rows = racesData.map(r => [
+      r.id, r.name_it, r.name_en, r.category_it, r.category_en, r.is_human,
+      r.mod_fr, r.mod_ag, r.mod_co, r.mod_in, r.mod_it, r.mod_pr,
+      r.mod_tr_ess, r.mod_tr_fls, r.mod_tr_vel, r.mod_tr_mal,
+      r.background_points, r.extra_language_points, r.spell_list_learn_chance,
+      r.description_it || '', r.description_en || ''
+    ]);
+    downloadCSV('races.csv', headers, rows);
+  };
+
+  const exportRaceLanguages = () => {
+    const headers = ['race_id', 'language_id', 'is_native', 'level'];
+    const rows = raceLanguagesData.map(rl => [
+      rl.race_id, rl.language_id, rl.is_native, rl.level
+    ]);
+    downloadCSV('race_languages.csv', headers, rows);
+  };
+
+  const exportRaceAdSkills = () => {
+    const headers = ['race_id', 'skill_id', 'ranks'];
+    const rows = raceAdSkillsData.map(ra => [
+      ra.race_id, ra.skill_id, ra.ranks
+    ]);
+    downloadCSV('race_adolescence_skills.csv', headers, rows);
+  };
+
+  const exportProfessions = () => {
+    const headers = [
+      'id', 'name_it', 'name_en', 'primary_stat', 'secondary_stat', 
+      'spell_realm', 'spell_max_level', 'description_it', 'description_en'
+    ];
+    const rows = professionsData.map(p => [
+      p.id, p.name_it, p.name_en, p.primary_stat, p.secondary_stat,
+      p.spell_realm || '', p.spell_max_level !== null ? p.spell_max_level : '',
+      p.description_it || '', p.description_en || ''
+    ]);
+    downloadCSV('professions.csv', headers, rows);
+  };
+
+  const exportDevCosts = () => {
+    const headers = ['profession_id', 'skill_category', 'cost'];
+    const rows = devCostsData.map(dc => [
+      dc.profession_id, dc.skill_category, dc.cost
+    ]);
+    downloadCSV('profession_development_costs.csv', headers, rows);
+  };
+
+  const exportLevelBonuses = () => {
+    const headers = ['profession_id', 'skill_id', 'bonus'];
+    const rows = levelBonusesData.map(lb => [
+      lb.profession_id, lb.skill_id, lb.bonus
+    ]);
+    downloadCSV('profession_level_bonuses.csv', headers, rows);
+  };
+
+  const exportSkills = () => {
+    const headers = [
+      'id', 'name_it', 'name_en', 'category', 'type', 
+      'associated_stat', 'is_primary', 'description_it', 'description_en'
+    ];
+    const rows = skillsData.map(s => [
+      s.id, s.name_it, s.name_en, s.category, s.type,
+      s.associated_stat || '', s.is_primary, s.description_it || '', s.description_en || ''
+    ]);
+    downloadCSV('skills.csv', headers, rows);
+  };
+
   const exportSpellLists = () => {
-    const headers = ['id', 'name_it', 'name_en', 'realm', 'category', 'profession_id', 'description_it', 'description_en'];
+    const headers = [
+      'id', 'name_it', 'name_en', 'realm', 'category', 
+      'profession_id', 'description_it', 'description_en'
+    ];
     const rows = spellListsData.map(sl => [
-      sl.id, sl.name.it, sl.name.en, sl.realm, sl.category, sl.profession_id || '', sl.description.it, sl.description.en
+      sl.id, sl.name_it, sl.name_en, sl.realm, sl.category,
+      sl.profession_id || '', sl.description_it || '', sl.description_en || ''
     ]);
     downloadCSV('spell_lists.csv', headers, rows);
   };
 
   const exportSpells = () => {
-    const headers = ['id', 'spell_list_id', 'level', 'name_it', 'name_en', 'type_it', 'type_en', 'preparation_it', 'preparation_en', 'description_it', 'description_en'];
+    const headers = [
+      'id', 'spell_list_id', 'level', 'name_it', 'name_en', 
+      'type_it', 'type_en', 'preparation_it', 'preparation_en', 
+      'description_it', 'description_en'
+    ];
     const rows = spellsData.map(s => [
-      s.id, s.spell_list_id, s.level, s.name.it, s.name.en,
-      s.type ? s.type.it : '', s.type ? s.type.en : '',
-      s.preparation ? s.preparation.it : '', s.preparation ? s.preparation.en : '',
-      s.description.it, s.description.en
+      s.id, s.spell_list_id, s.level, s.name_it, s.name_en,
+      s.type_it || '', s.type_en || '',
+      s.preparation_it || '', s.preparation_en || '',
+      s.description_it || '', s.description_en || ''
     ]);
     downloadCSV('spells.csv', headers, rows);
   };
 
   const exportEquipment = () => {
-    const headers = ['id', 'name_it', 'name_en', 'category', 'abbreviation', 'cost_mb', 'weight_kg', 'notes_it', 'notes_en', 'initial_kit', 'loadable', 'description_it', 'description_en'];
+    const headers = [
+      'id', 'name_it', 'name_en', 'category', 'abbreviation', 'cost_mb', 
+      'weight_kg', 'notes_it', 'notes_en', 'initial_kit', 'loadable', 
+      'description_it', 'description_en'
+    ];
     const rows = equipmentData.map(item => [
-      item.id, item.name.it, item.name.en, item.category, item.abbreviation || '', item.cost_mb,
+      item.id, item.name_it, item.name_en, item.category, item.abbreviation || '', item.cost_mb,
       item.weight_kg !== null ? item.weight_kg : '',
-      item.notes ? item.notes.it : '', item.notes ? item.notes.en : '',
-      item.initial_kit, item.loadable !== null ? item.loadable : '',
-      item.description.it, item.description.en
+      item.notes_it || '', item.notes_en || '',
+      item.initial_kit, item.loadable, item.description_it || '', item.description_en || ''
     ]);
     downloadCSV('equipment.csv', headers, rows);
   };
 
   const exports = [
-    { label: 'Popoli e Culture (races.csv)', count: racesData.length, action: exportRaces },
-    { label: 'Professioni di Gioco (professions.csv)', count: professionsData.length, action: exportProfessions },
-    { label: 'Abilità Primarie (skills_primary.csv)', count: skillsPrimaryData.length, action: exportSkillsPrimary },
-    { label: 'Abilità Secondarie (skills_secondary.csv)', count: skillsSecondaryData.length, action: exportSkillsSecondary },
-    { label: 'Lingue Parlate (languages.csv)', count: languagesData.length, action: exportLanguages },
-    { label: 'Liste di Incantesimi (spell_lists.csv)', count: spellListsData.length, action: exportSpellLists },
-    { label: 'Incantesimi Elenco (spells.csv)', count: spellsData.length, action: exportSpells },
-    { label: 'Equipaggiamento e Oggetti (equipment.csv)', count: equipmentData.length, action: exportEquipment },
+    { label: '1. Lingue (languages.csv)', count: languagesData.length, action: exportLanguages },
+    { label: '2. Popoli e Culture (races.csv)', count: racesData.length, action: exportRaces },
+    { label: '3. Lingue Popoli (race_languages.csv)', count: raceLanguagesData.length, action: exportRaceLanguages },
+    { label: '4. Gradi Adolescenza (race_adolescence_skills.csv)', count: raceAdSkillsData.length, action: exportRaceAdSkills },
+    { label: '5. Professioni (professions.csv)', count: professionsData.length, action: exportProfessions },
+    { label: '6. Costi Sviluppo (profession_development_costs.csv)', count: devCostsData.length, action: exportDevCosts },
+    { label: '7. Bonus Livello (profession_level_bonuses.csv)', count: levelBonusesData.length, action: exportLevelBonuses },
+    { label: '8. Catalogo Abilità (skills.csv)', count: skillsData.length, action: exportSkills },
+    { label: '9. Liste di Incantesimi (spell_lists.csv)', count: spellListsData.length, action: exportSpellLists },
+    { label: '10. Elenco Incantesimi (spells.csv)', count: spellsData.length, action: exportSpells },
+    { label: '11. Equipaggiamento (equipment.csv)', count: equipmentData.length, action: exportEquipment },
   ];
 
   return (
@@ -148,10 +184,10 @@ export default function CsvExportManager() {
         <div>
           <h2 className="card-title" style={{ margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <FileSpreadsheet className="w-5 h-5 text-indigo-500" />
-            Esportazione Dati Ristrutturati (CSV)
+            Esportazione Database Relazionale (CSV)
           </h2>
           <p className="card-description" style={{ margin: '0.2rem 0 0 0' }}>
-            Scarica le tabelle master ristrutturate e localizzate (multilingua) in formato CSV per consultazione esterna.
+            Scarica le 11 tabelle relazionali normalizzate (multilingua) in formato CSV per consultazione GM.
           </p>
         </div>
       </div>
@@ -201,7 +237,7 @@ export default function CsvExportManager() {
         <div className="mt-4 p-3 bg-indigo-50/50 border border-indigo-100 rounded-lg flex items-start gap-3">
           <CheckCircle2 className="w-5 h-5 text-indigo-600 shrink-0 mt-0.5" />
           <div className="text-xs text-indigo-900 leading-relaxed">
-            <strong>Nota di integrità:</strong> Tutti i file estratti mantengono l'integrità referenziale relazionale tramite ID in lingua inglese e forniscono sia la denominazione italiana che quella inglese in colonne affiancate (es: <code>name_it</code> e <code>name_en</code>).
+            <strong>Nota di integrità:</strong> Le tabelle sono strutturate in prima forma normale (1NF) con ID stabili in inglese. Le relazioni molti-a-molti e le liste (come lingue e abilità d'adolescenza) sono state separate in tabelle associative esterne (es: <code>race_languages</code>, <code>race_adolescence_skills</code>) eliminando campi nidificati o pipe-separated.
           </div>
         </div>
       </div>

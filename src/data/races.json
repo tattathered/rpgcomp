@@ -1,1362 +1,715 @@
 [
   {
     "id": "dunedain",
-    "name": {
-      "it": "Dúnedain",
-      "en": "Dunedain"
-    },
-    "category": {
-      "it": "umani",
-      "en": "humans"
-    },
+    "name_it": "Dúnedain",
+    "name_en": "Dunedain",
+    "category_it": "umani",
+    "category_en": "humans",
     "is_human": true,
-    "stats_modifiers": {
-      "FR": 10,
-      "AG": 0,
-      "CO": 10,
-      "IN": 0,
-      "IT": 0,
-      "PR": 5
-    },
-    "resistance_modifiers": {
-      "ESS": 0,
-      "FLS": 0,
-      "VEL": 5,
-      "MAL": 15
-    },
-    "starting_languages": [
-      {
-        "language_id": "adunaic",
-        "is_native": true,
-        "level": 5
-      },
-      {
-        "language_id": "westron",
-        "is_native": false,
-        "level": 5
-      },
-      {
-        "language_id": "quenya",
-        "is_native": false,
-        "level": 1
-      },
-      {
-        "language_id": "sindarin",
-        "is_native": false,
-        "level": 4
-      }
-    ],
-    "description": {
-      "it": "I Dúnedain sono gli Uomini dell'Ovest, discendenti dei Numenoreani. Sono alti, forti e vivono molto più a lungo dei normali umani.",
-      "en": "The Dunedain are the Men of the West, descendants of the Numenoreans. They are tall, strong, and live much longer than ordinary humans."
-    }
+    "mod_fr": 10,
+    "mod_ag": 0,
+    "mod_co": 10,
+    "mod_in": 0,
+    "mod_it": 0,
+    "mod_pr": 5,
+    "mod_tr_ess": 0,
+    "mod_tr_fls": 0,
+    "mod_tr_vel": 5,
+    "mod_tr_mal": 15,
+    "background_points": 3,
+    "extra_language_points": 6,
+    "spell_list_learn_chance": 10,
+    "description_it": "Popolo della Terra di Mezzo: Dúnedain.",
+    "description_en": null
   },
   {
     "id": "eriadorian_urban_men",
-    "name": {
-      "it": "Uomini delle Città Eriadoriani",
-      "en": "Eriadorian Townsmen"
-    },
-    "category": {
-      "it": "umani",
-      "en": "humans"
-    },
+    "name_it": "Uomini delle Città Eriadoriani",
+    "name_en": "Eriadorian Urban Men",
+    "category_it": "umani",
+    "category_en": "humans",
     "is_human": true,
-    "stats_modifiers": {
-      "FR": 5,
-      "AG": 0,
-      "CO": 0,
-      "IN": 0,
-      "IT": 0,
-      "PR": 0
-    },
-    "resistance_modifiers": {
-      "ESS": 0,
-      "FLS": 0,
-      "VEL": 0,
-      "MAL": 0
-    },
-    "starting_languages": [
-      {
-        "language_id": "westron",
-        "is_native": true,
-        "level": 5
-      }
-    ],
-    "description": {
-      "it": "Uomini comuni abitanti dei centri urbani dell'Eriador.",
-      "en": "Common men living in the urban centers of Eriador."
-    }
+    "mod_fr": 5,
+    "mod_ag": 0,
+    "mod_co": 0,
+    "mod_in": 0,
+    "mod_it": 0,
+    "mod_pr": 0,
+    "mod_tr_ess": 0,
+    "mod_tr_fls": 0,
+    "mod_tr_vel": 0,
+    "mod_tr_mal": 0,
+    "background_points": 5,
+    "extra_language_points": 4,
+    "spell_list_learn_chance": 3,
+    "description_it": "Popolo della Terra di Mezzo: Uomini delle Città Eriadoriani.",
+    "description_en": null
   },
   {
     "id": "gondorian_urban_men",
-    "name": {
-      "it": "Uomini delle Città Gondoriani",
-      "en": "Gondorian Townsmen"
-    },
-    "category": {
-      "it": "umani",
-      "en": "humans"
-    },
+    "name_it": "Uomini delle Città Gondoriani",
+    "name_en": "Gondorian Urban Men",
+    "category_it": "umani",
+    "category_en": "humans",
     "is_human": true,
-    "stats_modifiers": {
-      "FR": 5,
-      "AG": 0,
-      "CO": 0,
-      "IN": 0,
-      "IT": 0,
-      "PR": 0
-    },
-    "resistance_modifiers": {
-      "ESS": 0,
-      "FLS": 0,
-      "VEL": 0,
-      "MAL": 0
-    },
-    "starting_languages": [
-      {
-        "language_id": "westron",
-        "is_native": true,
-        "level": 5
-      }
-    ],
-    "description": {
-      "it": "Uomini urbani residenti nelle grandi città del regno di Gondor.",
-      "en": "Urban men residing in the large cities of the kingdom of Gondor."
-    }
+    "mod_fr": 5,
+    "mod_ag": 0,
+    "mod_co": 0,
+    "mod_in": 0,
+    "mod_it": 0,
+    "mod_pr": 0,
+    "mod_tr_ess": 0,
+    "mod_tr_fls": 0,
+    "mod_tr_vel": 0,
+    "mod_tr_mal": 0,
+    "background_points": 5,
+    "extra_language_points": 5,
+    "spell_list_learn_chance": 15,
+    "description_it": "Popolo della Terra di Mezzo: Uomini delle Città Gondoriani.",
+    "description_en": null
   },
   {
     "id": "rohirrim_urban_men",
-    "name": {
-      "it": "Uomini delle Città Rohirrim",
-      "en": "Rohirrim Townsmen"
-    },
-    "category": {
-      "it": "umani",
-      "en": "humans"
-    },
+    "name_it": "Uomini delle Città Rohirrim",
+    "name_en": "Rohirrim Urban Men",
+    "category_it": "umani",
+    "category_en": "humans",
     "is_human": true,
-    "stats_modifiers": {
-      "FR": 5,
-      "AG": 0,
-      "CO": 0,
-      "IN": 0,
-      "IT": 0,
-      "PR": 0
-    },
-    "resistance_modifiers": {
-      "ESS": 0,
-      "FLS": 0,
-      "VEL": 0,
-      "MAL": 0
-    },
-    "starting_languages": [
-      {
-        "language_id": "rohirric",
-        "is_native": true,
-        "level": 5
-      },
-      {
-        "language_id": "dunael",
-        "is_native": false,
-        "level": 1
-      },
-      {
-        "language_id": "westron",
-        "is_native": false,
-        "level": 5
-      }
-    ],
-    "description": {
-      "it": "Uomini del popolo dei signori dei cavalli insediati nei centri abitati di Rohan.",
-      "en": "Men of the horse-lords settled in the towns of Rohan."
-    }
+    "mod_fr": 5,
+    "mod_ag": 0,
+    "mod_co": 0,
+    "mod_in": 0,
+    "mod_it": 0,
+    "mod_pr": 0,
+    "mod_tr_ess": 0,
+    "mod_tr_fls": 0,
+    "mod_tr_vel": 0,
+    "mod_tr_mal": 0,
+    "background_points": 5,
+    "extra_language_points": 4,
+    "spell_list_learn_chance": 3,
+    "description_it": "Popolo della Terra di Mezzo: Uomini delle Città Rohirrim.",
+    "description_en": null
   },
   {
     "id": "eriadorian_rural_men",
-    "name": {
-      "it": "Uomini delle Campagne Eriadoriani",
-      "en": "Eriadorian Countrymen"
-    },
-    "category": {
-      "it": "umani",
-      "en": "humans"
-    },
+    "name_it": "Uomini delle Campagne Eriadoriani",
+    "name_en": "Eriadorian Rural Men",
+    "category_it": "umani",
+    "category_en": "humans",
     "is_human": true,
-    "stats_modifiers": {
-      "FR": 5,
-      "AG": 0,
-      "CO": 0,
-      "IN": 0,
-      "IT": 0,
-      "PR": 0
-    },
-    "resistance_modifiers": {
-      "ESS": 0,
-      "FLS": 0,
-      "VEL": 0,
-      "MAL": 0
-    },
-    "starting_languages": [
-      {
-        "language_id": "westron",
-        "is_native": true,
-        "level": 5
-      }
-    ],
-    "description": {
-      "it": "Agricoltori e contadini delle fertili terre dell'Eriador.",
-      "en": "Farmers and peasants from the fertile lands of Eriador."
-    }
+    "mod_fr": 5,
+    "mod_ag": 0,
+    "mod_co": 0,
+    "mod_in": 0,
+    "mod_it": 0,
+    "mod_pr": 0,
+    "mod_tr_ess": 0,
+    "mod_tr_fls": 0,
+    "mod_tr_vel": 0,
+    "mod_tr_mal": 0,
+    "background_points": 5,
+    "extra_language_points": 4,
+    "spell_list_learn_chance": 3,
+    "description_it": "Popolo della Terra di Mezzo: Uomini delle Campagne Eriadoriani.",
+    "description_en": null
   },
   {
     "id": "gondorian_rural_men",
-    "name": {
-      "it": "Uomini delle Campagne Gondoriani",
-      "en": "Gondorian Countrymen"
-    },
-    "category": {
-      "it": "umani",
-      "en": "humans"
-    },
+    "name_it": "Uomini delle Campagne Gondoriani",
+    "name_en": "Gondorian Rural Men",
+    "category_it": "umani",
+    "category_en": "humans",
     "is_human": true,
-    "stats_modifiers": {
-      "FR": 5,
-      "AG": 0,
-      "CO": 0,
-      "IN": 0,
-      "IT": 0,
-      "PR": 0
-    },
-    "resistance_modifiers": {
-      "ESS": 0,
-      "FLS": 0,
-      "VEL": 0,
-      "MAL": 0
-    },
-    "starting_languages": [
-      {
-        "language_id": "westron",
-        "is_native": true,
-        "level": 5
-      }
-    ],
-    "description": {
-      "it": "Popolazione rurale delle province esterne di Gondor.",
-      "en": "Rural population of the outer provinces of Gondor."
-    }
+    "mod_fr": 5,
+    "mod_ag": 0,
+    "mod_co": 0,
+    "mod_in": 0,
+    "mod_it": 0,
+    "mod_pr": 0,
+    "mod_tr_ess": 0,
+    "mod_tr_fls": 0,
+    "mod_tr_vel": 0,
+    "mod_tr_mal": 0,
+    "background_points": 5,
+    "extra_language_points": 5,
+    "spell_list_learn_chance": 15,
+    "description_it": "Popolo della Terra di Mezzo: Uomini delle Campagne Gondoriani.",
+    "description_en": null
   },
   {
     "id": "rohirrim_rural_men",
-    "name": {
-      "it": "Uomini delle Campagne Rohirrim",
-      "en": "Rohirrim Countrymen"
-    },
-    "category": {
-      "it": "umani",
-      "en": "humans"
-    },
+    "name_it": "Uomini delle Campagne Rohirrim",
+    "name_en": "Rohirrim Rural Men",
+    "category_it": "umani",
+    "category_en": "humans",
     "is_human": true,
-    "stats_modifiers": {
-      "FR": 5,
-      "AG": 0,
-      "CO": 0,
-      "IN": 0,
-      "IT": 0,
-      "PR": 0
-    },
-    "resistance_modifiers": {
-      "ESS": 0,
-      "FLS": 0,
-      "VEL": 0,
-      "MAL": 0
-    },
-    "starting_languages": [
-      {
-        "language_id": "rohirric",
-        "is_native": true,
-        "level": 5
-      },
-      {
-        "language_id": "dunael",
-        "is_native": false,
-        "level": 1
-      },
-      {
-        "language_id": "westron",
-        "is_native": false,
-        "level": 5
-      }
-    ],
-    "description": {
-      "it": "Pastori e allevatori delle grandi praterie del Mark.",
-      "en": "Herdsmen and breeders from the great plains of the Mark."
-    }
+    "mod_fr": 5,
+    "mod_ag": 0,
+    "mod_co": 0,
+    "mod_in": 0,
+    "mod_it": 0,
+    "mod_pr": 0,
+    "mod_tr_ess": 0,
+    "mod_tr_fls": 0,
+    "mod_tr_vel": 0,
+    "mod_tr_mal": 0,
+    "background_points": 5,
+    "extra_language_points": 4,
+    "spell_list_learn_chance": 3,
+    "description_it": "Popolo della Terra di Mezzo: Uomini delle Campagne Rohirrim.",
+    "description_en": null
   },
   {
     "id": "woodmen",
-    "name": {
-      "it": "Uomini dei Boschi",
-      "en": "Woodmen"
-    },
-    "category": {
-      "it": "umani",
-      "en": "humans"
-    },
+    "name_it": "Uomini dei Boschi",
+    "name_en": "Woodmen",
+    "category_it": "umani",
+    "category_en": "humans",
     "is_human": true,
-    "stats_modifiers": {
-      "FR": 5,
-      "AG": 0,
-      "CO": 0,
-      "IN": 0,
-      "IT": 0,
-      "PR": 0
-    },
-    "resistance_modifiers": {
-      "ESS": 0,
-      "FLS": 0,
-      "VEL": 0,
-      "MAL": 0
-    },
-    "starting_languages": [
-      {
-        "language_id": "nahaiduk",
-        "is_native": true,
-        "level": 5
-      },
-      {
-        "language_id": "westron",
-        "is_native": false,
-        "level": 2
-      },
-      {
-        "language_id": "sindarin",
-        "is_native": false,
-        "level": 2
-      }
-    ],
-    "description": {
-      "it": "Cacciatori e boscaioli che vivono nelle foreste selvagge, come Bosco Atro.",
-      "en": "Hunters and woodsmen living in wild forests, such as Mirkwood."
-    }
+    "mod_fr": 5,
+    "mod_ag": 0,
+    "mod_co": 0,
+    "mod_in": 0,
+    "mod_it": 0,
+    "mod_pr": 0,
+    "mod_tr_ess": 0,
+    "mod_tr_fls": 0,
+    "mod_tr_vel": 0,
+    "mod_tr_mal": 0,
+    "background_points": 5,
+    "extra_language_points": 2,
+    "spell_list_learn_chance": 3,
+    "description_it": "Popolo della Terra di Mezzo: Uomini dei Boschi.",
+    "description_en": null
   },
   {
     "id": "dunlendings",
-    "name": {
-      "it": "Dunlandiani",
-      "en": "Dunlendings"
-    },
-    "category": {
-      "it": "umani",
-      "en": "humans"
-    },
+    "name_it": "Dunlandiani",
+    "name_en": "Dunlendings",
+    "category_it": "umani",
+    "category_en": "humans",
     "is_human": true,
-    "stats_modifiers": {
-      "FR": 5,
-      "AG": 0,
-      "CO": 0,
-      "IN": 0,
-      "IT": 0,
-      "PR": 0
-    },
-    "resistance_modifiers": {
-      "ESS": 0,
-      "FLS": 0,
-      "VEL": 0,
-      "MAL": 0
-    },
-    "starting_languages": [
-      {
-        "language_id": "dunael",
-        "is_native": true,
-        "level": 5
-      },
-      {
-        "language_id": "westron",
-        "is_native": false,
-        "level": 4
-      }
-    ],
-    "description": {
-      "it": "Uomini fieri, spesso ostili ai Rohirrim, abitanti delle colline del Dunland.",
-      "en": "Proud men, often hostile to the Rohirrim, inhabiting the hills of Dunland."
-    }
+    "mod_fr": 5,
+    "mod_ag": 0,
+    "mod_co": 0,
+    "mod_in": 0,
+    "mod_it": 0,
+    "mod_pr": 0,
+    "mod_tr_ess": 0,
+    "mod_tr_fls": 0,
+    "mod_tr_vel": 0,
+    "mod_tr_mal": 0,
+    "background_points": 4,
+    "extra_language_points": 2,
+    "spell_list_learn_chance": 2,
+    "description_it": "Popolo della Terra di Mezzo: Dunlandiani.",
+    "description_en": null
   },
   {
     "id": "easterlings",
-    "name": {
-      "it": "Esterling",
-      "en": "Easterlings"
-    },
-    "category": {
-      "it": "umani",
-      "en": "humans"
-    },
+    "name_it": "Esterling",
+    "name_en": "Easterlings",
+    "category_it": "umani",
+    "category_en": "humans",
     "is_human": true,
-    "stats_modifiers": {
-      "FR": 5,
-      "AG": 0,
-      "CO": 0,
-      "IN": 0,
-      "IT": 0,
-      "PR": 0
-    },
-    "resistance_modifiers": {
-      "ESS": 0,
-      "FLS": 0,
-      "VEL": 0,
-      "MAL": 0
-    },
-    "starting_languages": [
-      {
-        "language_id": "logathig",
-        "is_native": true,
-        "level": 5
-      },
-      {
-        "language_id": "westron",
-        "is_native": false,
-        "level": 2
-      }
-    ],
-    "description": {
-      "it": "Guerrieri provenienti dalle terre orientali di Rhûn.",
-      "en": "Warriors coming from the eastern lands of Rhûn."
-    }
+    "mod_fr": 5,
+    "mod_ag": 0,
+    "mod_co": 0,
+    "mod_in": 0,
+    "mod_it": 0,
+    "mod_pr": 0,
+    "mod_tr_ess": 0,
+    "mod_tr_fls": 0,
+    "mod_tr_vel": 0,
+    "mod_tr_mal": 0,
+    "background_points": 4,
+    "extra_language_points": 2,
+    "spell_list_learn_chance": 2,
+    "description_it": "Popolo della Terra di Mezzo: Esterling.",
+    "description_en": null
   },
   {
     "id": "beornings",
-    "name": {
-      "it": "Beorniani",
-      "en": "Beornings"
-    },
-    "category": {
-      "it": "umani",
-      "en": "humans"
-    },
+    "name_it": "Beorniani",
+    "name_en": "Beornings",
+    "category_it": "umani",
+    "category_en": "humans",
     "is_human": true,
-    "stats_modifiers": {
-      "FR": 5,
-      "AG": 0,
-      "CO": 0,
-      "IN": 0,
-      "IT": 0,
-      "PR": 0
-    },
-    "resistance_modifiers": {
-      "ESS": 0,
-      "FLS": 0,
-      "VEL": 0,
-      "MAL": 0
-    },
-    "starting_languages": [
-      {
-        "language_id": "atliduk",
-        "is_native": true,
-        "level": 5
-      },
-      {
-        "language_id": "waildyth",
-        "is_native": true,
-        "level": 5
-      },
-      {
-        "language_id": "nahaiduk",
-        "is_native": false,
-        "level": 5
-      },
-      {
-        "language_id": "westron",
-        "is_native": false,
-        "level": 5
-      }
-    ],
-    "description": {
-      "it": "Uomini robusti delle valli dell'Anduin, affini a Beorn e capaci di mutare forma.",
-      "en": "Rugged men of the Anduin vales, kin to Beorn and capable of skin-changing."
-    }
+    "mod_fr": 5,
+    "mod_ag": 0,
+    "mod_co": 0,
+    "mod_in": 0,
+    "mod_it": 0,
+    "mod_pr": 0,
+    "mod_tr_ess": 0,
+    "mod_tr_fls": 0,
+    "mod_tr_vel": 0,
+    "mod_tr_mal": 0,
+    "background_points": 5,
+    "extra_language_points": 3,
+    "spell_list_learn_chance": 3,
+    "description_it": "Popolo della Terra di Mezzo: Beorniani.",
+    "description_en": null
   },
   {
     "id": "dorwinrim",
-    "name": {
-      "it": "Dorwinrim",
-      "en": "Dorwinrim"
-    },
-    "category": {
-      "it": "umani",
-      "en": "humans"
-    },
+    "name_it": "Dorwinrim",
+    "name_en": "Dorwinrim",
+    "category_it": "umani",
+    "category_en": "humans",
     "is_human": true,
-    "stats_modifiers": {
-      "FR": 5,
-      "AG": 0,
-      "CO": 0,
-      "IN": 0,
-      "IT": 0,
-      "PR": 0
-    },
-    "resistance_modifiers": {
-      "ESS": 0,
-      "FLS": 0,
-      "VEL": 0,
-      "MAL": 0
-    },
-    "starting_languages": [
-      {
-        "language_id": "logathig",
-        "is_native": true,
-        "level": 5
-      },
-      {
-        "language_id": "westron",
-        "is_native": false,
-        "level": 5
-      }
-    ],
-    "description": {
-      "it": "Abitanti del Dorwinion, celebri per la produzione di vini pregiati.",
-      "en": "Inhabitants of Dorwinion, famous for producing fine wines."
-    }
+    "mod_fr": 5,
+    "mod_ag": 0,
+    "mod_co": 0,
+    "mod_in": 0,
+    "mod_it": 0,
+    "mod_pr": 0,
+    "mod_tr_ess": 0,
+    "mod_tr_fls": 0,
+    "mod_tr_vel": 0,
+    "mod_tr_mal": 0,
+    "background_points": 5,
+    "extra_language_points": 5,
+    "spell_list_learn_chance": 10,
+    "description_it": "Popolo della Terra di Mezzo: Dorwinrim.",
+    "description_en": null
   },
   {
     "id": "haradrim",
-    "name": {
-      "it": "Haradrim",
-      "en": "Haradrim"
-    },
-    "category": {
-      "it": "umani",
-      "en": "humans"
-    },
+    "name_it": "Haradrim",
+    "name_en": "Haradrim",
+    "category_it": "umani",
+    "category_en": "humans",
     "is_human": true,
-    "stats_modifiers": {
-      "FR": 5,
-      "AG": 0,
-      "CO": 0,
-      "IN": 0,
-      "IT": 0,
-      "PR": 0
-    },
-    "resistance_modifiers": {
-      "ESS": 0,
-      "FLS": 0,
-      "VEL": 0,
-      "MAL": 0
-    },
-    "starting_languages": [
-      {
-        "language_id": "haradaic",
-        "is_native": true,
-        "level": 5
-      },
-      {
-        "language_id": "apysaic",
-        "is_native": false,
-        "level": 4
-      },
-      {
-        "language_id": "westron",
-        "is_native": false,
-        "level": 5
-      }
-    ],
-    "description": {
-      "it": "Uomini fieri dalla pelle scura provenienti dai deserti meridionali dell'Harad.",
-      "en": "Proud dark-skinned men from the southern deserts of Harad."
-    }
+    "mod_fr": 5,
+    "mod_ag": 0,
+    "mod_co": 0,
+    "mod_in": 0,
+    "mod_it": 0,
+    "mod_pr": 0,
+    "mod_tr_ess": 0,
+    "mod_tr_fls": 0,
+    "mod_tr_vel": 0,
+    "mod_tr_mal": 0,
+    "background_points": 5,
+    "extra_language_points": 3,
+    "spell_list_learn_chance": 2,
+    "description_it": "Popolo della Terra di Mezzo: Haradrim.",
+    "description_en": null
   },
   {
     "id": "corsairs",
-    "name": {
-      "it": "Corsari",
-      "en": "Corsairs"
-    },
-    "category": {
-      "it": "umani",
-      "en": "humans"
-    },
+    "name_it": "Corsari",
+    "name_en": "Corsairs",
+    "category_it": "umani",
+    "category_en": "humans",
     "is_human": true,
-    "stats_modifiers": {
-      "FR": 5,
-      "AG": 0,
-      "CO": 0,
-      "IN": 0,
-      "IT": 0,
-      "PR": 0
-    },
-    "resistance_modifiers": {
-      "ESS": 0,
-      "FLS": 0,
-      "VEL": 0,
-      "MAL": 0
-    },
-    "starting_languages": [
-      {
-        "language_id": "adunaic",
-        "is_native": true,
-        "level": 5
-      },
-      {
-        "language_id": "haradaic",
-        "is_native": false,
-        "level": 4
-      },
-      {
-        "language_id": "westron",
-        "is_native": false,
-        "level": 5
-      }
-    ],
-    "description": {
-      "it": "Pirati e marinai ribelli basati nel porto fortificato di Umbar.",
-      "en": "Pirates and rebellious seafarers based in the fortified port of Umbar."
-    }
+    "mod_fr": 5,
+    "mod_ag": 0,
+    "mod_co": 0,
+    "mod_in": 0,
+    "mod_it": 0,
+    "mod_pr": 0,
+    "mod_tr_ess": 0,
+    "mod_tr_fls": 0,
+    "mod_tr_vel": 0,
+    "mod_tr_mal": 0,
+    "background_points": 5,
+    "extra_language_points": 5,
+    "spell_list_learn_chance": 5,
+    "description_it": "Popolo della Terra di Mezzo: Corsari.",
+    "description_en": null
   },
   {
     "id": "black_numenoreans",
-    "name": {
-      "it": "Númenóreani Neri",
-      "en": "Black Numenoreans"
-    },
-    "category": {
-      "it": "umani",
-      "en": "humans"
-    },
+    "name_it": "Númenóreani Neri",
+    "name_en": "Black Numenoreans",
+    "category_it": "umani",
+    "category_en": "humans",
     "is_human": true,
-    "stats_modifiers": {
-      "FR": 5,
-      "AG": 0,
-      "CO": 0,
-      "IN": 0,
-      "IT": 0,
-      "PR": 0
-    },
-    "resistance_modifiers": {
-      "ESS": 0,
-      "FLS": 0,
-      "VEL": 0,
-      "MAL": 0
-    },
-    "starting_languages": [
-      {
-        "language_id": "adunaic",
-        "is_native": true,
-        "level": 5
-      },
-      {
-        "language_id": "haradaic",
-        "is_native": false,
-        "level": 5
-      },
-      {
-        "language_id": "westron",
-        "is_native": false,
-        "level": 5
-      }
-    ],
-    "description": {
-      "it": "Discendenti corrotti dei Numenoreani che si stabilirono a sud e servirono Sauron.",
-      "en": "Corrupted descendants of the Numenoreans who settled in the south and served Sauron."
-    }
+    "mod_fr": 5,
+    "mod_ag": 0,
+    "mod_co": 0,
+    "mod_in": 0,
+    "mod_it": 0,
+    "mod_pr": 0,
+    "mod_tr_ess": 0,
+    "mod_tr_fls": 0,
+    "mod_tr_vel": 0,
+    "mod_tr_mal": 0,
+    "background_points": 3,
+    "extra_language_points": 6,
+    "spell_list_learn_chance": 10,
+    "description_it": "Popolo della Terra di Mezzo: Númenóreani Neri.",
+    "description_en": null
   },
   {
     "id": "lossoth",
-    "name": {
-      "it": "Lossoth",
-      "en": "Lossoth"
-    },
-    "category": {
-      "it": "umani",
-      "en": "humans"
-    },
+    "name_it": "Lossoth",
+    "name_en": "Lossoth",
+    "category_it": "umani",
+    "category_en": "humans",
     "is_human": true,
-    "stats_modifiers": {
-      "FR": 5,
-      "AG": 0,
-      "CO": 0,
-      "IN": 0,
-      "IT": 0,
-      "PR": 0
-    },
-    "resistance_modifiers": {
-      "ESS": 0,
-      "FLS": 0,
-      "VEL": 0,
-      "MAL": 0
-    },
-    "starting_languages": [
-      {
-        "language_id": "labba",
-        "is_native": true,
-        "level": 5
-      },
-      {
-        "language_id": "westron",
-        "is_native": false,
-        "level": 2
-      },
-      {
-        "language_id": "sindarin",
-        "is_native": false,
-        "level": 2
-      }
-    ],
-    "description": {
-      "it": "Uomini delle nevi del deserto ghiacciato di Forochel.",
-      "en": "Snow-men of the frozen wastes of Forochel."
-    }
+    "mod_fr": 5,
+    "mod_ag": 0,
+    "mod_co": 0,
+    "mod_in": 0,
+    "mod_it": 0,
+    "mod_pr": 0,
+    "mod_tr_ess": 0,
+    "mod_tr_fls": 0,
+    "mod_tr_vel": 0,
+    "mod_tr_mal": 0,
+    "background_points": 4,
+    "extra_language_points": 1,
+    "spell_list_learn_chance": 5,
+    "description_it": "Popolo della Terra di Mezzo: Lossoth.",
+    "description_en": null
   },
   {
     "id": "woses",
-    "name": {
-      "it": "Wose",
-      "en": "Woses"
-    },
-    "category": {
-      "it": "umani",
-      "en": "humans"
-    },
+    "name_it": "Wose",
+    "name_en": "Woses",
+    "category_it": "umani",
+    "category_en": "humans",
     "is_human": true,
-    "stats_modifiers": {
-      "FR": 0,
-      "AG": 0,
-      "CO": 5,
-      "IN": 0,
-      "IT": 5,
-      "PR": -5
-    },
-    "resistance_modifiers": {
-      "ESS": 20,
-      "FLS": 0,
-      "VEL": 0,
-      "MAL": 0
-    },
-    "starting_languages": [
-      {
-        "language_id": "pukael",
-        "is_native": true,
-        "level": 5
-      },
-      {
-        "language_id": "dunael",
-        "is_native": false,
-        "level": 2
-      },
-      {
-        "language_id": "westron",
-        "is_native": false,
-        "level": 2
-      }
-    ],
-    "description": {
-      "it": "Uomini selvatici dei boschi (Druedain), bassi e tozzi, abilissimi nella foresta.",
-      "en": "Wild Men of the Woods (Druedain), short and stocky, highly skilled in woodcraft."
-    }
+    "mod_fr": 0,
+    "mod_ag": 0,
+    "mod_co": 5,
+    "mod_in": 0,
+    "mod_it": 5,
+    "mod_pr": -5,
+    "mod_tr_ess": 20,
+    "mod_tr_fls": 0,
+    "mod_tr_vel": 0,
+    "mod_tr_mal": 0,
+    "background_points": 5,
+    "extra_language_points": 2,
+    "spell_list_learn_chance": 5,
+    "description_it": "Popolo della Terra di Mezzo: Wose.",
+    "description_en": null
   },
   {
     "id": "half_elves",
-    "name": {
-      "it": "Mezzelfi",
-      "en": "Half-elves"
-    },
-    "category": {
-      "it": "non umani",
-      "en": "non-humans"
-    },
+    "name_it": "Mezzelfi",
+    "name_en": "Half Elves",
+    "category_it": "non umani",
+    "category_en": "non-humans",
     "is_human": false,
-    "stats_modifiers": {
-      "FR": 5,
-      "AG": 5,
-      "CO": 5,
-      "IN": 0,
-      "IT": 0,
-      "PR": 5
-    },
-    "resistance_modifiers": {
-      "ESS": -5,
-      "FLS": -5,
-      "VEL": 5,
-      "MAL": 50
-    },
-    "starting_languages": [
-      {
-        "language_id": "westron",
-        "is_native": false,
-        "level": 5
-      },
-      {
-        "language_id": "quenya",
-        "is_native": false,
-        "level": 3
-      },
-      {
-        "language_id": "sindarin",
-        "is_native": false,
-        "level": 5
-      }
-    ],
-    "description": {
-      "it": "Coloro che uniscono il sangue dei Mortali e degli Immortali.",
-      "en": "Those who unite the blood of Mortals and Immortals."
-    }
+    "mod_fr": 5,
+    "mod_ag": 5,
+    "mod_co": 5,
+    "mod_in": 0,
+    "mod_it": 0,
+    "mod_pr": 5,
+    "mod_tr_ess": -5,
+    "mod_tr_fls": -5,
+    "mod_tr_vel": 5,
+    "mod_tr_mal": 50,
+    "background_points": 3,
+    "extra_language_points": 4,
+    "spell_list_learn_chance": 10,
+    "description_it": "Popolo della Terra di Mezzo: Mezzelfi.",
+    "description_en": null
   },
   {
     "id": "sindar_elves",
-    "name": {
-      "it": "Elfi Sindar",
-      "en": "Sindar Elves"
-    },
-    "category": {
-      "it": "non umani",
-      "en": "non-humans"
-    },
+    "name_it": "Elfi Sindar",
+    "name_en": "Sindar Elves",
+    "category_it": "non umani",
+    "category_en": "non-humans",
     "is_human": false,
-    "stats_modifiers": {
-      "FR": 0,
-      "AG": 10,
-      "CO": 5,
-      "IN": 0,
-      "IT": 5,
-      "PR": 10
-    },
-    "resistance_modifiers": {
-      "ESS": -5,
-      "FLS": -5,
-      "VEL": 10,
-      "MAL": 100
-    },
-    "starting_languages": [
-      {
-        "language_id": "sindarin",
-        "is_native": true,
-        "level": 5
-      },
-      {
-        "language_id": "westron",
-        "is_native": false,
-        "level": 5
-      },
-      {
-        "language_id": "quenya",
-        "is_native": false,
-        "level": 3
-      },
-      {
-        "language_id": "silvan",
-        "is_native": false,
-        "level": 4
-      }
-    ],
-    "description": {
-      "it": "Elfi Grigi, nobili e legati ai boschi e alle coste.",
-      "en": "Grey Elves, noble and tied to the forests and coasts."
-    }
+    "mod_fr": 0,
+    "mod_ag": 10,
+    "mod_co": 5,
+    "mod_in": 0,
+    "mod_it": 5,
+    "mod_pr": 10,
+    "mod_tr_ess": -5,
+    "mod_tr_fls": -5,
+    "mod_tr_vel": 10,
+    "mod_tr_mal": 100,
+    "background_points": 3,
+    "extra_language_points": 8,
+    "spell_list_learn_chance": 30,
+    "description_it": "Popolo della Terra di Mezzo: Elfi Sindar.",
+    "description_en": null
   },
   {
     "id": "sylvan_elves",
-    "name": {
-      "it": "Elfi Silvani",
-      "en": "Sylvan Elves"
-    },
-    "category": {
-      "it": "non umani",
-      "en": "non-humans"
-    },
+    "name_it": "Elfi Silvani",
+    "name_en": "Sylvan Elves",
+    "category_it": "non umani",
+    "category_en": "non-humans",
     "is_human": false,
-    "stats_modifiers": {
-      "FR": 0,
-      "AG": 10,
-      "CO": 0,
-      "IN": 5,
-      "IT": 5,
-      "PR": 5
-    },
-    "resistance_modifiers": {
-      "ESS": -5,
-      "FLS": -5,
-      "VEL": 10,
-      "MAL": 100
-    },
-    "starting_languages": [
-      {
-        "language_id": "silvan",
-        "is_native": true,
-        "level": 5
-      },
-      {
-        "language_id": "westron",
-        "is_native": false,
-        "level": 4
-      },
-      {
-        "language_id": "quenya",
-        "is_native": false,
-        "level": 2
-      },
-      {
-        "language_id": "sindarin",
-        "is_native": false,
-        "level": 4
-      }
-    ],
-    "description": {
-      "it": "Elfi dei Boschi, agili e schivi, amanti della natura selvaggia.",
-      "en": "Wood Elves, agile and reclusive, lovers of wild nature."
-    }
+    "mod_fr": 0,
+    "mod_ag": 10,
+    "mod_co": 0,
+    "mod_in": 5,
+    "mod_it": 5,
+    "mod_pr": 5,
+    "mod_tr_ess": -5,
+    "mod_tr_fls": -5,
+    "mod_tr_vel": 10,
+    "mod_tr_mal": 100,
+    "background_points": 4,
+    "extra_language_points": 6,
+    "spell_list_learn_chance": 20,
+    "description_it": "Popolo della Terra di Mezzo: Elfi Silvani.",
+    "description_en": null
   },
   {
     "id": "noldor_elves",
-    "name": {
-      "it": "Elfi Noldor",
-      "en": "Noldor Elves"
-    },
-    "category": {
-      "it": "non umani",
-      "en": "non-humans"
-    },
+    "name_it": "Elfi Noldor",
+    "name_en": "Noldor Elves",
+    "category_it": "non umani",
+    "category_en": "non-humans",
     "is_human": false,
-    "stats_modifiers": {
-      "FR": 0,
-      "AG": 15,
-      "CO": 10,
-      "IN": 5,
-      "IT": 5,
-      "PR": 15
-    },
-    "resistance_modifiers": {
-      "ESS": -5,
-      "FLS": -5,
-      "VEL": 10,
-      "MAL": 100
-    },
-    "starting_languages": [
-      {
-        "language_id": "quenya",
-        "is_native": true,
-        "level": 5
-      },
-      {
-        "language_id": "adunaic",
-        "is_native": false,
-        "level": 3
-      },
-      {
-        "language_id": "westron",
-        "is_native": false,
-        "level": 5
-      },
-      {
-        "language_id": "sindarin",
-        "is_native": false,
-        "level": 5
-      }
-    ],
-    "description": {
-      "it": "Alti Elfi, sapienti, artigiani sublimi e potenti guerrieri.",
-      "en": "High Elves, wise, sublime craftsmen, and powerful warriors."
-    }
+    "mod_fr": 0,
+    "mod_ag": 15,
+    "mod_co": 10,
+    "mod_in": 5,
+    "mod_it": 5,
+    "mod_pr": 15,
+    "mod_tr_ess": -5,
+    "mod_tr_fls": -5,
+    "mod_tr_vel": 10,
+    "mod_tr_mal": 100,
+    "background_points": 2,
+    "extra_language_points": 10,
+    "spell_list_learn_chance": 40,
+    "description_it": "Popolo della Terra di Mezzo: Elfi Noldor.",
+    "description_en": null
   },
   {
     "id": "hobbits",
-    "name": {
-      "it": "Hobbit",
-      "en": "Hobbits"
-    },
-    "category": {
-      "it": "non umani",
-      "en": "non-humans"
-    },
+    "name_it": "Hobbit",
+    "name_en": "Hobbits",
+    "category_it": "non umani",
+    "category_en": "non-humans",
     "is_human": false,
-    "stats_modifiers": {
-      "FR": -20,
-      "AG": 15,
-      "CO": 15,
-      "IN": 0,
-      "IT": -5,
-      "PR": -5
-    },
-    "resistance_modifiers": {
-      "ESS": 50,
-      "FLS": 20,
-      "VEL": 30,
-      "MAL": 15
-    },
-    "starting_languages": [
-      {
-        "language_id": "kuduk",
-        "is_native": true,
-        "level": 5
-      },
-      {
-        "language_id": "westron",
-        "is_native": false,
-        "level": 5
-      }
-    ],
-    "description": {
-      "it": "Piccoli ed operosi, gli Hobbit amano la pace, il buon cibo e la tranquillità della Contea.",
-      "en": "Small and industrious, Hobbits love peace, good food, and the tranquility of the Shire."
-    }
+    "mod_fr": -20,
+    "mod_ag": 15,
+    "mod_co": 15,
+    "mod_in": 0,
+    "mod_it": -5,
+    "mod_pr": -5,
+    "mod_tr_ess": 50,
+    "mod_tr_fls": 20,
+    "mod_tr_vel": 30,
+    "mod_tr_mal": 15,
+    "background_points": 5,
+    "extra_language_points": 3,
+    "spell_list_learn_chance": 0,
+    "description_it": "Popolo della Terra di Mezzo: Hobbit.",
+    "description_en": null
   },
   {
     "id": "dwarves",
-    "name": {
-      "it": "Nani",
-      "en": "Dwarves"
-    },
-    "category": {
-      "it": "non umani",
-      "en": "non-humans"
-    },
+    "name_it": "Nani",
+    "name_en": "Dwarves",
+    "category_it": "non umani",
+    "category_en": "non-humans",
     "is_human": false,
-    "stats_modifiers": {
-      "FR": 5,
-      "AG": -5,
-      "CO": 15,
-      "IN": 0,
-      "IT": -5,
-      "PR": -5
-    },
-    "resistance_modifiers": {
-      "ESS": 40,
-      "FLS": 0,
-      "VEL": 20,
-      "MAL": 10
-    },
-    "starting_languages": [
-      {
-        "language_id": "khuzdul",
-        "is_native": true,
-        "level": 5
-      },
-      {
-        "language_id": "westron",
-        "is_native": false,
-        "level": 5
-      },
-      {
-        "language_id": "sindarin",
-        "is_native": false,
-        "level": 3
-      }
-    ],
-    "description": {
-      "it": "I Nani sono tenaci scavatori e artigiani che vivono sotto le montagne, famosi per la loro resistenza e amore per i metalli preziosi.",
-      "en": "Dwarves are tenacious miners and craftsmen living under the mountains, famous for their endurance and love for precious metals."
-    }
+    "mod_fr": 5,
+    "mod_ag": -5,
+    "mod_co": 15,
+    "mod_in": 0,
+    "mod_it": -5,
+    "mod_pr": -5,
+    "mod_tr_ess": 40,
+    "mod_tr_fls": 0,
+    "mod_tr_vel": 20,
+    "mod_tr_mal": 10,
+    "background_points": 4,
+    "extra_language_points": 4,
+    "spell_list_learn_chance": 3,
+    "description_it": "Popolo della Terra di Mezzo: Nani.",
+    "description_en": null
   },
   {
     "id": "umli",
-    "name": {
-      "it": "Umli",
-      "en": "Umli"
-    },
-    "category": {
-      "it": "non umani",
-      "en": "non-humans"
-    },
+    "name_it": "Umli",
+    "name_en": "Umli",
+    "category_it": "non umani",
+    "category_en": "non-humans",
     "is_human": false,
-    "stats_modifiers": {
-      "FR": 5,
-      "AG": 0,
-      "CO": 10,
-      "IN": 0,
-      "IT": -5,
-      "PR": -5
-    },
-    "resistance_modifiers": {
-      "ESS": 20,
-      "FLS": 0,
-      "VEL": 5,
-      "MAL": 5
-    },
-    "starting_languages": [
-      {
-        "language_id": "umitic",
-        "is_native": true,
-        "level": 5
-      },
-      {
-        "language_id": "khuzdul",
-        "is_native": false,
-        "level": 1
-      },
-      {
-        "language_id": "labba",
-        "is_native": false,
-        "level": 2
-      },
-      {
-        "language_id": "westron",
-        "is_native": false,
-        "level": 2
-      }
-    ],
-    "description": {
-      "it": "Mezzonani dei ghiacci del nord, piccoli e resistenti.",
-      "en": "Half-dwarves of the northern ice, small and resilient."
-    }
+    "mod_fr": 5,
+    "mod_ag": 0,
+    "mod_co": 10,
+    "mod_in": 0,
+    "mod_it": -5,
+    "mod_pr": -5,
+    "mod_tr_ess": 20,
+    "mod_tr_fls": 0,
+    "mod_tr_vel": 5,
+    "mod_tr_mal": 5,
+    "background_points": 4,
+    "extra_language_points": 3,
+    "spell_list_learn_chance": 5,
+    "description_it": "Popolo della Terra di Mezzo: Umli.",
+    "description_en": null
   },
   {
     "id": "half_orcs",
-    "name": {
-      "it": "Mezzorchi",
-      "en": "Half-orcs"
-    },
-    "category": {
-      "it": "non umani",
-      "en": "non-humans"
-    },
+    "name_it": "Mezzorchi",
+    "name_en": "Half Orcs",
+    "category_it": "non umani",
+    "category_en": "non-humans",
     "is_human": false,
-    "stats_modifiers": {
-      "FR": 5,
-      "AG": 0,
-      "CO": 5,
-      "IN": 0,
-      "IT": 0,
-      "PR": -5
-    },
-    "resistance_modifiers": {
-      "ESS": 0,
-      "FLS": 0,
-      "VEL": 10,
-      "MAL": 0
-    },
-    "starting_languages": [
-      {
-        "language_id": "black_speech",
-        "is_native": false,
-        "level": 4
-      },
-      {
-        "language_id": "orkish",
-        "is_native": false,
-        "level": 4
-      },
-      {
-        "language_id": "westron",
-        "is_native": false,
-        "level": 4
-      }
-    ],
-    "description": {
-      "it": "Creature nate dall'unione di uomini e orchetti, spesso spie o scherani.",
-      "en": "Creatures born from the union of men and orcs, often spies or henchmen."
-    }
+    "mod_fr": 5,
+    "mod_ag": 0,
+    "mod_co": 5,
+    "mod_in": 0,
+    "mod_it": 0,
+    "mod_pr": -5,
+    "mod_tr_ess": 0,
+    "mod_tr_fls": 0,
+    "mod_tr_vel": 10,
+    "mod_tr_mal": 0,
+    "background_points": 4,
+    "extra_language_points": 2,
+    "spell_list_learn_chance": 0,
+    "description_it": "Popolo della Terra di Mezzo: Mezzorchi.",
+    "description_en": null
   },
   {
     "id": "orcs",
-    "name": {
-      "it": "Orchetti",
-      "en": "Orcs"
-    },
-    "category": {
-      "it": "non umani",
-      "en": "non-humans"
-    },
+    "name_it": "Orchetti",
+    "name_en": "Orcs",
+    "category_it": "non umani",
+    "category_en": "non-humans",
     "is_human": false,
-    "stats_modifiers": {
-      "FR": 5,
-      "AG": -5,
-      "CO": 15,
-      "IN": -10,
-      "IT": -10,
-      "PR": -10
-    },
-    "resistance_modifiers": {
-      "ESS": 0,
-      "FLS": 0,
-      "VEL": 20,
-      "MAL": 5
-    },
-    "starting_languages": [
-      {
-        "language_id": "orkish",
-        "is_native": true,
-        "level": 5
-      },
-      {
-        "language_id": "westron",
-        "is_native": false,
-        "level": 3
-      }
-    ],
-    "description": {
-      "it": "Creature malvagie moltiplicate dall'Oscuro Signore, odiano la luce solare.",
-      "en": "Evil creatures bred by the Dark Lord, they loathe sunlight."
-    }
+    "mod_fr": 5,
+    "mod_ag": -5,
+    "mod_co": 15,
+    "mod_in": -10,
+    "mod_it": -10,
+    "mod_pr": -10,
+    "mod_tr_ess": 0,
+    "mod_tr_fls": 0,
+    "mod_tr_vel": 20,
+    "mod_tr_mal": 5,
+    "background_points": 2,
+    "extra_language_points": 2,
+    "spell_list_learn_chance": 0,
+    "description_it": "Popolo della Terra di Mezzo: Orchetti.",
+    "description_en": null
   },
   {
     "id": "uruk_hai",
-    "name": {
-      "it": "Uruk-hai",
-      "en": "Uruk-hai"
-    },
-    "category": {
-      "it": "non umani",
-      "en": "non-humans"
-    },
+    "name_it": "Uruk-hai",
+    "name_en": "Uruk Hai",
+    "category_it": "non umani",
+    "category_en": "non-humans",
     "is_human": false,
-    "stats_modifiers": {
-      "FR": 10,
-      "AG": 0,
-      "CO": 20,
-      "IN": 0,
-      "IT": -5,
-      "PR": -10
-    },
-    "resistance_modifiers": {
-      "ESS": 0,
-      "FLS": 0,
-      "VEL": 20,
-      "MAL": 5
-    },
-    "starting_languages": [
-      {
-        "language_id": "black_speech",
-        "is_native": true,
-        "level": 5
-      },
-      {
-        "language_id": "orkish",
-        "is_native": false,
-        "level": 4
-      },
-      {
-        "language_id": "westron",
-        "is_native": false,
-        "level": 4
-      }
-    ],
-    "description": {
-      "it": "Una razza superiore di orchetti, forti, alti e non indeboliti dal sole.",
-      "en": "A superior breed of orcs, strong, tall, and not weakened by sunlight."
-    }
+    "mod_fr": 10,
+    "mod_ag": 0,
+    "mod_co": 20,
+    "mod_in": 0,
+    "mod_it": -5,
+    "mod_pr": -10,
+    "mod_tr_ess": 0,
+    "mod_tr_fls": 0,
+    "mod_tr_vel": 20,
+    "mod_tr_mal": 5,
+    "background_points": 3,
+    "extra_language_points": 2,
+    "spell_list_learn_chance": 0,
+    "description_it": "Popolo della Terra di Mezzo: Uruk-hai.",
+    "description_en": null
   },
   {
     "id": "half_trolls",
-    "name": {
-      "it": "Mezzotroll",
-      "en": "Half-trolls"
-    },
-    "category": {
-      "it": "non umani",
-      "en": "non-humans"
-    },
+    "name_it": "Mezzotroll",
+    "name_en": "Half Trolls",
+    "category_it": "non umani",
+    "category_en": "non-humans",
     "is_human": false,
-    "stats_modifiers": {
-      "FR": 10,
-      "AG": -5,
-      "CO": 10,
-      "IN": -5,
-      "IT": -5,
-      "PR": -5
-    },
-    "resistance_modifiers": {
-      "ESS": 0,
-      "FLS": 0,
-      "VEL": 15,
-      "MAL": 5
-    },
-    "starting_languages": [
-      {
-        "language_id": "black_speech",
-        "is_native": false,
-        "level": 4
-      },
-      {
-        "language_id": "westron",
-        "is_native": false,
-        "level": 4
-      }
-    ],
-    "description": {
-      "it": "Creature brutali e massicce provenienti dall'estremo sud.",
-      "en": "Brutal and massive creatures coming from the Far South."
-    }
+    "mod_fr": 10,
+    "mod_ag": -5,
+    "mod_co": 10,
+    "mod_in": -5,
+    "mod_it": -5,
+    "mod_pr": -5,
+    "mod_tr_ess": 0,
+    "mod_tr_fls": 0,
+    "mod_tr_vel": 15,
+    "mod_tr_mal": 5,
+    "background_points": 2,
+    "extra_language_points": 2,
+    "spell_list_learn_chance": 0,
+    "description_it": "Popolo della Terra di Mezzo: Mezzotroll.",
+    "description_en": null
   },
   {
     "id": "trolls",
-    "name": {
-      "it": "Troll",
-      "en": "Trolls"
-    },
-    "category": {
-      "it": "non umani",
-      "en": "non-humans"
-    },
+    "name_it": "Troll",
+    "name_en": "Trolls",
+    "category_it": "non umani",
+    "category_en": "non-humans",
     "is_human": false,
-    "stats_modifiers": {
-      "FR": 15,
-      "AG": -10,
-      "CO": 15,
-      "IN": -15,
-      "IT": -15,
-      "PR": -10
-    },
-    "resistance_modifiers": {
-      "ESS": 0,
-      "FLS": 0,
-      "VEL": 30,
-      "MAL": 10
-    },
-    "starting_languages": [
-      {
-        "language_id": "black_speech",
-        "is_native": true,
-        "level": 5
-      },
-      {
-        "language_id": "westron",
-        "is_native": false,
-        "level": 3
-      }
-    ],
-    "description": {
-      "it": "Creature gigantesche di scarsa intelligenza che si pietrificano alla luce solare.",
-      "en": "Gigantic creatures of low intelligence that turn to stone in sunlight."
-    }
+    "mod_fr": 15,
+    "mod_ag": -10,
+    "mod_co": 15,
+    "mod_in": -15,
+    "mod_it": -15,
+    "mod_pr": -10,
+    "mod_tr_ess": 0,
+    "mod_tr_fls": 0,
+    "mod_tr_vel": 30,
+    "mod_tr_mal": 10,
+    "background_points": 1,
+    "extra_language_points": 2,
+    "spell_list_learn_chance": 0,
+    "description_it": "Popolo della Terra di Mezzo: Troll.",
+    "description_en": null
   },
   {
     "id": "olog_hai",
-    "name": {
-      "it": "Olog-hai",
-      "en": "Olog-hai"
-    },
-    "category": {
-      "it": "non umani",
-      "en": "non-humans"
-    },
+    "name_it": "Olog-hai",
+    "name_en": "Olog Hai",
+    "category_it": "non umani",
+    "category_en": "non-humans",
     "is_human": false,
-    "stats_modifiers": {
-      "FR": 20,
-      "AG": -5,
-      "CO": 15,
-      "IN": -5,
-      "IT": -10,
-      "PR": -10
-    },
-    "resistance_modifiers": {
-      "ESS": 0,
-      "FLS": 0,
-      "VEL": 20,
-      "MAL": 10
-    },
-    "starting_languages": [
-      {
-        "language_id": "black_speech",
-        "is_native": true,
-        "level": 5
-      },
-      {
-        "language_id": "westron",
-        "is_native": false,
-        "level": 3
-      }
-    ],
-    "description": {
-      "it": "Troll da guerra migliorati da Sauron, in grado di resistere alla luce solare.",
-      "en": "War-trolls improved by Sauron, able to withstand sunlight."
-    }
+    "mod_fr": 20,
+    "mod_ag": -5,
+    "mod_co": 15,
+    "mod_in": -5,
+    "mod_it": -10,
+    "mod_pr": -10,
+    "mod_tr_ess": 0,
+    "mod_tr_fls": 0,
+    "mod_tr_vel": 20,
+    "mod_tr_mal": 10,
+    "background_points": 1,
+    "extra_language_points": 2,
+    "spell_list_learn_chance": 0,
+    "description_it": "Popolo della Terra di Mezzo: Olog-hai.",
+    "description_en": null
+  },
+  {
+    "id": "variags",
+    "name_it": "Variag",
+    "name_en": "Variags",
+    "category_it": "umani",
+    "category_en": "humans",
+    "is_human": true,
+    "mod_fr": 5,
+    "mod_ag": 0,
+    "mod_co": 0,
+    "mod_in": 0,
+    "mod_it": 0,
+    "mod_pr": 0,
+    "mod_tr_ess": 0,
+    "mod_tr_fls": 0,
+    "mod_tr_vel": 0,
+    "mod_tr_mal": 0,
+    "background_points": 4,
+    "extra_language_points": 3,
+    "spell_list_learn_chance": 5,
+    "description_it": "Popolo della Terra di Mezzo: Variag.",
+    "description_en": null
   }
 ]

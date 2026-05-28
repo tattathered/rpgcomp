@@ -1,0 +1,500 @@
+[
+  {
+    "race_id": "beornings",
+    "language_id": "atliduk",
+    "is_native": true,
+    "level": 5
+  },
+  {
+    "race_id": "beornings",
+    "language_id": "waildyth",
+    "is_native": true,
+    "level": 5
+  },
+  {
+    "race_id": "beornings",
+    "language_id": "nahaiduk",
+    "is_native": false,
+    "level": 5
+  },
+  {
+    "race_id": "beornings",
+    "language_id": "westron",
+    "is_native": false,
+    "level": 5
+  },
+  {
+    "race_id": "eriadorian_urban_men",
+    "language_id": "westron",
+    "is_native": true,
+    "level": 5
+  },
+  {
+    "race_id": "eriadorian_rural_men",
+    "language_id": "westron",
+    "is_native": true,
+    "level": 5
+  },
+  {
+    "race_id": "gondorian_urban_men",
+    "language_id": "westron",
+    "is_native": true,
+    "level": 5
+  },
+  {
+    "race_id": "gondorian_rural_men",
+    "language_id": "westron",
+    "is_native": true,
+    "level": 5
+  },
+  {
+    "race_id": "rohirrim_urban_men",
+    "language_id": "rohirric",
+    "is_native": true,
+    "level": 5
+  },
+  {
+    "race_id": "rohirrim_urban_men",
+    "language_id": "dunael",
+    "is_native": false,
+    "level": 1
+  },
+  {
+    "race_id": "rohirrim_urban_men",
+    "language_id": "westron",
+    "is_native": false,
+    "level": 5
+  },
+  {
+    "race_id": "rohirrim_rural_men",
+    "language_id": "rohirric",
+    "is_native": true,
+    "level": 5
+  },
+  {
+    "race_id": "rohirrim_rural_men",
+    "language_id": "dunael",
+    "is_native": false,
+    "level": 1
+  },
+  {
+    "race_id": "rohirrim_rural_men",
+    "language_id": "westron",
+    "is_native": false,
+    "level": 5
+  },
+  {
+    "race_id": "corsairs",
+    "language_id": "adunaic",
+    "is_native": true,
+    "level": 5
+  },
+  {
+    "race_id": "corsairs",
+    "language_id": "haradaic",
+    "is_native": false,
+    "level": 4
+  },
+  {
+    "race_id": "corsairs",
+    "language_id": "westron",
+    "is_native": false,
+    "level": 5
+  },
+  {
+    "race_id": "dorwinrim",
+    "language_id": "logathig",
+    "is_native": true,
+    "level": 5
+  },
+  {
+    "race_id": "dorwinrim",
+    "language_id": "westron",
+    "is_native": false,
+    "level": 5
+  },
+  {
+    "race_id": "dunedain",
+    "language_id": "adunaic",
+    "is_native": true,
+    "level": 5
+  },
+  {
+    "race_id": "dunedain",
+    "language_id": "westron",
+    "is_native": false,
+    "level": 5
+  },
+  {
+    "race_id": "dunedain",
+    "language_id": "quenya",
+    "is_native": false,
+    "level": 1
+  },
+  {
+    "race_id": "dunedain",
+    "language_id": "sindarin",
+    "is_native": false,
+    "level": 4
+  },
+  {
+    "race_id": "dunlendings",
+    "language_id": "dunael",
+    "is_native": true,
+    "level": 5
+  },
+  {
+    "race_id": "dunlendings",
+    "language_id": "westron",
+    "is_native": false,
+    "level": 4
+  },
+  {
+    "race_id": "noldor_elves",
+    "language_id": "quenya",
+    "is_native": true,
+    "level": 5
+  },
+  {
+    "race_id": "noldor_elves",
+    "language_id": "adunaic",
+    "is_native": false,
+    "level": 3
+  },
+  {
+    "race_id": "noldor_elves",
+    "language_id": "westron",
+    "is_native": false,
+    "level": 5
+  },
+  {
+    "race_id": "noldor_elves",
+    "language_id": "sindarin",
+    "is_native": false,
+    "level": 5
+  },
+  {
+    "race_id": "sylvan_elves",
+    "language_id": "silvan",
+    "is_native": true,
+    "level": 5
+  },
+  {
+    "race_id": "sylvan_elves",
+    "language_id": "westron",
+    "is_native": false,
+    "level": 4
+  },
+  {
+    "race_id": "sylvan_elves",
+    "language_id": "quenya",
+    "is_native": false,
+    "level": 2
+  },
+  {
+    "race_id": "sylvan_elves",
+    "language_id": "sindarin",
+    "is_native": false,
+    "level": 4
+  },
+  {
+    "race_id": "sindar_elves",
+    "language_id": "sindarin",
+    "is_native": true,
+    "level": 5
+  },
+  {
+    "race_id": "sindar_elves",
+    "language_id": "westron",
+    "is_native": false,
+    "level": 5
+  },
+  {
+    "race_id": "sindar_elves",
+    "language_id": "quenya",
+    "is_native": false,
+    "level": 3
+  },
+  {
+    "race_id": "sindar_elves",
+    "language_id": "silvan",
+    "is_native": false,
+    "level": 4
+  },
+  {
+    "race_id": "easterlings",
+    "language_id": "logathig",
+    "is_native": true,
+    "level": 5
+  },
+  {
+    "race_id": "easterlings",
+    "language_id": "westron",
+    "is_native": false,
+    "level": 2
+  },
+  {
+    "race_id": "haradrim",
+    "language_id": "haradaic",
+    "is_native": true,
+    "level": 5
+  },
+  {
+    "race_id": "haradrim",
+    "language_id": "apysaic",
+    "is_native": false,
+    "level": 4
+  },
+  {
+    "race_id": "haradrim",
+    "language_id": "westron",
+    "is_native": false,
+    "level": 5
+  },
+  {
+    "race_id": "hobbits",
+    "language_id": "kuduk",
+    "is_native": true,
+    "level": 5
+  },
+  {
+    "race_id": "hobbits",
+    "language_id": "westron",
+    "is_native": false,
+    "level": 5
+  },
+  {
+    "race_id": "lossoth",
+    "language_id": "labba",
+    "is_native": true,
+    "level": 5
+  },
+  {
+    "race_id": "lossoth",
+    "language_id": "westron",
+    "is_native": false,
+    "level": 2
+  },
+  {
+    "race_id": "lossoth",
+    "language_id": "sindarin",
+    "is_native": false,
+    "level": 2
+  },
+  {
+    "race_id": "half_elves",
+    "language_id": "westron",
+    "is_native": false,
+    "level": 5
+  },
+  {
+    "race_id": "half_elves",
+    "language_id": "quenya",
+    "is_native": false,
+    "level": 3
+  },
+  {
+    "race_id": "half_elves",
+    "language_id": "sindarin",
+    "is_native": false,
+    "level": 5
+  },
+  {
+    "race_id": "half_trolls",
+    "language_id": "black_speech",
+    "is_native": false,
+    "level": 4
+  },
+  {
+    "race_id": "half_trolls",
+    "language_id": "westron",
+    "is_native": false,
+    "level": 4
+  },
+  {
+    "race_id": "half_orcs",
+    "language_id": "black_speech",
+    "is_native": false,
+    "level": 4
+  },
+  {
+    "race_id": "half_orcs",
+    "language_id": "orkish",
+    "is_native": false,
+    "level": 4
+  },
+  {
+    "race_id": "half_orcs",
+    "language_id": "westron",
+    "is_native": false,
+    "level": 4
+  },
+  {
+    "race_id": "dwarves",
+    "language_id": "khuzdul",
+    "is_native": true,
+    "level": 5
+  },
+  {
+    "race_id": "dwarves",
+    "language_id": "westron",
+    "is_native": false,
+    "level": 5
+  },
+  {
+    "race_id": "dwarves",
+    "language_id": "sindarin",
+    "is_native": false,
+    "level": 3
+  },
+  {
+    "race_id": "black_numenoreans",
+    "language_id": "adunaic",
+    "is_native": true,
+    "level": 5
+  },
+  {
+    "race_id": "black_numenoreans",
+    "language_id": "haradaic",
+    "is_native": false,
+    "level": 5
+  },
+  {
+    "race_id": "black_numenoreans",
+    "language_id": "westron",
+    "is_native": false,
+    "level": 5
+  },
+  {
+    "race_id": "olog_hai",
+    "language_id": "black_speech",
+    "is_native": true,
+    "level": 5
+  },
+  {
+    "race_id": "olog_hai",
+    "language_id": "westron",
+    "is_native": false,
+    "level": 3
+  },
+  {
+    "race_id": "orcs",
+    "language_id": "orkish",
+    "is_native": true,
+    "level": 5
+  },
+  {
+    "race_id": "orcs",
+    "language_id": "westron",
+    "is_native": false,
+    "level": 3
+  },
+  {
+    "race_id": "trolls",
+    "language_id": "black_speech",
+    "is_native": true,
+    "level": 5
+  },
+  {
+    "race_id": "trolls",
+    "language_id": "westron",
+    "is_native": false,
+    "level": 3
+  },
+  {
+    "race_id": "umli",
+    "language_id": "umitic",
+    "is_native": true,
+    "level": 5
+  },
+  {
+    "race_id": "umli",
+    "language_id": "khuzdul",
+    "is_native": false,
+    "level": 1
+  },
+  {
+    "race_id": "umli",
+    "language_id": "labba",
+    "is_native": false,
+    "level": 2
+  },
+  {
+    "race_id": "umli",
+    "language_id": "westron",
+    "is_native": false,
+    "level": 2
+  },
+  {
+    "race_id": "woodmen",
+    "language_id": "nahaiduk",
+    "is_native": true,
+    "level": 5
+  },
+  {
+    "race_id": "woodmen",
+    "language_id": "westron",
+    "is_native": false,
+    "level": 2
+  },
+  {
+    "race_id": "woodmen",
+    "language_id": "sindarin",
+    "is_native": false,
+    "level": 2
+  },
+  {
+    "race_id": "uruk_hai",
+    "language_id": "black_speech",
+    "is_native": true,
+    "level": 5
+  },
+  {
+    "race_id": "uruk_hai",
+    "language_id": "orkish",
+    "is_native": false,
+    "level": 4
+  },
+  {
+    "race_id": "uruk_hai",
+    "language_id": "westron",
+    "is_native": false,
+    "level": 4
+  },
+  {
+    "race_id": "variags",
+    "language_id": "varadja",
+    "is_native": true,
+    "level": 5
+  },
+  {
+    "race_id": "variags",
+    "language_id": "haradaic",
+    "is_native": false,
+    "level": 3
+  },
+  {
+    "race_id": "variags",
+    "language_id": "westron",
+    "is_native": false,
+    "level": 2
+  },
+  {
+    "race_id": "woses",
+    "language_id": "pukael",
+    "is_native": true,
+    "level": 5
+  },
+  {
+    "race_id": "woses",
+    "language_id": "dunael",
+    "is_native": false,
+    "level": 2
+  },
+  {
+    "race_id": "woses",
+    "language_id": "westron",
+    "is_native": false,
+    "level": 2
+  }
+]

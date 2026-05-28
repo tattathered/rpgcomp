@@ -1,9 +1,14 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import lingueTerraDiMezzo from '../../../data/TS_1-lingue_della_terra_di_mezzo-v2.json';
-import gradiLingue from '../../../data/TGP_1-gradi_conoscenze_lingue.json';
 import bgOpzioni from '../../../data/TGP_2-opzioni_background-v1.json';
 import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
 import secondarySkillsList from '../../../data/Tabella-abilita_secondarie.json';
+import gradiLingue from '../../../data/TGP_1-gradi_conoscenze_lingue.json';
+
+// Nuove tabelle relazionali normalizzate
+import languagesData from '../../../data/languages.json';
+import raceLanguagesData from '../../../data/race_languages.json';
+import skillsData from '../../../data/skills.json';
+import { getRaceId } from '../../../utils/skillHelpers';
 import { getAvailableSpellLists } from '../../../utils/magicHelpers';
 import tb1 from '../../../data/TB_1-caratteristiche_bonus.json';
 import WalletBox from '../shared/WalletBox';
@@ -92,11 +97,16 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
   useEffect(() => {
     if (race && (!characterData.background?.languages)) {
       const baseLangs = {};
-      lingueTerraDiMezzo.forEach(l => {
-        if (l.popolo === race.popolo) {
-          baseLangs[l.lingua] = { base: l.livello, added: 0 };
-        }
-      });
+      const raceId = race.id || getRaceId(race.popolo);
+      if (raceId) {
+        const rlList = raceLanguagesData.filter(rl => rl.race_id === raceId);
+        rlList.forEach(rl => {
+          const lang = languagesData.find(l => l.id === rl.language_id);
+          if (lang) {
+            baseLangs[lang.name_it] = { base: rl.level, added: 0 };
+          }
+        });
+      }
       setCharacterData(prev => ({
         ...prev,
         background: { languages: baseLangs, options: prev.background?.options || [] }
@@ -105,7 +115,7 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
   }, [race]);
 
   // All language names
-  const allLanguages = useMemo(() => [...new Set(lingueTerraDiMezzo.map(l => l.lingua))].sort(), []);
+  const allLanguages = useMemo(() => [...new Set(languagesData.map(l => l.name_it))].sort(), []);
 
   if (!race) return (
     <div style={{padding:'2rem',color:'#888',textAlign:'center'}}>Torna allo Step 1 e seleziona un Popolo.</div>
@@ -226,8 +236,15 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
     const secondarySkills = {};
     nextOptions.forEach(opt => {
       if (opt.category === 'Gradi delle abilità' && opt.subChoice === 'B' && opt.skillName) {
-        const def = secondarySkillsList.find(s => s.abilita_secondaria === opt.skillName);
-        if (def) {
+        const skill = skillsData.find(s => !s.is_primary && s.name_it === opt.skillName);
+        if (skill) {
+          const def = {
+            abilita_secondaria: skill.name_it,
+            categoria_abilita_secondaria: skill.category,
+            tipo_abilita_secondaria: skill.type,
+            valore_iniziale_abilita_secondaria: `-25 ${skill.associated_stat || ''}`,
+            caratteristica_associata: skill.associated_stat
+          };
           const prev = secondarySkills[opt.skillName] || { bgRanks: 0 };
           secondarySkills[opt.skillName] = { ...def, bgRanks: prev.bgRanks + 5 };
         }
@@ -270,8 +287,15 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
           primarySkillsSpecialBonus[opt.skillName] = (primarySkillsSpecialBonus[opt.skillName] || 0) + 5;
         }
         if (isAS2 && opt.skillName) {
-          const def = secondarySkillsList.find(s => s.abilita_secondaria === opt.skillName);
-          if (def) {
+          const skill = skillsData.find(s => !s.is_primary && s.name_it === opt.skillName);
+          if (skill) {
+            const def = {
+              abilita_secondaria: skill.name_it,
+              categoria_abilita_secondaria: skill.category,
+              tipo_abilita_secondaria: skill.type,
+              valore_iniziale_abilita_secondaria: `-25 ${skill.associated_stat || ''}`,
+              caratteristica_associata: skill.associated_stat
+            };
             const prev = secondarySkills[opt.skillName] || { bgRanks: 0, specialBonus: 0 };
             secondarySkills[opt.skillName] = {
               ...def,
@@ -402,9 +426,18 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
   };
   const roll1d100 = (id) => patchOption(id, { roll: Math.floor(Math.random() * 100) + 1 });
 
-  const primarySkillNames = primarySkillsList
-    .filter(s => s.nome && s.categoria && !s.categoria.includes('Altre Abilità') && s.nome.toLowerCase() !== 'cogliere alle spalle')
-    .map(s => ({ nome: s.nome, categoria: s.categoria }));
+  const primarySkillNames = skillsData
+    .filter(s => s.is_primary && s.name_it && s.category && s.id !== 'ambush')
+    .map(s => {
+      let cat = s.category;
+      if (cat === 'movement_maneuvers') cat = 'di manovra e movimento';
+      else if (cat === 'weapons_skills') cat = 'con le armi';
+      else if (cat === 'general_skills') cat = 'generali';
+      else if (cat === 'subterfuge_skills') cat = 'sotterfugio';
+      else if (cat === 'magic_skills') cat = 'magiche';
+      else if (cat === 'physical_resistance') cat = 'resistenza fisica';
+      return { nome: s.name_it, categoria: cat };
+    });
 
   const getMagicRealmSummaryStep6 = () => {
     const spellListAllocations = characterData.spellListAllocations || {};
@@ -453,6 +486,12 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
           </div>
         </div>
       </div>
+
+      {/* Portafoglio interattivo - PRIMA delle opzioni */}
+      <WalletBox 
+        portafoglioMB={characterData.portafoglioMB || 0} 
+        onChange={(newVal) => setCharacterData(prev => ({ ...prev, portafoglioMB: newVal }))} 
+      />
 
       {/* ── OPZIONI DI BACKGROUND ── */}
       <div className="card" style={{borderColor:'var(--theme-background-border)'}}>
@@ -506,12 +545,6 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
           )}
         </div>
       </div>
-
-      {/* Portafoglio interattivo */}
-      <WalletBox 
-        portafoglioMB={characterData.portafoglioMB || 0} 
-        onChange={(newVal) => setCharacterData(prev => ({ ...prev, portafoglioMB: newVal }))} 
-      />
     </div>
   );
 }
@@ -767,10 +800,6 @@ function OptionCard({ opt, idx, characterData, primarySkillNames, languages, all
                 <option value="" disabled>-- Seleziona --</option>
                 {availableLists.filter(l => !bgSpellLists.includes(l.nome_lista) || l.nome_lista === opt.skillName).map(l=>(<option key={l.nome_lista} value={l.nome_lista}>{l.nome_lista} ({l.tipo_lista})</option>))}
               </select>
-            </div>
-            <div>
-              <label style={{fontSize:'0.8rem',fontWeight:600,color:'#374151',display:'block',marginBottom:'0.25rem'}}>Altra Descrizione (punti magia, note):</label>
-              <textarea rows={2} value={opt.customNote||''} onChange={e=>onPatch({customNote:e.target.value})} placeholder="Es: +2 Punti Magia..." style={{width:'100%',padding:'0.4rem',border:'1px solid #c4b5fd',borderRadius:'0.375rem',fontSize:'0.875rem',resize:'vertical'}} />
             </div>
           </div>
         )}

@@ -1,278 +1,68 @@
 [
   {
     "id": "warrior",
-    "name": {
-      "it": "Guerriero",
-      "en": "Warrior"
-    },
+    "name_it": "Guerriero",
+    "name_en": "Warrior",
     "primary_stat": "FR",
     "secondary_stat": "AG",
-    "level_bonuses": {
-      "physical_resistance": 3,
-      "weapons_skills": 3,
-      "general_skills": 1,
-      "subterfuge_skills": 0,
-      "magic_skills": 0,
-      "runes_reading": 0,
-      "items_use": 0,
-      "directed_spells": 0,
-      "base_spells": 0,
-      "perception": 0
-    },
-    "development_costs": {
-      "movement_maneuvers": 3,
-      "weapons_skills": 5,
-      "general_skills": 2,
-      "subterfuge_skills": 2,
-      "magic_skills": 0,
-      "physical_resistance": 3,
-      "languages": 0,
-      "spell_lists": 0
-    },
-    "spell_requirements": {
-      "realms": [
-        "essence",
-        "channeling"
-      ],
-      "max_spell_level": 3,
-      "notes": {
-        "it": "Liste incantesimi: ESSENZA o FLUSSO. Limiti: massimo livello 3.",
-        "en": "Spell lists: essence or channeling. Limits: Max level 3."
-      }
-    },
-    "description": {
-      "it": "Il Guerriero è addestrato nelle arti del combattimento. Le sue specialità sono le Abilità con le armi, le manovre con le armature, e la Resistenza Fisica. È molto difficile, per un Guerriero, imparare ad usare sotterfugi, incantesimi, oggetti magici e altre lingue.",
-      "en": "The Warrior is trained in the arts of combat. Their specialties are Weapon skills, armor maneuvers, and Physical Resistance. It is very difficult for a Warrior to learn subterfuge, spells, magic items, and other languages."
-    }
+    "spell_realm": "essence",
+    "spell_max_level": 3,
+    "description_it": "Professione del personaggio: Guerriero.",
+    "description_en": null
   },
   {
     "id": "scout",
-    "name": {
-      "it": "Scout",
-      "en": "Scout"
-    },
+    "name_it": "Scout",
+    "name_en": "Scout",
     "primary_stat": "AG",
     "secondary_stat": "IT",
-    "level_bonuses": {
-      "physical_resistance": 0,
-      "weapons_skills": 1,
-      "general_skills": 1,
-      "subterfuge_skills": 2,
-      "magic_skills": 0,
-      "runes_reading": 0,
-      "items_use": 0,
-      "directed_spells": 0,
-      "base_spells": 0,
-      "perception": 3
-    },
-    "development_costs": {
-      "movement_maneuvers": 1,
-      "weapons_skills": 3,
-      "general_skills": 3,
-      "subterfuge_skills": 5,
-      "magic_skills": 0,
-      "physical_resistance": 2,
-      "languages": 1,
-      "spell_lists": 0
-    },
-    "spell_requirements": {
-      "realms": [
-        "essence",
-        "channeling"
-      ],
-      "max_spell_level": 5,
-      "notes": {
-        "it": "Liste incantesimi: ESSENZA o FLUSSO. Limiti: massimo livello 5.",
-        "en": "Spell lists: essence or channeling. Limits: Max level 5."
-      }
-    },
-    "description": {
-      "it": "Lo Scout è addestrato alle manovre, all'osservazione, al cogliere di sorpresa e in modo più limitato, al combattimento. Le sue specialità sono le Abilità generiche e di sotterfugio, ma può sviluppare anche quelle concernenti armi ed armature.",
-      "en": "The Scout is trained in maneuvers, observation, ambush, and to a lesser extent, combat. Their specialties are General and Subterfuge skills, but they can also develop those related to weapons and armor."
-    }
+    "spell_realm": "essence",
+    "spell_max_level": 5,
+    "description_it": "Professione del personaggio: Scout.",
+    "description_en": null
   },
   {
     "id": "ranger",
-    "name": {
-      "it": "Ranger",
-      "en": "Ranger"
-    },
+    "name_it": "Ranger",
+    "name_en": "Ranger",
     "primary_stat": "CO",
     "secondary_stat": "IT",
-    "level_bonuses": {
-      "physical_resistance": 0,
-      "weapons_skills": 2,
-      "general_skills": 3,
-      "subterfuge_skills": 2,
-      "magic_skills": 0,
-      "runes_reading": 0,
-      "items_use": 0,
-      "directed_spells": 0,
-      "base_spells": 0,
-      "perception": 2
-    },
-    "development_costs": {
-      "movement_maneuvers": 2,
-      "weapons_skills": 3,
-      "general_skills": 4,
-      "subterfuge_skills": 2,
-      "magic_skills": 0,
-      "physical_resistance": 2,
-      "languages": 1,
-      "spell_lists": 1
-    },
-    "spell_requirements": {
-      "realms": [
-        "channeling",
-        "ranger"
-      ],
-      "max_spell_level": 5,
-      "notes": {
-        "it": "Liste incantesimi: FLUSSO e RANGER. Limiti: FLUSSO: massimo livello 5.",
-        "en": "Spell lists: channeling or ranger. Limits: Max level 5."
-      }
-    },
-    "description": {
-      "it": "Il Ranger è addestrato al combattimento ed a tutte le Abilità concernenti la vita all'aria aperta. Le sue specialità sono le Abilità Generiche, ma può raggiungere un buon grado anche nelle Abilità con le armi.",
-      "en": "The Ranger is trained in combat and all skills concerning outdoor life. Their specialties are General skills, but they can also achieve a good rank in Weapon skills."
-    }
+    "spell_realm": "channeling",
+    "spell_max_level": 5,
+    "description_it": "Professione del personaggio: Ranger.",
+    "description_en": null
   },
   {
     "id": "bard",
-    "name": {
-      "it": "Bardo",
-      "en": "Bard"
-    },
+    "name_it": "Bardo",
+    "name_en": "Bard",
     "primary_stat": "PR",
     "secondary_stat": "IT",
-    "level_bonuses": {
-      "physical_resistance": 0,
-      "weapons_skills": 1,
-      "general_skills": 1,
-      "subterfuge_skills": 1,
-      "magic_skills": 1,
-      "runes_reading": 0,
-      "items_use": 0,
-      "directed_spells": 0,
-      "base_spells": 1,
-      "perception": 1
-    },
-    "development_costs": {
-      "movement_maneuvers": 1,
-      "weapons_skills": 2,
-      "general_skills": 2,
-      "subterfuge_skills": 2,
-      "magic_skills": 2,
-      "physical_resistance": 1,
-      "languages": 3,
-      "spell_lists": 2
-    },
-    "spell_requirements": {
-      "realms": [
-        "essence",
-        "bard"
-      ],
-      "max_spell_level": 5,
-      "notes": {
-        "it": "Liste incantesimi: ESSENZA e BARDO. Limiti: ESSENZA: massimo livello 5.",
-        "en": "Spell lists: essence or bard. Limits: Max level 5."
-      }
-    },
-    "description": {
-      "it": "Il Bardo ha una discreta predisposizione per quasi tutte le categorie di Abilità. L'unica sua vera specialità è la conoscenza delle lingue, ma può anche apprendere incantesimi (liste Essenza aperte e dei Bardi).",
-      "en": "The Bard has a decent predisposition for almost all categories of skills. Their only true specialty is the knowledge of languages, but they can also learn spells (open Essence and Bard lists)."
-    }
+    "spell_realm": "essence",
+    "spell_max_level": 5,
+    "description_it": "Professione del personaggio: Bardo.",
+    "description_en": null
   },
   {
     "id": "mage",
-    "name": {
-      "it": "Mago",
-      "en": "Mage"
-    },
+    "name_it": "Mago",
+    "name_en": "Mage",
     "primary_stat": "IN",
     "secondary_stat": "IT",
-    "level_bonuses": {
-      "physical_resistance": 0,
-      "weapons_skills": 0,
-      "general_skills": 0,
-      "subterfuge_skills": 0,
-      "magic_skills": 2,
-      "runes_reading": 2,
-      "items_use": 2,
-      "directed_spells": 3,
-      "base_spells": 2,
-      "perception": 0
-    },
-    "development_costs": {
-      "movement_maneuvers": 0,
-      "weapons_skills": 0,
-      "general_skills": 2,
-      "subterfuge_skills": 0,
-      "magic_skills": 5,
-      "physical_resistance": 1,
-      "languages": 2,
-      "spell_lists": 5
-    },
-    "spell_requirements": {
-      "realms": [
-        "essence",
-        "mage"
-      ],
-      "max_spell_level": null,
-      "notes": {
-        "it": "Liste incantesimi: ESSENZA e MAGO. Limiti: nessun limite livello incantesimi.",
-        "en": "Spell lists: essence or mage. Limits: No level limit."
-      }
-    },
-    "description": {
-      "it": "Il Mago è un personaggio addestrato a lanciare gli incantesimi che traggono il loro potere dall'Essenza, la forza immanente in tutto il creato. Le sue specialità sono le Abilità magiche e l'apprendimento delle Liste di Incantesimi. È molto difficile, per lui, imparare a usare armi e armature.",
-      "en": "The Mage is trained to cast spells that draw their power from the Essence, the immanent force in all creation. Their specialties are Magic skills and learning Spell Lists. It is very difficult for them to learn to use weapons and armor."
-    }
+    "spell_realm": "essence",
+    "spell_max_level": null,
+    "description_it": "Professione del personaggio: Mago.",
+    "description_en": null
   },
   {
     "id": "animist",
-    "name": {
-      "it": "Animista",
-      "en": "Animist"
-    },
+    "name_it": "Animista",
+    "name_en": "Animist",
     "primary_stat": "IT",
     "secondary_stat": "IN",
-    "level_bonuses": {
-      "physical_resistance": 0,
-      "weapons_skills": 0,
-      "general_skills": 2,
-      "subterfuge_skills": 0,
-      "magic_skills": 1,
-      "runes_reading": 1,
-      "items_use": 1,
-      "directed_spells": 2,
-      "base_spells": 2,
-      "perception": 1
-    },
-    "development_costs": {
-      "movement_maneuvers": 1,
-      "weapons_skills": 1,
-      "general_skills": 2,
-      "subterfuge_skills": 1,
-      "magic_skills": 2,
-      "physical_resistance": 1,
-      "languages": 2,
-      "spell_lists": 5
-    },
-    "spell_requirements": {
-      "realms": [
-        "channeling",
-        "animist"
-      ],
-      "max_spell_level": null,
-      "notes": {
-        "it": "Liste incantesimi: FLUSSO e ANIMISTA. Limiti: nessun limite livello incantesimi.",
-        "en": "Spell lists: channeling or animist. Limits: No level limit."
-      }
-    },
-    "description": {
-      "it": "L'Animista è un personaggio addestrato a lanciare gli incantesimi che traggono la loro forza dai Valar, tramite il Flusso. La sua specialità sta nell'apprendere gli incantesimi, ma può sviluppare qualsiasi altra Abilità a scelta.",
-      "en": "The Animist is trained to cast spells that draw their strength from the Valar through Channeling. Their specialty lies in learning spells, but they can develop any other skill of choice."
-    }
+    "spell_realm": "channeling",
+    "spell_max_level": null,
+    "description_it": "Professione del personaggio: Animista.",
+    "description_en": null
   }
 ]

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
   --bg-color: #f8fafc;
@@ -92,12 +92,20 @@
   padding: 0;
 }
 
+body, input, select, textarea, button {
+  font-family: 'Montserrat', sans-serif;
+}
+
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background-color: var(--bg-color);
   color: var(--text-main);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6, .card-title, .top-nav-logo {
+  font-family: 'Lilita One', cursive, sans-serif;
+  font-weight: 400;
 }
 
 /* App Layout */
@@ -950,4 +958,59 @@ input[type=number] {
 .scrollbar-thin::-webkit-scrollbar-thumb {
   background: #cbd5e1 !important;
   border-radius: 2px !important;
+}
+
+/* ── Method Buttons (Step 3 Caratteristiche) ── */
+.btn-method-classic {
+  background-color: #1d4ed8;
+  color: #ffffff;
+  border: 2px solid #1d4ed8;
+  font-weight: 600;
+  transition: background-color 0.18s, color 0.18s;
+}
+.btn-method-classic.inactive {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+  border-color: #93c5fd;
+}
+.btn-method-classic:hover {
+  background-color: #ffffff;
+  color: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+.btn-method-points {
+  background-color: #facc15;
+  color: #78350f;
+  border: 2px solid #facc15;
+  font-weight: 600;
+  transition: background-color 0.18s, color 0.18s;
+}
+.btn-method-points.inactive {
+  background-color: #fef9c3;
+  color: #854d0e;
+  border-color: #fde68a;
+}
+.btn-method-points:hover {
+  background-color: #78350f;
+  color: #facc15;
+  border-color: #78350f;
+}
+
+.btn-method-manual {
+  background-color: #f87171;
+  color: #ffffff;
+  border: 2px solid #f87171;
+  font-weight: 600;
+  transition: background-color 0.18s, color 0.18s;
+}
+.btn-method-manual.inactive {
+  background-color: #fee2e2;
+  color: #f87171;
+  border-color: #fca5a5;
+}
+.btn-method-manual:hover {
+  background-color: #ffffff;
+  color: #f87171;
+  border-color: #f87171;
 }

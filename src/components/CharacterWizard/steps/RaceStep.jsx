@@ -49,6 +49,7 @@ export default function RaceStep({ characterData, setCharacterData }) {
   const [eyeColor, setEyeColor] = useState(characterData.eyeColor || '');
   const [personality, setPersonality] = useState(characterData.personality || '');
   const [specialFeature, setSpecialFeature] = useState(characterData.specialFeature || '');
+  const [history, setHistory] = useState(characterData.history || '');
 
   useEffect(() => {
     setCharacterName(characterData.name || '');
@@ -59,6 +60,7 @@ export default function RaceStep({ characterData, setCharacterData }) {
     setEyeColor(characterData.eyeColor || '');
     setPersonality(characterData.personality || '');
     setSpecialFeature(characterData.specialFeature || '');
+    setHistory(characterData.history || '');
     setSelectedRace(characterData.race?.popolo || '');
   }, [
     characterData.name,
@@ -69,6 +71,7 @@ export default function RaceStep({ characterData, setCharacterData }) {
     characterData.eyeColor,
     characterData.personality,
     characterData.specialFeature,
+    characterData.history,
     characterData.race
   ]);
 
@@ -104,6 +107,7 @@ export default function RaceStep({ characterData, setCharacterData }) {
     else if (field === 'eyeColor') setEyeColor(val);
     else if (field === 'personality') setPersonality(val);
     else if (field === 'specialFeature') setSpecialFeature(val);
+    else if (field === 'history') setHistory(val);
 
     setCharacterData(prev => ({
       ...prev,
@@ -323,6 +327,18 @@ export default function RaceStep({ characterData, setCharacterData }) {
               style={{ width: '100%', padding: '0.5rem 0.7rem', fontSize: '0.875rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}
             />
           </div>
+        </div>
+
+        {/* Storia del personaggio */}
+        <div style={{ borderTop: '1px dashed var(--border-color)', paddingTop: '0.75rem', marginTop: '0.75rem' }}>
+          <label className="block text-xs font-bold text-gray-700 mb-1">Storia del personaggio</label>
+          <textarea 
+            value={history} 
+            onChange={(e) => handleFieldChange('history', e.target.value)} 
+            placeholder="Inserisci qui la storia e la descrizione del personaggio..." 
+            className="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600"
+            style={{ width: '100%', padding: '0.5rem 0.7rem', fontSize: '0.875rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)', minHeight: '120px', resize: 'vertical' }}
+          />
         </div>
       </div>
 

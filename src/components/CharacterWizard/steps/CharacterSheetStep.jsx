@@ -1,8 +1,7 @@
 import { useState, useMemo } from 'react';
-import { Printer, Sparkles, AlertCircle, Heart, Zap, Shield, User, Globe, BookOpen } from 'lucide-react';
+import { Printer, Sparkles, AlertCircle, Heart, Zap, Shield, User, Globe, BookOpen, Scroll } from 'lucide-react';
 import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
 import secondarySkillsList from '../../../data/Tabella-abilita_secondarie.json';
-import lingueTerraDiMezzo from '../../../data/TS_1-lingue_della_terra_di_mezzo-v2.json';
 import gradiLingue from '../../../data/TGP_1-gradi_conoscenze_lingue.json';
 import { getSpellLimitInfo, getSpellsForList } from '../../../utils/magicHelpers';
 import {
@@ -16,7 +15,8 @@ import {
   getProfessionRanksForLevel,
   getMagicPointsPerLevel,
   calculateCargoPenalty,
-  getCaseInsensitive
+  getCaseInsensitive,
+  getCharacterHpTot
 } from '../../../utils/skillHelpers';
 import { formatMBToCoins, formatCoinsToString } from '../../../utils/moneyHelpers';
 import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
@@ -222,7 +222,7 @@ export default function CharacterSheetStep({ characterData, setCharacterData }) 
   const hpD10Modifier = bgModifiers.hpD10Modifier || 0;
   const specialRfBonus = getCaseInsensitive(bgModifiers.primarySkillsSpecialBonus, 'Resistenza fisica') || 0;
   const specialHpBonus = (totalRanksRf * hpD10Modifier) + specialRfBonus;
-  const finalHitPoints = totalHpRolls + coBonus + 5 + specialHpBonus;
+  const finalHitPoints = getCharacterHpTot(characterData);
 
   // Punti Magia Totali: livello * PM per livello
   const pmPerLevel = useMemo(() => {
@@ -463,7 +463,7 @@ export default function CharacterSheetStep({ characterData, setCharacterData }) 
             </div>
           </div>
 
-          <AnagraficaReadOnlyBox characterData={characterData} />
+          <AnagraficaReadOnlyBox characterData={characterData} simple={false} />
 
           {/* ── HEADER BANNER ── */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginTop: '1rem' }}>
@@ -1130,6 +1130,21 @@ export default function CharacterSheetStep({ characterData, setCharacterData }) 
                   <li key={idx}>{note}</li>
                 ))}
               </ul>
+            </div>
+          </div>
+        )}
+
+        {/* Storia del personaggio */}
+        {characterData.history && characterData.history.trim() !== '' && (
+          <div className="border border-gray-200 rounded-lg overflow-hidden shadow-xs mt-6 print:break-inside-avoid">
+            <div className="px-4 py-2 border-b flex items-center gap-1.5 text-gray-700 bg-gray-50 border-b-gray-200">
+              <Scroll className="w-4 h-4 text-gray-500" />
+              <span className="text-xs font-bold uppercase tracking-wider">Storia del personaggio</span>
+            </div>
+            <div className="p-4">
+              <p className="text-xs text-gray-750 leading-relaxed whitespace-pre-wrap font-serif italic" style={{ fontStyle: 'italic' }}>
+                {characterData.history}
+              </p>
             </div>
           </div>
         )}

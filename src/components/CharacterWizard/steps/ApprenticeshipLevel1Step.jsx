@@ -1,10 +1,12 @@
 import { useState, useEffect, useMemo } from 'react';
 import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
 import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
-import tgp4Data from '../../../data/TGP_4-sviluppo_abilità_professioni.json';
 import { getAvailableSpellLists } from '../../../utils/magicHelpers';
-import lingueTerraDiMezzo from '../../../data/TS_1-lingue_della_terra_di_mezzo-v2.json';
 import gradiLingue from '../../../data/TGP_1-gradi_conoscenze_lingue.json';
+
+// Nuove tabelle relazionali normalizzate
+import languagesData from '../../../data/languages.json';
+import raceLanguagesData from '../../../data/race_languages.json';
 import {
   getBonus,
   parseBonusValue,
@@ -14,7 +16,8 @@ import {
   getFinalStats,
   fmt,
   getTgp4PoolSize,
-  getTb6PoolSize
+  getTb6PoolSize,
+  getRaceId
 } from '../../../utils/skillHelpers';
 
 const TGP4_POOLS = [
@@ -59,11 +62,16 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
   useEffect(() => {
     if (race && (!characterData.background?.languages)) {
       const baseLangs = {};
-      lingueTerraDiMezzo.forEach(l => {
-        if (l.popolo === race.popolo) {
-          baseLangs[l.lingua] = { base: l.livello, addedAdolescenza: 0, addedLivello1: 0, added: 0 };
-        }
-      });
+      const raceId = race.id || getRaceId(race.popolo);
+      if (raceId) {
+        const rlList = raceLanguagesData.filter(rl => rl.race_id === raceId);
+        rlList.forEach(rl => {
+          const lang = languagesData.find(l => l.id === rl.language_id);
+          if (lang) {
+            baseLangs[lang.name_it] = { base: rl.level, addedAdolescenza: 0, addedLivello1: 0, added: 0 };
+          }
+        });
+      }
       setCharacterData(prev => ({
         ...prev,
         background: {
@@ -95,10 +103,11 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
   
   const [selectedNewList, setSelectedNewList] = useState('');
   
-  // Point Transfer States
-  const [transferSource, setTransferSource] = useState('');
-  const [transferDest, setTransferDest] = useState('');
-  const [transferPoints, setTransferPoints] = useState(1);
+  // Point Transfer States (2-phase pool model)
+  const [depositSource, setDepositSource] = useState('');
+  const [depositPoints, setDepositPoints] = useState(1);
+  const [withdrawDest, setWithdrawDest] = useState('');
+  const [withdrawPoints, setWithdrawPoints] = useState(1);
 
   // Compute pools state (base, received, transferredOut, spentOnSkills, remaining)
   const poolsState = useMemo(() => {
@@ -108,7 +117,7 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
 
     // 1. Calculate base pool sizes
     TGP4_POOLS.forEach(p => {
-      const base = getTgp4PoolSize(p.catName, p.skillName, profession.professione, tgp4Data);
+      const base = getTgp4PoolSize(p.catName, p.skillName, profession.professione);
       state[p.key] = {
         key: p.key,
         label: p.label,
@@ -119,11 +128,12 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
       };
     });
 
-    // 2. Add transferred points
+    // 2. Applica trasferimenti (nuovo formato tipizzato)
     tgp4Transfers.forEach(t => {
-      if (state[t.source] && state[t.dest]) {
-        state[t.source].transferredOut += t.cost;
-        state[t.dest].received += t.points;
+      if (t.type === 'deposit') {
+        if (state[t.source]) state[t.source].transferredOut += t.points;
+      } else if (t.type === 'withdrawal') {
+        if (state[t.dest]) state[t.dest].received += t.pointsReceived;
       }
     });
 
@@ -171,9 +181,18 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
     return state;
   }, [tgp4Distribution, tgp4Transfers, profession, characterData.background?.languages]);
 
-  const allLanguages = useMemo(() => [...new Set(lingueTerraDiMezzo.map(l => l.lingua))].sort(), []);
+  const allLanguages = useMemo(() => [...new Set(languagesData.map(l => l.name_it))].sort(), []);
   const languages = characterData.background?.languages || {};
   const languagePointsLeft = poolsState['Lingue']?.remaining || 0;
+
+  // Pool Intermedio: somma depositi meno costi dei prelievi
+  const poolBalance = useMemo(() => {
+    return tgp4Transfers.reduce((sum, t) => {
+      if (t.type === 'deposit') return sum + t.points;
+      if (t.type === 'withdrawal') return sum - t.cost;
+      return sum;
+    }, 0);
+  }, [tgp4Transfers]);
 
   const addLangPoint = (lang) => {
     if (languagePointsLeft <= 0) return;
@@ -366,12 +385,12 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
   // Spell Lists local variables
   const listPool = useMemo(() => {
     if (!profession) return 0;
-    const base = getTgp4PoolSize('liste incantesimi', null, profession.professione, tgp4Data);
+    const base = getTgp4PoolSize('liste incantesimi', null, profession.professione);
     let received = 0;
     let transferredOut = 0;
     tgp4Transfers.forEach(t => {
-      if (t.source === 'Liste incantesimi') transferredOut += t.cost;
-      if (t.dest === 'Liste incantesimi') received += t.points;
+      if (t.type === 'deposit' && t.source === 'Liste incantesimi') transferredOut += t.points;
+      if (t.type === 'withdrawal' && t.dest === 'Liste incantesimi') received += t.pointsReceived;
     });
     return base + received - transferredOut;
   }, [profession, tgp4Transfers]);
@@ -464,6 +483,11 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
       }
     }
 
+    // 2b. Controlla Pool Intermedio non svuotato
+    if (!err && poolBalance > 0) {
+      err = `Hai ${poolBalance} PS nel Pool Intermedio non ancora distribuiti. Distribuiscili alle categorie oppure resetta i trasferimenti.`;
+    }
+
     // 3. Controlla se ha ottenuto l'apprendimento lista incantesimi ma non l'ha ancora scelta
     if (!err && selectedRealm && totalChance >= 100 && !hasAcquiredInApprenticeship) {
       err = 'Hai ottenuto con successo l\'apprendimento di una lista incantesimi! Selezionala ed acquisiscila.';
@@ -478,66 +502,88 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
         }
       }));
     }
-  }, [poolsState, selectedRealm, totalChance, hasAcquiredInApprenticeship, characterData.stepErrors, setCharacterData]);
+  }, [poolsState, poolBalance, selectedRealm, totalChance, hasAcquiredInApprenticeship, characterData.stepErrors, setCharacterData]);
 
-  // Point Transfer Helper
-  const getTransferRateAndCost = (sourceKey, destKey, pointsToReceive) => {
-    if (!sourceKey || !destKey) return { rate: '—', cost: 0 };
-    
-    if (destKey === 'Percezione') {
-      return { rate: '1:1', cost: pointsToReceive };
-    }
-    
+  // ── Handlers Trasferimento 2-Fasi ────────────────────────────────────────────
+
+  const getTransferRate = (destKey, pointsToReceive) => {
+    if (!destKey) return { rate: '—', cost: 0 };
+    if (destKey === 'Percezione') return { rate: '1:1', cost: pointsToReceive };
     const destPool = TGP4_POOLS.find(p => p.key === destKey);
-    const destBase = destPool && profession ? getTgp4PoolSize(destPool.catName, destPool.skillName, profession.professione, tgp4Data) : 0;
-    
-    if (destBase > 0) {
-      return { rate: '2:1', cost: pointsToReceive * 2 };
-    } else {
-      return { rate: '4:1', cost: pointsToReceive * 4 };
-    }
+    const destBase = destPool && profession ? getTgp4PoolSize(destPool.catName, destPool.skillName, profession.professione) : 0;
+    return destBase > 0
+      ? { rate: '2:1', cost: pointsToReceive * 2 }
+      : { rate: '4:1', cost: pointsToReceive * 4 };
   };
 
-  const handleAddTransfer = () => {
-    if (!transferSource || !transferDest || transferSource === transferDest) return;
-    if (transferPoints <= 0) return;
-
-    const { cost, rate } = getTransferRateAndCost(transferSource, transferDest, transferPoints);
-    const sourcePool = poolsState[transferSource];
-
-    if (!sourcePool || sourcePool.remaining < cost) {
-      alert(`Non hai abbastanza punti disponibili nel pool "${transferSource}" (necessari: ${cost}, disponibili: ${sourcePool.remaining}).`);
+  const handleAddDeposit = () => {
+    if (!depositSource || depositPoints <= 0) return;
+    const sourcePool = poolsState[depositSource];
+    if (!sourcePool || sourcePool.remaining < depositPoints) {
+      alert(`Non hai abbastanza punti disponibili nel pool "${depositSource}" (disponibili: ${sourcePool?.remaining || 0}).`);
       return;
     }
-
-    const newTransfer = {
+    if (!window.confirm(`Confermi di spostare ${depositPoints} PS da "${depositSource}" nel Pool Intermedio?`)) return;
+    setTgp4Transfers(prev => [...prev, {
       id: Date.now() + Math.random().toString(36).substr(2, 5),
-      source: transferSource,
-      dest: transferDest,
-      points: transferPoints,
+      type: 'deposit',
+      source: depositSource,
+      points: depositPoints
+    }]);
+    setDepositPoints(1);
+    setDepositSource('');
+  };
+
+  const handleAddWithdrawal = () => {
+    if (!withdrawDest || withdrawPoints <= 0) return;
+    const { cost, rate } = getTransferRate(withdrawDest, withdrawPoints);
+    if (poolBalance < cost) {
+      alert(`Non hai abbastanza punti nel Pool Intermedio (necessari: ${cost}, disponibili: ${poolBalance}).`);
+      return;
+    }
+    if (!window.confirm(`Confermi di trasferire ${withdrawPoints} PS verso "${withdrawDest}" con costo ${cost} PS dal Pool Intermedio? (tariffa ${rate})`)) return;
+    setTgp4Transfers(prev => [...prev, {
+      id: Date.now() + Math.random().toString(36).substr(2, 5),
+      type: 'withdrawal',
+      dest: withdrawDest,
+      pointsReceived: withdrawPoints,
       cost,
       rate
-    };
-
-    setTgp4Transfers(prev => [...prev, newTransfer]);
-    
-    setTransferSource('');
-    setTransferDest('');
-    setTransferPoints(1);
+    }]);
+    setWithdrawPoints(1);
+    setWithdrawDest('');
   };
 
-  const handleDeleteTransfer = (id) => {
-    const transfer = tgp4Transfers.find(t => t.id === id);
-    if (!transfer) return;
-
-    const destPool = poolsState[transfer.dest];
-    if (destPool && destPool.remaining < transfer.points) {
-      alert(`Impossibile eliminare questo trasferimento: hai già speso i punti ricevuti nel pool "${transfer.dest}". Riduci i gradi spesi in quel pool prima di annullare il trasferimento.`);
-      return;
+  const handleDeleteEntry = (id) => {
+    const entry = tgp4Transfers.find(t => t.id === id);
+    if (!entry) return;
+    if (entry.type === 'deposit') {
+      // Posso eliminare il deposito solo se il pool non ha già speso quei punti in prelievi
+      const remainingPool = poolBalance - entry.points; // pool senza questo deposito
+      if (remainingPool < 0) {
+        alert('Impossibile rimuovere questo deposito: i punti sono già stati distribuiti dal Pool. Resetta i prelievi prima.');
+        return;
+      }
+    } else if (entry.type === 'withdrawal') {
+      // Posso eliminare il prelievo solo se i punti ricevuti non sono già stati spesi in abilità
+      const destPool = poolsState[entry.dest];
+      if (destPool && destPool.remaining < entry.pointsReceived) {
+        alert(`Impossibile rimuovere: hai già speso i ${entry.pointsReceived} PS ricevuti nel pool "${entry.dest}". Riduci i gradi spesi prima.`);
+        return;
+      }
     }
-
     setTgp4Transfers(prev => prev.filter(t => t.id !== id));
   };
+
+  const handleResetTransfers = () => {
+    if (!window.confirm('Sei sicuro di voler annullare TUTTI i trasferimenti? I PS verranno restituiti alle categorie originali. Questa operazione richiede che tu abbia anche rimosso eventuali gradi già acquistati con i PS trasferiti.')) return;
+    setTgp4Transfers([]);
+    setDepositSource('');
+    setDepositPoints(1);
+    setWithdrawDest('');
+    setWithdrawPoints(1);
+  };
+
 
   if (!race || !profession) {
     return (
@@ -652,141 +698,173 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
         </div>
       )}
 
-      {/* Pannello Trasferimento Punti */}
+
+      {/* Pannello Trasferimento Punti - 2 Fasi */}
       <div className="card rounded-lg p-5 mb-8 shadow-sm" style={{ border: '1px solid var(--theme-primary-skills-border)', backgroundColor: 'var(--theme-primary-skills-bg)' }}>
-        <h4 className="font-bold mb-3 text-base flex items-center gap-2" style={{ color: 'var(--theme-primary-skills-text)' }}>
+        <h4 className="font-bold mb-2 text-base flex items-center gap-2" style={{ color: 'var(--theme-primary-skills-text)' }}>
           <span>🔄</span> Trasferimento Punti Sviluppo (PS)
         </h4>
         <p className="text-xs mb-4 leading-relaxed" style={{ color: 'var(--theme-primary-skills-text)', opacity: 0.9 }}>
-          Puoi trasferire Punti Sviluppo (PS) tra le diverse categorie. Regole di conversione:<br/>
-          • Verso <strong>Percezione</strong>: tariffa <strong>1:1</strong>.<br/>
-          • Verso categorie con <strong>base iniziale &gt; 0</strong>: tariffa <strong>2:1</strong> (es. 2 PS per riceverne 1).<br/>
-          • Verso categorie con <strong>base iniziale = 0</strong> (es. Magiche o Liste Incantesimi per Guerriero): tariffa <strong>4:1</strong> (es. 4 PS per riceverne 1).
+          Il trasferimento avviene in <strong>2 fasi</strong>: prima si prelevano PS da una categoria nel <strong>Pool Intermedio</strong>, poi si distribuiscono dal Pool alle categorie di destinazione.<br/>
+          Regole di conversione (fase 2): Verso <strong>Percezione</strong>: <strong>1:1</strong> · Verso categorie con base &gt; 0: <strong>2:1</strong> · Verso categorie con base = 0: <strong>4:1</strong>
         </p>
 
-        <div className="grid md:grid-cols-4 gap-4 items-end bg-white p-4 border rounded-lg mb-4" style={{ borderColor: 'var(--theme-primary-skills-border)' }}>
-          <div>
-            <label className="block text-xs font-bold text-purple-900 mb-1.5">Preleva da (Sorgente)</label>
-            <select
-              value={transferSource}
-              onChange={(e) => {
-                setTransferSource(e.target.value);
-                setTransferDest('');
-              }}
-              className="w-full rounded border-purple-200 text-sm p-2 bg-white"
-            >
-              <option value="">-- Seleziona --</option>
-              {TGP4_POOLS.map(p => {
-                const pool = poolsState[p.key];
-                if (!pool || pool.remaining <= 0) return null;
-                return (
-                  <option key={p.key} value={p.key}>
-                    {p.label} ({pool.remaining} PS disp.)
-                  </option>
-                );
-              })}
-            </select>
+        {/* FASE 1: Preleva nel Pool */}
+        <div className="bg-white rounded-lg border p-4 mb-3" style={{ borderColor: 'var(--theme-primary-skills-border)' }}>
+          <div className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--theme-primary-skills-text)' }}>
+            📥 Fase 1 — Preleva nel Pool Intermedio (1:1)
           </div>
-
-          <div>
-            <label className="block text-xs font-bold text-purple-900 mb-1.5">Trasferisci a (Destinazione)</label>
-            <select
-              value={transferDest}
-              onChange={(e) => setTransferDest(e.target.value)}
-              disabled={!transferSource}
-              className="w-full rounded border-purple-200 text-sm p-2 bg-white disabled:opacity-50"
-            >
-              <option value="">-- Seleziona --</option>
-              {TGP4_POOLS.map(p => {
-                if (p.key === transferSource) return null;
-                return (
-                  <option key={p.key} value={p.key}>
-                    {p.label} (Base: {poolsState[p.key]?.base || 0})
-                  </option>
-                );
-              })}
-            </select>
-          </div>
-
-          <div>
-            <label className="block text-xs font-bold text-purple-900 mb-1.5">Punti da ricevere</label>
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={() => setTransferPoints(prev => Math.max(1, prev - 1))}
-                className="w-8 h-8 flex items-center justify-center bg-gray-100 border border-gray-300 rounded hover:bg-gray-200 text-sm font-bold"
+          <div className="grid md:grid-cols-3 gap-3 items-end">
+            <div>
+              <label className="block text-xs font-bold text-purple-900 mb-1">Categoria Sorgente</label>
+              <select
+                value={depositSource}
+                onChange={(e) => setDepositSource(e.target.value)}
+                className="w-full rounded border-purple-200 text-sm p-2 bg-white"
               >
-                -
-              </button>
-              <span className="w-10 text-center font-bold text-sm">{transferPoints}</span>
-              <button
-                type="button"
-                onClick={() => setTransferPoints(prev => prev + 1)}
-                className="w-8 h-8 flex items-center justify-center bg-gray-100 border border-gray-300 rounded hover:bg-gray-200 text-sm font-bold"
-              >
-                +
-              </button>
+                <option value="">-- Seleziona --</option>
+                {TGP4_POOLS.map(p => {
+                  const pool = poolsState[p.key];
+                  if (!pool || pool.remaining <= 0) return null;
+                  return (
+                    <option key={p.key} value={p.key}>
+                      {p.label} ({pool.remaining} PS disp.)
+                    </option>
+                  );
+                })}
+              </select>
             </div>
-          </div>
-
-          <div>
-            <button
-              type="button"
-              onClick={handleAddTransfer}
-              disabled={!transferSource || !transferDest}
-              className="w-full bg-purple-600 hover:bg-purple-700 disabled:bg-purple-300 text-white font-bold py-2 px-4 rounded text-sm transition shadow-sm"
-            >
-              Effettua Trasferimento
+            <div>
+              <label className="block text-xs font-bold text-purple-900 mb-1">PS da spostare nel Pool</label>
+              <div className="flex items-center gap-2">
+                <button type="button" onClick={() => setDepositPoints(prev => Math.max(1, prev - 1))}
+                  className="w-8 h-8 flex items-center justify-center bg-gray-100 border border-gray-300 rounded hover:bg-gray-200 text-sm font-bold">-</button>
+                <span className="w-10 text-center font-bold text-sm">{depositPoints}</span>
+                <button type="button" onClick={() => setDepositPoints(prev => prev + 1)}
+                  className="w-8 h-8 flex items-center justify-center bg-gray-100 border border-gray-300 rounded hover:bg-gray-200 text-sm font-bold">+</button>
+              </div>
+            </div>
+            <button type="button" onClick={handleAddDeposit} disabled={!depositSource}
+              className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-300 text-white font-bold py-2 px-4 rounded text-sm transition shadow-sm">
+              Conferma Prelievo →
             </button>
           </div>
         </div>
 
-        {/* Esito teorico del trasferimento selezionato */}
-        {transferSource && transferDest && (() => {
-          const { rate, cost } = getTransferRateAndCost(transferSource, transferDest, transferPoints);
-          const sourcePool = poolsState[transferSource];
-          const hasEnough = sourcePool && sourcePool.remaining >= cost;
-          return (
-            <div className={`text-xs p-2.5 rounded border mb-4 font-medium flex justify-between items-center ${
-              hasEnough ? 'bg-purple-50 text-purple-900 border-purple-200' : 'bg-red-50 text-red-900 border-red-200'
-            }`}>
-              <span>
-                Tariffa: <strong>{rate}</strong> | Costo: <strong>{cost} PS</strong> da <em>{transferSource}</em> per aggiungere <strong>{transferPoints} PS</strong> a <em>{transferDest}</em>.
-              </span>
-              {!hasEnough && <span className="font-bold text-red-700">⚠️ Punti insufficienti in sorgente!</span>}
-            </div>
-          );
-        })()}
+        {/* Pool Balance Badge */}
+        <div className={`flex items-center justify-center gap-3 rounded-lg py-2.5 px-4 mb-3 font-bold text-sm ${
+          poolBalance > 0 ? 'bg-amber-100 border border-amber-300 text-amber-900' : 'bg-gray-100 border border-gray-200 text-gray-500'
+        }`}>
+          <span style={{ fontSize: '1.1rem' }}>🪙</span>
+          <span>Pool Intermedio: <strong>{poolBalance} PS</strong> disponibili</span>
+          {poolBalance > 0 && <span className="text-xs font-normal">(da distribuire in Fase 2)</span>}
+        </div>
 
-        {/* Tabella Trasferimenti Attivi */}
+        {/* FASE 2: Distribuisci dal Pool */}
+        {poolBalance > 0 && (
+          <div className="bg-white rounded-lg border p-4 mb-3" style={{ borderColor: '#c4b5fd' }}>
+            <div className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: '#7c3aed' }}>
+              📤 Fase 2 — Distribuisci dal Pool alla Destinazione
+            </div>
+            <div className="grid md:grid-cols-3 gap-3 items-end">
+              <div>
+                <label className="block text-xs font-bold text-purple-900 mb-1">Categoria Destinazione</label>
+                <select
+                  value={withdrawDest}
+                  onChange={(e) => setWithdrawDest(e.target.value)}
+                  className="w-full rounded text-sm p-2 bg-white"
+                  style={{ border: '1px solid #c4b5fd' }}
+                >
+                  <option value="">-- Seleziona --</option>
+                  {TGP4_POOLS.map(p => (
+                    <option key={p.key} value={p.key}>
+                      {p.label} (base: {poolsState[p.key]?.base || 0})
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-purple-900 mb-1">PS da ricevere</label>
+                <div className="flex items-center gap-2">
+                  <button type="button" onClick={() => setWithdrawPoints(prev => Math.max(1, prev - 1))}
+                    className="w-8 h-8 flex items-center justify-center bg-gray-100 border border-gray-300 rounded hover:bg-gray-200 text-sm font-bold">-</button>
+                  <span className="w-10 text-center font-bold text-sm">{withdrawPoints}</span>
+                  <button type="button" onClick={() => setWithdrawPoints(prev => prev + 1)}
+                    className="w-8 h-8 flex items-center justify-center bg-gray-100 border border-gray-300 rounded hover:bg-gray-200 text-sm font-bold">+</button>
+                </div>
+                {withdrawDest && (() => {
+                  const { rate, cost } = getTransferRate(withdrawDest, withdrawPoints);
+                  const ok = poolBalance >= cost;
+                  return (
+                    <div className={`text-[11px] mt-1 font-medium ${ok ? 'text-purple-800' : 'text-red-700'}`}>
+                      Tariffa {rate} → costo <strong>{cost} PS</strong> dal Pool {!ok && '⚠️ insufficienti'}
+                    </div>
+                  );
+                })()}
+              </div>
+              <button type="button" onClick={handleAddWithdrawal} disabled={!withdrawDest}
+                className="w-full text-white font-bold py-2 px-4 rounded text-sm transition shadow-sm"
+                style={{ backgroundColor: '#7c3aed' }}>
+                Conferma Distribuzione →
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Reset Button */}
+        {tgp4Transfers.length > 0 && (
+          <div className="flex justify-end mb-3">
+            <button type="button" onClick={handleResetTransfers}
+              className="text-xs text-red-600 hover:text-red-800 border border-red-300 hover:border-red-500 px-3 py-1.5 rounded font-bold transition">
+              🔁 Reset Completo Trasferimenti
+            </button>
+          </div>
+        )}
+
+        {/* Tabella Operazioni Attive */}
         {tgp4Transfers.length > 0 ? (
           <div className="bg-white rounded-lg border border-purple-100 overflow-hidden">
+            <div className="px-4 py-2 bg-purple-50 border-b border-purple-100">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-purple-900">Operazioni di Trasferimento Attive</span>
+            </div>
             <table className="w-full text-left text-xs">
-              <thead className="bg-purple-50 text-purple-900 uppercase font-bold text-[10px] tracking-wider border-b border-purple-100">
+              <thead className="bg-purple-50/50 text-purple-900 uppercase font-bold text-[10px] tracking-wider border-b border-purple-100">
                 <tr>
-                  <th className="px-4 py-2">Sorgente</th>
-                  <th className="px-4 py-2">Destinazione</th>
+                  <th className="px-4 py-2">Tipo</th>
+                  <th className="px-4 py-2">Da / A</th>
+                  <th className="px-4 py-2 text-center">PS Spostati</th>
                   <th className="px-4 py-2 text-center">Tariffa</th>
-                  <th className="px-4 py-2 text-center">Punti Ricevuti</th>
-                  <th className="px-4 py-2 text-center">Costo Detratto</th>
                   <th className="px-4 py-2 text-center">Azione</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-purple-50">
                 {tgp4Transfers.map(t => (
                   <tr key={t.id} className="hover:bg-purple-50/30">
-                    <td className="px-4 py-2 font-medium text-gray-800">{t.source}</td>
-                    <td className="px-4 py-2 font-medium text-purple-900">{t.dest}</td>
-                    <td className="px-4 py-2 text-center font-bold text-gray-600">{t.rate}</td>
-                    <td className="px-4 py-2 text-center font-bold text-green-700">+{t.points} PS</td>
-                    <td className="px-4 py-2 text-center font-bold text-red-600">-{t.cost} PS</td>
+                    <td className="px-4 py-2">
+                      {t.type === 'deposit'
+                        ? <span className="px-1.5 py-0.5 bg-indigo-100 text-indigo-800 rounded text-[10px] font-bold">📥 Prelievo</span>
+                        : <span className="px-1.5 py-0.5 bg-violet-100 text-violet-800 rounded text-[10px] font-bold">📤 Distribuzione</span>
+                      }
+                    </td>
+                    <td className="px-4 py-2 font-medium text-gray-800">
+                      {t.type === 'deposit'
+                        ? <><em>{t.source}</em> → Pool</>
+                        : <>Pool → <em>{t.dest}</em></>
+                      }
+                    </td>
+                    <td className="px-4 py-2 text-center font-bold">
+                      {t.type === 'deposit'
+                        ? <span className="text-indigo-700">-{t.points} PS sorgente</span>
+                        : <><span className="text-green-700">+{t.pointsReceived} PS</span> <span className="text-red-600 text-[10px]">(-{t.cost} Pool)</span></>
+                      }
+                    </td>
+                    <td className="px-4 py-2 text-center font-bold text-gray-600">
+                      {t.type === 'deposit' ? '1:1' : t.rate}
+                    </td>
                     <td className="px-4 py-2 text-center">
-                      <button
-                        type="button"
-                        onClick={() => handleDeleteTransfer(t.id)}
-                        className="text-red-600 hover:text-red-900 hover:underline font-bold"
-                      >
-                        Elimina
+                      <button type="button" onClick={() => handleDeleteEntry(t.id)}
+                        className="text-red-600 hover:text-red-900 hover:underline font-bold text-[11px]">
+                        Rimuovi
                       </button>
                     </td>
                   </tr>

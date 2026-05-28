@@ -8,7 +8,8 @@ import {
   getRanksBonus,
   getIngombroBonus,
   getFinalStats,
-  fmt
+  fmt,
+  getCharacterHpTot
 } from '../../../utils/skillHelpers';
 import WalletBox from '../shared/WalletBox';
 import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
@@ -149,7 +150,7 @@ export default function CreationSummaryStep({ characterData, setCharacterData })
   const rfRanks = finalSkills['Resistenza fisica']?.totalRanks || 0;
   const specialRfBonus = bgModifiers.primarySkillsSpecialBonus?.['Resistenza fisica'] || bgModifiers.primarySkillsSpecialBonus?.['resistenza fisica'] || 0;
   const specialHpBonus = (rfRanks * hpD10Modifier) + specialRfBonus;
-  const finalHp = level1HpRoll !== null ? (level1HpRoll + coBonus + 5 + specialHpBonus) : null;
+  const finalHp = level1HpRoll !== null ? getCharacterHpTot(characterData) : null;
 
   const handleRollHp = () => {
     let sum = 0;
@@ -257,7 +258,7 @@ export default function CreationSummaryStep({ characterData, setCharacterData })
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-      <AnagraficaReadOnlyBox characterData={characterData} />
+      <AnagraficaReadOnlyBox characterData={characterData} simple={false} />
 
       {/* ── HEADER BANNER ── */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '1.5rem' }}>

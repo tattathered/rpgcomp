@@ -1,291 +1,291 @@
 id,spell_list_id,level,name_it,name_en,type_it,type_en,preparation_it,preparation_en,description_it,description_en
-physical_development_1_heat_resistance,physical_development,1,resistenza al calore,Heat Resistance,Accessori,Utility,sì,yes,"Il bersaglio è totalmente protetto da tutte le forme di calore naturale, fino a 100° (Ad es. acqua bollente). Aggiunge +10 ai TR contro incantesimi di calore, ed una penalità di -10 agli incantesimi elementali di calore ed agli attacchi con incantesimidi fuoco.",The target is fully protected from all natural heat sources up to 100°C. Grants +10 RR against heat spells and -10 penalty to elemental heat attacks.
-physical_development_2_cold_resistance,physical_development,2,resistenza al freddo,Cold Resistance,Accessori,Utility,sì,yes,"Come il precedente, ma protegge dal freddo naturale, fino a -35°C ed infligge, una penalità di -10 agli incantesimi basati sul freddo.","Like Heat Resistance, but protects from natural cold down to -35°C and inflicts -10 penalty to cold spells."
-physical_development_3_super_hearing,physical_development,3,iperudito,Super-hearing,Accessori,Utility,sì,yes,Raddoppia l'efficacia dell'udito del soggetto.,Doubles the efficiency of the target's hearing.
-physical_development_4_balance,physical_development,4,equilibrio,Balance,Accessori,Utility,istantaneo,instant,Aggiunge +50 ai tiri per una manovra lenta (es: camminare su un'asse larga 8. cm).,Grants a +50 bonus to slow physical maneuvers (e.g. balancing on a beam).
-physical_development_5_infravision,physical_development,5,infravisione,Infravision,Accessori,Utility,sì,yes,"Il bersaglio può vedere fino a 33 m nelle tenebre (es: di notte o in una stanza buia), come fosse giorno. Le tenebre evocate magicamente riducono l'efficacia dell'incantesimo.",The target can see up to 33 meters in total darkness (natural) as if it were day. Magical darkness reduces this efficiency.
-physical_development_6_panvision,physical_development,6,panvisione,Panvision,Accessori,Utility,sì,yes,"Il campo visivo del bersaglio si amplia fino a 300°. Può vedere tutto intorno, tranne nei 60° alle sue spalle.","Il campo visivo del bersaglio si amplia fino a 300°. Può vedere tutto intorno, tranne nei 60° alle sue spalle."
-physical_development_7_voice_power,physical_development,7,potenza vocale,Voice Power,Accessori,Utility,sì,yes,Triplica l'intensità sonora della voce del soggetto. Ciò non ha alcun effetto sul lancio degli incantesimi.,Triplica l'intensità sonora della voce del soggetto. Ciò non ha alcun effetto sul lancio degli incantesimi.
-physical_development_8_water_vision,physical_development,8,idrovisione,Water Vision,Accessori,Utility,sì,yes,"Come Infravisione eccetto che il bersaglio può vedere nell'acqua, anche se torbida, fino a 33 metri di distanza.","Come Infravisione eccetto che il bersaglio può vedere nell'acqua, anche se torbida, fino a 33 metri di distanza."
-physical_development_9_water_breathing,physical_development,9,idropneumia,Water Breathing,Accessori,Utility,sì,yes,"Il soggetto può respirare sott'acqua ma perde la capacita di respirare aria (se resta esposto all'aria, sviene ma non muore soffocato).","Il soggetto può respirare sott'acqua ma perde la capacita di respirare aria (se resta esposto all'aria, sviene ma non muore soffocato)."
-physical_development_10_air_breathing,physical_development,10,aeropneumia,Air Breathing,Accessori,Utility,sì,yes,"Come Idropneumia, eccetto che il soggetto può respirare qualsiasi gas come se fosse aria pura.","Come Idropneumia, eccetto che il soggetto può respirare qualsiasi gas come se fosse aria pura."
-manipulation_1_vibrations,manipulation,1,vibrazioni,Vibrations,Forza,Force,sì,yes,"Fa vibrare rapidamente un oggetto (fino a 2,5 Kg. di peso); se si tratta di un oggetto fragile, può rompersi (eseguite un TR). Se è un oggetto impugnato da qualcuno, chi lo tiene in mano deve effettuare (ogni round) un TR. Se fallisce, l'oggetto gli cade di mano.","Fa vibrare rapidamente un oggetto (fino a 2,5 Kg. di peso); se si tratta di un oggetto fragile, può rompersi (eseguite un TR). Se è un oggetto impugnato da qualcuno, chi lo tiene in mano deve effettuare (ogni round) un TR. Se fallisce, l'oggetto gli cade di mano."
-manipulation_2_shield,manipulation,2,scudo,Shield,Forza,Force,istantaneo,instant,"Crea un campo di forza invisibile davanti al mago. Sottrae 25 punti agli attacchi in mischia e agli attacchi a distanza. In pratica, questo incantesimo crea un vero e proprio scudo magico che il personaggio potrà impugnare se non ne sta già usando un altro.","Crea un campo di forza invisibile davanti al mago. Sottrae 25 punti agli attacchi in mischia e agli attacchi a distanza. In pratica, questo incantesimo crea un vero e proprio scudo magico che il personaggio potrà impugnare se non ne sta già usando un altro."
-manipulation_3_pressure,manipulation,3,pressione,Pressure,Forza,Force,sì,yes,"Esercita 2,5 Kg. di pressione su una persona o un oggetto. L'incantesimo non può essere usato per spostare un oggetto, ma per immobilizzarlo se si tratta di un oggetto inanimato; la pressione può essere esercitata in una sola direzione.","Esercita 2,5 Kg. di pressione su una persona o un oggetto. L'incantesimo non può essere usato per spostare un oggetto, ma per immobilizzarlo se si tratta di un oggetto inanimato; la pressione può essere esercitata in una sola direzione."
-manipulation_4_telekinesis,manipulation,4,telecinesi,Telekinesis,Forza,Force,sì,yes,"Un oggetto (fino a 2,5 Kg. di peso) può essere spostato di 30 cm al secondo, a velocità costante. Gli esseri viventi o gli oggetti in contatto con un essere vivente (cioè indossato o posseduto da questi) possono effettuare un TR, con i parametri dell'essere vivente. Se il personaggio che ha lanciato l'incantesimo smette di concentrarsi prima che ne siano esauriti gli effetti, l'oggetto si blocca, come se fosse sottoposto all'incantesimo Pressione.","Un oggetto (fino a 2,5 Kg. di peso) può essere spostato di 30 cm al secondo, a velocità costante. Gli esseri viventi o gli oggetti in contatto con un essere vivente (cioè indossato o posseduto da questi) possono effettuare un TR, con i parametri dell'essere vivente. Se il personaggio che ha lanciato l'incantesimo smette di concentrarsi prima che ne siano esauriti gli effetti, l'oggetto si blocca, come se fosse sottoposto all'incantesimo Pressione."
-manipulation_5_deflection,manipulation,5,deflessione,Deflection,Forza,Force,istantaneo,instant,"Chi lancia l'incantesimo può deviare una freccia o qualsiasi altra arma lanciata (anche un sasso) che passi a meno di 33 metri da lui, infliggendo una penalità di 100 al ""Tiro per Colpire"".","Chi lancia l'incantesimo può deviare una freccia o qualsiasi altra arma lanciata (anche un sasso) che passi a meno di 33 metri da lui, infliggendo una penalità di 100 al ""Tiro per Colpire""."
-manipulation_6_vibrations,manipulation,6,vibrazioni,Vibrations,Forza,Force,sì,yes,"Come sopra, con un limite massimo di 9 Kg.","Come sopra, con un limite massimo di 9 Kg."
-manipulation_7_blade_deflect,manipulation,7,devia lama,Blade Deflect,Passivo,Passive,istantaneo,instant,"Come Deflessione, ecceto che devia un attacco in mischia.","Come Deflessione, ecceto che devia un attacco in mischia."
-manipulation_8_pressure,manipulation,8,pressione,Pressure,Forza,Force,sì,yes,"Come sopra, con un limite massimo di 9 Kg.","Come sopra, con un limite massimo di 9 Kg."
-manipulation_9_telekinesis,manipulation,9,telecinesi,Telekinesis,Forza,Force,sì,yes,"Come sopra, con un limite massimo di 9 Kg.","Come sopra, con un limite massimo di 9 Kg."
-manipulation_10_aim,manipulation,10,mira,Aim,Forza,Force,istantaneo,instant,"Come sopra, con un limite masimo di 9 Kg.","Come sopra, con un limite masimo di 9 Kg."
-illusions_1_illusioni,illusions,1,Illusioni,Illusioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-illusions_2_illusioni,illusions,2,Illusioni,Illusioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-illusions_3_illusioni,illusions,3,Illusioni,Illusioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-illusions_4_illusioni,illusions,4,Illusioni,Illusioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-illusions_5_illusioni,illusions,5,Illusioni,Illusioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-illusions_6_illusioni,illusions,6,Illusioni,Illusioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-illusions_7_illusioni,illusions,7,Illusioni,Illusioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-illusions_8_illusioni,illusions,8,Illusioni,Illusioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-illusions_9_illusioni,illusions,9,Illusioni,Illusioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-illusions_10_illusioni,illusions,10,Illusioni,Illusioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-gateways_1_formule_di_passaggio,gateways,1,Formule di passaggio,Formule di passaggio,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-gateways_2_formule_di_passaggio,gateways,2,Formule di passaggio,Formule di passaggio,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-gateways_3_formule_di_passaggio,gateways,3,Formule di passaggio,Formule di passaggio,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-gateways_4_formule_di_passaggio,gateways,4,Formule di passaggio,Formule di passaggio,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-gateways_5_formule_di_passaggio,gateways,5,Formule di passaggio,Formule di passaggio,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-gateways_6_formule_di_passaggio,gateways,6,Formule di passaggio,Formule di passaggio,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-gateways_7_formule_di_passaggio,gateways,7,Formule di passaggio,Formule di passaggio,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-gateways_8_formule_di_passaggio,gateways,8,Formule di passaggio,Formule di passaggio,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-gateways_9_formule_di_passaggio,gateways,9,Formule di passaggio,Formule di passaggio,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-gateways_10_formule_di_passaggio,gateways,10,Formule di passaggio,Formule di passaggio,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-spell_ways_1_formule_d_incantesimo,spell_ways,1,Formule d'incantesimo,Formule d'incantesimo,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-spell_ways_2_formule_d_incantesimo,spell_ways,2,Formule d'incantesimo,Formule d'incantesimo,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-spell_ways_3_formule_d_incantesimo,spell_ways,3,Formule d'incantesimo,Formule d'incantesimo,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-spell_ways_4_formule_d_incantesimo,spell_ways,4,Formule d'incantesimo,Formule d'incantesimo,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-spell_ways_5_formule_d_incantesimo,spell_ways,5,Formule d'incantesimo,Formule d'incantesimo,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-spell_ways_6_formule_d_incantesimo,spell_ways,6,Formule d'incantesimo,Formule d'incantesimo,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-spell_ways_7_formule_d_incantesimo,spell_ways,7,Formule d'incantesimo,Formule d'incantesimo,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-spell_ways_8_formule_d_incantesimo,spell_ways,8,Formule d'incantesimo,Formule d'incantesimo,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-spell_ways_9_formule_d_incantesimo,spell_ways,9,Formule d'incantesimo,Formule d'incantesimo,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-spell_ways_10_formule_d_incantesimo,spell_ways,10,Formule d'incantesimo,Formule d'incantesimo,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-essence_ways_1_formule_dell_essenza,essence_ways,1,Formule dell'essenza,Formule dell'essenza,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-essence_ways_2_formule_dell_essenza,essence_ways,2,Formule dell'essenza,Formule dell'essenza,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-essence_ways_3_formule_dell_essenza,essence_ways,3,Formule dell'essenza,Formule dell'essenza,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-essence_ways_4_formule_dell_essenza,essence_ways,4,Formule dell'essenza,Formule dell'essenza,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-essence_ways_5_formule_dell_essenza,essence_ways,5,Formule dell'essenza,Formule dell'essenza,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-essence_ways_6_formule_dell_essenza,essence_ways,6,Formule dell'essenza,Formule dell'essenza,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-essence_ways_7_formule_dell_essenza,essence_ways,7,Formule dell'essenza,Formule dell'essenza,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-essence_ways_8_formule_dell_essenza,essence_ways,8,Formule dell'essenza,Formule dell'essenza,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-essence_ways_9_formule_dell_essenza,essence_ways,9,Formule dell'essenza,Formule dell'essenza,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-essence_ways_10_formule_dell_essenza,essence_ways,10,Formule dell'essenza,Formule dell'essenza,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-spirit_mastery_1_controllo_spirituale,spirit_mastery,1,Controllo spirituale,Controllo spirituale,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-spirit_mastery_2_controllo_spirituale,spirit_mastery,2,Controllo spirituale,Controllo spirituale,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-spirit_mastery_3_controllo_spirituale,spirit_mastery,3,Controllo spirituale,Controllo spirituale,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-spirit_mastery_4_controllo_spirituale,spirit_mastery,4,Controllo spirituale,Controllo spirituale,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-spirit_mastery_5_controllo_spirituale,spirit_mastery,5,Controllo spirituale,Controllo spirituale,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-spirit_mastery_6_controllo_spirituale,spirit_mastery,6,Controllo spirituale,Controllo spirituale,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-spirit_mastery_7_controllo_spirituale,spirit_mastery,7,Controllo spirituale,Controllo spirituale,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-spirit_mastery_8_controllo_spirituale,spirit_mastery,8,Controllo spirituale,Controllo spirituale,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-spirit_mastery_9_controllo_spirituale,spirit_mastery,9,Controllo spirituale,Controllo spirituale,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-spirit_mastery_10_controllo_spirituale,spirit_mastery,10,Controllo spirituale,Controllo spirituale,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-essence_perceptions_1_percezione_dell_essenza,essence_perceptions,1,Percezione dell'essenza,Percezione dell'essenza,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-essence_perceptions_2_percezione_dell_essenza,essence_perceptions,2,Percezione dell'essenza,Percezione dell'essenza,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-essence_perceptions_3_percezione_dell_essenza,essence_perceptions,3,Percezione dell'essenza,Percezione dell'essenza,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-essence_perceptions_4_percezione_dell_essenza,essence_perceptions,4,Percezione dell'essenza,Percezione dell'essenza,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-essence_perceptions_5_percezione_dell_essenza,essence_perceptions,5,Percezione dell'essenza,Percezione dell'essenza,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-essence_perceptions_6_percezione_dell_essenza,essence_perceptions,6,Percezione dell'essenza,Percezione dell'essenza,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-essence_perceptions_7_percezione_dell_essenza,essence_perceptions,7,Percezione dell'essenza,Percezione dell'essenza,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-essence_perceptions_8_percezione_dell_essenza,essence_perceptions,8,Percezione dell'essenza,Percezione dell'essenza,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-essence_perceptions_9_percezione_dell_essenza,essence_perceptions,9,Percezione dell'essenza,Percezione dell'essenza,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-essence_perceptions_10_percezione_dell_essenza,essence_perceptions,10,Percezione dell'essenza,Percezione dell'essenza,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-earth_law_1_geomanzia,earth_law,1,Geomanzia,Geomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-earth_law_2_geomanzia,earth_law,2,Geomanzia,Geomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-earth_law_3_geomanzia,earth_law,3,Geomanzia,Geomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-earth_law_4_geomanzia,earth_law,4,Geomanzia,Geomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-earth_law_5_geomanzia,earth_law,5,Geomanzia,Geomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-earth_law_6_geomanzia,earth_law,6,Geomanzia,Geomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-earth_law_7_geomanzia,earth_law,7,Geomanzia,Geomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-earth_law_8_geomanzia,earth_law,8,Geomanzia,Geomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-earth_law_9_geomanzia,earth_law,9,Geomanzia,Geomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-earth_law_10_geomanzia,earth_law,10,Geomanzia,Geomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-ice_law_1_criomanzia,ice_law,1,Criomanzia,Criomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-ice_law_2_criomanzia,ice_law,2,Criomanzia,Criomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-ice_law_3_criomanzia,ice_law,3,Criomanzia,Criomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-ice_law_4_criomanzia,ice_law,4,Criomanzia,Criomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-ice_law_5_criomanzia,ice_law,5,Criomanzia,Criomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-ice_law_6_criomanzia,ice_law,6,Criomanzia,Criomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-ice_law_7_criomanzia,ice_law,7,Criomanzia,Criomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-ice_law_8_criomanzia,ice_law,8,Criomanzia,Criomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-ice_law_9_criomanzia,ice_law,9,Criomanzia,Criomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-ice_law_10_criomanzia,ice_law,10,Criomanzia,Criomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-light_law_1_fotomanzia,light_law,1,Fotomanzia,Fotomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-light_law_2_fotomanzia,light_law,2,Fotomanzia,Fotomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-light_law_3_fotomanzia,light_law,3,Fotomanzia,Fotomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-light_law_4_fotomanzia,light_law,4,Fotomanzia,Fotomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-light_law_5_fotomanzia,light_law,5,Fotomanzia,Fotomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-light_law_6_fotomanzia,light_law,6,Fotomanzia,Fotomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-light_law_7_fotomanzia,light_law,7,Fotomanzia,Fotomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-light_law_8_fotomanzia,light_law,8,Fotomanzia,Fotomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-light_law_9_fotomanzia,light_law,9,Fotomanzia,Fotomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-light_law_10_fotomanzia,light_law,10,Fotomanzia,Fotomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-fire_law_1_piromanzia,fire_law,1,Piromanzia,Piromanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-fire_law_2_piromanzia,fire_law,2,Piromanzia,Piromanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-fire_law_3_piromanzia,fire_law,3,Piromanzia,Piromanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-fire_law_4_piromanzia,fire_law,4,Piromanzia,Piromanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-fire_law_5_piromanzia,fire_law,5,Piromanzia,Piromanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-fire_law_6_piromanzia,fire_law,6,Piromanzia,Piromanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-fire_law_7_piromanzia,fire_law,7,Piromanzia,Piromanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-fire_law_8_piromanzia,fire_law,8,Piromanzia,Piromanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-fire_law_9_piromanzia,fire_law,9,Piromanzia,Piromanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-fire_law_10_piromanzia,fire_law,10,Piromanzia,Piromanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-lofty_bridge_1_ponte_arcano,lofty_bridge,1,Ponte arcano,Ponte arcano,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-lofty_bridge_2_ponte_arcano,lofty_bridge,2,Ponte arcano,Ponte arcano,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-lofty_bridge_3_ponte_arcano,lofty_bridge,3,Ponte arcano,Ponte arcano,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-lofty_bridge_4_ponte_arcano,lofty_bridge,4,Ponte arcano,Ponte arcano,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-lofty_bridge_5_ponte_arcano,lofty_bridge,5,Ponte arcano,Ponte arcano,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-lofty_bridge_6_ponte_arcano,lofty_bridge,6,Ponte arcano,Ponte arcano,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-lofty_bridge_7_ponte_arcano,lofty_bridge,7,Ponte arcano,Ponte arcano,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-lofty_bridge_8_ponte_arcano,lofty_bridge,8,Ponte arcano,Ponte arcano,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-lofty_bridge_9_ponte_arcano,lofty_bridge,9,Ponte arcano,Ponte arcano,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-lofty_bridge_10_ponte_arcano,lofty_bridge,10,Ponte arcano,Ponte arcano,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-controlling_songs_1_canti_del_potere,controlling_songs,1,Canti del potere,Canti del potere,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-controlling_songs_2_canti_del_potere,controlling_songs,2,Canti del potere,Canti del potere,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-controlling_songs_3_canti_del_potere,controlling_songs,3,Canti del potere,Canti del potere,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-controlling_songs_4_canti_del_potere,controlling_songs,4,Canti del potere,Canti del potere,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-controlling_songs_5_canti_del_potere,controlling_songs,5,Canti del potere,Canti del potere,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-controlling_songs_6_canti_del_potere,controlling_songs,6,Canti del potere,Canti del potere,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-controlling_songs_7_canti_del_potere,controlling_songs,7,Canti del potere,Canti del potere,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-controlling_songs_8_canti_del_potere,controlling_songs,8,Canti del potere,Canti del potere,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-controlling_songs_9_canti_del_potere,controlling_songs,9,Canti del potere,Canti del potere,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-controlling_songs_10_canti_del_potere,controlling_songs,10,Canti del potere,Canti del potere,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-detection_mastery_1_formule_sensorie,detection_mastery,1,Formule sensorie,Formule sensorie,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-detection_mastery_2_formule_sensorie,detection_mastery,2,Formule sensorie,Formule sensorie,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-detection_mastery_3_formule_sensorie,detection_mastery,3,Formule sensorie,Formule sensorie,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-detection_mastery_4_formule_sensorie,detection_mastery,4,Formule sensorie,Formule sensorie,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-detection_mastery_5_formule_sensorie,detection_mastery,5,Formule sensorie,Formule sensorie,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-detection_mastery_6_formule_sensorie,detection_mastery,6,Formule sensorie,Formule sensorie,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-detection_mastery_7_formule_sensorie,detection_mastery,7,Formule sensorie,Formule sensorie,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-detection_mastery_8_formule_sensorie,detection_mastery,8,Formule sensorie,Formule sensorie,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-detection_mastery_9_formule_sensorie,detection_mastery,9,Formule sensorie,Formule sensorie,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-detection_mastery_10_formule_sensorie,detection_mastery,10,Formule sensorie,Formule sensorie,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-calm_law_1_pacificazione,calm_law,1,Pacificazione,Pacificazione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-calm_law_2_pacificazione,calm_law,2,Pacificazione,Pacificazione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-calm_law_3_pacificazione,calm_law,3,Pacificazione,Pacificazione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-calm_law_4_pacificazione,calm_law,4,Pacificazione,Pacificazione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-calm_law_5_pacificazione,calm_law,5,Pacificazione,Pacificazione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-calm_law_6_pacificazione,calm_law,6,Pacificazione,Pacificazione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-calm_law_7_pacificazione,calm_law,7,Pacificazione,Pacificazione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-calm_law_8_pacificazione,calm_law,8,Pacificazione,Pacificazione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-calm_law_9_pacificazione,calm_law,9,Pacificazione,Pacificazione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-calm_law_10_pacificazione,calm_law,10,Pacificazione,Pacificazione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-surface_ways_1_arti_della_guarigione,surface_ways,1,Arti della guarigione,Arti della guarigione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-surface_ways_2_arti_della_guarigione,surface_ways,2,Arti della guarigione,Arti della guarigione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-surface_ways_3_arti_della_guarigione,surface_ways,3,Arti della guarigione,Arti della guarigione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-surface_ways_4_arti_della_guarigione,surface_ways,4,Arti della guarigione,Arti della guarigione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-surface_ways_5_arti_della_guarigione,surface_ways,5,Arti della guarigione,Arti della guarigione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-surface_ways_6_arti_della_guarigione,surface_ways,6,Arti della guarigione,Arti della guarigione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-surface_ways_7_arti_della_guarigione,surface_ways,7,Arti della guarigione,Arti della guarigione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-surface_ways_8_arti_della_guarigione,surface_ways,8,Arti della guarigione,Arti della guarigione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-surface_ways_9_arti_della_guarigione,surface_ways,9,Arti della guarigione,Arti della guarigione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-surface_ways_10_arti_della_guarigione,surface_ways,10,Arti della guarigione,Arti della guarigione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-protections_1_protezioni,protections,1,Protezioni,Protezioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-protections_2_protezioni,protections,2,Protezioni,Protezioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-protections_3_protezioni,protections,3,Protezioni,Protezioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-protections_4_protezioni,protections,4,Protezioni,Protezioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-protections_5_protezioni,protections,5,Protezioni,Protezioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-protections_6_protezioni,protections,6,Protezioni,Protezioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-protections_7_protezioni,protections,7,Protezioni,Protezioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-protections_8_protezioni,protections,8,Protezioni,Protezioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-protections_9_protezioni,protections,9,Protezioni,Protezioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-protections_10_protezioni,protections,10,Protezioni,Protezioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-spell_defense_1_difesa_magica,spell_defense,1,Difesa magica,Difesa magica,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-spell_defense_2_difesa_magica,spell_defense,2,Difesa magica,Difesa magica,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-spell_defense_3_difesa_magica,spell_defense,3,Difesa magica,Difesa magica,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-spell_defense_4_difesa_magica,spell_defense,4,Difesa magica,Difesa magica,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-spell_defense_5_difesa_magica,spell_defense,5,Difesa magica,Difesa magica,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-spell_defense_6_difesa_magica,spell_defense,6,Difesa magica,Difesa magica,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-spell_defense_7_difesa_magica,spell_defense,7,Difesa magica,Difesa magica,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-spell_defense_8_difesa_magica,spell_defense,8,Difesa magica,Difesa magica,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-spell_defense_9_difesa_magica,spell_defense,9,Difesa magica,Difesa magica,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-spell_defense_10_difesa_magica,spell_defense,10,Difesa magica,Difesa magica,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-nature_movement_1_moti_naturali,nature_movement,1,Moti naturali,Moti naturali,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-nature_movement_2_moti_naturali,nature_movement,2,Moti naturali,Moti naturali,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-nature_movement_3_moti_naturali,nature_movement,3,Moti naturali,Moti naturali,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-nature_movement_4_moti_naturali,nature_movement,4,Moti naturali,Moti naturali,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-nature_movement_5_moti_naturali,nature_movement,5,Moti naturali,Moti naturali,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-nature_movement_6_moti_naturali,nature_movement,6,Moti naturali,Moti naturali,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-nature_movement_7_moti_naturali,nature_movement,7,Moti naturali,Moti naturali,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-nature_movement_8_moti_naturali,nature_movement,8,Moti naturali,Moti naturali,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-nature_movement_9_moti_naturali,nature_movement,9,Moti naturali,Moti naturali,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-nature_movement_10_moti_naturali,nature_movement,10,Moti naturali,Moti naturali,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-eco_law_1_ecomanzia,eco_law,1,Ecomanzia,Ecomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-eco_law_2_ecomanzia,eco_law,2,Ecomanzia,Ecomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-eco_law_3_ecomanzia,eco_law,3,Ecomanzia,Ecomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-eco_law_4_ecomanzia,eco_law,4,Ecomanzia,Ecomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-eco_law_5_ecomanzia,eco_law,5,Ecomanzia,Ecomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-eco_law_6_ecomanzia,eco_law,6,Ecomanzia,Ecomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-eco_law_7_ecomanzia,eco_law,7,Ecomanzia,Ecomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-eco_law_8_ecomanzia,eco_law,8,Ecomanzia,Ecomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-eco_law_9_ecomanzia,eco_law,9,Ecomanzia,Ecomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-eco_law_10_ecomanzia,eco_law,10,Ecomanzia,Ecomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-plant_law_1_botanomanzia,plant_law,1,Botanomanzia,Botanomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-plant_law_2_botanomanzia,plant_law,2,Botanomanzia,Botanomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-plant_law_3_botanomanzia,plant_law,3,Botanomanzia,Botanomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-plant_law_4_botanomanzia,plant_law,4,Botanomanzia,Botanomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-plant_law_5_botanomanzia,plant_law,5,Botanomanzia,Botanomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-plant_law_6_botanomanzia,plant_law,6,Botanomanzia,Botanomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-plant_law_7_botanomanzia,plant_law,7,Botanomanzia,Botanomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-plant_law_8_botanomanzia,plant_law,8,Botanomanzia,Botanomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-plant_law_9_botanomanzia,plant_law,9,Botanomanzia,Botanomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-plant_law_10_botanomanzia,plant_law,10,Botanomanzia,Botanomanzia,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-direct_channeling_1_flusso_diretto,direct_channeling,1,Flusso diretto,Flusso diretto,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-direct_channeling_2_flusso_diretto,direct_channeling,2,Flusso diretto,Flusso diretto,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-direct_channeling_3_flusso_diretto,direct_channeling,3,Flusso diretto,Flusso diretto,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-direct_channeling_4_flusso_diretto,direct_channeling,4,Flusso diretto,Flusso diretto,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-direct_channeling_5_flusso_diretto,direct_channeling,5,Flusso diretto,Flusso diretto,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-direct_channeling_6_flusso_diretto,direct_channeling,6,Flusso diretto,Flusso diretto,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-direct_channeling_7_flusso_diretto,direct_channeling,7,Flusso diretto,Flusso diretto,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-direct_channeling_8_flusso_diretto,direct_channeling,8,Flusso diretto,Flusso diretto,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-direct_channeling_9_flusso_diretto,direct_channeling,9,Flusso diretto,Flusso diretto,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-direct_channeling_10_flusso_diretto,direct_channeling,10,Flusso diretto,Flusso diretto,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-animal_mastery_1_controllo_animale,animal_mastery,1,Controllo animale,Controllo animale,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-animal_mastery_2_controllo_animale,animal_mastery,2,Controllo animale,Controllo animale,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-animal_mastery_3_controllo_animale,animal_mastery,3,Controllo animale,Controllo animale,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-animal_mastery_4_controllo_animale,animal_mastery,4,Controllo animale,Controllo animale,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-animal_mastery_5_controllo_animale,animal_mastery,5,Controllo animale,Controllo animale,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-animal_mastery_6_controllo_animale,animal_mastery,6,Controllo animale,Controllo animale,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-animal_mastery_7_controllo_animale,animal_mastery,7,Controllo animale,Controllo animale,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-animal_mastery_8_controllo_animale,animal_mastery,8,Controllo animale,Controllo animale,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-animal_mastery_9_controllo_animale,animal_mastery,9,Controllo animale,Controllo animale,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-animal_mastery_10_controllo_animale,animal_mastery,10,Controllo animale,Controllo animale,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-body_reunion_1_fisiorigenerazione,body_reunion,1,Fisiorigenerazione,Fisiorigenerazione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-body_reunion_2_fisiorigenerazione,body_reunion,2,Fisiorigenerazione,Fisiorigenerazione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-body_reunion_3_fisiorigenerazione,body_reunion,3,Fisiorigenerazione,Fisiorigenerazione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-body_reunion_4_fisiorigenerazione,body_reunion,4,Fisiorigenerazione,Fisiorigenerazione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-body_reunion_5_fisiorigenerazione,body_reunion,5,Fisiorigenerazione,Fisiorigenerazione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-body_reunion_6_fisiorigenerazione,body_reunion,6,Fisiorigenerazione,Fisiorigenerazione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-body_reunion_7_fisiorigenerazione,body_reunion,7,Fisiorigenerazione,Fisiorigenerazione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-body_reunion_8_fisiorigenerazione,body_reunion,8,Fisiorigenerazione,Fisiorigenerazione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-body_reunion_9_fisiorigenerazione,body_reunion,9,Fisiorigenerazione,Fisiorigenerazione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-body_reunion_10_fisiorigenerazione,body_reunion,10,Fisiorigenerazione,Fisiorigenerazione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-blood_ways_1_emorigenerazione,blood_ways,1,Emorigenerazione,Emorigenerazione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-blood_ways_2_emorigenerazione,blood_ways,2,Emorigenerazione,Emorigenerazione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-blood_ways_3_emorigenerazione,blood_ways,3,Emorigenerazione,Emorigenerazione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-blood_ways_4_emorigenerazione,blood_ways,4,Emorigenerazione,Emorigenerazione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-blood_ways_5_emorigenerazione,blood_ways,5,Emorigenerazione,Emorigenerazione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-blood_ways_6_emorigenerazione,blood_ways,6,Emorigenerazione,Emorigenerazione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-blood_ways_7_emorigenerazione,blood_ways,7,Emorigenerazione,Emorigenerazione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-blood_ways_8_emorigenerazione,blood_ways,8,Emorigenerazione,Emorigenerazione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-blood_ways_9_emorigenerazione,blood_ways,9,Emorigenerazione,Emorigenerazione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-blood_ways_10_emorigenerazione,blood_ways,10,Emorigenerazione,Emorigenerazione,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-organ_ways_1_rigenerazione_organica,organ_ways,1,Rigenerazione organica,Rigenerazione organica,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-organ_ways_2_rigenerazione_organica,organ_ways,2,Rigenerazione organica,Rigenerazione organica,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-organ_ways_3_rigenerazione_organica,organ_ways,3,Rigenerazione organica,Rigenerazione organica,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-organ_ways_4_rigenerazione_organica,organ_ways,4,Rigenerazione organica,Rigenerazione organica,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-organ_ways_5_rigenerazione_organica,organ_ways,5,Rigenerazione organica,Rigenerazione organica,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-organ_ways_6_rigenerazione_organica,organ_ways,6,Rigenerazione organica,Rigenerazione organica,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-organ_ways_7_rigenerazione_organica,organ_ways,7,Rigenerazione organica,Rigenerazione organica,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-organ_ways_8_rigenerazione_organica,organ_ways,8,Rigenerazione organica,Rigenerazione organica,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-organ_ways_9_rigenerazione_organica,organ_ways,9,Rigenerazione organica,Rigenerazione organica,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-organ_ways_10_rigenerazione_organica,organ_ways,10,Rigenerazione organica,Rigenerazione organica,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-purifications_1_purificazioni,purifications,1,Purificazioni,Purificazioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-purifications_2_purificazioni,purifications,2,Purificazioni,Purificazioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-purifications_3_purificazioni,purifications,3,Purificazioni,Purificazioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-purifications_4_purificazioni,purifications,4,Purificazioni,Purificazioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-purifications_5_purificazioni,purifications,5,Purificazioni,Purificazioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-purifications_6_purificazioni,purifications,6,Purificazioni,Purificazioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-purifications_7_purificazioni,purifications,7,Purificazioni,Purificazioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-purifications_8_purificazioni,purifications,8,Purificazioni,Purificazioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-purifications_9_purificazioni,purifications,9,Purificazioni,Purificazioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-purifications_10_purificazioni,purifications,10,Purificazioni,Purificazioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-creations_1_creazioni,creations,1,Creazioni,Creazioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-creations_2_creazioni,creations,2,Creazioni,Creazioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-creations_3_creazioni,creations,3,Creazioni,Creazioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-creations_4_creazioni,creations,4,Creazioni,Creazioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-creations_5_creazioni,creations,5,Creazioni,Creazioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-creations_6_creazioni,creations,6,Creazioni,Creazioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-creations_7_creazioni,creations,7,Creazioni,Creazioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-creations_8_creazioni,creations,8,Creazioni,Creazioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-creations_9_creazioni,creations,9,Creazioni,Creazioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
-creations_10_creazioni,creations,10,Creazioni,Creazioni,,,,,Nessuna descrizione disponibile.,Nessuna descrizione disponibile.
+physical_development_1_resistenza_al_calore,physical_development,1,resistenza al calore,resistenza al calore,Accessori,,sì,,"Il bersaglio è totalmente protetto da tutte le forme di calore naturale, fino a 100° (Ad es. acqua bollente). Aggiunge +10 ai TR contro incantesimi di calore, ed una penalità di -10 agli incantesimi elementali di calore ed agli attacchi con incantesimidi fuoco.",
+physical_development_2_resistenza_al_freddo,physical_development,2,resistenza al freddo,resistenza al freddo,Accessori,,sì,,"Come il precedente, ma protegge dal freddo naturale, fino a -35°C ed infligge, una penalità di -10 agli incantesimi basati sul freddo.",
+physical_development_3_iperudito,physical_development,3,iperudito,iperudito,Accessori,,sì,,Raddoppia l'efficacia dell'udito del soggetto.,
+physical_development_4_equilibrio,physical_development,4,equilibrio,equilibrio,Accessori,,Istantaneo,,Aggiunge +50 ai tiri per una manovra lenta (es: camminare su un'asse larga 8. cm).,
+physical_development_5_infravisione,physical_development,5,infravisione,infravisione,Accessori,,sì,,"Il bersaglio può vedere fino a 33 m nelle tenebre (es: di notte o in una stanza buia), come fosse giorno. Le tenebre evocate magicamente riducono l'efficacia dell'incantesimo.",
+physical_development_6_panvisione,physical_development,6,panvisione,panvisione,Accessori,,sì,,"Il campo visivo del bersaglio si amplia fino a 300°. Può vedere tutto intorno, tranne nei 60° alle sue spalle.",
+physical_development_7_potenza_vocale,physical_development,7,potenza vocale,potenza vocale,Accessori,,sì,,Triplica l'intensità sonora della voce del soggetto. Ciò non ha alcun effetto sul lancio degli incantesimi.,
+physical_development_8_idrovisione,physical_development,8,idrovisione,idrovisione,Accessori,,sì,,"Come Infravisione eccetto che il bersaglio può vedere nell'acqua, anche se torbida, fino a 33 metri di distanza.",
+physical_development_9_idropneumia,physical_development,9,idropneumia,idropneumia,Accessori,,sì,,"Il soggetto può respirare sott'acqua ma perde la capacita di respirare aria (se resta esposto all'aria, sviene ma non muore soffocato).",
+physical_development_10_aeropneumia,physical_development,10,aeropneumia,aeropneumia,Accessori,,sì,,"Come Idropneumia, eccetto che il soggetto può respirare qualsiasi gas come se fosse aria pura.",
+manipulation_1_vibrazioni,manipulation,1,vibrazioni,vibrazioni,Forza,,sì,,"Fa vibrare rapidamente un oggetto (fino a 2,5 Kg. di peso); se si tratta di un oggetto fragile, può rompersi (eseguite un TR). Se è un oggetto impugnato da qualcuno, chi lo tiene in mano deve effettuare (ogni round) un TR. Se fallisce, l'oggetto gli cade di mano.",
+manipulation_2_scudo,manipulation,2,scudo,scudo,Forza,,istantaneo,,"Crea un campo di forza invisibile davanti al mago. Sottrae 25 punti agli attacchi in mischia e agli attacchi a distanza. In pratica, questo incantesimo crea un vero e proprio scudo magico che il personaggio potrà impugnare se non ne sta già usando un altro.",
+manipulation_3_pressione,manipulation,3,pressione,pressione,Forza,,sì,,"Esercita 2,5 Kg. di pressione su una persona o un oggetto. L'incantesimo non può essere usato per spostare un oggetto, ma per immobilizzarlo se si tratta di un oggetto inanimato; la pressione può essere esercitata in una sola direzione.",
+manipulation_4_telecinesi,manipulation,4,telecinesi,telecinesi,Forza,,sì,,"Un oggetto (fino a 2,5 Kg. di peso) può essere spostato di 30 cm al secondo, a velocità costante. Gli esseri viventi o gli oggetti in contatto con un essere vivente (cioè indossato o posseduto da questi) possono effettuare un TR, con i parametri dell'essere vivente. Se il personaggio che ha lanciato l'incantesimo smette di concentrarsi prima che ne siano esauriti gli effetti, l'oggetto si blocca, come se fosse sottoposto all'incantesimo Pressione.",
+manipulation_5_deflessione,manipulation,5,deflessione,deflessione,Forza,,istantaneo,,"Chi lancia l'incantesimo può deviare una freccia o qualsiasi altra arma lanciata (anche un sasso) che passi a meno di 33 metri da lui, infliggendo una penalità di 100 al ""Tiro per Colpire"".",
+manipulation_6_vibrazioni,manipulation,6,vibrazioni,vibrazioni,Forza,,sì,,"Come sopra, con un limite massimo di 9 Kg.",
+manipulation_7_devia_lama,manipulation,7,devia lama,devia lama,Passivo,,istantaneo,,"Come Deflessione, ecceto che devia un attacco in mischia.",
+manipulation_8_pressione,manipulation,8,pressione,pressione,Forza,,sì,,"Come sopra, con un limite massimo di 9 Kg.",
+manipulation_9_telecinesi,manipulation,9,telecinesi,telecinesi,Forza,,sì,,"Come sopra, con un limite massimo di 9 Kg.",
+manipulation_10_mira,manipulation,10,mira,mira,Forza,,istantaneo,,"Come sopra, con un limite masimo di 9 Kg.",
+illusions_1_illusioni,illusions,1,Illusioni,Illusioni,,,,,,
+illusions_2_illusioni,illusions,2,Illusioni,Illusioni,,,,,,
+illusions_3_illusioni,illusions,3,Illusioni,Illusioni,,,,,,
+illusions_4_illusioni,illusions,4,Illusioni,Illusioni,,,,,,
+illusions_5_illusioni,illusions,5,Illusioni,Illusioni,,,,,,
+illusions_6_illusioni,illusions,6,Illusioni,Illusioni,,,,,,
+illusions_7_illusioni,illusions,7,Illusioni,Illusioni,,,,,,
+illusions_8_illusioni,illusions,8,Illusioni,Illusioni,,,,,,
+illusions_9_illusioni,illusions,9,Illusioni,Illusioni,,,,,,
+illusions_10_illusioni,illusions,10,Illusioni,Illusioni,,,,,,
+gateways_1_formule_di_passaggio,gateways,1,Formule di passaggio,Formule di passaggio,,,,,,
+gateways_2_formule_di_passaggio,gateways,2,Formule di passaggio,Formule di passaggio,,,,,,
+gateways_3_formule_di_passaggio,gateways,3,Formule di passaggio,Formule di passaggio,,,,,,
+gateways_4_formule_di_passaggio,gateways,4,Formule di passaggio,Formule di passaggio,,,,,,
+gateways_5_formule_di_passaggio,gateways,5,Formule di passaggio,Formule di passaggio,,,,,,
+gateways_6_formule_di_passaggio,gateways,6,Formule di passaggio,Formule di passaggio,,,,,,
+gateways_7_formule_di_passaggio,gateways,7,Formule di passaggio,Formule di passaggio,,,,,,
+gateways_8_formule_di_passaggio,gateways,8,Formule di passaggio,Formule di passaggio,,,,,,
+gateways_9_formule_di_passaggio,gateways,9,Formule di passaggio,Formule di passaggio,,,,,,
+gateways_10_formule_di_passaggio,gateways,10,Formule di passaggio,Formule di passaggio,,,,,,
+spell_ways_1_formule_d_incantesimo,spell_ways,1,Formule d'incantesimo,Formule d'incantesimo,,,,,,
+spell_ways_2_formule_d_incantesimo,spell_ways,2,Formule d'incantesimo,Formule d'incantesimo,,,,,,
+spell_ways_3_formule_d_incantesimo,spell_ways,3,Formule d'incantesimo,Formule d'incantesimo,,,,,,
+spell_ways_4_formule_d_incantesimo,spell_ways,4,Formule d'incantesimo,Formule d'incantesimo,,,,,,
+spell_ways_5_formule_d_incantesimo,spell_ways,5,Formule d'incantesimo,Formule d'incantesimo,,,,,,
+spell_ways_6_formule_d_incantesimo,spell_ways,6,Formule d'incantesimo,Formule d'incantesimo,,,,,,
+spell_ways_7_formule_d_incantesimo,spell_ways,7,Formule d'incantesimo,Formule d'incantesimo,,,,,,
+spell_ways_8_formule_d_incantesimo,spell_ways,8,Formule d'incantesimo,Formule d'incantesimo,,,,,,
+spell_ways_9_formule_d_incantesimo,spell_ways,9,Formule d'incantesimo,Formule d'incantesimo,,,,,,
+spell_ways_10_formule_d_incantesimo,spell_ways,10,Formule d'incantesimo,Formule d'incantesimo,,,,,,
+essence_ways_1_formule_dell_essenza,essence_ways,1,Formule dell'essenza,Formule dell'essenza,,,,,,
+essence_ways_2_formule_dell_essenza,essence_ways,2,Formule dell'essenza,Formule dell'essenza,,,,,,
+essence_ways_3_formule_dell_essenza,essence_ways,3,Formule dell'essenza,Formule dell'essenza,,,,,,
+essence_ways_4_formule_dell_essenza,essence_ways,4,Formule dell'essenza,Formule dell'essenza,,,,,,
+essence_ways_5_formule_dell_essenza,essence_ways,5,Formule dell'essenza,Formule dell'essenza,,,,,,
+essence_ways_6_formule_dell_essenza,essence_ways,6,Formule dell'essenza,Formule dell'essenza,,,,,,
+essence_ways_7_formule_dell_essenza,essence_ways,7,Formule dell'essenza,Formule dell'essenza,,,,,,
+essence_ways_8_formule_dell_essenza,essence_ways,8,Formule dell'essenza,Formule dell'essenza,,,,,,
+essence_ways_9_formule_dell_essenza,essence_ways,9,Formule dell'essenza,Formule dell'essenza,,,,,,
+essence_ways_10_formule_dell_essenza,essence_ways,10,Formule dell'essenza,Formule dell'essenza,,,,,,
+spirit_mastery_1_controllo_spirituale,spirit_mastery,1,Controllo spirituale,Controllo spirituale,,,,,,
+spirit_mastery_2_controllo_spirituale,spirit_mastery,2,Controllo spirituale,Controllo spirituale,,,,,,
+spirit_mastery_3_controllo_spirituale,spirit_mastery,3,Controllo spirituale,Controllo spirituale,,,,,,
+spirit_mastery_4_controllo_spirituale,spirit_mastery,4,Controllo spirituale,Controllo spirituale,,,,,,
+spirit_mastery_5_controllo_spirituale,spirit_mastery,5,Controllo spirituale,Controllo spirituale,,,,,,
+spirit_mastery_6_controllo_spirituale,spirit_mastery,6,Controllo spirituale,Controllo spirituale,,,,,,
+spirit_mastery_7_controllo_spirituale,spirit_mastery,7,Controllo spirituale,Controllo spirituale,,,,,,
+spirit_mastery_8_controllo_spirituale,spirit_mastery,8,Controllo spirituale,Controllo spirituale,,,,,,
+spirit_mastery_9_controllo_spirituale,spirit_mastery,9,Controllo spirituale,Controllo spirituale,,,,,,
+spirit_mastery_10_controllo_spirituale,spirit_mastery,10,Controllo spirituale,Controllo spirituale,,,,,,
+essence_perceptions_1_percezione_dell_essenza,essence_perceptions,1,Percezione dell'essenza,Percezione dell'essenza,,,,,,
+essence_perceptions_2_percezione_dell_essenza,essence_perceptions,2,Percezione dell'essenza,Percezione dell'essenza,,,,,,
+essence_perceptions_3_percezione_dell_essenza,essence_perceptions,3,Percezione dell'essenza,Percezione dell'essenza,,,,,,
+essence_perceptions_4_percezione_dell_essenza,essence_perceptions,4,Percezione dell'essenza,Percezione dell'essenza,,,,,,
+essence_perceptions_5_percezione_dell_essenza,essence_perceptions,5,Percezione dell'essenza,Percezione dell'essenza,,,,,,
+essence_perceptions_6_percezione_dell_essenza,essence_perceptions,6,Percezione dell'essenza,Percezione dell'essenza,,,,,,
+essence_perceptions_7_percezione_dell_essenza,essence_perceptions,7,Percezione dell'essenza,Percezione dell'essenza,,,,,,
+essence_perceptions_8_percezione_dell_essenza,essence_perceptions,8,Percezione dell'essenza,Percezione dell'essenza,,,,,,
+essence_perceptions_9_percezione_dell_essenza,essence_perceptions,9,Percezione dell'essenza,Percezione dell'essenza,,,,,,
+essence_perceptions_10_percezione_dell_essenza,essence_perceptions,10,Percezione dell'essenza,Percezione dell'essenza,,,,,,
+earth_law_1_geomanzia,earth_law,1,Geomanzia,Geomanzia,,,,,,
+earth_law_2_geomanzia,earth_law,2,Geomanzia,Geomanzia,,,,,,
+earth_law_3_geomanzia,earth_law,3,Geomanzia,Geomanzia,,,,,,
+earth_law_4_geomanzia,earth_law,4,Geomanzia,Geomanzia,,,,,,
+earth_law_5_geomanzia,earth_law,5,Geomanzia,Geomanzia,,,,,,
+earth_law_6_geomanzia,earth_law,6,Geomanzia,Geomanzia,,,,,,
+earth_law_7_geomanzia,earth_law,7,Geomanzia,Geomanzia,,,,,,
+earth_law_8_geomanzia,earth_law,8,Geomanzia,Geomanzia,,,,,,
+earth_law_9_geomanzia,earth_law,9,Geomanzia,Geomanzia,,,,,,
+earth_law_10_geomanzia,earth_law,10,Geomanzia,Geomanzia,,,,,,
+ice_law_1_criomanzia,ice_law,1,Criomanzia,Criomanzia,,,,,,
+ice_law_2_criomanzia,ice_law,2,Criomanzia,Criomanzia,,,,,,
+ice_law_3_criomanzia,ice_law,3,Criomanzia,Criomanzia,,,,,,
+ice_law_4_criomanzia,ice_law,4,Criomanzia,Criomanzia,,,,,,
+ice_law_5_criomanzia,ice_law,5,Criomanzia,Criomanzia,,,,,,
+ice_law_6_criomanzia,ice_law,6,Criomanzia,Criomanzia,,,,,,
+ice_law_7_criomanzia,ice_law,7,Criomanzia,Criomanzia,,,,,,
+ice_law_8_criomanzia,ice_law,8,Criomanzia,Criomanzia,,,,,,
+ice_law_9_criomanzia,ice_law,9,Criomanzia,Criomanzia,,,,,,
+ice_law_10_criomanzia,ice_law,10,Criomanzia,Criomanzia,,,,,,
+light_law_1_fotomanzia,light_law,1,Fotomanzia,Fotomanzia,,,,,,
+light_law_2_fotomanzia,light_law,2,Fotomanzia,Fotomanzia,,,,,,
+light_law_3_fotomanzia,light_law,3,Fotomanzia,Fotomanzia,,,,,,
+light_law_4_fotomanzia,light_law,4,Fotomanzia,Fotomanzia,,,,,,
+light_law_5_fotomanzia,light_law,5,Fotomanzia,Fotomanzia,,,,,,
+light_law_6_fotomanzia,light_law,6,Fotomanzia,Fotomanzia,,,,,,
+light_law_7_fotomanzia,light_law,7,Fotomanzia,Fotomanzia,,,,,,
+light_law_8_fotomanzia,light_law,8,Fotomanzia,Fotomanzia,,,,,,
+light_law_9_fotomanzia,light_law,9,Fotomanzia,Fotomanzia,,,,,,
+light_law_10_fotomanzia,light_law,10,Fotomanzia,Fotomanzia,,,,,,
+fire_law_1_piromanzia,fire_law,1,Piromanzia,Piromanzia,,,,,,
+fire_law_2_piromanzia,fire_law,2,Piromanzia,Piromanzia,,,,,,
+fire_law_3_piromanzia,fire_law,3,Piromanzia,Piromanzia,,,,,,
+fire_law_4_piromanzia,fire_law,4,Piromanzia,Piromanzia,,,,,,
+fire_law_5_piromanzia,fire_law,5,Piromanzia,Piromanzia,,,,,,
+fire_law_6_piromanzia,fire_law,6,Piromanzia,Piromanzia,,,,,,
+fire_law_7_piromanzia,fire_law,7,Piromanzia,Piromanzia,,,,,,
+fire_law_8_piromanzia,fire_law,8,Piromanzia,Piromanzia,,,,,,
+fire_law_9_piromanzia,fire_law,9,Piromanzia,Piromanzia,,,,,,
+fire_law_10_piromanzia,fire_law,10,Piromanzia,Piromanzia,,,,,,
+lofty_bridge_1_ponte_arcano,lofty_bridge,1,Ponte arcano,Ponte arcano,,,,,,
+lofty_bridge_2_ponte_arcano,lofty_bridge,2,Ponte arcano,Ponte arcano,,,,,,
+lofty_bridge_3_ponte_arcano,lofty_bridge,3,Ponte arcano,Ponte arcano,,,,,,
+lofty_bridge_4_ponte_arcano,lofty_bridge,4,Ponte arcano,Ponte arcano,,,,,,
+lofty_bridge_5_ponte_arcano,lofty_bridge,5,Ponte arcano,Ponte arcano,,,,,,
+lofty_bridge_6_ponte_arcano,lofty_bridge,6,Ponte arcano,Ponte arcano,,,,,,
+lofty_bridge_7_ponte_arcano,lofty_bridge,7,Ponte arcano,Ponte arcano,,,,,,
+lofty_bridge_8_ponte_arcano,lofty_bridge,8,Ponte arcano,Ponte arcano,,,,,,
+lofty_bridge_9_ponte_arcano,lofty_bridge,9,Ponte arcano,Ponte arcano,,,,,,
+lofty_bridge_10_ponte_arcano,lofty_bridge,10,Ponte arcano,Ponte arcano,,,,,,
+controlling_songs_1_canti_del_potere,controlling_songs,1,Canti del potere,Canti del potere,,,,,,
+controlling_songs_2_canti_del_potere,controlling_songs,2,Canti del potere,Canti del potere,,,,,,
+controlling_songs_3_canti_del_potere,controlling_songs,3,Canti del potere,Canti del potere,,,,,,
+controlling_songs_4_canti_del_potere,controlling_songs,4,Canti del potere,Canti del potere,,,,,,
+controlling_songs_5_canti_del_potere,controlling_songs,5,Canti del potere,Canti del potere,,,,,,
+controlling_songs_6_canti_del_potere,controlling_songs,6,Canti del potere,Canti del potere,,,,,,
+controlling_songs_7_canti_del_potere,controlling_songs,7,Canti del potere,Canti del potere,,,,,,
+controlling_songs_8_canti_del_potere,controlling_songs,8,Canti del potere,Canti del potere,,,,,,
+controlling_songs_9_canti_del_potere,controlling_songs,9,Canti del potere,Canti del potere,,,,,,
+controlling_songs_10_canti_del_potere,controlling_songs,10,Canti del potere,Canti del potere,,,,,,
+detection_mastery_1_formule_sensorie,detection_mastery,1,Formule sensorie,Formule sensorie,,,,,,
+detection_mastery_2_formule_sensorie,detection_mastery,2,Formule sensorie,Formule sensorie,,,,,,
+detection_mastery_3_formule_sensorie,detection_mastery,3,Formule sensorie,Formule sensorie,,,,,,
+detection_mastery_4_formule_sensorie,detection_mastery,4,Formule sensorie,Formule sensorie,,,,,,
+detection_mastery_5_formule_sensorie,detection_mastery,5,Formule sensorie,Formule sensorie,,,,,,
+detection_mastery_6_formule_sensorie,detection_mastery,6,Formule sensorie,Formule sensorie,,,,,,
+detection_mastery_7_formule_sensorie,detection_mastery,7,Formule sensorie,Formule sensorie,,,,,,
+detection_mastery_8_formule_sensorie,detection_mastery,8,Formule sensorie,Formule sensorie,,,,,,
+detection_mastery_9_formule_sensorie,detection_mastery,9,Formule sensorie,Formule sensorie,,,,,,
+detection_mastery_10_formule_sensorie,detection_mastery,10,Formule sensorie,Formule sensorie,,,,,,
+calm_law_1_pacificazione,calm_law,1,Pacificazione,Pacificazione,,,,,,
+calm_law_2_pacificazione,calm_law,2,Pacificazione,Pacificazione,,,,,,
+calm_law_3_pacificazione,calm_law,3,Pacificazione,Pacificazione,,,,,,
+calm_law_4_pacificazione,calm_law,4,Pacificazione,Pacificazione,,,,,,
+calm_law_5_pacificazione,calm_law,5,Pacificazione,Pacificazione,,,,,,
+calm_law_6_pacificazione,calm_law,6,Pacificazione,Pacificazione,,,,,,
+calm_law_7_pacificazione,calm_law,7,Pacificazione,Pacificazione,,,,,,
+calm_law_8_pacificazione,calm_law,8,Pacificazione,Pacificazione,,,,,,
+calm_law_9_pacificazione,calm_law,9,Pacificazione,Pacificazione,,,,,,
+calm_law_10_pacificazione,calm_law,10,Pacificazione,Pacificazione,,,,,,
+surface_ways_1_arti_della_guarigione,surface_ways,1,Arti della guarigione,Arti della guarigione,,,,,,
+surface_ways_2_arti_della_guarigione,surface_ways,2,Arti della guarigione,Arti della guarigione,,,,,,
+surface_ways_3_arti_della_guarigione,surface_ways,3,Arti della guarigione,Arti della guarigione,,,,,,
+surface_ways_4_arti_della_guarigione,surface_ways,4,Arti della guarigione,Arti della guarigione,,,,,,
+surface_ways_5_arti_della_guarigione,surface_ways,5,Arti della guarigione,Arti della guarigione,,,,,,
+surface_ways_6_arti_della_guarigione,surface_ways,6,Arti della guarigione,Arti della guarigione,,,,,,
+surface_ways_7_arti_della_guarigione,surface_ways,7,Arti della guarigione,Arti della guarigione,,,,,,
+surface_ways_8_arti_della_guarigione,surface_ways,8,Arti della guarigione,Arti della guarigione,,,,,,
+surface_ways_9_arti_della_guarigione,surface_ways,9,Arti della guarigione,Arti della guarigione,,,,,,
+surface_ways_10_arti_della_guarigione,surface_ways,10,Arti della guarigione,Arti della guarigione,,,,,,
+protections_1_protezioni,protections,1,Protezioni,Protezioni,,,,,,
+protections_2_protezioni,protections,2,Protezioni,Protezioni,,,,,,
+protections_3_protezioni,protections,3,Protezioni,Protezioni,,,,,,
+protections_4_protezioni,protections,4,Protezioni,Protezioni,,,,,,
+protections_5_protezioni,protections,5,Protezioni,Protezioni,,,,,,
+protections_6_protezioni,protections,6,Protezioni,Protezioni,,,,,,
+protections_7_protezioni,protections,7,Protezioni,Protezioni,,,,,,
+protections_8_protezioni,protections,8,Protezioni,Protezioni,,,,,,
+protections_9_protezioni,protections,9,Protezioni,Protezioni,,,,,,
+protections_10_protezioni,protections,10,Protezioni,Protezioni,,,,,,
+spell_defense_1_difesa_magica,spell_defense,1,Difesa magica,Difesa magica,,,,,,
+spell_defense_2_difesa_magica,spell_defense,2,Difesa magica,Difesa magica,,,,,,
+spell_defense_3_difesa_magica,spell_defense,3,Difesa magica,Difesa magica,,,,,,
+spell_defense_4_difesa_magica,spell_defense,4,Difesa magica,Difesa magica,,,,,,
+spell_defense_5_difesa_magica,spell_defense,5,Difesa magica,Difesa magica,,,,,,
+spell_defense_6_difesa_magica,spell_defense,6,Difesa magica,Difesa magica,,,,,,
+spell_defense_7_difesa_magica,spell_defense,7,Difesa magica,Difesa magica,,,,,,
+spell_defense_8_difesa_magica,spell_defense,8,Difesa magica,Difesa magica,,,,,,
+spell_defense_9_difesa_magica,spell_defense,9,Difesa magica,Difesa magica,,,,,,
+spell_defense_10_difesa_magica,spell_defense,10,Difesa magica,Difesa magica,,,,,,
+nature_movement_1_moti_naturali,nature_movement,1,Moti naturali,Moti naturali,,,,,,
+nature_movement_2_moti_naturali,nature_movement,2,Moti naturali,Moti naturali,,,,,,
+nature_movement_3_moti_naturali,nature_movement,3,Moti naturali,Moti naturali,,,,,,
+nature_movement_4_moti_naturali,nature_movement,4,Moti naturali,Moti naturali,,,,,,
+nature_movement_5_moti_naturali,nature_movement,5,Moti naturali,Moti naturali,,,,,,
+nature_movement_6_moti_naturali,nature_movement,6,Moti naturali,Moti naturali,,,,,,
+nature_movement_7_moti_naturali,nature_movement,7,Moti naturali,Moti naturali,,,,,,
+nature_movement_8_moti_naturali,nature_movement,8,Moti naturali,Moti naturali,,,,,,
+nature_movement_9_moti_naturali,nature_movement,9,Moti naturali,Moti naturali,,,,,,
+nature_movement_10_moti_naturali,nature_movement,10,Moti naturali,Moti naturali,,,,,,
+eco_law_1_ecomanzia,eco_law,1,Ecomanzia,Ecomanzia,,,,,,
+eco_law_2_ecomanzia,eco_law,2,Ecomanzia,Ecomanzia,,,,,,
+eco_law_3_ecomanzia,eco_law,3,Ecomanzia,Ecomanzia,,,,,,
+eco_law_4_ecomanzia,eco_law,4,Ecomanzia,Ecomanzia,,,,,,
+eco_law_5_ecomanzia,eco_law,5,Ecomanzia,Ecomanzia,,,,,,
+eco_law_6_ecomanzia,eco_law,6,Ecomanzia,Ecomanzia,,,,,,
+eco_law_7_ecomanzia,eco_law,7,Ecomanzia,Ecomanzia,,,,,,
+eco_law_8_ecomanzia,eco_law,8,Ecomanzia,Ecomanzia,,,,,,
+eco_law_9_ecomanzia,eco_law,9,Ecomanzia,Ecomanzia,,,,,,
+eco_law_10_ecomanzia,eco_law,10,Ecomanzia,Ecomanzia,,,,,,
+plant_law_1_botanomanzia,plant_law,1,Botanomanzia,Botanomanzia,,,,,,
+plant_law_2_botanomanzia,plant_law,2,Botanomanzia,Botanomanzia,,,,,,
+plant_law_3_botanomanzia,plant_law,3,Botanomanzia,Botanomanzia,,,,,,
+plant_law_4_botanomanzia,plant_law,4,Botanomanzia,Botanomanzia,,,,,,
+plant_law_5_botanomanzia,plant_law,5,Botanomanzia,Botanomanzia,,,,,,
+plant_law_6_botanomanzia,plant_law,6,Botanomanzia,Botanomanzia,,,,,,
+plant_law_7_botanomanzia,plant_law,7,Botanomanzia,Botanomanzia,,,,,,
+plant_law_8_botanomanzia,plant_law,8,Botanomanzia,Botanomanzia,,,,,,
+plant_law_9_botanomanzia,plant_law,9,Botanomanzia,Botanomanzia,,,,,,
+plant_law_10_botanomanzia,plant_law,10,Botanomanzia,Botanomanzia,,,,,,
+direct_channeling_1_flusso_diretto,direct_channeling,1,Flusso diretto,Flusso diretto,,,,,,
+direct_channeling_2_flusso_diretto,direct_channeling,2,Flusso diretto,Flusso diretto,,,,,,
+direct_channeling_3_flusso_diretto,direct_channeling,3,Flusso diretto,Flusso diretto,,,,,,
+direct_channeling_4_flusso_diretto,direct_channeling,4,Flusso diretto,Flusso diretto,,,,,,
+direct_channeling_5_flusso_diretto,direct_channeling,5,Flusso diretto,Flusso diretto,,,,,,
+direct_channeling_6_flusso_diretto,direct_channeling,6,Flusso diretto,Flusso diretto,,,,,,
+direct_channeling_7_flusso_diretto,direct_channeling,7,Flusso diretto,Flusso diretto,,,,,,
+direct_channeling_8_flusso_diretto,direct_channeling,8,Flusso diretto,Flusso diretto,,,,,,
+direct_channeling_9_flusso_diretto,direct_channeling,9,Flusso diretto,Flusso diretto,,,,,,
+direct_channeling_10_flusso_diretto,direct_channeling,10,Flusso diretto,Flusso diretto,,,,,,
+animal_mastery_1_controllo_animale,animal_mastery,1,Controllo animale,Controllo animale,,,,,,
+animal_mastery_2_controllo_animale,animal_mastery,2,Controllo animale,Controllo animale,,,,,,
+animal_mastery_3_controllo_animale,animal_mastery,3,Controllo animale,Controllo animale,,,,,,
+animal_mastery_4_controllo_animale,animal_mastery,4,Controllo animale,Controllo animale,,,,,,
+animal_mastery_5_controllo_animale,animal_mastery,5,Controllo animale,Controllo animale,,,,,,
+animal_mastery_6_controllo_animale,animal_mastery,6,Controllo animale,Controllo animale,,,,,,
+animal_mastery_7_controllo_animale,animal_mastery,7,Controllo animale,Controllo animale,,,,,,
+animal_mastery_8_controllo_animale,animal_mastery,8,Controllo animale,Controllo animale,,,,,,
+animal_mastery_9_controllo_animale,animal_mastery,9,Controllo animale,Controllo animale,,,,,,
+animal_mastery_10_controllo_animale,animal_mastery,10,Controllo animale,Controllo animale,,,,,,
+body_reunion_1_fisiorigenerazione,body_reunion,1,Fisiorigenerazione,Fisiorigenerazione,,,,,,
+body_reunion_2_fisiorigenerazione,body_reunion,2,Fisiorigenerazione,Fisiorigenerazione,,,,,,
+body_reunion_3_fisiorigenerazione,body_reunion,3,Fisiorigenerazione,Fisiorigenerazione,,,,,,
+body_reunion_4_fisiorigenerazione,body_reunion,4,Fisiorigenerazione,Fisiorigenerazione,,,,,,
+body_reunion_5_fisiorigenerazione,body_reunion,5,Fisiorigenerazione,Fisiorigenerazione,,,,,,
+body_reunion_6_fisiorigenerazione,body_reunion,6,Fisiorigenerazione,Fisiorigenerazione,,,,,,
+body_reunion_7_fisiorigenerazione,body_reunion,7,Fisiorigenerazione,Fisiorigenerazione,,,,,,
+body_reunion_8_fisiorigenerazione,body_reunion,8,Fisiorigenerazione,Fisiorigenerazione,,,,,,
+body_reunion_9_fisiorigenerazione,body_reunion,9,Fisiorigenerazione,Fisiorigenerazione,,,,,,
+body_reunion_10_fisiorigenerazione,body_reunion,10,Fisiorigenerazione,Fisiorigenerazione,,,,,,
+blood_ways_1_emorigenerazione,blood_ways,1,Emorigenerazione,Emorigenerazione,,,,,,
+blood_ways_2_emorigenerazione,blood_ways,2,Emorigenerazione,Emorigenerazione,,,,,,
+blood_ways_3_emorigenerazione,blood_ways,3,Emorigenerazione,Emorigenerazione,,,,,,
+blood_ways_4_emorigenerazione,blood_ways,4,Emorigenerazione,Emorigenerazione,,,,,,
+blood_ways_5_emorigenerazione,blood_ways,5,Emorigenerazione,Emorigenerazione,,,,,,
+blood_ways_6_emorigenerazione,blood_ways,6,Emorigenerazione,Emorigenerazione,,,,,,
+blood_ways_7_emorigenerazione,blood_ways,7,Emorigenerazione,Emorigenerazione,,,,,,
+blood_ways_8_emorigenerazione,blood_ways,8,Emorigenerazione,Emorigenerazione,,,,,,
+blood_ways_9_emorigenerazione,blood_ways,9,Emorigenerazione,Emorigenerazione,,,,,,
+blood_ways_10_emorigenerazione,blood_ways,10,Emorigenerazione,Emorigenerazione,,,,,,
+organ_ways_1_rigenerazione_organica,organ_ways,1,Rigenerazione organica,Rigenerazione organica,,,,,,
+organ_ways_2_rigenerazione_organica,organ_ways,2,Rigenerazione organica,Rigenerazione organica,,,,,,
+organ_ways_3_rigenerazione_organica,organ_ways,3,Rigenerazione organica,Rigenerazione organica,,,,,,
+organ_ways_4_rigenerazione_organica,organ_ways,4,Rigenerazione organica,Rigenerazione organica,,,,,,
+organ_ways_5_rigenerazione_organica,organ_ways,5,Rigenerazione organica,Rigenerazione organica,,,,,,
+organ_ways_6_rigenerazione_organica,organ_ways,6,Rigenerazione organica,Rigenerazione organica,,,,,,
+organ_ways_7_rigenerazione_organica,organ_ways,7,Rigenerazione organica,Rigenerazione organica,,,,,,
+organ_ways_8_rigenerazione_organica,organ_ways,8,Rigenerazione organica,Rigenerazione organica,,,,,,
+organ_ways_9_rigenerazione_organica,organ_ways,9,Rigenerazione organica,Rigenerazione organica,,,,,,
+organ_ways_10_rigenerazione_organica,organ_ways,10,Rigenerazione organica,Rigenerazione organica,,,,,,
+purifications_1_purificazioni,purifications,1,Purificazioni,Purificazioni,,,,,,
+purifications_2_purificazioni,purifications,2,Purificazioni,Purificazioni,,,,,,
+purifications_3_purificazioni,purifications,3,Purificazioni,Purificazioni,,,,,,
+purifications_4_purificazioni,purifications,4,Purificazioni,Purificazioni,,,,,,
+purifications_5_purificazioni,purifications,5,Purificazioni,Purificazioni,,,,,,
+purifications_6_purificazioni,purifications,6,Purificazioni,Purificazioni,,,,,,
+purifications_7_purificazioni,purifications,7,Purificazioni,Purificazioni,,,,,,
+purifications_8_purificazioni,purifications,8,Purificazioni,Purificazioni,,,,,,
+purifications_9_purificazioni,purifications,9,Purificazioni,Purificazioni,,,,,,
+purifications_10_purificazioni,purifications,10,Purificazioni,Purificazioni,,,,,,
+creations_1_creazioni,creations,1,Creazioni,Creazioni,,,,,,
+creations_2_creazioni,creations,2,Creazioni,Creazioni,,,,,,
+creations_3_creazioni,creations,3,Creazioni,Creazioni,,,,,,
+creations_4_creazioni,creations,4,Creazioni,Creazioni,,,,,,
+creations_5_creazioni,creations,5,Creazioni,Creazioni,,,,,,
+creations_6_creazioni,creations,6,Creazioni,Creazioni,,,,,,
+creations_7_creazioni,creations,7,Creazioni,Creazioni,,,,,,
+creations_8_creazioni,creations,8,Creazioni,Creazioni,,,,,,
+creations_9_creazioni,creations,9,Creazioni,Creazioni,,,,,,
+creations_10_creazioni,creations,10,Creazioni,Creazioni,,,,,,

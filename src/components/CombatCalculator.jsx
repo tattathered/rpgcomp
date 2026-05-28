@@ -9,7 +9,8 @@ import {
   getRanksBonus,
   getIngombroBonus,
   parseBonusValue,
-  fmt
+  fmt,
+  getCharacterHpTot
 } from '../utils/skillHelpers';
 
 const WEAPON_SKILL_TO_TABLE = {
@@ -204,14 +205,7 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
       else if (eqArmor.includes('piastre')) mappedArmor = 'piastre';
       
       // 5. HP Totali
-      const coBonus = finalStats['CO']?.bonusTot || 0;
-      const totalHpRolls = (char.level1HpRoll || 0) + levelDevelopments.reduce((sum, d) => sum + (d.hpRoll || 0), 0);
-      const rfRanksL1 = char.skills?.['resistenza fisica']?.adolescenceRanks || 0; // approximate
-      const totalRanksRf = rfRanksL1 + levelDevelopments.reduce((sum, d) => sum + (d.tgp4Distribution?.['resistenza fisica'] || 0), 0);
-      const hpD10Modifier = bgModifiers.hpD10Modifier || 0;
-      const specialRfBonus = bgModifiers.primarySkillsSpecialBonus?.['resistenza fisica'] || 0;
-      const specialHpBonus = (totalRanksRf * hpD10Modifier) + specialRfBonus;
-      const hpTot = totalHpRolls + coBonus + 5 + specialHpBonus;
+      const hpTot = getCharacterHpTot(char);
       
       // 6. Inventory weapons list
       const inventoryWeapons = (char.equipment || [])

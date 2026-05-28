@@ -285,11 +285,12 @@ export default function StatsStep({ characterData, setCharacterData }) {
   return (
     <div>
       <AnagraficaReadOnlyBox characterData={characterData} />
-      {characterData.race && (
-        <div className="mb-6 p-4 border rounded flex flex-col md:flex-row justify-between items-start md:items-center gap-4" style={{ backgroundColor: 'var(--theme-race-bg)', borderColor: 'var(--theme-race-border)', color: 'var(--theme-race-text)' }}>
-          <div>
+      {/* ── POPOLO + REQUISITI AFFIANCATI ── */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.5rem' }}>
+        {characterData.race ? (
+          <div className="p-4 border rounded" style={{ backgroundColor: 'var(--theme-race-bg)', borderColor: 'var(--theme-race-border)', color: 'var(--theme-race-text)' }}>
             <span className="text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--theme-race-text)' }}>Popolo Selezionato</span>
-            <h3 className="font-bold m-0" style={{fontSize: '1.2rem', marginTop: '0.25rem', color: 'var(--theme-race-text)'}}>{characterData.race.popolo}</h3>
+            <h3 className="font-bold m-0" style={{ fontSize: '1.2rem', marginTop: '0.25rem', color: 'var(--theme-race-text)' }}>{characterData.race.popolo}</h3>
             {characterData.race.popolo === 'Elfi Noldor' && (
               <p className="text-xs font-semibold mt-1 bg-white/20 px-2 py-1 rounded inline-block text-[11px]">
                 ⚠️ <strong>Vincolo Prontezza (PR):</strong> Deve essere attribuito il punteggio più alto.
@@ -305,36 +306,42 @@ export default function StatsStep({ characterData, setCharacterData }) {
                 ⚠️ <strong>Vincolo Prontezza (PR):</strong> Deve essere attribuito uno dei tre punteggi più alti.
               </p>
             )}
+            <div className="text-sm font-medium mt-2" style={{ color: 'var(--theme-race-text)', opacity: 0.85 }}>
+              {characterData.race['note (umani/non umani)']}
+            </div>
           </div>
-          <div className="text-sm font-medium text-right" style={{ color: 'var(--theme-race-text)' }}>
-            {characterData.race['note (umani/non umani)']}
+        ) : (
+          <div className="p-4 border rounded" style={{ backgroundColor: '#f3f4f6', borderColor: '#e5e7eb', color: '#6b7280' }}>
+            <span className="text-xs font-bold uppercase tracking-wider">Popolo Selezionato</span>
+            <div className="mt-2 text-sm">Nessun popolo selezionato</div>
           </div>
-        </div>
-      )}
+        )}
 
-      <div className="mb-6 p-4 rounded-md border" style={{ backgroundColor: 'var(--theme-profession-bg)', borderColor: 'var(--theme-profession-border)', color: 'var(--theme-profession-text)' }}>
-        <h3 className="font-semibold mb-2" style={{ color: 'var(--theme-profession-text)' }}>Requisiti della Professione: {prof ? prof.professione : 'Nessuna'}</h3>
-        <div className="flex gap-4">
-          <span className="px-3 py-1 rounded font-medium" style={{ backgroundColor: 'rgba(107, 33, 168, 0.1)', color: 'var(--theme-profession-text)' }}>Primaria: {primaryStat || '-'} (Minimo 90)</span>
-          <span className="px-3 py-1 rounded font-medium" style={{ backgroundColor: 'rgba(107, 33, 168, 0.05)', color: 'var(--theme-profession-text)' }}>Secondaria: {secondaryStat || '-'} (Minimo 75)</span>
+        <div className="p-4 rounded-md border" style={{ backgroundColor: 'var(--theme-profession-bg)', borderColor: 'var(--theme-profession-border)', color: 'var(--theme-profession-text)' }}>
+          <h3 className="font-semibold mb-2" style={{ color: 'var(--theme-profession-text)', fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Requisiti della Professione: {prof ? prof.professione : 'Nessuna'}</h3>
+          <div className="flex flex-col gap-2">
+            <span className="px-3 py-1 rounded font-medium text-sm" style={{ backgroundColor: 'rgba(107, 33, 168, 0.1)', color: 'var(--theme-profession-text)' }}>Primaria: {primaryStat || '-'} (Minimo 90)</span>
+            <span className="px-3 py-1 rounded font-medium text-sm" style={{ backgroundColor: 'rgba(107, 33, 168, 0.05)', color: 'var(--theme-profession-text)' }}>Secondaria: {secondaryStat || '-'} (Minimo 75)</span>
+          </div>
         </div>
       </div>
 
-      <div className="mb-6 flex gap-4">
-        <button 
-          className={`btn ${method === 'classic' ? 'btn-primary' : 'btn-outline'}`}
+      {/* ── 3 PULSANTI METODO SU 3 COLONNE ── */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem', marginBottom: '1.5rem' }}>
+        <button
+          className={`btn btn-method-classic${method !== 'classic' ? ' inactive' : ''}`}
           onClick={() => handleMethodChange('classic')}
         >
           Metodo Classico (Tiri D100)
         </button>
-        <button 
-          className={`btn ${method === 'points' ? 'btn-primary' : 'btn-outline'}`}
+        <button
+          className={`btn btn-method-points${method !== 'points' ? ' inactive' : ''}`}
           onClick={() => handleMethodChange('points')}
         >
           Metodo a Punti ({maxPoints} PT)
         </button>
-        <button 
-          className={`btn ${method === 'manual' ? 'btn-primary' : 'btn-outline'}`}
+        <button
+          className={`btn btn-method-manual${method !== 'manual' ? ' inactive' : ''}`}
           onClick={() => handleMethodChange('manual')}
         >
           Inserimento Diretto / Libero

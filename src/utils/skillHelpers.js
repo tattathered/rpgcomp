@@ -3,6 +3,83 @@ import penalitaCaricoData from '../data/TB_5-penalita_carico.json';
 import primarySkillsList from '../data/Tabella-abilita_primarie.json';
 import secondarySkillsList from '../data/Tabella-abilita_secondarie.json';
 
+// Nuove tabelle relazionali normalizzate
+import racesData from '../data/races.json';
+import skillsData from '../data/skills.json';
+import raceAdSkillsData from '../data/race_adolescence_skills.json';
+import professionDevelopmentCosts from '../data/profession_development_costs.json';
+import professionLevelBonuses from '../data/profession_level_bonuses.json';
+
+export const getRaceId = (name) => {
+  if (!name) return null;
+  const n = name.toLowerCase().trim();
+  const race = racesData.find(r => r.id === n || r.name_it.toLowerCase().trim() === n || r.name_en.toLowerCase().trim() === n);
+  return race ? race.id : null;
+};
+
+export const getSkillId = (name) => {
+  if (!name) return null;
+  const n = name.toLowerCase().trim();
+  const mapping = {
+    'corazza di maglia': 'chain_mail',
+    'cotta di maglia': 'chain_mail',
+    'corazza di maglie': 'chain_mail',
+    'taglio a 1 mano': 'one_handed_edged',
+    'armi da taglio a 1 mano': 'one_handed_edged',
+    'contundenti a 1 mano': 'one_handed_crushing',
+    'armi contundenti a 1 mano': 'one_handed_crushing',
+    'a 2 mani': 'two_handed',
+    'armi a 2 mani': 'two_handed',
+    'da tiro': 'missile',
+    'armi da tiro': 'missile',
+    'da lancio': 'thrown',
+    'armi da lancio': 'thrown',
+    'con asta': 'polearm',
+    'armi con asta': 'polearm',
+    'cogliere alle spalle': 'ambush',
+    'colpire alle spalle': 'ambush',
+    'muoversi silenziosamente': 'stalking',
+    'muov. silenz. / nasc.': 'stalking',
+    'nascondersi': 'hiding',
+    'scassinare serrature': 'pick_locks',
+    'scassinare': 'pick_locks',
+    'disattivare trappole': 'disarm_traps',
+    'uso oggetti magici': 'use_items',
+    'uso di oggetti magici': 'use_items',
+    'lettura rune': 'read_runes',
+    'incantesimi diretti': 'directed_spells',
+    'incantesimi base': 'base_spells',
+    'percezione': 'perception',
+    'resistenza fisica': 'body_development',
+    'nessuna armatura': 'no_armor',
+    'cuoio grezzo': 'soft_leather',
+    'cuoio rinforzato': 'rigid_leather',
+    'corazza di piastre': 'plate_mail'
+  };
+  const mapped = mapping[n];
+  if (mapped) return mapped;
+  const skill = skillsData.find(s => s.id === n || s.name_it.toLowerCase().trim() === n || s.name_en.toLowerCase().trim() === n);
+  return skill ? skill.id : null;
+};
+
+export const getProfessionId = (prof) => {
+  if (!prof) return null;
+  if (typeof prof === 'object') {
+    const id = prof.id || prof.professione;
+    if (id) return id.toLowerCase().trim();
+  }
+  const n = String(prof).toLowerCase().trim();
+  const mapping = {
+    'guerriero': 'warrior',
+    'scout': 'scout',
+    'mago': 'mage',
+    'bardo': 'bard',
+    'animista': 'animist',
+    'ranger': 'ranger'
+  };
+  return mapping[n] || n;
+};
+
 export const STAT_KEYS = ['FR', 'AG', 'CO', 'IN', 'IT', 'PR'];
 export const STAT_NAMES = { FR: 'Forza', AG: 'Agilità', CO: 'Costituzione', IN: 'Intelligenza', IT: 'Intuizione', PR: 'Presenza' };
 
@@ -51,13 +128,23 @@ export const getIngombroBonus = (skillName) => {
 
 export const getSpecificTb6Ranks = (skillName, profession) => {
   if (!profession) return 0;
-  const nameL = skillName.toLowerCase();
-  const validKeys = [
-    'resistenza fisica', 'percezione', 'lettura rune', 
-    'uso oggetti magici', 'incantesimi diretti', 'incantesimi base'
-  ];
-  if (validKeys.includes(nameL)) {
-    return parseBonusValue(profession[nameL]);
+  const profId = getProfessionId(profession);
+  const skillId = getSkillId(skillName);
+  if (!profId || !skillId) return 0;
+
+  const record = professionLevelBonuses.find(lb => lb.profession_id === profId && lb.skill_id === skillId);
+  if (record) return record.bonus;
+
+  // Backward compatibility
+  if (typeof profession === 'object') {
+    const nameL = skillName.toLowerCase();
+    const validKeys = [
+      'resistenza fisica', 'percezione', 'lettura rune', 
+      'uso oggetti magici', 'incantesimi diretti', 'incantesimi base'
+    ];
+    if (validKeys.includes(nameL) && profession[nameL] !== undefined) {
+      return parseBonusValue(profession[nameL]);
+    }
   }
   return 0;
 };
@@ -68,34 +155,20 @@ export const getFinalStats = (stats, race, bgModifiers = {}) => {
     const bgMod = bgModifiers.statsBonus?.[k] || 0;
     const statScore = raw + bgMod;
     const bonusNaturale = getBonus(statScore);
-    const raceMod = race ? parseBonusValue(race[`bonus a ${k}`] || 0) : 0;
+    const raceMod = race ? parseBonusValue(race[`mod_${k.toLowerCase()}`] !== undefined ? race[`mod_${k.toLowerCase()}`] : (race[`bonus a ${k}`] || 0)) : 0;
     const bonusTot = bonusNaturale + raceMod;
     acc[k] = { raw, bgMod, statScore, bonusNaturale, raceMod, bonusTot, bonus: bonusTot };
     return acc;
   }, {});
 };
 
-export const getTgp5AdolescenceRanks = (skillName, popolo, adolescenceData) => {
-  if (!popolo || !adolescenceData) return 0;
-  const norm = skillName.toLowerCase().trim();
-  if (norm === 'cogliere alle spalle') return 0;
-  const mapping = {
-    'corazza di maglia': 'cotta di maglia',
-    'taglio a 1 mano': 'armi da taglio a 1 mano',
-    'contundenti a 1 mano': 'armi contundenti a 1 mano',
-    'a 2 mani': 'armi a 2 mani',
-    'da tiro': 'armi da tiro',
-    'da lancio': 'armi da lancio',
-    'con asta': 'armi con asta',
-    'cogliere alle spalle': 'colpire alle spalle',
-    'muoversi silenziosamente': 'muov. silenz. / nasc.',
-    'nascondersi': 'muov. silenz. / nasc.',
-    'scassinare serrature': 'scassinare',
-    'uso oggetti magici': 'uso di oggetti magici',
-  };
-  const targetTgp5Name = mapping[norm] || norm;
-  const match = adolescenceData.find(item => item.abilità?.toLowerCase().trim() === targetTgp5Name);
-  return match ? parseBonusValue(match[popolo] || 0) : 0;
+export const getTgp5AdolescenceRanks = (skillName, popolo) => {
+  const raceId = getRaceId(popolo);
+  const skillId = getSkillId(skillName);
+  if (!raceId || !skillId) return 0;
+
+  const match = raceAdSkillsData.find(item => item.race_id === raceId && item.skill_id === skillId);
+  return match ? match.ranks : 0;
 };
 
 export const getTb6CategoryKey = (categoryName) => {
@@ -109,9 +182,35 @@ export const getTb6CategoryKey = (categoryName) => {
 
 export const getTb6PoolSize = (categoryName, profession) => {
   if (!profession) return 0;
-  const key = getTb6CategoryKey(categoryName);
-  if (!key) return 0;
-  return parseBonusValue(profession[key] || 0);
+  const profId = getProfessionId(profession);
+  if (!profId) return 0;
+
+  const normCat = categoryName.toLowerCase().trim();
+  const mapping = {
+    'di manovra e movimento': 'movement_maneuvers',
+    'abilità di movimento e manovra': 'movement_maneuvers',
+    'con le armi': 'weapons_skills',
+    'abilità con le armi': 'weapons_skills',
+    'generali': 'general_skills',
+    'abilità generali': 'general_skills',
+    'sotterfugio': 'subterfuge_skills',
+    'abilità di sotterfugio': 'subterfuge_skills',
+    'magiche': 'magic_skills',
+    'abilità magiche': 'magic_skills'
+  };
+  const targetId = mapping[normCat] || normCat;
+
+  const record = professionLevelBonuses.find(lb => lb.profession_id === profId && lb.skill_id === targetId);
+  if (record) return record.bonus;
+
+  // Backward compatibility
+  if (typeof profession === 'object') {
+    const key = getTb6CategoryKey(categoryName);
+    if (key && profession[key] !== undefined) {
+      return parseBonusValue(profession[key] || 0);
+    }
+  }
+  return 0;
 };
 
 export const getTgp4CategoryKey = (categoryName, skillName) => {
@@ -132,12 +231,33 @@ export const getTgp4CategoryKey = (categoryName, skillName) => {
   return null;
 };
 
-export const getTgp4PoolSize = (categoryName, skillName, professionName, tgp4Data) => {
-  if (!professionName || !tgp4Data) return 0;
+export const getTgp4PoolSize = (categoryName, skillName, professionName) => {
+  if (!professionName) return 0;
+  const profId = getProfessionId(professionName);
+  if (!profId) return 0;
+
   const key = getTgp4CategoryKey(categoryName, skillName);
   if (!key) return 0;
-  const record = tgp4Data.find(d => d.categoria?.toLowerCase().trim() === key.toLowerCase().trim());
-  return record ? parseBonusValue(record[professionName.toLowerCase()] || 0) : 0;
+
+  const normKey = key.toLowerCase().trim();
+  if (normKey === 'percezione') return 0;
+
+  const mapping = {
+    'manovre in movimento': 'movement_maneuvers',
+    'abilità armi': 'weapons_skills',
+    'abilità generiche': 'general_skills',
+    'percezione': 'general_skills',
+    'abilità sotterfugio': 'subterfuge_skills',
+    'abilità magiche': 'magic_skills',
+    'resistenza fisica': 'physical_resistance',
+    'lingue': 'languages',
+    'liste incantesimi': 'spell_lists'
+  };
+
+  const targetCategory = mapping[normKey] || normKey;
+
+  const record = professionDevelopmentCosts.find(d => d.profession_id === profId && d.skill_category === targetCategory);
+  return record ? record.cost : 0;
 };
 
 export const fmt = (n) => (typeof n === 'number' ? (n >= 0 ? `+${n}` : `${n}`) : n);

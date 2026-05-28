@@ -1,0 +1,147 @@
+[
+  {
+    "profession_id": "warrior",
+    "skill_id": "body_development",
+    "bonus": 3
+  },
+  {
+    "profession_id": "warrior",
+    "skill_id": "weapons_skills",
+    "bonus": 3
+  },
+  {
+    "profession_id": "warrior",
+    "skill_id": "general_skills",
+    "bonus": 1
+  },
+  {
+    "profession_id": "scout",
+    "skill_id": "perception",
+    "bonus": 3
+  },
+  {
+    "profession_id": "scout",
+    "skill_id": "weapons_skills",
+    "bonus": 1
+  },
+  {
+    "profession_id": "scout",
+    "skill_id": "general_skills",
+    "bonus": 1
+  },
+  {
+    "profession_id": "scout",
+    "skill_id": "subterfuge_skills",
+    "bonus": 2
+  },
+  {
+    "profession_id": "ranger",
+    "skill_id": "perception",
+    "bonus": 2
+  },
+  {
+    "profession_id": "ranger",
+    "skill_id": "weapons_skills",
+    "bonus": 2
+  },
+  {
+    "profession_id": "ranger",
+    "skill_id": "general_skills",
+    "bonus": 3
+  },
+  {
+    "profession_id": "ranger",
+    "skill_id": "subterfuge_skills",
+    "bonus": 2
+  },
+  {
+    "profession_id": "bard",
+    "skill_id": "base_spells",
+    "bonus": 1
+  },
+  {
+    "profession_id": "bard",
+    "skill_id": "perception",
+    "bonus": 1
+  },
+  {
+    "profession_id": "bard",
+    "skill_id": "weapons_skills",
+    "bonus": 1
+  },
+  {
+    "profession_id": "bard",
+    "skill_id": "general_skills",
+    "bonus": 1
+  },
+  {
+    "profession_id": "bard",
+    "skill_id": "subterfuge_skills",
+    "bonus": 1
+  },
+  {
+    "profession_id": "bard",
+    "skill_id": "magic_skills",
+    "bonus": 1
+  },
+  {
+    "profession_id": "mage",
+    "skill_id": "read_runes",
+    "bonus": 2
+  },
+  {
+    "profession_id": "mage",
+    "skill_id": "use_items",
+    "bonus": 2
+  },
+  {
+    "profession_id": "mage",
+    "skill_id": "directed_spells",
+    "bonus": 3
+  },
+  {
+    "profession_id": "mage",
+    "skill_id": "base_spells",
+    "bonus": 2
+  },
+  {
+    "profession_id": "mage",
+    "skill_id": "magic_skills",
+    "bonus": 2
+  },
+  {
+    "profession_id": "animist",
+    "skill_id": "read_runes",
+    "bonus": 1
+  },
+  {
+    "profession_id": "animist",
+    "skill_id": "use_items",
+    "bonus": 1
+  },
+  {
+    "profession_id": "animist",
+    "skill_id": "directed_spells",
+    "bonus": 2
+  },
+  {
+    "profession_id": "animist",
+    "skill_id": "base_spells",
+    "bonus": 2
+  },
+  {
+    "profession_id": "animist",
+    "skill_id": "perception",
+    "bonus": 1
+  },
+  {
+    "profession_id": "animist",
+    "skill_id": "general_skills",
+    "bonus": 2
+  },
+  {
+    "profession_id": "animist",
+    "skill_id": "magic_skills",
+    "bonus": 1
+  }
+]

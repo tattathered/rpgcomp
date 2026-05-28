@@ -1,4 +1,4 @@
-export default function AnagraficaReadOnlyBox({ characterData }) {
+export default function AnagraficaReadOnlyBox({ characterData, simple = true }) {
   const {
     name = '—',
     playerName = '—',
@@ -7,8 +7,29 @@ export default function AnagraficaReadOnlyBox({ characterData }) {
     hairColor = '—',
     eyeColor = '—',
     personality = '—',
-    specialFeature = '—'
+    specialFeature = '—',
+    history = ''
   } = characterData || {};
+
+  if (simple) {
+    return (
+      <div className="mb-4 card p-3 bg-white border border-gray-200 rounded-lg shadow-sm">
+        <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2" style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '0.4rem', marginTop: 0 }}>
+          Anagrafica personaggio
+        </h3>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+          <div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 500 }}>Nome personaggio</div>
+            <div style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-color)' }}>{name}</div>
+          </div>
+          <div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 500 }}>Nome giocatore</div>
+            <div style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-color)' }}>{playerName}</div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="mb-6 card p-4 bg-white border border-gray-200 rounded-lg shadow-sm">
@@ -53,6 +74,13 @@ export default function AnagraficaReadOnlyBox({ characterData }) {
           <div style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-color)' }}>{specialFeature}</div>
         </div>
       </div>
+
+      {history && history.trim() !== '' && (
+        <div style={{ borderTop: '1px dashed var(--border-color)', marginTop: '0.75rem', paddingTop: '0.75rem' }}>
+          <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 500 }}>Storia del personaggio</div>
+          <div style={{ fontSize: '0.85rem', color: 'var(--text-color)', whiteSpace: 'pre-wrap', fontStyle: 'italic', lineHeight: '1.4' }}>{history}</div>
+        </div>
+      )}
     </div>
   );
 }

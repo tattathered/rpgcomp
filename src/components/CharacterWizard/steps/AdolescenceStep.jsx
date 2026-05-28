@@ -1,14 +1,17 @@
 import { useEffect, useState, useMemo, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
-import adolescenceData from '../../../data/TGP_5-sviluppo_abilita_adolescenza-v2.json';
-import secondarySkillsList from '../../../data/Tabella-abilita_secondarie.json';
-import tgp5Data from '../../../data/TGP_5-sviluppo_abilita_adolescenza-v2.json';
 import { getAvailableSpellLists } from '../../../utils/magicHelpers';
 import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
-import lingueTerraDiMezzo from '../../../data/TS_1-lingue_della_terra_di_mezzo-v2.json';
+import secondarySkillsList from '../../../data/Tabella-abilita_secondarie.json';
 import gradiLingue from '../../../data/TGP_1-gradi_conoscenze_lingue.json';
 import catalogData from '../../../data/TS_4-equipaggiamento.json';
+
+// Nuove tabelle relazionali normalizzate
+import languagesData from '../../../data/languages.json';
+import raceLanguagesData from '../../../data/race_languages.json';
+import racesData from '../../../data/races.json';
+
 import {
   getBonus,
   parseBonusValue,
@@ -18,7 +21,9 @@ import {
   getFinalStats,
   fmt,
   getTgp5AdolescenceRanks,
-  getTb6PoolSize
+  getTb6PoolSize,
+  getRaceId,
+  getSkillId
 } from '../../../utils/skillHelpers';
 
 const STAT_KEYS = ['FR', 'AG', 'CO', 'IN', 'IT', 'PR'];
@@ -179,11 +184,16 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
   useEffect(() => {
     if (race && (!characterData.background?.languages)) {
       const baseLangs = {};
-      lingueTerraDiMezzo.forEach(l => {
-        if (l.popolo === race.popolo) {
-          baseLangs[l.lingua] = { base: l.livello, addedAdolescenza: 0, addedLivello1: 0, added: 0 };
-        }
-      });
+      const raceId = race.id || getRaceId(race.popolo);
+      if (raceId) {
+        const rlList = raceLanguagesData.filter(rl => rl.race_id === raceId);
+        rlList.forEach(rl => {
+          const lang = languagesData.find(l => l.id === rl.language_id);
+          if (lang) {
+            baseLangs[lang.name_it] = { base: rl.level, addedAdolescenza: 0, addedLivello1: 0, added: 0 };
+          }
+        });
+      }
       setCharacterData(prev => ({
         ...prev,
         background: {
@@ -195,7 +205,7 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
     }
   }, [race, characterData.background, setCharacterData]);
 
-  const allLanguages = useMemo(() => [...new Set(lingueTerraDiMezzo.map(l => l.lingua))].sort(), []);
+  const allLanguages = useMemo(() => [...new Set(languagesData.map(l => l.name_it))].sort(), []);
   const languages = characterData.background?.languages || {};
   const languagePointsTotal = characterData.skills?.['Punti Lingue Addizionali']?.totalRanks || 0;
   const languagePointsSpent = Object.values(languages).reduce((sum, l) => sum + (l.addedAdolescenza || 0), 0);
@@ -299,7 +309,7 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
       primarySkillsList.forEach(skill => {
         const isCogliere = skill.nome.toLowerCase() === 'cogliere alle spalle';
         // Find adolescence ranks in race development
-        const adRanks = isCogliere ? 0 : getTgp5AdolescenceRanks(skill.nome, race.popolo, adolescenceData);
+        const adRanks = isCogliere ? 0 : getTgp5AdolescenceRanks(skill.nome, race.popolo);
         
         // Find profession ranks (distributed + fixed)
         const distributedProf = isCogliere ? 0 : (characterData.level1Tb6?.[skill.nome] || 0);
@@ -321,30 +331,39 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
         };
       });
 
-      // 2. Process other development variables from TGP_5
-      const specialKeys = [
-        'Punti Lingue Addizionali',
-        'Punti Lingue Addizionali ',
-        'Punti Background',
-        'Punti Background ',
-        'Percentuale di Probabilità di Imparare una Lista di Incantesimi',
-        'Percentuale di Probabilità di Imparare una Lista di Incantesimi '
-      ];
+      // 2. Process other development variables from racesData properties
+      const raceId = race.id || getRaceId(race.popolo);
+      const fullRace = racesData.find(r => r.id === raceId) || race;
+      
+      const extraLangs = fullRace.extra_language_points !== undefined ? fullRace.extra_language_points : (race.extra_language_points || 0);
+      newSkills['Punti Lingue Addizionali'] = {
+        category: 'Altre Abilità',
+        type: 'Altro',
+        adolescenceRanks: extraLangs,
+        professionRanks: 0,
+        totalRanks: extraLangs,
+        notes: 'Punti spendibili in lingue addizionali.'
+      };
 
-      specialKeys.forEach(key => {
-        const adRecord = adolescenceData.find(item => item.abilità === key);
-        if (adRecord && adRecord[race.popolo] !== undefined) {
-          const ranks = adRecord[race.popolo];
-          newSkills[key.trim()] = {
-            category: 'Altre Abilità',
-            type: 'Altro',
-            adolescenceRanks: ranks,
-            professionRanks: 0,
-            totalRanks: ranks,
-            notes: adRecord.note
-          };
-        }
-      });
+      const bgPoints = fullRace.background_points !== undefined ? fullRace.background_points : (race.background_points || 0);
+      newSkills['Punti Background'] = {
+        category: 'Altre Abilità',
+        type: 'Altro',
+        adolescenceRanks: bgPoints,
+        professionRanks: 0,
+        totalRanks: bgPoints,
+        notes: 'Opzioni di background disponibili alla creazione.'
+      };
+
+      const learnChance = fullRace.spell_list_learn_chance !== undefined ? fullRace.spell_list_learn_chance : (race.spell_list_learn_chance || 0);
+      newSkills['Percentuale di Probabilità di Imparare una Lista di Incantesimi'] = {
+        category: 'Altre Abilità',
+        type: 'Altro',
+        adolescenceRanks: learnChance,
+        professionRanks: 0,
+        totalRanks: learnChance,
+        notes: 'Probabilità base per l\'apprendimento delle liste di incantesimi.'
+      };
 
       // Avoid loop: check if stringified skills actually changed
       if (JSON.stringify(characterData.skills) !== JSON.stringify(newSkills)) {
@@ -424,7 +443,7 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
     primarySkillsList.forEach(sk => {
       const name = sk.nome;
       const isCogliereAlleSpalle = name.toLowerCase() === 'cogliere alle spalle';
-      const adRanks = isCogliereAlleSpalle ? 0 : getTgp5AdolescenceRanks(name, race?.popolo, adolescenceData);
+      const adRanks = isCogliereAlleSpalle ? 0 : getTgp5AdolescenceRanks(name, race?.popolo);
       const profFixed = isCogliereAlleSpalle ? 0 : getSpecificTb6Ranks(name, profession);
       const profDist = isCogliereAlleSpalle ? 0 : (tb6Distribution[name] || 0);
       const profRanks = profFixed + profDist;
@@ -472,9 +491,10 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
   const rawAvailableLists = profession ? getAvailableSpellLists(profession.professione, selectedRealm) : [];
   const availableLists = rawAvailableLists.filter(l => !knownLists.includes(l.nome_lista));
   
-  // Trova la probabilità base in TGP_5
-  const baseChanceRow = tgp5Data.find(d => d['abilità'] === '% Probabilità di Imparare una Lista di Incantesimi');
-  const baseChance = baseChanceRow ? (baseChanceRow[race?.popolo] || 0) : 0;
+  // Trova la probabilità base in racesData
+  const raceId = race ? (race.id || getRaceId(race.popolo)) : null;
+  const fullRace = racesData.find(r => r.id === raceId) || race;
+  const baseChance = fullRace ? (fullRace.spell_list_learn_chance || 0) : 0;
   
   const currentAccumulated = characterData.spellListChanceAccumulated !== undefined 
     ? characterData.spellListChanceAccumulated 

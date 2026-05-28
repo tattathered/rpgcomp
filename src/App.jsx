@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Scroll, Users, Book, Settings, Save, Play, Trash2, Plus, FolderOpen, Copy, Edit, ArrowLeft, Swords, Compass, AlertTriangle } from 'lucide-react';
+import { Scroll, Users, Book, Settings, Save, Play, Trash2, Plus, FolderOpen, Copy, Edit, ArrowLeft, Swords, Compass, AlertTriangle, Upload, Download } from 'lucide-react';
 import CharacterWizard from './components/CharacterWizard/CharacterWizard';
 import defaultEquipment from './data/TS_4-equipaggiamento.json';
 import EquipmentCatalogManager from './components/EquipmentCatalogManager';
@@ -121,7 +121,7 @@ function App() {
 
   const handleLoadCharacter = (charData) => {
     setActiveCharacter(charData);
-    setActiveStepIndex(8); // Carica direttamente a step 9 (Riepilogo Scheda)
+    setActiveStepIndex(9); // Step 10. Riepilogo Scheda (indice 0-based = 9)
     setActiveTab('creation');
   };
 
@@ -208,6 +208,86 @@ function App() {
     alert(`Personaggio "${trimmedName}" creato come copia di "${charData.name}"!`);
   };
 
+  const handleExportCharacter = (char) => {
+    try {
+      const dataStr = JSON.stringify(char, null, 2);
+      const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+      
+      const level = 1 + (char.levelDevelopments || []).length;
+      const exportFileDefaultName = `${char.name.replace(/\s+/g, '_')}_lvl_${level}.json`;
+      
+      const linkElement = document.createElement('a');
+      linkElement.setAttribute('href', dataUri);
+      linkElement.setAttribute('download', exportFileDefaultName);
+      linkElement.click();
+    } catch (err) {
+      alert("Errore durante l'esportazione: " + err.message);
+    }
+  };
+
+  const handleImportCharacterClick = () => {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.json';
+    input.onchange = (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        try {
+          const parsed = JSON.parse(event.target.result);
+          
+          if (!parsed.name || !parsed.race || !parsed.profession) {
+            alert("File JSON non valido: il file deve contenere almeno nome, popolo e professione del personaggio.");
+            return;
+          }
+          
+          const nameExists = savedCharacters.some(c => c.name.toLowerCase() === parsed.name.toLowerCase());
+          
+          let importedChar = { ...parsed };
+          
+          if (nameExists) {
+            const choice = confirm(`Un personaggio con il nome "${parsed.name}" esiste già nel roster.\nVuoi sovrascriverlo (OK) o importarlo come copia con nome diverso (Annulla)?`);
+            if (choice) {
+              const existingIdx = savedCharacters.findIndex(c => c.name.toLowerCase() === parsed.name.toLowerCase());
+              setSavedCharacters(prev => {
+                const nextList = [...prev];
+                nextList[existingIdx] = importedChar;
+                localStorage.setItem('merp_characters', JSON.stringify(nextList));
+                return nextList;
+              });
+              alert(`Personaggio "${parsed.name}" sovrascritto con successo!`);
+              return;
+            } else {
+              const newName = prompt("Inserisci un nuovo nome per il personaggio importato:", `${parsed.name}_copia`);
+              if (!newName || !newName.trim()) {
+                alert("Importazione annullata: nome non valido.");
+                return;
+              }
+              importedChar.name = newName.trim();
+              importedChar.id = Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
+            }
+          } else {
+            importedChar.id = parsed.id || Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
+          }
+          
+          setSavedCharacters(prev => {
+            const nextList = [...prev, importedChar];
+            localStorage.setItem('merp_characters', JSON.stringify(nextList));
+            return nextList;
+          });
+          
+          alert(`Personaggio "${importedChar.name}" importato con successo!`);
+        } catch (err) {
+          alert("Errore durante la lettura del file: " + err.message);
+        }
+      };
+      reader.readAsText(file);
+    };
+    input.click();
+  };
+
   const handleStartNewCharacter = () => {
     setActiveCharacter(null);
     setActiveStepIndex(0); // Nuova creazione parte da step 1 (Popolo)
@@ -224,7 +304,7 @@ function App() {
         <div className="nav-tabs">
           <button 
             className={`nav-tab ${activeTab === 'creation' ? 'active' : ''}`}
-            onClick={() => setActiveTab('creation')}
+            onClick={handleStartNewCharacter}
           >
             <Scroll className="w-4 h-4" />
             Creazione PG
@@ -274,14 +354,24 @@ function App() {
                 <h2 className="card-title">Roster Personaggi</h2>
                 <p className="card-description">Gestione delle schede personaggio create.</p>
               </div>
-              <button 
-                className="btn btn-primary"
-                onClick={handleStartNewCharacter}
-                style={{ padding: '0.5rem 1rem', fontSize: '0.85rem' }}
-              >
-                <Plus className="w-4 h-4" />
-                Nuovo Personaggio
-              </button>
+              <div style={{ display: 'flex', gap: '0.5rem' }}>
+                <button 
+                  className="btn btn-outline"
+                  onClick={handleImportCharacterClick}
+                  style={{ padding: '0.5rem 1rem', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}
+                >
+                  <Upload className="w-4 h-4" />
+                  Importa PG
+                </button>
+                <button 
+                  className="btn btn-primary"
+                  onClick={handleStartNewCharacter}
+                  style={{ padding: '0.5rem 1rem', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}
+                >
+                  <Plus className="w-4 h-4" />
+                  Nuovo Personaggio
+                </button>
+              </div>
             </div>
             <div className="card-body">
               {savedCharacters.length === 0 ? (
@@ -362,11 +452,19 @@ function App() {
                           <button 
                             className="btn btn-primary"
                             onClick={() => handleLoadCharacter(char)}
-                            style={{ flex: 1, padding: '0.4rem', fontSize: '0.75rem', gap: '0.25rem' }}
+                            style={{ flex: 1, padding: '0.4rem', fontSize: '0.75rem', gap: '0.25rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                             title="Carica Personaggio"
                           >
                             <FolderOpen className="w-3.5 h-3.5" />
                             Carica
+                          </button>
+                          <button 
+                            className="btn btn-outline"
+                            onClick={() => handleExportCharacter(char)}
+                            style={{ padding: '0.4rem', borderColor: 'var(--border-color)', color: 'var(--text-muted)' }}
+                            title="Esporta Personaggio"
+                          >
+                            <Download className="w-3.5 h-3.5" />
                           </button>
                           <button 
                             className="btn btn-outline"

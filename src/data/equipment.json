@@ -1,1661 +1,1217 @@
 [
   {
-    "id": "battle_axe",
-    "name": {
-      "it": "Ascia da battaglia",
-      "en": "Battle axe"
-    },
+    "id": "ascia_da_battaglia",
+    "name_it": "Ascia da battaglia",
+    "name_en": "Ascia da battaglia",
     "category": "weapons",
     "abbreviation": "(ab)",
     "cost_mb": 130,
     "weight_kg": 3,
-    "notes": {
-      "it": "A 2 mani",
-      "en": "Two-handed"
-    },
+    "notes_it": "A 2 mani",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armi: Ascia da battaglia.",
-      "en": "Item belonging to the weapons category: Battle axe."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armi: Ascia da battaglia.",
+    "description_en": null
   },
   {
     "id": "bolas",
-    "name": {
-      "it": "Bolas",
-      "en": "Bolas"
-    },
+    "name_it": "Bolas",
+    "name_en": "Bolas",
     "category": "weapons",
     "abbreviation": "(bo)",
     "cost_mb": 50,
     "weight_kg": 1.5,
-    "notes": {
-      "it": "Da lancio",
-      "en": "Thrown"
-    },
+    "notes_it": "Da lancio",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armi: Bolas.",
-      "en": "Item belonging to the weapons category: Bolas."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armi: Bolas.",
+    "description_en": null
   },
   {
-    "id": "broadsword",
-    "name": {
-      "it": "Spada",
-      "en": "Broadsword"
-    },
+    "id": "spada",
+    "name_it": "Spada",
+    "name_en": "Spada",
     "category": "weapons",
     "abbreviation": "(sp)",
     "cost_mb": 100,
     "weight_kg": 1.8,
-    "notes": {
-      "it": "A 1 mano, da taglio",
-      "en": "One-handed, slashing"
-    },
+    "notes_it": "A 1 mano, da taglio",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armi: Spada.",
-      "en": "Item belonging to the weapons category: Broadsword."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armi: Spada.",
+    "description_en": null
   },
   {
-    "id": "club",
-    "name": {
-      "it": "Randello",
-      "en": "Club"
-    },
+    "id": "randello",
+    "name_it": "Randello",
+    "name_en": "Randello",
     "category": "weapons",
     "abbreviation": "(ra)",
     "cost_mb": 0.1,
     "weight_kg": 2.2,
-    "notes": {
-      "it": "A 1 mano, contundente",
-      "en": "One-handed, crushing"
-    },
+    "notes_it": "A 1 mano, contundente",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armi: Randello.",
-      "en": "Item belonging to the weapons category: Club."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armi: Randello.",
+    "description_en": null
   },
   {
-    "id": "composite_bow",
-    "name": {
-      "it": "Arco a doppia curva",
-      "en": "Composite bow"
-    },
+    "id": "arco_a_doppia_curva",
+    "name_it": "Arco a doppia curva",
+    "name_en": "Arco a doppia curva",
     "category": "weapons",
     "abbreviation": "(ap)",
     "cost_mb": 170,
     "weight_kg": 1.3,
-    "notes": {
-      "it": "Da tiro",
-      "en": "Ranged"
-    },
+    "notes_it": "Da tiro",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armi: Arco a doppia curva.",
-      "en": "Item belonging to the weapons category: Composite bow."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armi: Arco a doppia curva.",
+    "description_en": null
   },
   {
-    "id": "crossbow",
-    "name": {
-      "it": "Balestra",
-      "en": "Crossbow"
-    },
+    "id": "balestra",
+    "name_it": "Balestra",
+    "name_en": "Balestra",
     "category": "weapons",
     "abbreviation": "(bl)",
     "cost_mb": 250,
     "weight_kg": 3.6,
-    "notes": {
-      "it": "Da tiro",
-      "en": "Ranged"
-    },
+    "notes_it": "Da tiro",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armi: Balestra.",
-      "en": "Item belonging to the weapons category: Crossbow."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armi: Balestra.",
+    "description_en": null
   },
   {
-    "id": "dagger",
-    "name": {
-      "it": "Pugnale",
-      "en": "Dagger"
-    },
+    "id": "pugnale",
+    "name_it": "Pugnale",
+    "name_en": "Pugnale",
     "category": "weapons",
     "abbreviation": "(pu)",
     "cost_mb": 30,
     "weight_kg": 0.4,
-    "notes": {
-      "it": "A 1 mano, da taglio",
-      "en": "One-handed, slashing"
-    },
+    "notes_it": "A 1 mano, da taglio",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armi: Pugnale.",
-      "en": "Item belonging to the weapons category: Dagger."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armi: Pugnale.",
+    "description_en": null
   },
   {
-    "id": "flail",
-    "name": {
-      "it": "Flagello",
-      "en": "Flail"
-    },
+    "id": "flagello",
+    "name_it": "Flagello",
+    "name_en": "Flagello",
     "category": "weapons",
     "abbreviation": "(fl)",
     "cost_mb": 190,
     "weight_kg": 2.7,
-    "notes": {
-      "it": "A 2 mani",
-      "en": "Two-handed"
-    },
+    "notes_it": "A 2 mani",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armi: Flagello.",
-      "en": "Item belonging to the weapons category: Flail."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armi: Flagello.",
+    "description_en": null
   },
   {
-    "id": "halberd",
-    "name": {
-      "it": "Alabarda",
-      "en": "Halberd"
-    },
+    "id": "alabarda",
+    "name_it": "Alabarda",
+    "name_en": "Alabarda",
     "category": "weapons",
     "abbreviation": "(ad)",
     "cost_mb": 140,
     "weight_kg": 3.1,
-    "notes": {
-      "it": "Con asta, a 2 mani",
-      "en": "Con asta, a 2 mani"
-    },
+    "notes_it": "Con asta, a 2 mani",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armi: Alabarda.",
-      "en": "Item belonging to the weapons category: Halberd."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armi: Alabarda.",
+    "description_en": null
   },
   {
-    "id": "hand_axe",
-    "name": {
-      "it": "Accetta",
-      "en": "Hand axe"
-    },
+    "id": "accetta",
+    "name_it": "Accetta",
+    "name_en": "Accetta",
     "category": "weapons",
     "abbreviation": "(at)",
     "cost_mb": 50,
     "weight_kg": 2.5,
-    "notes": {
-      "it": "A 1 mano, da taglio",
-      "en": "One-handed, slashing"
-    },
+    "notes_it": "A 1 mano, da taglio",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armi: Accetta.",
-      "en": "Item belonging to the weapons category: Hand axe."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armi: Accetta.",
+    "description_en": null
   },
   {
-    "id": "javelin",
-    "name": {
-      "it": "Giavellotto",
-      "en": "Javelin"
-    },
+    "id": "giavellotto",
+    "name_it": "Giavellotto",
+    "name_en": "Giavellotto",
     "category": "weapons",
     "abbreviation": "(gi)",
     "cost_mb": 30,
     "weight_kg": 1.8,
-    "notes": {
-      "it": "Con asta, a 1 mano",
-      "en": "Con asta, a 1 mano"
-    },
+    "notes_it": "Con asta, a 1 mano",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armi: Giavellotto.",
-      "en": "Item belonging to the weapons category: Javelin."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armi: Giavellotto.",
+    "description_en": null
   },
   {
-    "id": "longbow",
-    "name": {
-      "it": "Arco lungo",
-      "en": "Longbow"
-    },
+    "id": "arco_lungo",
+    "name_it": "Arco lungo",
+    "name_en": "Arco lungo",
     "category": "weapons",
     "abbreviation": "(al)",
     "cost_mb": 100,
     "weight_kg": 1.3,
-    "notes": {
-      "it": "Da tiro",
-      "en": "Ranged"
-    },
+    "notes_it": "Da tiro",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armi: Arco lungo.",
-      "en": "Item belonging to the weapons category: Longbow."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armi: Arco lungo.",
+    "description_en": null
   },
   {
-    "id": "mace",
-    "name": {
-      "it": "Mazzafrusto",
-      "en": "Mace"
-    },
+    "id": "mazzafrusto",
+    "name_it": "Mazzafrusto",
+    "name_en": "Mazzafrusto",
     "category": "weapons",
     "abbreviation": "(ma)",
     "cost_mb": 60,
     "weight_kg": 2.2,
-    "notes": {
-      "it": "A 1 mano, contundente",
-      "en": "One-handed, crushing"
-    },
+    "notes_it": "A 1 mano, contundente",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armi: Mazzafrusto.",
-      "en": "Item belonging to the weapons category: Mace."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armi: Mazzafrusto.",
+    "description_en": null
   },
   {
-    "id": "mace",
-    "name": {
-      "it": "Mazzafrusto",
-      "en": "Mace"
-    },
+    "id": "mazzafrusto",
+    "name_it": "Mazzafrusto",
+    "name_en": "Mazzafrusto",
     "category": "weapons",
     "abbreviation": "(ms)",
     "cost_mb": 160,
     "weight_kg": 2.2,
-    "notes": {
-      "it": "A 1 mano, contundente",
-      "en": "One-handed, crushing"
-    },
+    "notes_it": "A 1 mano, contundente",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armi: Mazzafrusto.",
-      "en": "Item belonging to the weapons category: Mace."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armi: Mazzafrusto.",
+    "description_en": null
   },
   {
-    "id": "lance",
-    "name": {
-      "it": "Lancia (da cavaliere)",
-      "en": "Lance"
-    },
+    "id": "lancia_da_cavaliere_",
+    "name_it": "Lancia (da cavaliere)",
+    "name_en": "Lancia (da cavaliere)",
     "category": "weapons",
     "abbreviation": "(lc)",
     "cost_mb": 50,
     "weight_kg": 4.5,
-    "notes": {
-      "it": "Con asta, a 2 mani",
-      "en": "Con asta, a 2 mani"
-    },
+    "notes_it": "Con asta, a 2 mani",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armi: Lancia (da cavaliere).",
-      "en": "Item belonging to the weapons category: Lance."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armi: Lancia (da cavaliere).",
+    "description_en": null
   },
   {
-    "id": "net",
-    "name": {
-      "it": "Rete",
-      "en": "Net"
-    },
+    "id": "rete",
+    "name_it": "Rete",
+    "name_en": "Rete",
     "category": "weapons",
     "abbreviation": "(re)",
     "cost_mb": 70,
     "weight_kg": 1.3,
-    "notes": {
-      "it": "A 1 mano, contundente",
-      "en": "One-handed, crushing"
-    },
+    "notes_it": "A 1 mano, contundente",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armi: Rete.",
-      "en": "Item belonging to the weapons category: Net."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armi: Rete.",
+    "description_en": null
   },
   {
-    "id": "quarterstaff",
-    "name": {
-      "it": "Bastone a 2 mani",
-      "en": "Quarterstaff"
-    },
+    "id": "bastone_a_2_mani",
+    "name_it": "Bastone a 2 mani",
+    "name_en": "Bastone a 2 mani",
     "category": "weapons",
     "abbreviation": "(ba)",
     "cost_mb": 0.5,
     "weight_kg": 1.8,
-    "notes": {
-      "it": "A 2 mani, contundente",
-      "en": "A 2 mani, contundente"
-    },
+    "notes_it": "A 2 mani, contundente",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armi: Bastone a 2 mani.",
-      "en": "Item belonging to the weapons category: Quarterstaff."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armi: Bastone a 2 mani.",
+    "description_en": null
   },
   {
-    "id": "scimitar",
-    "name": {
-      "it": "Scimitarra",
-      "en": "Scimitar"
-    },
+    "id": "scimitarra",
+    "name_it": "Scimitarra",
+    "name_en": "Scimitarra",
     "category": "weapons",
     "abbreviation": "(sc)",
     "cost_mb": 100,
     "weight_kg": 1.8,
-    "notes": {
-      "it": "A 1 mano, da taglio",
-      "en": "One-handed, slashing"
-    },
+    "notes_it": "A 1 mano, da taglio",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armi: Scimitarra.",
-      "en": "Item belonging to the weapons category: Scimitar."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armi: Scimitarra.",
+    "description_en": null
   },
   {
-    "id": "short_bow",
-    "name": {
-      "it": "Arco corto",
-      "en": "Short bow"
-    },
+    "id": "arco_corto",
+    "name_it": "Arco corto",
+    "name_en": "Arco corto",
     "category": "weapons",
     "abbreviation": "(ac)",
     "cost_mb": 60,
     "weight_kg": 0.9,
-    "notes": {
-      "it": "Da tiro",
-      "en": "Ranged"
-    },
+    "notes_it": "Da tiro",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armi: Arco corto.",
-      "en": "Item belonging to the weapons category: Short bow."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armi: Arco corto.",
+    "description_en": null
   },
   {
-    "id": "short_sword",
-    "name": {
-      "it": "Spada corta",
-      "en": "Short sword"
-    },
+    "id": "spada_corta",
+    "name_it": "Spada corta",
+    "name_en": "Spada corta",
     "category": "weapons",
     "abbreviation": "(ss)",
     "cost_mb": 70,
     "weight_kg": 1.3,
-    "notes": {
-      "it": "A 1 mano, da taglio",
-      "en": "One-handed, slashing"
-    },
+    "notes_it": "A 1 mano, da taglio",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armi: Spada corta.",
-      "en": "Item belonging to the weapons category: Short sword."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armi: Spada corta.",
+    "description_en": null
   },
   {
-    "id": "sling",
-    "name": {
-      "it": "Fionda",
-      "en": "Sling"
-    },
+    "id": "fionda",
+    "name_it": "Fionda",
+    "name_en": "Fionda",
     "category": "weapons",
     "abbreviation": "(fi)",
     "cost_mb": 9,
     "weight_kg": 0.4,
-    "notes": {
-      "it": "Da tiro",
-      "en": "Ranged"
-    },
+    "notes_it": "Da tiro",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armi: Fionda.",
-      "en": "Item belonging to the weapons category: Sling."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armi: Fionda.",
+    "description_en": null
   },
   {
-    "id": "spear",
-    "name": {
-      "it": "Lancia",
-      "en": "Spear"
-    },
+    "id": "lancia",
+    "name_it": "Lancia",
+    "name_en": "Lancia",
     "category": "weapons",
     "abbreviation": "(la)",
     "cost_mb": 23,
     "weight_kg": 2.2,
-    "notes": {
-      "it": "Con asta, a 1 mano",
-      "en": "Con asta, a 1 mano"
-    },
+    "notes_it": "Con asta, a 1 mano",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armi: Lancia.",
-      "en": "Item belonging to the weapons category: Spear."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armi: Lancia.",
+    "description_en": null
   },
   {
-    "id": "two_handed_sword",
-    "name": {
-      "it": "Spadone a due mani",
-      "en": "Two-handed sword"
-    },
+    "id": "spadone_a_due_mani",
+    "name_it": "Spadone a due mani",
+    "name_en": "Spadone a due mani",
     "category": "weapons",
     "abbreviation": "(sd)",
     "cost_mb": 200,
     "weight_kg": 3.6,
-    "notes": {
-      "it": "A 2 mani, da taglio",
-      "en": "A 2 mani, da taglio"
-    },
+    "notes_it": "A 2 mani, da taglio",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armi: Spadone a due mani.",
-      "en": "Item belonging to the weapons category: Two-handed sword."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armi: Spadone a due mani.",
+    "description_en": null
   },
   {
-    "id": "war_hammer",
-    "name": {
-      "it": "Martello da guerra",
-      "en": "War hammer"
-    },
+    "id": "martello_da_guerra",
+    "name_it": "Martello da guerra",
+    "name_en": "Martello da guerra",
     "category": "weapons",
     "abbreviation": "(mg)",
     "cost_mb": 150,
     "weight_kg": 2.2,
-    "notes": {
-      "it": "A 1 mano, contundente",
-      "en": "One-handed, crushing"
-    },
+    "notes_it": "A 1 mano, contundente",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armi: Martello da guerra.",
-      "en": "Item belonging to the weapons category: War hammer."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armi: Martello da guerra.",
+    "description_en": null
   },
   {
-    "id": "whip",
-    "name": {
-      "it": "Frusta",
-      "en": "Whip"
-    },
+    "id": "frusta",
+    "name_it": "Frusta",
+    "name_en": "Frusta",
     "category": "weapons",
     "abbreviation": "(fr)",
     "cost_mb": 20,
     "weight_kg": 1.3,
-    "notes": {
-      "it": "A 1 mano, da taglio",
-      "en": "One-handed, slashing"
-    },
+    "notes_it": "A 1 mano, da taglio",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armi: Frusta.",
-      "en": "Item belonging to the weapons category: Whip."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armi: Frusta.",
+    "description_en": null
   },
   {
-    "id": "shield",
-    "name": {
-      "it": "Scudo",
-      "en": "Shield"
-    },
+    "id": "scudo",
+    "name_it": "Scudo",
+    "name_en": "Scudo",
     "category": "armor",
     "abbreviation": "(scu)",
     "cost_mb": 55,
     "weight_kg": 6.8,
-    "notes": {
-      "it": "scudo",
-      "en": "scudo"
-    },
+    "notes_it": "scudo",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armatura: Scudo.",
-      "en": "Item belonging to the armor category: Shield."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armatura: Scudo.",
+    "description_en": null
   },
   {
-    "id": "leather_bracers",
-    "name": {
-      "it": "Bracciali di cuoio",
-      "en": "Leather bracers"
-    },
+    "id": "bracciali_di_cuoio",
+    "name_it": "Bracciali di cuoio",
+    "name_en": "Bracciali di cuoio",
     "category": "armor",
     "abbreviation": "(brc)",
     "cost_mb": 20,
     "weight_kg": 0.9,
-    "notes": {
-      "it": "bracciali",
-      "en": "bracciali"
-    },
+    "notes_it": "bracciali",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armatura: Bracciali di cuoio.",
-      "en": "Item belonging to the armor category: Leather bracers."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armatura: Bracciali di cuoio.",
+    "description_en": null
   },
   {
-    "id": "leather_greaves",
-    "name": {
-      "it": "Schinieri di cuoio",
-      "en": "Leather greaves"
-    },
+    "id": "schinieri_di_cuoio",
+    "name_it": "Schinieri di cuoio",
+    "name_en": "Schinieri di cuoio",
     "category": "armor",
     "abbreviation": "(scc)",
     "cost_mb": 20,
     "weight_kg": 0.9,
-    "notes": {
-      "it": "schinieri",
-      "en": "schinieri"
-    },
+    "notes_it": "schinieri",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armatura: Schinieri di cuoio.",
-      "en": "Item belonging to the armor category: Leather greaves."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armatura: Schinieri di cuoio.",
+    "description_en": null
   },
   {
-    "id": "metal_bracers",
-    "name": {
-      "it": "Bracciali di metallo",
-      "en": "Metal bracers"
-    },
+    "id": "bracciali_di_metallo",
+    "name_it": "Bracciali di metallo",
+    "name_en": "Bracciali di metallo",
     "category": "armor",
     "abbreviation": "(brm)",
     "cost_mb": 40,
     "weight_kg": 1.3,
-    "notes": {
-      "it": "bracciali",
-      "en": "bracciali"
-    },
+    "notes_it": "bracciali",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armatura: Bracciali di metallo.",
-      "en": "Item belonging to the armor category: Metal bracers."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armatura: Bracciali di metallo.",
+    "description_en": null
   },
   {
-    "id": "metal_greaves",
-    "name": {
-      "it": "Schinieri di metallo",
-      "en": "Metal greaves"
-    },
+    "id": "schinieri_di_metallo",
+    "name_it": "Schinieri di metallo",
+    "name_en": "Schinieri di metallo",
     "category": "armor",
     "abbreviation": "(scm)",
     "cost_mb": 40,
     "weight_kg": 1.3,
-    "notes": {
-      "it": "schinieri",
-      "en": "schinieri"
-    },
+    "notes_it": "schinieri",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armatura: Schinieri di metallo.",
-      "en": "Item belonging to the armor category: Metal greaves."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armatura: Schinieri di metallo.",
+    "description_en": null
   },
   {
-    "id": "leather_helm",
-    "name": {
-      "it": "Elmo di cuoio",
-      "en": "Leather helm"
-    },
+    "id": "elmo_di_cuoio",
+    "name_it": "Elmo di cuoio",
+    "name_en": "Elmo di cuoio",
     "category": "armor",
     "abbreviation": "(elc)",
     "cost_mb": 25,
     "weight_kg": 0.9,
-    "notes": {
-      "it": "elmo",
-      "en": "elmo"
-    },
+    "notes_it": "elmo",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armatura: Elmo di cuoio.",
-      "en": "Item belonging to the armor category: Leather helm."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armatura: Elmo di cuoio.",
+    "description_en": null
   },
   {
-    "id": "metal_helm",
-    "name": {
-      "it": "Elmo di metallo",
-      "en": "Metal helm"
-    },
+    "id": "elmo_di_metallo",
+    "name_it": "Elmo di metallo",
+    "name_en": "Elmo di metallo",
     "category": "armor",
     "abbreviation": "(elm)",
     "cost_mb": 40,
     "weight_kg": 1.3,
-    "notes": {
-      "it": "elmo",
-      "en": "elmo"
-    },
+    "notes_it": "elmo",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armatura: Elmo di metallo.",
-      "en": "Item belonging to the armor category: Metal helm."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armatura: Elmo di metallo.",
+    "description_en": null
   },
   {
-    "id": "soft_leather_armor",
-    "name": {
-      "it": "Armatura di cuoio grezzo",
-      "en": "Soft leather armor"
-    },
+    "id": "armatura_di_cuoio_grezzo",
+    "name_it": "Armatura di cuoio grezzo",
+    "name_en": "Armatura di cuoio grezzo",
     "category": "armor",
     "abbreviation": "(acg)",
     "cost_mb": 30,
     "weight_kg": 5.4,
-    "notes": {
-      "it": "armatura",
-      "en": "armatura"
-    },
+    "notes_it": "armatura",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armatura: Armatura di cuoio grezzo.",
-      "en": "Item belonging to the armor category: Soft leather armor."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armatura: Armatura di cuoio grezzo.",
+    "description_en": null
   },
   {
-    "id": "rigid_leather_armor",
-    "name": {
-      "it": "Armatura di cuoio rinforzato",
-      "en": "Rigid leather armor"
-    },
+    "id": "armatura_di_cuoio_rinforzato",
+    "name_it": "Armatura di cuoio rinforzato",
+    "name_en": "Armatura di cuoio rinforzato",
     "category": "armor",
     "abbreviation": "(acr)",
     "cost_mb": 100,
     "weight_kg": 6.3,
-    "notes": {
-      "it": "armatura",
-      "en": "armatura"
-    },
+    "notes_it": "armatura",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armatura: Armatura di cuoio rinforzato.",
-      "en": "Item belonging to the armor category: Rigid leather armor."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armatura: Armatura di cuoio rinforzato.",
+    "description_en": null
   },
   {
-    "id": "chain_mail_armor",
-    "name": {
-      "it": "Corazza di maglia",
-      "en": "Chain mail armor"
-    },
+    "id": "corazza_di_maglia",
+    "name_it": "Corazza di maglia",
+    "name_en": "Corazza di maglia",
     "category": "armor",
     "abbreviation": "(com)",
     "cost_mb": 350,
     "weight_kg": 9,
-    "notes": {
-      "it": "armatura",
-      "en": "armatura"
-    },
+    "notes_it": "armatura",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armatura: Corazza di maglia.",
-      "en": "Item belonging to the armor category: Chain mail armor."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armatura: Corazza di maglia.",
+    "description_en": null
   },
   {
-    "id": "plate_armor",
-    "name": {
-      "it": "Corazza di piastre",
-      "en": "Plate armor"
-    },
+    "id": "corazza_di_piastre",
+    "name_it": "Corazza di piastre",
+    "name_en": "Corazza di piastre",
     "category": "armor",
     "abbreviation": "(cop)",
     "cost_mb": 500,
     "weight_kg": 11.3,
-    "notes": {
-      "it": "armatura",
-      "en": "armatura"
-    },
+    "notes_it": "armatura",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria armatura: Corazza di piastre.",
-      "en": "Item belonging to the armor category: Plate armor."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria armatura: Corazza di piastre.",
+    "description_en": null
   },
   {
-    "id": "boots",
-    "name": {
-      "it": "Stivali",
-      "en": "Boots"
-    },
+    "id": "stivali",
+    "name_it": "Stivali",
+    "name_en": "Stivali",
     "category": "clothing",
     "abbreviation": null,
     "cost_mb": 10,
     "weight_kg": 1.3,
-    "notes": null,
+    "notes_it": null,
+    "notes_en": null,
     "initial_kit": true,
     "loadable": false,
-    "description": {
-      "it": "Oggetto appartenente alla categoria abbigliamento: Stivali.",
-      "en": "Item belonging to the clothing category: Boots."
-    }
+    "description_it": "Oggetto appartenente alla categoria abbigliamento: Stivali.",
+    "description_en": null
   },
   {
-    "id": "cloak",
-    "name": {
-      "it": "Mantello",
-      "en": "Cloak"
-    },
+    "id": "mantello",
+    "name_it": "Mantello",
+    "name_en": "Mantello",
     "category": "clothing",
     "abbreviation": null,
     "cost_mb": 9,
     "weight_kg": 0.9,
-    "notes": null,
+    "notes_it": null,
+    "notes_en": null,
     "initial_kit": true,
     "loadable": false,
-    "description": {
-      "it": "Oggetto appartenente alla categoria abbigliamento: Mantello.",
-      "en": "Item belonging to the clothing category: Cloak."
-    }
+    "description_it": "Oggetto appartenente alla categoria abbigliamento: Mantello.",
+    "description_en": null
   },
   {
-    "id": "coat",
-    "name": {
-      "it": "Cappotto",
-      "en": "Coat"
-    },
+    "id": "cappotto",
+    "name_it": "Cappotto",
+    "name_en": "Cappotto",
     "category": "clothing",
     "abbreviation": null,
     "cost_mb": 15,
     "weight_kg": 2.7,
-    "notes": null,
+    "notes_it": null,
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria abbigliamento: Cappotto.",
-      "en": "Item belonging to the clothing category: Coat."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria abbigliamento: Cappotto.",
+    "description_en": null
   },
   {
-    "id": "trousers",
-    "name": {
-      "it": "Pantaloni",
-      "en": "Trousers"
-    },
+    "id": "pantaloni",
+    "name_it": "Pantaloni",
+    "name_en": "Pantaloni",
     "category": "clothing",
     "abbreviation": null,
     "cost_mb": 2.5,
     "weight_kg": 0.4,
-    "notes": null,
+    "notes_it": null,
+    "notes_en": null,
     "initial_kit": true,
     "loadable": false,
-    "description": {
-      "it": "Oggetto appartenente alla categoria abbigliamento: Pantaloni.",
-      "en": "Item belonging to the clothing category: Trousers."
-    }
+    "description_it": "Oggetto appartenente alla categoria abbigliamento: Pantaloni.",
+    "description_en": null
   },
   {
-    "id": "shirt",
-    "name": {
-      "it": "Maglia",
-      "en": "Shirt"
-    },
+    "id": "maglia",
+    "name_it": "Maglia",
+    "name_en": "Maglia",
     "category": "clothing",
     "abbreviation": null,
     "cost_mb": 3,
     "weight_kg": 0.4,
-    "notes": null,
+    "notes_it": null,
+    "notes_en": null,
     "initial_kit": true,
     "loadable": false,
-    "description": {
-      "it": "Oggetto appartenente alla categoria abbigliamento: Maglia.",
-      "en": "Item belonging to the clothing category: Shirt."
-    }
+    "description_it": "Oggetto appartenente alla categoria abbigliamento: Maglia.",
+    "description_en": null
   },
   {
-    "id": "tunic",
-    "name": {
-      "it": "Soprabito",
-      "en": "Tunic"
-    },
+    "id": "soprabito",
+    "name_it": "Soprabito",
+    "name_en": "Soprabito",
     "category": "clothing",
     "abbreviation": null,
     "cost_mb": 9,
     "weight_kg": 0.4,
-    "notes": null,
+    "notes_it": null,
+    "notes_en": null,
     "initial_kit": true,
     "loadable": false,
-    "description": {
-      "it": "Oggetto appartenente alla categoria abbigliamento: Soprabito.",
-      "en": "Item belonging to the clothing category: Tunic."
-    }
+    "description_it": "Oggetto appartenente alla categoria abbigliamento: Soprabito.",
+    "description_en": null
   },
   {
-    "id": "arrows_20_",
-    "name": {
-      "it": "Frecce (20)",
-      "en": "Arrows (20)"
-    },
+    "id": "frecce_20_",
+    "name_it": "Frecce (20)",
+    "name_en": "Frecce (20)",
     "category": "ammo",
     "abbreviation": null,
     "cost_mb": 4,
     "weight_kg": 1.3,
-    "notes": {
-      "it": "Probabile rottura nell'uso: 40%",
-      "en": "Probabile rottura nell'uso: 40%"
-    },
+    "notes_it": "Probabile rottura nell'uso: 40%",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria proiettili: Frecce (20).",
-      "en": "Item belonging to the ammo category: Arrows (20)."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria proiettili: Frecce (20).",
+    "description_en": null
   },
   {
-    "id": "backpack",
-    "name": {
-      "it": "Zaino",
-      "en": "Backpack"
-    },
+    "id": "zaino",
+    "name_it": "Zaino",
+    "name_en": "Zaino",
     "category": "containers",
     "abbreviation": null,
     "cost_mb": 2,
     "weight_kg": 0.9,
-    "notes": {
-      "it": "Capienza: 9 kg",
-      "en": "Capienza: 9 kg"
-    },
+    "notes_it": "Capienza: 9 kg",
+    "notes_en": null,
     "initial_kit": true,
     "loadable": false,
-    "description": {
-      "it": "Oggetto appartenente alla categoria contenitori: Zaino.",
-      "en": "Item belonging to the containers category: Backpack."
-    }
+    "description_it": "Oggetto appartenente alla categoria contenitori: Zaino.",
+    "description_en": null
   },
   {
-    "id": "sleeping_bag_wool_",
-    "name": {
-      "it": "Sacco a pelo (lana)",
-      "en": "Sleeping bag (wool)"
-    },
+    "id": "sacco_a_pelo_lana_",
+    "name_it": "Sacco a pelo (lana)",
+    "name_en": "Sacco a pelo (lana)",
     "category": "camping",
     "abbreviation": null,
     "cost_mb": 2,
     "weight_kg": 2.2,
-    "notes": {
-      "it": "Coperta",
-      "en": "Coperta"
-    },
+    "notes_it": "Coperta",
+    "notes_en": null,
     "initial_kit": true,
     "loadable": true,
-    "description": {
-      "it": "Oggetto appartenente alla categoria campo: Sacco a pelo (lana).",
-      "en": "Item belonging to the camping category: Sleeping bag (wool)."
-    }
+    "description_it": "Oggetto appartenente alla categoria campo: Sacco a pelo (lana).",
+    "description_en": null
   },
   {
     "id": "chiodi_a_3_punte_5_",
-    "name": {
-      "it": "Chiodi a 3 punte (5)",
-      "en": "Chiodi a 3 punte (5)"
-    },
+    "name_it": "Chiodi a 3 punte (5)",
+    "name_en": "Chiodi a 3 punte (5)",
     "category": "tools",
     "abbreviation": null,
     "cost_mb": 8,
     "weight_kg": 0.9,
-    "notes": null,
+    "notes_it": null,
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria strumenti: Chiodi a 3 punte (5).",
-      "en": "Item belonging to the tools category: Chiodi a 3 punte (5)."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria strumenti: Chiodi a 3 punte (5).",
+    "description_en": null
   },
   {
     "id": "dardi_per_balestra_20_",
-    "name": {
-      "it": "Dardi per balestra (20)",
-      "en": "Dardi per balestra (20)"
-    },
+    "name_it": "Dardi per balestra (20)",
+    "name_en": "Dardi per balestra (20)",
     "category": "ammo",
     "abbreviation": null,
     "cost_mb": 1,
     "weight_kg": 1.3,
-    "notes": {
-      "it": "Probabile rottura nell'uso: 15%",
-      "en": "Probabile rottura nell'uso: 15%"
-    },
+    "notes_it": "Probabile rottura nell'uso: 15%",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria proiettili: Dardi per balestra (20).",
-      "en": "Item belonging to the ammo category: Dardi per balestra (20)."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria proiettili: Dardi per balestra (20).",
+    "description_en": null
   },
   {
     "id": "archetto_per_il_fuoco",
-    "name": {
-      "it": "Archetto per il fuoco",
-      "en": "Archetto per il fuoco"
-    },
+    "name_it": "Archetto per il fuoco",
+    "name_en": "Archetto per il fuoco",
     "category": "tools",
     "abbreviation": null,
     "cost_mb": 80,
     "weight_kg": 0.2,
-    "notes": {
-      "it": "Occorrono 5 minuti",
-      "en": "Occorrono 5 minuti"
-    },
+    "notes_it": "Occorrono 5 minuti",
+    "notes_en": null,
     "initial_kit": true,
     "loadable": true,
-    "description": {
-      "it": "Oggetto appartenente alla categoria strumenti: Archetto per il fuoco.",
-      "en": "Item belonging to the tools category: Archetto per il fuoco."
-    }
+    "description_it": "Oggetto appartenente alla categoria strumenti: Archetto per il fuoco.",
+    "description_en": null
   },
   {
     "id": "scatola_dell_acciarino",
-    "name": {
-      "it": "Scatola dell'acciarino",
-      "en": "Scatola dell'acciarino"
-    },
+    "name_it": "Scatola dell'acciarino",
+    "name_en": "Scatola dell'acciarino",
     "category": "tools",
     "abbreviation": null,
     "cost_mb": 1,
     "weight_kg": 0.2,
-    "notes": {
-      "it": "Occorrono 3 minut",
-      "en": "Occorrono 3 minut"
-    },
+    "notes_it": "Occorrono 3 minut",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria strumenti: Scatola dell'acciarino.",
-      "en": "Item belonging to the tools category: Scatola dell'acciarino."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria strumenti: Scatola dell'acciarino.",
+    "description_en": null
   },
   {
     "id": "zaino_valigia_con_telaio",
-    "name": {
-      "it": "Zaino valigia con telaio",
-      "en": "Zaino valigia con telaio"
-    },
+    "name_it": "Zaino valigia con telaio",
+    "name_en": "Zaino valigia con telaio",
     "category": "containers",
     "abbreviation": null,
     "cost_mb": 3.3,
     "weight_kg": 1.3,
-    "notes": {
-      "it": "Capienza: 20 kg",
-      "en": "Capienza: 20 kg"
-    },
+    "notes_it": "Capienza: 20 kg",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria contenitori: Zaino valigia con telaio.",
-      "en": "Item belonging to the containers category: Zaino valigia con telaio."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria contenitori: Zaino valigia con telaio.",
+    "description_en": null
   },
   {
     "id": "attrezzi_da_scasso_1",
-    "name": {
-      "it": "Attrezzi da scasso 1",
-      "en": "Attrezzi da scasso 1"
-    },
+    "name_it": "Attrezzi da scasso 1",
+    "name_en": "Attrezzi da scasso 1",
     "category": "tools",
     "abbreviation": null,
     "cost_mb": 10,
     "weight_kg": 0.2,
-    "notes": {
-      "it": "Bonus di +5",
-      "en": "Bonus di +5"
-    },
+    "notes_it": "Bonus di +5",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria strumenti: Attrezzi da scasso 1.",
-      "en": "Item belonging to the tools category: Attrezzi da scasso 1."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria strumenti: Attrezzi da scasso 1.",
+    "description_en": null
   },
   {
     "id": "fiasco_d_olio_per_lanterna",
-    "name": {
-      "it": "Fiasco d'olio per lanterna",
-      "en": "Fiasco d'olio per lanterna"
-    },
+    "name_it": "Fiasco d'olio per lanterna",
+    "name_en": "Fiasco d'olio per lanterna",
     "category": "tools",
     "abbreviation": null,
     "cost_mb": 3,
     "weight_kg": 0.4,
-    "notes": {
-      "it": "Sufficiente per 6 ore",
-      "en": "Sufficiente per 6 ore"
-    },
+    "notes_it": "Sufficiente per 6 ore",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria strumenti: Fiasco d'olio per lanterna.",
-      "en": "Item belonging to the tools category: Fiasco d'olio per lanterna."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria strumenti: Fiasco d'olio per lanterna.",
+    "description_en": null
   },
   {
     "id": "pioli_chiodi_10_",
-    "name": {
-      "it": "Pioli/Chiodi (10)",
-      "en": "Pioli/Chiodi (10)"
-    },
+    "name_it": "Pioli/Chiodi (10)",
+    "name_en": "Pioli/Chiodi (10)",
     "category": "tools",
     "abbreviation": null,
     "cost_mb": 0.9,
     "weight_kg": 0.9,
-    "notes": {
-      "it": "Di legno",
-      "en": "Di legno"
-    },
+    "notes_it": "Di legno",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria strumenti: Pioli/Chiodi (10).",
-      "en": "Item belonging to the tools category: Pioli/Chiodi (10)."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria strumenti: Pioli/Chiodi (10).",
+    "description_en": null
   },
   {
     "id": "bullette_chiodi_10_",
-    "name": {
-      "it": "Bullette/Chiodi (10)",
-      "en": "Bullette/Chiodi (10)"
-    },
+    "name_it": "Bullette/Chiodi (10)",
+    "name_en": "Bullette/Chiodi (10)",
     "category": "tools",
     "abbreviation": null,
     "cost_mb": 2,
     "weight_kg": 1.3,
-    "notes": {
-      "it": "Di legno",
-      "en": "Di legno"
-    },
+    "notes_it": "Di legno",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria strumenti: Bullette/Chiodi (10).",
-      "en": "Item belonging to the tools category: Bullette/Chiodi (10)."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria strumenti: Bullette/Chiodi (10).",
+    "description_en": null
   },
   {
     "id": "pertica_lunga_3_m_",
-    "name": {
-      "it": "Pertica (lunga 3 m)",
-      "en": "Pertica (lunga 3 m)"
-    },
+    "name_it": "Pertica (lunga 3 m)",
+    "name_en": "Pertica (lunga 3 m)",
     "category": "tools",
     "abbreviation": null,
     "cost_mb": 0.5,
     "weight_kg": 3.6,
-    "notes": {
-      "it": "Di legno",
-      "en": "Di legno"
-    },
+    "notes_it": "Di legno",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria strumenti: Pertica (lunga 3 m).",
-      "en": "Item belonging to the tools category: Pertica (lunga 3 m)."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria strumenti: Pertica (lunga 3 m).",
+    "description_en": null
   },
   {
     "id": "faretra_capienza_20_",
-    "name": {
-      "it": "Faretra (capienza: 20)",
-      "en": "Faretra (capienza: 20)"
-    },
+    "name_it": "Faretra (capienza: 20)",
+    "name_en": "Faretra (capienza: 20)",
     "category": "containers",
     "abbreviation": null,
     "cost_mb": 1,
     "weight_kg": 0.2,
-    "notes": null,
+    "notes_it": null,
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria contenitori: Faretra (capienza: 20).",
-      "en": "Item belonging to the containers category: Faretra (capienza: 20)."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria contenitori: Faretra (capienza: 20).",
+    "description_en": null
   },
   {
     "id": "corda_normale",
-    "name": {
-      "it": "Corda normale",
-      "en": "Corda normale"
-    },
+    "name_it": "Corda normale",
+    "name_en": "Corda normale",
     "category": "tools",
     "abbreviation": null,
     "cost_mb": 4,
     "weight_kg": 2.7,
-    "notes": {
-      "it": "Lunga 16 m",
-      "en": "Lunga 16 m"
-    },
+    "notes_it": "Lunga 16 m",
+    "notes_en": null,
     "initial_kit": true,
     "loadable": true,
-    "description": {
-      "it": "Oggetto appartenente alla categoria strumenti: Corda normale.",
-      "en": "Item belonging to the tools category: Corda normale."
-    }
+    "description_it": "Oggetto appartenente alla categoria strumenti: Corda normale.",
+    "description_en": null
   },
   {
     "id": "corda_rinforzata",
-    "name": {
-      "it": "Corda rinforzata",
-      "en": "Corda rinforzata"
-    },
+    "name_it": "Corda rinforzata",
+    "name_en": "Corda rinforzata",
     "category": "tools",
     "abbreviation": null,
     "cost_mb": 12,
     "weight_kg": 2.7,
-    "notes": {
-      "it": "Lunga 16 m",
-      "en": "Lunga 16 m"
-    },
+    "notes_it": "Lunga 16 m",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria strumenti: Corda rinforzata.",
-      "en": "Item belonging to the tools category: Corda rinforzata."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria strumenti: Corda rinforzata.",
+    "description_en": null
   },
   {
     "id": "sacco",
-    "name": {
-      "it": "Sacco",
-      "en": "Sacco"
-    },
+    "name_it": "Sacco",
+    "name_en": "Sacco",
     "category": "containers",
     "abbreviation": null,
     "cost_mb": 0.8,
     "weight_kg": 0.8,
-    "notes": {
-      "it": "Capienza: 2 kg",
-      "en": "Capienza: 2 kg"
-    },
+    "notes_it": "Capienza: 2 kg",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria contenitori: Sacco.",
-      "en": "Item belonging to the containers category: Sacco."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria contenitori: Sacco.",
+    "description_en": null
   },
   {
     "id": "fodero",
-    "name": {
-      "it": "Fodero",
-      "en": "Fodero"
-    },
+    "name_it": "Fodero",
+    "name_en": "Fodero",
     "category": "containers",
     "abbreviation": null,
     "cost_mb": 25,
     "weight_kg": 0.2,
-    "notes": null,
+    "notes_it": null,
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria contenitori: Fodero.",
-      "en": "Item belonging to the containers category: Fodero."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria contenitori: Fodero.",
+    "description_en": null
   },
   {
     "id": "telo_imperm_1_5x2_5_m_",
-    "name": {
-      "it": "Telo imperm. (1,5x2,5 m)",
-      "en": "Telo imperm. (1,5x2,5 m)"
-    },
+    "name_it": "Telo imperm. (1,5x2,5 m)",
+    "name_en": "Telo imperm. (1,5x2,5 m)",
     "category": "camping",
     "abbreviation": null,
     "cost_mb": 1,
     "weight_kg": 1.8,
-    "notes": null,
+    "notes_it": null,
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria campo: Telo imperm. (1,5x2,5 m).",
-      "en": "Item belonging to the camping category: Telo imperm. (1,5x2,5 m)."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria campo: Telo imperm. (1,5x2,5 m).",
+    "description_en": null
   },
   {
     "id": "tenda",
-    "name": {
-      "it": "Tenda",
-      "en": "Tenda"
-    },
+    "name_it": "Tenda",
+    "name_en": "Tenda",
     "category": "camping",
     "abbreviation": null,
     "cost_mb": 20,
     "weight_kg": 4,
-    "notes": {
-      "it": "Per 2 persone",
-      "en": "Per 2 persone"
-    },
+    "notes_it": "Per 2 persone",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria campo: Tenda.",
-      "en": "Item belonging to the camping category: Tenda."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria campo: Tenda.",
+    "description_en": null
   },
   {
     "id": "torcia",
-    "name": {
-      "it": "Torcia",
-      "en": "Torcia"
-    },
+    "name_it": "Torcia",
+    "name_en": "Torcia",
     "category": "tools",
     "abbreviation": null,
     "cost_mb": 30,
     "weight_kg": 0.4,
-    "notes": {
-      "it": "Illumina una zona di 6,5m diam.",
-      "en": "Illumina una zona di 6,5m diam."
-    },
+    "notes_it": "Illumina una zona di 6,5m diam.",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria strumenti: Torcia.",
-      "en": "Item belonging to the tools category: Torcia."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria strumenti: Torcia.",
+    "description_en": null
   },
   {
-    "id": "waterskin_1_2_liter_",
-    "name": {
-      "it": "Borraccia (otre) da 1/2l.",
-      "en": "Waterskin (1/2 liter)"
-    },
+    "id": "borraccia_otre_da_1_2l_",
+    "name_it": "Borraccia (otre) da 1/2l.",
+    "name_en": "Borraccia (otre) da 1/2l.",
     "category": "containers",
     "abbreviation": null,
     "cost_mb": 0.1,
     "weight_kg": 0.4,
-    "notes": {
-      "it": "Piena",
-      "en": "Piena"
-    },
+    "notes_it": "Piena",
+    "notes_en": null,
     "initial_kit": true,
     "loadable": true,
-    "description": {
-      "it": "Oggetto appartenente alla categoria contenitori: Borraccia (otre) da 1/2l..",
-      "en": "Item belonging to the containers category: Waterskin (1/2 liter)."
-    }
+    "description_it": "Oggetto appartenente alla categoria contenitori: Borraccia (otre) da 1/2l..",
+    "description_en": null
   },
   {
     "id": "cintura_per_armi",
-    "name": {
-      "it": "Cintura per armi",
-      "en": "Cintura per armi"
-    },
+    "name_it": "Cintura per armi",
+    "name_en": "Cintura per armi",
     "category": "containers",
     "abbreviation": null,
     "cost_mb": 5,
     "weight_kg": 0.4,
-    "notes": null,
+    "notes_it": null,
+    "notes_en": null,
     "initial_kit": true,
     "loadable": false,
-    "description": {
-      "it": "Oggetto appartenente alla categoria contenitori: Cintura per armi.",
-      "en": "Item belonging to the containers category: Cintura per armi."
-    }
+    "description_it": "Oggetto appartenente alla categoria contenitori: Cintura per armi.",
+    "description_en": null
   },
   {
     "id": "birra_chiara_o_scura",
-    "name": {
-      "it": "Birra chiara o scura",
-      "en": "Birra chiara o scura"
-    },
+    "name_it": "Birra chiara o scura",
+    "name_en": "Birra chiara o scura",
     "category": "food",
     "abbreviation": null,
     "cost_mb": 1.2,
     "weight_kg": null,
-    "notes": {
-      "it": "1/2 litro",
-      "en": "1/2 litro"
-    },
+    "notes_it": "1/2 litro",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria vitto: Birra chiara o scura.",
-      "en": "Item belonging to the food category: Birra chiara o scura."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria vitto: Birra chiara o scura.",
+    "description_en": null
   },
   {
     "id": "brandy",
-    "name": {
-      "it": "Brandy",
-      "en": "Brandy"
-    },
+    "name_it": "Brandy",
+    "name_en": "Brandy",
     "category": "food",
     "abbreviation": null,
     "cost_mb": 1,
     "weight_kg": null,
-    "notes": {
-      "it": "1/4 litro",
-      "en": "1/4 litro"
-    },
+    "notes_it": "1/4 litro",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria vitto: Brandy.",
-      "en": "Item belonging to the food category: Brandy."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria vitto: Brandy.",
+    "description_en": null
   },
   {
     "id": "sidro",
-    "name": {
-      "it": "Sidro",
-      "en": "Sidro"
-    },
+    "name_it": "Sidro",
+    "name_en": "Sidro",
     "category": "food",
     "abbreviation": null,
     "cost_mb": 0.1,
     "weight_kg": null,
-    "notes": {
-      "it": "1/2 litro",
-      "en": "1/2 litro"
-    },
+    "notes_it": "1/2 litro",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria vitto: Sidro.",
-      "en": "Item belonging to the food category: Sidro."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria vitto: Sidro.",
+    "description_en": null
   },
   {
     "id": "idromele",
-    "name": {
-      "it": "Idromele",
-      "en": "Idromele"
-    },
+    "name_it": "Idromele",
+    "name_en": "Idromele",
     "category": "food",
     "abbreviation": null,
     "cost_mb": 0.5,
     "weight_kg": null,
-    "notes": {
-      "it": "1/2 litro",
-      "en": "1/2 litro"
-    },
+    "notes_it": "1/2 litro",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria vitto: Idromele.",
-      "en": "Item belonging to the food category: Idromele."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria vitto: Idromele.",
+    "description_en": null
   },
   {
     "id": "vino",
-    "name": {
-      "it": "Vino",
-      "en": "Vino"
-    },
+    "name_it": "Vino",
+    "name_en": "Vino",
     "category": "food",
     "abbreviation": null,
     "cost_mb": 0.6,
     "weight_kg": null,
-    "notes": {
-      "it": "1/2 litro",
-      "en": "1/2 litro"
-    },
+    "notes_it": "1/2 litro",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria vitto: Vino.",
-      "en": "Item belonging to the food category: Vino."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria vitto: Vino.",
+    "description_en": null
   },
   {
     "id": "pasto_leggero",
-    "name": {
-      "it": "Pasto leggero",
-      "en": "Pasto leggero"
-    },
+    "name_it": "Pasto leggero",
+    "name_en": "Pasto leggero",
     "category": "food",
     "abbreviation": null,
     "cost_mb": 0.06,
     "weight_kg": null,
-    "notes": null,
+    "notes_it": null,
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria vitto: Pasto leggero.",
-      "en": "Item belonging to the food category: Pasto leggero."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria vitto: Pasto leggero.",
+    "description_en": null
   },
   {
     "id": "pasto_normale",
-    "name": {
-      "it": "Pasto normale",
-      "en": "Pasto normale"
-    },
+    "name_it": "Pasto normale",
+    "name_en": "Pasto normale",
     "category": "food",
     "abbreviation": null,
     "cost_mb": 0.1,
     "weight_kg": null,
-    "notes": null,
+    "notes_it": null,
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria vitto: Pasto normale.",
-      "en": "Item belonging to the food category: Pasto normale."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria vitto: Pasto normale.",
+    "description_en": null
   },
   {
     "id": "pasto_abbondante",
-    "name": {
-      "it": "Pasto abbondante",
-      "en": "Pasto abbondante"
-    },
+    "name_it": "Pasto abbondante",
+    "name_en": "Pasto abbondante",
     "category": "food",
     "abbreviation": null,
     "cost_mb": 1.2,
     "weight_kg": null,
-    "notes": null,
+    "notes_it": null,
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria vitto: Pasto abbondante.",
-      "en": "Item belonging to the food category: Pasto abbondante."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria vitto: Pasto abbondante.",
+    "description_en": null
   },
   {
     "id": "razioni_normali_7_gg_",
-    "name": {
-      "it": "Razioni normali (7 gg.)",
-      "en": "Razioni normali (7 gg.)"
-    },
+    "name_it": "Razioni normali (7 gg.)",
+    "name_en": "Razioni normali (7 gg.)",
     "category": "food",
     "abbreviation": null,
     "cost_mb": 0.5,
     "weight_kg": 8.1,
-    "notes": {
-      "it": "Deperibili",
-      "en": "Deperibili"
-    },
+    "notes_it": "Deperibili",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria vitto: Razioni normali (7 gg.).",
-      "en": "Item belonging to the food category: Razioni normali (7 gg.)."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria vitto: Razioni normali (7 gg.).",
+    "description_en": null
   },
   {
     "id": "razioni_da_viaggio_7_gg_",
-    "name": {
-      "it": "Razioni da viaggio (7 gg.)",
-      "en": "Razioni da viaggio (7 gg.)"
-    },
+    "name_it": "Razioni da viaggio (7 gg.)",
+    "name_en": "Razioni da viaggio (7 gg.)",
     "category": "food",
     "abbreviation": null,
     "cost_mb": 1,
     "weight_kg": 6.3,
-    "notes": {
-      "it": "In conserva",
-      "en": "In conserva"
-    },
+    "notes_it": "In conserva",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria vitto: Razioni da viaggio (7 gg.).",
-      "en": "Item belonging to the food category: Razioni da viaggio (7 gg.)."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria vitto: Razioni da viaggio (7 gg.).",
+    "description_en": null
   },
   {
     "id": "carne_secca_7_gg_",
-    "name": {
-      "it": "Carne secca (7 gg.)",
-      "en": "Carne secca (7 gg.)"
-    },
+    "name_it": "Carne secca (7 gg.)",
+    "name_en": "Carne secca (7 gg.)",
     "category": "food",
     "abbreviation": null,
     "cost_mb": 300,
     "weight_kg": 1.8,
-    "notes": {
-      "it": "In conserva",
-      "en": "In conserva"
-    },
+    "notes_it": "In conserva",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria vitto: Carne secca (7 gg.).",
-      "en": "Item belonging to the food category: Carne secca (7 gg.)."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria vitto: Carne secca (7 gg.).",
+    "description_en": null
   },
   {
     "id": "pan_di_via_1_mese_",
-    "name": {
-      "it": "Pan di via (1 mese)",
-      "en": "Pan di via (1 mese)"
-    },
+    "name_it": "Pan di via (1 mese)",
+    "name_en": "Pan di via (1 mese)",
     "category": "food",
     "abbreviation": null,
     "cost_mb": 1500,
     "weight_kg": 1.8,
-    "notes": {
-      "it": "In conserva",
-      "en": "In conserva"
-    },
+    "notes_it": "In conserva",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria vitto: Pan di via (1 mese).",
-      "en": "Item belonging to the food category: Pan di via (1 mese)."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria vitto: Pan di via (1 mese).",
+    "description_en": null
   },
   {
     "id": "alloggio_scadente",
-    "name": {
-      "it": "Alloggio scadente",
-      "en": "Alloggio scadente"
-    },
+    "name_it": "Alloggio scadente",
+    "name_en": "Alloggio scadente",
     "category": "lodging",
     "abbreviation": null,
     "cost_mb": 0.1,
     "weight_kg": null,
-    "notes": {
-      "it": "Dormitorio comune",
-      "en": "Dormitorio comune"
-    },
+    "notes_it": "Dormitorio comune",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria alloggio: Alloggio scadente.",
-      "en": "Item belonging to the lodging category: Alloggio scadente."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria alloggio: Alloggio scadente.",
+    "description_en": null
   },
   {
     "id": "alloggio_medio",
-    "name": {
-      "it": "Alloggio medio",
-      "en": "Alloggio medio"
-    },
+    "name_it": "Alloggio medio",
+    "name_en": "Alloggio medio",
     "category": "lodging",
     "abbreviation": null,
     "cost_mb": 0.1,
     "weight_kg": null,
-    "notes": {
-      "it": "Letti separati",
-      "en": "Letti separati"
-    },
+    "notes_it": "Letti separati",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria alloggio: Alloggio medio.",
-      "en": "Item belonging to the lodging category: Alloggio medio."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria alloggio: Alloggio medio.",
+    "description_en": null
   },
   {
     "id": "buon_alloggio",
-    "name": {
-      "it": "Buon alloggio",
-      "en": "Buon alloggio"
-    },
+    "name_it": "Buon alloggio",
+    "name_en": "Buon alloggio",
     "category": "lodging",
     "abbreviation": null,
     "cost_mb": 0.2,
     "weight_kg": null,
-    "notes": {
-      "it": "Stanze separate",
-      "en": "Stanze separate"
-    },
+    "notes_it": "Stanze separate",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria alloggio: Buon alloggio.",
-      "en": "Item belonging to the lodging category: Buon alloggio."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria alloggio: Buon alloggio.",
+    "description_en": null
   },
   {
     "id": "stalla",
-    "name": {
-      "it": "Stalla",
-      "en": "Stalla"
-    },
+    "name_it": "Stalla",
+    "name_en": "Stalla",
     "category": "lodging",
     "abbreviation": null,
     "cost_mb": 0.002,
     "weight_kg": null,
-    "notes": {
-      "it": "con cibo per animali",
-      "en": "con cibo per animali"
-    },
+    "notes_it": "con cibo per animali",
+    "notes_en": null,
     "initial_kit": false,
-    "loadable": null,
-    "description": {
-      "it": "Oggetto appartenente alla categoria alloggio: Stalla.",
-      "en": "Item belonging to the lodging category: Stalla."
-    }
+    "loadable": false,
+    "description_it": "Oggetto appartenente alla categoria alloggio: Stalla.",
+    "description_en": null
   }
 ]
