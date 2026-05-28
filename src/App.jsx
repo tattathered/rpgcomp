@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Scroll, Users, Book, Settings, Save, Play, Trash2, Plus, FolderOpen, Copy, Edit, ArrowLeft, Swords, Compass, AlertTriangle, Upload, Download } from 'lucide-react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { Scroll, Users, Book, Settings, Save, Play, Trash2, Plus, FolderOpen, Copy, Edit, ArrowLeft, Swords, Compass, AlertTriangle, Upload, Download, LogOut, UserPlus } from 'lucide-react';
 import CharacterWizard from './components/CharacterWizard/CharacterWizard';
 import defaultEquipment from './data/TS_4-equipaggiamento.json';
 import EquipmentCatalogManager from './components/EquipmentCatalogManager';
@@ -9,6 +9,25 @@ import FumbleResolver from './components/FumbleResolver';
 import StaticManoeuvreResolver from './components/StaticManoeuvreResolver';
 import { getCharacterHpTot } from './utils/skillHelpers';
 import CsvExportManager from './components/CsvExportManager';
+import { useAuth } from './contexts/AuthContext';
+import LoginPage from './components/Auth/LoginPage';
+import PlayerDashboard from './components/Player/PlayerDashboard';
+import PlayerManager from './components/GM/PlayerManager';
+import CompanyManager from './components/GM/CompanyManager';
+import CampaignManager from './components/GM/CampaignManager';
+import { db } from './firebase';
+import { collection, doc } from 'firebase/firestore';
+import {
+  subscribeToCharacters,
+  saveCharacter,
+  deleteCharacter,
+  updateCharacterHp,
+  updateCharacterParry,
+  resetAllParries
+} from './services/characterService';
+import { getEquipmentCatalog, saveEquipmentCatalog } from './services/settingsService';
+import { subscribeToCompanies } from './services/companyService';
+import { subscribeToCampaigns } from './services/campaignService';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -59,6 +78,8 @@ const ACTION_SUB_TABS = [
 ];
 
 function App() {
+  const { user, userData, role, loading, logout, isGM, isPlayer } = useAuth();
+  
   const [activeTab, setActiveTab] = useState('creation');
   const [activeActionSubTab, setActiveActionSubTab] = useState('static');
   const [fumbleRedirectData, setFumbleRedirectData] = useState(null);
@@ -69,54 +90,96 @@ function App() {
     setActiveActionSubTab('fumbles');
   };
 
-  const [savedCharacters, setSavedCharacters] = useState(() => {
-    try {
-      const stored = localStorage.getItem('merp_characters');
-      return stored ? JSON.parse(stored) : [];
-    } catch (e) {
-      console.error(e);
-      return [];
-    }
-  });
+  const [savedCharacters, setSavedCharacters] = useState([]);
   const [activeCharacter, setActiveCharacter] = useState(null);
   const [activeStepIndex, setActiveStepIndex] = useState(0);
-
-  const [equipmentCatalog, setEquipmentCatalog] = useState(() => {
+  const [equipmentCatalog, setEquipmentCatalog] = useState(defaultEquipment);
+  const [companies, setCompanies] = useState([]);
+  const [campaigns, setCampaigns] = useState([]);
+  const [activeCampaign, setActiveCampaign] = useState(() => {
     try {
-      const stored = localStorage.getItem('merp_custom_equipment');
-      return stored ? JSON.parse(stored) : defaultEquipment;
+      const stored = localStorage.getItem('merp_active_campaign');
+      return stored ? JSON.parse(stored) : null;
     } catch (e) {
-      console.error(e);
-      return defaultEquipment;
+      return null;
     }
   });
 
-  const handleUpdateCatalog = (newCatalog) => {
-    setEquipmentCatalog(newCatalog);
-    localStorage.setItem('merp_custom_equipment', JSON.stringify(newCatalog));
+  const handleSetActiveCampaign = (camp) => {
+    setActiveCampaign(camp);
+    if (camp) {
+      localStorage.setItem('merp_active_campaign', JSON.stringify(camp));
+    } else {
+      localStorage.removeItem('merp_active_campaign');
+    }
   };
 
-  const handleSaveCharacter = (charData) => {
-    const name = charData.name?.trim() || 'Senza Nome';
-    const id = charData.id || Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
-    const updatedChar = { ...charData, id, name };
-
-    setSavedCharacters(prev => {
-      const idx = prev.findIndex(c => c.id === updatedChar.id);
-      let nextList;
-      if (idx >= 0) {
-        nextList = [...prev];
-        nextList[idx] = updatedChar;
-      } else {
-        nextList = [...prev, updatedChar];
-      }
-      localStorage.setItem('merp_characters', JSON.stringify(nextList));
-      return nextList;
+  // Sottoscrizione in tempo reale ai personaggi del GM
+  useEffect(() => {
+    if (!user || role !== 'GM') return;
+    const unsubscribe = subscribeToCharacters(user.uid, (chars) => {
+      setSavedCharacters(chars);
     });
+    return unsubscribe;
+  }, [user, role]);
 
-    setActiveCharacter(updatedChar);
-    alert(`Personaggio "${name}" salvato con successo!`);
-    setActiveTab('roster');
+  // Sottoscrizione in tempo reale alle compagnie
+  useEffect(() => {
+    if (!user || role !== 'GM') return;
+    const unsub = subscribeToCompanies(user.uid, setCompanies);
+    return unsub;
+  }, [user, role]);
+
+  // Sottoscrizione in tempo reale alle campagne
+  useEffect(() => {
+    if (!user || role !== 'GM') return;
+    const unsub = subscribeToCampaigns(user.uid, setCampaigns);
+    return unsub;
+  }, [user, role]);
+
+  // Caricamento del catalogo attrezzatura da Firestore
+  useEffect(() => {
+    if (!user || role !== 'GM') return;
+    getEquipmentCatalog(user.uid).then((catalog) => {
+      setEquipmentCatalog(catalog);
+    });
+  }, [user, role]);
+
+  // Sincronizza lo stato locale della campagna con i dati aggiornati del server
+  const currentActiveCampaign = useMemo(() => {
+    if (!activeCampaign) return null;
+    return campaigns.find(c => c.id === activeCampaign.id) || activeCampaign;
+  }, [activeCampaign, campaigns]);
+
+  // Filtra i personaggi sulla base delle compagnie associate alla campagna attiva
+  const activeCampaignCharacters = useMemo(() => {
+    if (!currentActiveCampaign) return savedCharacters;
+    const campCompanies = companies.filter(comp => currentActiveCampaign.companyIds?.includes(comp.id));
+    const allowedCharIds = new Set(campCompanies.flatMap(comp => comp.characterIds || []));
+    return savedCharacters.filter(char => allowedCharIds.has(char.id));
+  }, [currentActiveCampaign, companies, savedCharacters]);
+
+  const handleUpdateCatalog = async (newCatalog) => {
+    setEquipmentCatalog(newCatalog);
+    try {
+      await saveEquipmentCatalog(user.uid, newCatalog);
+    } catch (err) {
+      console.error(err);
+      alert("Errore durante il salvataggio del catalogo attrezzatura: " + err.message);
+    }
+  };
+
+  const handleSaveCharacter = async (charData) => {
+    const name = charData.name?.trim() || 'Senza Nome';
+    try {
+      const saved = await saveCharacter(user.uid, charData);
+      setActiveCharacter(saved);
+      alert(`Personaggio "${name}" salvato con successo!`);
+      setActiveTab('roster');
+    } catch (err) {
+      console.error(err);
+      alert("Errore durante il salvataggio del personaggio: " + err.message);
+    }
   };
 
   const handleLoadCharacter = (charData) => {
@@ -125,56 +188,47 @@ function App() {
     setActiveTab('creation');
   };
 
-  const handleDeleteCharacter = (id) => {
+  const handleDeleteCharacter = async (id) => {
     const char = savedCharacters.find(c => c.id === id);
     if (!char) return;
     if (confirm(`Sei sicuro di voler eliminare permanentemente il personaggio "${char.name}"?`)) {
-      setSavedCharacters(prev => {
-        const nextList = prev.filter(c => c.id !== id);
-        localStorage.setItem('merp_characters', JSON.stringify(nextList));
-        return nextList;
-      });
-      if (activeCharacter?.id === id) {
-        setActiveCharacter(null);
+      try {
+        await deleteCharacter(user.uid, id);
+        if (activeCharacter?.id === id) {
+          setActiveCharacter(null);
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Errore durante l'eliminazione del personaggio: " + err.message);
       }
     }
   };
 
-  const handleUpdateCharacterHpSubiti = (charId, hpSubiti) => {
-    setSavedCharacters(prev => {
-      const nextList = prev.map(c => {
-        if (c.id === charId) {
-          return { ...c, hpSubiti };
-        }
-        return c;
-      });
-      localStorage.setItem('merp_characters', JSON.stringify(nextList));
-      return nextList;
-    });
+  const handleUpdateCharacterHpSubiti = async (charId, hpSubiti) => {
+    try {
+      await updateCharacterHp(user.uid, charId, hpSubiti);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
-  const handleUpdateCharacterBoSpesoParata = (charId, boSpesoParata) => {
-    setSavedCharacters(prev => {
-      const nextList = prev.map(c => {
-        if (c.id === charId) {
-          return { ...c, boSpesoParata };
-        }
-        return c;
-      });
-      localStorage.setItem('merp_characters', JSON.stringify(nextList));
-      return nextList;
-    });
+  const handleUpdateCharacterBoSpesoParata = async (charId, boSpesoParata) => {
+    try {
+      await updateCharacterParry(user.uid, charId, boSpesoParata);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
-  const handleResetAllParries = () => {
-    setSavedCharacters(prev => {
-      const nextList = prev.map(c => ({ ...c, boSpesoParata: 0 }));
-      localStorage.setItem('merp_characters', JSON.stringify(nextList));
-      return nextList;
-    });
+  const handleResetAllParries = async () => {
+    try {
+      await resetAllParries(user.uid, savedCharacters.map(c => c.id));
+    } catch (err) {
+      console.error(err);
+    }
   };
 
-  const handleDuplicateCharacter = (charData) => {
+  const handleDuplicateCharacter = async (charData) => {
     const defaultNewName = `${charData.name || 'Senza Nome'}_COPY`;
     const newName = prompt('Inserisci il nome per il personaggio duplicato:', defaultNewName);
     
@@ -192,20 +246,23 @@ function App() {
       return;
     }
 
-    const id = Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
+    const id = doc(collection(db, "temp")).id; // Usa ID Firestore
     const duplicatedChar = {
       ...charData,
       id,
-      name: trimmedName
+      name: trimmedName,
+      createdAt: null, // Forza la ricreazione del timestamp
+      hpSubiti: 0,
+      boSpesoParata: 0
     };
 
-    setSavedCharacters(prev => {
-      const nextList = [...prev, duplicatedChar];
-      localStorage.setItem('merp_characters', JSON.stringify(nextList));
-      return nextList;
-    });
-
-    alert(`Personaggio "${trimmedName}" creato come copia di "${charData.name}"!`);
+    try {
+      await saveCharacter(user.uid, duplicatedChar);
+      alert(`Personaggio "${trimmedName}" creato come copia di "${charData.name}"!`);
+    } catch (err) {
+      console.error(err);
+      alert("Errore durante la duplicazione: " + err.message);
+    }
   };
 
   const handleExportCharacter = (char) => {
@@ -234,7 +291,7 @@ function App() {
       if (!file) return;
       
       const reader = new FileReader();
-      reader.onload = (event) => {
+      reader.onload = async (event) => {
         try {
           const parsed = JSON.parse(event.target.result);
           
@@ -250,13 +307,9 @@ function App() {
           if (nameExists) {
             const choice = confirm(`Un personaggio con il nome "${parsed.name}" esiste già nel roster.\nVuoi sovrascriverlo (OK) o importarlo come copia con nome diverso (Annulla)?`);
             if (choice) {
-              const existingIdx = savedCharacters.findIndex(c => c.name.toLowerCase() === parsed.name.toLowerCase());
-              setSavedCharacters(prev => {
-                const nextList = [...prev];
-                nextList[existingIdx] = importedChar;
-                localStorage.setItem('merp_characters', JSON.stringify(nextList));
-                return nextList;
-              });
+              const existingChar = savedCharacters.find(c => c.name.toLowerCase() === parsed.name.toLowerCase());
+              importedChar.id = existingChar.id; // Mantieni lo stesso ID per sovrascrivere
+              await saveCharacter(user.uid, importedChar);
               alert(`Personaggio "${parsed.name}" sovrascritto con successo!`);
               return;
             } else {
@@ -266,18 +319,13 @@ function App() {
                 return;
               }
               importedChar.name = newName.trim();
-              importedChar.id = Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
+              importedChar.id = doc(collection(db, "temp")).id;
             }
           } else {
-            importedChar.id = parsed.id || Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
+            importedChar.id = parsed.id || doc(collection(db, "temp")).id;
           }
           
-          setSavedCharacters(prev => {
-            const nextList = [...prev, importedChar];
-            localStorage.setItem('merp_characters', JSON.stringify(nextList));
-            return nextList;
-          });
-          
+          await saveCharacter(user.uid, importedChar);
           alert(`Personaggio "${importedChar.name}" importato con successo!`);
         } catch (err) {
           alert("Errore durante la lettura del file: " + err.message);
@@ -294,46 +342,134 @@ function App() {
     setActiveTab('creation');
   };
 
+  if (loading) {
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', backgroundColor: '#0f172a', color: '#f8fafc', fontFamily: "'Montserrat', sans-serif" }}>
+        <div style={{ width: '48px', height: '48px', border: '4px solid rgba(2, 132, 199, 0.1)', borderTop: '4px solid var(--primary-color)', borderRadius: '50%', animation: 'spin 1s linear' }}></div>
+        <div style={{ marginTop: '1rem', fontSize: '1rem', fontWeight: '500', color: '#94a3b8' }}>Caricamento in corso...</div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return <LoginPage />;
+  }
+
+  if (isPlayer) {
+    return <PlayerDashboard />;
+  }
+
   return (
     <div className="app-container">
-      <nav className="top-nav">
-        <div className="top-nav-logo">
-          <Book className="w-6 h-6" />
-          <span>MERP Companion</span>
+      <nav className="top-nav" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+          <div className="top-nav-logo">
+            <Book className="w-6 h-6" />
+            <span>MERP Companion</span>
+          </div>
+          <div className="nav-tabs">
+            <button 
+              className={`nav-tab ${activeTab === 'creation' ? 'active' : ''}`}
+              onClick={handleStartNewCharacter}
+            >
+              <Scroll className="w-4 h-4" />
+              Creazione PG
+            </button>
+            <button 
+              className={`nav-tab ${activeTab === 'roster' ? 'active' : ''}`}
+              onClick={() => setActiveTab('roster')}
+            >
+              <FolderOpen className="w-4 h-4" />
+              Roster PG / PNG
+            </button>
+            <button 
+              className={`nav-tab ${activeTab === 'players' ? 'active' : ''}`}
+              onClick={() => setActiveTab('players')}
+            >
+              <UserPlus className="w-4 h-4" />
+              Giocatori
+            </button>
+            <button 
+              className={`nav-tab ${activeTab === 'companies' ? 'active' : ''}`}
+              onClick={() => setActiveTab('companies')}
+            >
+              <Users className="w-4 h-4" />
+              Compagnie
+            </button>
+            <button 
+              className={`nav-tab ${activeTab === 'campaigns' ? 'active' : ''}`}
+              onClick={() => setActiveTab('campaigns')}
+            >
+              <Compass className="w-4 h-4" />
+              Campagne
+            </button>
+            <button 
+              className={`nav-tab ${activeTab === 'actions' ? 'active' : ''}`}
+              onClick={() => setActiveTab('actions')}
+            >
+              <Swords className="w-4 h-4" />
+              Risoluzione azioni
+            </button>
+            <button 
+              className={`nav-tab ${activeTab === 'settings' ? 'active' : ''}`}
+              onClick={() => setActiveTab('settings')}
+            >
+              <Settings className="w-4 h-4" />
+              Impostazioni
+            </button>
+          </div>
         </div>
-        <div className="nav-tabs">
+        
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>GM: <strong>{userData?.displayName || 'Custode'}</strong></span>
           <button 
-            className={`nav-tab ${activeTab === 'creation' ? 'active' : ''}`}
-            onClick={handleStartNewCharacter}
+            onClick={logout} 
+            className="btn btn-outline" 
+            style={{ padding: '0.4rem 0.8rem', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.25rem', borderColor: 'var(--border-color)', color: 'var(--text-muted)', height: 'fit-content' }}
           >
-            <Scroll className="w-4 h-4" />
-            Creazione PG
-          </button>
-          <button 
-            className={`nav-tab ${activeTab === 'roster' ? 'active' : ''}`}
-            onClick={() => setActiveTab('roster')}
-          >
-            <Users className="w-4 h-4" />
-            Roster PG / PNG
-          </button>
-          <button 
-            className={`nav-tab ${activeTab === 'actions' ? 'active' : ''}`}
-            onClick={() => setActiveTab('actions')}
-          >
-            <Swords className="w-4 h-4" />
-            Risoluzione azioni
-          </button>
-          <button 
-            className={`nav-tab ${activeTab === 'settings' ? 'active' : ''}`}
-            onClick={() => setActiveTab('settings')}
-          >
-            <Settings className="w-4 h-4" />
-            Impostazioni
+            <LogOut className="w-4 h-4" />
+            Esci
           </button>
         </div>
       </nav>
 
-
+      {currentActiveCampaign && (
+        <div style={{
+          backgroundColor: 'var(--primary-light)',
+          borderBottom: '1px solid var(--primary-color)',
+          padding: '0.5rem 2rem',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          fontSize: '0.85rem',
+          color: 'var(--primary-color)',
+          fontWeight: 700
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <Compass className="w-4 h-4" />
+            <span>SESSIONE CAMPAGNA ATTIVA: <strong>{currentActiveCampaign.name}</strong></span>
+            {currentActiveCampaign.description && (
+              <span style={{ fontWeight: 400, color: 'var(--text-muted)', marginLeft: '0.5rem' }}>
+                - {currentActiveCampaign.description}
+              </span>
+            )}
+          </div>
+          <button 
+            onClick={() => handleSetActiveCampaign(null)} 
+            className="btn btn-outline" 
+            style={{ 
+              padding: '0.15rem 0.6rem', 
+              fontSize: '0.75rem', 
+              borderColor: 'rgba(2, 132, 199, 0.3)', 
+              color: 'var(--primary-color)',
+              backgroundColor: 'white',
+              cursor: 'pointer'
+            }}
+          >
+            Termina Sessione
+          </button>
+        </div>
+      )}
 
       <main className="main-content">
         {activeTab === 'creation' && (
@@ -491,6 +627,24 @@ function App() {
             </div>
           </div>
         )}
+        {activeTab === 'players' && (
+          <ErrorBoundary>
+            <PlayerManager savedCharacters={savedCharacters} />
+          </ErrorBoundary>
+        )}
+        {activeTab === 'companies' && (
+          <ErrorBoundary>
+            <CompanyManager savedCharacters={savedCharacters} />
+          </ErrorBoundary>
+        )}
+        {activeTab === 'campaigns' && (
+          <ErrorBoundary>
+            <CampaignManager 
+              activeCampaign={currentActiveCampaign} 
+              onSetActiveCampaign={handleSetActiveCampaign} 
+            />
+          </ErrorBoundary>
+        )}
         {activeTab === 'actions' && (
           <div className="wizard-layout">
             {/* Sidebar per Risoluzione azioni */}
@@ -524,7 +678,7 @@ function App() {
               {activeActionSubTab === 'combat' && (
                 <ErrorBoundary>
                   <CombatCalculator 
-                    savedCharacters={savedCharacters}
+                    savedCharacters={activeCampaignCharacters}
                     equipmentCatalog={equipmentCatalog}
                     onUpdateHpSubiti={handleUpdateCharacterHpSubiti}
                     onUpdateBoSpesoParata={handleUpdateCharacterBoSpesoParata}
@@ -535,7 +689,7 @@ function App() {
               {activeActionSubTab === 'movement' && (
                 <ErrorBoundary>
                   <MovementManoeuvreResolver 
-                    savedCharacters={savedCharacters}
+                    savedCharacters={activeCampaignCharacters}
                     onRedirectToFumble={handleRedirectToFumble}
                   />
                 </ErrorBoundary>
@@ -555,7 +709,7 @@ function App() {
               {activeActionSubTab === 'static' && (
                 <ErrorBoundary>
                   <StaticManoeuvreResolver 
-                    savedCharacters={savedCharacters}
+                    savedCharacters={activeCampaignCharacters}
                   />
                 </ErrorBoundary>
               )}

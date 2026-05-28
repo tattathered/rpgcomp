@@ -1,5 +1,5 @@
-import { useState, useMemo } from 'react';
-import { Printer, Sparkles, AlertCircle, Heart, Zap, Shield, User, Globe, BookOpen, Scroll } from 'lucide-react';
+import { useState, useMemo, useEffect } from 'react';
+import { Printer, Sparkles, AlertCircle, Heart, Zap, Shield, User, Globe, BookOpen, Scroll, Save } from 'lucide-react';
 import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
 import secondarySkillsList from '../../../data/Tabella-abilita_secondarie.json';
 import gradiLingue from '../../../data/TGP_1-gradi_conoscenze_lingue.json';
@@ -20,6 +20,8 @@ import {
 } from '../../../utils/skillHelpers';
 import { formatMBToCoins, formatCoinsToString } from '../../../utils/moneyHelpers';
 import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
+import { useAuth } from '../../../contexts/AuthContext';
+import { subscribeToCharacterNotes, saveCharacterNotes } from '../../../services/playerService';
 
 const STAT_KEYS = ['FR', 'AG', 'CO', 'IN', 'IT', 'PR'];
 const STAT_NAMES = { FR: 'Forza', AG: 'Agilità', CO: 'Costituzione', IN: 'Intelligenza', IT: 'Intuizione', PR: 'Presenza' };
@@ -67,7 +69,42 @@ const getSkillForWeapon = (item) => {
   return 'taglio a 1 mano';
 };
 
-export default function CharacterSheetStep({ characterData, setCharacterData }) {
+export default function CharacterSheetStep({ characterData, setCharacterData, readOnly = false }) {
+  const { user, isGM, isPlayer } = useAuth();
+  const statsReadOnly = readOnly || isPlayer;
+
+  const [notes, setNotes] = useState(null);
+  const [notesText, setNotesText] = useState("");
+  const [savingNotes, setSavingNotes] = useState(false);
+  const [saveSuccess, setSaveSuccess] = useState(false);
+
+  useEffect(() => {
+    if (!characterData?.id) return;
+    const unsub = subscribeToCharacterNotes(characterData.id, (notesData) => {
+      setNotes(notesData);
+      setNotesText(notesData?.content || "");
+    });
+    return unsub;
+  }, [characterData?.id]);
+
+  const handleSaveNotes = async () => {
+    if (!characterData?.id) return;
+    setSavingNotes(true);
+    setSaveSuccess(false);
+    try {
+      const gmId = characterData.gmId || "";
+      const playerId = user?.uid || "";
+      await saveCharacterNotes(characterData.id, gmId, playerId, notesText);
+      setSaveSuccess(true);
+      setTimeout(() => setSaveSuccess(false), 3000);
+    } catch (err) {
+      console.error("Errore durante il salvataggio delle note:", err);
+      alert("Impossibile salvare il taccuino: " + err.message);
+    } finally {
+      setSavingNotes(false);
+    }
+  };
+
   const race = characterData.race;
   const profession = characterData.profession;
   const stats = characterData.stats || {};
@@ -641,11 +678,13 @@ export default function CharacterSheetStep({ characterData, setCharacterData }) 
                             min="0"
                             max={finalHitPoints}
                             value={characterData.hpSubiti || 0}
+                            disabled={statsReadOnly}
                             onChange={(e) => {
-                              const val = Math.max(0, parseInt(e.target.value) || 0);
-                              setCharacterData(prev => ({ ...prev, hpSubiti: val }));
+                                const val = Math.max(0, parseInt(e.target.value) || 0);
+                                setCharacterData(prev => ({ ...prev, hpSubiti: val }));
                             }}
                             className="w-16 p-1 border border-red-300 rounded text-center text-xs font-bold text-red-750 bg-white"
+                            style={statsReadOnly ? { opacity: 0.8, backgroundColor: '#f1f5f9', color: '#64748b', cursor: 'not-allowed' } : {}}
                           />
                           <span className="text-[10px] text-red-800 font-medium">
                             PF Rimanenti: <strong>{Math.max(0, finalHitPoints - (characterData.hpSubiti || 0))}</strong>
@@ -1145,6 +1184,78 @@ export default function CharacterSheetStep({ characterData, setCharacterData }) 
               <p className="text-xs text-gray-750 leading-relaxed whitespace-pre-wrap font-serif italic" style={{ fontStyle: 'italic' }}>
                 {characterData.history}
               </p>
+            </div>
+          </div>
+        )}
+
+        {/* Taccuino Personale / Note del Giocatore */}
+        {characterData.id && (
+          <div className="border rounded-lg overflow-hidden shadow-xs mt-6 print:break-inside-avoid" style={{ borderColor: 'var(--warning-color)', backgroundColor: 'rgba(217, 119, 6, 0.03)' }}>
+            <div className="px-4 py-2 border-b flex items-center justify-between" style={{ backgroundColor: 'rgba(217, 119, 6, 0.08)', borderBottomColor: 'rgba(217, 119, 6, 0.2)' }}>
+              <div className="flex items-center gap-1.5 font-bold uppercase tracking-wider text-xs" style={{ color: 'var(--warning-color)' }}>
+                <BookOpen className="w-4 h-4" />
+                <span>Taccuino del Giocatore</span>
+              </div>
+              {isGM ? (
+                <span className="text-[9px] font-bold bg-amber-100 text-amber-800 px-2 py-0.5 rounded uppercase" style={{ backgroundColor: 'var(--primary-light)', color: 'var(--primary-color)' }}>
+                  Sola Lettura (GM)
+                </span>
+              ) : (
+                <span className="text-[9px] font-bold bg-green-100 text-green-800 px-2 py-0.5 rounded uppercase" style={{ backgroundColor: '#dcfce7', color: '#15803d' }}>
+                  Modificabile
+                </span>
+              )}
+            </div>
+            <div className="p-4">
+              {isGM ? (
+                <div 
+                  className="p-3 bg-white border rounded-lg min-h-[100px] whitespace-pre-wrap text-xs text-gray-700 font-serif italic leading-relaxed"
+                  style={{ fontStyle: 'italic', borderColor: 'var(--border-color)' }}
+                >
+                  {notesText.trim() || "Il giocatore non ha ancora scritto note per questo personaggio."}
+                </div>
+              ) : (
+                <div className="space-y-3 flex flex-col gap-2">
+                  <textarea
+                    value={notesText}
+                    onChange={(e) => setNotesText(e.target.value)}
+                    placeholder="Scrivi qui i tuoi appunti personali per questo personaggio (es. indizi, quest, inventario aggiuntivo, relazioni)..."
+                    className="w-full min-h-[150px] p-3 text-xs border rounded-lg focus:outline-none bg-white text-gray-800 font-serif leading-relaxed"
+                    style={{ resize: "vertical", borderColor: 'var(--border-color)' }}
+                  />
+                  <div className="flex justify-between items-center" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span className="text-[10px] text-gray-500">
+                      {notes?.updatedAt ? `Ultimo aggiornamento: ${new Date(notes.updatedAt.seconds * 1000).toLocaleString()}` : "Nessun salvataggio precedente"}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={handleSaveNotes}
+                      disabled={savingNotes}
+                      className="btn btn-primary"
+                      style={{ 
+                        backgroundColor: 'var(--warning-color)', 
+                        borderColor: 'var(--warning-color)', 
+                        color: 'white', 
+                        padding: '0.4rem 1rem', 
+                        fontSize: '0.75rem',
+                        fontWeight: 'bold',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.25rem',
+                        opacity: savingNotes ? 0.6 : 1
+                      }}
+                    >
+                      <Save className="w-3.5 h-3.5" />
+                      {savingNotes ? "Salvataggio..." : "Salva Note"}
+                    </button>
+                  </div>
+                  {saveSuccess && (
+                    <div className="text-[10px] text-green-700 font-bold mt-1 text-right" style={{ textAlign: 'right', color: '#15803d', fontWeight: 'bold' }}>
+                      ✓ Note salvate correttamente su Cloud Firestore!
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         )}

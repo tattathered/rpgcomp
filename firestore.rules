@@ -1,18 +1,81 @@
-rules_version='2'
-
+rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
-      // This rule allows anyone with your database reference to view, edit,
-      // and delete all data in your database. It is useful for getting
-      // started, but it is configured to expire after 30 days because it
-      // leaves your app open to attackers. At that time, all client
-      // requests to your database will be denied.
-      //
-      // Make sure to write security rules for your app before that time, or
-      // else all client requests to your database will be denied until you
-      // update your rules.
-      allow read, write: if request.time < timestamp.date(2026, 6, 15);
+
+    // Funzioni helper
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+
+    function isGM() {
+      return isAuthenticated() && getUserData().role == 'GM';
+    }
+
+    function isPlayer() {
+      return isAuthenticated() && getUserData().role == 'player';
+    }
+
+    // Verifica se un giocatore è invitato da un determinato GM
+    function isPlayerOfGM(gmId) {
+      return exists(/databases/$(database)/documents/gms/$(gmId)/players/$(request.auth.uid));
+    }
+
+    // Verifica se il PG è assegnato a questo giocatore nel workspace del GM
+    function isCharacterAssignedToPlayer(gmId, charId) {
+      return charId in get(/databases/$(database)/documents/gms/$(gmId)/players/$(request.auth.uid)).data.characterIds;
+    }
+
+    // Profili utente: lettura e scrittura propria (permette l'auto-inizializzazione del GM)
+    match /users/{userId} {
+      allow read, write: if isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Documento principale del workspace del GM
+    match /gms/{gmId} {
+      allow read, write: if isAuthenticated() && request.auth.uid == gmId;
+    }
+
+    // Spazio GM: GM accede a tutto il suo workspace, i giocatori accedono solo a ciò che li riguarda
+    match /gms/{gmId}/{collection}/{docId} {
+      // GM accede liberamente ai propri dati
+      allow read, write: if isAuthenticated() && request.auth.uid == gmId && isGM();
+
+      // Giocatori: lettura condizionata dall'invito di quel GM
+      allow read: if isPlayer() && isPlayerOfGM(gmId) && (
+        (collection == 'characters' && isCharacterAssignedToPlayer(gmId, docId)) ||
+        collection == 'companies' ||
+        collection == 'campaigns' ||
+        (collection == 'players' && docId == request.auth.uid)
+      );
+    }
+
+    // Taccuino del giocatore (Notes)
+    match /notes/{charId} {
+      // GM del PG può leggere le note; il giocatore assegnato può leggere e scrivere
+      allow read: if isAuthenticated() && (
+        request.auth.uid == resource.data.gmId || 
+        request.auth.uid == resource.data.playerId
+      );
+      
+      // Creazione: deve corrispondere al giocatore autenticato, con PG e GM validati
+      allow create: if isPlayer() && 
+                    request.resource.data.playerId == request.auth.uid &&
+                    isPlayerOfGM(request.resource.data.gmId) &&
+                    isCharacterAssignedToPlayer(request.resource.data.gmId, charId);
+                    
+      // Aggiornamento/Eliminazione: solo il giocatore proprietario
+      allow update, delete: if isAuthenticated() && 
+                            request.auth.uid == resource.data.playerId;
+    }
+
+    // Supporto per query collectionGroup su "players" (necessario al giocatore per trovare i suoi workspace)
+    match /{path=**}/players/{playerId} {
+      allow read: if isAuthenticated() && resource.data.uid == request.auth.uid;
     }
   }
 }
+

@@ -1,5 +1,7 @@
 {
-  "projects": {},
+  "projects": {
+    "default": "merp-companion-yagni"
+  },
   "targets": {},
   "etags": {}
 }
