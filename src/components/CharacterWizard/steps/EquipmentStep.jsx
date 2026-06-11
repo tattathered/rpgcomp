@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, Fragment } from 'react';
-import { Shield, Heart, HelpCircle, Save, Info, AlertTriangle, AlertCircle } from 'lucide-react';
-import catalogData from '../../../data/TS_4-equipaggiamento.json';
+import { Shield, Heart, HelpCircle, Save, Info, AlertTriangle, AlertCircle, Search } from 'lucide-react';
+import catalogData from '../../../data/TS-4-equipaggiamento.json';
 import WalletBox from '../shared/WalletBox';
 import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
 import { formatMBToCoins, formatCoinsToString } from '../../../utils/moneyHelpers';
@@ -60,7 +60,8 @@ export default function EquipmentStep({ characterData, setCharacterData, equipme
 
   // Categorie uniche presenti nel catalogo
   const categories = [...new Set(catalog.map(item => item.categoria))];
-  const [activeCategory, setActiveCategory] = useState(categories[0] || 'armi');
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
 
   // Inizializza lo stato locale degli oggetti con i valori già salvati nel personaggio
   const initialEquipment = useMemo(() => {
@@ -270,8 +271,17 @@ export default function EquipmentStep({ characterData, setCharacterData, equipme
   const activeItems = useMemo(() => {
     return catalog
       .map((item, index) => ({ item, index, key: `${item.categoria}_${item.nome}_${index}` }))
-      .filter(x => x.item.categoria === activeCategory);
-  }, [activeCategory, catalog]);
+      .filter(x => {
+        // Se c'è ricerca testuale, ignora il filtro categoria
+        if (searchQuery.trim()) {
+          const q = searchQuery.toLowerCase().trim();
+          return (x.item.nome || '').toLowerCase().includes(q) ||
+                 (x.item.note || '').toLowerCase().includes(q);
+        }
+        // Altrimenti filtra per categoria
+        return activeCategory === 'all' || x.item.categoria === activeCategory;
+      });
+  }, [activeCategory, catalog, searchQuery]);
 
   const groupedWeapons = useMemo(() => {
     if (activeCategory !== 'armi') return null;
@@ -330,8 +340,8 @@ export default function EquipmentStep({ characterData, setCharacterData, equipme
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '0.25rem' }}>
         <div style={{ padding: '1rem', border: '1px solid var(--theme-race-border)', borderRadius: '0.6rem', background: 'var(--theme-race-bg)' }}>
           <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-race-text)' }}>Popolo</div>
-          <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-race-text)', marginTop: '0.2rem' }}>{characterData.race?.popolo}</div>
-          <div style={{ fontSize: '0.75rem', color: 'var(--theme-race-text)', opacity: 0.85, marginTop: '0.15rem' }}>{characterData.race?.['note (umani/non umani)']}</div>
+          <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-race-text)', marginTop: '0.2rem' }}>{characterData.race?.nome || characterData.race?.popolo}</div>
+          <div style={{ fontSize: '0.75rem', color: 'var(--theme-race-text)', opacity: 0.85, marginTop: '0.15rem' }}>{characterData.race?.categoria || characterData.race?.['note (umani/non umani)']}</div>
         </div>
         <div style={{ padding: '1rem', border: '1px solid var(--theme-profession-border)', borderRadius: '0.6rem', background: 'var(--theme-profession-bg)' }}>
           <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-profession-text)' }}>Professione</div>
@@ -417,6 +427,49 @@ export default function EquipmentStep({ characterData, setCharacterData, equipme
 
       </div>
 
+      {/* Ricerca testuale */}
+      <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.5rem', alignItems: 'center' }}>
+        <div style={{ position: 'relative', flex: 1, maxWidth: '400px' }}>
+          <Search className="w-4 h-4" style={{ position: 'absolute', left: '0.65rem', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }} />
+          <input 
+            type="text" 
+            placeholder="Cerca oggetto per nome o note..." 
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+            style={{
+              width: '100%',
+              padding: '0.5rem 2rem 0.5rem 2rem',
+              fontSize: '0.85rem',
+              border: '1px solid #e2e8f0',
+              borderRadius: '6px',
+              backgroundColor: '#f8fafc',
+              outline: 'none'
+            }}
+          />
+          {searchQuery && (
+            <button
+              onClick={() => setSearchQuery('')}
+              style={{
+                position: 'absolute',
+                right: '0.4rem',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                color: '#94a3b8',
+                fontSize: '1.1rem',
+                padding: '0.2rem',
+                lineHeight: 1
+              }}
+              title="Cancella ricerca"
+            >
+              ×
+            </button>
+          )}
+        </div>
+      </div>
+
       {/* Tabs Categorie */}
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', borderBottom: '2px solid #e2e8f0', paddingBottom: '0.5rem' }}>
         {categories.map(cat => (
@@ -437,6 +490,21 @@ export default function EquipmentStep({ characterData, setCharacterData, equipme
             {cat}
           </button>
         ))}
+        <button
+          onClick={() => setActiveCategory('all')}
+          className={`btn ${activeCategory === 'all' ? 'btn-primary' : 'btn-outline'}`}
+          style={{ 
+            padding: '0.4rem 0.8rem', 
+            fontSize: '0.8rem',
+            textTransform: 'uppercase',
+            fontWeight: 700,
+            backgroundColor: activeCategory === 'all' ? 'var(--primary-color)' : 'transparent',
+            borderColor: activeCategory === 'all' ? 'var(--primary-color)' : '#cbd5e1',
+            color: activeCategory === 'all' ? '#fff' : '#475569'
+          }}
+        >
+          TUTTI
+        </button>
       </div>
 
       {/* Tabella Equipaggiamento */}

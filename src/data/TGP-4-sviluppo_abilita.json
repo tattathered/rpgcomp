@@ -1,0 +1,242 @@
+[
+  {
+    "id_professione": "guerriero",
+    "categoria_abilita": "manovre_movimento",
+    "costo": 3
+  },
+  {
+    "id_professione": "scout",
+    "categoria_abilita": "manovre_movimento",
+    "costo": 1
+  },
+  {
+    "id_professione": "ranger",
+    "categoria_abilita": "manovre_movimento",
+    "costo": 2
+  },
+  {
+    "id_professione": "bardo",
+    "categoria_abilita": "manovre_movimento",
+    "costo": 1
+  },
+  {
+    "id_professione": "mago",
+    "categoria_abilita": "manovre_movimento",
+    "costo": 0
+  },
+  {
+    "id_professione": "animista",
+    "categoria_abilita": "manovre_movimento",
+    "costo": 1
+  },
+  {
+    "id_professione": "guerriero",
+    "categoria_abilita": "abilita_armi",
+    "costo": 5
+  },
+  {
+    "id_professione": "scout",
+    "categoria_abilita": "abilita_armi",
+    "costo": 3
+  },
+  {
+    "id_professione": "ranger",
+    "categoria_abilita": "abilita_armi",
+    "costo": 3
+  },
+  {
+    "id_professione": "bardo",
+    "categoria_abilita": "abilita_armi",
+    "costo": 2
+  },
+  {
+    "id_professione": "mago",
+    "categoria_abilita": "abilita_armi",
+    "costo": 0
+  },
+  {
+    "id_professione": "animista",
+    "categoria_abilita": "abilita_armi",
+    "costo": 1
+  },
+  {
+    "id_professione": "guerriero",
+    "categoria_abilita": "abilita_generiche",
+    "costo": 2
+  },
+  {
+    "id_professione": "scout",
+    "categoria_abilita": "abilita_generiche",
+    "costo": 3
+  },
+  {
+    "id_professione": "ranger",
+    "categoria_abilita": "abilita_generiche",
+    "costo": 4
+  },
+  {
+    "id_professione": "bardo",
+    "categoria_abilita": "abilita_generiche",
+    "costo": 2
+  },
+  {
+    "id_professione": "mago",
+    "categoria_abilita": "abilita_generiche",
+    "costo": 2
+  },
+  {
+    "id_professione": "animista",
+    "categoria_abilita": "abilita_generiche",
+    "costo": 2
+  },
+  {
+    "id_professione": "guerriero",
+    "categoria_abilita": "abilita_sotterfugio",
+    "costo": 2
+  },
+  {
+    "id_professione": "scout",
+    "categoria_abilita": "abilita_sotterfugio",
+    "costo": 5
+  },
+  {
+    "id_professione": "ranger",
+    "categoria_abilita": "abilita_sotterfugio",
+    "costo": 2
+  },
+  {
+    "id_professione": "bardo",
+    "categoria_abilita": "abilita_sotterfugio",
+    "costo": 2
+  },
+  {
+    "id_professione": "mago",
+    "categoria_abilita": "abilita_sotterfugio",
+    "costo": 0
+  },
+  {
+    "id_professione": "animista",
+    "categoria_abilita": "abilita_sotterfugio",
+    "costo": 1
+  },
+  {
+    "id_professione": "guerriero",
+    "categoria_abilita": "abilita_magiche",
+    "costo": 0
+  },
+  {
+    "id_professione": "scout",
+    "categoria_abilita": "abilita_magiche",
+    "costo": 0
+  },
+  {
+    "id_professione": "ranger",
+    "categoria_abilita": "abilita_magiche",
+    "costo": 0
+  },
+  {
+    "id_professione": "bardo",
+    "categoria_abilita": "abilita_magiche",
+    "costo": 2
+  },
+  {
+    "id_professione": "mago",
+    "categoria_abilita": "abilita_magiche",
+    "costo": 5
+  },
+  {
+    "id_professione": "animista",
+    "categoria_abilita": "abilita_magiche",
+    "costo": 2
+  },
+  {
+    "id_professione": "guerriero",
+    "categoria_abilita": "resistenza_fisica",
+    "costo": 3
+  },
+  {
+    "id_professione": "scout",
+    "categoria_abilita": "resistenza_fisica",
+    "costo": 2
+  },
+  {
+    "id_professione": "ranger",
+    "categoria_abilita": "resistenza_fisica",
+    "costo": 2
+  },
+  {
+    "id_professione": "bardo",
+    "categoria_abilita": "resistenza_fisica",
+    "costo": 1
+  },
+  {
+    "id_professione": "mago",
+    "categoria_abilita": "resistenza_fisica",
+    "costo": 1
+  },
+  {
+    "id_professione": "animista",
+    "categoria_abilita": "resistenza_fisica",
+    "costo": 1
+  },
+  {
+    "id_professione": "guerriero",
+    "categoria_abilita": "lingue",
+    "costo": 0
+  },
+  {
+    "id_professione": "scout",
+    "categoria_abilita": "lingue",
+    "costo": 1
+  },
+  {
+    "id_professione": "ranger",
+    "categoria_abilita": "lingue",
+    "costo": 1
+  },
+  {
+    "id_professione": "bardo",
+    "categoria_abilita": "lingue",
+    "costo": 3
+  },
+  {
+    "id_professione": "mago",
+    "categoria_abilita": "lingue",
+    "costo": 2
+  },
+  {
+    "id_professione": "animista",
+    "categoria_abilita": "lingue",
+    "costo": 2
+  },
+  {
+    "id_professione": "guerriero",
+    "categoria_abilita": "liste_incantesimi",
+    "costo": 0
+  },
+  {
+    "id_professione": "scout",
+    "categoria_abilita": "liste_incantesimi",
+    "costo": 0
+  },
+  {
+    "id_professione": "ranger",
+    "categoria_abilita": "liste_incantesimi",
+    "costo": 1
+  },
+  {
+    "id_professione": "bardo",
+    "categoria_abilita": "liste_incantesimi",
+    "costo": 2
+  },
+  {
+    "id_professione": "mago",
+    "categoria_abilita": "liste_incantesimi",
+    "costo": 5
+  },
+  {
+    "id_professione": "animista",
+    "categoria_abilita": "liste_incantesimi",
+    "costo": 5
+  }
+]

@@ -1,20 +1,20 @@
-import tb1 from '../data/TB_1-caratteristiche_bonus.json';
-import penalitaCaricoData from '../data/TB_5-penalita_carico.json';
+import tb1 from '../data/TB-1-caratteristiche_bonus.json';
+import penalitaCaricoData from '../data/TB-5-penalita_carico.json';
 import primarySkillsList from '../data/Tabella-abilita_primarie.json';
 import secondarySkillsList from '../data/Tabella-abilita_secondarie.json';
 
 // Nuove tabelle relazionali normalizzate
-import racesData from '../data/races.json';
+import racesData from '../data/TB-3-modifiche_speciali_popolo.json';
 import skillsData from '../data/skills.json';
-import raceAdSkillsData from '../data/race_adolescence_skills.json';
-import professionDevelopmentCosts from '../data/profession_development_costs.json';
+import raceAdSkillsData from '../data/TGP-5-sviluppo_abilita_adolescenza.json';
+import professionDevelopmentCosts from '../data/TGP-4-sviluppo_abilita.json';
 import professionLevelBonuses from '../data/profession_level_bonuses.json';
 
 export const getRaceId = (name) => {
   if (!name) return null;
   const n = name.toLowerCase().trim();
-  const race = racesData.find(r => r.id === n || r.name_it.toLowerCase().trim() === n || r.name_en.toLowerCase().trim() === n);
-  return race ? race.id : null;
+  const race = racesData.find(r => r.id_popolo === n || r.nome.toLowerCase().trim() === n);
+  return race ? race.id_popolo : null;
 };
 
 export const getSkillId = (name) => {
@@ -69,15 +69,15 @@ export const getProfessionId = (prof) => {
     if (id) return id.toLowerCase().trim();
   }
   const n = String(prof).toLowerCase().trim();
-  const mapping = {
-    'guerriero': 'warrior',
+  const enToIt = {
+    'warrior': 'guerriero',
     'scout': 'scout',
-    'mago': 'mage',
-    'bardo': 'bard',
-    'animista': 'animist',
+    'mage': 'mago',
+    'bard': 'bardo',
+    'animist': 'animista',
     'ranger': 'ranger'
   };
-  return mapping[n] || n;
+  return enToIt[n] || n;
 };
 
 export const STAT_KEYS = ['FR', 'AG', 'CO', 'IN', 'IT', 'PR'];
@@ -129,23 +129,27 @@ export const getIngombroBonus = (skillName) => {
 export const getSpecificTb6Ranks = (skillName, profession) => {
   if (!profession) return 0;
   const profId = getProfessionId(profession);
-  const skillId = getSkillId(skillName);
-  if (!profId || !skillId) return 0;
+  if (!profId) return 0;
+
+  // Mappa nomi abilità → ID italiani per lookup in profession_level_bonuses.json
+  const itSkillIdMap = {
+    'resistenza fisica': 'resistenza_fisica',
+    'percezione': 'percezione',
+    'lettura rune': 'lettura_runes',
+    'uso oggetti magici': 'uso_oggetti_magici',
+    'incantesimi diretti': 'incantesimi_diretti',
+    'incantesimi base': 'incantesimi_base',
+    'abilità magiche': 'abilita_magiche',
+    'abilità armi': 'abilita_armi',
+    'abilità generiche': 'abilita_generiche',
+    'abilità sotterfugio': 'abilita_sotterfugio',
+  };
+  const skillId = itSkillIdMap[skillName.toLowerCase().trim()];
+  if (!skillId) return 0;
 
   const record = professionLevelBonuses.find(lb => lb.profession_id === profId && lb.skill_id === skillId);
   if (record) return record.bonus;
 
-  // Backward compatibility
-  if (typeof profession === 'object') {
-    const nameL = skillName.toLowerCase();
-    const validKeys = [
-      'resistenza fisica', 'percezione', 'lettura rune', 
-      'uso oggetti magici', 'incantesimi diretti', 'incantesimi base'
-    ];
-    if (validKeys.includes(nameL) && profession[nameL] !== undefined) {
-      return parseBonusValue(profession[nameL]);
-    }
-  }
   return 0;
 };
 
@@ -164,11 +168,49 @@ export const getFinalStats = (stats, race, bgModifiers = {}) => {
 
 export const getTgp5AdolescenceRanks = (skillName, popolo) => {
   const raceId = getRaceId(popolo);
-  const skillId = getSkillId(skillName);
-  if (!raceId || !skillId) return 0;
+  if (!raceId) return 0;
 
-  const match = raceAdSkillsData.find(item => item.race_id === raceId && item.skill_id === skillId);
-  return match ? match.ranks : 0;
+  // Mappa nomi abilità → ID italiani usati in TGP-5 (e non getSkillId che usa ID inglesi)
+  const itSkillMap = {
+    'resistenza fisica': 'sviluppo_fisico',
+    'corazza di maglia': 'armatura_maglia',
+    'cotta di maglia': 'armatura_maglia',
+    'taglio a 1 mano': 'taglio_una_mano',
+    'armi da taglio a 1 mano': 'taglio_una_mano',
+    'contundenti a 1 mano': 'contundenti_una_mano',
+    'armi contundenti a 1 mano': 'contundenti_una_mano',
+    'a 2 mani': 'armi_a_due_mani',
+    'armi a 2 mani': 'armi_a_due_mani',
+    'da tiro': 'armi_da_tiro',
+    'armi da tiro': 'armi_da_tiro',
+    'da lancio': 'armi_da_lancio',
+    'armi da lancio': 'armi_da_lancio',
+    'con asta': 'armi_con_asta',
+    'armi con asta': 'armi_con_asta',
+    'cogliere alle spalle': 'imboscata',
+    'colpire alle spalle': 'imboscata',
+    'nascondersi': 'nascondersi',
+    'scassinare serrature': 'scassinare',
+    'scassinare': 'scassinare',
+    'disattivare trappole': 'disarmare_trappole',
+    'uso oggetti magici': 'usare_oggetti',
+    'uso di oggetti magici': 'usare_oggetti',
+    'lettura rune': 'leggere_runes',
+    'percezione': 'percezione',
+    'nessuna armatura': 'nessuna_armatura',
+    'cuoio grezzo': 'cuoio_grezzo',
+    'cuoio rinforzato': 'cuoio_rinforzato',
+    'nuotare': 'nuotare',
+    'arrampicarsi': 'arrampicarsi',
+    'cavalcare': 'cavalcare',
+    'aggirare': 'aggirare',
+  };
+
+  const skillId = itSkillMap[skillName.toLowerCase().trim()];
+  if (!skillId) return 0;
+
+  const match = raceAdSkillsData.find(item => item.id_popolo === raceId && item.id_abilita === skillId);
+  return match ? match.gradi : 0;
 };
 
 export const getTb6CategoryKey = (categoryName) => {
@@ -187,16 +229,16 @@ export const getTb6PoolSize = (categoryName, profession) => {
 
   const normCat = categoryName.toLowerCase().trim();
   const mapping = {
-    'di manovra e movimento': 'movement_maneuvers',
-    'abilità di movimento e manovra': 'movement_maneuvers',
-    'con le armi': 'weapons_skills',
-    'abilità con le armi': 'weapons_skills',
-    'generali': 'general_skills',
-    'abilità generali': 'general_skills',
-    'sotterfugio': 'subterfuge_skills',
-    'abilità di sotterfugio': 'subterfuge_skills',
-    'magiche': 'magic_skills',
-    'abilità magiche': 'magic_skills'
+    'di manovra e movimento': 'abilita_armi',
+    'abilità di movimento e manovra': 'abilita_armi',
+    'con le armi': 'abilita_armi',
+    'abilità con le armi': 'abilita_armi',
+    'generali': 'abilita_generiche',
+    'abilità generali': 'abilita_generiche',
+    'sotterfugio': 'abilita_sotterfugio',
+    'abilità di sotterfugio': 'abilita_sotterfugio',
+    'magiche': 'abilita_magiche',
+    'abilità magiche': 'abilita_magiche'
   };
   const targetId = mapping[normCat] || normCat;
 
@@ -242,22 +284,23 @@ export const getTgp4PoolSize = (categoryName, skillName, professionName) => {
   const normKey = key.toLowerCase().trim();
   if (normKey === 'percezione') return 0;
 
+  // Mappa le chiavi normalizzate ai nomi categoria italiani usati in TGP-4
   const mapping = {
-    'manovre in movimento': 'movement_maneuvers',
-    'abilità armi': 'weapons_skills',
-    'abilità generiche': 'general_skills',
-    'percezione': 'general_skills',
-    'abilità sotterfugio': 'subterfuge_skills',
-    'abilità magiche': 'magic_skills',
-    'resistenza fisica': 'physical_resistance',
-    'lingue': 'languages',
-    'liste incantesimi': 'spell_lists'
+    'manovre in movimento': 'manovre_movimento',
+    'abilità armi': 'abilita_armi',
+    'abilità generiche': 'abilita_generiche',
+    'percezione': 'abilita_generiche',
+    'abilità sotterfugio': 'abilita_sotterfugio',
+    'abilità magiche': 'abilita_magiche',
+    'resistenza fisica': 'resistenza_fisica',
+    'lingue': 'lingue',
+    'liste incantesimi': 'liste_incantesimi'
   };
 
   const targetCategory = mapping[normKey] || normKey;
 
-  const record = professionDevelopmentCosts.find(d => d.profession_id === profId && d.skill_category === targetCategory);
-  return record ? record.cost : 0;
+  const record = professionDevelopmentCosts.find(d => d.id_professione === profId && d.categoria_abilita === targetCategory);
+  return record ? record.costo : 0;
 };
 
 export const fmt = (n) => (typeof n === 'number' ? (n >= 0 ? `+${n}` : `${n}`) : n);

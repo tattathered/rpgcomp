@@ -127,7 +127,7 @@ export default function CompanyManager({ savedCharacters }) {
                         <Shield size={16} color={isChecked ? "var(--primary-color)" : "var(--text-muted)"} />
                         <div style={styles.charSelectInfo}>
                           <span style={{ fontSize: "0.85rem", fontWeight: "700" }}>{char.name}</span>
-                          <span style={{ fontSize: "0.7rem", color: "var(--text-muted)" }}>{char.race?.popolo} | {char.profession?.professione}</span>
+                          <span style={{ fontSize: "0.7rem", color: "var(--text-muted)" }}>{char.race?.nome || char.race?.popolo} | {char.profession?.professione}</span>
                         </div>
                         {isChecked && <Check size={16} color="var(--primary-color)" style={{ marginLeft: "auto" }} />}
                       </div>

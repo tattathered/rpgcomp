@@ -4,13 +4,13 @@ import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
 import { getAvailableSpellLists } from '../../../utils/magicHelpers';
 import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
 import secondarySkillsList from '../../../data/Tabella-abilita_secondarie.json';
-import gradiLingue from '../../../data/TGP_1-gradi_conoscenze_lingue.json';
-import catalogData from '../../../data/TS_4-equipaggiamento.json';
+import gradiLingue from '../../../data/TGP-1-gradi_conoscenze_lingue.json';
+import catalogData from '../../../data/TS-4-equipaggiamento.json';
 
 // Nuove tabelle relazionali normalizzate
 import languagesData from '../../../data/languages.json';
 import raceLanguagesData from '../../../data/race_languages.json';
-import racesData from '../../../data/races.json';
+import racesData from '../../../data/TB-3-modifiche_speciali_popolo.json';
 
 import {
   getBonus,
@@ -184,7 +184,7 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
   useEffect(() => {
     if (race && (!characterData.background?.languages)) {
       const baseLangs = {};
-      const raceId = race.id || getRaceId(race.popolo);
+      const raceId = race.id_popolo || getRaceId(race.nome);
       if (raceId) {
         const rlList = raceLanguagesData.filter(rl => rl.race_id === raceId);
         rlList.forEach(rl => {
@@ -302,14 +302,14 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
 
   // Calculate & Save skills combined ranks
   useEffect(() => {
-    if (race && race.popolo && profession) {
+    if (race && race.nome && profession) {
       const newSkills = {};
 
       // 1. Process all primary skills from Tabella-abilita_primarie
       primarySkillsList.forEach(skill => {
         const isCogliere = skill.nome.toLowerCase() === 'cogliere alle spalle';
         // Find adolescence ranks in race development
-        const adRanks = isCogliere ? 0 : getTgp5AdolescenceRanks(skill.nome, race.popolo);
+        const adRanks = isCogliere ? 0 : getTgp5AdolescenceRanks(skill.nome, race.nome);
         
         // Find profession ranks (distributed + fixed)
         const distributedProf = isCogliere ? 0 : (characterData.level1Tb6?.[skill.nome] || 0);
@@ -332,10 +332,10 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
       });
 
       // 2. Process other development variables from racesData properties
-      const raceId = race.id || getRaceId(race.popolo);
-      const fullRace = racesData.find(r => r.id === raceId) || race;
+      const raceId = race.id_popolo || getRaceId(race.nome);
+      const fullRace = racesData.find(r => r.id_popolo === raceId) || race;
       
-      const extraLangs = fullRace.extra_language_points !== undefined ? fullRace.extra_language_points : (race.extra_language_points || 0);
+      const extraLangs = fullRace.punti_lingue_extra !== undefined ? fullRace.punti_lingue_extra : (race.punti_lingue_extra || 0);
       newSkills['Punti Lingue Addizionali'] = {
         category: 'Altre Abilità',
         type: 'Altro',
@@ -345,7 +345,7 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
         notes: 'Punti spendibili in lingue addizionali.'
       };
 
-      const bgPoints = fullRace.background_points !== undefined ? fullRace.background_points : (race.background_points || 0);
+      const bgPoints = fullRace.punti_background !== undefined ? fullRace.punti_background : (race.punti_background || 0);
       newSkills['Punti Background'] = {
         category: 'Altre Abilità',
         type: 'Altro',
@@ -355,7 +355,7 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
         notes: 'Opzioni di background disponibili alla creazione.'
       };
 
-      const learnChance = fullRace.spell_list_learn_chance !== undefined ? fullRace.spell_list_learn_chance : (race.spell_list_learn_chance || 0);
+      const learnChance = fullRace.probabilita_apprendimento_liste !== undefined ? fullRace.probabilita_apprendimento_liste : (race.probabilita_apprendimento_liste || 0);
       newSkills['Percentuale di Probabilità di Imparare una Lista di Incantesimi'] = {
         category: 'Altre Abilità',
         type: 'Altro',
@@ -443,7 +443,7 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
     primarySkillsList.forEach(sk => {
       const name = sk.nome;
       const isCogliereAlleSpalle = name.toLowerCase() === 'cogliere alle spalle';
-      const adRanks = isCogliereAlleSpalle ? 0 : getTgp5AdolescenceRanks(name, race?.popolo);
+      const adRanks = isCogliereAlleSpalle ? 0 : getTgp5AdolescenceRanks(name, race?.nome);
       const profFixed = isCogliereAlleSpalle ? 0 : getSpecificTb6Ranks(name, profession);
       const profDist = isCogliereAlleSpalle ? 0 : (tb6Distribution[name] || 0);
       const profRanks = profFixed + profDist;
@@ -484,7 +484,7 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
       };
     });
     return result;
-  }, [race?.popolo, tb6Distribution, finalStats, profession, characterData]);
+  }, [race?.nome || race?.popolo, tb6Distribution, finalStats, profession, characterData]);
   
   // Spell Lists logic
   const knownLists = Object.keys(characterData.spellListAllocations || {});
@@ -492,9 +492,9 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
   const availableLists = rawAvailableLists.filter(l => !knownLists.includes(l.nome_lista));
   
   // Trova la probabilità base in racesData
-  const raceId = race ? (race.id || getRaceId(race.popolo)) : null;
-  const fullRace = racesData.find(r => r.id === raceId) || race;
-  const baseChance = fullRace ? (fullRace.spell_list_learn_chance || 0) : 0;
+  const raceId = race ? (race.id_popolo || getRaceId(race.nome)) : null;
+  const fullRace = racesData.find(r => r.id_popolo === raceId) || race;
+  const baseChance = fullRace ? (fullRace.probabilita_apprendimento_liste || 0) : 0;
   
   const currentAccumulated = characterData.spellListChanceAccumulated !== undefined 
     ? characterData.spellListChanceAccumulated 
@@ -637,8 +637,8 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '1.5rem' }}>
         <div style={{ padding: '1rem', border: '1px solid var(--theme-race-border)', borderRadius: '0.6rem', background: 'var(--theme-race-bg)' }}>
           <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-race-text)' }}>Popolo</div>
-          <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-race-text)', marginTop: '0.2rem' }}>{race.popolo}</div>
-          <div style={{ fontSize: '0.75rem', color: 'var(--theme-race-text)', opacity: 0.85, marginTop: '0.15rem' }}>{race['note (umani/non umani)']}</div>
+          <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-race-text)', marginTop: '0.2rem' }}>{race.nome}</div>
+          <div style={{ fontSize: '0.75rem', color: 'var(--theme-race-text)', opacity: 0.85, marginTop: '0.15rem' }}>{race.categoria}</div>
         </div>
         <div style={{ padding: '1rem', border: '1px solid var(--theme-profession-border)', borderRadius: '0.6rem', background: 'var(--theme-profession-bg)' }}>
           <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-profession-text)' }}>Professione</div>
@@ -793,7 +793,7 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
           ) : currentAccumulated > 0 ? (
             <div className="flex justify-between items-center bg-white p-3 rounded border border-indigo-100">
               <span className="text-sm text-indigo-900">
-                In base al tuo popolo ({race.popolo}), hai un <strong>{baseChance}%</strong> di base.
+                In base al tuo popolo ({race.nome}), hai un <strong>{baseChance}%</strong> di base.
                 Tira 1d100. Se il risultato è ≤ {currentAccumulated}, impari una lista.
               </span>
               <button 
@@ -891,7 +891,7 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
       </div>
 
       <p className="mb-6 text-muted">
-        In base alla cultura del tuo Popolo (<strong>{race.popolo}</strong>) hai ottenuto i seguenti Gradi di sviluppo delle abilità in fase adolescenziale.
+        In base alla cultura del tuo Popolo (<strong>{race.nome}</strong>) hai ottenuto i seguenti Gradi di sviluppo delle abilità in fase adolescenziale.
       </p>
 
       {/* Griglia delle abilità */}

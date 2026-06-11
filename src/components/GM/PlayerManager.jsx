@@ -284,7 +284,7 @@ export default function PlayerManager({ savedCharacters }) {
                                     {char.name}
                                   </span>
                                   <span style={{ fontSize: "0.7rem", color: "var(--text-muted)" }}>
-                                    {char.race?.popolo} | {char.profession?.professione}
+                                    {char.race?.nome || char.race?.popolo} | {char.profession?.professione}
                                   </span>
                                 </div>
                               </label>

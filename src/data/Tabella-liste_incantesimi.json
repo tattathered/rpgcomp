@@ -1,162 +1,162 @@
 [
   {
-    "tipo_lista": "Lista Aperta Essenza",
-    "nome_lista": "Sviluppo fisico"
+    "tipo_lista": "Animista",
+    "nome_lista": "BOTANOMANZIA"
+  },
+  {
+    "tipo_lista": "Animista",
+    "nome_lista": "CONTROLLO ANIMALE"
+  },
+  {
+    "tipo_lista": "Animista",
+    "nome_lista": "CREAZIONI"
+  },
+  {
+    "tipo_lista": "Animista",
+    "nome_lista": "EMORIGENERAZIONE"
+  },
+  {
+    "tipo_lista": "Animista",
+    "nome_lista": "FISIORIGENERAZIONE"
+  },
+  {
+    "tipo_lista": "Animista",
+    "nome_lista": "FLUSSO DIRETTO"
+  },
+  {
+    "tipo_lista": "Animista",
+    "nome_lista": "PURIFICAZIONI"
+  },
+  {
+    "tipo_lista": "Animista",
+    "nome_lista": "RIGENERAZIONE ORGANICA"
+  },
+  {
+    "tipo_lista": "Bardo",
+    "nome_lista": "CANTI DEL POTERE"
+  },
+  {
+    "tipo_lista": "Bardo",
+    "nome_lista": "CONOSCENZA"
+  },
+  {
+    "tipo_lista": "Bardo",
+    "nome_lista": "CONTROLLO SONICO"
+  },
+  {
+    "tipo_lista": "Bardo",
+    "nome_lista": "SAPIENZA"
   },
   {
     "tipo_lista": "Lista Aperta Essenza",
-    "nome_lista": "Manipolazione"
+    "nome_lista": "CONTROLLO SPIRITUALE"
   },
   {
     "tipo_lista": "Lista Aperta Essenza",
-    "nome_lista": "Illusioni"
+    "nome_lista": "FORMULE D'INCANTESIMO"
   },
   {
     "tipo_lista": "Lista Aperta Essenza",
-    "nome_lista": "Formule di passaggio"
+    "nome_lista": "FORMULE DELL'ESSENZA"
   },
   {
     "tipo_lista": "Lista Aperta Essenza",
-    "nome_lista": "Formule d'incantesimo"
+    "nome_lista": "FORMULE DI PASSAGGIO"
   },
   {
     "tipo_lista": "Lista Aperta Essenza",
-    "nome_lista": "Formule dell'essenza"
+    "nome_lista": "ILLUSIONI"
   },
   {
     "tipo_lista": "Lista Aperta Essenza",
-    "nome_lista": "Controllo spirituale"
+    "nome_lista": "MANIPOLAZIONE"
   },
   {
     "tipo_lista": "Lista Aperta Essenza",
-    "nome_lista": "Percezione dell'essenza"
+    "nome_lista": "PERCEZIONE DELL'ESSENZA"
   },
   {
-    "tipo_lista": "Maghi Maghi",
-    "nome_lista": "Geomanzia"
-  },
-  {
-    "tipo_lista": "Maghi Maghi",
-    "nome_lista": "Criomanzia"
-  },
-  {
-    "tipo_lista": "Maghi Maghi",
-    "nome_lista": "Fotomanzia"
-  },
-  {
-    "tipo_lista": "Maghi Maghi",
-    "nome_lista": "Piromanzia"
-  },
-  {
-    "tipo_lista": "Maghi Maghi",
-    "nome_lista": "Ponte arcano"
-  },
-  {
-    "tipo_lista": "Maghi Maghi",
-    "nome_lista": "Idromanzia"
-  },
-  {
-    "tipo_lista": "Maghi Maghi",
-    "nome_lista": "Adattamento"
-  },
-  {
-    "tipo_lista": "Maghi Maghi",
-    "nome_lista": "Aeromanzia"
-  },
-  {
-    "tipo_lista": "Bardi Bardi",
-    "nome_lista": "Canti del potere"
-  },
-  {
-    "tipo_lista": "Bardi Bardi",
-    "nome_lista": "Conoscenza"
-  },
-  {
-    "tipo_lista": "Bardi Bardi",
-    "nome_lista": "Sapienza"
-  },
-  {
-    "tipo_lista": "Bardi Bardi",
-    "nome_lista": "Controllo sonico"
-  },
-  {
-    "tipo_lista": "Ranger Ranger",
-    "nome_lista": "Topomanzia"
-  },
-  {
-    "tipo_lista": "Ranger Ranger",
-    "nome_lista": "Formule di movimento"
-  },
-  {
-    "tipo_lista": "Ranger Ranger",
-    "nome_lista": "Aspetti naturali"
-  },
-  {
-    "tipo_lista": "Ranger Ranger",
-    "nome_lista": "Arti naturali"
+    "tipo_lista": "Lista Aperta Essenza",
+    "nome_lista": "SVILUPPO FISICO"
   },
   {
     "tipo_lista": "Lista Aperta Flusso",
-    "nome_lista": "Indagine"
+    "nome_lista": "ARTI DELLA GUARIGIONE"
   },
   {
     "tipo_lista": "Lista Aperta Flusso",
-    "nome_lista": "Formule sensorie"
+    "nome_lista": "DIFESA MAGICA"
   },
   {
     "tipo_lista": "Lista Aperta Flusso",
-    "nome_lista": "Pacificazione"
+    "nome_lista": "ECOMANZIA"
   },
   {
     "tipo_lista": "Lista Aperta Flusso",
-    "nome_lista": "Arti della guarigione"
+    "nome_lista": "FORMULE SENSORIE"
   },
   {
     "tipo_lista": "Lista Aperta Flusso",
-    "nome_lista": "Protezioni"
+    "nome_lista": "INDAGINE"
   },
   {
     "tipo_lista": "Lista Aperta Flusso",
-    "nome_lista": "Difesa magica"
+    "nome_lista": "MOTI NATURALI"
   },
   {
     "tipo_lista": "Lista Aperta Flusso",
-    "nome_lista": "Moti naturali"
+    "nome_lista": "PACIFICAZIONE"
   },
   {
     "tipo_lista": "Lista Aperta Flusso",
-    "nome_lista": "Ecomanzia"
+    "nome_lista": "PROTEZIONI"
   },
   {
-    "tipo_lista": "Animisti Animisti",
-    "nome_lista": "Botanomanzia"
+    "tipo_lista": "Mago",
+    "nome_lista": "ADATTAMENTO"
   },
   {
-    "tipo_lista": "Animisti Animisti",
-    "nome_lista": "Flusso diretto"
+    "tipo_lista": "Mago",
+    "nome_lista": "AEROMANZIA"
   },
   {
-    "tipo_lista": "Animisti Animisti",
-    "nome_lista": "Controllo animale"
+    "tipo_lista": "Mago",
+    "nome_lista": "CRIOMANZIA"
   },
   {
-    "tipo_lista": "Animisti Animisti",
-    "nome_lista": "Fisiorigenerazione"
+    "tipo_lista": "Mago",
+    "nome_lista": "FOTOMANZIA"
   },
   {
-    "tipo_lista": "Animisti Animisti",
-    "nome_lista": "Emorigenerazione"
+    "tipo_lista": "Mago",
+    "nome_lista": "GEOMANZIA"
   },
   {
-    "tipo_lista": "Animisti Animisti",
-    "nome_lista": "Rigenerazione organica"
+    "tipo_lista": "Mago",
+    "nome_lista": "IDROMANZIA"
   },
   {
-    "tipo_lista": "Animisti Animisti",
-    "nome_lista": "Purificazioni"
+    "tipo_lista": "Mago",
+    "nome_lista": "PIROMANZIA"
   },
   {
-    "tipo_lista": "Animisti Animisti",
-    "nome_lista": "Creazioni"
+    "tipo_lista": "Mago",
+    "nome_lista": "PONTE ARCANO"
+  },
+  {
+    "tipo_lista": "Ranger",
+    "nome_lista": "ARTI NATURALI"
+  },
+  {
+    "tipo_lista": "Ranger",
+    "nome_lista": "ASPETTI NATURALI"
+  },
+  {
+    "tipo_lista": "Ranger",
+    "nome_lista": "FORMULE DI MOVIMENTO"
+  },
+  {
+    "tipo_lista": "Ranger",
+    "nome_lista": "TOPOMANZIA"
   }
 ]

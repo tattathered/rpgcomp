@@ -220,7 +220,7 @@ export default function PlayerDashboard() {
                               <span style={styles.levelBadge}>Liv. {level}</span>
                             </div>
                             <span style={styles.itemSubText}>
-                              {char.race?.popolo} | {char.profession?.professione}
+                              {char.race?.nome || char.race?.popolo} | {char.profession?.professione}
                             </span>
                             
                             {charCompanies.length > 0 && (

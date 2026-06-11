@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import bgOpzioni from '../../../data/TGP_2-opzioni_background-v1.json';
+import bgOpzioni from '../../../data/TGP-2-opzioni_background.json';
 import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
 import secondarySkillsList from '../../../data/Tabella-abilita_secondarie.json';
-import gradiLingue from '../../../data/TGP_1-gradi_conoscenze_lingue.json';
+import gradiLingue from '../../../data/TGP-1-gradi_conoscenze_lingue.json';
 
 // Nuove tabelle relazionali normalizzate
 import languagesData from '../../../data/languages.json';
@@ -10,7 +10,7 @@ import raceLanguagesData from '../../../data/race_languages.json';
 import skillsData from '../../../data/skills.json';
 import { getRaceId } from '../../../utils/skillHelpers';
 import { getAvailableSpellLists } from '../../../utils/magicHelpers';
-import tb1 from '../../../data/TB_1-caratteristiche_bonus.json';
+import tb1 from '../../../data/TB-1-caratteristiche_bonus.json';
 import WalletBox from '../shared/WalletBox';
 import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
 
@@ -97,7 +97,7 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
   useEffect(() => {
     if (race && (!characterData.background?.languages)) {
       const baseLangs = {};
-      const raceId = race.id || getRaceId(race.popolo);
+      const raceId = race.id_popolo || getRaceId(race.nome);
       if (raceId) {
         const rlList = raceLanguagesData.filter(rl => rl.race_id === raceId);
         rlList.forEach(rl => {
@@ -468,8 +468,8 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '1.5rem' }}>
         <div style={{ padding: '1rem', border: '1px solid var(--theme-race-border)', borderRadius: '0.6rem', background: 'var(--theme-race-bg)' }}>
           <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-race-text)' }}>Popolo</div>
-          <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-race-text)', marginTop: '0.2rem' }}>{race?.popolo}</div>
-          <div style={{ fontSize: '0.75rem', color: 'var(--theme-race-text)', opacity: 0.85, marginTop: '0.15rem' }}>{race?.['note (umani/non umani)']}</div>
+          <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-race-text)', marginTop: '0.2rem' }}>{race?.nome}</div>
+          <div style={{ fontSize: '0.75rem', color: 'var(--theme-race-text)', opacity: 0.85, marginTop: '0.15rem' }}>{race?.categoria || race?.['note (umani/non umani)']}</div>
         </div>
         <div style={{ padding: '1rem', border: '1px solid var(--theme-profession-border)', borderRadius: '0.6rem', background: 'var(--theme-profession-bg)' }}>
           <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-profession-text)' }}>Professione</div>

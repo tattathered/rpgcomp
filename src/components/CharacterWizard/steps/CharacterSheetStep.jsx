@@ -2,7 +2,8 @@ import { useState, useMemo, useEffect } from 'react';
 import { Printer, Sparkles, AlertCircle, Heart, Zap, Shield, User, Globe, BookOpen, Scroll, Save } from 'lucide-react';
 import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
 import secondarySkillsList from '../../../data/Tabella-abilita_secondarie.json';
-import gradiLingue from '../../../data/TGP_1-gradi_conoscenze_lingue.json';
+
+import gradiLingue from '../../../data/TGP-1-gradi_conoscenze_lingue.json';
 import { getSpellLimitInfo, getSpellsForList } from '../../../utils/magicHelpers';
 import {
   getBonus,
@@ -35,6 +36,15 @@ const getMaxRanks = (skillName) => {
     'corazza di piastre': 9
   };
   return limits[skillName.toLowerCase()] || null;
+};
+
+const TIPO_LABELS = {
+  'F': { label: 'Forza', color: '#dc2626' },
+  'E': { label: 'Elementale', color: '#2563eb' },
+  'A': { label: 'Accessorio', color: '#059669' },
+  'I': { label: 'Informazione', color: '#7c3aed' },
+  'P': { label: 'Passivo', color: '#ca8a04' },
+  'U': { label: 'Utilità', color: '#0891b2' },
 };
 
 const getArmorSkillName = (armorName) => {
@@ -506,8 +516,8 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginTop: '1rem' }}>
             <div style={{ padding: '1rem', border: '1px solid var(--theme-race-border)', borderRadius: '0.6rem', background: 'var(--theme-race-bg)' }}>
               <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-race-text)' }}>Popolo</div>
-              <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-race-text)', marginTop: '0.2rem' }}>{race?.popolo}</div>
-              <div style={{ fontSize: '0.75rem', color: 'var(--theme-race-text)', opacity: 0.85, marginTop: '0.15rem' }}>{race?.['note (umani/non umani)']}</div>
+              <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-race-text)', marginTop: '0.2rem' }}>{race?.nome || race?.popolo}</div>
+              <div style={{ fontSize: '0.75rem', color: 'var(--theme-race-text)', opacity: 0.85, marginTop: '0.15rem' }}>{race?.categoria || race?.['note (umani/non umani)']}</div>
             </div>
             <div style={{ padding: '1rem', border: '1px solid var(--theme-profession-border)', borderRadius: '0.6rem', background: 'var(--theme-profession-bg)' }}>
               <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-profession-text)' }}>Professione</div>
@@ -976,28 +986,39 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
                         <table className="w-full text-left text-xs border-collapse">
                           <thead>
                             <tr className="text-[10px] font-bold border-b" style={{ backgroundColor: 'rgba(254, 226, 226, 0.3)', borderBottomColor: 'var(--theme-spell-lists-border)', color: 'var(--theme-spell-lists-text)' }}>
-                              <th className="px-4 py-1.5 text-center w-12">Livello</th>
-                              <th className="px-4 py-1.5 w-40">Incantesimo</th>
-                              <th className="px-4 py-1.5 w-24 text-center">Tipo</th>
-                              <th className="px-4 py-1.5">Effetto / Descrizione</th>
+                              <th className="px-2 py-1.5 text-center w-8">#</th>
+                              <th className="px-2 py-1.5">Incantesimo</th>
+                              <th className="px-2 py-1.5 w-20">Classe</th>
+                              <th className="px-2 py-1.5 text-center w-4" title="Istantaneo">*</th>
+                              <th className="px-2 py-1.5 w-16">Efficacia</th>
+                              <th className="px-2 py-1.5 w-14">Durata</th>
+                              <th className="px-2 py-1.5 w-14">Raggio</th>
+                              <th className="px-2 py-1.5">Descrizione</th>
                             </tr>
                           </thead>
                           <tbody>
                             {spells.length === 0 ? (
                               <tr>
-                                <td colSpan="4" className="p-3 text-center text-gray-400 italic">
+                                <td colSpan="8" className="p-3 text-center text-gray-400 italic">
                                   Nessun incantesimo utilizzabile a questo livello.
                                 </td>
                               </tr>
                             ) : (
-                              spells.map((s, i) => (
+                              spells.map((s, i) => {
+                                const tipoInfo = TIPO_LABELS[s.tipo_incantesimo] || { label: s.tipo_incantesimo || '—', color: '#6b7280' };
+                                return (
                                 <tr key={i} className="hover:bg-red-50/10" style={{ borderBottom: i === spells.length - 1 ? 'none' : '1px solid var(--theme-spell-lists-border)' }}>
-                                  <td className="px-4 py-2 text-center font-bold bg-red-50/10" style={{ color: 'var(--theme-spell-lists-text)' }}>{s.livello}</td>
-                                  <td className="px-4 py-2 font-bold text-gray-900">{s.nome_incantesimo}</td>
-                                  <td className="px-4 py-2 text-center text-gray-500 text-[10px]">{s.tipo_incantesimo || '—'}</td>
-                                  <td className="px-4 py-2 text-gray-600 text-[11px] whitespace-normal leading-relaxed">{s.descrizione_incantesimo}</td>
+                                  <td className="px-2 py-2 text-center font-bold" style={{ color: 'var(--theme-spell-lists-text)', fontSize: '0.75rem' }}>{s.livello}</td>
+                                  <td className="px-2 py-2 font-bold text-gray-900" style={{ fontSize: '0.75rem' }}>{s.nome_incantesimo}</td>
+                                  <td className="px-2 py-2 text-center" style={{ fontSize: '0.65rem', fontWeight: 700, color: tipoInfo.color }}>{tipoInfo.label}</td>
+                                  <td className="px-2 py-2 text-center" style={{ fontSize: '0.75rem', fontWeight: 800, color: '#dc2626' }}>{s.istantaneo ? '*' : ''}</td>
+                                  <td className="px-2 py-2" style={{ fontSize: '0.68rem', color: '#64748b' }}>{s.efficacia || '—'}</td>
+                                  <td className="px-2 py-2" style={{ fontSize: '0.68rem', color: '#64748b' }}>{s.durata || '—'}</td>
+                                  <td className="px-2 py-2" style={{ fontSize: '0.68rem', color: '#64748b' }}>{s.raggio_azione || '—'}</td>
+                                  <td className="px-2 py-2 text-gray-600" style={{ fontSize: '0.68rem', lineHeight: '1.3' }}>{s.descrizione_incantesimo}</td>
                                 </tr>
-                              ))
+                                );
+                              })
                             )}
                           </tbody>
                         </table>

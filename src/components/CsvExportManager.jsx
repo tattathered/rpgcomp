@@ -1,15 +1,15 @@
 import { Download, FileSpreadsheet, CheckCircle2 } from 'lucide-react';
 import languagesData from '../data/languages.json';
-import racesData from '../data/races.json';
+import racesData from '../data/TB-3-modifiche_speciali_popolo.json';
 import raceLanguagesData from '../data/race_languages.json';
-import raceAdSkillsData from '../data/race_adolescence_skills.json';
+import raceAdSkillsData from '../data/TGP-5-sviluppo_abilita_adolescenza.json';
 import professionsData from '../data/professions.json';
-import devCostsData from '../data/profession_development_costs.json';
+import devCostsData from '../data/TGP-4-sviluppo_abilita.json';
 import levelBonusesData from '../data/profession_level_bonuses.json';
 import skillsData from '../data/skills.json';
 import spellListsData from '../data/spell_lists.json';
-import spellsData from '../data/spells.json';
-import equipmentData from '../data/equipment.json';
+import spellsData from '../data/Tabella-elenco_incantesimi.json';
+import equipmentData from '../data/TS-4-equipaggiamento.json';
 
 export default function CsvExportManager() {
   const downloadCSV = (filename, headers, rows) => {
@@ -49,20 +49,20 @@ export default function CsvExportManager() {
 
   const exportRaces = () => {
     const headers = [
-      'id', 'name_it', 'name_en', 'category_it', 'category_en', 'is_human',
+      'id_popolo', 'nome', 'categoria', 'umano',
       'mod_fr', 'mod_ag', 'mod_co', 'mod_in', 'mod_it', 'mod_pr',
       'mod_tr_ess', 'mod_tr_fls', 'mod_tr_vel', 'mod_tr_mal',
-      'background_points', 'extra_language_points', 'spell_list_learn_chance',
-      'description_it', 'description_en'
+      'punti_background', 'punti_lingue_extra', 'probabilita_apprendimento_liste',
+      'descrizione'
     ];
     const rows = racesData.map(r => [
-      r.id, r.name_it, r.name_en, r.category_it, r.category_en, r.is_human,
+      r.id_popolo, r.nome, r.categoria, r.umano,
       r.mod_fr, r.mod_ag, r.mod_co, r.mod_in, r.mod_it, r.mod_pr,
       r.mod_tr_ess, r.mod_tr_fls, r.mod_tr_vel, r.mod_tr_mal,
-      r.background_points, r.extra_language_points, r.spell_list_learn_chance,
-      r.description_it || '', r.description_en || ''
+      r.punti_background, r.punti_lingue_extra, r.probabilita_apprendimento_liste,
+      r.descrizione || ''
     ]);
-    downloadCSV('races.csv', headers, rows);
+    downloadCSV('TB-3-modifiche_speciali_popolo.csv', headers, rows);
   };
 
   const exportRaceLanguages = () => {
@@ -74,11 +74,11 @@ export default function CsvExportManager() {
   };
 
   const exportRaceAdSkills = () => {
-    const headers = ['race_id', 'skill_id', 'ranks'];
+    const headers = ['id_popolo', 'id_abilita', 'gradi'];
     const rows = raceAdSkillsData.map(ra => [
-      ra.race_id, ra.skill_id, ra.ranks
+      ra.id_popolo, ra.id_abilita, ra.gradi
     ]);
-    downloadCSV('race_adolescence_skills.csv', headers, rows);
+    downloadCSV('TGP-5-sviluppo_abilita_adolescenza.csv', headers, rows);
   };
 
   const exportProfessions = () => {
@@ -95,11 +95,11 @@ export default function CsvExportManager() {
   };
 
   const exportDevCosts = () => {
-    const headers = ['profession_id', 'skill_category', 'cost'];
+    const headers = ['id_professione', 'categoria_abilita', 'costo'];
     const rows = devCostsData.map(dc => [
-      dc.profession_id, dc.skill_category, dc.cost
+      dc.id_professione, dc.categoria_abilita, dc.costo
     ]);
-    downloadCSV('profession_development_costs.csv', headers, rows);
+    downloadCSV('TGP-4-sviluppo_abilita.csv', headers, rows);
   };
 
   const exportLevelBonuses = () => {
@@ -134,48 +134,108 @@ export default function CsvExportManager() {
     downloadCSV('spell_lists.csv', headers, rows);
   };
 
+  // Build mapping: nome_lista (UPPERCASE) -> spell_lists.json id
+  const listNameToIdMap = {};
+  spellListsData.forEach(reg => {
+    const key = (reg.name_it || '').toUpperCase().trim();
+    listNameToIdMap[key] = reg.id;
+  });
+
+  // Additional manual mappings for lists not present in spell_lists.json
+  // (some lists use slightly different naming conventions)
+  const manualOverrides = {
+    'FORMULE DI PASSAGGIO': 'gateways',
+    'FORMULE D\'INCANTESIMO': 'spell_ways',
+    'FORMULE DELL\'ESSENZA': 'essence_ways',
+    'CONTROLLO SPIRITUALE': 'spirit_mastery',
+    'PERCEZIONE DELL\'ESSENZA': 'essence_perceptions',
+    'PERCEZIONE DELL\'ESSENZA (1)': 'essence_perceptions',
+    'FORMULE SENSORIE': 'detection_mastery',
+    'ARTI DELLA GUARIGIONE': 'surface_ways',
+    'DIFESA MAGICA': 'spell_defense',
+    'MOTI NATURALI': 'nature_movement',
+    'FORMULE DI MOVIMENTO': 'pathways',
+    'ARTI NATURALI': 'nature_lore',
+    'ASPETTI NATURALI': 'nature_ways',
+    'CONTROLLO ANIMALE': 'animal_mastery',
+    'FLUSSO DIRETTO': 'direct_channeling',
+    'RIGENERAZIONE ORGANICA': 'organ_ways',
+    'CANTI DEL POTERE': 'controlling_songs',
+    'CONTROLLO SONICO': 'sound_mastery',
+  };
+
+  const getSpellListId = (nomeLista) => {
+    const key = (nomeLista || '').toUpperCase().trim();
+    return manualOverrides[key] || listNameToIdMap[key] || key;
+  };
+
+  const slugify = (str) => {
+    return (str || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '_')
+      .replace(/^_|_$/g, '');
+  };
+
   const exportSpells = () => {
     const headers = [
       'id', 'spell_list_id', 'level', 'name_it', 'name_en', 
-      'type_it', 'type_en', 'preparation_it', 'preparation_en', 
+      'class_it', 'class_en', 'istantaneo', 'efficacia', 'durata', 'raggio_azione',
       'description_it', 'description_en'
     ];
-    const rows = spellsData.map(s => [
-      s.id, s.spell_list_id, s.level, s.name_it, s.name_en,
-      s.type_it || '', s.type_en || '',
-      s.preparation_it || '', s.preparation_en || '',
-      s.description_it || '', s.description_en || ''
-    ]);
+    
+    const rows = [];
+    const lists = spellsData.liste_incantesimi || [];
+    
+    lists.forEach(lista => {
+      const spellListId = getSpellListId(lista.nome_lista);
+      
+      (lista.incantesimi || []).forEach(inc => {
+        rows.push([
+          `${spellListId}_${inc.numero}_${slugify(inc.nome)}`,
+          spellListId,
+          inc.numero,
+          inc.nome,
+          '', // name_en not available
+          inc.tipologia || '',
+          '', // class_en not available
+          inc.istantaneo ? 'yes' : 'no',
+          inc.efficacia || '',
+          inc.durata || '',
+          inc.raggio_azione || '',
+          inc.descrizione || '',
+          ''  // description_en not available
+        ]);
+      });
+    });
+    
     downloadCSV('spells.csv', headers, rows);
   };
 
   const exportEquipment = () => {
     const headers = [
-      'id', 'name_it', 'name_en', 'category', 'abbreviation', 'cost_mb', 
-      'weight_kg', 'notes_it', 'notes_en', 'initial_kit', 'loadable', 
-      'description_it', 'description_en'
+      'categoria', 'nome', 'abbreviazione', 'costo_MB', 
+      'peso_kg', 'note', 'dotazione_iniziale', 'carico'
     ];
     const rows = equipmentData.map(item => [
-      item.id, item.name_it, item.name_en, item.category, item.abbreviation || '', item.cost_mb,
-      item.weight_kg !== null ? item.weight_kg : '',
-      item.notes_it || '', item.notes_en || '',
-      item.initial_kit, item.loadable, item.description_it || '', item.description_en || ''
+      item.categoria, item.nome, item.abbreviazione || '', item.costo_MB,
+      item['peso in kg'] !== null ? item['peso in kg'] : '',
+      item.note || '', item.dotazione_iniziale, item.carico
     ]);
-    downloadCSV('equipment.csv', headers, rows);
+    downloadCSV('TS-4-equipaggiamento.csv', headers, rows);
   };
 
   const exports = [
     { label: '1. Lingue (languages.csv)', count: languagesData.length, action: exportLanguages },
-    { label: '2. Popoli e Culture (races.csv)', count: racesData.length, action: exportRaces },
+    { label: '2. Modifiche Speciali Popolo (TB-3-modifiche_speciali_popolo.csv)', count: racesData.length, action: exportRaces },
     { label: '3. Lingue Popoli (race_languages.csv)', count: raceLanguagesData.length, action: exportRaceLanguages },
-    { label: '4. Gradi Adolescenza (race_adolescence_skills.csv)', count: raceAdSkillsData.length, action: exportRaceAdSkills },
+    { label: '4. Gradi Adolescenza (TGP-5-sviluppo_abilita_adolescenza.csv)', count: raceAdSkillsData.length, action: exportRaceAdSkills },
     { label: '5. Professioni (professions.csv)', count: professionsData.length, action: exportProfessions },
-    { label: '6. Costi Sviluppo (profession_development_costs.csv)', count: devCostsData.length, action: exportDevCosts },
+    { label: '6. Costi Sviluppo (TGP-4-sviluppo_abilita.csv)', count: devCostsData.length, action: exportDevCosts },
     { label: '7. Bonus Livello (profession_level_bonuses.csv)', count: levelBonusesData.length, action: exportLevelBonuses },
     { label: '8. Catalogo Abilità (skills.csv)', count: skillsData.length, action: exportSkills },
     { label: '9. Liste di Incantesimi (spell_lists.csv)', count: spellListsData.length, action: exportSpellLists },
-    { label: '10. Elenco Incantesimi (spells.csv)', count: spellsData.length, action: exportSpells },
-    { label: '11. Equipaggiamento (equipment.csv)', count: equipmentData.length, action: exportEquipment },
+    { label: '10. Elenco Incantesimi (spells.csv)', count: (spellsData.liste_incantesimi || []).reduce((sum, l) => sum + (l.incantesimi || []).length, 0), action: exportSpells },
+    { label: '11. Equipaggiamento (TS-4-equipaggiamento.csv)', count: equipmentData.length, action: exportEquipment },
   ];
 
   return (
@@ -237,7 +297,7 @@ export default function CsvExportManager() {
         <div className="mt-4 p-3 bg-indigo-50/50 border border-indigo-100 rounded-lg flex items-start gap-3">
           <CheckCircle2 className="w-5 h-5 text-indigo-600 shrink-0 mt-0.5" />
           <div className="text-xs text-indigo-900 leading-relaxed">
-            <strong>Nota di integrità:</strong> Le tabelle sono strutturate in prima forma normale (1NF) con ID stabili in inglese. Le relazioni molti-a-molti e le liste (come lingue e abilità d'adolescenza) sono state separate in tabelle associative esterne (es: <code>race_languages</code>, <code>race_adolescence_skills</code>) eliminando campi nidificati o pipe-separated.
+            <strong>Nota di integrità:</strong> Le tabelle sono strutturate in prima forma normale (1NF) con ID stabili. Le relazioni molti-a-molti e le liste (come lingue e abilità d'adolescenza) sono state separate in tabelle associative esterne eliminando campi nidificati o pipe-separati.
           </div>
         </div>
       </div>

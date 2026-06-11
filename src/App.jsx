@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Scroll, Users, Book, Settings, Save, Play, Trash2, Plus, FolderOpen, Copy, Edit, ArrowLeft, Swords, Compass, AlertTriangle, Upload, Download, LogOut, UserPlus } from 'lucide-react';
 import CharacterWizard from './components/CharacterWizard/CharacterWizard';
-import defaultEquipment from './data/TS_4-equipaggiamento.json';
+import defaultEquipment from './data/TS-4-equipaggiamento.json';
 import EquipmentCatalogManager from './components/EquipmentCatalogManager';
+import SpellCatalogManager from './components/SpellCatalogManager';
 import CombatCalculator from './components/CombatCalculator';
 import MovementManoeuvreResolver from './components/MovementManoeuvreResolver';
 import FumbleResolver from './components/FumbleResolver';
@@ -26,6 +27,7 @@ import {
   resetAllParries
 } from './services/characterService';
 import { getEquipmentCatalog, saveEquipmentCatalog } from './services/settingsService';
+import { getSpellCatalog, saveSpellCatalog } from './services/spellCatalogService';
 import { subscribeToCompanies } from './services/companyService';
 import { subscribeToCampaigns } from './services/campaignService';
 
@@ -82,6 +84,7 @@ function App() {
   
   const [activeTab, setActiveTab] = useState('creation');
   const [activeActionSubTab, setActiveActionSubTab] = useState('static');
+  const [activeSettingsSubTab, setActiveSettingsSubTab] = useState('equipment');
   const [fumbleRedirectData, setFumbleRedirectData] = useState(null);
 
   const handleRedirectToFumble = (data) => {
@@ -94,6 +97,7 @@ function App() {
   const [activeCharacter, setActiveCharacter] = useState(null);
   const [activeStepIndex, setActiveStepIndex] = useState(0);
   const [equipmentCatalog, setEquipmentCatalog] = useState(defaultEquipment);
+  const [spellCatalog, setSpellCatalog] = useState(null);
   const [companies, setCompanies] = useState([]);
   const [campaigns, setCampaigns] = useState([]);
   const [activeCampaign, setActiveCampaign] = useState(() => {
@@ -145,6 +149,14 @@ function App() {
     });
   }, [user, role]);
 
+  // Caricamento del catalogo incantesimi da Firestore
+  useEffect(() => {
+    if (!user || role !== 'GM') return;
+    getSpellCatalog(user.uid).then((catalog) => {
+      setSpellCatalog(catalog);
+    });
+  }, [user, role]);
+
   // Sincronizza lo stato locale della campagna con i dati aggiornati del server
   const currentActiveCampaign = useMemo(() => {
     if (!activeCampaign) return null;
@@ -166,6 +178,16 @@ function App() {
     } catch (err) {
       console.error(err);
       alert("Errore durante il salvataggio del catalogo attrezzatura: " + err.message);
+    }
+  };
+
+  const handleUpdateSpellCatalog = async (newCatalog) => {
+    setSpellCatalog(newCatalog);
+    try {
+      await saveSpellCatalog(user.uid, newCatalog);
+    } catch (err) {
+      console.error(err);
+      alert("Errore durante il salvataggio del catalogo incantesimi: " + err.message);
     }
   };
 
@@ -545,7 +567,7 @@ function App() {
                             </span>
                           </div>
                           <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>
-                            <p style={{ margin: '0.2rem 0' }}><strong>Popolo:</strong> {char.race?.popolo || '—'}</p>
+                            <p style={{ margin: '0.2rem 0' }}><strong>Popolo:</strong> {char.race?.nome || char.race?.popolo || '—'}</p>
                             <p style={{ margin: '0.2rem 0' }}><strong>Professione:</strong> {char.profession?.professione || '—'}</p>
                             {char.stats && (
                               <div style={{ marginTop: '0.75rem', borderTop: '1px dashed var(--border-color)', paddingTop: '0.5rem' }}>
@@ -646,99 +668,227 @@ function App() {
           </ErrorBoundary>
         )}
         {activeTab === 'actions' && (
-          <div className="wizard-layout">
-            {/* Sidebar per Risoluzione azioni */}
-            <div className="wizard-sidebar card">
-              <div className="card-header">
-                <h3 className="card-title" style={{ fontSize: '1rem' }}>Risoluzione Azioni</h3>
-              </div>
-              <div className="card-body wizard-steps">
-                {ACTION_SUB_TABS.map(tab => {
-                  const Icon = tab.icon;
-                  const isActive = activeActionSubTab === tab.id;
-                  return (
-                    <div
-                      key={tab.id}
-                      className={`wizard-step clickable ${isActive ? 'active' : ''}`}
-                      onClick={() => {
-                        setActiveActionSubTab(tab.id);
-                        setFumbleRedirectData(null);
-                      }}
-                    >
-                      <Icon className="w-4 h-4" />
-                      <span style={{ fontSize: '0.875rem' }}>{tab.label}</span>
-                    </div>
-                  );
-                })}
-              </div>
+          <div>
+            {/* Submenu Risoluzione Azioni — 3 colonne */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: '0.5rem',
+              marginBottom: '1.5rem',
+            }}>
+              {/* Prima riga */}
+              {['static', 'movement', null].map((id, idx) => {
+                if (!id) return <div key={`r1-${idx}`} />;
+                const tab = ACTION_SUB_TABS.find(t => t.id === id);
+                if (!tab) return <div key={id} />;
+                const Icon = tab.icon;
+                return (
+                  <button
+                    key={id}
+                    onClick={() => { setActiveActionSubTab(id); setFumbleRedirectData(null); }}
+                    style={{
+                      padding: '0.6rem 0.5rem',
+                      fontSize: '0.8rem',
+                      fontWeight: activeActionSubTab === id ? 800 : 600,
+                      textAlign: 'center',
+                      border: `2px solid ${activeActionSubTab === id ? 'var(--primary-color)' : 'var(--border-color)'}`,
+                      borderRadius: '8px',
+                      backgroundColor: activeActionSubTab === id ? 'var(--primary-light)' : '#fafafa',
+                      color: activeActionSubTab === id ? 'var(--primary-color)' : 'var(--text-muted)',
+                      cursor: 'pointer',
+                      transition: 'all 0.15s',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '0.35rem',
+                    }}
+                    className="hover:brightness-95"
+                  >
+                    <Icon className="w-4 h-4" />
+                    <span>Manovre statiche</span>
+                  </button>
+                );
+              })}
+              {/* Seconda riga */}
+              {['combat', 'criticals', 'fumbles'].map((id) => {
+                const tab = ACTION_SUB_TABS.find(t => t.id === id);
+                if (!tab) return <div key={id} />;
+                const Icon = tab.icon;
+                return (
+                  <button
+                    key={id}
+                    onClick={() => { setActiveActionSubTab(id); setFumbleRedirectData(null); }}
+                    style={{
+                      padding: '0.6rem 0.5rem',
+                      fontSize: '0.8rem',
+                      fontWeight: activeActionSubTab === id ? 800 : 600,
+                      textAlign: 'center',
+                      border: `2px solid ${activeActionSubTab === id ? 'var(--primary-color)' : 'var(--border-color)'}`,
+                      borderRadius: '8px',
+                      backgroundColor: activeActionSubTab === id ? 'var(--primary-light)' : '#fafafa',
+                      color: activeActionSubTab === id ? 'var(--primary-color)' : 'var(--text-muted)',
+                      cursor: 'pointer',
+                      transition: 'all 0.15s',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '0.35rem',
+                    }}
+                    className="hover:brightness-95"
+                  >
+                    <Icon className="w-4 h-4" />
+                    <span>{tab.label}</span>
+                  </button>
+                );
+              })}
+              {/* Terza riga */}
+              {['spells_base', 'spells_direct', null].map((id, idx) => {
+                if (!id) return <div key={`r3-${idx}`} />;
+                const tab = ACTION_SUB_TABS.find(t => t.id === id);
+                if (!tab) return <div key={id} />;
+                const Icon = tab.icon;
+                return (
+                  <button
+                    key={id}
+                    onClick={() => { setActiveActionSubTab(id); setFumbleRedirectData(null); }}
+                    style={{
+                      padding: '0.6rem 0.5rem',
+                      fontSize: '0.8rem',
+                      fontWeight: activeActionSubTab === id ? 800 : 600,
+                      textAlign: 'center',
+                      border: `2px solid ${activeActionSubTab === id ? 'var(--primary-color)' : 'var(--border-color)'}`,
+                      borderRadius: '8px',
+                      backgroundColor: activeActionSubTab === id ? 'var(--primary-light)' : '#fafafa',
+                      color: activeActionSubTab === id ? 'var(--primary-color)' : 'var(--text-muted)',
+                      cursor: 'pointer',
+                      transition: 'all 0.15s',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '0.35rem',
+                      opacity: 0.5,
+                    }}
+                    className="hover:brightness-95"
+                  >
+                    <Icon className="w-4 h-4" />
+                    <span>{tab.label}</span>
+                  </button>
+                );
+              })}
             </div>
 
             {/* Contenuto Attivo */}
-            <div className="wizard-content" style={{ flex: 1 }}>
-              {activeActionSubTab === 'combat' && (
-                <ErrorBoundary>
-                  <CombatCalculator 
-                    savedCharacters={activeCampaignCharacters}
-                    equipmentCatalog={equipmentCatalog}
-                    onUpdateHpSubiti={handleUpdateCharacterHpSubiti}
-                    onUpdateBoSpesoParata={handleUpdateCharacterBoSpesoParata}
-                    onResetAllParries={handleResetAllParries}
-                  />
-                </ErrorBoundary>
-              )}
-              {activeActionSubTab === 'movement' && (
-                <ErrorBoundary>
-                  <MovementManoeuvreResolver 
-                    savedCharacters={activeCampaignCharacters}
-                    onRedirectToFumble={handleRedirectToFumble}
-                  />
-                </ErrorBoundary>
-              )}
-              {activeActionSubTab === 'fumbles' && (
-                <ErrorBoundary>
-                  <FumbleResolver 
-                    key={fumbleRedirectData ? `${fumbleRedirectData.tableCode}-${fumbleRedirectData.difficulty}-${fumbleRedirectData.diceRoll}` : 'fumble-resolver-standalone'}
-                    initialTableCode={fumbleRedirectData?.tableCode || 'TTM-1'}
-                    initialManoeuvreDifficulty={fumbleRedirectData?.difficulty || 'Normale'}
-                    initialDiceRoll={fumbleRedirectData?.diceRoll || 50}
-                    initialModifierCustom={fumbleRedirectData?.modifierCustom || 0}
-                    showTitle={true}
-                  />
-                </ErrorBoundary>
-              )}
-              {activeActionSubTab === 'static' && (
-                <ErrorBoundary>
-                  <StaticManoeuvreResolver 
-                    savedCharacters={activeCampaignCharacters}
-                  />
-                </ErrorBoundary>
-              )}
-              {['criticals', 'spells_base', 'spells_direct'].includes(activeActionSubTab) && (
-                <div className="card p-8 text-center text-gray-500 max-w-lg mx-auto mt-10">
-                  <Compass className="w-16 h-16 mx-auto text-blue-500/30 mb-4 animate-pulse" />
-                  <h3 className="text-lg font-black text-gray-800 uppercase tracking-wider mb-2">Funzionalità in Arrivo</h3>
-                  <p className="text-sm text-gray-500 leading-relaxed mb-6">
-                    La risoluzione di questa specifica azione ({
-                      activeActionSubTab === 'criticals' ? 'Colpi Critici' :
-                      activeActionSubTab === 'spells_base' ? 'Incantesimi Base' : 'Incantesimi Diretti'
-                    }) sarà sviluppata e resa disponibile nella v2.
-                  </p>
-                  <button className="btn btn-primary text-xs uppercase font-extrabold px-6" onClick={() => setActiveActionSubTab('combat')}>
-                    Ritorna al Combattimento
-                  </button>
-                </div>
-              )}
-            </div>
+            {activeActionSubTab === 'combat' && (
+              <ErrorBoundary>
+                <CombatCalculator 
+                  savedCharacters={activeCampaignCharacters}
+                  equipmentCatalog={equipmentCatalog}
+                  onUpdateHpSubiti={handleUpdateCharacterHpSubiti}
+                  onUpdateBoSpesoParata={handleUpdateCharacterBoSpesoParata}
+                  onResetAllParries={handleResetAllParries}
+                />
+              </ErrorBoundary>
+            )}
+            {activeActionSubTab === 'movement' && (
+              <ErrorBoundary>
+                <MovementManoeuvreResolver 
+                  savedCharacters={activeCampaignCharacters}
+                  onRedirectToFumble={handleRedirectToFumble}
+                />
+              </ErrorBoundary>
+            )}
+            {activeActionSubTab === 'fumbles' && (
+              <ErrorBoundary>
+                <FumbleResolver 
+                  key={fumbleRedirectData ? `${fumbleRedirectData.tableCode}-${fumbleRedirectData.difficulty}-${fumbleRedirectData.diceRoll}` : 'fumble-resolver-standalone'}
+                  initialTableCode={fumbleRedirectData?.tableCode || 'TTM-1'}
+                  initialManoeuvreDifficulty={fumbleRedirectData?.difficulty || 'Normale'}
+                  initialDiceRoll={fumbleRedirectData?.diceRoll || 50}
+                  initialModifierCustom={fumbleRedirectData?.modifierCustom || 0}
+                  showTitle={true}
+                />
+              </ErrorBoundary>
+            )}
+            {activeActionSubTab === 'static' && (
+              <ErrorBoundary>
+                <StaticManoeuvreResolver 
+                  savedCharacters={activeCampaignCharacters}
+                />
+              </ErrorBoundary>
+            )}
+            {['criticals', 'spells_base', 'spells_direct'].includes(activeActionSubTab) && (
+              <div className="card p-8 text-center text-gray-500 max-w-lg mx-auto mt-10">
+                <Compass className="w-16 h-16 mx-auto text-blue-500/30 mb-4 animate-pulse" />
+                <h3 className="text-lg font-black text-gray-800 uppercase tracking-wider mb-2">Funzionalità in Arrivo</h3>
+                <p className="text-sm text-gray-500 leading-relaxed mb-6">
+                  La risoluzione di questa specifica azione ({
+                    activeActionSubTab === 'criticals' ? 'Colpi Critici' :
+                    activeActionSubTab === 'spells_base' ? 'Incantesimi Base' : 'Incantesimi Diretti'
+                  }) sarà sviluppata e resa disponibile nella v2.
+                </p>
+                <button className="btn btn-primary text-xs uppercase font-extrabold px-6" onClick={() => setActiveActionSubTab('combat')}>
+                  Ritorna al Combattimento
+                </button>
+              </div>
+            )}
           </div>
         )}
         {activeTab === 'settings' && (
-          <ErrorBoundary>
-            <CsvExportManager />
-            <EquipmentCatalogManager 
-              catalog={equipmentCatalog} 
-              onUpdate={handleUpdateCatalog} 
-            />
-          </ErrorBoundary>
+          <div>
+            {/* Submenu Impostazioni — orizzontale */}
+            <div style={{
+              display: 'flex',
+              gap: '0.5rem',
+              marginBottom: '1.5rem',
+            }}>
+              {[
+                { id: 'equipment', label: 'Equipaggiamento' },
+                { id: 'spells', label: 'Incantesimi' },
+                { id: 'export', label: 'Esportazione (CSV)' },
+              ].map(tab => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveSettingsSubTab(tab.id)}
+                  style={{
+                    padding: '0.6rem 1.25rem',
+                    fontSize: '0.85rem',
+                    fontWeight: activeSettingsSubTab === tab.id ? 800 : 600,
+                    textAlign: 'center',
+                    border: `2px solid ${activeSettingsSubTab === tab.id ? 'var(--primary-color)' : 'var(--border-color)'}`,
+                    borderRadius: '8px',
+                    backgroundColor: activeSettingsSubTab === tab.id ? 'var(--primary-light)' : '#fafafa',
+                    color: activeSettingsSubTab === tab.id ? 'var(--primary-color)' : 'var(--text-muted)',
+                    cursor: 'pointer',
+                    transition: 'all 0.15s',
+                    flex: 1,
+                    maxWidth: '240px',
+                  }}
+                  className="hover:brightness-95"
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Contenuto condizionale */}
+            <ErrorBoundary>
+              {activeSettingsSubTab === 'equipment' && (
+                <EquipmentCatalogManager 
+                  catalog={equipmentCatalog} 
+                  onUpdate={handleUpdateCatalog} 
+                />
+              )}
+              {activeSettingsSubTab === 'spells' && spellCatalog && (
+                <SpellCatalogManager 
+                  catalog={spellCatalog}
+                  onUpdate={handleUpdateSpellCatalog}
+                />
+              )}
+              {activeSettingsSubTab === 'export' && (
+                <CsvExportManager />
+              )}
+            </ErrorBoundary>
+          </div>
         )}
       </main>
     </div>

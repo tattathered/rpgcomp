@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Compass, Dices, AlertTriangle, Check, Info, ArrowRight, HelpCircle } from 'lucide-react';
-import manovreData from '../data/TM_1-manovre_in_movimento.json';
+import manovreData from '../data/TM-1-manovre_in_movimento.json';
 import primarySkillsList from '../data/Tabella-abilita_primarie.json';
 import secondarySkillsList from '../data/Tabella-abilita_secondarie.json';
 import { getCharacterSkillBonus, fmt } from '../utils/skillHelpers';
@@ -252,7 +252,7 @@ export default function MovementManoeuvreResolver({ savedCharacters, onRedirectT
                   <option value="custom">-- Personaggio Personalizzato / PNG --</option>
                   {savedCharacters.map(char => (
                     <option key={char.id} value={char.id}>
-                      {char.name} (Liv. {1 + (char.levelDevelopments || []).length} - {char.race?.popolo} {char.profession?.professione})
+                      {char.name} (Liv. {1 + (char.levelDevelopments || []).length} - {char.race?.nome || char.race?.popolo} {char.profession?.professione})
                     </option>
                   ))}
                 </select>

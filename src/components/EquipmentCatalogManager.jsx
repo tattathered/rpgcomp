@@ -1,4 +1,6 @@
 import { useState, useMemo } from 'react';
+
+
 import { Plus, Trash2, Copy, Edit, ArrowLeft, Save, Search } from 'lucide-react';
 
 export default function EquipmentCatalogManager({ catalog, onUpdate }) {
@@ -23,12 +25,22 @@ export default function EquipmentCatalogManager({ catalog, onUpdate }) {
   const filteredItems = useMemo(() => {
     return catalog.map((item, index) => ({ ...item, originalIndex: index }))
       .filter(item => {
-        const matchesSearch = item.nome.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                              (item.note && item.note.toLowerCase().includes(searchQuery.toLowerCase()));
-        const matchesCategory = filterCategory === 'all' || item.categoria === filterCategory;
+        const matchesSearch = !searchQuery.trim() || 
+          item.nome.toLowerCase().includes(searchQuery.toLowerCase()) || 
+          (item.note && item.note.toLowerCase().includes(searchQuery.toLowerCase()));
+        // Se c'è una ricerca testuale, ignora il filtro categoria
+        const matchesCategory = searchQuery.trim() ? true : (filterCategory === 'all' || item.categoria === filterCategory);
         return matchesSearch && matchesCategory;
       });
   }, [catalog, searchQuery, filterCategory]);
+
+  // Ordina le categorie secondo un ordine predefinito
+  const categoryOrder = ['armi', 'armatura', 'abbigliamento', 'proiettili', 'contenitori', 'campo', 'strumenti', 'vitto', 'alloggio'];
+  const sortedCategories = [...categoryOrder].sort((a, b) => {
+    const ai = categoryOrder.indexOf(a);
+    const bi = categoryOrder.indexOf(b);
+    return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
+  });
 
   const handleOpenNew = () => {
     setFormState({
@@ -265,7 +277,44 @@ export default function EquipmentCatalogManager({ catalog, onUpdate }) {
       </div>
 
       <div className="card-body">
-        {/* Filtri */}
+        {/* Categorie: pulsanti orizzontali */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '0.75rem' }}>
+          {sortedCategories.map(cat => (
+            <button
+              key={cat}
+              onClick={() => setFilterCategory(cat)}
+              className={`btn ${filterCategory === cat ? 'btn-primary' : 'btn-outline'}`}
+              style={{ 
+                padding: '0.35rem 0.7rem', 
+                fontSize: '0.75rem',
+                textTransform: 'uppercase',
+                fontWeight: 700,
+                backgroundColor: filterCategory === cat ? 'var(--primary-color)' : 'transparent',
+                borderColor: filterCategory === cat ? 'var(--primary-color)' : '#cbd5e1',
+                color: filterCategory === cat ? '#fff' : '#475569'
+              }}
+            >
+              {cat}
+            </button>
+          ))}
+          <button
+            onClick={() => setFilterCategory('all')}
+            className={`btn ${filterCategory === 'all' ? 'btn-primary' : 'btn-outline'}`}
+            style={{ 
+              padding: '0.35rem 0.7rem', 
+              fontSize: '0.75rem',
+              textTransform: 'uppercase',
+              fontWeight: 700,
+              backgroundColor: filterCategory === 'all' ? 'var(--primary-color)' : 'transparent',
+              borderColor: filterCategory === 'all' ? 'var(--primary-color)' : '#cbd5e1',
+              color: filterCategory === 'all' ? '#fff' : '#475569'
+            }}
+          >
+            TUTTI
+          </button>
+        </div>
+
+        {/* Ricerca testuale */}
         <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
           <div style={{ position: 'relative', flex: 1, minWidth: '200px' }}>
             <Search className="w-4 h-4 text-gray-400" style={{ position: 'absolute', left: '0.6rem', top: '50%', transform: 'translateY(-50%)' }} />
@@ -275,18 +324,30 @@ export default function EquipmentCatalogManager({ catalog, onUpdate }) {
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
               className="w-full p-2 border rounded text-sm"
-              style={{ paddingLeft: '2rem' }}
+              style={{ paddingLeft: '2rem', paddingRight: '2rem' }}
             />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                style={{
+                  position: 'absolute',
+                  right: '0.4rem',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  color: '#94a3b8',
+                  fontSize: '1.1rem',
+                  padding: '0.2rem',
+                  lineHeight: 1
+                }}
+                title="Cancella ricerca"
+              >
+                ×
+              </button>
+            )}
           </div>
-          <select 
-            value={filterCategory} 
-            onChange={e => setFilterCategory(e.target.value)} 
-            className="p-2 border rounded text-sm bg-white"
-            style={{ minWidth: '150px' }}
-          >
-            <option value="all">Tutte le Categorie</option>
-            {categories.map(c => <option key={c} value={c}>{c.toUpperCase()}</option>)}
-          </select>
         </div>
 
         {/* Tabella */}

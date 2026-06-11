@@ -86,7 +86,7 @@
     "realm": "essence",
     "category": "profession",
     "profession_id": "mage",
-    "description_it": "Lista degli incantesimi: Geomanzia (Maghi Maghi).",
+    "description_it": "Lista degli incantesimi: Geomanzia (Mago).",
     "description_en": null
   },
   {
@@ -96,7 +96,7 @@
     "realm": "essence",
     "category": "profession",
     "profession_id": "mage",
-    "description_it": "Lista degli incantesimi: Criomanzia (Maghi Maghi).",
+    "description_it": "Lista degli incantesimi: Criomanzia (Mago).",
     "description_en": null
   },
   {
@@ -106,7 +106,7 @@
     "realm": "essence",
     "category": "profession",
     "profession_id": "mage",
-    "description_it": "Lista degli incantesimi: Fotomanzia (Maghi Maghi).",
+    "description_it": "Lista degli incantesimi: Fotomanzia (Mago).",
     "description_en": null
   },
   {
@@ -116,7 +116,7 @@
     "realm": "essence",
     "category": "profession",
     "profession_id": "mage",
-    "description_it": "Lista degli incantesimi: Piromanzia (Maghi Maghi).",
+    "description_it": "Lista degli incantesimi: Piromanzia (Mago).",
     "description_en": null
   },
   {
@@ -126,7 +126,7 @@
     "realm": "essence",
     "category": "profession",
     "profession_id": "mage",
-    "description_it": "Lista degli incantesimi: Ponte arcano (Maghi Maghi).",
+    "description_it": "Lista degli incantesimi: Ponte arcano (Mago).",
     "description_en": null
   },
   {
@@ -136,7 +136,7 @@
     "realm": "essence",
     "category": "profession",
     "profession_id": "mage",
-    "description_it": "Lista degli incantesimi: Idromanzia (Maghi Maghi).",
+    "description_it": "Lista degli incantesimi: Idromanzia (Mago).",
     "description_en": null
   },
   {
@@ -146,7 +146,7 @@
     "realm": "essence",
     "category": "profession",
     "profession_id": "mage",
-    "description_it": "Lista degli incantesimi: Adattamento (Maghi Maghi).",
+    "description_it": "Lista degli incantesimi: Adattamento (Mago).",
     "description_en": null
   },
   {
@@ -156,7 +156,7 @@
     "realm": "essence",
     "category": "profession",
     "profession_id": "mage",
-    "description_it": "Lista degli incantesimi: Aeromanzia (Maghi Maghi).",
+    "description_it": "Lista degli incantesimi: Aeromanzia (Mago).",
     "description_en": null
   },
   {
@@ -166,7 +166,7 @@
     "realm": "essence",
     "category": "profession",
     "profession_id": "bard",
-    "description_it": "Lista degli incantesimi: Canti del potere (Bardi Bardi).",
+    "description_it": "Lista degli incantesimi: Canti del potere (Bardo).",
     "description_en": null
   },
   {
@@ -176,7 +176,7 @@
     "realm": "essence",
     "category": "profession",
     "profession_id": "bard",
-    "description_it": "Lista degli incantesimi: Conoscenza (Bardi Bardi).",
+    "description_it": "Lista degli incantesimi: Conoscenza (Bardo).",
     "description_en": null
   },
   {
@@ -186,7 +186,7 @@
     "realm": "essence",
     "category": "profession",
     "profession_id": "bard",
-    "description_it": "Lista degli incantesimi: Sapienza (Bardi Bardi).",
+    "description_it": "Lista degli incantesimi: Sapienza (Bardo).",
     "description_en": null
   },
   {
@@ -196,7 +196,7 @@
     "realm": "essence",
     "category": "profession",
     "profession_id": "bard",
-    "description_it": "Lista degli incantesimi: Controllo sonico (Bardi Bardi).",
+    "description_it": "Lista degli incantesimi: Controllo sonico (Bardo).",
     "description_en": null
   },
   {
@@ -206,7 +206,7 @@
     "realm": "channeling",
     "category": "profession",
     "profession_id": "ranger",
-    "description_it": "Lista degli incantesimi: Topomanzia (Ranger Ranger).",
+    "description_it": "Lista degli incantesimi: Topomanzia (Ranger).",
     "description_en": null
   },
   {
@@ -216,7 +216,7 @@
     "realm": "channeling",
     "category": "profession",
     "profession_id": "ranger",
-    "description_it": "Lista degli incantesimi: Formule di movimento (Ranger Ranger).",
+    "description_it": "Lista degli incantesimi: Formule di movimento (Ranger).",
     "description_en": null
   },
   {
@@ -226,7 +226,7 @@
     "realm": "channeling",
     "category": "profession",
     "profession_id": "ranger",
-    "description_it": "Lista degli incantesimi: Aspetti naturali (Ranger Ranger).",
+    "description_it": "Lista degli incantesimi: Aspetti naturali (Ranger).",
     "description_en": null
   },
   {
@@ -236,7 +236,7 @@
     "realm": "channeling",
     "category": "profession",
     "profession_id": "ranger",
-    "description_it": "Lista degli incantesimi: Arti naturali (Ranger Ranger).",
+    "description_it": "Lista degli incantesimi: Arti naturali (Ranger).",
     "description_en": null
   },
   {
@@ -326,7 +326,7 @@
     "realm": "channeling",
     "category": "profession",
     "profession_id": "animist",
-    "description_it": "Lista degli incantesimi: Botanomanzia (Animisti Animisti).",
+    "description_it": "Lista degli incantesimi: Botanomanzia (Animista).",
     "description_en": null
   },
   {
@@ -336,7 +336,7 @@
     "realm": "channeling",
     "category": "profession",
     "profession_id": "animist",
-    "description_it": "Lista degli incantesimi: Flusso diretto (Animisti Animisti).",
+    "description_it": "Lista degli incantesimi: Flusso diretto (Animista).",
     "description_en": null
   },
   {
@@ -346,7 +346,7 @@
     "realm": "channeling",
     "category": "profession",
     "profession_id": "animist",
-    "description_it": "Lista degli incantesimi: Controllo animale (Animisti Animisti).",
+    "description_it": "Lista degli incantesimi: Controllo animale (Animista).",
     "description_en": null
   },
   {
@@ -356,7 +356,7 @@
     "realm": "channeling",
     "category": "profession",
     "profession_id": "animist",
-    "description_it": "Lista degli incantesimi: Fisiorigenerazione (Animisti Animisti).",
+    "description_it": "Lista degli incantesimi: Fisiorigenerazione (Animista).",
     "description_en": null
   },
   {
@@ -366,7 +366,7 @@
     "realm": "channeling",
     "category": "profession",
     "profession_id": "animist",
-    "description_it": "Lista degli incantesimi: Emorigenerazione (Animisti Animisti).",
+    "description_it": "Lista degli incantesimi: Emorigenerazione (Animista).",
     "description_en": null
   },
   {
@@ -376,7 +376,7 @@
     "realm": "channeling",
     "category": "profession",
     "profession_id": "animist",
-    "description_it": "Lista degli incantesimi: Rigenerazione organica (Animisti Animisti).",
+    "description_it": "Lista degli incantesimi: Rigenerazione organica (Animista).",
     "description_en": null
   },
   {
@@ -386,7 +386,7 @@
     "realm": "channeling",
     "category": "profession",
     "profession_id": "animist",
-    "description_it": "Lista degli incantesimi: Purificazioni (Animisti Animisti).",
+    "description_it": "Lista degli incantesimi: Purificazioni (Animista).",
     "description_en": null
   },
   {
@@ -396,7 +396,7 @@
     "realm": "channeling",
     "category": "profession",
     "profession_id": "animist",
-    "description_it": "Lista degli incantesimi: Creazioni (Animisti Animisti).",
+    "description_it": "Lista degli incantesimi: Creazioni (Animista).",
     "description_en": null
   }
 ]

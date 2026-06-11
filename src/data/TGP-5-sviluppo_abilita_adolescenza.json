@@ -1,0 +1,1582 @@
+[
+  {
+    "id_popolo": "nani",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "umli",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "elfi_noldor",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "elfi_sindar",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "elfi_silvani",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "mezzelfi",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "hobbit",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "beorniani",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "numenoreani_neri",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "corsari",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "dorwinrim",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "dunedain",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "dunlandiani",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "esterling",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "haradrim",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "lossoth",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_citta_rohirrim",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_campagna_rohirrim",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_citta_eriadoriani",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_campagna_eriadoriani",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_citta_gondoriani",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_campagna_gondoriani",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "variag",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_dei_boschi",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "wose",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "orchi",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uruk_hai",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "mezzorchi",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "troll",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "olog_hai",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "mezzitroll",
+    "id_abilita": "nessuna_armatura",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "umli",
+    "id_abilita": "cuoio_grezzo",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "haradrim",
+    "id_abilita": "cuoio_grezzo",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "lossoth",
+    "id_abilita": "cuoio_grezzo",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "uomini_citta_eriadoriani",
+    "id_abilita": "cuoio_grezzo",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_campagna_eriadoriani",
+    "id_abilita": "cuoio_grezzo",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "variag",
+    "id_abilita": "cuoio_grezzo",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_dei_boschi",
+    "id_abilita": "cuoio_grezzo",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "wose",
+    "id_abilita": "cuoio_grezzo",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "orchi",
+    "id_abilita": "cuoio_grezzo",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uruk_hai",
+    "id_abilita": "cuoio_grezzo",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "mezzorchi",
+    "id_abilita": "cuoio_grezzo",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "mezzitroll",
+    "id_abilita": "cuoio_grezzo",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "nani",
+    "id_abilita": "cuoio_rinforzato",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "umli",
+    "id_abilita": "cuoio_rinforzato",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "mezzelfi",
+    "id_abilita": "cuoio_rinforzato",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "corsari",
+    "id_abilita": "cuoio_rinforzato",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "dorwinrim",
+    "id_abilita": "cuoio_rinforzato",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "dunedain",
+    "id_abilita": "cuoio_rinforzato",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "dunlandiani",
+    "id_abilita": "cuoio_rinforzato",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_citta_rohirrim",
+    "id_abilita": "cuoio_rinforzato",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_campagna_rohirrim",
+    "id_abilita": "cuoio_rinforzato",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_citta_eriadoriani",
+    "id_abilita": "cuoio_rinforzato",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_campagna_eriadoriani",
+    "id_abilita": "cuoio_rinforzato",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "orchi",
+    "id_abilita": "cuoio_rinforzato",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "uruk_hai",
+    "id_abilita": "cuoio_rinforzato",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "mezzorchi",
+    "id_abilita": "cuoio_rinforzato",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "mezzitroll",
+    "id_abilita": "cuoio_rinforzato",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "nani",
+    "id_abilita": "armatura_maglia",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "mezzelfi",
+    "id_abilita": "armatura_maglia",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "numenoreani_neri",
+    "id_abilita": "armatura_maglia",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "dunedain",
+    "id_abilita": "armatura_maglia",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "uomini_citta_rohirrim",
+    "id_abilita": "armatura_maglia",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "uomini_campagna_rohirrim",
+    "id_abilita": "armatura_maglia",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "uomini_citta_eriadoriani",
+    "id_abilita": "armatura_maglia",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_campagna_eriadoriani",
+    "id_abilita": "armatura_maglia",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "orchi",
+    "id_abilita": "armatura_maglia",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "uruk_hai",
+    "id_abilita": "armatura_maglia",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "mezzorchi",
+    "id_abilita": "armatura_maglia",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "mezzitroll",
+    "id_abilita": "armatura_maglia",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "elfi_noldor",
+    "id_abilita": "taglio_una_mano",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "elfi_sindar",
+    "id_abilita": "taglio_una_mano",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "elfi_silvani",
+    "id_abilita": "taglio_una_mano",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "mezzelfi",
+    "id_abilita": "taglio_una_mano",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "numenoreani_neri",
+    "id_abilita": "taglio_una_mano",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "corsari",
+    "id_abilita": "taglio_una_mano",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "dunedain",
+    "id_abilita": "taglio_una_mano",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "esterling",
+    "id_abilita": "taglio_una_mano",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "haradrim",
+    "id_abilita": "taglio_una_mano",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_citta_rohirrim",
+    "id_abilita": "taglio_una_mano",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "uomini_campagna_rohirrim",
+    "id_abilita": "taglio_una_mano",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "uomini_citta_eriadoriani",
+    "id_abilita": "taglio_una_mano",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_campagna_eriadoriani",
+    "id_abilita": "taglio_una_mano",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_citta_gondoriani",
+    "id_abilita": "taglio_una_mano",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_campagna_gondoriani",
+    "id_abilita": "taglio_una_mano",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "variag",
+    "id_abilita": "taglio_una_mano",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "uomini_dei_boschi",
+    "id_abilita": "taglio_una_mano",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "wose",
+    "id_abilita": "taglio_una_mano",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "uruk_hai",
+    "id_abilita": "taglio_una_mano",
+    "gradi": 4
+  },
+  {
+    "id_popolo": "nani",
+    "id_abilita": "contundenti_una_mano",
+    "gradi": 4
+  },
+  {
+    "id_popolo": "umli",
+    "id_abilita": "contundenti_una_mano",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "dorwinrim",
+    "id_abilita": "contundenti_una_mano",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "dunlandiani",
+    "id_abilita": "contundenti_una_mano",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "orchi",
+    "id_abilita": "contundenti_una_mano",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "uruk_hai",
+    "id_abilita": "contundenti_una_mano",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "mezzorchi",
+    "id_abilita": "contundenti_una_mano",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "umli",
+    "id_abilita": "armi_a_due_mani",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "beorniani",
+    "id_abilita": "armi_a_due_mani",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "dunedain",
+    "id_abilita": "armi_a_due_mani",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uruk_hai",
+    "id_abilita": "armi_a_due_mani",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "troll",
+    "id_abilita": "armi_a_due_mani",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "olog_hai",
+    "id_abilita": "armi_a_due_mani",
+    "gradi": 5
+  },
+  {
+    "id_popolo": "mezzitroll",
+    "id_abilita": "armi_a_due_mani",
+    "gradi": 4
+  },
+  {
+    "id_popolo": "nani",
+    "id_abilita": "armi_da_lancio",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "umli",
+    "id_abilita": "armi_da_lancio",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "hobbit",
+    "id_abilita": "armi_da_lancio",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "beorniani",
+    "id_abilita": "armi_da_lancio",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "numenoreani_neri",
+    "id_abilita": "armi_da_lancio",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "corsari",
+    "id_abilita": "armi_da_lancio",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "dorwinrim",
+    "id_abilita": "armi_da_lancio",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "dunlandiani",
+    "id_abilita": "armi_da_lancio",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "esterling",
+    "id_abilita": "armi_da_lancio",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "haradrim",
+    "id_abilita": "armi_da_lancio",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "lossoth",
+    "id_abilita": "armi_da_lancio",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "uomini_citta_eriadoriani",
+    "id_abilita": "armi_da_lancio",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_campagna_eriadoriani",
+    "id_abilita": "armi_da_lancio",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "variag",
+    "id_abilita": "armi_da_lancio",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_dei_boschi",
+    "id_abilita": "armi_da_lancio",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "wose",
+    "id_abilita": "armi_da_lancio",
+    "gradi": 4
+  },
+  {
+    "id_popolo": "orchi",
+    "id_abilita": "armi_da_lancio",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uruk_hai",
+    "id_abilita": "armi_da_lancio",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "mezzorchi",
+    "id_abilita": "armi_da_lancio",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "troll",
+    "id_abilita": "armi_da_lancio",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "olog_hai",
+    "id_abilita": "armi_da_lancio",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "mezzitroll",
+    "id_abilita": "armi_da_lancio",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "elfi_noldor",
+    "id_abilita": "armi_da_tiro",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "elfi_sindar",
+    "id_abilita": "armi_da_tiro",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "elfi_silvani",
+    "id_abilita": "armi_da_tiro",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "mezzelfi",
+    "id_abilita": "armi_da_tiro",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "hobbit",
+    "id_abilita": "armi_da_tiro",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "numenoreani_neri",
+    "id_abilita": "armi_da_tiro",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "corsari",
+    "id_abilita": "armi_da_tiro",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "dorwinrim",
+    "id_abilita": "armi_da_tiro",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "dunedain",
+    "id_abilita": "armi_da_tiro",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "dunlandiani",
+    "id_abilita": "armi_da_tiro",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "esterling",
+    "id_abilita": "armi_da_tiro",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "uomini_citta_rohirrim",
+    "id_abilita": "armi_da_tiro",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_campagna_rohirrim",
+    "id_abilita": "armi_da_tiro",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_citta_eriadoriani",
+    "id_abilita": "armi_da_tiro",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_campagna_eriadoriani",
+    "id_abilita": "armi_da_tiro",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_citta_gondoriani",
+    "id_abilita": "armi_da_tiro",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_campagna_gondoriani",
+    "id_abilita": "armi_da_tiro",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "variag",
+    "id_abilita": "armi_da_tiro",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_dei_boschi",
+    "id_abilita": "armi_da_tiro",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uruk_hai",
+    "id_abilita": "armi_da_tiro",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "mezzorchi",
+    "id_abilita": "armi_da_tiro",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "beorniani",
+    "id_abilita": "armi_con_asta",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "dorwinrim",
+    "id_abilita": "armi_con_asta",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "dunedain",
+    "id_abilita": "armi_con_asta",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "dunlandiani",
+    "id_abilita": "armi_con_asta",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "esterling",
+    "id_abilita": "armi_con_asta",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "haradrim",
+    "id_abilita": "armi_con_asta",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "lossoth",
+    "id_abilita": "armi_con_asta",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "uomini_citta_rohirrim",
+    "id_abilita": "armi_con_asta",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_campagna_rohirrim",
+    "id_abilita": "armi_con_asta",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_citta_eriadoriani",
+    "id_abilita": "armi_con_asta",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_campagna_eriadoriani",
+    "id_abilita": "armi_con_asta",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "variag",
+    "id_abilita": "armi_con_asta",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_dei_boschi",
+    "id_abilita": "armi_con_asta",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "wose",
+    "id_abilita": "armi_con_asta",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "orchi",
+    "id_abilita": "armi_con_asta",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uruk_hai",
+    "id_abilita": "armi_con_asta",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "nani",
+    "id_abilita": "arrampicarsi",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "elfi_sindar",
+    "id_abilita": "arrampicarsi",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "elfi_silvani",
+    "id_abilita": "arrampicarsi",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "mezzelfi",
+    "id_abilita": "arrampicarsi",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "hobbit",
+    "id_abilita": "arrampicarsi",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "beorniani",
+    "id_abilita": "arrampicarsi",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "dunlandiani",
+    "id_abilita": "arrampicarsi",
+    "gradi": 5
+  },
+  {
+    "id_popolo": "uomini_dei_boschi",
+    "id_abilita": "arrampicarsi",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "wose",
+    "id_abilita": "arrampicarsi",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "orchi",
+    "id_abilita": "arrampicarsi",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uruk_hai",
+    "id_abilita": "arrampicarsi",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "mezzorchi",
+    "id_abilita": "arrampicarsi",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "troll",
+    "id_abilita": "arrampicarsi",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "olog_hai",
+    "id_abilita": "arrampicarsi",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "mezzitroll",
+    "id_abilita": "arrampicarsi",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "elfi_noldor",
+    "id_abilita": "cavalcare",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "elfi_sindar",
+    "id_abilita": "cavalcare",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "elfi_silvani",
+    "id_abilita": "cavalcare",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "mezzelfi",
+    "id_abilita": "cavalcare",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "numenoreani_neri",
+    "id_abilita": "cavalcare",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "dorwinrim",
+    "id_abilita": "cavalcare",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "dunedain",
+    "id_abilita": "cavalcare",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "esterling",
+    "id_abilita": "cavalcare",
+    "gradi": 5
+  },
+  {
+    "id_popolo": "haradrim",
+    "id_abilita": "cavalcare",
+    "gradi": 7
+  },
+  {
+    "id_popolo": "uomini_citta_rohirrim",
+    "id_abilita": "cavalcare",
+    "gradi": 8
+  },
+  {
+    "id_popolo": "uomini_campagna_rohirrim",
+    "id_abilita": "cavalcare",
+    "gradi": 8
+  },
+  {
+    "id_popolo": "uomini_citta_eriadoriani",
+    "id_abilita": "cavalcare",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_campagna_eriadoriani",
+    "id_abilita": "cavalcare",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "variag",
+    "id_abilita": "cavalcare",
+    "gradi": 4
+  },
+  {
+    "id_popolo": "uruk_hai",
+    "id_abilita": "cavalcare",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "umli",
+    "id_abilita": "nuotare",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "elfi_noldor",
+    "id_abilita": "nuotare",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "elfi_sindar",
+    "id_abilita": "nuotare",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "elfi_silvani",
+    "id_abilita": "nuotare",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "mezzelfi",
+    "id_abilita": "nuotare",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "beorniani",
+    "id_abilita": "nuotare",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "numenoreani_neri",
+    "id_abilita": "nuotare",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "corsari",
+    "id_abilita": "nuotare",
+    "gradi": 5
+  },
+  {
+    "id_popolo": "dorwinrim",
+    "id_abilita": "nuotare",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "dunedain",
+    "id_abilita": "nuotare",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "dunlandiani",
+    "id_abilita": "nuotare",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "lossoth",
+    "id_abilita": "nuotare",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "uomini_citta_rohirrim",
+    "id_abilita": "nuotare",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_campagna_rohirrim",
+    "id_abilita": "nuotare",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_citta_eriadoriani",
+    "id_abilita": "nuotare",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_campagna_eriadoriani",
+    "id_abilita": "nuotare",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_citta_gondoriani",
+    "id_abilita": "nuotare",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_campagna_gondoriani",
+    "id_abilita": "nuotare",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_dei_boschi",
+    "id_abilita": "nuotare",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "wose",
+    "id_abilita": "nuotare",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "wose",
+    "id_abilita": "imboscata",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "orchi",
+    "id_abilita": "imboscata",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uruk_hai",
+    "id_abilita": "imboscata",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "mezzorchi",
+    "id_abilita": "imboscata",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "umli",
+    "id_abilita": "nascondersi",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "umli",
+    "id_abilita": "aggirare",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "elfi_noldor",
+    "id_abilita": "nascondersi",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "elfi_noldor",
+    "id_abilita": "aggirare",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "elfi_sindar",
+    "id_abilita": "nascondersi",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "elfi_sindar",
+    "id_abilita": "aggirare",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "elfi_silvani",
+    "id_abilita": "nascondersi",
+    "gradi": 4
+  },
+  {
+    "id_popolo": "elfi_silvani",
+    "id_abilita": "aggirare",
+    "gradi": 4
+  },
+  {
+    "id_popolo": "mezzelfi",
+    "id_abilita": "nascondersi",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "mezzelfi",
+    "id_abilita": "aggirare",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "hobbit",
+    "id_abilita": "nascondersi",
+    "gradi": 5
+  },
+  {
+    "id_popolo": "hobbit",
+    "id_abilita": "aggirare",
+    "gradi": 5
+  },
+  {
+    "id_popolo": "beorniani",
+    "id_abilita": "nascondersi",
+    "gradi": 4
+  },
+  {
+    "id_popolo": "beorniani",
+    "id_abilita": "aggirare",
+    "gradi": 4
+  },
+  {
+    "id_popolo": "dunlandiani",
+    "id_abilita": "nascondersi",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "dunlandiani",
+    "id_abilita": "aggirare",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "lossoth",
+    "id_abilita": "nascondersi",
+    "gradi": 4
+  },
+  {
+    "id_popolo": "lossoth",
+    "id_abilita": "aggirare",
+    "gradi": 4
+  },
+  {
+    "id_popolo": "uomini_citta_eriadoriani",
+    "id_abilita": "nascondersi",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_citta_eriadoriani",
+    "id_abilita": "aggirare",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_campagna_eriadoriani",
+    "id_abilita": "nascondersi",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_campagna_eriadoriani",
+    "id_abilita": "aggirare",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "variag",
+    "id_abilita": "nascondersi",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "variag",
+    "id_abilita": "aggirare",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_dei_boschi",
+    "id_abilita": "nascondersi",
+    "gradi": 4
+  },
+  {
+    "id_popolo": "uomini_dei_boschi",
+    "id_abilita": "aggirare",
+    "gradi": 4
+  },
+  {
+    "id_popolo": "wose",
+    "id_abilita": "nascondersi",
+    "gradi": 4
+  },
+  {
+    "id_popolo": "wose",
+    "id_abilita": "aggirare",
+    "gradi": 4
+  },
+  {
+    "id_popolo": "nani",
+    "id_abilita": "scassinare",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "hobbit",
+    "id_abilita": "scassinare",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "nani",
+    "id_abilita": "disarmare_trappole",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "hobbit",
+    "id_abilita": "disarmare_trappole",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "elfi_noldor",
+    "id_abilita": "leggere_runes",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "elfi_sindar",
+    "id_abilita": "leggere_runes",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "elfi_silvani",
+    "id_abilita": "leggere_runes",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "mezzelfi",
+    "id_abilita": "leggere_runes",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "numenoreani_neri",
+    "id_abilita": "leggere_runes",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "dunedain",
+    "id_abilita": "leggere_runes",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_citta_gondoriani",
+    "id_abilita": "leggere_runes",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_campagna_gondoriani",
+    "id_abilita": "leggere_runes",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "elfi_noldor",
+    "id_abilita": "usare_oggetti",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "elfi_sindar",
+    "id_abilita": "usare_oggetti",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "numenoreani_neri",
+    "id_abilita": "usare_oggetti",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "dunedain",
+    "id_abilita": "usare_oggetti",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_citta_gondoriani",
+    "id_abilita": "usare_oggetti",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_campagna_gondoriani",
+    "id_abilita": "usare_oggetti",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "nani",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "umli",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "elfi_noldor",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "elfi_sindar",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "elfi_silvani",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "mezzelfi",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "hobbit",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "beorniani",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "numenoreani_neri",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "corsari",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "dorwinrim",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "dunedain",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "dunlandiani",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "esterling",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "haradrim",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "lossoth",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "uomini_citta_rohirrim",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "uomini_campagna_rohirrim",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "uomini_citta_eriadoriani",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "uomini_campagna_eriadoriani",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "uomini_citta_gondoriani",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_campagna_gondoriani",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "variag",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "uomini_dei_boschi",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "wose",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "orchi",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "uruk_hai",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "mezzorchi",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "troll",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 5
+  },
+  {
+    "id_popolo": "olog_hai",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 5
+  },
+  {
+    "id_popolo": "mezzitroll",
+    "id_abilita": "sviluppo_fisico",
+    "gradi": 4
+  },
+  {
+    "id_popolo": "nani",
+    "id_abilita": "percezione",
+    "gradi": 2
+  },
+  {
+    "id_popolo": "umli",
+    "id_abilita": "percezione",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "elfi_noldor",
+    "id_abilita": "percezione",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "elfi_sindar",
+    "id_abilita": "percezione",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "elfi_silvani",
+    "id_abilita": "percezione",
+    "gradi": 3
+  },
+  {
+    "id_popolo": "mezzelfi",
+    "id_abilita": "percezione",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "hobbit",
+    "id_abilita": "percezione",
+    "gradi": 4
+  },
+  {
+    "id_popolo": "beorniani",
+    "id_abilita": "percezione",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "dunlandiani",
+    "id_abilita": "percezione",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "esterling",
+    "id_abilita": "percezione",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "haradrim",
+    "id_abilita": "percezione",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "lossoth",
+    "id_abilita": "percezione",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_citta_rohirrim",
+    "id_abilita": "percezione",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_campagna_rohirrim",
+    "id_abilita": "percezione",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_citta_eriadoriani",
+    "id_abilita": "percezione",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_campagna_eriadoriani",
+    "id_abilita": "percezione",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_citta_gondoriani",
+    "id_abilita": "percezione",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_campagna_gondoriani",
+    "id_abilita": "percezione",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "variag",
+    "id_abilita": "percezione",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uomini_dei_boschi",
+    "id_abilita": "percezione",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "wose",
+    "id_abilita": "percezione",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "uruk_hai",
+    "id_abilita": "percezione",
+    "gradi": 1
+  },
+  {
+    "id_popolo": "olog_hai",
+    "id_abilita": "percezione",
+    "gradi": 1
+  }
+]

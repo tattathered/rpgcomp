@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import profData from '../../../data/TB_6-professioni_bonus_abilita-3.json';
+import profData from '../../../data/TB-6-professioni_bonus_abilita-3.json';
 import profStats from '../../../data/Tabella-professioni_caratteristica_fondamentale.json';
 import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
 
@@ -44,10 +44,10 @@ export default function ProfessionStep({ characterData, setCharacterData }) {
         <div className="mb-6 p-4 border rounded flex justify-between items-center" style={{ backgroundColor: 'var(--theme-race-bg)', borderColor: 'var(--theme-race-border)', color: 'var(--theme-race-text)' }}>
           <div>
             <span className="text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--theme-race-text)' }}>Popolo Selezionato</span>
-            <h3 className="font-bold m-0" style={{fontSize: '1.2rem', marginTop: '0.25rem', color: 'var(--theme-race-text)'}}>{characterData.race.popolo}</h3>
+            <h3 className="font-bold m-0" style={{fontSize: '1.2rem', marginTop: '0.25rem', color: 'var(--theme-race-text)'}}>{characterData.race.nome}</h3>
           </div>
           <div className="text-sm font-medium" style={{ color: 'var(--theme-race-text)' }}>
-            {characterData.race['note (umani/non umani)']}
+            {characterData.race?.categoria || characterData.race?.['note (umani/non umani)']}
           </div>
         </div>
       )}

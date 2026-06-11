@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import profStatsList from '../../../data/Tabella-professioni_caratteristica_fondamentale.json';
-import tb1 from '../../../data/TB_1-caratteristiche_bonus.json';
+import tb1 from '../../../data/TB-1-caratteristiche_bonus.json';
 import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
 
 const STAT_KEYS = ['FR', 'AG', 'CO', 'IN', 'IT', 'PR'];
@@ -290,24 +290,24 @@ export default function StatsStep({ characterData, setCharacterData }) {
         {characterData.race ? (
           <div className="p-4 border rounded" style={{ backgroundColor: 'var(--theme-race-bg)', borderColor: 'var(--theme-race-border)', color: 'var(--theme-race-text)' }}>
             <span className="text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--theme-race-text)' }}>Popolo Selezionato</span>
-            <h3 className="font-bold m-0" style={{ fontSize: '1.2rem', marginTop: '0.25rem', color: 'var(--theme-race-text)' }}>{characterData.race.popolo}</h3>
-            {characterData.race.popolo === 'Elfi Noldor' && (
+            <h3 className="font-bold m-0" style={{ fontSize: '1.2rem', marginTop: '0.25rem', color: 'var(--theme-race-text)' }}>{characterData.race.nome}</h3>
+            {characterData.race.nome === 'Elfi Noldor' && (
               <p className="text-xs font-semibold mt-1 bg-white/20 px-2 py-1 rounded inline-block text-[11px]">
                 ⚠️ <strong>Vincolo Prontezza (PR):</strong> Deve essere attribuito il punteggio più alto.
               </p>
             )}
-            {characterData.race.popolo === 'Elfi Sindar' && (
+            {characterData.race.nome === 'Elfi Sindar' && (
               <p className="text-xs font-semibold mt-1 bg-white/20 px-2 py-1 rounded inline-block text-[11px]">
                 ⚠️ <strong>Vincolo Prontezza (PR):</strong> Deve essere attribuito uno dei due punteggi più alti.
               </p>
             )}
-            {characterData.race.popolo === 'Elfi Silvani' && (
+            {characterData.race.nome === 'Elfi Silvani' && (
               <p className="text-xs font-semibold mt-1 bg-white/20 px-2 py-1 rounded inline-block text-[11px]">
                 ⚠️ <strong>Vincolo Prontezza (PR):</strong> Deve essere attribuito uno dei tre punteggi più alti.
               </p>
             )}
             <div className="text-sm font-medium mt-2" style={{ color: 'var(--theme-race-text)', opacity: 0.85 }}>
-              {characterData.race['note (umani/non umani)']}
+              {characterData.race?.categoria || characterData.race?.['note (umani/non umani)']}
             </div>
           </div>
         ) : (
@@ -608,7 +608,7 @@ export default function StatsStep({ characterData, setCharacterData }) {
                       <div className="flex flex-col">
                         {(() => {
                           const isPR = key === 'PR';
-                          const elfConstraint = isPR ? checkElfConstraint(characterData.race?.popolo, characterData.stats) : null;
+                          const elfConstraint = isPR ? checkElfConstraint(characterData.race?.nome || characterData.race?.popolo, characterData.stats) : null;
                           let labelStyle = {};
                           let constraintBadge = null;
 

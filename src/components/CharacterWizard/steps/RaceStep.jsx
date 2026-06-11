@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import racesData from '../../../data/TB_3-popoli_bonus-v3.json';
+import racesData from '../../../data/TB-3-modifiche_speciali_popolo.json';
 
 const COLUMNS_MAPPING = {
   // Column 1 - Blu tenue e Giallo tenue
@@ -40,7 +40,7 @@ const COLUMNS_MAPPING = {
 };
 
 export default function RaceStep({ characterData, setCharacterData }) {
-  const [selectedRace, setSelectedRace] = useState(characterData.race?.popolo || '');
+  const [selectedRace, setSelectedRace] = useState(characterData.race?.nome || characterData.race?.popolo || '');
   const [characterName, setCharacterName] = useState(characterData.name || '');
   const [playerName, setPlayerName] = useState(characterData.playerName || '');
   const [altezza, setAltezza] = useState(characterData.altezza || '');
@@ -61,7 +61,7 @@ export default function RaceStep({ characterData, setCharacterData }) {
     setPersonality(characterData.personality || '');
     setSpecialFeature(characterData.specialFeature || '');
     setHistory(characterData.history || '');
-    setSelectedRace(characterData.race?.popolo || '');
+    setSelectedRace(characterData.race?.nome || characterData.race?.popolo || '');
   }, [
     characterData.name,
     characterData.playerName,
@@ -116,7 +116,7 @@ export default function RaceStep({ characterData, setCharacterData }) {
   };
 
   const handleSelect = (race) => {
-    setSelectedRace(race.popolo);
+    setSelectedRace(race.nome);
     setCharacterData(prev => ({ ...prev, race: race }));
   };
 
@@ -135,9 +135,9 @@ export default function RaceStep({ characterData, setCharacterData }) {
     'Dorwinrim',
     'Lossoth'
   ];
-  const col1Races = col1Order.map(name => racesData.find(r => r.popolo === name)).filter(Boolean);
-  const col2Races = racesData.filter(r => COLUMNS_MAPPING[r.popolo]?.col === 2);
-  const col3Races = racesData.filter(r => COLUMNS_MAPPING[r.popolo]?.col === 3);
+  const col1Races = col1Order.map(name => racesData.find(r => r.nome === name)).filter(Boolean);
+  const col2Races = racesData.filter(r => COLUMNS_MAPPING[r.nome]?.col === 2);
+  const col3Races = racesData.filter(r => COLUMNS_MAPPING[r.nome]?.col === 3);
 
   const getRaceCardStyle = (racePopolo, isSelected) => {
     const mapping = COLUMNS_MAPPING[racePopolo] || { colorType: 'giallo' };
@@ -179,36 +179,36 @@ export default function RaceStep({ characterData, setCharacterData }) {
   };
 
   const renderRaceCard = (race, index) => {
-    const isSelected = selectedRace === race.popolo;
+    const isSelected = selectedRace === race.nome;
     return (
       <div 
         key={index}
         onClick={() => handleSelect(race)}
         className="card cursor-pointer"
-        style={getRaceCardStyle(race.popolo, isSelected)}
+        style={getRaceCardStyle(race.nome, isSelected)}
       >
         <div className="card-header" style={{padding: '1rem', borderBottom: 'none', backgroundColor: 'transparent'}}>
-          <h3 className="card-title" style={{fontSize: '1.1rem', color: 'inherit'}}>{race.popolo}</h3>
-          <p className="card-description" style={{color: 'inherit', opacity: 0.8}}>{race['note (umani/non umani)']}</p>
+          <h3 className="card-title" style={{fontSize: '1.1rem', color: 'inherit'}}>{race.nome}</h3>
+          <p className="card-description" style={{color: 'inherit', opacity: 0.8}}>{race.categoria}</p>
         </div>
         {isSelected && (
           <div className="card-body" style={{padding: '0 1rem 1rem 1rem'}}>
             <div className="text-sm" style={{color: 'inherit'}}>
               <strong style={{color: 'inherit'}}>Bonus Caratteristiche:</strong>
               <div className="grid-3 mt-2 mb-3" style={{color: 'inherit'}}>
-                <div>FR: {race['bonus a FR']}</div>
-                <div>AG: {race['bonus a AG']}</div>
-                <div>CO: {race['bonus a CO']}</div>
-                <div>IN: {race['bonus a IN']}</div>
-                <div>IT: {race['bonus a IT']}</div>
-                <div>PR: {race['bonus a PR']}</div>
+                <div>FR: {race['mod_fr']}</div>
+                <div>AG: {race['mod_ag']}</div>
+                <div>CO: {race['mod_co']}</div>
+                <div>IN: {race['mod_in']}</div>
+                <div>IT: {race['mod_it']}</div>
+                <div>PR: {race['mod_pr']}</div>
               </div>
               <strong style={{color: 'inherit'}}>Bonus Tiri Resistenza:</strong>
               <div className="grid-3 mt-2" style={{color: 'inherit'}}>
-                <div>ESS: {race['bonus a TR-ESS']}</div>
-                <div>FLS: {race['bonus a TR-FLS']}</div>
-                <div>VEL: {race['bonus a TR-VEL']}</div>
-                <div>MAL: {race['bonus a TR-MAL']}</div>
+                <div>ESS: {race['mod_tr_ess']}</div>
+                <div>FLS: {race['mod_tr_fls']}</div>
+                <div>VEL: {race['mod_tr_vel']}</div>
+                <div>MAL: {race['mod_tr_mal']}</div>
               </div>
             </div>
           </div>

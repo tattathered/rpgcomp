@@ -1,6 +1,6 @@
 import { db } from "../firebase";
 import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
-import defaultEquipment from "../data/TS_4-equipaggiamento.json";
+import defaultEquipment from "../data/TS-4-equipaggiamento.json";
 
 // Ottiene l'equipaggiamento personalizzato del GM da Firestore
 export const getEquipmentCatalog = async (gmId) => {

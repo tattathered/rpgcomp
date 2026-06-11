@@ -1,4 +1,7 @@
 import utilizLimiti from '../data/Tabella-elenco_utilizzatori_limiti.json';
+
+
+
 import listeIncantesimi from '../data/Tabella-liste_incantesimi.json';
 import elencoIncantesimi from '../data/Tabella-elenco_incantesimi.json';
 
@@ -18,10 +21,10 @@ export function getAvailableSpellLists(professionName, realm) {
   const categoryMap = {
     'ESSENZA': 'Lista Aperta Essenza',
     'FLUSSO': 'Lista Aperta Flusso',
-    'RANGER': 'Ranger Ranger',
-    'BARDO': 'Bardi Bardi',
-    'MAGO': 'Maghi Maghi',
-    'ANIMISTA': 'Animisti Animisti'
+    'RANGER': 'Ranger',
+    'BARDO': 'Bardo',
+    'MAGO': 'Mago',
+    'ANIMISTA': 'Animista'
   };
 
   effectiveRules.forEach(rule => {
@@ -41,7 +44,27 @@ export function getSpellLimitInfo(professionName) {
 
 export function getSpellsForList(listName) {
   const normalizedListName = (listName || '').toLowerCase().trim();
-  const spells = elencoIncantesimi.filter(s => (s.nome_lista || '').toLowerCase().trim() === normalizedListName);
   
-  return spells.sort((a,b) => parseInt(a.livello, 10) - parseInt(b.livello, 10));
+  // New nested structure: elencoIncantesimi has { liste_incantesimi: [...] }
+  const listData = (elencoIncantesimi.liste_incantesimi || []).find(
+    l => (l.nome_lista || '').toLowerCase().trim() === normalizedListName
+  );
+  
+  if (!listData) return [];
+  
+  const note = listData.note || undefined;
+  
+  return (listData.incantesimi || [])
+    .map(inc => ({
+      livello: inc.numero,
+      nome_incantesimo: inc.nome,
+      tipo_incantesimo: inc.tipologia || null,
+      istantaneo: inc.istantaneo || false,
+      efficacia: inc.efficacia || null,
+      durata: inc.durata || null,
+      raggio_azione: inc.raggio_azione || null,
+      descrizione_incantesimo: inc.descrizione || null,
+      note_lista: note,
+    }))
+    .sort((a, b) => a.livello - b.livello);
 }

@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
-import gradiLingue from '../../../data/TGP_1-gradi_conoscenze_lingue.json';
+import gradiLingue from '../../../data/TGP-1-gradi_conoscenze_lingue.json';
 import { getSpellLimitInfo, getSpellsForList } from '../../../utils/magicHelpers';
 import {
   getBonus,
@@ -27,6 +27,15 @@ const getMaxRanks = (skillName) => {
     'corazza di piastre': 9
   };
   return limits[skillName.toLowerCase()] || null;
+};
+
+const TIPO_LABELS = {
+  'F': { label: 'Forza', color: '#dc2626' },
+  'E': { label: 'Elementale', color: '#2563eb' },
+  'A': { label: 'Accessorio', color: '#059669' },
+  'I': { label: 'Informazione', color: '#7c3aed' },
+  'P': { label: 'Passivo', color: '#ca8a04' },
+  'U': { label: 'Utilità', color: '#0891b2' },
 };
 
 // ─── Section header ───────────────────────────────────────────────────────────
@@ -264,8 +273,8 @@ export default function CreationSummaryStep({ characterData, setCharacterData })
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '1.5rem' }}>
         <div style={{ padding: '1rem', border: '1px solid var(--theme-race-border)', borderRadius: '0.6rem', background: 'var(--theme-race-bg)' }}>
           <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-race-text)' }}>Popolo</div>
-          <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-race-text)', marginTop: '0.2rem' }}>{race.popolo}</div>
-          <div style={{ fontSize: '0.75rem', color: 'var(--theme-race-text)', opacity: 0.85, marginTop: '0.15rem' }}>{race['note (umani/non umani)']}</div>
+          <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-race-text)', marginTop: '0.2rem' }}>{race.nome}</div>
+          <div style={{ fontSize: '0.75rem', color: 'var(--theme-race-text)', opacity: 0.85, marginTop: '0.15rem' }}>{race.categoria}</div>
         </div>
         <div style={{ padding: '1rem', border: '1px solid var(--theme-profession-border)', borderRadius: '0.6rem', background: 'var(--theme-profession-bg)' }}>
           <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-profession-text)' }}>Professione</div>
@@ -500,26 +509,37 @@ export default function CreationSummaryStep({ characterData, setCharacterData })
                     <table style={{ width: '100%', fontSize: '0.8rem', borderCollapse: 'collapse' }}>
                       <thead style={{ background: 'rgba(254, 226, 226, 0.3)', borderBottom: '1px solid var(--theme-spell-lists-border)' }}>
                         <tr>
-                          <th style={{ padding: '0.4rem 1rem', textAlign: 'center', color: 'var(--theme-spell-lists-text)', fontWeight: 600, width: '10%' }}>Liv.</th>
-                          <th style={{ padding: '0.4rem 1rem', textAlign: 'left', color: 'var(--theme-spell-lists-text)', fontWeight: 600, width: '25%' }}>Incantesimo</th>
-                          <th style={{ padding: '0.4rem 0.5rem', textAlign: 'center', color: 'var(--theme-spell-lists-text)', fontWeight: 600, width: '10%' }}>Area/Tipo</th>
-                          <th style={{ padding: '0.4rem 1rem', textAlign: 'left', color: 'var(--theme-spell-lists-text)', fontWeight: 600 }}>Descrizione</th>
+                          <th style={{ padding: '0.4rem 0.6rem', textAlign: 'center', color: 'var(--theme-spell-lists-text)', fontWeight: 600, width: '36px' }}>#</th>
+                          <th style={{ padding: '0.4rem 0.6rem', textAlign: 'left', color: 'var(--theme-spell-lists-text)', fontWeight: 600 }}>Incantesimo</th>
+                          <th style={{ padding: '0.4rem 0.4rem', textAlign: 'left', color: 'var(--theme-spell-lists-text)', fontWeight: 600, width: '85px' }}>Classe</th>
+                          <th style={{ padding: '0.4rem 0.3rem', textAlign: 'center', color: 'var(--theme-spell-lists-text)', fontWeight: 600, width: '20px' }} title="Istantaneo">*</th>
+                          <th style={{ padding: '0.4rem 0.4rem', textAlign: 'left', color: 'var(--theme-spell-lists-text)', fontWeight: 600, width: '90px' }}>Efficacia</th>
+                          <th style={{ padding: '0.4rem 0.4rem', textAlign: 'left', color: 'var(--theme-spell-lists-text)', fontWeight: 600, width: '80px' }}>Durata</th>
+                          <th style={{ padding: '0.4rem 0.4rem', textAlign: 'left', color: 'var(--theme-spell-lists-text)', fontWeight: 600, width: '80px' }}>Raggio</th>
+                          <th style={{ padding: '0.4rem 0.6rem', textAlign: 'left', color: 'var(--theme-spell-lists-text)', fontWeight: 600 }}>Descrizione</th>
                         </tr>
                       </thead>
                       <tbody>
                         {spells.length === 0 ? (
                           <tr>
-                            <td colSpan="4" style={{ padding: '1rem', textAlign: 'center', color: '#9ca3af' }}>Nessun incantesimo disponibile per questa lista con l'attuale limite di livello.</td>
+                            <td colSpan="8" style={{ padding: '1rem', textAlign: 'center', color: '#9ca3af' }}>Nessun incantesimo disponibile per questa lista con l'attuale limite di livello.</td>
                           </tr>
                         ) : (
-                          spells.map((s, i) => (
+                          spells.map((s, i) => {
+                            const tipoInfo = TIPO_LABELS[s.tipo_incantesimo] || { label: s.tipo_incantesimo || '—', color: '#6b7280' };
+                            return (
                             <tr key={i} style={{ borderBottom: i === spells.length - 1 ? 'none' : '1px solid var(--theme-spell-lists-border)' }}>
-                              <td style={{ padding: '0.4rem 1rem', textAlign: 'center', fontWeight: 700, color: 'var(--theme-spell-lists-text)', background: 'rgba(254, 226, 226, 0.1)' }}>{s.livello}</td>
-                              <td style={{ padding: '0.4rem 1rem', fontWeight: 600, color: '#374151' }}>{s.nome_incantesimo}</td>
-                              <td style={{ padding: '0.4rem 0.5rem', textAlign: 'center', color: '#6b7280', fontSize: '0.75rem' }}>{s.tipo_incantesimo || '—'}</td>
-                              <td style={{ padding: '0.4rem 1rem', color: '#4b5563', fontSize: '0.75rem', lineHeight: '1.2' }}>{s.descrizione_incantesimo}</td>
+                              <td style={{ padding: '0.35rem 0.6rem', textAlign: 'center', fontWeight: 700, fontSize: '0.8rem', color: 'var(--theme-spell-lists-text)', background: 'rgba(254, 226, 226, 0.1)' }}>{s.livello}</td>
+                              <td style={{ padding: '0.35rem 0.6rem', fontWeight: 600, fontSize: '0.8rem', color: '#374151' }}>{s.nome_incantesimo}</td>
+                              <td style={{ padding: '0.35rem 0.4rem', fontSize: '0.68rem', fontWeight: 700, color: tipoInfo.color }}>{tipoInfo.label}</td>
+                              <td style={{ padding: '0.35rem 0.3rem', textAlign: 'center', fontSize: '0.8rem', fontWeight: 800, color: '#dc2626' }}>{s.istantaneo ? '*' : ''}</td>
+                              <td style={{ padding: '0.35rem 0.4rem', fontSize: '0.72rem', color: '#64748b' }}>{s.efficacia || '—'}</td>
+                              <td style={{ padding: '0.35rem 0.4rem', fontSize: '0.72rem', color: '#64748b' }}>{s.durata || '—'}</td>
+                              <td style={{ padding: '0.35rem 0.4rem', fontSize: '0.72rem', color: '#64748b' }}>{s.raggio_azione || '—'}</td>
+                              <td style={{ padding: '0.35rem 0.6rem', color: '#4b5563', fontSize: '0.72rem', lineHeight: '1.3' }}>{s.descrizione_incantesimo}</td>
                             </tr>
-                          ))
+                            );
+                          })
                         )}
                       </tbody>
                     </table>
