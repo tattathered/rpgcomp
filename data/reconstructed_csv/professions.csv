@@ -1,7 +1,0 @@
-id,name_it,name_en,primary_stat,secondary_stat,spell_realm,spell_max_level,description_it,description_en
-warrior,Guerriero,Warrior,FR,AG,essence,3,Professione del personaggio: Guerriero.,
-scout,Scout,Scout,AG,IT,essence,5,Professione del personaggio: Scout.,
-ranger,Ranger,Ranger,CO,IT,channeling,5,Professione del personaggio: Ranger.,
-bard,Bardo,Bard,PR,IT,essence,5,Professione del personaggio: Bardo.,
-mage,Mago,Mage,IN,IT,essence,,Professione del personaggio: Mago.,
-animist,Animista,Animist,IT,IN,channeling,,Professione del personaggio: Animista.,
