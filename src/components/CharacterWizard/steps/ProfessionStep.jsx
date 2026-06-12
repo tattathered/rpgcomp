@@ -78,10 +78,10 @@ export default function ProfessionStep({ characterData, setCharacterData }) {
                 <h3 className="card-title" style={{fontSize: '1.25rem', color: isSelected ? 'var(--theme-profession-text)' : 'inherit'}}>{prof.professione}</h3>
                 {statsInfo && (
                   <div className="mt-2 flex gap-2">
-                    <span className="text-xs font-semibold px-2 py-1 bg-blue-100 text-blue-800 rounded">
+                    <span className="text-xs font-semibold px-2 py-1 text-gray-600 border border-gray-300 rounded" style={{ backgroundColor: 'transparent' }}>
                       Primaria: {statsInfo['caratteristica fondamentale']}
                     </span>
-                    <span className="text-xs font-semibold px-2 py-1 bg-gray-200 text-gray-800 rounded">
+                    <span className="text-xs font-semibold px-2 py-1 text-gray-600 border border-gray-300 rounded" style={{ backgroundColor: 'transparent' }}>
                       Secondaria: {statsInfo['caratteristica secondaria']}
                     </span>
                   </div>
@@ -108,7 +108,9 @@ export default function ProfessionStep({ characterData, setCharacterData }) {
                       {prof['limite incantesimi'] && <div className="mt-1"><em>Limite:</em> {prof['limite incantesimi']}</div>}
                     </div>
                   )}
-                  <p className="mt-2 text-xs italic">{prof.note}</p>
+                  {prof.note && prof.note.toLowerCase() !== 'per livello del pg' && (
+                    <p className="mt-2 text-xs italic">{prof.note}</p>
+                  )}
                 </div>
               )}
             </div>

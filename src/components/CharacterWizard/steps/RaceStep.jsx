@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import racesData from '../../../data/TB-3-modifiche_speciali_popolo.json';
+import { db } from '../../../firebase';
+import { collection, onSnapshot } from 'firebase/firestore';
+import { useAuth } from '../../../contexts/AuthContext';
 
 const COLUMNS_MAPPING = {
   // Column 1 - Blu tenue e Giallo tenue
@@ -40,6 +43,9 @@ const COLUMNS_MAPPING = {
 };
 
 export default function RaceStep({ characterData, setCharacterData }) {
+  const { user } = useAuth();
+  const gmId = user?.uid;
+
   const [selectedRace, setSelectedRace] = useState(characterData.race?.nome || characterData.race?.popolo || '');
   const [characterName, setCharacterName] = useState(characterData.name || '');
   const [playerName, setPlayerName] = useState(characterData.playerName || '');
@@ -50,6 +56,27 @@ export default function RaceStep({ characterData, setCharacterData }) {
   const [personality, setPersonality] = useState(characterData.personality || '');
   const [specialFeature, setSpecialFeature] = useState(characterData.specialFeature || '');
   const [history, setHistory] = useState(characterData.history || '');
+  const [playersList, setPlayersList] = useState([]);
+
+  // Carica i giocatori del GM registrati
+  useEffect(() => {
+    if (!gmId) return;
+    const playersRef = collection(db, 'gms', gmId, 'players');
+    const unsub = onSnapshot(playersRef, (snapshot) => {
+      const list = [];
+      snapshot.forEach((docSnap) => {
+        const data = docSnap.data();
+        if (data.displayName) {
+          list.push(data);
+        }
+      });
+      list.sort((a, b) => a.displayName.localeCompare(b.displayName));
+      setPlayersList(list);
+    }, (error) => {
+      console.error('Errore nel caricamento dei giocatori nel wizard:', error);
+    });
+    return unsub;
+  }, [gmId]);
 
   useEffect(() => {
     setCharacterName(characterData.name || '');
@@ -79,6 +106,8 @@ export default function RaceStep({ characterData, setCharacterData }) {
     let err = null;
     if (!characterName || !characterName.trim()) {
       err = 'Inserisci il nome del personaggio.';
+    } else if (!playerName || !playerName.trim()) {
+      err = 'Inserisci il nome del giocatore.';
     } else if (!altezza || isNaN(Number(altezza)) || Number(altezza) <= 0) {
       err = 'Devi inserire un\'altezza valida (maggiore di 0 cm) prima di procedere.';
     } else if (!peso || isNaN(Number(peso)) || Number(peso) <= 0) {
@@ -96,7 +125,7 @@ export default function RaceStep({ characterData, setCharacterData }) {
         }
       }));
     }
-  }, [characterName, altezza, peso, selectedRace, characterData.stepErrors, setCharacterData]);
+  }, [characterName, playerName, altezza, peso, selectedRace, characterData.stepErrors, setCharacterData]);
 
   const handleFieldChange = (field, val) => {
     if (field === 'name') setCharacterName(val);
@@ -227,7 +256,7 @@ export default function RaceStep({ characterData, setCharacterData }) {
         {/* Griglia a 3 colonne */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '1rem' }}>
           <div>
-            <label className="block text-xs font-bold text-gray-700 mb-1">Nome personaggio</label>
+            <label className="block text-xs font-bold text-gray-700 mb-1">Nome personaggio <span style={{ color: 'red' }}>*</span></label>
             <input 
               type="text" 
               value={characterName} 
@@ -238,7 +267,7 @@ export default function RaceStep({ characterData, setCharacterData }) {
             />
           </div>
           <div>
-            <label className="block text-xs font-bold text-gray-700 mb-1">Altezza (in cm)</label>
+            <label className="block text-xs font-bold text-gray-700 mb-1">Altezza (in cm) <span style={{ color: 'red' }}>*</span></label>
             <input 
               type="number" 
               min="1"
@@ -265,18 +294,23 @@ export default function RaceStep({ characterData, setCharacterData }) {
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-gray-700 mb-1">Nome giocatore</label>
-            <input 
-              type="text" 
-              value={playerName} 
-              onChange={(e) => handleFieldChange('playerName', e.target.value)} 
-              placeholder="Nome del giocatore" 
+            <label className="block text-xs font-bold text-gray-700 mb-1">Nome giocatore <span style={{ color: 'red' }}>*</span></label>
+            <select
+              value={playerName}
+              onChange={(e) => handleFieldChange('playerName', e.target.value)}
               className="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600"
-              style={{ width: '100%', padding: '0.5rem 0.7rem', fontSize: '0.875rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}
-            />
+              style={{ width: '100%', padding: '0.5rem 0.7rem', fontSize: '0.875rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)', backgroundColor: 'white' }}
+            >
+              <option value="">-- Seleziona un giocatore --</option>
+              {playersList.map((player) => (
+                <option key={player.uid || player.email} value={player.displayName}>
+                  {player.displayName}
+                </option>
+              ))}
+            </select>
           </div>
           <div>
-            <label className="block text-xs font-bold text-gray-700 mb-1">Peso (in kg)</label>
+            <label className="block text-xs font-bold text-gray-700 mb-1">Peso (in kg) <span style={{ color: 'red' }}>*</span></label>
             <input 
               type="number" 
               min="1"

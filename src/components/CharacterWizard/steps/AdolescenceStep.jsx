@@ -487,9 +487,27 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
   }, [race?.nome || race?.popolo, tb6Distribution, finalStats, profession, characterData]);
   
   // Spell Lists logic
-  const knownLists = Object.keys(characterData.spellListAllocations || {});
-  const rawAvailableLists = profession ? getAvailableSpellLists(profession.professione, selectedRealm) : [];
-  const availableLists = rawAvailableLists.filter(l => !knownLists.includes(l.nome_lista));
+  const knownListsUpper = useMemo(() => {
+    const list = new Set();
+    Object.keys(characterData.spellListAllocations || {}).forEach(k => {
+      if (characterData.spellListAllocations[k] !== 'Adolescenza') {
+        list.add(k.toUpperCase().trim());
+      }
+    });
+    const bgSpellLists = characterData.background?.compiledModifiers?.bgSpellLists || [];
+    bgSpellLists.forEach(k => {
+      list.add(k.toUpperCase().trim());
+    });
+    return Array.from(list);
+  }, [characterData.spellListAllocations, characterData.background]);
+
+  const rawAvailableLists = useMemo(() => {
+    return profession ? getAvailableSpellLists(profession.professione, selectedRealm) : [];
+  }, [profession, selectedRealm]);
+
+  const availableLists = useMemo(() => {
+    return rawAvailableLists.filter(l => !knownListsUpper.includes(l.nome_lista.toUpperCase().trim()));
+  }, [rawAvailableLists, knownListsUpper]);
   
   // Trova la probabilità base in racesData
   const raceId = race ? (race.id_popolo || getRaceId(race.nome)) : null;
@@ -656,8 +674,8 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
                 onClick={() => handleRealmChange('Essenza')}
                 className={`flex-1 py-1 px-2 rounded font-bold text-xs border transition ${
                   selectedRealm === 'Essenza'
-                    ? 'bg-teal-600 text-white border-teal-600'
-                    : 'bg-white text-teal-800 border-teal-300 hover:bg-teal-100/50'
+                    ? 'bg-red-600 text-white border-red-600'
+                    : 'bg-white text-red-800 border-red-300 hover:bg-red-100/50'
                 }`}
               >
                 Essenza
@@ -667,8 +685,8 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
                 onClick={() => handleRealmChange('Flusso')}
                 className={`flex-1 py-1 px-2 rounded font-bold text-xs border transition ${
                   selectedRealm === 'Flusso'
-                    ? 'bg-teal-600 text-white border-teal-600'
-                    : 'bg-white text-teal-800 border-teal-300 hover:bg-teal-100/50'
+                    ? 'bg-red-600 text-white border-red-600'
+                    : 'bg-white text-red-800 border-red-300 hover:bg-red-100/50'
                 }`}
               >
                 Flusso
@@ -680,11 +698,18 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
             </div>
           )}
           <div style={{ fontSize: '0.75rem', color: 'var(--theme-spell-lists-text)', opacity: 0.85, marginTop: '0.15rem' }}>
-            {profession['liste incantesimi'] && <span>Liste: <strong>{profession['liste incantesimi']}</strong></span>}
+            {!isWarriorOrScout && profession['liste incantesimi'] && <span>Liste: <strong>{profession['liste incantesimi']}</strong></span>}
             {profession['limite incantesimi'] && <span className="block text-[10px] italic opacity-85 mt-0.5">{profession['limite incantesimi']}</span>}
           </div>
         </div>
       </div>
+
+      {/* Warning se il Reame Magico non è ancora scelto */}
+      {isWarriorOrScout && !selectedRealm && (
+        <div className="mb-6 p-4 border border-amber-300 bg-amber-50 rounded text-amber-900 text-sm font-semibold flex items-center gap-2">
+          ⚠️ Scegli un Reame Magico (Essenza o Flusso) in alto a destra per il tuo {profession.professione}!
+        </div>
+      )}
 
       {/* Box Caratteristiche */}
       {characterData.stats && Object.keys(characterData.stats).length > 0 && (
@@ -732,35 +757,36 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
       {selectedRealm && (
         <div className="mb-6 p-4 border border-indigo-200 bg-indigo-50/50 rounded flex flex-col gap-3">
           <div className="flex justify-between items-center">
-            <span className="text-sm font-bold uppercase tracking-wider text-indigo-800">Apprendimento Lista Incantesimi (Adolescenza)</span>
+            <span className="text-sm font-bold uppercase tracking-wider text-indigo-800">Apprendimento Lista Incantesimi</span>
             <span className="text-xs font-bold bg-indigo-200 text-indigo-900 px-2 py-1 rounded-full">
               Probabilità Attuale: {currentAccumulated}%
             </span>
           </div>
           
           {hasAcquiredInAdolescence ? (
-            <div className="flex flex-col gap-2">
-              <div className="text-sm text-indigo-700 bg-indigo-100 p-3 rounded text-center font-medium border border-indigo-200 flex justify-between items-center">
-                <span>Hai imparato con successo: <strong>{acquiredListName}</strong></span>
-                <button
-                  type="button"
-                  onClick={handleRemoveSpellList}
-                  className="text-xs bg-red-600 hover:bg-red-700 text-white px-2.5 py-1 rounded font-bold transition shadow-sm"
-                >
-                  Rimuovi
-                </button>
-              </div>
+            <div className="flex justify-between items-center bg-indigo-100/50 p-3 rounded border border-indigo-200">
+              <span className="text-sm text-indigo-900">
+                Hai imparato con successo: <strong>{acquiredListName}</strong>
+              </span>
+              <button
+                type="button"
+                onClick={handleRemoveSpellList}
+                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded text-sm font-bold transition shadow-sm"
+              >
+                Rimuovi
+              </button>
             </div>
           ) : rollResult && rollResult <= currentAccumulated ? (
-            <div className="flex flex-col gap-2">
-              <div className="text-sm text-green-700 bg-green-100 p-2 rounded text-center font-medium border border-green-300">
+            <div className="flex flex-col gap-3 bg-green-50 p-3 rounded border border-green-200">
+              <span className="text-sm text-green-900 font-medium">
                 Tiro: <strong>{rollResult}</strong> - Successo! Scegli la lista da imparare:
-              </div>
-              <div className="flex gap-2 mt-1">
+              </span>
+              <div className="flex gap-2">
                 <select 
-                  className="flex-1 rounded border-indigo-300 text-sm p-1.5 bg-white"
+                  className="flex-1 rounded border border-green-300 text-sm p-2 bg-white"
                   value={selectedList}
                   onChange={(e) => setSelectedList(e.target.value)}
+                  style={{ minHeight: '38px' }}
                 >
                   <option value="">-- Seleziona Lista --</option>
                   {availableLists.map(l => (
@@ -771,24 +797,25 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
                   type="button"
                   onClick={handleAcquireList}
                   disabled={!selectedList}
-                  className="bg-green-600 text-white px-4 py-1.5 rounded text-sm font-bold hover:bg-green-700 disabled:opacity-50"
+                  className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm font-bold disabled:opacity-50 transition"
+                  style={{ color: '#ffffff', backgroundColor: '#16a34a', minHeight: '38px' }}
                 >
                   Conferma
                 </button>
               </div>
             </div>
           ) : rollResult && rollResult > currentAccumulated ? (
-            <div className="flex flex-col gap-2">
-              <div className="text-sm text-red-700 bg-red-100 p-2 rounded text-center font-medium border border-red-300 flex justify-between items-center">
-                <span>Tiro: <strong>{rollResult}</strong> - Fallimento. Hai mantenuto il {currentAccumulated}% per il prossimo livello.</span>
-                <button
-                  type="button"
-                  onClick={() => setCharacterData(prev => ({ ...prev, adolescenceSpellListRoll: null }))}
-                  className="text-xs bg-red-600 hover:bg-red-700 text-white px-2.5 py-1 rounded font-bold transition shadow-sm"
-                >
-                  Annulla tiro
-                </button>
-              </div>
+            <div className="flex justify-between items-center bg-red-50 p-3 rounded border border-red-200">
+              <span className="text-sm text-red-900 font-medium mr-4">
+                Tiro: <strong>{rollResult}</strong> - Fallimento. Hai mantenuto il {currentAccumulated}% per il prossimo livello.
+              </span>
+              <button
+                type="button"
+                onClick={() => setCharacterData(prev => ({ ...prev, adolescenceSpellListRoll: null }))}
+                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded text-sm font-bold transition shadow-sm shrink-0"
+              >
+                Annulla tiro
+              </button>
             </div>
           ) : currentAccumulated > 0 ? (
             <div className="flex justify-between items-center bg-white p-3 rounded border border-indigo-100">
@@ -799,32 +826,27 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
               <button 
                 type="button"
                 onClick={handleRoll}
-                className="bg-indigo-600 text-white px-4 py-2 rounded text-sm font-bold hover:bg-indigo-700 transition"
+                className="bg-indigo-600 text-white px-4 py-2 rounded text-sm font-bold hover:bg-indigo-700 transition shrink-0"
               >
                 Tenta (1d100)
               </button>
             </div>
           ) : (
-            <div className="text-sm text-indigo-700 bg-indigo-100 p-2 rounded text-center font-medium">
+            <div className="text-sm text-indigo-700 bg-indigo-100/30 p-3 rounded text-center font-medium border border-indigo-100">
               Non hai probabilità di imparare liste in adolescenza.
             </div>
           )}
         </div>
       )}
 
-      {/* Warning se il Reame Magico non è ancora scelto */}
-      {isWarriorOrScout && !selectedRealm && (
-        <div className="mb-6 p-4 border border-amber-300 bg-amber-50 rounded text-amber-900 text-sm font-semibold flex items-center gap-2">
-          ⚠️ Scegli un Reame Magico (Essenza o Flusso) in alto a destra per il tuo {profession.professione}!
-        </div>
-      )}
+
 
 
 
       {/* ── LINGUE ── */}
       <div className="card mb-6" style={{borderColor:'var(--theme-languages-border)'}}>
         <div className="card-header border-b" style={{background:'var(--theme-languages-bg)',borderBottomColor:'var(--theme-languages-border)',padding:'0.75rem 1rem',display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-          <h4 className="font-semibold m-0 text-sm uppercase tracking-wider" style={{color:'var(--theme-languages-text)'}}>🌐 Lingue Conosciute (Adolescenza)</h4>
+          <h4 className="font-semibold m-0 text-sm uppercase tracking-wider" style={{color:'var(--theme-languages-text)'}}>🌐 Lingue Conosciute</h4>
           <div style={{display:'flex',gap:'1rem'}}>
             <span style={{fontSize:'0.8rem',background:'#fff',border:'1px solid var(--theme-languages-border)',padding:'0.25rem 0.75rem',borderRadius:'0.5rem',color:'var(--theme-languages-text)',fontWeight:'bold'}}>
               Punti totali: <strong>{languagePointsTotal}</strong>
@@ -840,7 +862,7 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
               borderRadius:'0.5rem',
               fontWeight:'bold'
             }}>
-              Rimasti: <strong>{languagePointsLeft}</strong>
+              Da assegnare: <strong>{languagePointsLeft}</strong>
             </span>
           </div>
         </div>
@@ -854,16 +876,16 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
                 <div key={lang} className="flex items-center justify-between p-2.5 border rounded-lg bg-white" style={{borderColor:'var(--theme-languages-border)'}}>
                   <div>
                     <strong className="text-sm text-gray-900">{lang}</strong>
-                    {data.base > 0 && <span className="ml-2 text-[10px] bg-gray-100 px-1.5 py-0.5 rounded text-gray-500">Base ({data.base})</span>}
-                    {data.addedAdolescenza > 0 && <span className="ml-2 text-[10px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded">+{data.addedAdolescenza} Adolescenza</span>}
-                    {data.addedLivello1 > 0 && <span className="ml-2 text-[10px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded">+{data.addedLivello1} Liv. 1</span>}
-                    {data.fromBg && <span className="ml-2 text-[10px] bg-indigo-100 text-indigo-700 px-1.5 py-0.5 rounded">BG</span>}
+                    {data.base > 0 && <span className="text-sm text-gray-500" style={{ marginLeft: '0.75rem' }}>Base ({data.base})</span>}
+                    {data.addedAdolescenza > 0 && <span className="text-sm bg-blue-100 text-blue-700 px-2 py-0.5 rounded" style={{ marginLeft: '0.75rem' }}>+{data.addedAdolescenza} Adolescenza</span>}
+                    {data.addedLivello1 > 0 && <span className="text-sm bg-purple-100 text-purple-700 px-2 py-0.5 rounded" style={{ marginLeft: '0.75rem' }}>+{data.addedLivello1} Liv. 1</span>}
+                    {data.fromBg && <span className="text-sm bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded" style={{ marginLeft: '0.75rem' }}>BG</span>}
                     <div className="text-[11px] text-gray-500 mt-1">{gradeInfo?.conoscenza || ''}</div>
                   </div>
                   <div className="flex items-center gap-2">
+                    <button type="button" onClick={() => removeLangPoint(lang)} disabled={!data.addedAdolescenza||data.addedAdolescenza<=0} className="w-7 h-7 border rounded flex items-center justify-center bg-gray-50 hover:bg-gray-100 disabled:opacity-50 text-sm font-bold">−</button>
                     <strong className="text-lg min-w-[1.5rem] text-center text-blue-900">{total}</strong>
                     <button type="button" onClick={() => addLangPoint(lang)} disabled={languagePointsLeft<=0||total>=5} className="w-7 h-7 border rounded flex items-center justify-center bg-gray-50 hover:bg-gray-100 disabled:opacity-50 text-sm font-bold">+</button>
-                    <button type="button" onClick={() => removeLangPoint(lang)} disabled={!data.addedAdolescenza||data.addedAdolescenza<=0} className="w-7 h-7 border rounded flex items-center justify-center bg-gray-50 hover:bg-gray-100 disabled:opacity-50 text-sm font-bold">−</button>
                   </div>
                 </div>
               );
@@ -890,9 +912,7 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
         </div>
       </div>
 
-      <p className="mb-6 text-muted">
-        In base alla cultura del tuo Popolo (<strong>{race.nome}</strong>) hai ottenuto i seguenti Gradi di sviluppo delle abilità in fase adolescenziale.
-      </p>
+
 
       {/* Griglia delle abilità */}
       <h3 className="text-xl font-bold mb-4 text-gray-800">Sviluppo Adolescenza</h3>
@@ -967,7 +987,9 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
                       }
 
                       const isFixedSkill = [
-                        'resistenza fisica', 'percezione', 'incantesimi base'
+                        'resistenza fisica', 'percezione',
+                        'incantesimi base', 'incantesimi diretti',
+                        'lettura rune', 'uso oggetti magici'
                       ].includes(name.toLowerCase().trim());
 
                       return (
