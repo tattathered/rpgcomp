@@ -85,9 +85,21 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
   const profession = characterData.profession;
   const magicRealm = characterData.magicRealm || '—';
   
-  const knownLists = Object.keys(characterData.spellListAllocations || {});
-  const rawAvailableLists = profession ? getAvailableSpellLists(profession.professione, magicRealm) : [];
-  const availableLists = rawAvailableLists.filter(l => !knownLists.includes(l.nome_lista));
+  const knownListsUpper = useMemo(() => {
+    const list = new Set();
+    Object.keys(characterData.spellListAllocations || {}).forEach(k => {
+      list.add(k.toUpperCase().trim());
+    });
+    return Array.from(list);
+  }, [characterData.spellListAllocations]);
+
+  const rawAvailableLists = useMemo(() => {
+    return profession ? getAvailableSpellLists(profession.professione, magicRealm) : [];
+  }, [profession, magicRealm]);
+
+  const availableLists = useMemo(() => {
+    return rawAvailableLists.filter(l => !knownListsUpper.includes(l.nome_lista.toUpperCase().trim()));
+  }, [rawAvailableLists, knownListsUpper]);
   
   const bgSpellLists = characterData.background?.compiledModifiers?.bgSpellLists || [];
 
@@ -798,7 +810,16 @@ function OptionCard({ opt, idx, characterData, primarySkillNames, languages, all
               <label style={{fontSize:'0.8rem',fontWeight:600,color:'#374151',display:'block',marginBottom:'0.25rem'}}>Scegli Lista Incantesimi:</label>
               <select value={opt.skillName||''} onChange={e=>onPatch({skillName:e.target.value})} style={{width:'100%',padding:'0.4rem',border:'1px solid #c4b5fd',borderRadius:'0.375rem',fontSize:'0.875rem'}}>
                 <option value="" disabled>-- Seleziona --</option>
-                {availableLists.filter(l => !bgSpellLists.includes(l.nome_lista) || l.nome_lista === opt.skillName).map(l=>(<option key={l.nome_lista} value={l.nome_lista}>{l.nome_lista} ({l.tipo_lista})</option>))}
+                 {(() => {
+                  const bgSpellListsUpper = (bgSpellLists || []).map(s => s.toUpperCase().trim());
+                  const currentSkillUpper = (opt.skillName || '').toUpperCase().trim();
+                  return availableLists.filter(l => {
+                    const lNameUpper = l.nome_lista.toUpperCase().trim();
+                    return !bgSpellListsUpper.includes(lNameUpper) || lNameUpper === currentSkillUpper;
+                  }).map(l => (
+                    <option key={l.nome_lista} value={l.nome_lista}>{l.nome_lista} ({l.tipo_lista})</option>
+                  ));
+                })()}
               </select>
             </div>
           </div>

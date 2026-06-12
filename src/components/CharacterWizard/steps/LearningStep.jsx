@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
 import { Plus, Minus, Trash2, Check, AlertCircle, ArrowRight, Sparkles, Languages, ArrowLeft } from 'lucide-react';
 import EquipmentStep from './EquipmentStep';
@@ -58,7 +58,7 @@ export default function LearningStep({ characterData, setCharacterData }) {
     const spellListAllocations = characterData.spellListAllocations || {};
     const bgSpellLists = characterData.background?.compiledModifiers?.bgSpellLists || [];
     const allLists = [...new Set([...Object.keys(spellListAllocations), ...bgSpellLists])];
-    
+
     if (allLists.length > 0) {
       return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
@@ -68,11 +68,11 @@ export default function LearningStep({ characterData, setCharacterData }) {
         </div>
       );
     }
-    
+
     const inheritedChance = levelDevelopments.length > 0
       ? levelDevelopments[levelDevelopments.length - 1].spellListChanceAccumulated
       : (characterData.spellListChanceAccumulated || 0);
-      
+
     return <div>Nessuna lista incantesimi appresa - Credito ereditato: {inheritedChance}%</div>;
   };
 
@@ -81,6 +81,8 @@ export default function LearningStep({ characterData, setCharacterData }) {
 
   // Stato per visualizzare l'editor dell'equipaggiamento all'interno dello sviluppo livelli
   const [showEquipmentEditor, setShowEquipmentEditor] = useState(false);
+  const [manualSpellRoll, setManualSpellRoll] = useState('');
+  const prevTotalChanceRef = useRef(null);
 
   useEffect(() => {
     let err = null;
@@ -123,7 +125,9 @@ export default function LearningStep({ characterData, setCharacterData }) {
       hpRoll: null,
       hpRollConfirmed: false,
       languages: {}, // lingua -> gradi acquistati
-      selectedNewList: ''
+      selectedNewList: '',
+      spellAttemptStatus: 'none',
+      spellAttemptRoll: null
     });
   };
 
@@ -143,7 +147,7 @@ export default function LearningStep({ characterData, setCharacterData }) {
     if (confirm(`Rimuovere completamente il Livello ${last.level}? Questa azione è irreversibile.`)) {
       // Dobbiamo rimuovere l'ultimo livello e ripristinare le statistiche
       const updatedDevelopments = levelDevelopments.slice(0, -1);
-      
+
       // Calcola le nuove liste incantesimi
       const updatedAllocations = { ...characterData.spellListAllocations };
       // Rimuovi quelle associate a questo livello
@@ -159,7 +163,7 @@ export default function LearningStep({ characterData, setCharacterData }) {
         prevChance = updatedDevelopments[updatedDevelopments.length - 1].spellListChanceAccumulated;
       } else {
         // Ritorna al livello 1
-        prevChance = characterData.spellListChanceAccumulated; 
+        prevChance = characterData.spellListChanceAccumulated;
       }
 
       // Ripristina le lingue spesa
@@ -253,7 +257,7 @@ export default function LearningStep({ characterData, setCharacterData }) {
     // 1. Inizializza pool base
     TGP4_POOLS.forEach(p => {
       let base = getTgp4PoolSize(p.catName, p.skillName, profession.professione);
-      
+
       // Se è 'Liste incantesimi', somma i punti conservati dai livelli precedenti!
       if (p.key === 'Liste incantesimi') {
         if (activeLevel.level === 2) {
@@ -424,6 +428,42 @@ export default function LearningStep({ characterData, setCharacterData }) {
     }
   };
 
+  // Handlers per l'apprendimento delle liste incantesimi
+  const handleSpellRoll = (customVal) => {
+    if (!activeLevel) return;
+    let roll;
+    if (customVal !== undefined) {
+      roll = parseInt(customVal);
+      if (isNaN(roll) || roll < 1 || roll > 100) return;
+    } else {
+      roll = Math.floor(Math.random() * 100) + 1;
+    }
+    const calculatedTotalChance = baseAccumulated + (listPool * 20);
+    setActiveLevel(prev => ({
+      ...prev,
+      spellAttemptRoll: roll,
+      spellAttemptStatus: roll <= calculatedTotalChance ? 'success' : 'failed'
+    }));
+  };
+
+  const handleCancelSpellAttempt = () => {
+    setActiveLevel(prev => ({
+      ...prev,
+      spellAttemptStatus: 'none',
+      spellAttemptRoll: null,
+      spellListAllocations: {},
+      selectedNewList: ''
+    }));
+  };
+
+  const handleSelectAccumulate = () => {
+    setActiveLevel(prev => ({
+      ...prev,
+      spellAttemptStatus: 'accumulate',
+      spellAttemptRoll: null
+    }));
+  };
+
   // Liste Incantesimi
   const listPS = activeLevel?.tgp4Distribution['Liste incantesimi'] || 0;
   const listPool = activePoolsState['Liste incantesimi']?.adjustedPool || 0;
@@ -439,10 +479,33 @@ export default function LearningStep({ characterData, setCharacterData }) {
 
   const totalSpellChance = baseAccumulated + (listPool * 20);
 
+  const activeTotalChanceKey = activeLevel ? `${activeLevel.level}-${totalSpellChance}` : '';
+  useEffect(() => {
+    if (!activeLevel) {
+      prevTotalChanceRef.current = null;
+      return;
+    }
+    const currentChance = totalSpellChance;
+    if (prevTotalChanceRef.current !== null && prevTotalChanceRef.current !== currentChance) {
+      setActiveLevel(prev => {
+        if (!prev) return null;
+        if (prev.spellAttemptStatus === 'none' && prev.spellAttemptRoll === null && Object.keys(prev.spellListAllocations).length === 0) return prev;
+        return {
+          ...prev,
+          spellAttemptStatus: 'none',
+          spellAttemptRoll: null,
+          spellListAllocations: {},
+          selectedNewList: ''
+        };
+      });
+    }
+    prevTotalChanceRef.current = currentChance;
+  }, [activeTotalChanceKey]);
+
   const selectedRealm = characterData.magicRealm || 'Essenza';
   const knownLists = useMemo(() => {
     const list = Object.keys(characterData.spellListAllocations || {});
-    
+
     // Aggiungi le liste apprese dal background
     const bgSpellLists = characterData.background?.compiledModifiers?.bgSpellLists || [];
     bgSpellLists.forEach(k => {
@@ -458,11 +521,15 @@ export default function LearningStep({ characterData, setCharacterData }) {
     return list;
   }, [characterData.spellListAllocations, characterData.background, activeLevel]);
 
+  const knownListsUpper = useMemo(() => {
+    return knownLists.map(l => l.toUpperCase().trim());
+  }, [knownLists]);
+
   const availableLists = useMemo(() => {
     if (!profession) return [];
     const raw = getAvailableSpellLists(profession.professione, selectedRealm);
-    return raw.filter(l => !knownLists.includes(l.nome_lista));
-  }, [profession, selectedRealm, knownLists]);
+    return raw.filter(l => !knownListsUpper.includes(l.nome_lista.toUpperCase().trim()));
+  }, [profession, selectedRealm, knownListsUpper]);
 
   const handleAcquireSpellList = () => {
     if (!activeLevel || !activeLevel.selectedNewList) return;
@@ -493,22 +560,44 @@ export default function LearningStep({ characterData, setCharacterData }) {
     if (!activeLevel) return;
 
     const calculatedTotalChance = baseAccumulated + (listPool * 20);
-    const hasAcquired = Object.keys(activeLevel.spellListAllocations || {}).length > 0;
+    const hasAcquired = Object.entries(activeLevel.spellListAllocations || {}).length > 0;
+    const attemptStatus = activeLevel.spellAttemptStatus || 'none';
 
     let targetSpent = 0;
     let targetChance = baseAccumulated;
 
-    if (hasAcquired) {
-      targetSpent = listPool;
-      targetChance = calculatedTotalChance - 100;
-    } else {
-      if (calculatedTotalChance < 100) {
+    if (calculatedTotalChance >= 100) {
+      if (hasAcquired) {
         targetSpent = listPool;
-        targetChance = calculatedTotalChance;
+        targetChance = calculatedTotalChance - 100;
       } else {
         targetSpent = 0;
         targetChance = baseAccumulated;
       }
+    } else if (calculatedTotalChance > 0) {
+      if (attemptStatus === 'accumulate') {
+        targetSpent = listPool;
+        targetChance = calculatedTotalChance;
+      } else if (attemptStatus === 'success') {
+        if (hasAcquired) {
+          targetSpent = listPool;
+          targetChance = 0;
+        } else {
+          targetSpent = 0;
+          targetChance = 0;
+        }
+      } else if (attemptStatus === 'failed') {
+        targetSpent = listPool;
+        targetChance = calculatedTotalChance;
+      } else {
+        // 'none'
+        targetSpent = 0;
+        targetChance = baseAccumulated;
+      }
+    } else {
+      // calculatedTotalChance === 0
+      targetSpent = 0;
+      targetChance = 0;
     }
 
     let needsUpdate = false;
@@ -531,6 +620,7 @@ export default function LearningStep({ characterData, setCharacterData }) {
   }, [
     activeLevel ? Object.keys(activeLevel.spellListAllocations || {}).join(',') : null,
     activeLevel ? activeLevel.level : null,
+    activeLevel ? activeLevel.spellAttemptStatus : null,
     listPool,
     baseAccumulated
   ]);
@@ -538,7 +628,7 @@ export default function LearningStep({ characterData, setCharacterData }) {
   // Tiro Punti Ferita
   const rfRanksInActiveLevel = activeLevel?.tgp4Distribution['Resistenza fisica'] || 0;
   const rfTotalRanksInActiveLevel = activeLevelSkillRanks['Resistenza fisica']?.total || 0;
-  
+
   const handleRollHp = () => {
     if (!activeLevel) return;
     const numD10 = rfRanksInActiveLevel;
@@ -558,7 +648,7 @@ export default function LearningStep({ characterData, setCharacterData }) {
   const currentLanguagesState = useMemo(() => {
     const langs = {};
     const baseLangs = characterData.background?.languages || {};
-    
+
     // Inizializza con i valori base del background
     Object.keys(baseLangs).forEach(l => {
       langs[l] = (baseLangs[l].base || 0) + (baseLangs[l].added || 0);
@@ -641,12 +731,14 @@ export default function LearningStep({ characterData, setCharacterData }) {
       return;
     }
     if (!window.confirm(`Confermi di spostare ${depositPoints} PS da "${depositSource}" nel Pool Intermedio?`)) return;
-    setActiveLevel(prev => ({ ...prev, tgp4Transfers: [...prev.tgp4Transfers, {
-      id: Date.now() + Math.random().toString(36).substr(2, 5),
-      type: 'deposit',
-      source: depositSource,
-      points: depositPoints
-    }]}));
+    setActiveLevel(prev => ({
+      ...prev, tgp4Transfers: [...prev.tgp4Transfers, {
+        id: Date.now() + Math.random().toString(36).substr(2, 5),
+        type: 'deposit',
+        source: depositSource,
+        points: depositPoints
+      }]
+    }));
     setDepositPoints(1);
     setDepositSource('');
   };
@@ -659,14 +751,16 @@ export default function LearningStep({ characterData, setCharacterData }) {
       return;
     }
     if (!window.confirm(`Confermi di trasferire ${withdrawPoints} PS verso "${withdrawDest}" con costo ${cost} PS dal Pool Intermedio? (tariffa ${rate})`)) return;
-    setActiveLevel(prev => ({ ...prev, tgp4Transfers: [...prev.tgp4Transfers, {
-      id: Date.now() + Math.random().toString(36).substr(2, 5),
-      type: 'withdrawal',
-      dest: withdrawDest,
-      pointsReceived: withdrawPoints,
-      cost,
-      rate
-    }]}));
+    setActiveLevel(prev => ({
+      ...prev, tgp4Transfers: [...prev.tgp4Transfers, {
+        id: Date.now() + Math.random().toString(36).substr(2, 5),
+        type: 'withdrawal',
+        dest: withdrawDest,
+        pointsReceived: withdrawPoints,
+        cost,
+        rate
+      }]
+    }));
     setWithdrawPoints(1);
     setWithdrawDest('');
   };
@@ -738,11 +832,20 @@ export default function LearningStep({ characterData, setCharacterData }) {
       }
     }
 
-    // 4. Se ha ottenuto l'apprendimento liste ma non ha scelto la lista
-    const shouldSelectSpellList = totalSpellChance >= 100 && !hasAcquiredInActiveLevel;
-    if (shouldSelectSpellList) {
+    // 4. Se ha ottenuto l'apprendimento liste ma non ha scelto la lista o deve effettuare una scelta per la probabilità parziale
+    if (totalSpellChance >= 100 && !hasAcquiredInActiveLevel) {
       alert(`Hai ottenuto con successo l'apprendimento di una lista incantesimi! Selezionala ed acquisiscila prima di salvare il livello.`);
       return;
+    }
+    if (totalSpellChance > 0 && totalSpellChance < 100) {
+      if (activeLevel.spellAttemptStatus === 'none' || !activeLevel.spellAttemptStatus) {
+        alert(`Devi scegliere se tentare l'apprendimento della lista o accumulare la probabilità come credito prima di salvare il livello.`);
+        return;
+      }
+      if (activeLevel.spellAttemptStatus === 'success' && !hasAcquiredInActiveLevel) {
+        alert(`Hai ottenuto con successo l'apprendimento di una lista incantesimi! Selezionala ed acquisiscila prima di salvare il livello.`);
+        return;
+      }
     }
 
     // Consolidamento nello stato globale
@@ -754,7 +857,9 @@ export default function LearningStep({ characterData, setCharacterData }) {
       spellListAllocations: activeLevel.spellListAllocations,
       hpRoll: activeLevel.hpRoll || 0,
       hpRollConfirmed: activeLevel.hpRollConfirmed || false,
-      languages: activeLevel.languages
+      languages: activeLevel.languages,
+      spellAttemptStatus: activeLevel.spellAttemptStatus || 'none',
+      spellAttemptRoll: activeLevel.spellAttemptRoll || null
     }];
 
     // Aggiorna le lingue globali nel background
@@ -797,9 +902,9 @@ export default function LearningStep({ characterData, setCharacterData }) {
     return (
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <button 
-            type="button" 
-            className="btn btn-outline hover:bg-gray-100 text-gray-700 font-bold px-3 py-1.5 text-xs rounded-lg border border-gray-300 flex items-center gap-1.5" 
+          <button
+            type="button"
+            className="btn btn-outline hover:bg-gray-100 text-gray-700 font-bold px-3 py-1.5 text-xs rounded-lg border border-gray-300 flex items-center gap-1.5"
             onClick={() => setShowEquipmentEditor(false)}
           >
             <ArrowLeft className="w-4 h-4" />
@@ -982,7 +1087,7 @@ export default function LearningStep({ characterData, setCharacterData }) {
                           </span>
                         )}
                       </div>
-                      
+
                       <div className="text-xs space-y-1 mb-2 font-medium" style={{ color: 'var(--theme-primary-skills-text)' }}>
                         <p><strong>PF Attuali:</strong> {currentHp}</p>
                         <p><strong>Nuovi PF Totali:</strong> <strong className="text-sm font-black">{newHp}</strong></p>
@@ -1142,10 +1247,138 @@ export default function LearningStep({ characterData, setCharacterData }) {
                           </button>
                         </div>
                       </div>
+                    ) : totalSpellChance > 0 ? (
+                      <div className="space-y-3">
+                        {activeLevel.spellAttemptStatus === 'none' && (
+                          <div className="p-3 rounded border border-amber-250 bg-amber-50/30 space-y-2" style={{ color: 'var(--theme-spell-lists-text)' }}>
+                            <p className="text-xs font-medium">
+                              Hai una Probabilità Totale del <strong>{totalSpellChance}%</strong> di apprendere una lista. Scegli se tentare il tiro o accumulare la probabilità come credito:
+                            </p>
+                            <div className="flex gap-2 items-center">
+                              <button
+                                type="button"
+                                onClick={handleSelectAccumulate}
+                                className="flex-1 py-1.5 px-3 rounded text-xs font-bold bg-white border border-indigo-300 hover:bg-indigo-50 transition"
+                                style={{ color: 'var(--theme-spell-lists-text)' }}
+                              >
+                                Accumula come credito
+                              </button>
+                              <div className="flex-1 flex gap-2 items-center">
+                                <button
+                                  type="button"
+                                  onClick={() => handleSpellRoll()}
+                                  className="flex-1 py-1.5 px-3 rounded text-xs font-bold text-white hover:opacity-90 transition"
+                                  style={{ backgroundColor: 'var(--theme-spell-lists-text)' }}
+                                >
+                                  Tenta il tiro (1d100)
+                                </button>
+                                <div className="flex items-center gap-1">
+                                  <input
+                                    type="number"
+                                    placeholder="Dado"
+                                    value={manualSpellRoll}
+                                    onChange={(e) => setManualSpellRoll(e.target.value)}
+                                    className="w-14 p-1.5 border rounded text-xs text-center bg-white"
+                                    min="1"
+                                    max="100"
+                                  />
+                                  <button
+                                    type="button"
+                                    onClick={() => handleSpellRoll(manualSpellRoll)}
+                                    disabled={!manualSpellRoll || isNaN(parseInt(manualSpellRoll))}
+                                    className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold px-2 py-1 rounded text-xs disabled:opacity-50"
+                                  >
+                                    Vai
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
+                        {activeLevel.spellAttemptStatus === 'accumulate' && (
+                          <div className="p-3 rounded border border-indigo-200 bg-indigo-50/50 flex justify-between items-center" style={{ color: 'var(--theme-spell-lists-text)' }}>
+                            <div>
+                              <p className="text-xs font-medium">
+                                Hai scelto di <strong>accumulare la probabilità del {totalSpellChance}%</strong> come credito per il prossimo livello.
+                              </p>
+                              <p className="text-[10px] text-gray-500">Nessun tiro effettuato.</p>
+                            </div>
+                            <button
+                              type="button"
+                              onClick={handleCancelSpellAttempt}
+                              className="text-xs font-bold text-red-650 hover:text-red-800 border border-red-200 hover:border-red-300 bg-white px-2.5 py-1.5 rounded transition"
+                            >
+                              Annulla scelta
+                            </button>
+                          </div>
+                        )}
+
+                        {activeLevel.spellAttemptStatus === 'failed' && (
+                          <div className="p-3 rounded border border-red-200 bg-red-50/30 flex justify-between items-center" style={{ color: 'var(--theme-spell-lists-text)' }}>
+                            <div>
+                              <p className="text-xs font-medium">
+                                Tentativo fallito! Hai ottenuto <strong>{activeLevel.spellAttemptRoll}</strong> al dado (necessario ≤ {totalSpellChance}).
+                              </p>
+                              <p className="text-[10px] text-gray-550">
+                                La probabilità del {totalSpellChance}% è stata convertita in credito per il livello successivo.
+                              </p>
+                            </div>
+                            <button
+                              type="button"
+                              onClick={handleCancelSpellAttempt}
+                              className="text-xs font-bold text-red-650 hover:text-red-800 border border-red-200 hover:border-red-300 bg-white px-2.5 py-1.5 rounded transition"
+                            >
+                              Annulla tiro
+                            </button>
+                          </div>
+                        )}
+
+                        {activeLevel.spellAttemptStatus === 'success' && (
+                          <div className="space-y-3">
+                            <div className="p-3 rounded border border-green-250 bg-green-50/30 flex justify-between items-center" style={{ color: 'var(--theme-spell-lists-text)' }}>
+                              <div>
+                                <p className="text-xs font-medium">
+                                  Tentativo riuscito! Hai ottenuto <strong>{activeLevel.spellAttemptRoll}</strong> al dado (necessario ≤ {totalSpellChance}).
+                                </p>
+                                <p className="text-[10px] text-gray-500">Seleziona e acquisisci una nuova lista per completare il livello.</p>
+                              </div>
+                              <button
+                                type="button"
+                                onClick={handleCancelSpellAttempt}
+                                className="text-xs font-bold text-red-650 hover:text-red-800 border border-red-200 hover:border-red-300 bg-white px-2.5 py-1.5 rounded transition"
+                              >
+                                Annulla tiro
+                              </button>
+                            </div>
+                            <div className="flex gap-2">
+                              <select
+                                className="flex-1 rounded border-indigo-300 text-xs p-1 bg-white"
+                                style={{ borderColor: 'var(--theme-spell-lists-border)', border: '1px solid var(--theme-spell-lists-border)' }}
+                                value={activeLevel.selectedNewList}
+                                onChange={(e) => setActiveLevel(prev => ({ ...prev, selectedNewList: e.target.value }))}
+                              >
+                                <option value="">-- Seleziona Lista --</option>
+                                {availableLists.map(l => (
+                                  <option key={l.nome_lista} value={l.nome_lista}>{l.nome_lista} ({l.tipo_lista})</option>
+                                ))}
+                              </select>
+                              <button
+                                type="button"
+                                className="text-white px-2.5 py-1 rounded text-xs font-bold disabled:opacity-50"
+                                style={{ backgroundColor: 'var(--theme-spell-lists-text)', border: 'none', cursor: 'pointer' }}
+                                disabled={!activeLevel.selectedNewList}
+                                onClick={handleAcquireSpellList}
+                              >
+                                Conferma
+                              </button>
+                            </div>
+                          </div>
+                        )}
+                      </div>
                     ) : (
-                      <div className="text-[10px] p-2 rounded border border-indigo-200 bg-indigo-50/50" style={{ color: 'var(--theme-spell-lists-text)' }}>
-                        La probabilità totale ({totalSpellChance}%) è inferiore al 100%. In questo livello non è possibile apprendere una nuova lista.
-                        I punti del pool Liste Incantesimi ({listPool} PS) sono stati convertiti automaticamente in credito (+{listPool * 20}%).
+                      <div className="text-xs text-gray-500 italic text-center py-2">
+                        Non hai probabilità o punti assegnati a questo pool.
                       </div>
                     )}
                   </div>
@@ -1259,9 +1492,8 @@ export default function LearningStep({ characterData, setCharacterData }) {
               </div>
 
               {/* Pool Balance */}
-              <div className={`flex items-center justify-center gap-2 rounded-lg py-2 px-3 mb-2 font-bold text-xs ${
-                poolBalance > 0 ? 'bg-amber-100 border border-amber-300 text-amber-900' : 'bg-gray-100 border border-gray-200 text-gray-500'
-              }`}>
+              <div className={`flex items-center justify-center gap-2 rounded-lg py-2 px-3 mb-2 font-bold text-xs ${poolBalance > 0 ? 'bg-amber-100 border border-amber-300 text-amber-900' : 'bg-gray-100 border border-gray-200 text-gray-500'
+                }`}>
                 <span>🪙</span>
                 <span>Pool Intermedio: <strong>{poolBalance} PS</strong> disponibili</span>
                 {poolBalance > 0 && <span className="font-normal">(distribuisci in Fase 2)</span>}
@@ -1434,7 +1666,7 @@ export default function LearningStep({ characterData, setCharacterData }) {
                             const name = sk.nome;
                             const isCogliereAlleSpalle = name.toLowerCase() === 'cogliere alle spalle';
                             const state = activeLevelSkillRanks[name] || { beforeRanks: 0, profIncrement: 0, currentTgp4: 0, total: 0 };
-                            
+
                             // Gestione limiti e costi
                             let poolKey;
                             const normName = name.toLowerCase().trim();

@@ -27,3 +27,4 @@ npm-debug.log*
 .firebase/
 node_modules
 .DS_Store
+scratch_users.json

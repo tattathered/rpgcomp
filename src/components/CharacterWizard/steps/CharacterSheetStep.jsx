@@ -864,7 +864,16 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
                         {catSkills.map(sk => {
                           const s = finalSkills[sk.nome];
                           if (!s) return null;
-                          const totalBonusStr = typeof s.totalBonus === 'number' ? fmt(s.totalBonus) : s.totalBonus;
+                          let totalBonusStr;
+                          if (sk.nome.toLowerCase() === 'resistenza fisica') {
+                            // In step 10 il tiro HP è sempre già stato effettuato (prerequisito di step 8).
+                            // Mostra il valore numerico finale dei PF.
+                            totalBonusStr = String(finalHitPoints);
+                          } else {
+                            totalBonusStr = typeof s.totalBonus === 'number' ? fmt(s.totalBonus) : s.totalBonus;
+                          }
+
+
                           const specialBonus = s.specialBonus || 0;
                           const hasIngombro = s.ingombroBonus !== null;
                           const hasSpecialBonus = specialBonus !== 0;

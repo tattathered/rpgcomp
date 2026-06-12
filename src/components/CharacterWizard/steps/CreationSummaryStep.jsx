@@ -60,6 +60,10 @@ export default function CreationSummaryStep({ characterData, setCharacterData })
   const race = characterData.race;
   const profession = characterData.profession;
   const stats = characterData.stats || {};
+
+  // Local string state for manual inputs (avoid committing on every keystroke)
+  const [manualHpInput, setManualHpInput] = useState('');
+  const [manualAspettoInput, setManualAspettoInput] = useState('');
   const magicRealm = characterData.magicRealm || '—';
   const bgData = characterData.background || { languages: {}, options: [] };
   const languages = bgData.languages || {};
@@ -81,8 +85,12 @@ export default function CreationSummaryStep({ characterData, setCharacterData })
     setCharacterData(prev => ({ ...prev, aspetto: total }));
   };
 
-  const handleManualAspetto = (val) => {
-    setCharacterData(prev => ({ ...prev, aspetto: val }));
+  const handleManualAspetto = () => {
+    const parsed = parseInt(manualAspettoInput, 10);
+    if (!isNaN(parsed)) {
+      setCharacterData(prev => ({ ...prev, aspetto: parsed }));
+      setManualAspettoInput('');
+    }
   };
 
   // ── Gestione Punti Ferita (HP) ──
@@ -169,8 +177,12 @@ export default function CreationSummaryStep({ characterData, setCharacterData })
     setCharacterData(prev => ({ ...prev, level1HpRoll: sum }));
   };
 
-  const handleManualHp = (val) => {
-    setCharacterData(prev => ({ ...prev, level1HpRoll: val }));
+  const handleManualHp = () => {
+    const parsed = parseInt(manualHpInput, 10);
+    if (!isNaN(parsed) && parsed >= 0) {
+      setCharacterData(prev => ({ ...prev, level1HpRoll: parsed }));
+      setManualHpInput('');
+    }
   };
 
   if (!race || !profession) {
@@ -384,9 +396,20 @@ export default function CreationSummaryStep({ characterData, setCharacterData })
                 <input
                   type="number"
                   placeholder="Valore"
-                  onChange={(e) => handleManualAspetto(e.target.value === '' ? null : parseInt(e.target.value))}
-                  style={{ width: '4rem', padding: '0.3rem', border: '1px solid var(--border-color)', borderRadius: '4px', textAlign: 'center', fontSize: '0.8rem' }}
+                  value={manualAspettoInput}
+                  onChange={(e) => setManualAspettoInput(e.target.value)}
+                  onKeyDown={(e) => { if (e.key === 'Enter') handleManualAspetto(); }}
+                  onBlur={handleManualAspetto}
+                  style={{ width: '5rem', padding: '0.3rem', border: '1px solid var(--border-color)', borderRadius: '4px', textAlign: 'center', fontSize: '0.8rem' }}
                 />
+                <button
+                  type="button"
+                  onClick={handleManualAspetto}
+                  disabled={!manualAspettoInput}
+                  style={{ padding: '0.3rem 0.6rem', fontSize: '0.75rem', background: 'var(--theme-appearance-text)', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', opacity: manualAspettoInput ? 1 : 0.4 }}
+                >
+                  ✓
+                </button>
               </div>
             </div>
           ) : (
@@ -448,9 +471,20 @@ export default function CreationSummaryStep({ characterData, setCharacterData })
                   type="number"
                   placeholder="Valore"
                   min="0"
-                  onChange={(e) => handleManualHp(e.target.value === '' ? null : parseInt(e.target.value))}
-                  style={{ width: '4rem', padding: '0.3rem', border: '1px solid var(--border-color)', borderRadius: '4px', textAlign: 'center', fontSize: '0.8rem' }}
+                  value={manualHpInput}
+                  onChange={(e) => setManualHpInput(e.target.value)}
+                  onKeyDown={(e) => { if (e.key === 'Enter') handleManualHp(); }}
+                  onBlur={handleManualHp}
+                  style={{ width: '5rem', padding: '0.3rem', border: '1px solid var(--border-color)', borderRadius: '4px', textAlign: 'center', fontSize: '0.8rem' }}
                 />
+                <button
+                  type="button"
+                  onClick={handleManualHp}
+                  disabled={!manualHpInput}
+                  style={{ padding: '0.3rem 0.6rem', fontSize: '0.75rem', background: '#b91c1c', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', opacity: manualHpInput ? 1 : 0.4 }}
+                >
+                  ✓
+                </button>
               </div>
             </div>
           ) : (
@@ -590,7 +624,18 @@ export default function CreationSummaryStep({ characterData, setCharacterData })
                         const specialBonus = s.specialBonus || 0;
                         const hasSpecialBonus = specialBonus !== 0;
                         const displaySpecial = (hasIngombro || hasSpecialBonus) ? (specialBonus + (s.ingombroBonus ?? 0)) : null;
-                        const totalBonusStr = typeof s.totalBonus === 'number' ? fmt(s.totalBonus) : s.totalBonus;
+
+                        let totalBonusStr;
+                        if (sk.nome.toLowerCase() === 'resistenza fisica') {
+                          // Format: "#d10 [+caratt] [+speciale]"
+                          const parts = [`${s.totalRanks}d10`];
+                          if (s.carattBonus !== 0) parts.push(fmt(s.carattBonus));
+                          if (specialBonus !== 0) parts.push(fmt(specialBonus));
+                          totalBonusStr = parts.join(' ');
+                        } else {
+                          totalBonusStr = typeof s.totalBonus === 'number' ? fmt(s.totalBonus) : s.totalBonus;
+                        }
+
                         const bgHighlight = s.bgExtra > 0;
 
                         return (

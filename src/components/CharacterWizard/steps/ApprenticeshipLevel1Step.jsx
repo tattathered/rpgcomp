@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
 import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
 import { getAvailableSpellLists } from '../../../utils/magicHelpers';
@@ -100,9 +100,53 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
     return initial;
   });
   const [tgp4Transfers, setTgp4Transfers] = useState(characterData.tgp4Transfers || []);
-  
+
   const [selectedNewList, setSelectedNewList] = useState('');
-  
+  const [spellAttemptStatus, setSpellAttemptStatus] = useState(() => characterData.level1SpellAttemptStatus || 'none');
+  const [spellAttemptRoll, setSpellAttemptRoll] = useState(() => characterData.level1SpellAttemptRoll || null);
+  const [manualSpellRoll, setManualSpellRoll] = useState('');
+  const prevTotalChanceRef = useRef(null);
+
+  // Spell Lists local variables
+  const listPool = useMemo(() => {
+    if (!profession) return 0;
+    const base = getTgp4PoolSize('liste incantesimi', null, profession.professione);
+    let received = 0;
+    let transferredOut = 0;
+    tgp4Transfers.forEach(t => {
+      if (t.type === 'deposit' && t.source === 'Liste incantesimi') transferredOut += t.points;
+      if (t.type === 'withdrawal' && t.dest === 'Liste incantesimi') received += t.pointsReceived;
+    });
+    return base + received - transferredOut;
+  }, [profession, tgp4Transfers]);
+
+  const listPS = tgp4Distribution['Liste incantesimi'] || 0;
+  const baseAccumulated = characterData.spellListChanceAccumulated || 0;
+  const totalChance = baseAccumulated + (listPool * 20);
+
+  // Reset attempt if totalChance changes
+  useEffect(() => {
+    if (prevTotalChanceRef.current !== null && prevTotalChanceRef.current !== totalChance) {
+      setSpellAttemptStatus('none');
+      setSpellAttemptRoll(null);
+      setManualSpellRoll('');
+      // If they had acquired a list, remove it
+      const acquiredListEntry = Object.entries(characterData.spellListAllocations || {}).find(([name, source]) => source === 'Apprendistato Liv. 1');
+      if (acquiredListEntry) {
+        const acquiredListName = acquiredListEntry[0];
+        setCharacterData(prev => {
+          const nextAlloc = { ...prev.spellListAllocations };
+          delete nextAlloc[acquiredListName];
+          return {
+            ...prev,
+            spellListAllocations: nextAlloc
+          };
+        });
+      }
+    }
+    prevTotalChanceRef.current = totalChance;
+  }, [totalChance]);
+
   // Point Transfer States (2-phase pool model)
   const [depositSource, setDepositSource] = useState('');
   const [depositPoints, setDepositPoints] = useState(1);
@@ -199,7 +243,7 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
     const cur = languages[lang] || { base: 0, addedAdolescenza: 0, addedLivello1: 0, added: 0 };
     const total = (cur.base || 0) + (cur.addedAdolescenza || 0) + (cur.addedLivello1 || 0);
     if (total >= 5) return;
-    
+
     const nextLangs = {
       ...languages,
       [lang]: {
@@ -220,11 +264,11 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
   const removeLangPoint = (lang) => {
     const cur = languages[lang];
     if (!cur || cur.addedLivello1 <= 0) return;
-    
+
     const nextLangs = { ...languages };
     const newAddedLivello1 = cur.addedLivello1 - 1;
     const newAdded = (cur.addedAdolescenza || 0) + newAddedLivello1;
-    
+
     if (cur.base === 0 && (cur.addedAdolescenza || 0) === 0 && newAddedLivello1 === 0 && !cur.fromBg) {
       delete nextLangs[lang];
     } else {
@@ -234,7 +278,7 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
         added: newAdded
       };
     }
-    
+
     setCharacterData(prev => ({
       ...prev,
       background: {
@@ -249,7 +293,7 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
     const cur = languages[lang] || { base: 0, addedAdolescenza: 0, addedLivello1: 0, added: 0 };
     const total = (cur.base || 0) + (cur.addedAdolescenza || 0) + (cur.addedLivello1 || 0);
     if (total >= 5) return;
-    
+
     const nextLangs = {
       ...languages,
       [lang]: {
@@ -308,9 +352,11 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
 
     setCharacterData(prev => {
       if (JSON.stringify(prev.level1Tb6) === JSON.stringify(tb6Distribution) &&
-          JSON.stringify(prev.level1Tgp4) === JSON.stringify(nextLevel1Tgp4) &&
-          JSON.stringify(prev.tgp4Transfers) === JSON.stringify(tgp4Transfers) &&
-          JSON.stringify(prev.skills) === JSON.stringify(newSkills)) {
+        JSON.stringify(prev.level1Tgp4) === JSON.stringify(nextLevel1Tgp4) &&
+        JSON.stringify(prev.tgp4Transfers) === JSON.stringify(tgp4Transfers) &&
+        JSON.stringify(prev.skills) === JSON.stringify(newSkills) &&
+        prev.level1SpellAttemptStatus === spellAttemptStatus &&
+        prev.level1SpellAttemptRoll === spellAttemptRoll) {
         return prev;
       }
       return {
@@ -318,17 +364,71 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
         level1Tb6: tb6Distribution,
         level1Tgp4: nextLevel1Tgp4,
         tgp4Transfers: tgp4Transfers,
-        skills: newSkills
+        skills: newSkills,
+        level1SpellAttemptStatus: spellAttemptStatus,
+        level1SpellAttemptRoll: spellAttemptRoll
       };
     });
-  }, [tb6Distribution, tgp4Distribution, tgp4Transfers, setCharacterData, baseSkills, profession, characterData.skills]);
+  }, [tb6Distribution, tgp4Distribution, tgp4Transfers, setCharacterData, baseSkills, profession, characterData.skills, spellAttemptStatus, spellAttemptRoll]);
+
+  const handleSpellRoll = (customVal) => {
+    let roll;
+    if (customVal !== undefined) {
+      roll = parseInt(customVal);
+      if (isNaN(roll) || roll < 1 || roll > 100) return;
+    } else {
+      roll = Math.floor(Math.random() * 100) + 1;
+    }
+    setSpellAttemptRoll(roll);
+    if (roll <= totalChance) {
+      setSpellAttemptStatus('success');
+    } else {
+      setSpellAttemptStatus('failed');
+    }
+  };
+
+  const handleCancelSpellAttempt = () => {
+    setSpellAttemptStatus('none');
+    setSpellAttemptRoll(null);
+    setManualSpellRoll('');
+    if (hasAcquiredInApprenticeship) {
+      handleRemoveSpellList();
+    }
+  };
+
+  const handleSelectAccumulate = () => {
+    setSpellAttemptStatus('accumulate');
+    setSpellAttemptRoll(null);
+  };
 
   const isWarriorOrScout = profession ? ['guerriero', 'scout'].includes(profession?.professione?.toLowerCase()) : false;
 
   const selectedRealm = characterData.magicRealm || '';
-  const knownLists = Object.keys(characterData.spellListAllocations || {});
-  const rawAvailableLists = profession ? getAvailableSpellLists(profession.professione, selectedRealm) : [];
-  const availableLists = rawAvailableLists.filter(l => !knownLists.includes(l.nome_lista));
+  const knownLists = useMemo(() => {
+    const list = new Set();
+    Object.keys(characterData.spellListAllocations || {}).forEach(k => {
+      if (characterData.spellListAllocations[k] !== 'Apprendistato Liv. 1') {
+        list.add(k);
+      }
+    });
+    const bgSpellLists = characterData.background?.compiledModifiers?.bgSpellLists || [];
+    bgSpellLists.forEach(k => {
+      list.add(k);
+    });
+    return Array.from(list);
+  }, [characterData.spellListAllocations, characterData.background]);
+
+  const knownListsUpper = useMemo(() => {
+    return knownLists.map(l => l.toUpperCase().trim());
+  }, [knownLists]);
+
+  const rawAvailableLists = useMemo(() => {
+    return profession ? getAvailableSpellLists(profession.professione, selectedRealm) : [];
+  }, [profession, selectedRealm]);
+
+  const availableLists = useMemo(() => {
+    return rawAvailableLists.filter(l => !knownListsUpper.includes(l.nome_lista.toUpperCase().trim()));
+  }, [rawAvailableLists, knownListsUpper]);
 
   const handleRealmChange = (realm) => {
     setCharacterData(prev => ({ ...prev, magicRealm: realm }));
@@ -341,7 +441,7 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
     const isMM = normCat === 'di manovra e movimento' || category === 'Abilità di Movimento e Manovra';
     const isNoLimit = isMM || skillName.toLowerCase().trim() === 'percezione';
     const currentRanks = tgp4Distribution[skillName] || 0;
-    
+
     // Check max ranks per level
     if (!isNoLimit && currentRanks >= 2) return;
 
@@ -364,7 +464,7 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
     if (!pool) return;
 
     const costOfNextRank = isNoLimit ? 1 : (currentRanks === 0 ? 1 : 2);
-    
+
     if (pool.remaining >= costOfNextRank) {
       setTgp4Distribution(prev => ({
         ...prev,
@@ -382,32 +482,17 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
     }
   };
 
-  // Spell Lists local variables
-  const listPool = useMemo(() => {
-    if (!profession) return 0;
-    const base = getTgp4PoolSize('liste incantesimi', null, profession.professione);
-    let received = 0;
-    let transferredOut = 0;
-    tgp4Transfers.forEach(t => {
-      if (t.type === 'deposit' && t.source === 'Liste incantesimi') transferredOut += t.points;
-      if (t.type === 'withdrawal' && t.dest === 'Liste incantesimi') received += t.pointsReceived;
-    });
-    return base + received - transferredOut;
-  }, [profession, tgp4Transfers]);
 
-  const listPS = tgp4Distribution['Liste incantesimi'] || 0;
-  const baseAccumulated = characterData.spellListChanceAccumulated || 0;
-  const totalChance = baseAccumulated + (listPool * 20);
 
   const acquiredListEntry = Object.entries(characterData.spellListAllocations || {}).find(([name, source]) => source === 'Apprendistato Liv. 1');
   const hasAcquiredInApprenticeship = !!acquiredListEntry;
   const acquiredListName = hasAcquiredInApprenticeship ? acquiredListEntry[0] : '';
-  
+
   const adolescenceListEntry = Object.entries(characterData.spellListAllocations || {}).find(([name, source]) => source === 'Adolescenza');
 
   const handleAcquireList = () => {
     if (!selectedNewList) return;
-    
+
     setCharacterData(prev => ({
       ...prev,
       spellListAllocations: {
@@ -435,17 +520,38 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
     let targetSpent = 0;
     let targetChance = baseAccumulated;
 
-    if (hasAcquiredInApprenticeship) {
-      targetSpent = listPool;
-      targetChance = totalChance - 100;
-    } else {
-      if (totalChance < 100) {
+    if (totalChance >= 100) {
+      if (hasAcquiredInApprenticeship) {
         targetSpent = listPool;
-        targetChance = totalChance;
+        targetChance = totalChance - 100;
       } else {
         targetSpent = 0;
         targetChance = baseAccumulated;
       }
+    } else if (totalChance > 0) {
+      if (spellAttemptStatus === 'accumulate') {
+        targetSpent = listPool;
+        targetChance = totalChance;
+      } else if (spellAttemptStatus === 'success') {
+        if (hasAcquiredInApprenticeship) {
+          targetSpent = listPool;
+          targetChance = 0;
+        } else {
+          targetSpent = 0;
+          targetChance = 0;
+        }
+      } else if (spellAttemptStatus === 'failed') {
+        targetSpent = listPool;
+        targetChance = totalChance;
+      } else {
+        // 'none'
+        targetSpent = 0;
+        targetChance = baseAccumulated;
+      }
+    } else {
+      // totalChance === 0
+      targetSpent = 0;
+      targetChance = 0;
     }
 
     if (tgp4Distribution['Liste incantesimi'] !== targetSpent) {
@@ -461,7 +567,14 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
         spellListChanceAccumulated: targetChance
       }));
     }
-  }, [hasAcquiredInApprenticeship, listPool, totalChance, baseAccumulated, tgp4Distribution, characterData.spellListChanceAccumulated, setCharacterData]);
+  }, [
+    hasAcquiredInApprenticeship,
+    listPool,
+    totalChance,
+    baseAccumulated,
+    spellAttemptStatus,
+    setCharacterData
+  ]);
 
   // Validation useEffect for Level 1
   useEffect(() => {
@@ -488,9 +601,17 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
       err = `Hai ${poolBalance} PS nel Pool Intermedio non ancora distribuiti. Distribuiscili alle categorie oppure resetta i trasferimenti.`;
     }
 
-    // 3. Controlla se ha ottenuto l'apprendimento lista incantesimi ma non l'ha ancora scelta
-    if (!err && selectedRealm && totalChance >= 100 && !hasAcquiredInApprenticeship) {
-      err = 'Hai ottenuto con successo l\'apprendimento di una lista incantesimi! Selezionala ed acquisiscila.';
+    // 3. Controlla se ha ottenuto l'apprendimento lista incantesimi ma non l'ha ancora scelta o se deve fare una scelta per probabilità parziale
+    if (!err && selectedRealm) {
+      if (totalChance >= 100 && !hasAcquiredInApprenticeship) {
+        err = 'Hai ottenuto con successo l\'apprendimento di una lista incantesimi! Selezionala ed acquisiscila.';
+      } else if (totalChance > 0 && totalChance < 100) {
+        if (spellAttemptStatus === 'none') {
+          err = 'Devi scegliere se tentare l\'apprendimento della lista o accumulare la probabilità come credito.';
+        } else if (spellAttemptStatus === 'success' && !hasAcquiredInApprenticeship) {
+          err = 'Hai ottenuto con successo l\'apprendimento di una lista incantesimi! Selezionala ed acquisiscila.';
+        }
+      }
     }
 
     if (characterData.stepErrors?.level1 !== err) {
@@ -502,7 +623,7 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
         }
       }));
     }
-  }, [poolsState, poolBalance, selectedRealm, totalChance, hasAcquiredInApprenticeship, characterData.stepErrors, setCharacterData]);
+  }, [poolsState, poolBalance, selectedRealm, totalChance, hasAcquiredInApprenticeship, spellAttemptStatus, characterData.stepErrors, setCharacterData]);
 
   // ── Handlers Trasferimento 2-Fasi ────────────────────────────────────────────
 
@@ -631,8 +752,17 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
           </div>
 
           <div className="text-xs text-indigo-900 mb-1 space-y-1 font-medium">
-            {adolescenceListEntry && (
-              <p className="mb-2 text-indigo-700"><strong>Già appresa (Adolescenza):</strong> {adolescenceListEntry[0]}</p>
+            {knownLists.length > 0 && (
+              <div className="mb-2 text-[11px] p-2 rounded bg-white/50 border border-indigo-200">
+                <div className="font-semibold mb-1 text-indigo-800">Liste già apprese:</div>
+                <div className="flex flex-wrap gap-1">
+                  {knownLists.map(l => (
+                    <span key={l} className="px-1.5 py-0.5 rounded text-[10px] font-medium bg-indigo-100 text-indigo-800">
+                      {l}
+                    </span>
+                  ))}
+                </div>
+              </div>
             )}
             {!hasAcquiredInApprenticeship ? (
               <>
@@ -667,7 +797,7 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
                     Probabilità totale ≥ 100%! Puoi scegliere e apprendere una nuova lista incantesimi.
                   </div>
                   <div className="flex gap-2">
-                    <select 
+                    <select
                       className="flex-1 rounded border-indigo-300 text-sm p-1.5 bg-white"
                       value={selectedNewList}
                       onChange={(e) => setSelectedNewList(e.target.value)}
@@ -677,7 +807,7 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
                         <option key={l.nome_lista} value={l.nome_lista}>{l.nome_lista} ({l.tipo_lista})</option>
                       ))}
                     </select>
-                    <button 
+                    <button
                       type="button"
                       className="bg-green-600 text-white px-4 py-1.5 rounded text-sm font-bold hover:bg-green-700 disabled:opacity-50"
                       disabled={!selectedNewList}
@@ -687,10 +817,134 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
                     </button>
                   </div>
                 </div>
+              ) : totalChance > 0 ? (
+                <div className="space-y-3">
+                  {spellAttemptStatus === 'none' && (
+                    <div className="p-3 rounded-lg border border-amber-200 bg-amber-50/30 space-y-2">
+                      <p className="text-xs text-amber-900 font-medium">
+                        Hai una Probabilità Totale del <strong>{totalChance}%</strong> di apprendere una lista. Scegli se tentare il tiro o accumulare la probabilità come credito:
+                      </p>
+                      <div className="flex gap-2 items-center">
+                        <button
+                          type="button"
+                          onClick={handleSelectAccumulate}
+                          className="flex-1 py-1.5 px-3 rounded text-xs font-bold bg-white text-indigo-700 border border-indigo-300 hover:bg-indigo-50 transition"
+                        >
+                          Accumula come credito
+                        </button>
+                        <div className="flex-1 flex gap-2 items-center">
+                          <button
+                            type="button"
+                            onClick={() => handleSpellRoll()}
+                            className="flex-1 py-1.5 px-3 rounded text-xs font-bold bg-indigo-600 text-white hover:bg-indigo-700 transition"
+                          >
+                            Tenta il tiro (1d100)
+                          </button>
+                          <div className="flex items-center gap-1">
+                            <input
+                              type="number"
+                              placeholder="Dado"
+                              value={manualSpellRoll}
+                              onChange={(e) => setManualSpellRoll(e.target.value)}
+                              className="w-14 p-1.5 border rounded text-xs text-center bg-white"
+                              min="1"
+                              max="100"
+                            />
+                            <button
+                              type="button"
+                              onClick={() => handleSpellRoll(manualSpellRoll)}
+                              disabled={!manualSpellRoll || isNaN(parseInt(manualSpellRoll))}
+                              className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold px-2 py-1.5 rounded text-xs disabled:opacity-50"
+                            >
+                              Vai
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {spellAttemptStatus === 'accumulate' && (
+                    <div className="p-3 rounded-lg border border-indigo-200 bg-indigo-50/30 flex justify-between items-center">
+                      <div>
+                        <p className="text-xs text-indigo-900 font-medium">
+                          Hai scelto di <strong>accumulare la probabilità del {totalChance}%</strong> come credito per il prossimo livello.
+                        </p>
+                        <p className="text-[10px] text-gray-500">Nessun tiro effettuato.</p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={handleCancelSpellAttempt}
+                        className="text-xs font-bold text-red-650 hover:text-red-800 border border-red-200 hover:border-red-300 bg-white px-2.5 py-1.5 rounded transition"
+                      >
+                        Annulla scelta
+                      </button>
+                    </div>
+                  )}
+
+                  {spellAttemptStatus === 'failed' && (
+                    <div className="p-3 rounded-lg border border-red-200 bg-red-50/30 flex justify-between items-center">
+                      <div>
+                        <p className="text-xs text-red-900 font-medium">
+                          Tentativo fallito! Hai ottenuto <strong>{spellAttemptRoll}</strong> al dado (necessario ≤ {totalChance}).
+                        </p>
+                        <p className="text-[10px] text-gray-500">
+                          La probabilità del {totalChance}% è stata convertita in credito per il livello successivo.
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={handleCancelSpellAttempt}
+                        className="text-xs font-bold text-red-650 hover:text-red-800 border border-red-200 hover:border-red-300 bg-white px-2.5 py-1.5 rounded transition"
+                      >
+                        Annulla tiro
+                      </button>
+                    </div>
+                  )}
+
+                  {spellAttemptStatus === 'success' && (
+                    <div className="space-y-3">
+                      <div className="p-3 rounded-lg border border-green-250 bg-green-50/30 flex justify-between items-center">
+                        <div>
+                          <p className="text-xs text-green-900 font-medium">
+                            Tentativo riuscito! Hai ottenuto <strong>{spellAttemptRoll}</strong> al dado (necessario ≤ {totalChance}).
+                          </p>
+                          <p className="text-[10px] text-gray-500">Seleziona e acquisisci una nuova lista per completare il livello.</p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={handleCancelSpellAttempt}
+                          className="text-xs font-bold text-red-655 hover:text-red-800 border border-red-200 hover:border-red-300 bg-white px-2.5 py-1.5 rounded transition"
+                        >
+                          Annulla tiro
+                        </button>
+                      </div>
+                      <div className="flex gap-2">
+                        <select
+                          className="flex-1 rounded border-indigo-300 text-sm p-1.5 bg-white"
+                          value={selectedNewList}
+                          onChange={(e) => setSelectedNewList(e.target.value)}
+                        >
+                          <option value="">-- Seleziona Lista --</option>
+                          {availableLists.map(l => (
+                            <option key={l.nome_lista} value={l.nome_lista}>{l.nome_lista} ({l.tipo_lista})</option>
+                          ))}
+                        </select>
+                        <button
+                          type="button"
+                          className="bg-green-600 text-white px-4 py-1.5 rounded text-sm font-bold hover:bg-green-700 disabled:opacity-50"
+                          disabled={!selectedNewList}
+                          onClick={handleAcquireList}
+                        >
+                          Conferma
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
               ) : (
-                <div className="text-xs bg-indigo-100 text-indigo-800 p-2 rounded border border-indigo-200">
-                  La probabilità totale ({totalChance}%) è inferiore al 100%. In questo livello non è possibile apprendere una nuova lista.
-                  I punti del pool Liste Incantesimi ({listPool} PS) sono stati convertiti automaticamente in credito (+{listPool * 20}%).
+                <div className="text-xs text-gray-500 italic">
+                  Non hai probabilità o punti assegnati a questo pool.
                 </div>
               )}
             </div>
@@ -705,7 +959,7 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
           <span>🔄</span> Trasferimento Punti Sviluppo (PS)
         </h4>
         <p className="text-xs mb-4 leading-relaxed" style={{ color: 'var(--theme-primary-skills-text)', opacity: 0.9 }}>
-          Il trasferimento avviene in <strong>2 fasi</strong>: prima si prelevano PS da una categoria nel <strong>Pool Intermedio</strong>, poi si distribuiscono dal Pool alle categorie di destinazione.<br/>
+          Il trasferimento avviene in <strong>2 fasi</strong>: prima si prelevano PS da una categoria nel <strong>Pool Intermedio</strong>, poi si distribuiscono dal Pool alle categorie di destinazione.<br />
           Regole di conversione (fase 2): Verso <strong>Percezione</strong>: <strong>1:1</strong> · Verso categorie con base &gt; 0: <strong>2:1</strong> · Verso categorie con base = 0: <strong>4:1</strong>
         </p>
 
@@ -752,9 +1006,8 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
         </div>
 
         {/* Pool Balance Badge */}
-        <div className={`flex items-center justify-center gap-3 rounded-lg py-2.5 px-4 mb-3 font-bold text-sm ${
-          poolBalance > 0 ? 'bg-amber-100 border border-amber-300 text-amber-900' : 'bg-gray-100 border border-gray-200 text-gray-500'
-        }`}>
+        <div className={`flex items-center justify-center gap-3 rounded-lg py-2.5 px-4 mb-3 font-bold text-sm ${poolBalance > 0 ? 'bg-amber-100 border border-amber-300 text-amber-900' : 'bg-gray-100 border border-gray-200 text-gray-500'
+          }`}>
           <span style={{ fontSize: '1.1rem' }}>🪙</span>
           <span>Pool Intermedio: <strong>{poolBalance} PS</strong> disponibili</span>
           {poolBalance > 0 && <span className="text-xs font-normal">(da distribuire in Fase 2)</span>}
@@ -878,36 +1131,36 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
       </div>
 
       {/* ── LINGUE ── */}
-      <div className="card mb-8" style={{borderColor:'var(--theme-languages-border)'}}>
-        <div className="card-header border-b" style={{background:'var(--theme-languages-bg)',borderBottomColor:'var(--theme-languages-border)',padding:'0.75rem 1rem',display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-          <h4 className="font-semibold m-0 text-sm uppercase tracking-wider" style={{color:'var(--theme-languages-text)'}}>🌐 Lingue Conosciute (Sviluppo Livello 1)</h4>
-          <div style={{display:'flex',gap:'1rem'}}>
-            <span style={{fontSize:'0.8rem',background:'#fff',border:'1px solid var(--theme-languages-border)',padding:'0.25rem 0.75rem',borderRadius:'0.5rem',color:'var(--theme-languages-text)',fontWeight:'bold'}}>
+      <div className="card mb-8" style={{ borderColor: 'var(--theme-languages-border)' }}>
+        <div className="card-header border-b" style={{ background: 'var(--theme-languages-bg)', borderBottomColor: 'var(--theme-languages-border)', padding: '0.75rem 1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <h4 className="font-semibold m-0 text-sm uppercase tracking-wider" style={{ color: 'var(--theme-languages-text)' }}>🌐 Lingue Conosciute (Sviluppo Livello 1)</h4>
+          <div style={{ display: 'flex', gap: '1rem' }}>
+            <span style={{ fontSize: '0.8rem', background: '#fff', border: '1px solid var(--theme-languages-border)', padding: '0.25rem 0.75rem', borderRadius: '0.5rem', color: 'var(--theme-languages-text)', fontWeight: 'bold' }}>
               Punti totali: <strong>{poolsState['Lingue']?.adjustedPool || 0}</strong>
             </span>
             <span style={{
-              fontSize:'0.8rem',
+              fontSize: '0.8rem',
               backgroundColor: languagePointsLeft > 0 ? '#fee2e2' : '#dcfce7',
               color: languagePointsLeft > 0 ? '#991b1b' : '#166534',
               paddingLeft: '5px',
               paddingRight: '5px',
               paddingTop: '0.25rem',
               paddingBottom: '0.25rem',
-              borderRadius:'0.5rem',
-              fontWeight:'bold'
+              borderRadius: '0.5rem',
+              fontWeight: 'bold'
             }}>
               Rimasti: <strong>{languagePointsLeft}</strong>
             </span>
           </div>
         </div>
-        <div className="card-body" style={{padding:'1rem'}}>
+        <div className="card-body" style={{ padding: '1rem' }}>
           <p className="text-xs text-muted mb-4">Spendi i Punti Sviluppo del pool Lingue per migliorare le lingue conosciute o apprenderne di nuove (max Grado 5).</p>
           <div className="flex flex-col gap-2">
-            {Object.entries(languages).sort((a,b)=>a[0].localeCompare(b[0])).map(([lang, data]) => {
+            {Object.entries(languages).sort((a, b) => a[0].localeCompare(b[0])).map(([lang, data]) => {
               const total = (data.base || 0) + (data.added || 0);
               const gradeInfo = gradiLingue.find(g => g.grado === total);
               return (
-                <div key={lang} className="flex items-center justify-between p-2.5 border rounded-lg bg-white" style={{borderColor:'var(--theme-languages-border)'}}>
+                <div key={lang} className="flex items-center justify-between p-2.5 border rounded-lg bg-white" style={{ borderColor: 'var(--theme-languages-border)' }}>
                   <div>
                     <strong className="text-sm text-gray-900">{lang}</strong>
                     {data.base > 0 && <span className="ml-2 text-[10px] bg-gray-100 px-1.5 py-0.5 rounded text-gray-500">Base ({data.base})</span>}
@@ -918,8 +1171,8 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
                   </div>
                   <div className="flex items-center gap-2">
                     <strong className="text-lg min-w-[1.5rem] text-center text-blue-900">{total}</strong>
-                    <button type="button" onClick={() => addLangPoint(lang)} disabled={languagePointsLeft<=0||total>=5} className="w-7 h-7 border rounded flex items-center justify-center bg-gray-50 hover:bg-gray-100 disabled:opacity-50 text-sm font-bold">+</button>
-                    <button type="button" onClick={() => removeLangPoint(lang)} disabled={!data.addedLivello1||data.addedLivello1<=0} className="w-7 h-7 border rounded flex items-center justify-center bg-gray-50 hover:bg-gray-100 disabled:opacity-50 text-sm font-bold">−</button>
+                    <button type="button" onClick={() => addLangPoint(lang)} disabled={languagePointsLeft <= 0 || total >= 5} className="w-7 h-7 border rounded flex items-center justify-center bg-gray-50 hover:bg-gray-100 disabled:opacity-50 text-sm font-bold">+</button>
+                    <button type="button" onClick={() => removeLangPoint(lang)} disabled={!data.addedLivello1 || data.addedLivello1 <= 0} className="w-7 h-7 border rounded flex items-center justify-center bg-gray-50 hover:bg-gray-100 disabled:opacity-50 text-sm font-bold">−</button>
                   </div>
                 </div>
               );
@@ -927,17 +1180,17 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
           </div>
 
           {languagePointsLeft > 0 && (
-            <div className="mt-4 pt-4 border-t flex gap-2 items-center" style={{borderTopColor:'var(--theme-languages-border)'}}>
+            <div className="mt-4 pt-4 border-t flex gap-2 items-center" style={{ borderTopColor: 'var(--theme-languages-border)' }}>
               <select defaultValue="" id="lang-add-select-level1" className="flex-1 rounded border-gray-300 text-xs p-2 bg-white">
                 <option value="" disabled>-- Nuova lingua da apprendere --</option>
                 {allLanguages.filter(l => !languages[l] || ((languages[l].base || 0) + (languages[l].added || 0)) < 5).map(l => (
                   <option key={l} value={l}>{l}</option>
                 ))}
               </select>
-              <button 
-                type="button" 
-                className="bg-blue-600 text-white font-bold py-1.5 px-3 rounded text-xs hover:bg-blue-700 transition" 
-                onClick={() => { const s = document.getElementById('lang-add-select-level1'); if(s.value){ addNewLang(s.value); s.value=''; } }}
+              <button
+                type="button"
+                className="bg-blue-600 text-white font-bold py-1.5 px-3 rounded text-xs hover:bg-blue-700 transition"
+                onClick={() => { const s = document.getElementById('lang-add-select-level1'); if (s.value) { addNewLang(s.value); s.value = ''; } }}
               >
                 + Apprendi
               </button>
@@ -947,7 +1200,7 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
       </div>
 
       <p className="mb-6 text-muted">
-        I gradi della tua professione (<strong>TB_6</strong>) sono mostrati per consultazione. Spendi i tuoi Punti Sviluppo (<strong>TGP_4</strong>) per il Livello 1.<br/>
+        I gradi della tua professione (<strong>TB_6</strong>) sono mostrati per consultazione. Spendi i tuoi Punti Sviluppo (<strong>TGP_4</strong>) per il Livello 1.<br />
         Ricorda che in TGP_4 il 1° grado costa 1 PS, il 2° grado costa altri 2 PS (totale 3). Max 2 gradi per livello (eccetto Manovre in Movimento).
       </p>
 
@@ -979,7 +1232,7 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
 
           return (
             <div key={cat} className="card rounded-lg overflow-hidden shadow-sm" style={{ border: '1px solid var(--theme-primary-skills-border)' }}>
-              <div className="border-b flex justify-between items-center" style={{padding: '0.75rem 1rem', backgroundColor: 'var(--theme-primary-skills-bg)', borderBottomColor: 'var(--theme-primary-skills-border)'}}>
+              <div className="border-b flex justify-between items-center" style={{ padding: '0.75rem 1rem', backgroundColor: 'var(--theme-primary-skills-bg)', borderBottomColor: 'var(--theme-primary-skills-border)' }}>
                 <h4 className="font-semibold m-0 text-sm uppercase tracking-wider" style={{ color: 'var(--theme-primary-skills-text)' }}>{cat}</h4>
                 <div className="flex flex-wrap gap-3 text-xs">
                   {tb6PoolSize > 0 && (() => {
@@ -1024,8 +1277,8 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
                   })}
                 </div>
               </div>
-              
-              <div className="card-body overflow-x-auto" style={{padding: '0'}}>
+
+              <div className="card-body overflow-x-auto" style={{ padding: '0' }}>
                 <table className="w-full text-left text-sm whitespace-nowrap">
                   <thead className="bg-gray-50/50 border-b border-gray-200 text-[10px] text-gray-500 uppercase tracking-wider">
                     <tr>
@@ -1045,12 +1298,12 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
                     {catSkills.map((sk) => {
                       const name = sk.nome;
                       const isCogliereAlleSpalle = name.toLowerCase() === 'cogliere alle spalle';
-                      
+
                       const adRanks = isCogliereAlleSpalle ? 0 : (baseSkills[name]?.adolescenceRanks || 0);
                       const profFixedRanks = isCogliereAlleSpalle ? 0 : getSpecificTb6Ranks(name, profession);
                       const tb6Ranks = isCogliereAlleSpalle ? 0 : (tb6Distribution[name] || 0);
                       const profRanks = profFixedRanks + tb6Ranks;
-                      
+
                       const tgp4Ranks = tgp4Distribution[name] || 0;
                       const totalRanks = adRanks + profRanks + tgp4Ranks;
                       const bonusGradi = getRanksBonus(name, totalRanks);
@@ -1115,14 +1368,14 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
                           <td className="px-2 py-2 text-center bg-purple-50/50">
                             {hasTgp4Pool ? (
                               <div className="flex items-center justify-center gap-2">
-                                <button 
+                                <button
                                   type="button"
                                   onClick={() => handleSubTgp4(name)}
                                   disabled={tgp4Ranks === 0}
                                   className="w-5 h-5 flex items-center justify-center rounded-full bg-purple-200 text-purple-800 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-purple-300 font-bold"
                                 >-</button>
                                 <span className="font-bold w-4 text-center text-purple-700">{tgp4Ranks}</span>
-                                <button 
+                                <button
                                   type="button"
                                   onClick={() => handleAddTgp4(name, sk.categoria)}
                                   disabled={!canAddTgp4}

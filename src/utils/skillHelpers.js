@@ -131,7 +131,7 @@ export const getSpecificTb6Ranks = (skillName, profession) => {
   const profId = getProfessionId(profession);
   if (!profId) return 0;
 
-  // Mappa nomi abilità → ID italiani per lookup in profession_level_bonuses.json
+  // Solo abilità con gradi fissi individuali da TB-6 (NON le categorie pool)
   const itSkillIdMap = {
     'resistenza fisica': 'resistenza_fisica',
     'percezione': 'percezione',
@@ -139,10 +139,6 @@ export const getSpecificTb6Ranks = (skillName, profession) => {
     'uso oggetti magici': 'uso_oggetti_magici',
     'incantesimi diretti': 'incantesimi_diretti',
     'incantesimi base': 'incantesimi_base',
-    'abilità magiche': 'abilita_magiche',
-    'abilità armi': 'abilita_armi',
-    'abilità generiche': 'abilita_generiche',
-    'abilità sotterfugio': 'abilita_sotterfugio',
   };
   const skillId = itSkillIdMap[skillName.toLowerCase().trim()];
   if (!skillId) return 0;

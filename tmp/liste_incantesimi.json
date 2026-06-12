@@ -1,0 +1,2684 @@
+{
+  "liste_incantesimi": [
+    {
+      "tipo_lista": "Liste di incantesimi dei Maghi",
+      "nome_lista": "ADATTAMENTO",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "CORSA",
+          "tipologia": "F*",
+          "descrizione": "Il soggetto può correre (cioè, procedere a velocità doppia) senza stancarsi. L ' incantesimo svanisce quando il soggetto si ferma o intraprende un'altra & VELOCITÀ I (F*): Il soggetto può agire a ritmo doppio (cioè, eseguire il 200% delle normali attività). Subito opo, pero, perunnumerodiroundpari alla durat. ell' incantesimo, il suoritmod ' azioneèdimezzat (esegue cioè, solo il 50% delle normali attività)."
+        },
+        {
+          "numero": 2,
+          "nome": "VELOCITÀ I",
+          "tipologia": "F*",
+          "descrizione": "Il soggetto può agire a ritmo doppio (cioè, eseguire il 200% delle normali attività). Subito dopo, però, per un numero di round pari alla durata dell'incantesimo, il suo ritmo d'azione è dimezzato (esegue cioè, solo il 50% delle normali attività)."
+        },
+        {
+          "numero": 3,
+          "nome": "CONTROLLO DIMENSIONI",
+          "tipologia": "F",
+          "descrizione": "Il mago può ridurre la sua propria mole fino alla metà (in genere riducendo altezza), mantenendo inalterata la forza; oppure raddoppiare la mole, sempre senza aumento di forza, ma raddoppiando di conseguenza la capacità di movimento"
+        },
+        {
+          "numero": 4,
+          "nome": "SCATTO",
+          "tipologia": "F*",
+          "descrizione": "Come Corsa, ma la velocità di movimento è triplicata."
+        },
+        {
+          "numero": 5,
+          "nome": "TRASFORMAZIONE",
+          "tipologia": "F",
+          "descrizione": "Il mago può trasformare il soggetto in una qualsiasi specie di umanoide. La massa del soggetto non può variare di più del 10%."
+        },
+        {
+          "numero": 6,
+          "nome": "RAPIDITA I",
+          "tipologia": "F*",
+          "descrizione": "Come Velocità I, ma al termine dei round \"velocizzati\" il soggetto ritorna direttamente alla sua normale velocità, senza rounda ritmo rallentat o.."
+        },
+        {
+          "numero": 7,
+          "nome": "VELOCITÀ III",
+          "tipologia": "F*",
+          "descrizione": "Come Velocità I, ma la durata è di tre round per un soggetto, oppure due round per un soggetto ed un round per un altro oppure ogni altra combinazione, per un totale di tre round di!! velocizzazione."
+        },
+        {
+          "numero": 8,
+          "nome": "SLANCIO",
+          "tipologia": "F*",
+          "descrizione": "Come Corsa, ma la velocità di movimento è quadruplicata"
+        },
+        {
+          "numero": 9,
+          "nome": "ALTERA DIMENSIONI",
+          "tipologia": "F",
+          "descrizione": "Come Controllo Dimensione, permette a chi lancia l'incantesimo di alterare Idimensioni di un essere vivente. La trasformazione non può essere maggiore del 10% della massa di chi lancia l'incantesimo per ogni suo livello e inoltre può essere lanciato su ogni materia che sia, o sia stata, vivente (es; cuoio)."
+        },
+        {
+          "numero": 10,
+          "nome": "RAPIDITÀ III",
+          "tipologia": "F*",
+          "descrizione": "Come Velocità III, ma ai round \"velocizzati\" non devono seguire rounda ritmo dimezzato."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste di incantesimi dei Maghi",
+      "nome_lista": "AEROMANZIA",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "BREZZA",
+          "tipologia": "F",
+          "descrizione": "Questo incantesimo crea una brezza piuttosto sostenuta che trascina via ogni materiale sospeso in aria o in forma gassosa (polvere, nubi, ecc.), penalizzando di 30 punti ogni attacco a distanza che la attraverago drea etere una zosa di sima di meridi diametro."
+        },
+        {
+          "numero": 2,
+          "nome": "MURO VENTO",
+          "tipologia": "F",
+          "descrizione": "Crea un muro trasparente Gli attacchi che attraversano il muro subiscono una penalità di -50."
+        },
+        {
+          "numero": 3,
+          "nome": "CONDENSAZIONE",
+          "tipologia": "F",
+          "descrizione": "Condensa 36 decimetri cubi d'acqua, dall'aria circostante, nelle mani, riunite a coppa, del mago (l'acqua in eccesso può essere fatta defluire in un contenitore). Il mago, mentre è in corso il processo di condensazione, deve restare concentrato. Occorre 1 round nelle zone più umide e 10 round in quelle più aride (nelle altre zone, dipende dal tasso d'umidità dell'aria)."
+        },
+        {
+          "numero": 4,
+          "nome": "NUVOLA STORDENTE",
+          "tipologia": "F",
+          "descrizione": "Crea una nube del raggio di 1 metro di particelle concentrate di gas. Nel 1° e 2° round, infligge un Colpo Critico da elettricità di tipo \"C\" a chiunque vi si trovi avviluppato. Nel3° e 4° di tipo \"B\", e nel 5° e 6° di tipo \"A\". Si sposta col vento e colpisce coloro che vengono a trovarsi al suo interno. Le vittime possono ricorrere ad un TR."
+        },
+        {
+          "numero": 5,
+          "nome": "CALMA",
+          "tipologia": "F",
+          "descrizione": "Annulla ogni spostamento d'aria (in pra ica, il vento), che non superi la velocità di 45 Km/h. Ir pratica questo incantesimo crea una zona di bonaccia dal raggio di 3 metri."
+        },
+        {
+          "numero": 6,
+          "nome": "NUVOLA STORDENTE",
+          "tipologia": "F",
+          "descrizione": "Come sopra, ma la nube, ha un raggio di 3 metri."
+        },
+        {
+          "numero": 7,
+          "nome": "VUOTO",
+          "tipologia": "F",
+          "descrizione": "Crea un vuoto d'aria quasi totale, in un'area di 1,5m di raggio. Tutti coloro che si trovano entro l'area, mentre l'aria ne esce e vi rientra con violenza, subiscono un Colpo Critico da impatto di tipo \"B\". Le ittimepossono ricorrere adun TR CALMA (F): Come sopra, ma la zona è di 6,5 metri di, NUVOLA STORDENTE (F): Come sopra, ma la nube ha un raggio di 6,5 metri."
+        },
+        {
+          "numero": 8,
+          "nome": "CALMA",
+          "tipologia": "F",
+          "descrizione": "Come sopra, ma la zona è di 6,5 metri di raggio."
+        },
+        {
+          "numero": 9,
+          "nome": "NUVOLA STORDENTE",
+          "tipologia": "F",
+          "descrizione": "Come sopra, ma la nube ha un raggio di 6,5 metri."
+        },
+        {
+          "numero": 10,
+          "nome": "NUVOLA MORTALE",
+          "tipologia": "F",
+          "descrizione": "Come Nuvola Stordente, la nube ha un raggio di 1,5 metri, ed infligge un Colpo Critico da elettricità: nel 1° e 2° round di tipo \"E\", nel 3° e 4° di tipo \"D\", nel 5° e 6° di tipo \"C\", nel 7° e 8° di tipo \"B\" e nel 9° e 10° di tipo \"A\"."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste aperte di incantesimi del Flusso",
+      "nome_lista": "ARTI DELLA GUARIGIONE",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "CURA 10",
+          "tipologia": "A",
+          "descrizione": "Cura 1D10 punti ferita"
+        },
+        {
+          "numero": 2,
+          "nome": "CURAUSTIONII",
+          "tipologia": "A",
+          "descrizione": "Curaunapartedelcorpo leg germente congelata, oun ustione superficiale (di 1°"
+        },
+        {
+          "numero": 3,
+          "nome": "RINFRANCA I",
+          "tipologia": "A*",
+          "descrizione": "Annula un round di stordimento, cioè il soggetto resta stordito per unround in meno."
+        },
+        {
+          "numero": 4,
+          "nome": "RIGENERA I",
+          "tipologia": "A*",
+          "descrizione": "Il personaggio, può curare 1 Punto Ferita subito da un personaggio, per ogni Round in cui"
+        },
+        {
+          "numero": 5,
+          "nome": "CURA USTIONI II",
+          "tipologia": "A",
+          "descrizione": "Come Cura Ustioni I, ma può guariredueustioni superficiali, oppureun ' ustionedi gravità media (2° grado)."
+        },
+        {
+          "numero": 6,
+          "nome": "RISVEGLIO",
+          "tipologia": "A",
+          "descrizione": "Risvegliaimmediatamente 1l sogge tto."
+        },
+        {
+          "numero": 7,
+          "nome": "CURA 50",
+          "tipologia": "A",
+          "descrizione": "Come Cura 10, ma cura 5D10 Punti Ferita."
+        },
+        {
+          "numero": 8,
+          "nome": "CURA USTIONI III",
+          "tipologia": "A",
+          "descrizione": "Come Cura Ustioni I, ma può curare tre ustioni superficiali oppure un'ustione grave (3° grado), oppure una superficiale e una media."
+        },
+        {
+          "numero": 9,
+          "nome": "RINFRANCA III",
+          "tipologia": "A*",
+          "descrizione": "Come Rinfranca I, ma annulla tre round di stordimento."
+        },
+        {
+          "numero": 10,
+          "nome": "RIGENERA III",
+          "tipologia": "A*",
+          "descrizione": "Come Rigenera I, ma cura tre Punti Ferita per round."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste di incantesimi dei Ranger",
+      "nome_lista": "ARTI NATURALI",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "RABDOMANZIA",
+          "tipologia": "I",
+          "descrizione": "Localizza tutte le sorgenti superficiali, polle d'acqua, fontanili ecc. Il Ranger è anche in grado di stabilire l'entità e la qualità approssimativa delle sorgenti così individuate."
+        },
+        {
+          "numero": 2,
+          "nome": "IGNIZIONE",
+          "tipologia": "F",
+          "descrizione": "Questo incantesimo rende incandescente ed appicca il fuoco a tutto il legname o altro materiale organico inanimato il cui punto di combustione non sia superiore a quello del legno e che si trovi a meno di 30 cm dalla mano del Ranger."
+        },
+        {
+          "numero": 3,
+          "nome": "RESISTENZA AL CALORE",
+          "tipologia": "A*",
+          "descrizione": "Protegge il Ranger da temperature fino a 95°C. Aggiunge +20 ai TR contro calore, o -20 contro gli attacchi elementali del fuoco."
+        },
+        {
+          "numero": 4,
+          "nome": "RESISTENZA AL GELO",
+          "tipologia": "A*",
+          "descrizione": "Protegge il Ranger dal freddo, fino a -30°C. Aggiunge +20 ai TR contro il freddo, o -20 contro gli attacchi elementali del freddo."
+        },
+        {
+          "numero": 5,
+          "nome": "FORAGGIAMENTO",
+          "tipologia": "I",
+          "descrizione": "Il Ranger apprende la posizione, il tipo e la quantità approssimativa di ogni fonte di cibo (vettovaglie, vegetali, cacciagione ecc.)."
+        },
+        {
+          "numero": 6,
+          "nome": "STERILIZZAZIONE",
+          "tipologia": "P",
+          "descrizione": "Sterilizza fino a 33 dm cubi/LVL di liquido o solido. Elimina, cioè, tutte le creature viventi più piccole di 5mm, ma non quelle più grandi, veleni organici, o altro materiale."
+        },
+        {
+          "numero": 7,
+          "nome": "RIPARO",
+          "tipologia": "I",
+          "descrizione": "Il Ranger apprende la posizione, il tipo e le dimensioni approssimative del più vicino riparo contro l'acqua. Il riparo deve avere un ingresso all'aria aperta, superiore a 60 cm di raggio."
+        },
+        {
+          "numero": 8,
+          "nome": "TRAPPOLA",
+          "tipologia": "F",
+          "descrizione": "Il Ranger può costruire, all'aria aperta e nel giro di 1 minuto, una semplice trappola, che infligge un Colpo Critico di tipo \"B\" (es.: una buca con paletti acuminati, un laccio che strangoli la vittima, ecc.)."
+        },
+        {
+          "numero": 9,
+          "nome": "METEOROLOGIA",
+          "tipologia": "I",
+          "descrizione": "Consente di prevedere il tempo delle prossime 24 ore, con il 95% di probabilità di successo."
+        },
+        {
+          "numero": 10,
+          "nome": "ECOPERCEZIONE",
+          "tipologia": "I",
+          "descrizione": "Consente al Ranger di \"vedere\" le attività che si svolgono nella zona (cioè, movimenti, combattimenti e manovre). L'incantesimo può essere usato solo se nel raggio d'azione ci sono piante e/o animali, poiché sono essi a fornire al Ranger le suddette informazioni."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste di incantesimi dei Ranger",
+      "nome_lista": "ASPETTI NATURALI",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "MIMESI",
+          "tipologia": "F",
+          "descrizione": "Il Ranger e tutto l'equipaggiamento da lui indossato, assumono il colore di un qualsiasi materiale organico da lui scelto e con cui è in contatto. Beneficia così di un bonus di +50 all'abilità di Nascondersi."
+        },
+        {
+          "numero": 2,
+          "nome": "OSCURITÀ",
+          "tipologia": "F",
+          "descrizione": "Tutte le ombre e le tenebre entro 33 metri dal punto toccato dal Ranger si infittiscono, aggiungendo un bonus di +25 alla sua abilità di Nascondersi."
+        },
+        {
+          "numero": 3,
+          "nome": "GELO",
+          "tipologia": "F",
+          "descrizione": "Il Ranger, concentrandosi, può congelare 33 dm cubi/LVL di un liquido, al ritmo di 33 dm cubi/ROUND (la temperatura non può essere abbassata al di sotto di -35°C). Nessun fluido appartenente ad un essere vivente può essere affetto da questo incantesimo."
+        },
+        {
+          "numero": 4,
+          "nome": "FURTIVITÀ",
+          "tipologia": "F",
+          "descrizione": "Il Ranger può muoversi silenziosamente fino al momento in cui non provoca un rumore originato da un elemento estraneo al suo corpo (es.: chiude una porta, calpesta un ramo, ecc.)."
+        },
+        {
+          "numero": 5,
+          "nome": "MIMETISMO",
+          "tipologia": "F",
+          "descrizione": "Il Ranger si mimetizza col terreno circostante (con un bonus di +75 all'abilità di Nascondersi), fintantoché resta immobile (può, tuttavia, effettuare piccoli movimenti: respirare, flettere i muscoli ecc.)."
+        },
+        {
+          "numero": 6,
+          "nome": "LUCE",
+          "tipologia": "F",
+          "descrizione": "Illumina un'area di 3 metri di raggio intorno al punto toccato."
+        },
+        {
+          "numero": 7,
+          "nome": "TENEBRE",
+          "tipologia": "F",
+          "descrizione": "Come Luce, ma immerge nelle tenebre una zona di 3 metri di raggio. L'oscurità è equivalente a quella di una notte buia e senza luna."
+        },
+        {
+          "numero": 8,
+          "nome": "OMBRA",
+          "tipologia": "F",
+          "descrizione": "Il Ranger e tutto l'equipaggiamento entro 30 cm dal suo corpo, assumono l'aspetto di un'ombra, e risultano pressoché invisibili nelle zone buie ed ombreggiate."
+        },
+        {
+          "numero": 9,
+          "nome": "FALSA PIANTA",
+          "tipologia": "F",
+          "descrizione": "Il Ranger assume l'aspetto di una pianta (della specie che preferisce). Si tratta di una semplice illusione ottica, senza riuscire a simularne le dimensioni, il profumo e la consistenza al tatto."
+        },
+        {
+          "numero": 10,
+          "nome": "MENTE VUOTA",
+          "tipologia": "U",
+          "descrizione": "La mente del Ranger, fin quando mantiene la concentrazione, ha lo stesso \"aspetto\" per un eventuale sonda mentale, di quella di un animale della sua scelta. Ciò ostacola gli incantesimi di individuazione (ad esempio: Presenza)."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste di incantesimi degli Animisti",
+      "nome_lista": "BOTANOMANZIA",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "BOTANICA",
+          "tipologia": "I",
+          "descrizione": "L'animista apprende istantaneamente tutto ciò che si può sapere sulla pianta sulla quale lancial'incantesimo."
+        },
+        {
+          "numero": 2,
+          "nome": "VIRDEOLINGUA",
+          "tipologia": "A",
+          "descrizione": "Il personaggio, per tuttaladuratadell'incantesimo, acquisisce la conoscenzadi unalingua vegetale (ma almeno un esemplare della specie presceltadeve essere a non più di 33 m dalui) EFFICACIA ISTANTANEA (A): Consente all'animistadi rendere immediati gli effetti di una qualsiasi erba. Quando l'erba verrà in seguito utilizzata, i suoi effetti, benefici o nocivi, si produrranno istantaneamente."
+        },
+        {
+          "numero": 3,
+          "nome": "EFFICACIA ISTANTANEA",
+          "tipologia": "A",
+          "descrizione": "Consente all'animista di rendere immediati gli effetti di una qualsiasi erba. Quando l'erba verrà in seguito utilizzata, i suoi effetti, benefici o nocivi, si produrranno istantaneamente."
+        },
+        {
+          "numero": 4,
+          "nome": "SINTESI",
+          "tipologia": "A",
+          "descrizione": "Consente di raddoppiare la potenzadi una qualsiasi erba (viva o morta) e può essere applicato una sola volta per ogni singoladose. L'incantesimo deve essere pronunciato subito primadi usare l'erba."
+        },
+        {
+          "numero": 5,
+          "nome": "LOCALIZZA PIANTA",
+          "tipologia": "P",
+          "descrizione": "L'animista può localizzare le piante di una singola specie, o scoprire quali specie di vegetali crescono nella zona."
+        },
+        {
+          "numero": 6,
+          "nome": "SELEZIONA ERBE",
+          "tipologia": "A",
+          "descrizione": "Consente di eliminare da unadose di erba ogni veleno, impurità, o effetto collaterale."
+        },
+        {
+          "numero": 7,
+          "nome": "MATURAZIONE RAPIDA",
+          "tipologia": "F",
+          "descrizione": "Consente di moltiplicare x100 il ritmo di crescitadi tutte le piante di una certa specie che si trovano entro il raggio d'azione."
+        },
+        {
+          "numero": 8,
+          "nome": "MATURAZIONE ISTANTANEA",
+          "tipologia": "A",
+          "descrizione": "Consente di far crescere un'erba, una pianta o un arbusto dopo averne piantato il seme. Il vegetale impiegherà solo da 1D10 round per crescere, ma sarà sterile (cioè non produrrà semi)."
+        },
+        {
+          "numero": 9,
+          "nome": "CRESCITA PIANTE",
+          "tipologia": "F",
+          "descrizione": "Consente di raddoppiare le dimensioni di una pianta (per la crescita occorre 1 giorno). S e la piantanonè già matura, raggiunge le limensioni doppie nel momento in cui completala maturazione."
+        },
+        {
+          "numero": 10,
+          "nome": "CONTROLLO PIANTE",
+          "tipologia": "F",
+          "descrizione": "L'animista può controllare i processi automatici e/o mentali di una pianta. Se la pianta può spostarsi, ne controlla anche i movimenti."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste di incantesimi dei Bardi",
+      "nome_lista": "CANTI DEL POTERE",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "CANTO DI PACE",
+          "tipologia": "F",
+          "descrizione": "Il soggetto viene \"calmato\", e non può intraprendere nessuna azione di tipo aggressivo, fin quando il bardo canta (mantenendo la concent razione)."
+        },
+        {
+          "numero": 2,
+          "nome": "CANTO CATENA",
+          "tipologia": "F",
+          "descrizione": "Come Canto Di Pace, ma in più il soggetto che ne è vittima può effettuare solo il 25% delle normali azioni."
+        },
+        {
+          "numero": 3,
+          "nome": "CANTO STORDENTE",
+          "tipologia": "F",
+          "descrizione": "Come Canto Di Pace, ma in più il soggetto viene anche stordito."
+        },
+        {
+          "numero": 4,
+          "nome": "CANTOMUTO",
+          "tipologia": "F",
+          "descrizione": "Come Canto Di Pace, ma il soggeto cheneèvittimanonpuòpiùparlare"
+        },
+        {
+          "numero": 5,
+          "nome": "CANTODELSONNO",
+          "tipologia": "F",
+          "descrizione": "ComeCanto Di Pace, ma il soggetto cade addormentato."
+        },
+        {
+          "numero": 6,
+          "nome": "IPNOCANTO",
+          "tipologia": "F",
+          "descrizione": "Come Canto Di Pace, ma il soggetto crede che il bardo sia un buon amico. Se il bardo canta per almeno 3 round, gli effetti dell'incantesimo si protraggono per 10 minuti, dopo la fine del suo canto."
+        },
+        {
+          "numero": 7,
+          "nome": "CANTO DELLA PAURA",
+          "tipologia": "F",
+          "descrizione": "Come Canto Di Pace, ma il soggetto che ne è vittima comincia ad avere pauradel pardo e cerca in ogni modo di fuggire dalui"
+        },
+        {
+          "numero": 8,
+          "nome": "INNO DI PACE",
+          "tipologia": "F",
+          "descrizione": "Come Canto Di Pace, ma gli effetti dell'incantesimo si prolungano per un tempo pari alladuratadel canto (es: se il bardo canta per 3 round, il soggetto resta calmo per altri 3 round dopo la fine del canto)."
+        },
+        {
+          "numero": 9,
+          "nome": "INNO STORDENTE",
+          "tipologia": "F",
+          "descrizione": "Come Inno Di Pace, ma il soggetto viene stordito."
+        },
+        {
+          "numero": 10,
+          "nome": "CANTO DELL'OBLIO",
+          "tipologia": "F",
+          "descrizione": "Il soggetto dimentica ciò cheeaccaduto in unparticolareperiodopassato, specii catodalbardo (chenonpuòesserepiùlontanoneempo di 1 giorno per ogni livello del bardo). Laduratadel periodo nel quale viene cancellato il ricordo, è pari alladuratadel canto."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste di incantesimi dei Bardi",
+      "nome_lista": "CONOSCENZA",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "STIMA PREZIOSI",
+          "tipologia": "I",
+          "descrizione": "Il bardo può stimare, con un'approssimazione del 10%, il valore dei gioielli e dei metali, inriferimentoalvalorechetahmercipossonoavere presso le razze e le culture aluinote"
+        },
+        {
+          "numero": 2,
+          "nome": "STIMA VA LORE",
+          "tipologia": "I",
+          "descrizione": "Come Stima Preziosi, ma il bardo può stimare il valore di un qualsiasi oggetto, senza però venire a conoscenzadelle eventuali proprietà magiche di quell'oggetto. CAPTA MAGIA (I): Individuala magia contenuta in un oggetto. Rivelainoltre il regnomagicoe il livello dell'incantesimo contenuto nell'oggetto. ANALISI ARCANA I (I): Il bardo ha il 10% di probabilità di scoprire le abilità magiche di un oggetto, compresi i bonus e gli incantesimi. Tirate i dadi per ognunadi tali proprietà. Il bardo può lanciare l'incantesimo solo una volta per ciascun oggetto ed eseguire un nuovo tentativo sul medesimo, ogni volta che progredisce di livello."
+        },
+        {
+          "numero": 3,
+          "nome": "CAPTA MAGIA",
+          "tipologia": "I",
+          "descrizione": "Individua la magia contenuta in un oggetto. Rivela inoltre il regno magico e il livello dell'incantesimo contenuto nell'oggetto."
+        },
+        {
+          "numero": 4,
+          "nome": "ANALISI ARCANA I",
+          "tipologia": "I",
+          "descrizione": "Il bardo ha il 10% di probabilità di scoprire le abilità magiche di un oggetto, compresi i bonus e gli incantesimi. Tirate i dadi per ognuna di tali proprietà. Il bardo può lanciare l'incantesimo solo una volta per ciascun oggetto ed eseguire un nuovo tentativo sul medesimo, ogni volta che progredisce di livello."
+        },
+        {
+          "numero": 5,
+          "nome": "GRANDE ESTIMO",
+          "tipologia": "I",
+          "descrizione": "Come Stima Valore, ma il bardo può stimare qualunque cosa: case, battelli, animali, ecc. (ma non le eventuali proprietà magiche di tali oggetti)."
+        },
+        {
+          "numero": 6,
+          "nome": "SIGNIFICANZA (1)",
+          "tipologia": "",
+          "descrizione": "Stabilisce se l'oggetto esaminato ha un'importanza storico culturale o razziale e dà un'ideadi quale essa sia."
+        },
+        {
+          "numero": 7,
+          "nome": "CAPTA MALEFICIO",
+          "tipologia": "I",
+          "descrizione": "Individua se un oggetto è maledetto e dà un'immagine di colui che ha imposto il maleficio."
+        },
+        {
+          "numero": 8,
+          "nome": "ORIGINE",
+          "tipologia": "I",
+          "descrizione": "Indicala razza e la naturadi colui che ha costruito l'oggetto dove e quando è stato costruito (entro 150 Km di distanza e 100 anni di tempo). ANALISI ARCANA II (I): Come Analisi Arcana I, male probabilità sono del 20% per ogni proprietà magica."
+        },
+        {
+          "numero": 9,
+          "nome": "ANALISI ARCANA II",
+          "tipologia": "I",
+          "descrizione": "Come Analisi Arcana I, ma le probabilità sono del 20% per ogni proprietà magica."
+        },
+        {
+          "numero": 10,
+          "nome": "STORIA",
+          "tipologia": "I",
+          "descrizione": "Offre al bardo la visione casuale di un evento passato del quale l'oggetto esaminato sia stato testimone. Le probabilità che la visione riguardi un evento specifico sono pari all'1% se l'età dell'oggetto è superiore ai 99 anni. Altrimenti, le probabilità percentuali, sono pari a 100 meno l'età dell'oggetto."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste di incantesimi degli Animisti",
+      "nome_lista": "CONTROLLO ANIMALE",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "SONNO ANIMALE",
+          "tipologia": "F",
+          "descrizione": "Addormentaun animale: non è efficace contro creature \"incantate\" o intelligenti. Per quanto riguarda questo incantesimo, si considera i \"animale\" ogni creaturadi intelligenzalimitata, che agiscesoprattuttoinbaseall' addestramentoedal - l'istinto."
+        },
+        {
+          "numero": 2,
+          "nome": "CELARSI",
+          "tipologia": "E",
+          "descrizione": "Consente all'animistadi confondersi con il terreno circostante e diventare pressoché invisibile agli animali. Contro gli altri esseri ha un bonus di +30 all'Abilità di Nascondersi."
+        },
+        {
+          "numero": 3,
+          "nome": "EVOCAZIONEI",
+          "tipologia": "F",
+          "descrizione": "Consentedievocareunacreatura non intelligente di 1° livello, che sparisce dopo 1 minuto. L'animista può controllare la creatura concentrandosi. Può indicare il genere mal'esatta specie deve essere determinata a caso (es.: se sceglie un animale a quattro zampe, dotato di zoccoli, potrebbe apparire un cavallo, una zebra, un cammello ecc.)."
+        },
+        {
+          "numero": 4,
+          "nome": "ZOOLINGUA",
+          "tipologia": "U",
+          "descrizione": "L'animista per tuttaladuratadell'incantesimo, conosce unalingua animale (ma un esemplare della specie presceltadeve essere entro 33 metri dalui). Per quanto riguarda questo incantesimo, si intende per \"lingua animale\" una qualsiasi formadi comunicazione animale."
+        },
+        {
+          "numero": 5,
+          "nome": "CONTROLLO ANIMALE",
+          "tipologia": "F",
+          "descrizione": "L'animista può, concentrandosi, controllare un qualsiasi animale."
+        },
+        {
+          "numero": 6,
+          "nome": "EVOCAZIONE III",
+          "tipologia": "F",
+          "descrizione": "Come Evocazione I, mal'animista può evocare, per 1 minuto una creaturadi 3° ivello, oppure unadi 1° livello per 3 minuti, oppure 3 di 1° livello per 1 minuto, ecc. In altre parole, il prodotto di (livello)x(minuti) delle creature evocate, non può essere maggiore di tre."
+        },
+        {
+          "numero": 7,
+          "nome": "LOCALIZZA ANIMALE",
+          "tipologia": "P",
+          "descrizione": "L'animista può localizzare gli esemplari di una specie animale o sapere quali specie animali vivono nella zona."
+        },
+        {
+          "numero": 8,
+          "nome": "ADDOMESTICARE",
+          "tipologia": "F",
+          "descrizione": "Tutti gli animalinel raggio di 15 metri si comportano in modo amichevole nei confronti dell'animista, che però non ne assume il controllo."
+        },
+        {
+          "numero": 9,
+          "nome": "EMPATIA ANIMALE",
+          "tipologia": "P",
+          "descrizione": "L'animista può comprendere e visualizzare i pensieri e le emozioni di un qualsiasi animale."
+        },
+        {
+          "numero": 10,
+          "nome": "EVOCAZIONE V",
+          "tipologia": "F",
+          "descrizione": "Come Evocazione III, ma il prodotto (livello) x (minuti) non può essere maggiore di 5."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste di incantesimi dei Bardi",
+      "nome_lista": "CONTROLLO SONICO",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "LUNGO SUSSURRO",
+          "tipologia": "F*",
+          "descrizione": "Il bardo può dirigere un sussurro che potra essere udito, solo in un punto, fino alladistanzadi 15 m per livello."
+        },
+        {
+          "numero": 2,
+          "nome": "SILENZIO",
+          "tipologia": "F",
+          "descrizione": "Il bardo crea una zona, del raggio di 3 netri, di completo silenzio all'interno della quale null:"
+        },
+        {
+          "numero": 3,
+          "nome": "ROBOANZA II",
+          "tipologia": "F*",
+          "descrizione": "Raddoppia il raggio di azione di un incantesimo dallalista Canti del Potere che vengalanciato nel round successivo."
+        },
+        {
+          "numero": 4,
+          "nome": "CANTOI",
+          "tipologia": "F*",
+          "descrizione": "Comesopra, ma, invece di raddoppiare il raggio, consente d i colpire 2 soggetti."
+        },
+        {
+          "numero": 5,
+          "nome": "AUDIOMANZIA",
+          "tipologia": "F",
+          "descrizione": "Il bardopuò manipolare le onde sonore entro 3 metri dalui. Può creare i suoni che preferisce e se lo desidera, può renderli udibili anche oltre il normale raggio indicato."
+        },
+        {
+          "numero": 6,
+          "nome": "GRANDE CANTO",
+          "tipologia": "F*",
+          "descrizione": "Come Canto II, ma sono considerati soggetti dell'incantesimo dellalista Canti del Potere tutti coloro che si trovano entro 3 metri dal bardo."
+        },
+        {
+          "numero": 7,
+          "nome": "SILENZIO",
+          "tipologia": "F",
+          "descrizione": "Come sopra, ma il raggio d'azione è di 16,5 m."
+        },
+        {
+          "numero": 8,
+          "nome": "ROBOANZA III",
+          "tipologia": "F*",
+          "descrizione": "Come sopra, ma il raggio d'azion eemoltiplicatoper 3."
+        },
+        {
+          "numero": 9,
+          "nome": "CANTO III",
+          "tipologia": "F*",
+          "descrizione": "ComeCanto II, maconsente di colpire 3 bersagli."
+        },
+        {
+          "numero": 10,
+          "nome": "AUDIOMANZIA",
+          "tipologia": "F",
+          "descrizione": "Come sopra, ma il raggio d'azione è di 33 metri."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste aperte di incantesimi dell'Essenza",
+      "nome_lista": "CONTROLLO SPIRITUALE",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "SONNO V",
+          "tipologia": "F",
+          "descrizione": "Fa cadere nel sonno un numero variabile di soggetti, fino ad un totale di 5 livelli (es.: 1 di 5° livello, 1 di 4° ed 1 di 1°, 2 di 2° ed 1 di 1° ecc.) che si trovino nel campo visivo del personaggio."
+        },
+        {
+          "numero": 2,
+          "nome": "FASCINO",
+          "tipologia": "F",
+          "descrizione": "Questo incantesimo ha effetto solo su un essere intelligente (umano o umanoide) che crederà, in questo modo, che colui che lancia l'incantesimo sia suo amico."
+        },
+        {
+          "numero": 3,
+          "nome": "SONNO VII",
+          "tipologia": "F",
+          "descrizione": "Come Sonno V, ma addormenta fino a 7 livelli di soggetti"
+        },
+        {
+          "numero": 4,
+          "nome": "CONFUSIONE",
+          "tipologia": "F",
+          "descrizione": "Il soggetto vittima dell'incantesimo è incapace di prendere decisioni o intraprendere azioni per la durata di 1 round / 5 punti di fallimento del TR. Può, però, continuare a combattere o agire per la propria autodifesa."
+        },
+        {
+          "numero": 5,
+          "nome": "INFLUENZA",
+          "tipologia": "F",
+          "descrizione": "La vittima esegue un attacco suggerito da chi lancia l'incantesimo, purché tale attacco non sia completamente estraneo all'allineamento morale (crampi, suicidi, ecc., ecc. non sia autolesionista (cioè, \"accecati\", ecc.)."
+        },
+        {
+          "numero": 6,
+          "nome": "SONNO X",
+          "tipologia": "F",
+          "descrizione": "Come Sonno V, ma addormenta fino a 10 livelli di soggetti."
+        },
+        {
+          "numero": 7,
+          "nome": "BLOCCO",
+          "tipologia": "F",
+          "descrizione": "Ha effetto solo su umani ed umanoidi. Le 7 azioni della vittima sono limitate al 25% delle normali possibilità fin quando, chi getta l'incantesimo, mantiene la concentrazione."
+        },
+        {
+          "numero": 8,
+          "nome": "COMANDO",
+          "tipologia": "F",
+          "descrizione": "La vittima, per tutta la durata dell'incantesimo, deve obbedire al personaggio, come accade per l'incantesimo Influenza. Il personaggio può imporre tutti i comandi che preferisce, purché non siano completamente estranei alla mentalità della vittima o autolesionisti."
+        },
+        {
+          "numero": 9,
+          "nome": "INCANTO",
+          "tipologia": "F",
+          "descrizione": "Come Fascino, ma è efficace contro qualsiasi creatura senziente."
+        },
+        {
+          "numero": 10,
+          "nome": "COERCIZIONE",
+          "tipologia": "F",
+          "descrizione": "Viene assegnato un compito alla vittima; in caso di fallimento, la vittima subisce una penalità, fissata dal Game Master (il compito deve, comunque, rientrare nelle sue capacità). La penalità non dovrà mai essere niente di più che un handicap limitato. Ad esempio potrebbe trattarsi di una piccola diminuzione delle caratteristiche oppure di una fobia (paura, dei ragni, dell'acqua, ecc.) o un altro tipo di malattia. Un'altra alternativa potrebbe essere una minorazione fisica come uno sfregio, dei dolori reumatici, una lieve zoppia, ecc."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste di incantesimi degli Animisti",
+      "nome_lista": "CREAZIONI",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "SOSTENTAMENTO",
+          "tipologia": "U",
+          "descrizione": "L'animista riceve tutto il cibo, e l'acqua, necessari a sostenerlo per 1 giorno."
+        },
+        {
+          "numero": 2,
+          "nome": "MURO VENTO",
+          "tipologia": "E",
+          "descrizione": "Crea un muro d'aria compressa, densa e trasparente, di 3x3x1m. Penalizzadel 50% il movimento e gli attacchi che lo attraversano."
+        },
+        {
+          "numero": 3,
+          "nome": "CREAZIONE ACQUA",
+          "tipologia": "P",
+          "descrizione": "L'animista può produrre, in un contenitore qualsiasi, acqua sufficiente a sostenere una persona per un giorno."
+        },
+        {
+          "numero": 4,
+          "nome": "CREAZIONE CIBO",
+          "tipologia": "P",
+          "descrizione": "L'animista può produrre, ricavandolo dalla zona circostante, cibo sufficiente a sfamare una persona per 1 giorno. Il cibo deperisce se non viene consumato entro 24 ore."
+        },
+        {
+          "numero": 5,
+          "nome": "MURO ACQUEO",
+          "tipologia": "E",
+          "descrizione": "Crea un muro d'acquadi 3x3x0,3m Penalizzadell'80% il movimento e gli attacchi che lo attraversano."
+        },
+        {
+          "numero": 6,
+          "nome": "MURO LIGNEO",
+          "tipologia": "E",
+          "descrizione": "Crea un muro di legno di 3x6mx0,05cm, che deve poggiare su una superficie solida. Può essere bruciato (50 PF per creare un foro di 60 cm di raggio), scavato (20 round di lavoro di un singolo uomo), oppure abbattuto a terra (se l'altra estremità non poggia ad una parete)."
+        },
+        {
+          "numero": 7,
+          "nome": "MURO",
+          "tipologia": "F",
+          "descrizione": "Come Muro Ligneo, male dimensioni massime del muro sono 3x3x(1malla base, 0,6 metri in cima) ed è fatto di terra compressa. Può essere attraversato solo scavando (10 round di lavoro di un uomo, in cima)."
+        },
+        {
+          "numero": 8,
+          "nome": "MURO GHIACCIO",
+          "tipologia": "E",
+          "descrizione": "Come Muro Ligneo, male dimensioni massime sono 3x3x(0,6 alla base e 0,3 in cima): può essere parzialmente fuso per creare un foro (occorre infliggere 100 PF), scavato (50 round di lavoro di un uomo), o abbattuto (se l'altra estremità non poggia ad una parete)."
+        },
+        {
+          "numero": 9,
+          "nome": "LEMBÁS",
+          "tipologia": "I",
+          "descrizione": "L'animista può produrre una pagnottadi Pan di Via (Lembas) di 56 gr, sufficiente a sfamare un personaggio per un giorno. Il potere magico della pagnotta svanisce dopo un mese."
+        },
+        {
+          "numero": 10,
+          "nome": "FOSSATO",
+          "tipologia": "E",
+          "descrizione": "Apre una buca (di 15 metri cubinella roccia, di 33 metri cubinella terra o nel ghiaccio), che si deve trovare interamente entro 15m dal personaggio."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste di incantesimi dei Maghi",
+      "nome_lista": "CRIOMANZIA",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "CONGELAMENTO",
+          "tipologia": "F",
+          "descrizione": "Un qualsiasi liquido (33 litri/ LVL) può essere congelato al ritmo di 33 litri/rd di concentrazione (la temperatura non può essere abbassata al di sotto di -35°C). Con questo incantesimo non si possonocongelarei fl uididi qualsiasi essere vivente."
+        },
+        {
+          "numero": 2,
+          "nome": "RAFFREDDAMENTO",
+          "tipologia": "F",
+          "descrizione": "Un qualsiasi materiale solido, inanimato e non metallico (33 DM cubi/LVL) può essere raffreddato fino a -30°C, al ritmo di 33 dm cubi/ Rd di concentrazione."
+        },
+        {
+          "numero": 3,
+          "nome": "MURO FREDDO",
+          "tipologia": "E",
+          "descrizione": "Crea un muro trasparente di freddo intenso, di 3x3x0,3 metri. Chiunque lo attraversi freddo, di tipo subisce (senza possibilità di TR) un Colpo Critico da"
+        },
+        {
+          "numero": 4,
+          "nome": "ARIA FREDDA",
+          "tipologia": "E",
+          "descrizione": "La temperatura dell'aria in un ambiente chiuso può essere abbassata di 10°C per ogni round di concentrazione (fino alla temperatura minima di -30°C). L'aria, quando si interrompe la concentrazione ritorna a temperatura ambiente."
+        },
+        {
+          "numero": 5,
+          "nome": "GRANDE RAFFREDDAMENTO",
+          "tipologia": "F",
+          "descrizione": "Come Rafreddamento, ma la temperatura del materiale può essere abbassata fino a -130°C, al ritmo di 75°C per round di concentrazione."
+        },
+        {
+          "numero": 6,
+          "nome": "GELODARDO",
+          "tipologia": "E",
+          "descrizione": "1 PG effettua un attacco a distanza grazie ad un dardo di ghiaccio che saetta dal palmo dellasuamano. Irisultatidell' attaccosideterminanoin base alla Tabella d'attacco \"Dardo\"."
+        },
+        {
+          "numero": 7,
+          "nome": "GELOSFERA",
+          "tipologia": "E",
+          "descrizione": "Una sfera di freddo, di 30 cm di diametro, saetta dalla mano del personaggio ed esplole nel punto prescelto: ne resta colpita un'area di 6 netri di raggio. I risultati si determinano in base alla Tabella d'attacco \"Sfera\""
+        },
+        {
+          "numero": 8,
+          "nome": "MURO FREDDO",
+          "tipologia": "E",
+          "descrizione": "Crea un muro di ghiaccio di 3x3x0,6 m (0,6 malla base e 0,3 m in cima). Deve poggiare su una superficie solida. Può essere sciolto (se subisce 100 Punti Ferita), attraversato con uno scavo (50 round di lavoro di un uomo) o abbattuto (se una delle due estremità nonè appoggiata ad una parete)."
+        },
+        {
+          "numero": 9,
+          "nome": "GELOCUBO",
+          "tipologia": "E",
+          "descrizione": "Come Piro Cubo, della lista Piromanzia, ma crea un cubo di gelo (fino a 6,5x6,5x6,5 m) che infligge Colpi Critici da freddo."
+        },
+        {
+          "numero": 10,
+          "nome": "GELOCERCHIO",
+          "tipologia": "E",
+          "descrizione": "Come Muro Freddo, ma il \"muro\" è alto fi noa 6 metrieformaun cerchio (fi noa 6 metrie spesso 30 cm) con al centro il personaggio che lancia l'incantesimo (il muro non è semovente)."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste aperte di incantesimi del Flusso",
+      "nome_lista": "DIFESA MAGICA",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "PROTEZIONE I",
+          "tipologia": "P",
+          "descrizione": "Sottrae 10 punti ai tiri degli attacchi elementali contro il soggetto, ed aggiunge 10 punti a tutti i suoi TR contro incantesimi."
+        },
+        {
+          "numero": 2,
+          "nome": "AREA DI PROTEZIONE I",
+          "tipologia": "P",
+          "descrizione": "Come Protezione I, ma quando chi halanciato l'incantesimo si concentra, tutti coloro che si trovano entro 3 metri dalui godono dei suddetti benefici."
+        },
+        {
+          "numero": 3,
+          "nome": "NEUTRALIZZA MALEFICIO",
+          "tipologia": "F",
+          "descrizione": "L'incantesimo, per tuttala suadurata, annulla gli effetti di una maledizione; tale maledizione, però, torna pienamente efficace al termine della magia. Il maleficio può ricorrere ad un TR, conunamodi fi cadi -20: se il TRhasuccesso la maledizione non viene neutralizzata."
+        },
+        {
+          "numero": 4,
+          "nome": "PROTEZIONE II",
+          "tipologia": "P",
+          "descrizione": "Come Protezione I, madà diritto a bonus e penalità di 20 punti."
+        },
+        {
+          "numero": 5,
+          "nome": "AREA DI PROTEZIONE II",
+          "tipologia": "P",
+          "descrizione": "Come Areadi Protezione l, madadiritto a bonus e penalità di 20 punti."
+        },
+        {
+          "numero": 6,
+          "nome": "ANNULLA MALEFICIO",
+          "tipologia": "F",
+          "descrizione": "La maledizioneviene annullata se si supera con successo un TR in cui il \"livello del soggetto\" è pari al livello di chi l'ha creata, mentre il \"livello dell'attacco\" è pari al livello di chi lancial'incantesimo. Se chi lancial'incantesimo fallisce nell'intento, non potrà ritentare nuovamente contro la stessa maledizione se non quando sarà progredito di un livello d'esperienza."
+        },
+        {
+          "numero": 7,
+          "nome": "NEUTRALIZZA MALEFICIO",
+          "tipologia": "F",
+          "descrizione": "Come sopra, ma annullala maledizione per laduratadi 1hr/livello di chi lancial'incantesimo."
+        },
+        {
+          "numero": 8,
+          "nome": "ANNULLA INCANTESIMO",
+          "tipologia": "F",
+          "descrizione": "Come Annulla Maleficio, ma può eliminare gli effetti, tuttora persistenti, di unincantesimo."
+        },
+        {
+          "numero": 9,
+          "nome": "PROTEZIONE III",
+          "tipologia": "P",
+          "descrizione": "Come Protezione I madà diritto a bonus e penalità di 30 punti."
+        },
+        {
+          "numero": 10,
+          "nome": "AREA DI PROTEZIONE III",
+          "tipologia": "P",
+          "descrizione": "Come Areadi Protezione I, madà diritto a bonus e penalità di 30 punti."
+        }
+      ],
+      "note": "La forzadi un maleficio, al fine dell' effettuazione di un TR, si considera essere pari al livello del personaggio che lo halanciato."
+    },
+    {
+      "tipo_lista": "Liste aperte di incantesimi del Flusso",
+      "nome_lista": "ECOMANZIA",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "CAPTA TRAPPOLE",
+          "tipologia": "P",
+          "descrizione": "1 personaggio ha il 75% di probabilità di individuare ogni singola trappola allinterno di una zonadi 2 metri di raggio che sia, comunque, all'aria aperta. Può esaminare, una zonadiversa sempre di 2 metri di raggio), ad ogni Round ECOPERCEZIONE (I): Chilanciaquestoincantesimo entra in comunicazione extrasensoriale con gli esseri riventi (piante o animali) della zona. Ciò gli consente di percepire le attività che si svolgono nella zona (cioè movimenti, combattimenti e manovre). L'incantesimo può essere usato solo se nel raggio d'azione ci sono"
+        },
+        {
+          "numero": 2,
+          "nome": "ECOPERCEZIONE",
+          "tipologia": "I",
+          "descrizione": "Chi lancia questo incantesimo entra in comunicazione extrasensoriale con gli esseri viventi (piante o animali) della zona. Ciò gli consente di percepire le attività che si svolgono nella zona (cioè movimenti, combattimenti e manovre)."
+        },
+        {
+          "numero": 3,
+          "nome": "PREDIZIONE TEMPESTE",
+          "tipologia": "I",
+          "descrizione": "Dà al personaggio il 95% di probabilità di predire il momento ed il tipo di ogni perturbazione (temporale o tempesta), nelle 24 ore successive."
+        },
+        {
+          "numero": 4,
+          "nome": "METEREOLOGIA",
+          "tipologia": "I",
+          "descrizione": "Come Predizione Tempeste, mala previsione si estende ad ogni tipo di condizione atmosferica."
+        },
+        {
+          "numero": 5,
+          "nome": "ECOPERCEZIONE",
+          "tipologia": "I",
+          "descrizione": "Come sopra, ma il raggio d'azione è di 100 metri."
+        },
+        {
+          "numero": 6,
+          "nome": "BREZZA",
+          "tipologia": "F",
+          "descrizione": "Una brezza abbastanza sostenuta si originadal personaggio, verso unadirezione prestabilita. Trascina via ogni materiale sospeso in aria o gassoso (polvere, nubi, ecc.) e penalizzadi 30 punti ogni attacco con proiettili che la attraversa. La brezza ha una velocità di 16 Km/h ed interessa una zonadi forma conica, col personaggio al vertice ed un diametro alla base di 6,5 metri."
+        },
+        {
+          "numero": 7,
+          "nome": "PERCEZIONE DIFFERITA",
+          "tipologia": "I",
+          "descrizione": "Come Ecopercezione, ma il personaggiopuòpredisporrel' incantesimocon uno speciale \"allarme\" magico. Viene infatti immediatamente avvisato di ogni attività animata che si svolga nella zona."
+        },
+        {
+          "numero": 8,
+          "nome": "FOSCHIA",
+          "tipologia": "I",
+          "descrizione": "Crea un nebbione naturale internamente d'azione è di 170 metri."
+        },
+        {
+          "numero": 9,
+          "nome": "FOSCHIA",
+          "tipologia": "I",
+          "descrizione": "Come sopra, ma il raggio d'azione è di 170 metri."
+        },
+        {
+          "numero": 10,
+          "nome": "METEREOLOGIA (1)",
+          "tipologia": "Come sopra, mala predizione si estende ad un periodo di 1 giorno/ livello.",
+          "descrizione": ""
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste di incantesimi degli Animisti",
+      "nome_lista": "EMORIGENERAZIONE",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "COAGULAZIONE",
+          "tipologia": "A",
+          "descrizione": "La perditadi sangue viene rallentata, perciò la perditadei Punti Ferita/round diminuisce di 1. Se nell'ora successiva il soggetto combatte o corre, la ferita si riapre e la perditadi sangue assume dinuovo i valori originali."
+        },
+        {
+          "numero": 2,
+          "nome": "RIMARGINAZIONE",
+          "tipologia": "A",
+          "descrizione": "La perditadi sangue del soggetto (Punti Ferita/round) diminuisce di 1."
+        },
+        {
+          "numero": 3,
+          "nome": "CURA EMORRAGIE",
+          "tipologia": "A",
+          "descrizione": "La perditadi sangue del soggetto (PF/round) diminuisce di 3, in conseguenzadella cicatrizzazione delle ferite di media entità. L'incantesimo è inefficace contro i danni a vene ed arterie principali (cioè, contro le ferite che comportano 5 o più PF/round)"
+        },
+        {
+          "numero": 4,
+          "nome": "COAGULAZIONE V",
+          "tipologia": "A",
+          "descrizione": "come Coagulazione I, mala perditadi sangue (PF/round) diminuisce di 5."
+        },
+        {
+          "numero": 5,
+          "nome": "RIMARGINAZIONE III",
+          "tipologia": "A",
+          "descrizione": "Come Rimarginazione I, mala perditadi sangue diminuisce di 3."
+        },
+        {
+          "numero": 6,
+          "nome": "CURA EMORRAGIE GRAVI",
+          "tipologia": "A",
+          "descrizione": "Cura tutti i danni gravi causati dal taglio di una vena o una arteria (si definiscono \"gravi\" i danni che comportano 5o più PF/ round)."
+        },
+        {
+          "numero": 7,
+          "nome": "REUNIONE",
+          "tipologia": "A*",
+          "descrizione": "Usato insieme con gli incantesimi Reunione delle altre liste di guarigione (Fisiorigenerazione e Rigenerazione Organica), consente di riattaccare un arto amputato. Il tempo di guarigione è di 1D10 giorni."
+        },
+        {
+          "numero": 8,
+          "nome": "TRASFUSIONE",
+          "tipologia": "A",
+          "descrizione": "L'animista può trasfondere mezzo litro di sangue da un donatore volontario (o privo di sensi) ad un altro personaggio (che sia soggetto ad una emorragia, cioè aver subito un Colpo Critico che infligge PF/round). Deve porre una mano sul donatore e l'altra sul ferito. Il donatore deve appartenere alla stessa specie di chi riceve la trasfusione. Ogni mezzo litro cura 50 PF del ferito, mentre il donatore subisce una penalità di -20 alle attività per le successive 12 ore. Nessun personaggio può essere primadonatore e poi trasfuso, o viceversa, nel volgere di 12 ore."
+        },
+        {
+          "numero": 9,
+          "nome": "GRANDE COAGULAZIONE",
+          "tipologia": "A",
+          "descrizione": "Come Coagulazione l, mala perditadi sangue (PF/round) del soggetto si riduce di un ammontare pari al livello dell'animista."
+        },
+        {
+          "numero": 10,
+          "nome": "GRANDE RIMARGINAZIONE",
+          "tipologia": "A",
+          "descrizione": "Come Rimarginazione I, mala perditadi sangue (PF/round) del soggetto si riducediunammontarepariallivello dell'animista."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste di incantesimi degli Animisti",
+      "nome_lista": "FISIORIGENERAZIONE",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "CURA FERITA",
+          "tipologia": "A",
+          "descrizione": "Cura 1D10 Punti Ferita."
+        },
+        {
+          "numero": 2,
+          "nome": "CURA FRATTURA MINORE (A) Saldile osione. CURA FRATTURA MINORE",
+          "tipologia": "A",
+          "descrizione": "Saldale ossa e cura una frattura semplice, nel giro di 1D10 ore. È inefficace contro le fratture composte, le ossa frantumate, i danni alle articolazioni o al teschio."
+        },
+        {
+          "numero": 3,
+          "nome": "CURA MUSCOLO",
+          "tipologia": "A",
+          "descrizione": "Cura un muscolo danneggiato (ma non organi come il cuore), in 1D10 ore."
+        },
+        {
+          "numero": 4,
+          "nome": "CURA CARTILAGINE",
+          "tipologia": "A",
+          "descrizione": "Cura, in 1D10 ore, tutte le cartilagini lesionate intorno ad un' articolazione."
+        },
+        {
+          "numero": 5,
+          "nome": "CURA TENDINE",
+          "tipologia": "A",
+          "descrizione": "Cura, in 1D10 ore, un tendine lesionato."
+        },
+        {
+          "numero": 6,
+          "nome": "CURA FRATTURA GRAVE",
+          "tipologia": "A",
+          "descrizione": "Saldale ossa e cura unatrattura, sempliceocomposta, nel girodi 1 U l Vo r e. E inefficace contro le ossafrantumate, i danni alle articolazioni ed al teschio."
+        },
+        {
+          "numero": 7,
+          "nome": "REUNIONE",
+          "tipologia": "A*",
+          "descrizione": "Usato insieme agli incantesimi Reunione delle altre liste guarigione (Emorigenerazione e Rigenerazione Organica), consente di riattaccare un arto amputato. Il tempo di guarigione è 1D10 giorni."
+        },
+        {
+          "numero": 8,
+          "nome": "CURA DENTE",
+          "tipologia": "A",
+          "descrizione": "Consente di curare ogni danno al denti: carie, ascessi, denti rotti o spaccati. Se un dente è stato estratto o strappato, l'incantesimo lo può ricostruire per intero, se è possibile recuperarne la maggior parte."
+        },
+        {
+          "numero": 9,
+          "nome": "CURA CRANIO",
+          "tipologia": "A",
+          "descrizione": "Cura una frattura al teschio in 1D10 ore (ma non le parti frantumate)."
+        },
+        {
+          "numero": 10,
+          "nome": "CURA ARTICOLAZIONE",
+          "tipologia": "A",
+          "descrizione": "Cura una articolazione danneggiata, in 1D10 giorni (ma non se frantumata)."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste di incantesimi degli Animisti",
+      "nome_lista": "FLUSSO DIRETTO",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "CONSERVAZIONE",
+          "tipologia": "A",
+          "descrizione": "L'animista può conservare un corpo, evitando ogni danno o deterioramento ulteriore (es.: perditadi sangue, rotture cellulari, decomposizione, ecc.). Il soggetto, se è ancora vivo, cade in coma. L'incantesimo non può impedire la morte (cioè la separazione dell'animadal corpo)."
+        },
+        {
+          "numero": 2,
+          "nome": "INTUIZIONE I",
+          "tipologia": "I",
+          "descrizione": "L'animista ha una visione di ciò che accadrà (probabilmente) nel prossimo minuto, se decide di intraprendere una certa azione."
+        },
+        {
+          "numero": 3,
+          "nome": "SOGNO I",
+          "tipologia": "I",
+          "descrizione": "L'animista ha un sogno su un argomento dalui prescelto. Deve, però dormire o meditare, per almeno 8 ore."
+        },
+        {
+          "numero": 4,
+          "nome": "BIOMANTENIMENTO",
+          "tipologia": "I",
+          "descrizione": "Impedisce che, al momento della morte del personaggio, l'anima abbandoni il corpo. Ciò evitala morte e permette alla vittimadi rimettersi in salute con semplici cure (per conservare il corpo occorre, però, l'incantesimo Conservazione). L'incantesimo, per sortire i detti effetti, deve essere personaggiodecedutooccorreunincantesimodi 12° ivello (Resurrezione: non contenuto in questo volume ma solo in Spell Law)."
+        },
+        {
+          "numero": 5,
+          "nome": "INTUIZIONE III",
+          "tipologia": "I",
+          "descrizione": "Come Intuizione I mala predizione si estende ai 3 minuti successivi."
+        },
+        {
+          "numero": 6,
+          "nome": "NECROLOGIA",
+          "tipologia": "I",
+          "descrizione": "Consente di avere una visione degli avvenimenti relativi ad una morte, attraverso gli occhi del defunto. Si potrebbe, al limite, anche vedere il volto dell'assassino. Il corpo deve essere morto da un numero di anninon superiore al livello dell'animista chelancial' incantesimo."
+        },
+        {
+          "numero": 7,
+          "nome": "CONSERVAZIONE",
+          "tipologia": "A",
+          "descrizione": "Comesopra, maladurata è di un giorno/livello."
+        },
+        {
+          "numero": 8,
+          "nome": "INTUIZIONE V",
+          "tipologia": "I",
+          "descrizione": "Come Intuizione I, maladurata è di ungiorno / livello."
+        },
+        {
+          "numero": 9,
+          "nome": "SOGNO III",
+          "tipologia": "I",
+          "descrizione": "Come Sogno I ma consente di fare 3 sogni ogni 8 ore. I sogni possono riguardare argomenti diversi."
+        },
+        {
+          "numero": 10,
+          "nome": "BIOMANTENIMENTO",
+          "tipologia": "A",
+          "descrizione": "Comesopra, maladurata è di un giorno/livello."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste aperte di incantesimi dell'Essenza",
+      "nome_lista": "FORMULE D'INCANTESIMO",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "SOSPENSIONE",
+          "tipologia": "A",
+          "descrizione": "Questo incantesimo serve a \"sospendere\" il lancio di un incantesimo già preparato. Il personaggio deve lanciarlo subito prima di quello che intende \"immagazzinare\". L'incantesimo \"immagazzinato\" può essere lanciato in ogni round successivo, senza alcuna penalità. Il costo, in termini di Punti Magia, è lo stesso dell'incantesimo immagazzinato, ed il personaggio non può lanciare altre magie fin quando non abbia utilizzato quello già \"immagazzinato\"."
+        },
+        {
+          "numero": 2,
+          "nome": "ANNULLA L'ESSENZA",
+          "tipologia": "F*",
+          "descrizione": "Fornisce al personaggio che lancia l'incantesimo una protezione da tutti gli attacchi provenienti da incantesimi dell'Essenza. L'attaccante, infatti, deve effettuare un TR contro Annulla l'Essenza. Se ha successo, il suo attacco procede normalmente; altrimenti non ha efficacia."
+        },
+        {
+          "numero": 3,
+          "nome": "RUNA I",
+          "tipologia": "F",
+          "descrizione": "Consente di trascrivere un incantesimo su un foglio di carta speciale (detta \"carta Runica\"), che può essere in seguito usata per lanciare l'incantesimo trascritto (con la normale procedura). Il personaggio deve prima lanciare con successo l'incantesimo Runa e poi quello da trascrivere. Una volta utilizzata, la carta Runica può essere riutilizzata per trascrivere un nuovo incantesimo. Con il Runa I si possono trascrivere solo incantesimi di 1° livello."
+        },
+        {
+          "numero": 4,
+          "nome": "ANNULLA IL FLUSSO",
+          "tipologia": "F*",
+          "descrizione": "Come Annulla l'Essenza, ma è efficace solo contro gli incantesimi di Flusso"
+        },
+        {
+          "numero": 5,
+          "nome": "RUNA II",
+          "tipologia": "F",
+          "descrizione": "Come Runa I, ma può trascrivere incantesimi di 1° e 2° livello."
+        },
+        {
+          "numero": 6,
+          "nome": "CANCELLA L'ESSENZA",
+          "tipologia": "F*",
+          "descrizione": "Come Annulla l'Essenza, ma gli effetti si estendono fino a 3 metri da chi lo pronuncia. Tutti gli incantesimi dell'Essenza presenti nella zona influenzata, devono effettuare un TR (con una modifica di +30). Se il tiro fallisce vengono annullati."
+        },
+        {
+          "numero": 7,
+          "nome": "RUNA III",
+          "tipologia": "F",
+          "descrizione": "Come Runa I, ma può trascrivere incantesimi dal 1° al 3° livello."
+        },
+        {
+          "numero": 8,
+          "nome": "CANCELLA IL FLUSSO",
+          "tipologia": "F*",
+          "descrizione": "Come Cancella l'Essenza, ma è efficace solo contro gli incantesimi del Flusso."
+        },
+        {
+          "numero": 9,
+          "nome": "RUNA V",
+          "tipologia": "F",
+          "descrizione": "Come Runa I, ma può trascrivere incantesimi dal 1° al 5° livello."
+        },
+        {
+          "numero": 10,
+          "nome": "GLIFO DI STORDIMENTO",
+          "tipologia": "F",
+          "descrizione": "Iscrive un \"Simbolo\" su di una superficie immobile (ad es. una croce, un pentacolo, un Ank ecc.). Il Simbolo può essere attivato da diversi procedimenti, a scelta di chi lancia l'incantesimo: ad es. dopo un periodo di tempo prestabilito; da certi movimenti; da particolari suoni; al contatto; quando viene letto ecc. Chi lo ha attivato rimane stordito per 10 MIN/10 punti di fallimento del TR"
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste aperte di incantesimi dell'Essenza",
+      "nome_lista": "FORMULE DELL'ESSENZA",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "INDIVIDUAZIONE DELL'ESSENZA",
+          "tipologia": "P",
+          "descrizione": "Individua ogni oggetto magico o incantesimo attivo appartenente al regno dell'Essenza. In ogni round il personaggio può concentrarsi su una zona non più grande di 1,5 m entro il raggio d'azione della magia."
+        },
+        {
+          "numero": 2,
+          "nome": "ANALISI TESTUALE I",
+          "tipologia": "I",
+          "descrizione": "Il personaggio può leggere un testo scritto in una lingua a lui ignota, ma comprenderne solo i concetti generali."
+        },
+        {
+          "numero": 3,
+          "nome": "INDIVIDUAZIONE DEL FLUSSO",
+          "tipologia": "P",
+          "descrizione": "Come Individuazione dell'Essenza, ma agisce sul regno del Flusso."
+        },
+        {
+          "numero": 4,
+          "nome": "INDIVIDUAZIONE DELL'INVISIBILE",
+          "tipologia": "P",
+          "descrizione": "Come Individuazione dell'Essenza, ma individua le cose invisibili. Tutti gli attacchi contro le cose invisibili diventano in tal modo possibili anche se subiscono una modifica di -50 (senza individuazione, l'attacco non sarebbe"
+        },
+        {
+          "numero": 5,
+          "nome": "INDIVIDUAZIONE DELLE TRAPPOLE",
+          "tipologia": "P",
+          "descrizione": "Come Individuazione dell'Essenza, ma il personaggio ha il 75% di probabilità di individuare una trappola (per alcuni tipi di trappola, le probabilità possono essere modificate)."
+        },
+        {
+          "numero": 6,
+          "nome": "ANALISI TESTUALE II",
+          "tipologia": "I",
+          "descrizione": "Come Analisi Testuale I, ma consente un'analisi tecnica del testo (vocaboli e sintassi), senza tuttavia, la possibilità di comprendere idiomi dialettali, implicazioni sottili e riferimenti razziali o culturali."
+        },
+        {
+          "numero": 7,
+          "nome": "INDIVIDUAZIONE DEL MALE",
+          "tipologia": "P",
+          "descrizione": "Come Individuazione dell'Essenza, ma individua se un essere o un oggetto è malvagio, oppure se un dato oggetto è stato creato dal Male, oppure se è appartenuto per un lungo periodo ad un essere particolarmente malvagio."
+        },
+        {
+          "numero": 8,
+          "nome": "RITROVARE",
+          "tipologia": "P",
+          "descrizione": "Indica la direzione e la distanza di un oggetto o di un luogo specifico, con cui il personaggio abbia una certa familiarità, oppure che gli sia stato dettagliatamente descritto."
+        },
+        {
+          "numero": 9,
+          "nome": "INDIVIDUAZIONE DEL MAGICO",
+          "tipologia": "P",
+          "descrizione": "Come Individuazione dell'Essenza, ma offre la possibilità di stimare il potere magico (livello e potenza) dell'essere o dell'oggetto che ha creato l'incantesimo esaminato."
+        },
+        {
+          "numero": 10,
+          "nome": "ANALISI",
+          "tipologia": "I",
+          "descrizione": "Rivela i particolari più significativi sulla costruzione di un oggetto e sulla ragione per cui è stato costruito (ma non i suoi specifici poteri)."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste di incantesimi dei Ranger",
+      "nome_lista": "FORMULE DI MOVIMENTO",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "CORSA PIETRA",
+          "tipologia": "F",
+          "descrizione": "Consente al Ranger di correre su superfici di pietra, fino a una pendenzadel 80%, come se fossero piane."
+        },
+        {
+          "numero": 2,
+          "nome": "VIA RAMO",
+          "tipologia": "F",
+          "descrizione": "Consente al Ranger di camminare sui rami degli alberi in grado di reggere il suo peso, con la stessa sicurezza con la quale camminerebbe sul terreno."
+        },
+        {
+          "numero": 3,
+          "nome": "NUOTO",
+          "tipologia": "F*",
+          "descrizione": "Consente al soggetto dinuotare senza stancarsi, né spendere energie."
+        },
+        {
+          "numero": 4,
+          "nome": "VIA SABBIA",
+          "tipologia": "F",
+          "descrizione": "Come Corsa Pietra, ma il Ranger può correre sulla sabbia come se fosse terreno solido."
+        },
+        {
+          "numero": 5,
+          "nome": "VIA ACQUA",
+          "tipologia": "F",
+          "descrizione": "Consente al Ranger di camminare sull'acqua come se fosse terreno asciutto. Se l'acqua è agitata possono rendersinecessari dei Tiri Manovra."
+        },
+        {
+          "numero": 6,
+          "nome": "CORSÁ RAMO",
+          "tipologia": "F",
+          "descrizione": "Come Via Ramo, ma il Ranger può correre sui rami."
+        },
+        {
+          "numero": 7,
+          "nome": "LIEVE PASSO",
+          "tipologia": "F",
+          "descrizione": "Il Ranger, fin quando mantiene la concentrazione, può camminare senzalasciare tracce, né altri segni visibili del s uo passaggio."
+        },
+        {
+          "numero": 8,
+          "nome": "SENZA TRACCIA",
+          "tipologia": "F",
+          "descrizione": "Come Lieve Passo, ma il Ranger può inoltre nascondere le tracce di un altro essere del rualestaseguendo le tracce"
+        },
+        {
+          "numero": 9,
+          "nome": "CORSA ACQUA",
+          "tipologia": "F",
+          "descrizione": "Come Via Acqua, ma il Ranger può correre sull'acqua 10 TORPEDINE (F*): Come Nuoto, ma il Ranger può nuo tare alla stessa velocità con cui corre sulla terraferma."
+        },
+        {
+          "numero": 10,
+          "nome": "TORPEDINE",
+          "tipologia": "F*",
+          "descrizione": "Come Nuoto, ma il Ranger può nuotare alla stessa velocità con cui corre sulla terraferma."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste aperte di incantesimi dell'Essenza",
+      "nome_lista": "FORMULE DI PASSAGGIO",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "CHIUSURA",
+          "tipologia": "F",
+          "descrizione": "Il personaggio può chiudere una qualsiasi serratura che sia nel suo raggio visivo e che non sia più lontana di 33 m (la serratura così chiusa potrà essere riaperta in modo normale)."
+        },
+        {
+          "numero": 2,
+          "nome": "CHIUSURA MAGICA",
+          "tipologia": "F",
+          "descrizione": "Può \"chiudere a chiave\" magicamente una porta (o un contenitore). La porta potrà essere scardinata con la forza o l'incantesimo annullato magicamente, ma non ci sarà nessun altro modo di aprirla."
+        },
+        {
+          "numero": 3,
+          "nome": "CONOSCENZA SERRATURE",
+          "tipologia": "I",
+          "descrizione": "Chi lo lancia beneficia di un bonus di +20 per scassinare la serratura analizzata. Se la serratura analizzata magicamente viene descritta a qualcun altro, quest'ultimo beneficerà di un bonus di +10 all'abilità di Scassinare Serrature."
+        },
+        {
+          "numero": 4,
+          "nome": "APERTURA I",
+          "tipologia": "F",
+          "descrizione": "Quando viene lanciato su una serratura, vi è il 20% di probabilità di aprirla se è stata chiusa normalmente, ed il 45% se su di essa è stato lanciato un incantesimo Chiusura Magica. In caso di fallimento c'è il 10% di probabilità di attivare l'eventuale trappola connessa alla serratura. I tiri sono \"aperti\" e la qualità della serratura può modificare il risultato."
+        },
+        {
+          "numero": 5,
+          "nome": "CONOSCENZA TRAPPOLE",
+          "tipologia": "I",
+          "descrizione": "Come Conoscenza Serrature, ma viene usato per disattivare trappole."
+        },
+        {
+          "numero": 6,
+          "nome": "NEUTRALIZZAZIONE I",
+          "tipologia": "F",
+          "descrizione": "Come Apertura I, ma le probabilità si riferiscono alla disattivazione di trappole."
+        },
+        {
+          "numero": 7,
+          "nome": "DEFORMAPORTA",
+          "tipologia": "F",
+          "descrizione": "Fa gonfiare la porta, in modo da farla incastrare nell'apertura (tirate 1D100 per stabilire l'entità della deformazione, che può andare da un semplice attrito ad un blocco totale)."
+        },
+        {
+          "numero": 8,
+          "nome": "LOGORIO",
+          "tipologia": "F",
+          "descrizione": "Riduce del 50% la forza strutturale di una porta."
+        },
+        {
+          "numero": 9,
+          "nome": "APERTURA II",
+          "tipologia": "F",
+          "descrizione": "Come Apertura I, ma le probabilità di aprire salgono al 40% per serrature normali e al 90% per quelle affette da Chiusura Magica."
+        },
+        {
+          "numero": 10,
+          "nome": "ANNULLAMENTO PORTA",
+          "tipologia": "F",
+          "descrizione": "Vaporizza una porta non magica alta fino a 3 metri, larga altrettanto e di 15 cm di spessore (se lo spessore è maggiore, ne vaporizza solo 15 cm). Per le porte di materiali speciali, si dovrà ricorrere ad un Tiro Resistenza"
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste aperte di incantesimi del Flusso",
+      "nome_lista": "FORMULE SENSORIE",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "RAGGIO LUCE",
+          "tipologia": "F",
+          "descrizione": "Un fascio di luce lungo 15 m (simile a quello di una torcia elettrica) viene proiettato lal palmo della mano del personaggio, il quale pur attivarlo o disattivarlo semplicemente aprendo o chiu dendo la mano. DISCORSO I (P): Il soggetto può comunicare semplici concetti (fame, sete, pace, dov'è il bagno?, ecc.) in unalingua specifica, con qualcuno che non sia più distante LUCE (F): Illumina una zonadi 3 metri di raggio ntorno al punto toccato dal personaggio. Laluce pro lotta h ala stessa intensità di una torcia. Se il punto s trova su un essere o un oggetto in movimento, la zonaluminata si sposta insieme ad esso UIETE (F): Creaattornoalsoggettosulqualeèstat lanciato l'incantesimo una barriera invisibile di 30 cm di raggio, dentro e fuori la quale non può passare alcun suono. Il centro della zona corrisponde alla posizione del soggetto e si sposta insieme ad esso. BALENO (F): Crea una zonadi luce intensa, di 3 m di raggio. Tutti coloro che si trovano all'interno della zonadevono ricorrere ad un TR. Se falliscono restano storditi per 1 round/ 5 punti fallimento del TR."
+        },
+        {
+          "numero": 2,
+          "nome": "DISCORSO I",
+          "tipologia": "P",
+          "descrizione": "Il soggetto può comunicare semplici concetti (fame, sete, pace, dov'è il bagno?, ecc.) in una lingua specifica, con qualcuno che non sia più distante di 33 metri."
+        },
+        {
+          "numero": 3,
+          "nome": "LUCE",
+          "tipologia": "F",
+          "descrizione": "Illumina una zona di 3 metri di raggio intorno al punto toccato dal personaggio. La luce prodotta ha la stessa intensità di una torcia. Se il punto si trova su un essere o un oggetto in movimento, la zona illuminata si sposta insieme ad esso."
+        },
+        {
+          "numero": 4,
+          "nome": "QUIETE",
+          "tipologia": "F",
+          "descrizione": "Crea attorno al soggetto sul quale è stato lanciato l'incantesimo una barriera invisibile di 30 cm di raggio, dentro e fuori la quale non può passare alcun suono. Il centro della zona corrisponde alla posizione del soggetto e si sposta insieme ad esso."
+        },
+        {
+          "numero": 5,
+          "nome": "BALENO",
+          "tipologia": "F",
+          "descrizione": "Crea una zona di luce intensa, di 3 m di raggio. Tutti coloro che si trovano all'interno della zona devono ricorrere ad un TR. Se falliscono restano storditi per 1 round/5 punti fallimento del TR."
+        },
+        {
+          "numero": 6,
+          "nome": "DISCORSOII",
+          "tipologia": "P",
+          "descrizione": "Come Discorso I, ma il personaggio è in grado di comunicare concetti complessi, anche se esistono sempre buone probabilità di incomprensione."
+        },
+        {
+          "numero": 7,
+          "nome": "LAMPO",
+          "tipologia": "F",
+          "descrizione": "Un dardo di luce concentrata saettadalla mano del personaggio. I risultati si determinano in base alla Tabellad'attacco \"dardo\"."
+        },
+        {
+          "numero": 8,
+          "nome": "SILENZIO",
+          "tipologia": "F",
+          "descrizione": "Come Quiete, ma il raggio delimitatadalla barriera invisibile è di 3 metri."
+        },
+        {
+          "numero": 9,
+          "nome": "ILLUMINAZIONE",
+          "tipologia": "F",
+          "descrizione": "Come Luce, malaluminosità prodotta hala stessa intensità dellaluce del giorno. Questo incantesimo annullale tenebre create con la magia."
+        },
+        {
+          "numero": 10,
+          "nome": "LUCE DIFFERITA",
+          "tipologia": "F",
+          "descrizione": "Come Luce, ma gli effetti posson o essere ritardati per un tempo equivalente a 24h/ -VL, oppure fino al passaggio di un certo essere, alla pronunciadi una particolare parola, ecc."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste di incantesimi dei Maghi",
+      "nome_lista": "FOTOMANZIA",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "RAGGIO LUCE",
+          "tipologia": "F",
+          "descrizione": "Un raggio di luce lungo 15 m (simile a quello di una torcia elettrica) viene proiettato lal palmo del personaggio, il quale può attivarlo o lisattivarlo aprendo e chiudendo la mano"
+        },
+        {
+          "numero": 2,
+          "nome": "LAMPO",
+          "tipologia": "E",
+          "descrizione": "Nn dardo di luce pura e intensa saetta dalla mano del personaggio. I risultati si determinano in base alla Tabella d'attacco \"Dardo\" 3LUCE I (F): Illumina una zona di 3 metri di raggio intorno al punto toccato dal personaggio:"
+        },
+        {
+          "numero": 3,
+          "nome": "LUCE I",
+          "tipologia": "F",
+          "descrizione": "Illumina una zona di 3 metri di raggio intorno al punto toccato dal personaggio."
+        },
+        {
+          "numero": 4,
+          "nome": "PENOMBRA",
+          "tipologia": "F",
+          "descrizione": "Le ombre in una zona entro 33 metri dal punto prescelto dal personaggio, diventano ancora più cupe. Aggiungete +25 al bonus dell'abilità di Nascondersi."
+        },
+        {
+          "numero": 5,
+          "nome": "BALENO",
+          "tipologia": "F",
+          "descrizione": "Crea un lampo di luce molto intensa, di 3 metri di raggio. Tutti coloro che sono nella zona restano Storditi per 1 round/5 punti di fallimento del TR."
+        },
+        {
+          "numero": 6,
+          "nome": "BUIO",
+          "tipologia": "F",
+          "descrizione": "Come Luce, ma entro un raggio di 3 metri, si creano delle tenebre equivalenti a quelle di una notte buia e priva di luna."
+        },
+        {
+          "numero": 7,
+          "nome": "LUCE V",
+          "tipologia": "F",
+          "descrizione": "Come sopra, ma la zona illuminata può arrivare a 15 m di raggio (le dimensioni possono essere modificate con 1 round di concentrazione)."
+        },
+        {
+          "numero": 8,
+          "nome": "LAMPO",
+          "tipologia": "E",
+          "descrizione": "Come sopra, ma il raggio d'azione è di 100 metri."
+        },
+        {
+          "numero": 9,
+          "nome": "BUIO",
+          "tipologia": "F",
+          "descrizione": "Come sopra, ma il raggio delle tenebre può arrivare a 15 m (ed essere come per Luce V)."
+        },
+        {
+          "numero": 10,
+          "nome": "FULMINE",
+          "tipologia": "E",
+          "descrizione": "Come Lampo, ma il personaggio scaglia un veroepropriodardo elettrico. I risultati si determinano in base alla Tabella d'attacco \"Dardo\"."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste di incantesimi dei Maghi",
+      "nome_lista": "GEOMANZIA",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "CORDA MAGICA",
+          "tipologia": "F",
+          "descrizione": "Se il personaggio impugna il capo di una corda può farla spostare fino al massimo della sua lunghezza (purché entro il raggio d'azione dell'incantesimo) in qualunque direzione e farla annodare a qualcosa (la corda però, non può attaccare né annodarsi ad esseri attivi o in movimento)."
+        },
+        {
+          "numero": 2,
+          "nome": "SMOTTAMENTO",
+          "tipologia": "F",
+          "descrizione": "Sbriciola 3 metri cubi di terra alla consistenza di terreno arato."
+        },
+        {
+          "numero": 3,
+          "nome": "POLVERIZZA",
+          "tipologia": "F",
+          "descrizione": "Frantuma una pietra o una porzione di pietra (delle dimensioni massime di 6x6x6 cm), riducendola in polvere. E' efficace sulle pietre non incantate e sulle gemme. In caso di Tiro Manovra favorevole può polverizzare anche le pietre scagliate da fionde."
+        },
+        {
+          "numero": 4,
+          "nome": "MURO",
+          "tipologia": "E",
+          "descrizione": "Crea una massa di terra battuta delle dimensioni massime di 3x3x0.3 m (1malla base e 0,3 m in cima). Deve poggiare su una superficie solida. Può essere rimossa da un singolo uomo, scavando a partire della sommità, in 10 Round di lavoro."
+        },
+        {
+          "numero": 5,
+          "nome": "FRATTURA",
+          "tipologia": "F",
+          "descrizione": "Estende fino ai limiti massimi una fessura od una crepa già esistente in un blocco di materiainanimata."
+        },
+        {
+          "numero": 6,
+          "nome": "VALLO",
+          "tipologia": "E",
+          "descrizione": "Come Muro, ma crea un muro di pietra di 3x3x0,3 metri, con la durezza della vera pietra."
+        },
+        {
+          "numero": 7,
+          "nome": "PIETRA / TERRA",
+          "tipologia": "F",
+          "descrizione": "Riduce 3 metri cubi di pietra a terra battuta. La trasformazione è graduale e si completa nel giro di 3 round."
+        },
+        {
+          "numero": 8,
+          "nome": "GRANDE MURO",
+          "tipologia": "E",
+          "descrizione": "Come Muro, ma la durata è permanente."
+        },
+        {
+          "numero": 9,
+          "nome": "TERRA/FANGO",
+          "tipologia": "F",
+          "descrizione": "Come Pietra/Terra, ma trasforna la terra battuta in morbido fango"
+        },
+        {
+          "numero": 10,
+          "nome": "TERRA/PIETRA",
+          "tipologia": "F",
+          "descrizione": "Come Pietra/Terra, ma trasforma la terra battuta in pietra solida e la terra smossa in ghiaia"
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste di incantesimi dei Maghi",
+      "nome_lista": "IDROMANZIA",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "CONDENSAZIONE",
+          "tipologia": "F",
+          "descrizione": "Condensa 3 litri di acqua dall'aria circostante, che sarà disponibile in forma liquida e raccoglibile in un recipiente. Per completare il processo occorrono 1 round nelle zone più umide, e 10 min. nei deserti più arid:"
+        },
+        {
+          "numero": 2,
+          "nome": "FOSCHIA",
+          "tipologia": "F",
+          "descrizione": "Crea una fitta nebbia che avvolge tutt la zona d'efficacia dell'incantesimo. La nebbia oscura la visuale e sottrae 50 punti a tutti gli attacchi a distanza che laattraversano."
+        },
+        {
+          "numero": 3,
+          "nome": "MURO LIQUIDO",
+          "tipologia": "E",
+          "descrizione": "Crea una parete d'acqua di 3x3x0,3 metri. Per attraversarla occorre un Tiro di Manovra in Movimento, con una penalità di -40. Gli attacchi che la attraversano subiscono una penalità di -80. La parete deve poggiare su una superficie solida o liquida. 4 ACQUADARDO: Un proiettile d'acqua saetta dalla mano del mago. I risultati si determinano in base alla Tabella d'attacco \"Dardo\"."
+        },
+        {
+          "numero": 4,
+          "nome": "ACQUADARDO",
+          "tipologia": "E",
+          "descrizione": "Un proiettile d'acqua saetta dalla mano del mago. I risultati si determinano in base alla Tabella d'attacco \"Dardo\"."
+        },
+        {
+          "numero": 5,
+          "nome": "SCHIARITA",
+          "tipologia": "F",
+          "descrizione": "Disperde la nebbia nel raggio d'azione indicato."
+        },
+        {
+          "numero": 6,
+          "nome": "BONACCIA",
+          "tipologia": "F",
+          "descrizione": "Calma le acque entro il raggio d'azione. Le onde vengono abbassate di 6 mal centro del raggio di azione e sempre di meno ai bordi 7 VALLO LIQUIDO (É): Come Muro Liquido, ma i mago non ha bisogno di concentrarsi e la durata è di 1 Min/LVL."
+        },
+        {
+          "numero": 7,
+          "nome": "VALLO LIQUIDO",
+          "tipologia": "E",
+          "descrizione": "Come Muro Liquido, ma il mago non ha bisogno di concentrarsi e la durata è di 1 Min/LVL."
+        },
+        {
+          "numero": 8,
+          "nome": "DISTILLAZIONE",
+          "tipologia": "F",
+          "descrizione": "Elimina tutti i sedimenti e le sostanze disciolte in un volume d'acqua pari a 36mcubi/ LVL."
+        },
+        {
+          "numero": 9,
+          "nome": "ACQUA DARDO",
+          "tipologia": "E",
+          "descrizione": "Come sopra, ma ha un raggio d'azione di 100 metri."
+        },
+        {
+          "numero": 10,
+          "nome": "PIOGGIA",
+          "tipologia": "F",
+          "descrizione": "Se ci sono nuvole in cielo, piove per tutta la durata dell'incantesimo."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste aperte di incantesimi dell'Essenza",
+      "nome_lista": "ILLUSIONI",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "MIRAGGIO UDITIVO",
+          "tipologia": "E",
+          "descrizione": "Questa illusione crea un gruppo di suoni immobili, che si originano da un'area con un raggio max di 3 m. Può attutire i normali suoni dentro l'area, fino all'intensità di una comune conversazione."
+        },
+        {
+          "numero": 2,
+          "nome": "IMPERCETTIBILITÀ",
+          "tipologia": "E",
+          "descrizione": "Un singolo oggetto (o essere) viene reso invisibile (1 indumento, 1 corpo nudo ecc.) per 24 ore, oppure fin quando non subisca un colpo violento (con un arma, cadendo ecc.) oppure fin quando l'oggetto (o l'essere) esegue un attacco."
+        },
+        {
+          "numero": 3,
+          "nome": "MIRAGGIO",
+          "tipologia": "E",
+          "descrizione": "Questa illusione crea una semplice immagine o scena, in un'area non più grande di 3 metri di raggio. Inoltre può attutire la normale luminosità dell'area influenzata fino all'intensità di una candela."
+        },
+        {
+          "numero": 4,
+          "nome": "INVISIBILITÀ",
+          "tipologia": "E",
+          "descrizione": "Come Impercettibilità, salvo che con questo incantesimo ogni cosa entro 30 cm dal soggetto che lo lancia diventa invisibile e resta tale fin quando non esce dalla zona indicata."
+        },
+        {
+          "numero": 5,
+          "nome": "MIRAGGIO SENSORIO",
+          "tipologia": "E",
+          "descrizione": "Crea l'illusione di un odore o di un sapore in un'area di 3 metri di raggio. Può anche attutire il normale odore o sapore delle cose entro detta area."
+        },
+        {
+          "numero": 6,
+          "nome": "ILLUSIONE II",
+          "tipologia": "E",
+          "descrizione": "Crea una semplice immagine visiva in un'area fino a 3 metri di raggio. Inoltre si può a scelta: a) Aggiungere all'illusione una caratteristica sensoria extra, cioè un suono, un odore etc. (ma, in questo caso occorre anche conoscere il corrispondente incantesimo di Miraggio). b) Se ne può raddoppiare la durata. c) Si può raddoppiare il raggio di azione. d) Si può raddoppiare l'area di efficacia."
+        },
+        {
+          "numero": 7,
+          "nome": "FANTASMA I",
+          "tipologia": "E",
+          "descrizione": "Questa illusione crea l'immagine di un oggetto o di un essere che si sposta dove il personaggio desidera, ma solo fin quando questi mantiene la concentrazione. Se la concentrazione viene interrotta, l'immagine non svanisce, ma resta immobile (il movimento può riprendere in seguito, quando il personaggio torna a concentrarsi). Le dimensioni dell'immagine non possono essere maggiori di una sfera di 3 metri di raggio."
+        },
+        {
+          "numero": 8,
+          "nome": "INVISIBILITA",
+          "tipologia": "E",
+          "descrizione": "Come sopra, ma influenza ogni cosa entro un raggio di 3 metri."
+        },
+        {
+          "numero": 9,
+          "nome": "ILLUSIONE III",
+          "tipologia": "E",
+          "descrizione": "Come Illusione II, ma possono scegliersi due delle opzioni indicate"
+        },
+        {
+          "numero": 10,
+          "nome": "FANTASMA II",
+          "tipologia": "E",
+          "descrizione": "Come Fantasma I, ma si può scegliere una delle opzioni indicate per Illusione II, oppure si possono creare e muovere due immagini (che devono essere entrambe nel campo visivo di chi lancia l'incantesimo)."
+        }
+      ],
+      "note": "Questi incantesimi, in realtà, creano una mutazione fisica che influisce sui sensi. Non sono quindi permessi Tiri Resistenza. La realta magica dell'illusione può essere svelata solo con l'uso di altre magie (di Individuazione del magico), oppure da un Tiro Percezione."
+    },
+    {
+      "tipo_lista": "Liste aperte di incantesimi del Flusso",
+      "nome_lista": "INDAGINE",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "CAPTA FLUSSO",
+          "tipologia": "P",
+          "descrizione": "Individua qualunque oggetto c ncantesimo attivo appartenente al regno del Flusso. I! personaggio in ogni round, può concentrarsi su unadiversa zonadi 1 metro di raggio purchè entro il raggio d'azione dell'incantesimo. CAPTA ESSENZA (P): Come Capta Flusso, ma è efficace sul regno dell'Essenza. 3CAPTA IL MALE (P): Come Capta Flusso, ma individua se un essere o un oggetto è malvagio, oppure se un oggetto è stato creato dal male, oppure se è stato usato alungo da una creatura particolarmente malvagia."
+        },
+        {
+          "numero": 2,
+          "nome": "CAPTA ESSENZA",
+          "tipologia": "P",
+          "descrizione": "Come Capta Flusso, ma è efficace sul regno dell'Essenza."
+        },
+        {
+          "numero": 3,
+          "nome": "CAPTA IL MALE",
+          "tipologia": "P",
+          "descrizione": "Come Capta Flusso, ma individua se un essere o un oggetto è malvagio, oppure se un oggetto è stato creato dal male, oppure se è stato usato a lungo da una creatura particolarmente malvagia."
+        },
+        {
+          "numero": 4,
+          "nome": "CAPTA MALEFICIO",
+          "tipologia": "P",
+          "descrizione": "Come Capta Flusso, ma in5 dividuale maledizioni presenti su cose o persone. INDIVIDUAZIONE (P): Indicaladistanza e ladirezione di un oggetto o un luogo specifico ben noto al personaggio o che gli sia stato descritto in modo dettagliato."
+        },
+        {
+          "numero": 5,
+          "nome": "INDIVIDUAZIONE",
+          "tipologia": "P",
+          "descrizione": "Indica la distanza e la direzione di un oggetto o un luogo specifico ben noto al personaggio o che gli sia stato descritto in modo dettagliato."
+        },
+        {
+          "numero": 6,
+          "nome": "CAPTA TRAPPOLE",
+          "tipologia": "P",
+          "descrizione": "Come Capta Flusso, ma conferisce al personaggio il 75% di probabilità di scoprire una trappola (le probabilità possono essere minori per alcune particolari trappole magiche)."
+        },
+        {
+          "numero": 7,
+          "nome": "INDIVIDUAZIONE",
+          "tipologia": "P",
+          "descrizione": "Come sopra, ma il raggio d'azione è di 100 metri."
+        },
+        {
+          "numero": 8,
+          "nome": "CAPTA INVISIBILE",
+          "tipologia": "P",
+          "descrizione": "Come Capta Flusso, ma individuale cose invisibili. Tutti gli attacchi contro una cosa invisibile in tal modo individuata subiscono una modificadi -50 (l'attacco sarebbe stato altrimenti impossibile)."
+        },
+        {
+          "numero": 9,
+          "nome": "INDIVIDUAZIONE",
+          "tipologia": "P",
+          "descrizione": "Come sopra, ma il raggio d'azione è di 170 metri."
+        },
+        {
+          "numero": 10,
+          "nome": "ANALISI MALEFICIO",
+          "tipologia": "I",
+          "descrizione": "Il personaggio può determinare la natura e le origini di una maledizione, compresal'identità di chi l'ha imposta."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste aperte di incantesimi dell'Essenza",
+      "nome_lista": "MANIPOLAZIONE",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "VIBRAZIONI",
+          "tipologia": "F",
+          "descrizione": "Fa vibrare rapidamente un oggetto (fino a 2,5 Kg. di peso); se si tratta di un oggetto fragile, può rompersi (eseguite un TR). Se è un oggetto impugnato da qualcuno, chi lo tiene in mano deve effettuare (ogni round) un TR. Se fallisce, l'oggetto gli cade di mano."
+        },
+        {
+          "numero": 2,
+          "nome": "SCUDO",
+          "tipologia": "F*",
+          "descrizione": "Crea un campo di forza invisibile davanti al mago. Sottrae 25 punti agli attacchi in mischia e agli attacchi a distanza. In pratica, questo incantesimo crea un vero e proprio scudo magico che il personaggio può impugnare se non ne sta già usando un altro."
+        },
+        {
+          "numero": 3,
+          "nome": "PRESSIONE",
+          "tipologia": "F",
+          "descrizione": "Esercita 2,5 Kg. di pressione su una persona o un oggetto. L'incantesimo non può essere usato per spostare un oggetto, ma per immobilizzarlo se si tratta di un oggetto inanimato; la pressione può essere esercitata in una sola direzione."
+        },
+        {
+          "numero": 4,
+          "nome": "TELECINESI",
+          "tipologia": "F",
+          "descrizione": "Un oggetto (fino a 2,5 Kg. di peso) può essere spostato di 30 cm al secondo, a velocità costante. Gli esseri viventi o gli oggetti in contatto con un essere vivente (cioè indossato o posseduto da questi) possono effettuare un TR, con i parametri dell'essere vivente. Se il personaggio che ha lanciato l'incantesimo smette di concentrarsi prima che ne siano esauriti gli effetti, l'oggetto si blocca, come se fosse sottoposto all'incantesimo Pressione."
+        },
+        {
+          "numero": 5,
+          "nome": "DEFLESSIONE",
+          "tipologia": "F*",
+          "descrizione": "Chi lancia l'incantesimo può deviare una freccia o qualsiasi altra arma lanciata (anche un sasso) che passi a meno di 33 metri da lui, infliggendo una penalità di 100 al \"Tiro per Colpire\"."
+        },
+        {
+          "numero": 6,
+          "nome": "VIBRAZIONI",
+          "tipologia": "F",
+          "descrizione": "Come sopra, con un limite massimo di 25 Kg. di peso."
+        },
+        {
+          "numero": 7,
+          "nome": "DEVIA LAMA",
+          "tipologia": "P*",
+          "descrizione": "Come Deflessione, eccetto che devia un attacco in mischia."
+        },
+        {
+          "numero": 8,
+          "nome": "PRESSIONE",
+          "tipologia": "F",
+          "descrizione": "Come sopra, con un limite massimo di 25 Kg."
+        },
+        {
+          "numero": 9,
+          "nome": "TELECINESI",
+          "tipologia": "F",
+          "descrizione": "Come sopra, con un limite massimo di 25 Kg."
+        },
+        {
+          "numero": 10,
+          "nome": "MIRA",
+          "tipologia": "F*",
+          "descrizione": "Concentrandosi sulla mente di colui che scaglia un proiettile e sulla traiettoria dello stesso, chi lancia l'incantesimo conferisce un bonus di +50 al Tiro per Colpire con il proiettile. Chi lancia l'incantesimo deve concentrarsi, toccare chi scaglia il proiettile e osservare il proiettile per tutto il round in cui è scagliato."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste aperte di incantesimi del Flusso",
+      "nome_lista": "MOTI NATURALI",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "VIA RAMO",
+          "tipologia": "F",
+          "descrizione": "Consente al personaggio di camminare sui rami degli alberi (in grado di reggere il suo peso), con la stessa sicurezza come se fosse sul terreno."
+        },
+        {
+          "numero": 2,
+          "nome": "VIA ACQUA",
+          "tipologia": "F",
+          "descrizione": "Consente al personaggio di camminare sull'acqua (alla velocità massimadi 15m/round) come se fosse terreno asciutto. Se l'acqua è agitata possono rendersinecessari dei Tiri Manovra."
+        },
+        {
+          "numero": 3,
+          "nome": "NUOTO",
+          "tipologia": "F",
+          "descrizione": "Consente al soggetto dinuotare senza stancarsi, né spendere energie."
+        },
+        {
+          "numero": 4,
+          "nome": "VIA SABBIA",
+          "tipologia": "F",
+          "descrizione": "Come Via Ramo, ma il personaggio puòcorreresulla sabbia."
+        },
+        {
+          "numero": 5,
+          "nome": "FUSIONEORGANICA",
+          "tipologia": "F",
+          "descrizione": "Consentealpersonaggio di immergersi fino a 30 cmall'interno di una materia organica (cioè, almenoparte del suocorpodeve essere a 30 cm dalla superficie della materia). E inattivo, ma consapevole di ciò che accade intorno alui. Non può nuoversi, ma è libero di riemergere quando vuole CORSARAMO (F): Come Vi aRamo, ma il personag. zopuòcorreresuirami"
+        },
+        {
+          "numero": 6,
+          "nome": "CORSA RAMO",
+          "tipologia": "F",
+          "descrizione": "Come Via Ramo, ma il personaggio può correre sui rami."
+        },
+        {
+          "numero": 7,
+          "nome": "CORSA PIETRA",
+          "tipologia": "F",
+          "descrizione": "Come Via Ramo, ma il personag gio può correre su superfici di pietra, fino alla pendenzadi 75°."
+        },
+        {
+          "numero": 8,
+          "nome": "CORSA ACQUA",
+          "tipologia": "F",
+          "descrizione": "Come Via Acqua, ma il personaggio può correre sull'acqua."
+        },
+        {
+          "numero": 9,
+          "nome": "VIA VENTO",
+          "tipologia": "F",
+          "descrizione": "Consente al personaggio di \"camminare\" su un flusso d'aria (ad es. il vento), ad un'altezza costante. Se esistono turbolenze nell'aria, possono rendersinecessari dei Tiri Manovra."
+        },
+        {
+          "numero": 10,
+          "nome": "TORPEDINE",
+          "tipologia": "F*",
+          "descrizione": "Come Nuoto, ma il personaggio può • nuotare alla stessa velocità con cui corre sulla terraferma."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste aperte di incantesimi del Flusso",
+      "nome_lista": "PACIFICAZIONE",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "PACE I",
+          "tipologia": "F",
+          "descrizione": "Il soggetto non può intraprendere azion aggressive o offensive ecombattesoloperdifendersi"
+        },
+        {
+          "numero": 2,
+          "nome": "PACE II",
+          "tipologia": "F",
+          "descrizione": "Come sopra, ma colpisce 2 soggetti. En- & trambi devono essere nel campo visivo del personaggio che stalanciando l'incantesimo."
+        },
+        {
+          "numero": 3,
+          "nome": "BLOCCO",
+          "tipologia": "F",
+          "descrizione": "Il personaggio, fin quando si concentra, può \"trattenere\" magicamente un altro essere, riducenPACE A VISTA (F): Come pace I, ma il raggio d'azione"
+        },
+        {
+          "numero": 4,
+          "nome": "PACE A VISTA",
+          "tipologia": "F",
+          "descrizione": "Come Pace I, ma il raggio d'azione è di 33 metri."
+        },
+        {
+          "numero": 5,
+          "nome": "STORDIMENTO",
+          "tipologia": "F*",
+          "descrizione": "Il personaggio punta il braccio e dal suo pugno chiuso si scarica un raggio di energia pura, di origine divina, che colpisce la vittimala quale resta stordita per 1 round / 10 punti di fallimento del TR."
+        },
+        {
+          "numero": 6,
+          "nome": "PACE III",
+          "tipologia": "F",
+          "descrizione": "Come Pace II, ma può colpire 3 soggetti."
+        },
+        {
+          "numero": 7,
+          "nome": "PACE IV",
+          "tipologia": "F",
+          "descrizione": "Come Pace II, ma può colpire 4 soggetti."
+        },
+        {
+          "numero": 8,
+          "nome": "SONNO",
+          "tipologia": "F",
+          "descrizione": "Come Stordimento, mala vittima cade profondamente addormentata per 1 round/ 10 punti di fallimento del TR."
+        },
+        {
+          "numero": 9,
+          "nome": "PACE V",
+          "tipologia": "F",
+          "descrizione": "Come Pace Il, ma può colpire 5 soggetti."
+        },
+        {
+          "numero": 10,
+          "nome": "CECITA",
+          "tipologia": "F*",
+          "descrizione": "comeStordimento, mala vittimaresta accecata per 10 min./10 punti di fallimento del TR."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste aperte di incantesimi dell'Essenza",
+      "nome_lista": "PERCEZIONE DELL'ESSENZA",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "FAMILIARE",
+          "tipologia": "P",
+          "descrizione": "Grazie a questo incantesimo il personaggio può entrare in sintonia con un piccolo animale (che diventerà il suo \"familiare\"). Il personaggio deve anzitutto procurarsi l'animale (che non può avere una massa maggiore del 10% della sua) e lanciare su di esso l'incantesimo, una volta al giorno, per una settimana (concentrandosi per 2 ore al giorno). Assume in tal modo, il pieno controllo dell'animale. Inoltre, concentrandosi su di lui potrà percepire il mondo attraverso i sensi dell'animale (l'animale potrà essere al massimo a 15 m dal personaggio). Se l'animale verrà ucciso, tutte le azioni del personaggio subiranno una penalità di -25 per 2 settimane."
+        },
+        {
+          "numero": 2,
+          "nome": "PRESENZA",
+          "tipologia": "P*",
+          "descrizione": "Il personaggio, concentrandosi, diventa \"consapevole\" della presenza di tutti gli esseri senzienti e pensanti nel raggio di 3 metri, cioè può conoscerne la posizione anche se questi sono nascosti o invisibili. Può inoltre stabilire quali di essi siano esseri intelligenti e quali siano animali."
+        },
+        {
+          "numero": 3,
+          "nome": "ASCOLTO",
+          "tipologia": "A",
+          "descrizione": "Il personaggio si concentra su di un punto specifico che non sia più distante di 3 metri da lui. A questo punto, può udire tutti i suoni e i rumori come se vi si trovasse realmente, anche se tra lui e il punto prescelto vi è un ostacolo, come ad es. un muro. Fino al termine degli effetti dell'incantesimo, il PG che lo ha lanciato può interrompere in ogni momento la concentrazione per riprenderla in seguito."
+        },
+        {
+          "numero": 4,
+          "nome": "PRESENZA III",
+          "tipologia": "P*",
+          "descrizione": "Come Presenza I, ma la zona in cui l'incantesimo è efficace ha un raggio di 10 metri."
+        },
+        {
+          "numero": 5,
+          "nome": "ASCOLTO REMOTO",
+          "tipologia": "A",
+          "descrizione": "Come Ascolto, ma il punto su cui il PG si concentra, può essere spostato (alla velocità di 3 metri a round) fino a 33 metri dal personaggio, solo se questi ha la capacità fisica di potersi spostare nel luogo in cui intende dirigere il punto (es. non può spostarlo attraverso pareti o porte chiuse)."
+        },
+        {
+          "numero": 6,
+          "nome": "SORVEGLIANZA",
+          "tipologia": "A",
+          "descrizione": "Come Ascolto, ma il personaggio può vedere tutto intorno a lui come se si trovasse realmente nel punto sul quale si sta concentrando."
+        },
+        {
+          "numero": 7,
+          "nome": "VISIONE REMOTA",
+          "tipologia": "A",
+          "descrizione": "Come Ascolto Remoto, ma il personaggio può anche vedere tutto intorno a lui."
+        },
+        {
+          "numero": 8,
+          "nome": "OSSERVAZIONE",
+          "tipologia": "A",
+          "descrizione": "Come Ascolto e Sorveglianza, ma il personaggio può sia sentire che vedere, fino a 33 metri di distanza."
+        },
+        {
+          "numero": 9,
+          "nome": "PRESENZA V",
+          "tipologia": "P*",
+          "descrizione": "Come Presenza I, ma la zona di efficacia ha un raggio di 15 metri."
+        },
+        {
+          "numero": 10,
+          "nome": "TELEPATIA",
+          "tipologia": "P",
+          "descrizione": "Il personaggio può \"leggere\" i pensieri superficiali della persona fatta oggetto dell'incantesimo. Inoltre, se il Tiro Resistenza del bersaglio è superiore di 25 punti al necessario per resistere, la vittima si accorge di essere esaminata."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste di incantesimi dei Maghi",
+      "nome_lista": "PIROMANZIA",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "EBOLLIZIONE",
+          "tipologia": "F",
+          "descrizione": "Un qualsiasi liquido può essere portato a temperatura di ebollizione (33 d m cubi/LVL) al ritmo di 33 dm cubi/Rd di concentrazione. Nessun fluido vivente può essere così riscaldato"
+        },
+        {
+          "numero": 2,
+          "nome": "RISCALDAMENTO",
+          "tipologia": "F",
+          "descrizione": "Un qualsiasi materiale solido, inanimato e non metallico (33 dm cubi/LVL) può essere riscaldato fino alla temperatura di 40°C, al ritmo di 33 dm cubi/Rd di concentrazione."
+        },
+        {
+          "numero": 3,
+          "nome": "COMBUSTIONE",
+          "tipologia": "F",
+          "descrizione": "Rende incandescente e appicca il fuoco a un qualsiasi materiale combustibile a scelta del personaggio, entro 30 cm dal palmo della sua mano Vessun essere vivente può essere affetto da questo incantesimo."
+        },
+        {
+          "numero": 4,
+          "nome": "MURO FIAMMA",
+          "tipologia": "E",
+          "descrizione": "Crea un muro di spesse fiamme (dimensioni massime: 3x3x0,2 m), di cui una estremità deve poggiare su una superficie solida. Chiunque attraversa il muro subisce un colpo critico da calore di tipo \"A\" (senza possibilità di TR)."
+        },
+        {
+          "numero": 5,
+          "nome": "GRANDE RISCALDAMENTO",
+          "tipologia": "F",
+          "descrizione": "Come Riscaldamento, ma il materiale può essere riscaldato fino a 240°C, al ritmo di 40°C per ogni round di concentrazione."
+        },
+        {
+          "numero": 6,
+          "nome": "PIRODARDO",
+          "tipologia": "E",
+          "descrizione": "Un dardo di fuoco saetta dalla mano del personaggio. I risultati si determinano in base alla Tabella d'attacco \"Dardo\"."
+        },
+        {
+          "numero": 7,
+          "nome": "PIROCUBO",
+          "tipologia": "E",
+          "descrizione": "Crea un cubo di fiamme (dimensioni massime 3x3x3m). Per crearlo e renderlo efficace occorre un intero round di concentrazione. La base deve poggiaresuunasuperticiesolida. Chiunqueattraversa il cubo subisce un Colpo Critico da calore di tipo \"A\" (senza possibilità d i TR)."
+        },
+        {
+          "numero": 8,
+          "nome": "PIROSFERA",
+          "tipologia": "E",
+          "descrizione": "Una sfera di fuoco di 30 cm di diametro, saetta dalla mano del personaggio, ed esplode nel punto da lui prescelto, colpendo una zona di 3 metri di raggio. I risultati si determinano in base alla Tabella d'attacco \"Sfera\"."
+        },
+        {
+          "numero": 9,
+          "nome": "PIROAURA",
+          "tipologia": "E",
+          "descrizione": "Il personaggio può toccare un oggetto (che occupa uno spazio massimo di 1,5 metri di raggio) e creare intorno ad esso un'aura di fiamme. Queste non danneggiano né il personaggio che ha lanciato l'incanresimo, ne colui che impugna l'oggetto. Chiunque altro lo tocchi, però, subisce un Colpo Critico da calore di tipc \"B\". Se viene lanciato su un'arma, e l'arma infligge in combattimento un Colpo Critico, la vittima subisce un colpo critico da calore di tipo \"B\" supplementare."
+        },
+        {
+          "numero": 10,
+          "nome": "CERCHIOFIAMMA",
+          "tipologia": "E",
+          "descrizione": "come Muro Fiamma, ma il \"muro\" può essere alto fino a 3 metri e forma un cerchio (fino a 3 metri di raggio e spesso 15 cm) con il Mago al centro (il muro non è semovente)."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste di incantesimi dei Maghi",
+      "nome_lista": "PONTE ARCANO",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "BALZO",
+          "tipologia": "A*",
+          "descrizione": "Consente al personaggio di saltare, fino a 15 m orizzontalmente o fino a 6 m in verticale (o una combinazione equivalente di movimento orizzontale e verticale)."
+        },
+        {
+          "numero": 2,
+          "nome": "ATTERAGGIO",
+          "tipologia": "A*",
+          "descrizione": "Consente al bersaglio di prender terra senza danni quando cade da un'altezza di 6 m per livello di chi lancia l'incantesimo. Alternativamente riduce, ai fini del calcolo dei danni, le cadute da altezze superiori (es: un mago di 2° livello riduce gli effetti di una cadutada 16 maquellidiunada 4 m)."
+        },
+        {
+          "numero": 3,
+          "nome": "ALLONTANAMENTO",
+          "tipologia": "A",
+          "descrizione": "Il mago puòteletrasportare il soggetto in qualsiasi punto, fino a 33m di distanza. Tra il punto di partenza e quello d'arrivo non ci devono però essere ostacoli. Ai fini di questo incantesimo, si considerano \"ostacoli\" tutte le cose che non possono essere fisicamente attraversate: una porta chiusa, una ringhiera, un muro ma non ad esempio, una buca, un crepaccio, un fiume ecc.."
+        },
+        {
+          "numero": 4,
+          "nome": "LEVITAZIONE",
+          "tipologia": "A",
+          "descrizione": "Consente al soggetto di spostarsi verticalmente di 3 metri per round. Il movimento in orizzontale è possibile solo con i normali mezzi."
+        },
+        {
+          "numero": 5,
+          "nome": "VOLO",
+          "tipologia": "A",
+          "descrizione": "Come Levitazione, ma il bersaglio può volare (in orizzontale e in verticale) alla velocità massima di 24m/round (cioè circa 8 Km/h)."
+        },
+        {
+          "numero": 6,
+          "nome": "PORTALE",
+          "tipologia": "A",
+          "descrizione": "Apre in una qualsiasi superficie solida, un portale (dimensioni massime: 1x2x1 m), attraverso il juale chiunque può passare. La superficie su cui si apre I portale, appare alla vista come inalterata, denunciando ad uno sguardo attento solo un leggero fremito. Per notare il \"fremito\" è necessario un Tiro Percezione"
+        },
+        {
+          "numero": 7,
+          "nome": "VOLO",
+          "tipologia": "A",
+          "descrizione": "Idem, ma la velocità massima è 50m/r."
+        },
+        {
+          "numero": 8,
+          "nome": "LUNGA VIA",
+          "tipologia": "A",
+          "descrizione": "Come Allontanamento, ma il soggetto rasportato può passare attraverso gli ostacoli, a patto di conoscerne l'ettettiva posizione e distanza."
+        },
+        {
+          "numero": 9,
+          "nome": "ALLONTANAMENTO",
+          "tipologia": "A",
+          "descrizione": "Come sopra, ma il soggetto può essere spostato fino alla distanza massima di 100 m."
+        },
+        {
+          "numero": 10,
+          "nome": "TELETRASPORTO",
+          "tipologia": "A",
+          "descrizione": "ComeLunga Vi ama la distan - za massima di spostamento è 16 Km/LVL. Si tratta di un incantesimomoltorischioso, intatti il soggettopotrebbe non giungere nel punto stabilito. Al momento del lancio di questo incantesimo devono applicarsi i seguenti modificatori: a) se chi lancia l'incantesimo non ha mai visto il luogo prescelto, ma ne ha avuta solo una descrizione approssimata -50% b) se chi lancia l'incantesimo ha visitato il luogo per almeno 1 ora -25% c) se c'è stato per 24h -10% d) se c'è stato per 1 settimana -1% e) se vi ha vissuto per 1 anno -0,1% In caso di errore: determinate casualmente la direzione e quindi la distanza dal punto d'arrivo previsto (Con un tiro \"aperto\": 1 punto =3 metri)"
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste aperte di incantesimi del Flusso",
+      "nome_lista": "PROTEZIONI",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "PREGHIERA",
+          "tipologia": "A",
+          "descrizione": "Il soggetto beneficiadi un bonus di +10 ai Tiri Resistenza (TR) ed ai Tiri Manovra."
+        },
+        {
+          "numero": 2,
+          "nome": "BENEDIZIONE",
+          "tipologia": "A",
+          "descrizione": "Il soggetto beneficiadi un bonus & di +10 al Bonus Difensivo (BD) ed ai Tiri Manovra."
+        },
+        {
+          "numero": 3,
+          "nome": "RESISTENZA",
+          "tipologia": "A",
+          "descrizione": "Il soggetto beneficiadi un bonus di +5 aiTRed al BD."
+        },
+        {
+          "numero": 4,
+          "nome": "RESISTENZA AGLI ELEMENTI",
+          "tipologia": "A",
+          "descrizione": "Protegge il personaggio dal caldo e dal freddo, fino a +100°C eda -30°C. Offre un bonus di +20 ai TR contro incantesimi basati sul freddo o sul caldo, e di +20 al BD contro incantesimi elementali di caldo o di freddo."
+        },
+        {
+          "numero": 5,
+          "nome": "FALSA PIANTA",
+          "tipologia": "E",
+          "descrizione": "Consente al personaggio di assumere l'aspetto di una pianta, di dimensioninon più del 10% diverse dalle sue. Euna semplice illusione ottica: il personaggio resta riconoscibile al tatto, e non assume il particolareprofumodellapianta."
+        },
+        {
+          "numero": 6,
+          "nome": "RESPIRAZIONE SUBACQUEA",
+          "tipologia": "A",
+          "descrizione": "Il personaggio acquisisce la capacità di respirare anche sott'acqua."
+        },
+        {
+          "numero": 7,
+          "nome": "FALSO ANIMALE",
+          "tipologia": "E",
+          "descrizione": "Come Falsa Pianta, ma il personaggio può assumere l'aspetto di un animale."
+        },
+        {
+          "numero": 8,
+          "nome": "OMBRA",
+          "tipologia": "F",
+          "descrizione": "Il personaggio assume l'aspetto di un'ombra. E pressoché invisibile nelle zone non illuminate."
+        },
+        {
+          "numero": 9,
+          "nome": "DEVIAZIONE ORGANICA",
+          "tipologia": "F*",
+          "descrizione": "Devia un proiettile scagliato contro il personaggio (sottraete 100 al tiro per colpire del proiettile). Il proiettile deve essere almeno parzialmente composto di materia organica (legno, cuoio ecc. manon, peresempio, roccia)."
+        },
+        {
+          "numero": 10,
+          "nome": "REPULSIONE ORGANICA",
+          "tipologia": "F*",
+          "descrizione": "come Deviazione Organica, ma i 100 punti vengono sottratti al tiro per colpire di un attacco in mischia."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste di incantesimi degli Animisti",
+      "nome_lista": "PURIFICAZIONI",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "PURIFICA CIBO/ACQUA",
+          "tipologia": "P",
+          "descrizione": "Elimina ogni veleno e malattia dal cibo e dall'acqua che si trovano entro il raggio di efficacia. Veleni e malattie particolari o di natura magica, se abbastanza potenti, possono ricorrere ad un TR."
+        },
+        {
+          "numero": 2,
+          "nome": "INDIVIDUA MALATTIA",
+          "tipologia": "P",
+          "descrizione": "Individua ogni malattia o fonte di contagio. In ogni round, l'animista può esaminare una diversa zona (1mR) entro il raggio d'azione."
+        },
+        {
+          "numero": 3,
+          "nome": "CURA MALATTIA",
+          "tipologia": "P",
+          "descrizione": "Arresta la diffusione di una malattia (comprese le infezioni) già nel corpo del soggetto che in tal modo non subisce ulteriori danni da essa derivanti."
+        },
+        {
+          "numero": 4,
+          "nome": "INDIVIDUA VELENO",
+          "tipologia": "P",
+          "descrizione": "Come Individua Malattia, ma individua soltanto i veleni."
+        },
+        {
+          "numero": 5,
+          "nome": "CURA VELENO",
+          "tipologia": "P",
+          "descrizione": "Neutralizza un veleno nel corpo di un soggetto. Non vengono curati i danni che il veleno ha già provocato."
+        },
+        {
+          "numero": 6,
+          "nome": "RESISTENZA MALATTIE",
+          "tipologia": "A",
+          "descrizione": "Il soggetto può effettuare un TR in più (cioè, tira due volte i dadi ed utilizza il risultato più favorevole) contro la malattia."
+        },
+        {
+          "numero": 7,
+          "nome": "RESISTENZA VELENO",
+          "tipologia": "A",
+          "descrizione": "Come Resistenza Malattie, ma il soggetto può effettuare un TR in più contro i veleni, invece che contro le malattie."
+        },
+        {
+          "numero": 8,
+          "nome": "NEUTRALIZZA MALATTIA",
+          "tipologia": "P",
+          "descrizione": "Vengono neutralizzate (cioè, sterilizzate e distrutte) tutte le malattie nel raggio di 3 metri."
+        },
+        {
+          "numero": 9,
+          "nome": "NEUTRALIZZA VELENO",
+          "tipologia": "P",
+          "descrizione": "Vengono resi inefficaci tutti i veleni nel raggio di 3 metri."
+        },
+        {
+          "numero": 10,
+          "nome": "CURA PAZZIA",
+          "tipologia": "P",
+          "descrizione": "Cura una malattia mentale del soggetto (nevrosi, paranoie, fobie, psicosi, ecc.). La guarigione completa ha luogo in 1D50 giorni."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste di incantesimi degli Animisti",
+      "nome_lista": "RIGENERAZIONE ORGANICA",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "CURA NASO",
+          "tipologia": "A",
+          "descrizione": "Cura ogni ferita al naso, tranne l'amputazione totale."
+        },
+        {
+          "numero": 2,
+          "nome": "NEUROCURA",
+          "tipologia": "A",
+          "descrizione": "Cura ogni danno minore ainervi di una particolare zona (tempo di guarigione: 1D10 ore)."
+        },
+        {
+          "numero": 3,
+          "nome": "CURA ORECCHIO MINORE",
+          "tipologia": "A",
+          "descrizione": "Cura i danni esterni ad un orecchio, compresal'amputazione totale (tempo di rigenerazione: 1D10 ore). CURA OCCHIO MINORE (A): Cura ogni danno minore ad un occhio (es.: danni alla cornea, distacco della retina, o rimozione di corpi estranei)."
+        },
+        {
+          "numero": 4,
+          "nome": "CURA OCCHIO MINORE",
+          "tipologia": "A",
+          "descrizione": "Cura ogni danno minore ad un occhio (es.: danni alla cornea, distacco della retina, o rimozione di corpi estranei)."
+        },
+        {
+          "numero": 5,
+          "nome": "NEUROGUARIGIONE",
+          "tipologia": "A",
+          "descrizione": "Come Neurocura ma curale ferite gravi in una zona particolare. Tempo di guarigione: 1D10 ore."
+        },
+        {
+          "numero": 6,
+          "nome": "CURA ORECCHIO",
+          "tipologia": "A",
+          "descrizione": "Come Cura Orecchio Minore, ma cura anche i danni interni (es.: perforazione del timpano)."
+        },
+        {
+          "numero": 7,
+          "nome": "REUNIONE",
+          "tipologia": "A*",
+          "descrizione": "Usato insieme agli incantesimi Reunione guarigione (Fisiorigenerazione e Emorigenerazione), consente di riattaccare un arto amputato. Il tempo di guarigione è di 1D10 giorni."
+        },
+        {
+          "numero": 8,
+          "nome": "CURA OCCHIO",
+          "tipologia": "A",
+          "descrizione": "Come Cura Occhio Minore, ma cura qualsiasi danno ad un occhio, tranne la perdita completa."
+        },
+        {
+          "numero": 9,
+          "nome": "NEURORIGENERAZIONE",
+          "tipologia": "A",
+          "descrizione": "Come Neurocura, mala guarigione è istantanea."
+        },
+        {
+          "numero": 10,
+          "nome": "RIGENERAORGANO",
+          "tipologia": "A",
+          "descrizione": "Curaidanni di uno rg ano, che non sia completamente distrutto. Il tempo di guarigione è di 1D10 ore. L'incantesimo non ha efficacia sul cervello."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste di incantesimi dei Bardi",
+      "nome_lista": "SAPIENZA",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "STUDIO",
+          "tipologia": "A",
+          "descrizione": "Il bardo,ricorrendo a questo incantesimo, può concentrarsi e conservare il ricordo di qualsiasi cosalegga o apprenda, come se fosse dotato di una & infallibile memoria fotografica. L'incantesimo, pero, non ha alcuna efficacia sulle capacità di comprensione del personaggio."
+        },
+        {
+          "numero": 2,
+          "nome": "I M PA R A LINGUAGGIO II",
+          "tipologia": "A",
+          "descrizione": "Il bardo, con questo incantesimo, può concentrarsi e raddoppiare il suo ritmo di apprendimento dei linguaggi. In pratica, raddoppial'efficaciadi ogni sviluppo nel campo delle lingue (cioè, un Punto Sviluppo aumentadi 2 gradi la conoscenzadi unalingua, 3 punti la aumentano di 4"
+        },
+        {
+          "numero": 3,
+          "nome": "SINTESI TESTUALE ()",
+          "tipologia": "I",
+          "descrizione": "Il bardo comprende in che lingua è scritto un testo. Può anche identificarne l'autore, se ha già visto un suo scritto; se si trattadi un autore famoso o dallo stile particolare."
+        },
+        {
+          "numero": 4,
+          "nome": "SAPIENZA MENTALE I",
+          "tipologia": "P",
+          "descrizione": "Il bardo può leggere nella mente del soggetto e ricevere parte della sua conoscenza (conscia o inconscia) su di uno specifico particolare. Il bardo, per ogni singolo frammento di informazione, ha il 10% di probabilità di apprendimento. La vittima dell'incantesimo non si accorge di nulla."
+        },
+        {
+          "numero": 5,
+          "nome": "STUDIO II",
+          "tipologia": "U",
+          "descrizione": "Come Studio I, ma il bardo può anche leggere a velocità doppia."
+        },
+        {
+          "numero": 6,
+          "nome": "INTERPRETAZIONÉ",
+          "tipologia": "P",
+          "descrizione": "Consente al bardo di comprendere ciò che dice un qualunque interlocutore, indipendentemente dallalingua che usa. Il bardo può scegliere di ascoltare una personadiversa ad ogni round"
+        },
+        {
+          "numero": 7,
+          "nome": "IMPARA LINGUAGGIO III",
+          "tipologia": "U",
+          "descrizione": "Come Impara Linguaggio Ii, ma il ritmo d'apprendimento è triplicato."
+        },
+        {
+          "numero": 8,
+          "nome": "SAPIENZA MENTALE",
+          "tipologia": "P",
+          "descrizione": "Come Sapienza Mentale I, male probabilità sono del 30% per ogni frammento d ' informazione."
+        },
+        {
+          "numero": 9,
+          "nome": "STUDIO III",
+          "tipologia": "U",
+          "descrizione": "Come Studio I, ma il bardo può leggere a velocità tripla."
+        },
+        {
+          "numero": 10,
+          "nome": "ANALISI TESTUALE",
+          "tipologia": "I",
+          "descrizione": "Come Sintesi Testuale, ma il bardo è anche in grado di dire se il testo è stato tradotto e in tal caso, in quale lingua era scritto in origine. Gli idiomi e le espressioni dialettali, infine, gli consentono di stabilire approssimativamente ladata in cui fu redatto l'originale, ed in quale regione."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste aperte di incantesimi dell'Essenza",
+      "nome_lista": "SVILUPPO FISICO",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "RESISTENZA AL CALORE",
+          "tipologia": "A",
+          "descrizione": "Il bersaglio è totalmente protetto da tutte le forme di calore naturale, fino a 100° (Ad es. acqua bollente). Aggiunge +10 ai TR contro incantesimi di calore, ed una penalità di -10 agli incantesimi elementali di calore ed agli attacchi con incantesimi di fuoco."
+        },
+        {
+          "numero": 2,
+          "nome": "RESISTENZA AL FREDDO",
+          "tipologia": "A",
+          "descrizione": "Come il precedente, ma protegge dal freddo naturale, fino a -35°C ed infligge una penalità di -10 agli incantesimi basati sul freddo."
+        },
+        {
+          "numero": 3,
+          "nome": "IPERUDITO",
+          "tipologia": "A",
+          "descrizione": "Raddoppia l'efficacia dell'udito del soggetto."
+        },
+        {
+          "numero": 4,
+          "nome": "EQUILIBRIO",
+          "tipologia": "A*",
+          "descrizione": "Aggiunge +50 ai tiri per una manovra lenta (es: camminare su un'asse larga 8 cm)."
+        },
+        {
+          "numero": 5,
+          "nome": "INFRAVISIONE",
+          "tipologia": "A",
+          "descrizione": "Il bersaglio può vedere fino a 33 m nelle tenebre (es: di notte o in una stanza buia), come fosse giorno. Le tenebre evocate magicamente riducono l'efficacia dell'incantesimo."
+        },
+        {
+          "numero": 6,
+          "nome": "PANVISIONE",
+          "tipologia": "A",
+          "descrizione": "Il campo visivo del bersaglio si amplia fino a 300°. Può vedere tutto intorno, tranne nei 60° alle sue spalle."
+        },
+        {
+          "numero": 7,
+          "nome": "POTENZA VOCALE",
+          "tipologia": "A",
+          "descrizione": "Triplica l'intensità sonora della voce del soggetto. Ciò non ha alcun effetto sul lancio degli incantesimi."
+        },
+        {
+          "numero": 8,
+          "nome": "IDROVISIONE",
+          "tipologia": "U",
+          "descrizione": "Come Infravisione eccetto che il bersaglio può vedere nell'acqua, anche se torbida, fino a 33 metri di distanza."
+        },
+        {
+          "numero": 9,
+          "nome": "IDROPNEUMIA",
+          "tipologia": "U",
+          "descrizione": "Il soggetto può respirare sott'acqua ma perde la capacità di respirare aria (se resta esposto all'aria, sviene ma non muore soffocato)."
+        },
+        {
+          "numero": 10,
+          "nome": "AEROPNEUMIA",
+          "tipologia": "U",
+          "descrizione": "Come Idropneumia, eccetto che il soggetto può respirare qualsiasi gas come se fosse aria pura."
+        }
+      ],
+      "note": null
+    },
+    {
+      "tipo_lista": "Liste di incantesimi dei Ranger",
+      "nome_lista": "TOPOMANZIA",
+      "incantesimi": [
+        {
+          "numero": 1,
+          "nome": "DIREZIONE",
+          "tipologia": "I",
+          "descrizione": "Se il Ranger si trovalungo un cammino, hala visione della più vicinadestinazione, in entrambe le direzioni. A tale proposito, si intende per \"destinazione\" qualunque struttura costruitadall'uomo (un ponte, una casa, un castello, una città, una porta, un cancello, ecc.) oun ostacolo fisico (la fine del cammino, un guado, un incrocio, un crepaccio, ecc.)."
+        },
+        {
+          "numero": 2,
+          "nome": "INDIVIDUAZIONE TRAPPOLE",
+          "tipologia": "P",
+          "descrizione": "Un Ranger che si trovi all'aria aperta ha il 75% di probabilità di individuare ogni trappola nel raggio di 2 metri. Ad ogni round, può esaminare unadiversa zonadi 2 metri di raggio. RINTRACCIA (I): Il Ranger ottiene un bonus di +50 all'abilità di Seguire Tracce."
+        },
+        {
+          "numero": 3,
+          "nome": "RINTRACCIA",
+          "tipologia": "I",
+          "descrizione": "Il Ranger ottiene un bonus di +50 all'abilità di Seguire Tracce."
+        },
+        {
+          "numero": 4,
+          "nome": "VOCE CAMMINO",
+          "tipologia": "I",
+          "descrizione": "Il Ranger acquisisce un'immagine visivadi chiunque abbia utilizzato un particolare cammino, nell'ultimo periodo di 1h/LVL."
+        },
+        {
+          "numero": 5,
+          "nome": "ORIENTAMENTO",
+          "tipologia": "I",
+          "descrizione": "Il Ranger ottiene l'immagine della mappa, sotto formadi diagramma mentale, della posizione e dello stato di ogni cammino, nel raggio di 1,5 Km. L'incantesimo può essere lanciato solo all'aperto."
+        },
+        {
+          "numero": 6,
+          "nome": "CONOSCENZA DELLE TRACCE",
+          "tipologia": "I",
+          "descrizione": "Il Ranger ottiene un'immagine visivadell'essere che halasciato particolari tracce, ed un bonus di +25 all'abilità di seguirle."
+        },
+        {
+          "numero": 7,
+          "nome": "CAPTA IMBOSCATA",
+          "tipologia": "P",
+          "descrizione": "Consente al Ranger di individuare qualsiasi essere ostile nel raggio di 15 metri. Indicaladirezione della minaccia, ma non ladistanza."
+        },
+        {
+          "numero": 8,
+          "nome": "PSICOGNOSIA",
+          "tipologia": "I",
+          "descrizione": "Il Ranger ottiene un'immagine auditiva e visivadi tutti gli esseri che sono passati entro 15 metri dall'oggetto che sta toccando, per un periodo di 1h/LVL."
+        },
+        {
+          "numero": 9,
+          "nome": "ORIENTAMENTO",
+          "tipologia": "I",
+          "descrizione": "Come sopra, mala zonadi efficacia ha un raggio di 8 Km."
+        },
+        {
+          "numero": 10,
+          "nome": "ZOOLINGUA",
+          "tipologia": "A",
+          "descrizione": "Il Ranger acquisisce la conoscenzadi un linguaggio animale (ma un esemplare della specie presceltadeve essere entro 33 metri dalui) per tuttaladuratadell' incantesimo. NOTA: In riferimento agli incantesimi di questalista, per \"cammino \"si intende una strada, una via, un sentiero o qualsisi altra traccialasciatadal passaggio di uomini o animali. Può essere anche un corridoio, un passaggio sotterraneo, un tunnel, salvo quando non siadiversamente specificato dalladescrizione dell'incantesimo."
+        }
+      ],
+      "note": null
+    }
+  ]
+}
