@@ -203,17 +203,17 @@ export default function CreationSummaryStep({ characterData, setCharacterData })
   // ── Format background option label ──
   const formatBgOption = (opt, idx) => {
     let detail = '';
-    if (opt.category === 'Gradi delle abilità') {
+    if (opt.category === '2. Miglioramento abilità') {
       detail = opt.subChoice === 'A'
         ? `+2 gradi | ${opt.skillName || '—'}`
         : `+5 gradi secondaria | ${opt.skillName || '—'}`;
-    } else if (opt.category === 'Aumento delle caratteristiche') {
+    } else if (opt.category === '1. Miglioramento caratteristiche') {
       detail = opt.subChoice === 'A'
         ? `+2 | ${opt.stats?.[0] || '—'}`
         : `+1 ciascuna | ${opt.stats?.join(', ') || '—'}`;
-    } else if (opt.category === 'Lingue') {
+    } else if (opt.category === '5. Lingua aggiuntiva') {
       detail = `Grado 5 | ${opt.skillName || '—'}`;
-    } else if (opt.category === 'abilità speciali') {
+    } else if (opt.category === '3. Bonus speciale abilità') {
       if (opt.oggetto === 'as1' || (opt.roll >= 1 && opt.roll <= 50)) {
         detail = `Bonus abilità +5 | ${opt.skillName || '—'}`;
       } else if (opt.oggetto === 'as2' || (opt.roll >= 51 && opt.roll <= 55)) {
@@ -226,14 +226,14 @@ export default function CreationSummaryStep({ characterData, setCharacterData })
           detail += ` | ${opt.customNote}`;
         }
       }
-    } else if (opt.category === 'oggetti speciali') {
+    } else if (opt.category === '4. Bonus speciale oggetto') {
       detail = `${opt.oggetto || '—'}`;
       if (opt.customNote) {
         detail += ` | ${opt.customNote}`;
       }
-    } else if (opt.category === "denaro: monete d'oro") {
+    } else if (opt.category === '7. Denaro extra') {
       detail = `${opt.calculatedMO || 0} MO (tiro ${opt.roll})`;
-    } else if (opt.category === 'Incantesimi o Punti Magia' || opt.category === 'Lista incantesimi aggiuntiva') {
+    } else if (opt.category === 'Incantesimi o Punti Magia' || opt.category === '6. Lista incantesimi aggiuntiva') {
       detail = `Lista: ${opt.skillName || '—'}`;
       if (opt.customNote) {
         detail += ` | ${opt.customNote}`;
@@ -767,14 +767,14 @@ export default function CreationSummaryStep({ characterData, setCharacterData })
             {bgOptions.map((opt, idx) => {
               const formatted = formatBgOption(opt, idx);
               const catColors = {
-                'Gradi delle abilità':           'var(--theme-primary-skills-bg)',
-                'Aumento delle caratteristiche': 'var(--theme-stats-bg)',
-                'Lingue':                         'var(--theme-languages-bg)',
-                'abilità speciali':               'var(--theme-secondary-skills-bg)',
-                'oggetti speciali':               'var(--theme-background-bg)',
-                "denaro: monete d'oro":           '#dcfce7',
+                '1. Miglioramento caratteristiche': 'var(--theme-stats-bg)',
+                '2. Miglioramento abilità':        'var(--theme-primary-skills-bg)',
+                '3. Bonus speciale abilità':       'var(--theme-secondary-skills-bg)',
+                '4. Bonus speciale oggetto':       'var(--theme-background-bg)',
+                '5. Lingua aggiuntiva':            'var(--theme-languages-bg)',
+                '6. Lista incantesimi aggiuntiva': 'var(--theme-spell-lists-bg)',
+                '7. Denaro extra':                 '#dcfce7',
                 'Incantesimi o Punti Magia':      'var(--theme-spell-lists-bg)',
-                'Lista incantesimi aggiuntiva':   'var(--theme-spell-lists-bg)',
               };
               const bg = catColors[opt.category] || '#f3f4f6';
               return (

@@ -1154,21 +1154,21 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
             <div className="p-4 space-y-3">
               {bgOptions.map((opt, idx) => {
                 let detail = '';
-                if (opt.category === 'Gradi delle abilità') {
+                if (opt.category === '2. Miglioramento abilità') {
                   detail = opt.subChoice === 'A' ? `+2 gradi | ${opt.skillName}` : `+5 gradi sec. | ${opt.skillName}`;
-                } else if (opt.category === 'Aumento delle caratteristiche') {
+                } else if (opt.category === '1. Miglioramento caratteristiche') {
                   detail = opt.subChoice === 'A' ? `+2 | ${opt.stats?.[0]}` : `+1 ciascuna | ${opt.stats?.join(', ')}`;
-                } else if (opt.category === 'Lingue') {
+                } else if (opt.category === '5. Lingua aggiuntiva') {
                   detail = `Grado 5 | ${opt.skillName}`;
-                } else if (opt.category === 'abilità speciali') {
+                } else if (opt.category === '3. Bonus speciale abilità') {
                   detail = opt.calculatedText || opt.oggetto;
                   if (opt.customNote) detail += ` | ${opt.customNote}`;
-                } else if (opt.category === 'oggetti speciali') {
+                } else if (opt.category === '4. Bonus speciale oggetto') {
                   detail = opt.oggetto;
                   if (opt.customNote) detail += ` | ${opt.customNote}`;
-                } else if (opt.category === "denaro: monete d'oro") {
+                } else if (opt.category === '7. Denaro extra') {
                   detail = `${opt.calculatedMO} MO`;
-                } else if (opt.category === 'Lista incantesimi aggiuntiva') {
+                } else if (opt.category === '6. Lista incantesimi aggiuntiva') {
                   detail = `Lista: ${opt.skillName}`;
                 }
 

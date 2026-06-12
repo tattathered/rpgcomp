@@ -16,7 +16,15 @@ import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
 
 const STAT_KEYS = ['FR', 'AG', 'CO', 'IN', 'IT', 'PR'];
 const STAT_NAMES = { FR: 'Forza', AG: 'Agilità', CO: 'Costituzione', IN: 'Intelligenza', IT: 'Intuizione', PR: 'Presenza' };
-const BG_CATEGORIES = ['Gradi delle abilità', 'Aumento delle caratteristiche', 'Lingue', 'abilità speciali', 'oggetti speciali', "denaro: monete d'oro", 'Lista incantesimi aggiuntiva'];
+const BG_CATEGORIES = [
+  '1. Miglioramento caratteristiche',
+  '2. Miglioramento abilità',
+  '3. Bonus speciale abilità',
+  '4. Bonus speciale oggetto',
+  '5. Lingua aggiuntiva',
+  '6. Lista incantesimi aggiuntiva',
+  '7. Denaro extra'
+];
 
 const TR_MAPPING = {
   'Essenza': 'bonus a TR-ESS',
@@ -149,12 +157,12 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
       for (let i = 0; i < options.length; i++) {
         const opt = options[i];
         const prefix = `Opzione ${i + 1} (${opt.category}): `;
-        if (opt.category === 'Gradi delle abilità') {
+        if (opt.category === '2. Miglioramento abilità') {
           if (!opt.skillName) {
             err = prefix + "Seleziona l'abilità da incrementare.";
             break;
           }
-        } else if (opt.category === 'Aumento delle caratteristiche') {
+        } else if (opt.category === '1. Miglioramento caratteristiche') {
           if (opt.subChoice === 'A') {
             if (!opt.stats || opt.stats.length !== 1 || !opt.stats[0]) {
               err = prefix + "Seleziona una caratteristica.";
@@ -170,12 +178,12 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
             err = prefix + "Seleziona la modalità A o B.";
             break;
           }
-        } else if (opt.category === 'Lingue') {
+        } else if (opt.category === '5. Lingua aggiuntiva') {
           if (!opt.skillName) {
             err = prefix + "Seleziona la lingua da apprendere.";
             break;
           }
-        } else if (opt.category === 'abilità speciali') {
+        } else if (opt.category === '3. Bonus speciale abilità') {
           if (!opt.oggetto) {
             err = prefix + "Seleziona l'abilità speciale.";
             break;
@@ -184,7 +192,7 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
             err = prefix + "Seleziona l'abilità, il tipo di TR o la lista incantesimi associata.";
             break;
           }
-        } else if (opt.category === 'oggetti speciali') {
+        } else if (opt.category === '4. Bonus speciale oggetto') {
           if (!opt.oggetto) {
             err = prefix + "Seleziona il tipo di oggetto.";
             break;
@@ -193,13 +201,13 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
             err = prefix + "Inserisci la descrizione o il nome dell'oggetto speciale.";
             break;
           }
-        } else if (opt.category === "denaro: monete d'oro") {
+        } else if (opt.category === '7. Denaro extra') {
           const r = parseInt(opt.roll);
           if (isNaN(r) || r < 1 || r > 100) {
             err = prefix + "Inserisci o tira un valore valido per il dado (1-100).";
             break;
           }
-        } else if (opt.category === 'Lista incantesimi aggiuntiva') {
+        } else if (opt.category === '6. Lista incantesimi aggiuntiva') {
           if (!opt.skillName) {
             err = prefix + "Seleziona la lista incantesimi da apprendere.";
             break;
@@ -227,7 +235,7 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
     // Compile stat bonuses from options
     const statsBonus = {};
     nextOptions.forEach(opt => {
-      if (opt.category === 'Aumento delle caratteristiche') {
+      if (opt.category === '1. Miglioramento caratteristiche') {
         if (opt.subChoice === 'A' && opt.stats?.[0]) {
           statsBonus[opt.stats[0]] = (statsBonus[opt.stats[0]] || 0) + 2;
         } else if (opt.subChoice === 'B' && opt.stats) {
@@ -239,7 +247,7 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
     // Compile skill bonuses
     const skillBgRanks = {};
     nextOptions.forEach(opt => {
-      if (opt.category === 'Gradi delle abilità' && opt.subChoice === 'A' && opt.skillName) {
+      if (opt.category === '2. Miglioramento abilità' && opt.subChoice === 'A' && opt.skillName) {
         skillBgRanks[opt.skillName] = (skillBgRanks[opt.skillName] || 0) + 2;
       }
     });
@@ -247,7 +255,7 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
     // Secondary skills from bg
     const secondarySkills = {};
     nextOptions.forEach(opt => {
-      if (opt.category === 'Gradi delle abilità' && opt.subChoice === 'B' && opt.skillName) {
+      if (opt.category === '2. Miglioramento abilità' && opt.subChoice === 'B' && opt.skillName) {
         const skill = skillsData.find(s => !s.is_primary && s.name_it === opt.skillName);
         if (skill) {
           const def = {
@@ -283,7 +291,7 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
     ];
 
     nextOptions.forEach(opt => {
-      if (opt.category === 'abilità speciali') {
+      if (opt.category === '3. Bonus speciale abilità') {
         const isAS1 = opt.oggetto === 'as1' || (opt.roll >= 1 && opt.roll <= 50);
         const isAS2 = opt.oggetto === 'as2' || (opt.roll >= 51 && opt.roll <= 55);
         const isAS3 = opt.oggetto === 'as3' || (opt.roll >= 56 && opt.roll <= 60);
@@ -361,7 +369,7 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
     // Gold
     let gold = 0;
     nextOptions.forEach(opt => {
-      if (opt.category === "denaro: monete d'oro" && opt.calculatedMO) gold += opt.calculatedMO;
+      if (opt.category === "7. Denaro extra" && opt.calculatedMO) gold += opt.calculatedMO;
     });
 
     const oldGold = characterData.background?.compiledModifiers?.gold || 0;
@@ -372,7 +380,7 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
     // Spell Lists from Esperto di magia (roll 71-75) or Lista incantesimi aggiuntiva
     const bgSpellLists = [];
     nextOptions.forEach(opt => {
-      if ((opt.category === 'abilità speciali' && (opt.oggetto === 'as6' || (opt.roll >= 71 && opt.roll <= 75))) || opt.category === 'Lista incantesimi aggiuntiva') {
+      if ((opt.category === '3. Bonus speciale abilità' && (opt.oggetto === 'as6' || (opt.roll >= 71 && opt.roll <= 75))) || opt.category === '6. Lista incantesimi aggiuntiva') {
         if (opt.skillName) {
           bgSpellLists.push(opt.skillName);
         }
@@ -411,7 +419,7 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
   // Option handlers
   const addOption = (category) => {
     if (backgroundPointsLeft <= 0) return;
-    const newOpt = { id: Date.now(), category, subChoice: (category === 'Gradi delle abilità' || category === 'Aumento delle caratteristiche') ? 'A' : null, skillName: '', stats: [], roll: '', calculatedMO: 0, calculatedText: '', oggetto: '', customNote: '' };
+    const newOpt = { id: Date.now(), category, subChoice: (category === '2. Miglioramento abilità' || category === '1. Miglioramento caratteristiche') ? 'A' : null, skillName: '', stats: [], roll: '', calculatedMO: 0, calculatedText: '', oggetto: '', customNote: '' };
     update(languages, [...options, newOpt]);
   };
   const removeOption = (id) => update(languages, options.filter(o => o.id !== id));
@@ -420,13 +428,13 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
       if (o.id !== id) return o;
       const merged = { ...o, ...patch };
       // Auto-calculate MO
-      if (merged.category === "denaro: monete d'oro" && patch.roll !== undefined) {
+      if (merged.category === "7. Denaro extra" && patch.roll !== undefined) {
         const r = parseInt(patch.roll) || 0;
-        const rec = findBgRecord("denaro: monete d'oro", r);
+        const rec = findBgRecord("7. Denaro extra", r);
         merged.calculatedMO = rec ? parseInt(rec.opzione) : 0;
       }
       // Auto-lookup text for abilità speciali / oggetti speciali
-      if ((merged.category === 'abilità speciali' || merged.category === 'oggetti speciali') && patch.roll !== undefined) {
+      if ((merged.category === '3. Bonus speciale abilità' || merged.category === '4. Bonus speciale oggetto') && patch.roll !== undefined) {
         const r = parseInt(patch.roll) || 0;
         const rec = findBgRecord(merged.category, r);
         merged.calculatedText = rec ? rec.opzione : '';
@@ -550,7 +558,7 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
             <div style={{paddingTop:'1rem',borderTop:'1px solid #e5e7eb',display:'flex',gap:'0.75rem',alignItems:'center'}}>
               <select defaultValue="" id="bg-cat-select" style={{flex:1,padding:'0.5rem',border:'1px solid #d1d5db',borderRadius:'0.375rem',fontSize:'0.875rem'}}>
                 <option value="" disabled>-- Seleziona categoria --</option>
-                {BG_CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
+                {BG_CATEGORIES.filter(c => !options.some(opt => opt.category === c)).map(c => <option key={c} value={c}>{c}</option>)}
               </select>
               <button className="btn btn-primary" style={{background:'#9333ea',borderColor:'#7e22ce'}} onClick={() => { const s = document.getElementById('bg-cat-select'); if(s.value){ addOption(s.value); s.value=''; }}}>+ Aggiungi</button>
             </div>
@@ -564,13 +572,13 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
 // ─── Sub-component: single option card ───────────────────────────────────────
 function OptionCard({ opt, idx, characterData, primarySkillNames, languages, allLanguages, availableLists, bgSpellLists, addLangFromBg, onRemove, onPatch, onRoll }) {
   const catColors = {
-    'Gradi delle abilità':        { border:'#d8b4fe', bg:'#faf5ff', label:'#7e22ce' },
-    'Aumento delle caratteristiche': { border:'#6ee7b7', bg:'#f0fdf4', label:'#065f46' },
-    'Lingue':                     { border:'#93c5fd', bg:'#eff6ff', label:'#1e40af' },
-    'abilità speciali':           { border:'#fcd34d', bg:'#fffbeb', label:'#92400e' },
-    'oggetti speciali':           { border:'#34d399', bg:'#ecfdf5', label:'#065f46' },
-    "denaro: monete d'oro":       { border:'#86efac', bg:'#f0fdf4', label:'#14532d' },
-    'Lista incantesimi aggiuntiva': { border:'#c4b5fd', bg:'#f5f3ff', label:'#4c1d95' },
+    '1. Miglioramento caratteristiche': { border:'#6ee7b7', bg:'#f0fdf4', label:'#065f46' },
+    '2. Miglioramento abilità':        { border:'#d8b4fe', bg:'#faf5ff', label:'#7e22ce' },
+    '3. Bonus speciale abilità':       { border:'#fcd34d', bg:'#fffbeb', label:'#92400e' },
+    '4. Bonus speciale oggetto':       { border:'#34d399', bg:'#ecfdf5', label:'#065f46' },
+    '5. Lingua aggiuntiva':            { border:'#93c5fd', bg:'#eff6ff', label:'#1e40af' },
+    '6. Lista incantesimi aggiuntiva': { border:'#c4b5fd', bg:'#f5f3ff', label:'#4c1d95' },
+    '7. Denaro extra':                 { border:'#86efac', bg:'#f0fdf4', label:'#14532d' },
   };
   const col = catColors[opt.category] || { border:'#e5e7eb', bg:'#f9fafb', label:'#374151' };
 
@@ -586,7 +594,7 @@ function OptionCard({ opt, idx, characterData, primarySkillNames, languages, all
       <div style={{padding:'0.85rem 1rem',display:'flex',flexDirection:'column',gap:'0.75rem'}}>
 
         {/* 1. GRADI ABILITÀ */}
-        {opt.category === 'Gradi delle abilità' && (
+        {opt.category === '2. Miglioramento abilità' && (
           <>
             <div style={{display:'flex',gap:'0.5rem'}}>
               {['A','B'].map(choice => (
@@ -617,7 +625,7 @@ function OptionCard({ opt, idx, characterData, primarySkillNames, languages, all
         )}
 
         {/* 2. AUMENTO CARATTERISTICHE */}
-        {opt.category === 'Aumento delle caratteristiche' && (
+        {opt.category === '1. Miglioramento caratteristiche' && (
           <>
             <div style={{display:'flex',gap:'0.5rem'}}>
               {['A','B'].map(choice => (
@@ -682,7 +690,7 @@ function OptionCard({ opt, idx, characterData, primarySkillNames, languages, all
         )}
 
         {/* 3. LINGUE */}
-        {opt.category === 'Lingue' && (
+        {opt.category === '5. Lingua aggiuntiva' && (
           <div>
             <p style={{fontSize:'0.8rem',color:'#64748b',marginBottom:'0.5rem'}}>Scegli una lingua — la apprenderai a Grado 5 (le lingue madri già a grado 5 non possono essere selezionate).</p>
             <label style={{fontSize:'0.8rem',fontWeight:600,color:'#374151',display:'block',marginBottom:'0.25rem'}}>Lingua:</label>
@@ -698,7 +706,7 @@ function OptionCard({ opt, idx, characterData, primarySkillNames, languages, all
         )}
 
         {/* 4. ABILITÀ SPECIALI */}
-        {opt.category === 'abilità speciali' && (
+        {opt.category === '3. Bonus speciale abilità' && (
           <>
             <div style={{display:'flex',flexDirection:'column',gap:'0.5rem'}}>
               <label style={{fontSize:'0.8rem',fontWeight:600,color:'#374151'}}>Seleziona l'abilità speciale:</label>
@@ -761,7 +769,7 @@ function OptionCard({ opt, idx, characterData, primarySkillNames, languages, all
         )}
 
         {/* 5. OGGETTI SPECIALI */}
-        {opt.category === 'oggetti speciali' && (
+        {opt.category === '4. Bonus speciale oggetto' && (
           <>
             <div style={{display:'flex',flexDirection:'column',gap:'0.5rem'}}>
               <label style={{fontSize:'0.8rem',fontWeight:600,color:'#374151'}}>Seleziona il tipo di oggetto:</label>
@@ -782,7 +790,7 @@ function OptionCard({ opt, idx, characterData, primarySkillNames, languages, all
         )}
 
         {/* 6. DENARO MO */}
-        {opt.category === "denaro: monete d'oro" && (
+        {opt.category === '7. Denaro extra' && (
           <>
             <div style={{display:'flex',gap:'0.75rem',alignItems:'flex-end'}}>
               <div style={{flex:1}}>
@@ -804,7 +812,7 @@ function OptionCard({ opt, idx, characterData, primarySkillNames, languages, all
         )}
 
         {/* 7. LISTA INCANTESIMI AGGIUNTIVA */}
-        {opt.category === 'Lista incantesimi aggiuntiva' && (
+        {opt.category === '6. Lista incantesimi aggiuntiva' && (
           <div style={{display:'flex',flexDirection:'column',gap:'0.5rem'}}>
             <div>
               <label style={{fontSize:'0.8rem',fontWeight:600,color:'#374151',display:'block',marginBottom:'0.25rem'}}>Scegli Lista Incantesimi:</label>
