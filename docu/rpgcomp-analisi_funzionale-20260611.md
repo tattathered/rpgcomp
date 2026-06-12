@@ -1,6 +1,7 @@
 # MERP Companion — Analisi Funzionale e Stato del Sistema
-**Data:** 7 Giugno 2026  
-**Versione:** v2.0.0 (Major Update)
+**Data:** 12 Giugno 2026  
+**Versione:** v2.1.0 (UI & UX Refinement)
+
 
 ---
 
@@ -205,6 +206,28 @@ gms/{gmId}/
 - `boSpesoParata` sincronizzato correttamente tra CombatCalculator e roster
 - Rimosso dropdown filtro categoria in favore di pulsanti in EquipmentCatalogManager
 - Ricerca funziona su tutto il catalogo indipendentemente dal filtro categoria attivo
+
+### 4.5 UI/UX Refinement & Bugfix (12 Giugno 2026)
+- **RaceStep**:
+  - Sostituito il campo di testo libero per "Nome giocatore" con una `<select>` a discesa dinamica che recupera in tempo reale i giocatori associati al GM da Firestore (`gms/{gmId}/players`).
+- **ProfessionStep**:
+  - Rimossa la dicitura ridondante "per livello del PG" nei box delle professioni.
+  - Uniformati i badge dei requisiti caratteristica ("Primaria" / "Secondaria") con bordo grigio, testo grigio e sfondo trasparente.
+- **AdolescenceStep**:
+  - Spostato il banner di avviso sul Reame Magico mancante sopra il box delle Caratteristiche.
+  - Rinominati e semplificati i titoli delle sezioni (es. "Apprendimento Lista Incantesimi").
+  - **Box Lingue Conosciute**:
+    - Cambiata la label "Rimasti" in "Da assegnare".
+    - Riorganizzati i controlli di allocazione con i pulsanti posizionati come `[-] numero [+]`.
+    - Allineato il font-size delle stringhe di stato ("+# Adolescenza", "Base (#)") a quello della lingua.
+    - Eliminato il background colorato sotto le scritte "Base (#)" e garantita la corretta spaziatura rispetto al nome della lingua.
+  - **Box Apprendimento Liste Incantesimi**:
+    - Garantita la coerenza delle dimensioni dei pulsanti e del box con bordo in tutte le fasi di tiro/conferma/rimozione.
+    - Pulsante "Conferma" dopo un tiro di successo corretto con sfondo verde e testo bianco per migliorarne la leggibilità.
+    - Mantenuto visibile il limite del livello degli incantesimi per Guerrieri e Scout anche quando la scelta del Reame Magico è nascosta.
+  - **Box Reame Magico**:
+    - Rimosso il testo ridondante "Liste: ESSENZA o FLUSSO".
+    - Cambiato il colore di selezione del reame attivo da verde a rosso.
 
 ---
 
