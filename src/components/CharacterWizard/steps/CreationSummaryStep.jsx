@@ -205,21 +205,37 @@ export default function CreationSummaryStep({ characterData, setCharacterData })
     let detail = '';
     if (opt.category === '2. Miglioramento abilità') {
       detail = opt.subChoice === 'A'
-        ? `+2 gradi | ${opt.skillName || '—'}`
-        : `+5 gradi secondaria | ${opt.skillName || '—'}`;
+        ? `Miglioramento abilità: +2 gradi a ${opt.skillName || '—'}`
+        : `Miglioramento abilità: +5 gradi a ${opt.skillName || '—'}`;
     } else if (opt.category === '1. Miglioramento caratteristiche') {
       detail = opt.subChoice === 'A'
-        ? `+2 | ${opt.stats?.[0] || '—'}`
-        : `+1 ciascuna | ${opt.stats?.join(', ') || '—'}`;
+        ? `Miglioramento caratteristiche: +2 a ${opt.stats?.[0] || '—'}`
+        : `Miglioramento caratteristiche: +1 a ${opt.stats?.join(', ') || '—'}`;
     } else if (opt.category === '5. Lingua aggiuntiva') {
-      detail = `Grado 5 | ${opt.skillName || '—'}`;
+      detail = `Lingua aggiuntiva: ${opt.skillName || '—'} (Grado 5)`;
     } else if (opt.category === '3. Bonus speciale abilità') {
       if (opt.oggetto === 'as1' || (opt.roll >= 1 && opt.roll <= 50)) {
-        detail = `Bonus abilità +5 | ${opt.skillName || '—'}`;
+        detail = `Bonus speciale abilità: +5 a ${opt.skillName || '—'}`;
       } else if (opt.oggetto === 'as2' || (opt.roll >= 51 && opt.roll <= 55)) {
-        detail = `Bonus abilità +15 | ${opt.skillName || '—'}`;
+        detail = `Bonus speciale abilità: +15 a ${opt.skillName || '—'}`;
+      } else if (opt.oggetto === 'as3' || (opt.roll >= 56 && opt.roll <= 60)) {
+        detail = `Empatia verso una specie animale: +25 manovre${opt.customNote ? ` (${opt.customNote})` : ''}`;
+      } else if (opt.oggetto === 'as4' || (opt.roll >= 61 && opt.roll <= 65)) {
+        detail = `Infravisione: percezione calore fino a 30m${opt.customNote ? ` (${opt.customNote})` : ''}`;
+      } else if (opt.oggetto === 'as5' || (opt.roll >= 66 && opt.roll <= 70)) {
+        detail = `Resistenza: Bonus Speciale +10 a TR ${opt.skillName || '—'}`;
       } else if (opt.oggetto === 'as6' || (opt.roll >= 71 && opt.roll <= 75)) {
-        detail = `Esperto Magia | Lista: ${opt.skillName || '—'}`;
+        detail = `Esperto di magia: +1 lista incantesimi (${opt.skillName || '—'})`;
+      } else if (opt.oggetto === 'as7' || (opt.roll >= 76 && opt.roll <= 80)) {
+        detail = "Abile nelle Manovre in Movimento: Bonus +10";
+      } else if (opt.oggetto === 'as8' || (opt.roll >= 81 && opt.roll <= 85)) {
+        detail = "Attento osservatore: Bonus +10 a Percezione/Tracce";
+      } else if (opt.oggetto === 'as9' || (opt.roll >= 86 && opt.roll <= 90)) {
+        detail = "Riflessi fulminei: +5 BD e +5 BO";
+      } else if (opt.oggetto === 'as10' || (opt.roll >= 91 && opt.roll <= 95)) {
+        detail = "Carismatico: Bonus Speciale +10 a Leadership";
+      } else if (opt.oggetto === 'as11' || (opt.roll >= 96 && opt.roll <= 100)) {
+        detail = "Resistente al dolore: +3 per ogni D10 alla Resistenza Fisica";
       } else {
         detail = opt.calculatedText || opt.oggetto || '—';
         if (opt.customNote) {
@@ -227,14 +243,11 @@ export default function CreationSummaryStep({ characterData, setCharacterData })
         }
       }
     } else if (opt.category === '4. Bonus speciale oggetto') {
-      detail = `${opt.oggetto || '—'}`;
-      if (opt.customNote) {
-        detail += ` | ${opt.customNote}`;
-      }
+      detail = `Bonus speciale oggetto: ${opt.oggetto || '—'}${opt.customNote ? ` (${opt.customNote})` : ''}`;
     } else if (opt.category === '7. Denaro extra') {
-      detail = `${opt.calculatedMO || 0} MO (tiro ${opt.roll})`;
+      detail = `Denaro extra: ${opt.calculatedMO || 0} MO (tiro ${opt.roll || '—'})`;
     } else if (opt.category === 'Incantesimi o Punti Magia' || opt.category === '6. Lista incantesimi aggiuntiva') {
-      detail = `Lista: ${opt.skillName || '—'}`;
+      detail = `Lista incantesimi aggiuntiva: ${opt.skillName || '—'}`;
       if (opt.customNote) {
         detail += ` | ${opt.customNote}`;
       }
@@ -357,7 +370,9 @@ export default function CreationSummaryStep({ characterData, setCharacterData })
             {trKeys.map(tr => {
               const raceTrBonus = parseBonusValue(race[tr.key] || 0);
               const statBonus = finalStats[tr.statKey]?.bonusTot || 0;
-              const specialBonus = bgModifiers.trSpecialBonus || 0;
+              const specialBonus = bgModifiers.trSpecialBonus
+                ? (typeof bgModifiers.trSpecialBonus === 'object' ? (bgModifiers.trSpecialBonus[tr.key] || 0) : bgModifiers.trSpecialBonus)
+                : 0;
               const totalTrBonus = raceTrBonus + statBonus + specialBonus;
               return (
                 <div key={tr.key} style={{ padding: '0.3rem 0.75rem', background: 'var(--theme-tr-bg)', borderRadius: '99px', fontSize: '0.78rem', fontWeight: 600, color: 'var(--theme-tr-text)', border: '1px solid var(--theme-tr-border)' }}>
@@ -700,7 +715,6 @@ export default function CreationSummaryStep({ characterData, setCharacterData })
                   
                   let bgTextParts = [];
                   if (sk.bgRanks) bgTextParts.push(`Gradi: ${fmt(ranksBonus)}`);
-                  else bgTextParts.push(`Non addestrata: -25`);
                   
                   if (sk.specialBonus) bgTextParts.push(`Speciale: ${fmt(specialBonus)}`);
                   

@@ -485,7 +485,7 @@ export const getCharacterSkillBonus = (char, skillName) => {
   if (secSk) {
     const carattSigla = secSk.caratteristica_associata;
     const carattBonus = carattSigla ? (finalStats[carattSigla]?.bonusTot || 0) : 0;
-    const ranksBonus = secSk.bgRanks ? getRanksBonus(secSk.abilita_secondaria, secSk.bgRanks) : -25;
+    const ranksBonus = secSk.bgRanks ? getRanksBonus(secSk.abilita_secondaria, secSk.bgRanks) : 0;
     const specialBonus = secSk.specialBonus || 0;
     return ranksBonus + specialBonus + carattBonus;
   }

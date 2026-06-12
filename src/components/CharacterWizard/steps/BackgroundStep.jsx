@@ -287,7 +287,8 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
 
     const boSkills = [
       "taglio a 1 mano", "contundenti a 1 mano", "a 2 mani",
-      "da tiro", "da lancio", "con asta"
+      "da tiro", "da lancio", "con asta",
+      "incantesimi diretti"
     ];
 
     nextOptions.forEach(opt => {
@@ -343,7 +344,12 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
           }
         }
         if (isAS7) {
-          mmSkills.forEach(skill => {
+          const armorSkills = ["nessuna armatura", "cuoio grezzo", "cuoio rinforzato", "corazza di maglia", "corazza di piastre"];
+          const movementSkills = ["arrampicarsi", "cavalcare", "nuotare"];
+          armorSkills.forEach(skill => {
+            primarySkillsSpecialBonus[skill] = (primarySkillsSpecialBonus[skill] || 0) + 10;
+          });
+          movementSkills.forEach(skill => {
             primarySkillsSpecialBonus[skill] = (primarySkillsSpecialBonus[skill] || 0) + 10;
           });
         }
@@ -365,6 +371,18 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
         }
       }
     });
+
+    // Applicazione Abile nelle Manovre in Movimento (as7) alle abilità secondarie se presenti
+    const hasAS7 = nextOptions.some(opt => opt.category === '3. Bonus speciale abilità' && (opt.oggetto === 'as7' || (opt.roll >= 76 && opt.roll <= 80)));
+    if (hasAS7) {
+      const targetSec = ["acrobazia", "contorsionismo", "danza", "remare", "sciare", "speleologia", "tuffarsi", "volteggiare"];
+      targetSec.forEach(sName => {
+        const found = Object.values(secondarySkills).find(s => s.abilita_secondaria.toLowerCase() === sName);
+        if (found) {
+          found.specialBonus = (found.specialBonus || 0) + 10;
+        }
+      });
+    }
 
     // Gold
     let gold = 0;
