@@ -228,6 +228,19 @@ gms/{gmId}/
   - **Box Reame Magico**:
     - Rimosso il testo ridondante "Liste: ESSENZA o FLUSSO".
     - Cambiato il colore di selezione del reame attivo da verde a rosso.
+- **BackgroundStep (Fase 6)**:
+  - Rinominate e numerate le 7 categorie di opzioni di background in base dati (`TGP-2-opzioni_background.json`) e nel codice (es. "1. Miglioramento caratteristiche", "2. Miglioramento abilità", ecc.).
+  - Ordinate le categorie nella dropdown in modo sequenziale.
+  - Implementato il filtro per **scelta singola**: ciascuna categoria può essere selezionata solo una volta; quelle già scelte vengono nascoste dalla dropdown di scelta.
+  - **Esenzione Malus Abilità Secondarie**: Rimosso il malus di `-25` per *tutte le abilità secondarie* acquisite tramite Background (sia con "+5 Gradi" che con "+15 Bonus Speciale").
+  - **Calcolo Abilità Speciali**:
+    - *Riflessi fulminei (as9)*: Applica `+5` BO a tutte le armi e a "Incantesimi diretti".
+    - *Abile nelle Manovre in Movimento (as7)*: Applica `+10` speciale a tutte le 5 abilità di armatura, 3 abilità di movimento generiche, e alle abilità secondarie idonee se presenti.
+    - *Carismatico (as10)*: Applica `+10` speciale a "Leadership e influenza".
+    - *Resistente al dolore (as11)*: Applica `+3` per ogni D10 di roll HP (al 1° livello e successivi).
+  - **Riepilogo e Scheda Personaggio**:
+    - Uniformata la visualizzazione con nomi e descrizioni esplicite ed estese per ciascuna opzione di background aggiunta.
+    - Corretto un bug nella visualizzazione del bonus speciale ai TR.
 
 ---
 
