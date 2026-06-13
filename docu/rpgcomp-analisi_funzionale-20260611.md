@@ -1,6 +1,6 @@
 # MERP Companion — Analisi Funzionale e Stato del Sistema
-**Data:** 12 Giugno 2026  
-**Versione:** v2.1.0 (UI & UX Refinement)
+**Data:** 13 Giugno 2026  
+**Versione:** v2.2.0 (Layout & UI Updates)
 
 
 ---
@@ -241,6 +241,13 @@ gms/{gmId}/
   - **Riepilogo e Scheda Personaggio**:
     - Uniformata la visualizzazione con nomi e descrizioni esplicite ed estese per ciascuna opzione di background aggiunta.
     - Corretto un bug nella visualizzazione del bonus speciale ai TR.
+
+### 4.6 Miglioramenti di Layout (13 Giugno 2026)
+- **Struttura Wizard PG**:
+  - Spostato il menu di navigazione/avanzamento delle fasi da verticale (sidebar sinistra) a orizzontale (in alto, sotto il menu principale).
+  - Distribuite le 10 fasi su due righe da 5 elementi ciascuna (griglia 5+5).
+  - Allargato il corpo principale del wizard per occupare il **95%** dello schermo in tutti gli stage (migliorando la leggibilità su schermi di varie dimensioni).
+  - Ridotto il padding orizzontale dei pulsanti e delle tab di navigazione primarie a **8px** (0.5rem) per ottimizzare lo spazio occupato.
 
 ---
 
