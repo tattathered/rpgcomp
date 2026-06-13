@@ -71,7 +71,7 @@ class ErrorBoundary extends React.Component {
 
 const ACTION_SUB_TABS = [
   { id: 'static', label: 'Manovre Statiche', icon: Scroll },
-  { id: 'movement', label: 'Manovre di Movimento', icon: Compass },
+  { id: 'movement', label: 'Manovre di movimento', icon: Compass },
   { id: 'combat', label: 'Combattimento', icon: Swords },
   { id: 'criticals', label: 'Colpi Critici', icon: AlertTriangle },
   { id: 'fumbles', label: 'Colpi Maldestri', icon: AlertTriangle },
@@ -705,7 +705,7 @@ function App() {
                     className="hover:brightness-95"
                   >
                     <Icon className="w-4 h-4" />
-                    <span>Manovre statiche</span>
+                    <span>{tab.label}</span>
                   </button>
                 );
               })}
