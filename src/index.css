@@ -147,7 +147,7 @@ h1, h2, h3, h4, h5, h6, .card-title, .top-nav-logo {
 .nav-tab {
   background: none;
   border: none;
-  padding: 0 1rem;
+  padding: 0 0.5rem;
   font-size: 1rem;
   font-weight: 500;
   color: var(--text-muted);
@@ -183,9 +183,9 @@ h1, h2, h3, h4, h5, h6, .card-title, .top-nav-logo {
 .main-content {
   flex: 1;
   padding: 2rem;
-  max-width: 90vw;
+  max-width: 95vw;
   margin: 0 auto;
-  width: 90%;
+  width: 95%;
 }
 
 /* UI Components */
@@ -223,7 +223,7 @@ h1, h2, h3, h4, h5, h6, .card-title, .top-nav-logo {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.5rem;
   font-size: 0.875rem;
   font-weight: 500;
   border-radius: var(--radius-md);
@@ -259,18 +259,19 @@ h1, h2, h3, h4, h5, h6, .card-title, .top-nav-logo {
 
 .wizard-layout {
   display: flex;
-  gap: 2rem;
+  flex-direction: column;
+  gap: 1.5rem;
   width: 100%;
 }
 
 .wizard-sidebar {
-  width: 250px;
+  width: 100%;
   flex-shrink: 0;
 }
 
 .wizard-steps {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   gap: 0.5rem;
 }
 
@@ -306,7 +307,7 @@ h1, h2, h3, h4, h5, h6, .card-title, .top-nav-logo {
 
 .wizard-content {
   flex: 1;
-  width: 90%;
+  width: 100%;
 }
 
 .wizard-footer {
