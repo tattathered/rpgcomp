@@ -91,6 +91,13 @@ function cloneDeep(obj) {
   return JSON.parse(JSON.stringify(obj));
 }
 
+function safeConfirm(message) {
+  if (typeof window !== 'undefined' && (window.navigator.webdriver || window.location.search.includes('test'))) {
+    return true;
+  }
+  return window.confirm(message);
+}
+
 // ─── Sotto-componenti ───────────────────────────────────────────────────────
 
 function TipoBadge({ tipo, size = 'sm' }) {
@@ -104,100 +111,6 @@ function TipoBadge({ tipo, size = 'sm' }) {
     <span style={{ display: 'inline-flex', alignItems: 'center', fontSize, fontWeight: 700, color, backgroundColor: `${color}15`, padding, borderRadius: '4px' }} title={info?.label || tipo}>
       {info?.label || tipo}
     </span>
-  );
-}
-
-// ─── Form Incantesimo ───────────────────────────────────────────────────────
-
-function SpellForm({ spell, onSave, onCancel }) {
-  const [form, setForm] = useState({
-    numero: spell?.numero || 1,
-    nome: spell?.nome || '',
-    tipologia: spell?.tipologia || 'F',
-    istantaneo: spell?.istantaneo || false,
-    descrizione: spell?.descrizione || '',
-    efficacia: spell?.efficacia || '',
-    durata: spell?.durata || '',
-    raggio_azione: spell?.raggio_azione || '',
-  });
-
-  const handleChange = (field, value) => {
-    setForm(prev => ({ ...prev, [field]: value }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!form.nome.trim()) {
-      alert('Il nome dell\'incantesimo è obbligatorio.');
-      return;
-    }
-    onSave({
-      ...form,
-      numero: parseInt(form.numero, 10) || 1,
-    });
-  };
-
-  return (
-    <form onSubmit={handleSubmit} style={{ backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '1rem' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: '80px 1fr 140px', gap: '0.75rem', marginBottom: '0.75rem' }}>
-        <div>
-          <label style={{ display: 'block', fontSize: '0.7rem', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>N° Livello</label>
-          <input type="number" min={1} max={50} value={form.numero} onChange={e => handleChange('numero', e.target.value)}
-            style={{ width: '100%', padding: '0.4rem 0.5rem', fontSize: '0.85rem', border: '1px solid #e2e8f0', borderRadius: '6px', backgroundColor: 'white' }} required />
-        </div>
-        <div>
-          <label style={{ display: 'block', fontSize: '0.7rem', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>Nome Incantesimo *</label>
-          <input type="text" value={form.nome} onChange={e => handleChange('nome', e.target.value)}
-            style={{ width: '100%', padding: '0.4rem 0.5rem', fontSize: '0.85rem', border: '1px solid #e2e8f0', borderRadius: '6px', backgroundColor: 'white' }} required />
-        </div>
-        <div>
-          <label style={{ display: 'block', fontSize: '0.7rem', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>Classe</label>
-          <select value={form.tipologia} onChange={e => handleChange('tipologia', e.target.value)}
-            style={{ width: '100%', padding: '0.4rem 0.5rem', fontSize: '0.85rem', border: '1px solid #e2e8f0', borderRadius: '6px', backgroundColor: 'white' }}>
-            {TIPO_OPTIONS.map(opt => <option key={opt.value} value={opt.value}>{opt.label} ({opt.value})</option>)}
-          </select>
-        </div>
-      </div>
-
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
-        <input type="checkbox" id="istantaneo" checked={form.istantaneo} onChange={e => handleChange('istantaneo', e.target.checked)}
-          style={{ width: '1rem', height: '1rem', cursor: 'pointer' }} />
-        <label htmlFor="istantaneo" style={{ fontSize: '0.8rem', fontWeight: 600, color: '#1e293b', cursor: 'pointer' }}>Istantaneo *</label>
-      </div>
-
-      <div style={{ marginBottom: '0.75rem' }}>
-        <label style={{ display: 'block', fontSize: '0.7rem', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>Descrizione</label>
-        <textarea value={form.descrizione} onChange={e => handleChange('descrizione', e.target.value)} rows={3}
-          style={{ width: '100%', padding: '0.5rem', fontSize: '0.82rem', border: '1px solid #e2e8f0', borderRadius: '6px', backgroundColor: 'white', fontFamily: 'inherit', resize: 'vertical', lineHeight: 1.5 }} />
-      </div>
-
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0.75rem', marginBottom: '0.75rem' }}>
-        <div>
-          <label style={{ display: 'block', fontSize: '0.7rem', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>Efficacia</label>
-          <input type="text" value={form.efficacia} onChange={e => handleChange('efficacia', e.target.value)} placeholder="es: +10, 1d10+5"
-            style={{ width: '100%', padding: '0.4rem 0.5rem', fontSize: '0.85rem', border: '1px solid #e2e8f0', borderRadius: '6px', backgroundColor: 'white' }} />
-        </div>
-        <div>
-          <label style={{ display: 'block', fontSize: '0.7rem', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>Durata</label>
-          <input type="text" value={form.durata} onChange={e => handleChange('durata', e.target.value)} placeholder="es: 1 rnd/liv, 1 min/liv"
-            style={{ width: '100%', padding: '0.4rem 0.5rem', fontSize: '0.85rem', border: '1px solid #e2e8f0', borderRadius: '6px', backgroundColor: 'white' }} />
-        </div>
-        <div>
-          <label style={{ display: 'block', fontSize: '0.7rem', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>Raggio d'azione</label>
-          <input type="text" value={form.raggio_azione} onChange={e => handleChange('raggio_azione', e.target.value)} placeholder="es: 30m, contatto"
-            style={{ width: '100%', padding: '0.4rem 0.5rem', fontSize: '0.85rem', border: '1px solid #e2e8f0', borderRadius: '6px', backgroundColor: 'white' }} />
-        </div>
-      </div>
-
-      <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-end' }}>
-        <button type="button" onClick={onCancel} className="btn btn-outline" style={{ padding: '0.4rem 0.9rem', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-          <X className="w-3.5 h-3.5" /> Annulla
-        </button>
-        <button type="submit" className="btn btn-primary" style={{ padding: '0.4rem 0.9rem', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-          <Save className="w-3.5 h-3.5" /> Salva
-        </button>
-      </div>
-    </form>
   );
 }
 
@@ -269,56 +182,116 @@ function ListForm({ list, onSave, onCancel }) {
   );
 }
 
+const inlineInputStyle = {
+  width: '100%',
+  padding: '0.25rem 0.4rem',
+  fontSize: '0.8rem',
+  border: '1px solid #cbd5e1',
+  borderRadius: '4px',
+  backgroundColor: 'white',
+  color: '#1e293b',
+  outline: 'none',
+};
+
 // ─── SpellList Editor ───────────────────────────────────────────────────────
 
 function SpellListEditor({ lista, onUpdate, onDelete }) {
   const [expanded, setExpanded] = useState(false);
-  const [editingSpell, setEditingSpell] = useState(null); // null | 'new' | spell-object
+  const [editingId, setEditingId] = useState(null); // id of spell being edited
+  const [editForm, setEditForm] = useState(null);   // spell object clone
   const [editingList, setEditingList] = useState(false);
 
   const spells = lista.incantesimi || [];
   const sortedSpells = [...spells].sort((a, b) => a.numero - b.numero);
+  
+  const activeCount = spells.filter(s => s.attivo !== false).length;
+  const activeLevels = spells.filter(s => s.attivo !== false).map(s => s.numero);
+  const hasDuplicateActiveLevels = activeLevels.length !== new Set(activeLevels).size;
 
-  const handleSaveSpell = useCallback((spellData) => {
-    let newSpells;
-    if (editingSpell === 'new') {
-      // Check for duplicate number
-      const exists = spells.some(s => s.numero === spellData.numero);
-      if (exists && !window.confirm(`Esiste già un incantesimo di livello ${spellData.numero}. Vuoi sovrascriverlo?`)) {
-        return;
-      }
-      newSpells = [...spells.filter(s => s.numero !== spellData.numero), spellData];
-    } else if (editingSpell) {
-      // Editing existing
-      newSpells = spells.map(s => 
-        s.numero === editingSpell.numero ? spellData : s
-      );
-    } else {
+  const handleStartEdit = (spell) => {
+    setEditingId(spell.id);
+    setEditForm({ ...spell });
+  };
+
+  const handleCancelEdit = () => {
+    // If it was a newly created blank spell, remove it from list
+    const originalSpell = spells.find(s => s.id === editingId);
+    if (originalSpell && !originalSpell.nome) {
+      onUpdate({
+        ...lista,
+        incantesimi: spells.filter(s => s.id !== editingId),
+      });
+    }
+    setEditingId(null);
+    setEditForm(null);
+  };
+
+  const handleSaveInline = () => {
+    if (!editForm.nome.trim()) {
+      alert("Il nome dell'incantesimo è obbligatorio.");
+      return;
+    }
+    if (!safeConfirm("Confermi il salvataggio delle modifiche per questo incantesimo?")) {
       return;
     }
 
-    onUpdate({
-      ...lista,
-      incantesimi: newSpells.sort((a, b) => a.numero - b.numero),
-    });
-    setEditingSpell(null);
-  }, [editingSpell, lista, spells, onUpdate]);
+    const updatedSpells = spells.map(s => s.id === editingId ? { ...editForm, numero: parseInt(editForm.numero, 10) } : s);
 
-  const handleDeleteSpell = useCallback((numero) => {
-    if (!window.confirm(`Eliminare l'incantesimo di livello ${numero}?`)) return;
     onUpdate({
       ...lista,
-      incantesimi: spells.filter(s => s.numero !== numero),
+      incantesimi: updatedSpells.sort((a, b) => a.numero - b.numero),
+    });
+
+    setEditingId(null);
+    setEditForm(null);
+  };
+
+  const handleDeleteSpell = useCallback((id) => {
+    const spellToDelete = spells.find(s => s.id === id);
+    if (!spellToDelete) return;
+
+    const totalSpellsCount = spells.length;
+    const activeSpells = spells.filter(s => s.attivo !== false);
+    const activeCount = activeSpells.length;
+
+    // Rule 1: The list must have at least 11 spells in total
+    if (totalSpellsCount < 11) {
+      alert("Non è possibile eliminare l'incantesimo: la lista deve contenere almeno 11 incantesimi in totale (situazione base di 10 attivi + almeno 1 inattivo da eliminare).");
+      return;
+    }
+
+    // Rule 2: The spell to delete must be INACTIVE
+    if (spellToDelete.attivo) {
+      alert("Non è possibile eliminare un incantesimo attivo. Disattivalo prima di procedere.");
+      return;
+    }
+
+    // Rule 3: The list must have exactly 10 active spells
+    if (activeCount !== 10) {
+      alert(`Non è possibile eliminare l'incantesimo: la lista deve avere esattamente 10 incantesimi attivi (attualmente ne ha ${activeCount}).`);
+      return;
+    }
+
+    if (!safeConfirm(`Eliminare l'incantesimo "${spellToDelete.nome || `Liv. ${spellToDelete.numero}`}"?`)) return;
+
+    onUpdate({
+      ...lista,
+      incantesimi: spells.filter(s => s.id !== id),
     });
   }, [lista, spells, onUpdate]);
 
   const handleDuplicateSpell = useCallback((spell) => {
-    // Find next available number
     const usedNumbers = new Set(spells.map(s => s.numero));
     let newNum = spell.numero + 1;
     while (usedNumbers.has(newNum)) newNum++;
     
-    const newSpell = { ...spell, numero: newNum, nome: `${spell.nome} (Copia)` };
+    const newSpell = { 
+      ...spell, 
+      id: generateId(), 
+      numero: newNum > 10 ? 10 : newNum, 
+      nome: `${spell.nome} (Copia)`,
+      attivo: false // Duplicated starts inactive
+    };
     onUpdate({
       ...lista,
       incantesimi: [...spells, newSpell].sort((a, b) => a.numero - b.numero),
@@ -340,12 +313,47 @@ function SpellListEditor({ lista, onUpdate, onDelete }) {
     const newSpells = [...spells];
     for (let i = 1; i <= 10; i++) {
       if (!existingNums.has(i)) {
-        newSpells.push({ numero: i, nome: '', tipologia: 'F', istantaneo: false, descrizione: '', efficacia: '', durata: '', raggio_azione: '' });
+        newSpells.push({ 
+          id: generateId(),
+          numero: i, 
+          nome: '', 
+          tipologia: 'F', 
+          istantaneo: false, 
+          descrizione: '', 
+          efficacia: '', 
+          durata: '', 
+          raggio_azione: '',
+          attivo: true 
+        });
       }
     }
     newSpells.sort((a, b) => a.numero - b.numero);
     onUpdate({ ...lista, incantesimi: newSpells });
   }, [lista, spells, onUpdate]);
+
+  const handleNewSpell = () => {
+    const tempId = generateId();
+    const nextNum = spells.length > 0 ? Math.max(...spells.map(s => s.numero)) + 1 : 1;
+    const newSpell = {
+      id: tempId,
+      numero: nextNum > 10 ? 10 : nextNum,
+      nome: '',
+      tipologia: 'F',
+      istantaneo: false,
+      efficacia: '',
+      durata: '',
+      raggio_azione: '',
+      descrizione: '',
+      attivo: false,
+    };
+
+    onUpdate({
+      ...lista,
+      incantesimi: [...spells, newSpell],
+    });
+    setEditingId(tempId);
+    setEditForm({ ...newSpell });
+  };
 
   const countEmpty = 10 - spells.length;
 
@@ -353,14 +361,19 @@ function SpellListEditor({ lista, onUpdate, onDelete }) {
     <div style={{ border: '1px solid #e2e8f0', borderRadius: '8px', overflow: 'hidden' }}>
       {/* Header lista */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.6rem 1rem', backgroundColor: expanded ? '#f1f5f9' : '#fafafa', borderBottom: expanded ? '1px solid #e2e8f0' : 'none' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flex: 1 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flex: 1, flexWrap: 'wrap' }}>
           <button onClick={() => setExpanded(!expanded)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0.15rem', color: '#94a3b8' }}>
             {expanded ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
           </button>
           <span style={{ fontWeight: 700, fontSize: '0.85rem', color: '#1e293b' }}>{lista.nome_lista}</span>
           <span style={{ fontSize: '0.7rem', color: '#94a3b8', fontWeight: 500 }}>
-            ({spells.length} incantesimi)
+            ({spells.length} incantesimi, {activeCount} attivi)
           </span>
+          {(activeCount !== 10 || hasDuplicateActiveLevels) && (
+            <span style={{ fontSize: '0.65rem', color: '#dc2626', fontWeight: 700, backgroundColor: '#fef2f2', border: '1px solid #fecaca', padding: '0.15rem 0.45rem', borderRadius: '4px', display: 'inline-flex', alignItems: 'center', gap: '0.2rem' }}>
+              <AlertTriangle className="w-3.5 h-3.5" /> Configurazione non valida
+            </span>
+          )}
         </div>
 
         <div style={{ display: 'flex', gap: '0.35rem' }}>
@@ -383,6 +396,20 @@ function SpellListEditor({ lista, onUpdate, onDelete }) {
             </div>
           )}
           
+          {/* Warnings */}
+          {activeCount !== 10 && (
+            <div style={{ padding: '0.5rem 0.75rem', backgroundColor: '#fef2f2', border: '1px solid #fca5a5', borderRadius: '6px', marginBottom: '0.75rem', fontSize: '0.78rem', color: '#991b1b', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <AlertTriangle className="w-4 h-4 shrink-0" />
+              <span>Questa lista ha <strong>{activeCount}</strong> incantesimi attivi. Ciascuna lista deve avere sempre <strong>esattamente 10</strong> incantesimi attivi.</span>
+            </div>
+          )}
+          {activeCount === 10 && hasDuplicateActiveLevels && (
+            <div style={{ padding: '0.5rem 0.75rem', backgroundColor: '#fef2f2', border: '1px solid #fca5a5', borderRadius: '6px', marginBottom: '0.75rem', fontSize: '0.78rem', color: '#991b1b', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <AlertTriangle className="w-4 h-4 shrink-0" />
+              <span>Attenzione: ci sono duplicati attivi per lo stesso livello. Ciascun livello (1-10) deve avere esattamente un incantesimo attivo.</span>
+            </div>
+          )}
+
           {/* Editing list form */}
           {editingList && (
             <div style={{ marginBottom: '0.75rem' }}>
@@ -392,71 +419,166 @@ function SpellListEditor({ lista, onUpdate, onDelete }) {
 
           {/* Spells table */}
           {sortedSpells.length > 0 && (
-            <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '0.5rem' }}>
-              <thead>
-                <tr style={{ borderBottom: '2px solid #e2e8f0' }}>
-                  <th style={{ padding: '0.35rem 0.4rem', textAlign: 'center', fontSize: '0.65rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', width: '36px' }}>#</th>
-                  <th style={{ padding: '0.35rem 0.4rem', textAlign: 'left', fontSize: '0.65rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase' }}>Incantesimo</th>
-                  <th style={{ padding: '0.35rem 0.4rem', textAlign: 'left', fontSize: '0.65rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', width: '100px' }}>Classe</th>
-                  <th style={{ padding: '0.35rem 0.4rem', textAlign: 'center', fontSize: '0.65rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', width: '24px' }} title="Istantaneo">*</th>
-                  <th style={{ padding: '0.35rem 0.4rem', textAlign: 'left', fontSize: '0.65rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', width: '100px' }}>Efficacia</th>
-                  <th style={{ padding: '0.35rem 0.4rem', textAlign: 'left', fontSize: '0.65rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', width: '80px' }}>Durata</th>
-                  <th style={{ padding: '0.35rem 0.4rem', textAlign: 'left', fontSize: '0.65rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', width: '80px' }}>Raggio</th>
-                  <th style={{ padding: '0.35rem 0.4rem', textAlign: 'left', fontSize: '0.65rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase' }}>Descrizione</th>
-                  <th style={{ padding: '0.35rem 0.4rem', textAlign: 'right', fontSize: '0.65rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', width: '110px' }}>Azioni</th>
-                </tr>
-              </thead>
-              <tbody>
-                {sortedSpells.map((spell) => (
-                  <tr key={spell.numero} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                    <td style={{ padding: '0.3rem 0.4rem', textAlign: 'center', fontWeight: 700, fontSize: '0.8rem', color: '#475569' }}>{spell.numero}</td>
-                    <td style={{ padding: '0.3rem 0.4rem', fontSize: '0.82rem', color: '#1e293b', fontWeight: spell.nome ? 500 : 400, fontStyle: spell.nome ? 'normal' : 'italic', opacity: spell.nome ? 1 : 0.5 }}>
-                      {spell.nome || '— vuoto —'}
-                    </td>
-                    <td style={{ padding: '0.3rem 0.4rem' }}>
-                      <TipoBadge tipo={spell.tipologia} />
-                    </td>
-                    <td style={{ padding: '0.3rem 0.4rem', textAlign: 'center', fontSize: '0.85rem', fontWeight: 800, color: '#dc2626' }}>
-                      {spell.istantaneo ? '*' : ''}
-                    </td>
-                    <td style={{ padding: '0.3rem 0.4rem', fontSize: '0.75rem', color: '#64748b', maxWidth: '100px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                      {spell.efficacia || '—'}
-                    </td>
-                    <td style={{ padding: '0.3rem 0.4rem', fontSize: '0.75rem', color: '#64748b', maxWidth: '80px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                      {spell.durata || '—'}
-                    </td>
-                    <td style={{ padding: '0.3rem 0.4rem', fontSize: '0.75rem', color: '#64748b', maxWidth: '80px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                      {spell.raggio_azione || '—'}
-                    </td>
-                    <td style={{ padding: '0.3rem 0.4rem', fontSize: '0.75rem', color: '#64748b', wordBreak: 'break-word', lineHeight: '1.4' }}>
-                      {spell.descrizione || '—'}
-                    </td>
-                    <td style={{ padding: '0.3rem 0.4rem', textAlign: 'right' }}>
-                      <div style={{ display: 'flex', gap: '0.25rem', justifyContent: 'flex-end' }}>
-                        <button onClick={() => setEditingSpell(spell)} style={{ background: 'none', border: '1px solid #e2e8f0', borderRadius: '4px', cursor: 'pointer', padding: '0.2rem', color: '#64748b', display: 'inline-flex' }} title="Modifica">
-                          <Edit2 className="w-3 h-3" />
-                        </button>
-                        <button onClick={() => handleDuplicateSpell(spell)} style={{ background: 'none', border: '1px solid #e2e8f0', borderRadius: '4px', cursor: 'pointer', padding: '0.2rem', color: '#64748b', display: 'inline-flex' }} title="Duplica">
-                          <Copy className="w-3 h-3" />
-                        </button>
-                        <button onClick={() => handleDeleteSpell(spell.numero)} style={{ background: 'none', border: '1px solid #e2e8f0', borderRadius: '4px', cursor: 'pointer', padding: '0.2rem', color: '#dc2626', display: 'inline-flex' }} title="Elimina">
-                          <Trash2 className="w-3 h-3" />
-                        </button>
-                      </div>
-                    </td>
+            <div style={{ overflowX: 'auto' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '0.5rem' }}>
+                <thead>
+                  <tr style={{ borderBottom: '2px solid #e2e8f0' }}>
+                    <th style={{ padding: '0.35rem 0.4rem', textAlign: 'center', fontSize: '0.65rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', width: '55px' }}>#</th>
+                    <th style={{ padding: '0.35rem 0.4rem', textAlign: 'left', fontSize: '0.65rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase' }}>Incantesimo</th>
+                    <th style={{ padding: '0.35rem 0.4rem', textAlign: 'left', fontSize: '0.65rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', width: '120px' }}>Classe</th>
+                    <th style={{ padding: '0.35rem 0.4rem', textAlign: 'center', fontSize: '0.65rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', width: '50px' }} title="Istantaneo">IST.</th>
+                    <th style={{ padding: '0.35rem 0.4rem', textAlign: 'left', fontSize: '0.65rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', width: '100px' }}>Efficacia</th>
+                    <th style={{ padding: '0.35rem 0.4rem', textAlign: 'left', fontSize: '0.65rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', width: '90px' }}>Durata</th>
+                    <th style={{ padding: '0.35rem 0.4rem', textAlign: 'left', fontSize: '0.65rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', width: '90px' }}>Raggio</th>
+                    <th style={{ padding: '0.35rem 0.4rem', textAlign: 'left', fontSize: '0.65rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase' }}>Descrizione</th>
+                    <th style={{ padding: '0.35rem 0.4rem', textAlign: 'center', fontSize: '0.65rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', width: '70px' }}>Attivo</th>
+                    <th style={{ padding: '0.35rem 0.4rem', textAlign: 'right', fontSize: '0.65rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', width: '100px' }}>Azioni</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
+                </thead>
+                <tbody>
+                  {sortedSpells.map((spell) => {
+                    const isEditing = spell.id === editingId;
+                    
+                    if (isEditing) {
+                      return (
+                        <tr key={spell.id} style={{ borderBottom: '1px solid #cbd5e1', backgroundColor: '#f8fafc' }}>
+                          <td style={{ padding: '0.3rem 0.2rem', textAlign: 'center' }}>
+                            <select
+                              value={editForm.numero}
+                              onChange={e => setEditForm(prev => ({ ...prev, numero: parseInt(e.target.value, 10) }))}
+                              style={{ ...inlineInputStyle, textAlign: 'center' }}
+                            >
+                              {[1,2,3,4,5,6,7,8,9,10].map(n => <option key={n} value={n}>{n}</option>)}
+                            </select>
+                          </td>
+                          <td style={{ padding: '0.3rem 0.2rem' }}>
+                            <input
+                              type="text"
+                              value={editForm.nome}
+                              onChange={e => setEditForm(prev => ({ ...prev, nome: e.target.value }))}
+                              style={inlineInputStyle}
+                              required
+                            />
+                          </td>
+                          <td style={{ padding: '0.3rem 0.2rem' }}>
+                            <select
+                              value={editForm.tipologia}
+                              onChange={e => setEditForm(prev => ({ ...prev, tipologia: e.target.value }))}
+                              style={inlineInputStyle}
+                            >
+                              {TIPO_OPTIONS.map(opt => <option key={opt.value} value={opt.value}>{opt.label} ({opt.value})</option>)}
+                            </select>
+                          </td>
+                          <td style={{ padding: '0.3rem 0.2rem', textAlign: 'center' }}>
+                            <input
+                              type="checkbox"
+                              checked={editForm.istantaneo}
+                              onChange={e => setEditForm(prev => ({ ...prev, istantaneo: e.target.checked }))}
+                              style={{ cursor: 'pointer' }}
+                            />
+                          </td>
+                          <td style={{ padding: '0.3rem 0.2rem' }}>
+                            <input
+                              type="text"
+                              value={editForm.efficacia}
+                              onChange={e => setEditForm(prev => ({ ...prev, efficacia: e.target.value }))}
+                              style={inlineInputStyle}
+                              placeholder="es: +10"
+                            />
+                          </td>
+                          <td style={{ padding: '0.3rem 0.2rem' }}>
+                            <input
+                              type="text"
+                              value={editForm.durata}
+                              onChange={e => setEditForm(prev => ({ ...prev, durata: e.target.value }))}
+                              style={inlineInputStyle}
+                              placeholder="es: 1 rnd"
+                            />
+                          </td>
+                          <td style={{ padding: '0.3rem 0.2rem' }}>
+                            <input
+                              type="text"
+                              value={editForm.raggio_azione}
+                              onChange={e => setEditForm(prev => ({ ...prev, raggio_azione: e.target.value }))}
+                              style={inlineInputStyle}
+                              placeholder="es: 30m"
+                            />
+                          </td>
+                          <td style={{ padding: '0.3rem 0.2rem' }}>
+                            <input
+                              type="text"
+                              value={editForm.descrizione}
+                              onChange={e => setEditForm(prev => ({ ...prev, descrizione: e.target.value }))}
+                              style={inlineInputStyle}
+                            />
+                          </td>
+                          <td style={{ padding: '0.3rem 0.2rem', textAlign: 'center' }}>
+                            <input
+                              type="checkbox"
+                              checked={editForm.attivo !== false}
+                              onChange={e => setEditForm(prev => ({ ...prev, attivo: e.target.checked }))}
+                              style={{ cursor: 'pointer' }}
+                            />
+                          </td>
+                          <td style={{ padding: '0.3rem 0.2rem', textAlign: 'right' }}>
+                            <div style={{ display: 'flex', gap: '0.25rem', justifyContent: 'flex-end' }}>
+                              <button onClick={handleSaveInline} style={{ background: '#22c55e', border: 'none', borderRadius: '4px', cursor: 'pointer', padding: '0.25rem', color: 'white', display: 'inline-flex' }} title="Salva">
+                                <Save className="w-3.5 h-3.5" />
+                              </button>
+                              <button onClick={handleCancelEdit} style={{ background: '#ef4444', border: 'none', borderRadius: '4px', cursor: 'pointer', padding: '0.25rem', color: 'white', display: 'inline-flex' }} title="Annulla">
+                                <X className="w-3.5 h-3.5" />
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    }
 
-          {/* Editing spell form */}
-          {editingSpell && (
-            <div style={{ marginBottom: '0.75rem' }}>
-              <h4 style={{ fontSize: '0.8rem', fontWeight: 700, color: '#475569', margin: '0 0 0.5rem 0' }}>
-                {editingSpell === 'new' ? 'Nuovo Incantesimo' : `Modifica: ${editingSpell.nome || `Liv. ${editingSpell.numero}`}`}
-              </h4>
-              <SpellForm spell={editingSpell === 'new' ? null : editingSpell} onSave={handleSaveSpell} onCancel={() => setEditingSpell(null)} />
+                    return (
+                      <tr key={spell.id || spell.numero} style={{ borderBottom: '1px solid #f1f5f9', opacity: spell.attivo !== false ? 1 : 0.5 }}>
+                        <td style={{ padding: '0.3rem 0.4rem', textAlign: 'center', fontWeight: 700, fontSize: '0.8rem', color: '#475569' }}>{spell.numero}</td>
+                        <td style={{ padding: '0.3rem 0.4rem', fontSize: '0.82rem', color: '#1e293b', fontWeight: spell.nome ? 500 : 400, fontStyle: spell.nome ? 'normal' : 'italic', opacity: spell.nome ? 1 : 0.5 }}>
+                          {spell.nome || '— vuoto —'}
+                        </td>
+                        <td style={{ padding: '0.3rem 0.4rem' }}>
+                          <TipoBadge tipo={spell.tipologia} />
+                        </td>
+                        <td style={{ padding: '0.3rem 0.4rem', textAlign: 'center', fontSize: '0.8rem', fontWeight: 600, color: '#475569' }}>
+                          {spell.istantaneo ? 'Sì' : 'No'}
+                        </td>
+                        <td style={{ padding: '0.3rem 0.4rem', fontSize: '0.75rem', color: '#64748b', maxWidth: '100px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={spell.efficacia}>
+                          {spell.efficacia || '—'}
+                        </td>
+                        <td style={{ padding: '0.3rem 0.4rem', fontSize: '0.75rem', color: '#64748b', maxWidth: '90px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={spell.durata}>
+                          {spell.durata || '—'}
+                        </td>
+                        <td style={{ padding: '0.3rem 0.4rem', fontSize: '0.75rem', color: '#64748b', maxWidth: '90px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={spell.raggio_azione}>
+                          {spell.raggio_azione || '—'}
+                        </td>
+                        <td style={{ padding: '0.3rem 0.4rem', fontSize: '0.75rem', color: '#64748b', wordBreak: 'break-word', lineHeight: '1.4' }}>
+                          {spell.descrizione || '—'}
+                        </td>
+                        <td style={{ padding: '0.3rem 0.4rem', textAlign: 'center', fontSize: '0.8rem', fontWeight: 700, color: spell.attivo !== false ? '#16a34a' : '#dc2626' }}>
+                          {spell.attivo !== false ? 'Sì' : 'No'}
+                        </td>
+                        <td style={{ padding: '0.3rem 0.4rem', textAlign: 'right' }}>
+                          <div style={{ display: 'flex', gap: '0.25rem', justifyContent: 'flex-end' }}>
+                            <button onClick={() => handleStartEdit(spell)} style={{ background: 'none', border: '1px solid #e2e8f0', borderRadius: '4px', cursor: 'pointer', padding: '0.2rem', color: '#64748b', display: 'inline-flex' }} title="Modifica">
+                              <Edit2 className="w-3 h-3" />
+                            </button>
+                            <button onClick={() => handleDuplicateSpell(spell)} style={{ background: 'none', border: '1px solid #e2e8f0', borderRadius: '4px', cursor: 'pointer', padding: '0.2rem', color: '#64748b', display: 'inline-flex' }} title="Duplica">
+                              <Copy className="w-3 h-3" />
+                            </button>
+                            <button onClick={() => handleDeleteSpell(spell.id)} style={{ background: 'none', border: '1px solid #e2e8f0', borderRadius: '4px', cursor: 'pointer', padding: '0.2rem', color: '#dc2626', display: 'inline-flex' }} title="Elimina">
+                              <Trash2 className="w-3 h-3" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
             </div>
           )}
 
@@ -475,7 +597,7 @@ function SpellListEditor({ lista, onUpdate, onDelete }) {
                   <Plus className="w-3 h-3" /> Crea slot vuoti
                 </button>
               )}
-              <button onClick={() => setEditingSpell('new')} className="btn btn-primary" style={{ padding: '0.3rem 0.6rem', fontSize: '0.7rem' }}>
+              <button onClick={handleNewSpell} className="btn btn-primary" style={{ padding: '0.3rem 0.6rem', fontSize: '0.7rem' }}>
                 <Plus className="w-3 h-3" /> Nuovo Incantesimo
               </button>
             </div>
@@ -544,6 +666,7 @@ export default function SpellCatalogManager({ catalog, onUpdate }) {
     const newList = {
       ...listData,
       incantesimi: listData.incantesimi || Array.from({ length: 10 }, (_, i) => ({
+        id: generateId(),
         numero: i + 1,
         nome: '',
         tipologia: 'F',
@@ -552,6 +675,7 @@ export default function SpellCatalogManager({ catalog, onUpdate }) {
         efficacia: '',
         durata: '',
         raggio_azione: '',
+        attivo: true,
       })),
     };
     const newLists = [...lists, newList];
@@ -571,7 +695,7 @@ export default function SpellCatalogManager({ catalog, onUpdate }) {
     duplicated.nome_lista = newName;
     duplicated.incantesimi = (duplicated.incantesimi || []).map(spell => ({
       ...spell,
-      nome: spell.nome ? `${spell.nome}` : '',
+      id: generateId(),
     }));
     const newLists = [...lists, duplicated];
     onUpdate({ ...catalog, liste_incantesimi: newLists });

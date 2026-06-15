@@ -8,6 +8,11 @@ function migrateSpell(spell) {
   
   const newSpell = { ...spell };
   
+  // 0. Assicura ID unico
+  if (!newSpell.id) {
+    newSpell.id = Math.random().toString(36).substring(2, 11);
+  }
+  
   // 1. Rimuovi asterisco dalla tipologia, sposta in istantaneo
   const tipo = (spell.tipologia || '').trim();
   if (tipo.endsWith('*')) {
@@ -32,6 +37,11 @@ function migrateSpell(spell) {
   // 4. Rimuovi vecchio campo preparazione_incantesimo se presente
   if (newSpell.preparazione_incantesimo !== undefined) {
     delete newSpell.preparazione_incantesimo;
+  }
+  
+  // 5. Assicura che attivo sia sempre presente (default true)
+  if (newSpell.attivo === undefined || newSpell.attivo === null) {
+    newSpell.attivo = true;
   }
   
   return newSpell;

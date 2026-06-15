@@ -47,7 +47,7 @@ const validateStep = (stepId, data) => {
   }
 };
 
-export default function CharacterWizard({ initialData, onSave, initialStepIndex = 0, equipmentCatalog }) {
+export default function CharacterWizard({ initialData, onSave, initialStepIndex = 0, equipmentCatalog, spellCatalog }) {
   const [currentStepIndex, setCurrentStepIndex] = useState(initialStepIndex);
   const [characterData, setCharacterData] = useState(() => {
     return initialData || {
@@ -182,7 +182,7 @@ export default function CharacterWizard({ initialData, onSave, initialStepIndex 
           )}
 
           {currentStep.id === 'creation_summary' && (
-            <CreationSummaryStep characterData={characterData} setCharacterData={setCharacterData} equipmentCatalog={equipmentCatalog} />
+            <CreationSummaryStep characterData={characterData} setCharacterData={setCharacterData} equipmentCatalog={equipmentCatalog} spellCatalog={spellCatalog} />
           )}
 
           {currentStep.id === 'learning' && (
@@ -190,7 +190,7 @@ export default function CharacterWizard({ initialData, onSave, initialStepIndex 
           )}
 
           {currentStep.id === 'summary' && (
-            <CharacterSheetStep characterData={characterData} setCharacterData={setCharacterData} />
+            <CharacterSheetStep characterData={characterData} setCharacterData={setCharacterData} spellCatalog={spellCatalog} />
           )}
 
           {currentStep.id !== 'race' && currentStep.id !== 'profession' && currentStep.id !== 'stats' && currentStep.id !== 'adolescence' && currentStep.id !== 'level1' && currentStep.id !== 'background' && currentStep.id !== 'creation_summary' && currentStep.id !== 'learning' && currentStep.id !== 'summary' && currentStep.id !== 'equipment' && (

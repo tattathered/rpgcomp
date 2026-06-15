@@ -502,6 +502,7 @@ function App() {
               initialStepIndex={activeStepIndex}
               onSave={handleSaveCharacter} 
               equipmentCatalog={equipmentCatalog}
+              spellCatalog={spellCatalog}
             />
           </ErrorBoundary>
         )}

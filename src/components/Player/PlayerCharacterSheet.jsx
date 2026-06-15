@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrowLeft } from 'lucide-react';
 import CharacterSheetStep from '../CharacterWizard/steps/CharacterSheetStep';
 
-export default function PlayerCharacterSheet({ characterData, onBack }) {
+export default function PlayerCharacterSheet({ characterData, onBack, spellCatalog }) {
   return (
     <div style={styles.container}>
       <header style={styles.header}>
@@ -17,6 +17,7 @@ export default function PlayerCharacterSheet({ characterData, onBack }) {
           characterData={characterData} 
           setCharacterData={() => {}} 
           readOnly={true} 
+          spellCatalog={spellCatalog}
         />
       </div>
     </div>

@@ -5,6 +5,7 @@
       "nome_lista": "ADATTAMENTO",
       "incantesimi": [
         {
+          "id": "fljbzz7wr",
           "numero": 1,
           "nome": "CORSA",
           "tipologia": "F",
@@ -13,9 +14,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "4ikwmfft4",
           "numero": 2,
           "nome": "VELOCITÀ I",
           "tipologia": "F",
@@ -24,9 +27,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "tgq34660p",
           "numero": 3,
           "nome": "CONTROLLO DIMENSIONI",
           "tipologia": "F",
@@ -35,9 +40,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "axg9kdyl5",
           "numero": 4,
           "nome": "SCATTO",
           "tipologia": "F",
@@ -46,9 +53,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "9jf6nobb1",
           "numero": 5,
           "nome": "TRASFORMAZIONE",
           "tipologia": "F",
@@ -57,9 +66,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "4jno30o9u",
           "numero": 6,
           "nome": "RAPIDITA I",
           "tipologia": "F",
@@ -68,9 +79,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "r43wksihi",
           "numero": 7,
           "nome": "VELOCITÀ III",
           "tipologia": "F",
@@ -79,9 +92,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "0imjuj0rf",
           "numero": 8,
           "nome": "SLANCIO",
           "tipologia": "F",
@@ -90,9 +105,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "v7txeppsw",
           "numero": 9,
           "nome": "ALTERA DIMENSIONI",
           "tipologia": "F",
@@ -101,9 +118,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "8j7yr0eci",
           "numero": 10,
           "nome": "RAPIDITÀ III",
           "tipologia": "F",
@@ -112,7 +131,8 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -122,6 +142,7 @@
       "nome_lista": "AEROMANZIA",
       "incantesimi": [
         {
+          "id": "7r3chsqx0",
           "numero": 1,
           "nome": "BREZZA",
           "tipologia": "F",
@@ -130,9 +151,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "zaizrkj71",
           "numero": 2,
           "nome": "MURO VENTO",
           "tipologia": "F",
@@ -141,9 +164,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "98qwa2kqd",
           "numero": 3,
           "nome": "CONDENSAZIONE",
           "tipologia": "F",
@@ -152,9 +177,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "2qrvikzkt",
           "numero": 4,
           "nome": "NUVOLA STORDENTE",
           "tipologia": "F",
@@ -163,9 +190,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "lzp1ar5xm",
           "numero": 5,
           "nome": "CALMA",
           "tipologia": "F",
@@ -174,9 +203,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "p3rla27ab",
           "numero": 6,
           "nome": "NUVOLA STORDENTE",
           "tipologia": "F",
@@ -185,9 +216,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "f91b4egkr",
           "numero": 7,
           "nome": "VUOTO",
           "tipologia": "F",
@@ -196,9 +229,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "igwu2rego",
           "numero": 8,
           "nome": "CALMA",
           "tipologia": "F",
@@ -207,9 +242,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "v0a2yaehl",
           "numero": 9,
           "nome": "NUVOLA STORDENTE",
           "tipologia": "F",
@@ -218,9 +255,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "41kqnagt2",
           "numero": 10,
           "nome": "NUVOLA MORTALE",
           "tipologia": "F",
@@ -229,7 +268,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -239,6 +279,7 @@
       "nome_lista": "ARTI DELLA GUARIGIONE",
       "incantesimi": [
         {
+          "id": "hraepvbl6",
           "numero": 1,
           "nome": "CURA 10",
           "tipologia": "A",
@@ -247,9 +288,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "cks7nibqz",
           "numero": 2,
           "nome": "CURAUSTIONII",
           "tipologia": "A",
@@ -258,9 +301,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "zp352pr10",
           "numero": 3,
           "nome": "RINFRANCA I",
           "tipologia": "A",
@@ -269,9 +314,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "oujwl0uqe",
           "numero": 4,
           "nome": "RIGENERA I",
           "tipologia": "A",
@@ -280,9 +327,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "s3h8ps4fm",
           "numero": 5,
           "nome": "CURA USTIONI II",
           "tipologia": "A",
@@ -291,9 +340,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "pww3t6apt",
           "numero": 6,
           "nome": "RISVEGLIO",
           "tipologia": "A",
@@ -302,9 +353,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "esfbekxg2",
           "numero": 7,
           "nome": "CURA 50",
           "tipologia": "A",
@@ -313,9 +366,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "eh4jeu4j8",
           "numero": 8,
           "nome": "CURA USTIONI III",
           "tipologia": "A",
@@ -324,9 +379,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "x2atb4g09",
           "numero": 9,
           "nome": "RINFRANCA III",
           "tipologia": "A",
@@ -335,9 +392,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "53i6b4i4k",
           "numero": 10,
           "nome": "RIGENERA III",
           "tipologia": "A",
@@ -346,7 +405,8 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -356,6 +416,7 @@
       "nome_lista": "ARTI NATURALI",
       "incantesimi": [
         {
+          "id": "u6yt0r4r7",
           "numero": 1,
           "nome": "RABDOMANZIA",
           "tipologia": "I",
@@ -364,9 +425,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "2pr0nrp2y",
           "numero": 2,
           "nome": "IGNIZIONE",
           "tipologia": "F",
@@ -375,9 +438,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "qhz95pptl",
           "numero": 3,
           "nome": "RESISTENZA AL CALORE",
           "tipologia": "A",
@@ -386,9 +451,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "ivm0z8zxq",
           "numero": 4,
           "nome": "RESISTENZA AL GELO",
           "tipologia": "A",
@@ -397,9 +464,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "yk3bwizjj",
           "numero": 5,
           "nome": "FORAGGIAMENTO",
           "tipologia": "I",
@@ -408,9 +477,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "376e8mwg3",
           "numero": 6,
           "nome": "STERILIZZAZIONE",
           "tipologia": "P",
@@ -419,9 +490,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "s2rrwlug4",
           "numero": 7,
           "nome": "RIPARO",
           "tipologia": "I",
@@ -430,9 +503,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "tgn0xty6t",
           "numero": 8,
           "nome": "TRAPPOLA",
           "tipologia": "F",
@@ -441,9 +516,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "n7huxud5p",
           "numero": 9,
           "nome": "METEOROLOGIA",
           "tipologia": "I",
@@ -452,9 +529,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "7gphujgs9",
           "numero": 10,
           "nome": "ECOPERCEZIONE",
           "tipologia": "I",
@@ -463,7 +542,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -473,6 +553,7 @@
       "nome_lista": "ASPETTI NATURALI",
       "incantesimi": [
         {
+          "id": "fbbx0obnt",
           "numero": 1,
           "nome": "MIMESI",
           "tipologia": "F",
@@ -481,9 +562,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "vbdq7us6e",
           "numero": 2,
           "nome": "OSCURITÀ",
           "tipologia": "F",
@@ -492,9 +575,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "u2nmmdeb8",
           "numero": 3,
           "nome": "GELO",
           "tipologia": "F",
@@ -503,9 +588,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "vfd128tgv",
           "numero": 4,
           "nome": "FURTIVITÀ",
           "tipologia": "F",
@@ -514,9 +601,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "rd08cu172",
           "numero": 5,
           "nome": "MIMETISMO",
           "tipologia": "F",
@@ -525,9 +614,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "zrcoxxg2x",
           "numero": 6,
           "nome": "LUCE",
           "tipologia": "F",
@@ -536,9 +627,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "j01s8m5ah",
           "numero": 7,
           "nome": "TENEBRE",
           "tipologia": "F",
@@ -547,9 +640,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "4z5yymdao",
           "numero": 8,
           "nome": "OMBRA",
           "tipologia": "F",
@@ -558,9 +653,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "w1ntl7dqr",
           "numero": 9,
           "nome": "FALSA PIANTA",
           "tipologia": "F",
@@ -569,9 +666,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "63xfy42cv",
           "numero": 10,
           "nome": "MENTE VUOTA",
           "tipologia": "U",
@@ -580,7 +679,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -590,6 +690,7 @@
       "nome_lista": "BOTANOMANZIA",
       "incantesimi": [
         {
+          "id": "r03n1idm0",
           "numero": 1,
           "nome": "BOTANICA",
           "tipologia": "I",
@@ -598,9 +699,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "2un1qej16",
           "numero": 2,
           "nome": "VIRDEOLINGUA",
           "tipologia": "A",
@@ -609,9 +712,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "b2neooy5u",
           "numero": 3,
           "nome": "EFFICACIA ISTANTANEA",
           "tipologia": "A",
@@ -620,9 +725,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "lbg0f4qbq",
           "numero": 4,
           "nome": "SINTESI",
           "tipologia": "A",
@@ -631,9 +738,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "zv5cycg6i",
           "numero": 5,
           "nome": "LOCALIZZA PIANTA",
           "tipologia": "P",
@@ -642,9 +751,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "afxaitgek",
           "numero": 6,
           "nome": "SELEZIONA ERBE",
           "tipologia": "A",
@@ -653,9 +764,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "mghnr3czk",
           "numero": 7,
           "nome": "MATURAZIONE RAPIDA",
           "tipologia": "F",
@@ -664,9 +777,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "ugz2lt9ok",
           "numero": 8,
           "nome": "MATURAZIONE ISTANTANEA",
           "tipologia": "A",
@@ -675,9 +790,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "rn447s9th",
           "numero": 9,
           "nome": "CRESCITA PIANTE",
           "tipologia": "F",
@@ -686,9 +803,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "r4por64v1",
           "numero": 10,
           "nome": "CONTROLLO PIANTE",
           "tipologia": "F",
@@ -697,7 +816,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -707,6 +827,7 @@
       "nome_lista": "CANTI DEL POTERE",
       "incantesimi": [
         {
+          "id": "kjqc2gojb",
           "numero": 1,
           "nome": "CANTO DI PACE",
           "tipologia": "F",
@@ -715,9 +836,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "l9pnoiwrt",
           "numero": 2,
           "nome": "CANTO CATENA",
           "tipologia": "F",
@@ -726,9 +849,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "41d3vkhio",
           "numero": 3,
           "nome": "CANTO STORDENTE",
           "tipologia": "F",
@@ -737,9 +862,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "oqxvxnn54",
           "numero": 4,
           "nome": "CANTOMUTO",
           "tipologia": "F",
@@ -748,9 +875,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "o4izf77yz",
           "numero": 5,
           "nome": "CANTODELSONNO",
           "tipologia": "F",
@@ -759,9 +888,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "pdqg81fbe",
           "numero": 6,
           "nome": "IPNOCANTO",
           "tipologia": "F",
@@ -770,9 +901,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "lwfw02qhk",
           "numero": 7,
           "nome": "CANTO DELLA PAURA",
           "tipologia": "F",
@@ -781,9 +914,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "l5lfb3nyr",
           "numero": 8,
           "nome": "INNO DI PACE",
           "tipologia": "F",
@@ -792,9 +927,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "66ywon865",
           "numero": 9,
           "nome": "INNO STORDENTE",
           "tipologia": "F",
@@ -803,9 +940,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "1jbx49rs6",
           "numero": 10,
           "nome": "CANTO DELL'OBLIO",
           "tipologia": "F",
@@ -814,7 +953,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -824,6 +964,7 @@
       "nome_lista": "CONOSCENZA",
       "incantesimi": [
         {
+          "id": "p5tivuu3u",
           "numero": 1,
           "nome": "STIMA PREZIOSI",
           "tipologia": "I",
@@ -832,9 +973,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "j69fcniku",
           "numero": 2,
           "nome": "STIMA VA LORE",
           "tipologia": "I",
@@ -843,9 +986,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "6yyjsu5s0",
           "numero": 3,
           "nome": "CAPTA MAGIA",
           "tipologia": "I",
@@ -854,9 +999,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "4ic8lmh5w",
           "numero": 4,
           "nome": "ANALISI ARCANA I",
           "tipologia": "I",
@@ -865,9 +1012,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "q4fw7ka8l",
           "numero": 5,
           "nome": "GRANDE ESTIMO",
           "tipologia": "I",
@@ -876,9 +1025,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "vqhdutagj",
           "numero": 6,
           "nome": "SIGNIFICANZA",
           "tipologia": "I",
@@ -887,9 +1038,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "9zmtx0bfw",
           "numero": 7,
           "nome": "CAPTA MALEFICIO",
           "tipologia": "I",
@@ -898,9 +1051,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "8vxhkkx0w",
           "numero": 8,
           "nome": "ORIGINE",
           "tipologia": "I",
@@ -909,9 +1064,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "k8g79z97l",
           "numero": 9,
           "nome": "ANALISI ARCANA II",
           "tipologia": "I",
@@ -920,9 +1077,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "at8er8k41",
           "numero": 10,
           "nome": "STORIA",
           "tipologia": "I",
@@ -931,7 +1090,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -941,6 +1101,7 @@
       "nome_lista": "CONTROLLO ANIMALE",
       "incantesimi": [
         {
+          "id": "tktppxpxi",
           "numero": 1,
           "nome": "SONNO ANIMALE",
           "tipologia": "F",
@@ -949,9 +1110,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "xc3mwi4v8",
           "numero": 2,
           "nome": "CELARSI",
           "tipologia": "E",
@@ -960,9 +1123,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "ga12ae7ra",
           "numero": 3,
           "nome": "EVOCAZIONEI",
           "tipologia": "F",
@@ -971,9 +1136,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "012j22wju",
           "numero": 4,
           "nome": "ZOOLINGUA",
           "tipologia": "U",
@@ -982,9 +1149,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "fs921v9az",
           "numero": 5,
           "nome": "CONTROLLO ANIMALE",
           "tipologia": "F",
@@ -993,9 +1162,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "v5aj5xepc",
           "numero": 6,
           "nome": "EVOCAZIONE III",
           "tipologia": "F",
@@ -1004,9 +1175,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "3bhnflewq",
           "numero": 7,
           "nome": "LOCALIZZA ANIMALE",
           "tipologia": "P",
@@ -1015,9 +1188,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "hn5bdgbn5",
           "numero": 8,
           "nome": "ADDOMESTICARE",
           "tipologia": "F",
@@ -1026,9 +1201,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "ypndc3ewo",
           "numero": 9,
           "nome": "EMPATIA ANIMALE",
           "tipologia": "P",
@@ -1037,9 +1214,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "2lr3k8wuk",
           "numero": 10,
           "nome": "EVOCAZIONE V",
           "tipologia": "F",
@@ -1048,7 +1227,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -1058,6 +1238,7 @@
       "nome_lista": "CONTROLLO SONICO",
       "incantesimi": [
         {
+          "id": "5ec39f9kx",
           "numero": 1,
           "nome": "LUNGO SUSSURRO",
           "tipologia": "F",
@@ -1066,9 +1247,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "wz1vs0kzd",
           "numero": 2,
           "nome": "SILENZIO",
           "tipologia": "F",
@@ -1077,9 +1260,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "e5s63a90m",
           "numero": 3,
           "nome": "ROBOANZA II",
           "tipologia": "F",
@@ -1088,9 +1273,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "qzcyx2qm3",
           "numero": 4,
           "nome": "CANTOI",
           "tipologia": "F",
@@ -1099,9 +1286,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "t2it53ggv",
           "numero": 5,
           "nome": "AUDIOMANZIA",
           "tipologia": "F",
@@ -1110,9 +1299,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "9uz13rwos",
           "numero": 6,
           "nome": "GRANDE CANTO",
           "tipologia": "F",
@@ -1121,9 +1312,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "k532594q5",
           "numero": 7,
           "nome": "SILENZIO",
           "tipologia": "F",
@@ -1132,9 +1325,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "3z2iw136n",
           "numero": 8,
           "nome": "ROBOANZA III",
           "tipologia": "F",
@@ -1143,9 +1338,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "othdnmttw",
           "numero": 9,
           "nome": "CANTO III",
           "tipologia": "F",
@@ -1154,9 +1351,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "9u43yh0lr",
           "numero": 10,
           "nome": "AUDIOMANZIA",
           "tipologia": "F",
@@ -1165,7 +1364,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -1175,6 +1375,7 @@
       "nome_lista": "CONTROLLO SPIRITUALE",
       "incantesimi": [
         {
+          "id": "w5i5sn05r",
           "numero": 1,
           "nome": "SONNO V",
           "tipologia": "F",
@@ -1183,9 +1384,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "lev3sqdgc",
           "numero": 2,
           "nome": "FASCINO",
           "tipologia": "F",
@@ -1194,9 +1397,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "ixw7123z5",
           "numero": 3,
           "nome": "SONNO VII",
           "tipologia": "F",
@@ -1205,9 +1410,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "92gack3gm",
           "numero": 4,
           "nome": "CONFUSIONE",
           "tipologia": "F",
@@ -1216,9 +1423,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "bltn84r7a",
           "numero": 5,
           "nome": "INFLUENZA",
           "tipologia": "F",
@@ -1227,9 +1436,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "6xyexwgbm",
           "numero": 6,
           "nome": "SONNO X",
           "tipologia": "F",
@@ -1238,9 +1449,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "a1jk5btos",
           "numero": 7,
           "nome": "BLOCCO",
           "tipologia": "F",
@@ -1249,9 +1462,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "4dhcz7xcz",
           "numero": 8,
           "nome": "COMANDO",
           "tipologia": "F",
@@ -1260,9 +1475,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "dn09evwo3",
           "numero": 9,
           "nome": "INCANTO",
           "tipologia": "F",
@@ -1271,9 +1488,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "88rq7d96c",
           "numero": 10,
           "nome": "COERCIZIONE",
           "tipologia": "F",
@@ -1282,7 +1501,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -1292,6 +1512,7 @@
       "nome_lista": "CREAZIONI",
       "incantesimi": [
         {
+          "id": "vjwqlguem",
           "numero": 1,
           "nome": "SOSTENTAMENTO",
           "tipologia": "U",
@@ -1300,9 +1521,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "gjwvnfd5w",
           "numero": 2,
           "nome": "MURO VENTO",
           "tipologia": "E",
@@ -1311,9 +1534,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "mfhzcpcq0",
           "numero": 3,
           "nome": "CREAZIONE ACQUA",
           "tipologia": "P",
@@ -1322,9 +1547,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "ie6kev3je",
           "numero": 4,
           "nome": "CREAZIONE CIBO",
           "tipologia": "P",
@@ -1333,9 +1560,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "j83g4h338",
           "numero": 5,
           "nome": "MURO ACQUEO",
           "tipologia": "E",
@@ -1344,9 +1573,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "f40vhzhp8",
           "numero": 6,
           "nome": "MURO LIGNEO",
           "tipologia": "E",
@@ -1355,9 +1586,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "mpwu0lvhl",
           "numero": 7,
           "nome": "MURO",
           "tipologia": "F",
@@ -1366,9 +1599,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "yuq6tl0oo",
           "numero": 8,
           "nome": "MURO GHIACCIO",
           "tipologia": "E",
@@ -1377,9 +1612,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "6bxpcjtq3",
           "numero": 9,
           "nome": "LEMBÁS",
           "tipologia": "I",
@@ -1388,9 +1625,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "5ndvuxwbk",
           "numero": 10,
           "nome": "FOSSATO",
           "tipologia": "E",
@@ -1399,7 +1638,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -1409,6 +1649,7 @@
       "nome_lista": "CRIOMANZIA",
       "incantesimi": [
         {
+          "id": "oajzoc8z7",
           "numero": 1,
           "nome": "CONGELAMENTO",
           "tipologia": "F",
@@ -1417,9 +1658,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "d6gevte82",
           "numero": 2,
           "nome": "RAFFREDDAMENTO",
           "tipologia": "F",
@@ -1428,9 +1671,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "drkutf7bv",
           "numero": 3,
           "nome": "MURO FREDDO",
           "tipologia": "E",
@@ -1439,9 +1684,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "zconiy5er",
           "numero": 4,
           "nome": "ARIA FREDDA",
           "tipologia": "E",
@@ -1450,9 +1697,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "3xrxqj017",
           "numero": 5,
           "nome": "GRANDE RAFFREDDAMENTO",
           "tipologia": "F",
@@ -1461,9 +1710,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "tqwes59i5",
           "numero": 6,
           "nome": "GELODARDO",
           "tipologia": "E",
@@ -1472,9 +1723,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "nzg6x4u2u",
           "numero": 7,
           "nome": "GELOSFERA",
           "tipologia": "E",
@@ -1483,9 +1736,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "6greh1i6k",
           "numero": 8,
           "nome": "MURO FREDDO",
           "tipologia": "E",
@@ -1494,9 +1749,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "lko21qf2p",
           "numero": 9,
           "nome": "GELOCUBO",
           "tipologia": "E",
@@ -1505,9 +1762,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "pvaxeg96q",
           "numero": 10,
           "nome": "GELOCERCHIO",
           "tipologia": "E",
@@ -1516,7 +1775,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -1526,6 +1786,7 @@
       "nome_lista": "DIFESA MAGICA",
       "incantesimi": [
         {
+          "id": "e7os6js4x",
           "numero": 1,
           "nome": "PROTEZIONE I",
           "tipologia": "P",
@@ -1534,9 +1795,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "f93s3b22b",
           "numero": 2,
           "nome": "AREA DI PROTEZIONE I",
           "tipologia": "P",
@@ -1545,9 +1808,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "abqkbthmk",
           "numero": 3,
           "nome": "NEUTRALIZZA MALEFICIO",
           "tipologia": "F",
@@ -1556,9 +1821,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "vovx1t54d",
           "numero": 4,
           "nome": "PROTEZIONE II",
           "tipologia": "P",
@@ -1567,9 +1834,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "bds85egmy",
           "numero": 5,
           "nome": "AREA DI PROTEZIONE II",
           "tipologia": "P",
@@ -1578,9 +1847,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "x7pshpmd0",
           "numero": 6,
           "nome": "ANNULLA MALEFICIO",
           "tipologia": "F",
@@ -1589,9 +1860,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "f911pwykg",
           "numero": 7,
           "nome": "NEUTRALIZZA MALEFICIO",
           "tipologia": "F",
@@ -1600,9 +1873,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "dzeg7pcvm",
           "numero": 8,
           "nome": "ANNULLA INCANTESIMO",
           "tipologia": "F",
@@ -1611,9 +1886,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "cygu4iehs",
           "numero": 9,
           "nome": "PROTEZIONE III",
           "tipologia": "P",
@@ -1622,9 +1899,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "u44naoynp",
           "numero": 10,
           "nome": "AREA DI PROTEZIONE III",
           "tipologia": "P",
@@ -1633,7 +1912,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": "La forzadi un maleficio, al fine dell' effettuazione di un TR, si considera essere pari al livello del personaggio che lo halanciato."
@@ -1643,6 +1923,7 @@
       "nome_lista": "ECOMANZIA",
       "incantesimi": [
         {
+          "id": "pnske7qfg",
           "numero": 1,
           "nome": "CAPTA TRAPPOLE",
           "tipologia": "P",
@@ -1651,9 +1932,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "9klhqhb3t",
           "numero": 2,
           "nome": "ECOPERCEZIONE",
           "tipologia": "I",
@@ -1662,9 +1945,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "5oi1eju6e",
           "numero": 3,
           "nome": "PREDIZIONE TEMPESTE",
           "tipologia": "I",
@@ -1673,9 +1958,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "3rgwz5vq4",
           "numero": 4,
           "nome": "METEREOLOGIA",
           "tipologia": "I",
@@ -1684,9 +1971,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "73l2qvcnl",
           "numero": 5,
           "nome": "ECOPERCEZIONE",
           "tipologia": "I",
@@ -1695,9 +1984,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "zy4860goc",
           "numero": 6,
           "nome": "BREZZA",
           "tipologia": "F",
@@ -1706,9 +1997,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "nzubj1g2l",
           "numero": 7,
           "nome": "PERCEZIONE DIFFERITA",
           "tipologia": "I",
@@ -1717,9 +2010,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "3b0bva06i",
           "numero": 8,
           "nome": "FOSCHIA",
           "tipologia": "I",
@@ -1728,9 +2023,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "kbe8itq7i",
           "numero": 9,
           "nome": "FOSCHIA",
           "tipologia": "I",
@@ -1739,9 +2036,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "44py3ztsv",
           "numero": 10,
           "nome": "METEREOLOGIA (1)",
           "tipologia": "I",
@@ -1750,7 +2049,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -1760,6 +2060,7 @@
       "nome_lista": "EMORIGENERAZIONE",
       "incantesimi": [
         {
+          "id": "rf53i5cq8",
           "numero": 1,
           "nome": "COAGULAZIONE",
           "tipologia": "A",
@@ -1768,9 +2069,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "3ej90zvdb",
           "numero": 2,
           "nome": "RIMARGINAZIONE",
           "tipologia": "A",
@@ -1779,9 +2082,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "cu973l9mc",
           "numero": 3,
           "nome": "CURA EMORRAGIE",
           "tipologia": "A",
@@ -1790,9 +2095,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "iu1zab1gl",
           "numero": 4,
           "nome": "COAGULAZIONE V",
           "tipologia": "A",
@@ -1801,9 +2108,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "p40wjmxea",
           "numero": 5,
           "nome": "RIMARGINAZIONE III",
           "tipologia": "A",
@@ -1812,9 +2121,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "fb8dx0ll9",
           "numero": 6,
           "nome": "CURA EMORRAGIE GRAVI",
           "tipologia": "A",
@@ -1823,9 +2134,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "kl8ovhowv",
           "numero": 7,
           "nome": "REUNIONE",
           "tipologia": "A",
@@ -1834,9 +2147,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "ziv1zqkz0",
           "numero": 8,
           "nome": "TRASFUSIONE",
           "tipologia": "A",
@@ -1845,9 +2160,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "l3d5qu5u8",
           "numero": 9,
           "nome": "GRANDE COAGULAZIONE",
           "tipologia": "A",
@@ -1856,9 +2173,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "isjfauhl2",
           "numero": 10,
           "nome": "GRANDE RIMARGINAZIONE",
           "tipologia": "A",
@@ -1867,7 +2186,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -1877,6 +2197,7 @@
       "nome_lista": "FISIORIGENERAZIONE",
       "incantesimi": [
         {
+          "id": "0i5b47tuq",
           "numero": 1,
           "nome": "CURA FERITA",
           "tipologia": "A",
@@ -1885,9 +2206,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "vw5smmg6t",
           "numero": 2,
           "nome": "CURA FRATTURA MINORE (A) Saldile osione. CURA FRATTURA MINORE",
           "tipologia": "A",
@@ -1896,9 +2219,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "bgpmzjkm2",
           "numero": 3,
           "nome": "CURA MUSCOLO",
           "tipologia": "A",
@@ -1907,9 +2232,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "kgmgrqavl",
           "numero": 4,
           "nome": "CURA CARTILAGINE",
           "tipologia": "A",
@@ -1918,9 +2245,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "gte0uwiyf",
           "numero": 5,
           "nome": "CURA TENDINE",
           "tipologia": "A",
@@ -1929,9 +2258,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "lw7uel186",
           "numero": 6,
           "nome": "CURA FRATTURA GRAVE",
           "tipologia": "A",
@@ -1940,9 +2271,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "ppp9n2naj",
           "numero": 7,
           "nome": "REUNIONE",
           "tipologia": "A",
@@ -1951,9 +2284,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "ak3dtxxl4",
           "numero": 8,
           "nome": "CURA DENTE",
           "tipologia": "A",
@@ -1962,9 +2297,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "w7253ctod",
           "numero": 9,
           "nome": "CURA CRANIO",
           "tipologia": "A",
@@ -1973,9 +2310,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "qicp6o22k",
           "numero": 10,
           "nome": "CURA ARTICOLAZIONE",
           "tipologia": "A",
@@ -1984,7 +2323,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -1994,6 +2334,7 @@
       "nome_lista": "FLUSSO DIRETTO",
       "incantesimi": [
         {
+          "id": "os40ygr8p",
           "numero": 1,
           "nome": "CONSERVAZIONE",
           "tipologia": "A",
@@ -2002,9 +2343,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "a44ljgce0",
           "numero": 2,
           "nome": "INTUIZIONE I",
           "tipologia": "I",
@@ -2013,9 +2356,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "mc12vp0u1",
           "numero": 3,
           "nome": "SOGNO I",
           "tipologia": "I",
@@ -2024,9 +2369,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "w795sygwe",
           "numero": 4,
           "nome": "BIOMANTENIMENTO",
           "tipologia": "I",
@@ -2035,9 +2382,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "chmyz3d3p",
           "numero": 5,
           "nome": "INTUIZIONE III",
           "tipologia": "I",
@@ -2046,9 +2395,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "bifr6mxh3",
           "numero": 6,
           "nome": "NECROLOGIA",
           "tipologia": "I",
@@ -2057,9 +2408,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "2c9p3yfh1",
           "numero": 7,
           "nome": "CONSERVAZIONE",
           "tipologia": "A",
@@ -2068,9 +2421,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "3uqovpmnl",
           "numero": 8,
           "nome": "INTUIZIONE V",
           "tipologia": "I",
@@ -2079,9 +2434,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "uxnt24398",
           "numero": 9,
           "nome": "SOGNO III",
           "tipologia": "I",
@@ -2090,9 +2447,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "xv8bjoisj",
           "numero": 10,
           "nome": "BIOMANTENIMENTO",
           "tipologia": "A",
@@ -2101,7 +2460,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -2111,6 +2471,7 @@
       "nome_lista": "FORMULE D'INCANTESIMO",
       "incantesimi": [
         {
+          "id": "t66vz24wa",
           "numero": 1,
           "nome": "SOSPENSIONE",
           "tipologia": "A",
@@ -2119,9 +2480,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "pii10lwvl",
           "numero": 2,
           "nome": "ANNULLA L'ESSENZA",
           "tipologia": "F",
@@ -2130,9 +2493,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "qqniw7jz7",
           "numero": 3,
           "nome": "RUNA I",
           "tipologia": "F",
@@ -2141,9 +2506,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "i51j2s3nm",
           "numero": 4,
           "nome": "ANNULLA IL FLUSSO",
           "tipologia": "F",
@@ -2152,9 +2519,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "e4rwrnh0r",
           "numero": 5,
           "nome": "RUNA II",
           "tipologia": "F",
@@ -2163,9 +2532,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "v9b73nonk",
           "numero": 6,
           "nome": "CANCELLA L'ESSENZA",
           "tipologia": "F",
@@ -2174,9 +2545,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "tqyfiyv05",
           "numero": 7,
           "nome": "RUNA III",
           "tipologia": "F",
@@ -2185,9 +2558,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "rpqrf0xt4",
           "numero": 8,
           "nome": "CANCELLA IL FLUSSO",
           "tipologia": "F",
@@ -2196,9 +2571,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "56kcg52ug",
           "numero": 9,
           "nome": "RUNA V",
           "tipologia": "F",
@@ -2207,9 +2584,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "1njbk6uwv",
           "numero": 10,
           "nome": "GLIFO DI STORDIMENTO",
           "tipologia": "F",
@@ -2218,7 +2597,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -2228,6 +2608,7 @@
       "nome_lista": "FORMULE DELL'ESSENZA",
       "incantesimi": [
         {
+          "id": "c74xsbri5",
           "numero": 1,
           "nome": "INDIVIDUAZIONE DELL'ESSENZA",
           "tipologia": "P",
@@ -2236,9 +2617,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "sajgby7kq",
           "numero": 2,
           "nome": "ANALISI TESTUALE I",
           "tipologia": "I",
@@ -2247,9 +2630,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "wct9ssq41",
           "numero": 3,
           "nome": "INDIVIDUAZIONE DEL FLUSSO",
           "tipologia": "P",
@@ -2258,9 +2643,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "bth4hrh41",
           "numero": 4,
           "nome": "INDIVIDUAZIONE DELL'INVISIBILE",
           "tipologia": "P",
@@ -2269,9 +2656,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "5tldx0cmv",
           "numero": 5,
           "nome": "INDIVIDUAZIONE DELLE TRAPPOLE",
           "tipologia": "P",
@@ -2280,9 +2669,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "h27n8erio",
           "numero": 6,
           "nome": "ANALISI TESTUALE II",
           "tipologia": "I",
@@ -2291,9 +2682,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "4otf04eyg",
           "numero": 7,
           "nome": "INDIVIDUAZIONE DEL MALE",
           "tipologia": "P",
@@ -2302,9 +2695,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "e9r5bjvv2",
           "numero": 8,
           "nome": "RITROVARE",
           "tipologia": "P",
@@ -2313,9 +2708,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "uvsp5uckc",
           "numero": 9,
           "nome": "INDIVIDUAZIONE DEL MAGICO",
           "tipologia": "P",
@@ -2324,9 +2721,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "maxo6wgk9",
           "numero": 10,
           "nome": "ANALISI",
           "tipologia": "I",
@@ -2335,7 +2734,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -2345,6 +2745,7 @@
       "nome_lista": "FORMULE DI MOVIMENTO",
       "incantesimi": [
         {
+          "id": "a4b9tojdj",
           "numero": 1,
           "nome": "CORSA PIETRA",
           "tipologia": "F",
@@ -2353,9 +2754,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "lyl3tj4f1",
           "numero": 2,
           "nome": "VIA RAMO",
           "tipologia": "F",
@@ -2364,9 +2767,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "c1kmrrkt7",
           "numero": 3,
           "nome": "NUOTO",
           "tipologia": "F",
@@ -2375,9 +2780,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "26f12n9ur",
           "numero": 4,
           "nome": "VIA SABBIA",
           "tipologia": "F",
@@ -2386,9 +2793,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "38ys3ke6g",
           "numero": 5,
           "nome": "VIA ACQUA",
           "tipologia": "F",
@@ -2397,9 +2806,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "t4iupnon8",
           "numero": 6,
           "nome": "CORSÁ RAMO",
           "tipologia": "F",
@@ -2408,9 +2819,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "a1mvbomkq",
           "numero": 7,
           "nome": "LIEVE PASSO",
           "tipologia": "F",
@@ -2419,9 +2832,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "g9nbzy9vo",
           "numero": 8,
           "nome": "SENZA TRACCIA",
           "tipologia": "F",
@@ -2430,9 +2845,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "31iwacf38",
           "numero": 9,
           "nome": "CORSA ACQUA",
           "tipologia": "F",
@@ -2441,9 +2858,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "fddejunqj",
           "numero": 10,
           "nome": "TORPEDINE",
           "tipologia": "F",
@@ -2452,7 +2871,8 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -2462,6 +2882,7 @@
       "nome_lista": "FORMULE DI PASSAGGIO",
       "incantesimi": [
         {
+          "id": "a291eeihb",
           "numero": 1,
           "nome": "CHIUSURA",
           "tipologia": "F",
@@ -2470,9 +2891,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "foymxgcr5",
           "numero": 2,
           "nome": "CHIUSURA MAGICA",
           "tipologia": "F",
@@ -2481,9 +2904,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "uoluyykxo",
           "numero": 3,
           "nome": "CONOSCENZA SERRATURE",
           "tipologia": "I",
@@ -2492,9 +2917,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "n8wns70z3",
           "numero": 4,
           "nome": "APERTURA I",
           "tipologia": "F",
@@ -2503,9 +2930,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "xnx6q6jf8",
           "numero": 5,
           "nome": "CONOSCENZA TRAPPOLE",
           "tipologia": "I",
@@ -2514,9 +2943,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "tpkqpyz88",
           "numero": 6,
           "nome": "NEUTRALIZZAZIONE I",
           "tipologia": "F",
@@ -2525,9 +2956,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "6hl6avhl8",
           "numero": 7,
           "nome": "DEFORMAPORTA",
           "tipologia": "F",
@@ -2536,9 +2969,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "cobat13as",
           "numero": 8,
           "nome": "LOGORIO",
           "tipologia": "F",
@@ -2547,9 +2982,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "psmgaihid",
           "numero": 9,
           "nome": "APERTURA II",
           "tipologia": "F",
@@ -2558,9 +2995,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "caaawm348",
           "numero": 10,
           "nome": "ANNULLAMENTO PORTA",
           "tipologia": "F",
@@ -2569,7 +3008,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -2579,6 +3019,7 @@
       "nome_lista": "FORMULE SENSORIE",
       "incantesimi": [
         {
+          "id": "eky1vumry",
           "numero": 1,
           "nome": "RAGGIO LUCE",
           "tipologia": "F",
@@ -2587,9 +3028,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "2o65rvnn7",
           "numero": 2,
           "nome": "DISCORSO I",
           "tipologia": "P",
@@ -2598,9 +3041,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "nruy16mbz",
           "numero": 3,
           "nome": "LUCE",
           "tipologia": "F",
@@ -2609,9 +3054,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "v22ikmk0b",
           "numero": 4,
           "nome": "QUIETE",
           "tipologia": "F",
@@ -2620,9 +3067,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "6i86dzn9c",
           "numero": 5,
           "nome": "BALENO",
           "tipologia": "F",
@@ -2631,9 +3080,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "8ttbr0pyj",
           "numero": 6,
           "nome": "DISCORSOII",
           "tipologia": "P",
@@ -2642,9 +3093,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "xp5oxl4vw",
           "numero": 7,
           "nome": "LAMPO",
           "tipologia": "F",
@@ -2653,9 +3106,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "l006w95ci",
           "numero": 8,
           "nome": "SILENZIO",
           "tipologia": "F",
@@ -2664,9 +3119,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "yk2ydevf5",
           "numero": 9,
           "nome": "ILLUMINAZIONE",
           "tipologia": "F",
@@ -2675,9 +3132,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "xr0eofwjx",
           "numero": 10,
           "nome": "LUCE DIFFERITA",
           "tipologia": "F",
@@ -2686,7 +3145,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -2696,6 +3156,7 @@
       "nome_lista": "FOTOMANZIA",
       "incantesimi": [
         {
+          "id": "exwdr0mc2",
           "numero": 1,
           "nome": "RAGGIO LUCE",
           "tipologia": "F",
@@ -2704,9 +3165,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "80hlqr4z1",
           "numero": 2,
           "nome": "LAMPO",
           "tipologia": "E",
@@ -2715,9 +3178,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "dpy0e22e1",
           "numero": 3,
           "nome": "LUCE I",
           "tipologia": "F",
@@ -2726,9 +3191,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "zj35cdzps",
           "numero": 4,
           "nome": "PENOMBRA",
           "tipologia": "F",
@@ -2737,9 +3204,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "nhtt5l7qs",
           "numero": 5,
           "nome": "BALENO",
           "tipologia": "F",
@@ -2748,9 +3217,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "slrtrvc9w",
           "numero": 6,
           "nome": "BUIO",
           "tipologia": "F",
@@ -2759,9 +3230,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "oofz67asw",
           "numero": 7,
           "nome": "LUCE V",
           "tipologia": "F",
@@ -2770,9 +3243,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "03590qp25",
           "numero": 8,
           "nome": "LAMPO",
           "tipologia": "E",
@@ -2781,9 +3256,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "ox02aq3aq",
           "numero": 9,
           "nome": "BUIO",
           "tipologia": "F",
@@ -2792,9 +3269,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "wk7ixzqzr",
           "numero": 10,
           "nome": "FULMINE",
           "tipologia": "E",
@@ -2803,7 +3282,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -2813,6 +3293,7 @@
       "nome_lista": "GEOMANZIA",
       "incantesimi": [
         {
+          "id": "gakpyt52b",
           "numero": 1,
           "nome": "CORDA MAGICA",
           "tipologia": "F",
@@ -2821,9 +3302,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "zh7vfmvdi",
           "numero": 2,
           "nome": "SMOTTAMENTO",
           "tipologia": "F",
@@ -2832,9 +3315,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "l8bxg9666",
           "numero": 3,
           "nome": "POLVERIZZA",
           "tipologia": "F",
@@ -2843,9 +3328,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "eh1avv04r",
           "numero": 4,
           "nome": "MURO",
           "tipologia": "E",
@@ -2854,9 +3341,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "k82ke5177",
           "numero": 5,
           "nome": "FRATTURA",
           "tipologia": "F",
@@ -2865,9 +3354,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "t0v6kxcpx",
           "numero": 6,
           "nome": "VALLO",
           "tipologia": "E",
@@ -2876,9 +3367,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "gn7jxrpws",
           "numero": 7,
           "nome": "PIETRA / TERRA",
           "tipologia": "F",
@@ -2887,9 +3380,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "tiktyv8xf",
           "numero": 8,
           "nome": "GRANDE MURO",
           "tipologia": "E",
@@ -2898,9 +3393,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "dx6eyundr",
           "numero": 9,
           "nome": "TERRA/FANGO",
           "tipologia": "F",
@@ -2909,9 +3406,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "hxrcb8jeq",
           "numero": 10,
           "nome": "TERRA/PIETRA",
           "tipologia": "F",
@@ -2920,7 +3419,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -2930,6 +3430,7 @@
       "nome_lista": "IDROMANZIA",
       "incantesimi": [
         {
+          "id": "7smw6xj8r",
           "numero": 1,
           "nome": "CONDENSAZIONE",
           "tipologia": "F",
@@ -2938,9 +3439,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "814f49g14",
           "numero": 2,
           "nome": "FOSCHIA",
           "tipologia": "F",
@@ -2949,9 +3452,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "dlaz1zj0b",
           "numero": 3,
           "nome": "MURO LIQUIDO",
           "tipologia": "E",
@@ -2960,9 +3465,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "0ae9dhne2",
           "numero": 4,
           "nome": "ACQUADARDO",
           "tipologia": "E",
@@ -2971,9 +3478,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "dip6gxex5",
           "numero": 5,
           "nome": "SCHIARITA",
           "tipologia": "F",
@@ -2982,9 +3491,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "7ab9ba4ds",
           "numero": 6,
           "nome": "BONACCIA",
           "tipologia": "F",
@@ -2993,9 +3504,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "ixom9sntk",
           "numero": 7,
           "nome": "VALLO LIQUIDO",
           "tipologia": "E",
@@ -3004,9 +3517,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "kww35jsx8",
           "numero": 8,
           "nome": "DISTILLAZIONE",
           "tipologia": "F",
@@ -3015,9 +3530,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "jshgyitm9",
           "numero": 9,
           "nome": "ACQUA DARDO",
           "tipologia": "E",
@@ -3026,9 +3543,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "l5cvklfcn",
           "numero": 10,
           "nome": "PIOGGIA",
           "tipologia": "F",
@@ -3037,7 +3556,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -3047,6 +3567,7 @@
       "nome_lista": "ILLUSIONI",
       "incantesimi": [
         {
+          "id": "ucaa6cu1z",
           "numero": 1,
           "nome": "MIRAGGIO UDITIVO",
           "tipologia": "E",
@@ -3055,9 +3576,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "emvm32oyz",
           "numero": 2,
           "nome": "IMPERCETTIBILITÀ",
           "tipologia": "E",
@@ -3066,9 +3589,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "sz4db88qg",
           "numero": 3,
           "nome": "MIRAGGIO",
           "tipologia": "E",
@@ -3077,9 +3602,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "6qdhmqbdb",
           "numero": 4,
           "nome": "INVISIBILITÀ",
           "tipologia": "E",
@@ -3088,9 +3615,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "9of19iy71",
           "numero": 5,
           "nome": "MIRAGGIO SENSORIO",
           "tipologia": "E",
@@ -3099,9 +3628,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "ndlrvvk2b",
           "numero": 6,
           "nome": "ILLUSIONE II",
           "tipologia": "E",
@@ -3110,9 +3641,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "fhev684hz",
           "numero": 7,
           "nome": "FANTASMA I",
           "tipologia": "E",
@@ -3121,9 +3654,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "qazmf54zy",
           "numero": 8,
           "nome": "INVISIBILITA",
           "tipologia": "E",
@@ -3132,9 +3667,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "d6caqvqez",
           "numero": 9,
           "nome": "ILLUSIONE III",
           "tipologia": "E",
@@ -3143,9 +3680,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "olqlhztka",
           "numero": 10,
           "nome": "FANTASMA II",
           "tipologia": "E",
@@ -3154,7 +3693,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": "Questi incantesimi, in realtà, creano una mutazione fisica che influisce sui sensi. Non sono quindi permessi Tiri Resistenza. La realta magica dell'illusione può essere svelata solo con l'uso di altre magie (di Individuazione del magico), oppure da un Tiro Percezione."
@@ -3164,6 +3704,7 @@
       "nome_lista": "INDAGINE",
       "incantesimi": [
         {
+          "id": "6d07tm901",
           "numero": 1,
           "nome": "CAPTA FLUSSO",
           "tipologia": "P",
@@ -3172,9 +3713,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "8we76hrug",
           "numero": 2,
           "nome": "CAPTA ESSENZA",
           "tipologia": "P",
@@ -3183,9 +3726,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "b3v7y0ltc",
           "numero": 3,
           "nome": "CAPTA IL MALE",
           "tipologia": "P",
@@ -3194,9 +3739,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "81bhcnhg0",
           "numero": 4,
           "nome": "CAPTA MALEFICIO",
           "tipologia": "P",
@@ -3205,9 +3752,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "qn0knqi0m",
           "numero": 5,
           "nome": "INDIVIDUAZIONE",
           "tipologia": "P",
@@ -3216,9 +3765,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "af4qdbkdx",
           "numero": 6,
           "nome": "CAPTA TRAPPOLE",
           "tipologia": "P",
@@ -3227,9 +3778,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "fzb9fb71k",
           "numero": 7,
           "nome": "INDIVIDUAZIONE",
           "tipologia": "P",
@@ -3238,9 +3791,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "dyet53fwq",
           "numero": 8,
           "nome": "CAPTA INVISIBILE",
           "tipologia": "P",
@@ -3249,9 +3804,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "osq1gung4",
           "numero": 9,
           "nome": "INDIVIDUAZIONE",
           "tipologia": "P",
@@ -3260,9 +3817,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "a58knuo4c",
           "numero": 10,
           "nome": "ANALISI MALEFICIO",
           "tipologia": "I",
@@ -3271,7 +3830,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -3281,6 +3841,7 @@
       "nome_lista": "MANIPOLAZIONE",
       "incantesimi": [
         {
+          "id": "mjchclt4v",
           "numero": 1,
           "nome": "VIBRAZIONI",
           "tipologia": "F",
@@ -3289,9 +3850,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "kcds5gaie",
           "numero": 2,
           "nome": "SCUDO",
           "tipologia": "F",
@@ -3300,9 +3863,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "do0024g0v",
           "numero": 3,
           "nome": "PRESSIONE",
           "tipologia": "F",
@@ -3311,9 +3876,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "r7olle40l",
           "numero": 4,
           "nome": "TELECINESI",
           "tipologia": "F",
@@ -3322,9 +3889,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "v47mcbfb9",
           "numero": 5,
           "nome": "DEFLESSIONE",
           "tipologia": "F",
@@ -3333,9 +3902,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "nzq8h1f8m",
           "numero": 6,
           "nome": "VIBRAZIONI",
           "tipologia": "F",
@@ -3344,9 +3915,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "b24rny6w5",
           "numero": 7,
           "nome": "DEVIA LAMA",
           "tipologia": "P",
@@ -3355,9 +3928,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "ulbf30x76",
           "numero": 8,
           "nome": "PRESSIONE",
           "tipologia": "F",
@@ -3366,9 +3941,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "9lawibquh",
           "numero": 9,
           "nome": "TELECINESI",
           "tipologia": "F",
@@ -3377,9 +3954,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "ybpgysnv5",
           "numero": 10,
           "nome": "MIRA",
           "tipologia": "F",
@@ -3388,7 +3967,8 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -3398,6 +3978,7 @@
       "nome_lista": "MOTI NATURALI",
       "incantesimi": [
         {
+          "id": "8bwp3u3aa",
           "numero": 1,
           "nome": "VIA RAMO",
           "tipologia": "F",
@@ -3406,9 +3987,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "70cbhhu4l",
           "numero": 2,
           "nome": "VIA ACQUA",
           "tipologia": "F",
@@ -3417,9 +4000,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "ayxbk0fx5",
           "numero": 3,
           "nome": "NUOTO",
           "tipologia": "F",
@@ -3428,9 +4013,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "dnapzzg4a",
           "numero": 4,
           "nome": "VIA SABBIA",
           "tipologia": "F",
@@ -3439,9 +4026,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "wb0fci80p",
           "numero": 5,
           "nome": "FUSIONEORGANICA",
           "tipologia": "F",
@@ -3450,9 +4039,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "z52cabnqr",
           "numero": 6,
           "nome": "CORSA RAMO",
           "tipologia": "F",
@@ -3461,9 +4052,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "ikz8kswh2",
           "numero": 7,
           "nome": "CORSA PIETRA",
           "tipologia": "F",
@@ -3472,9 +4065,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "m99n929vh",
           "numero": 8,
           "nome": "CORSA ACQUA",
           "tipologia": "F",
@@ -3483,9 +4078,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "bpjzgh3xj",
           "numero": 9,
           "nome": "VIA VENTO",
           "tipologia": "F",
@@ -3494,9 +4091,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "fcx9s4vr0",
           "numero": 10,
           "nome": "TORPEDINE",
           "tipologia": "F",
@@ -3505,7 +4104,8 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -3515,6 +4115,7 @@
       "nome_lista": "PACIFICAZIONE",
       "incantesimi": [
         {
+          "id": "abe5b8ibk",
           "numero": 1,
           "nome": "PACE I",
           "tipologia": "F",
@@ -3523,9 +4124,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "3nn5o28wp",
           "numero": 2,
           "nome": "PACE II",
           "tipologia": "F",
@@ -3534,9 +4137,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "vo8vbfm0z",
           "numero": 3,
           "nome": "BLOCCO",
           "tipologia": "F",
@@ -3545,9 +4150,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "xkkqizlls",
           "numero": 4,
           "nome": "PACE A VISTA",
           "tipologia": "F",
@@ -3556,9 +4163,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "s1yojsqht",
           "numero": 5,
           "nome": "STORDIMENTO",
           "tipologia": "F",
@@ -3567,9 +4176,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "3d00pzyh7",
           "numero": 6,
           "nome": "PACE III",
           "tipologia": "F",
@@ -3578,9 +4189,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "1b6leu77y",
           "numero": 7,
           "nome": "PACE IV",
           "tipologia": "F",
@@ -3589,9 +4202,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "b0u7nad0i",
           "numero": 8,
           "nome": "SONNO",
           "tipologia": "F",
@@ -3600,9 +4215,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "rsj90cfax",
           "numero": 9,
           "nome": "PACE V",
           "tipologia": "F",
@@ -3611,9 +4228,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "ofylwni46",
           "numero": 10,
           "nome": "CECITA",
           "tipologia": "F",
@@ -3622,7 +4241,8 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -3632,6 +4252,7 @@
       "nome_lista": "PERCEZIONE DELL'ESSENZA",
       "incantesimi": [
         {
+          "id": "k92qmp10u",
           "numero": 1,
           "nome": "FAMILIARE",
           "tipologia": "P",
@@ -3640,9 +4261,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "p710hnp0y",
           "numero": 2,
           "nome": "PRESENZA",
           "tipologia": "P",
@@ -3651,9 +4274,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "h9x6yn5lp",
           "numero": 3,
           "nome": "ASCOLTO",
           "tipologia": "A",
@@ -3662,9 +4287,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "szwr49kza",
           "numero": 4,
           "nome": "PRESENZA III",
           "tipologia": "P",
@@ -3673,9 +4300,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "pxp3zghfs",
           "numero": 5,
           "nome": "ASCOLTO REMOTO",
           "tipologia": "A",
@@ -3684,9 +4313,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "sksmn7ydf",
           "numero": 6,
           "nome": "SORVEGLIANZA",
           "tipologia": "A",
@@ -3695,9 +4326,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "heyf66dv6",
           "numero": 7,
           "nome": "VISIONE REMOTA",
           "tipologia": "A",
@@ -3706,9 +4339,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "aw7mtnmbq",
           "numero": 8,
           "nome": "OSSERVAZIONE",
           "tipologia": "A",
@@ -3717,9 +4352,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "eqs6jsqv2",
           "numero": 9,
           "nome": "PRESENZA V",
           "tipologia": "P",
@@ -3728,9 +4365,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "0gzeemjt0",
           "numero": 10,
           "nome": "TELEPATIA",
           "tipologia": "P",
@@ -3739,7 +4378,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -3749,6 +4389,7 @@
       "nome_lista": "PIROMANZIA",
       "incantesimi": [
         {
+          "id": "af7vghtae",
           "numero": 1,
           "nome": "EBOLLIZIONE",
           "tipologia": "F",
@@ -3757,9 +4398,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "dyhcrgtrt",
           "numero": 2,
           "nome": "RISCALDAMENTO",
           "tipologia": "F",
@@ -3768,9 +4411,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "2bblybt0w",
           "numero": 3,
           "nome": "COMBUSTIONE",
           "tipologia": "F",
@@ -3779,9 +4424,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "xowiomcoj",
           "numero": 4,
           "nome": "MURO FIAMMA",
           "tipologia": "E",
@@ -3790,9 +4437,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "00fy9uno0",
           "numero": 5,
           "nome": "GRANDE RISCALDAMENTO",
           "tipologia": "F",
@@ -3801,9 +4450,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "jotlepxsu",
           "numero": 6,
           "nome": "PIRODARDO",
           "tipologia": "E",
@@ -3812,9 +4463,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "qmfiwhsaf",
           "numero": 7,
           "nome": "PIROCUBO",
           "tipologia": "E",
@@ -3823,9 +4476,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "cn5go9z5s",
           "numero": 8,
           "nome": "PIROSFERA",
           "tipologia": "E",
@@ -3834,9 +4489,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "h3cseqsyj",
           "numero": 9,
           "nome": "PIROAURA",
           "tipologia": "E",
@@ -3845,9 +4502,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "jcpavflvy",
           "numero": 10,
           "nome": "CERCHIOFIAMMA",
           "tipologia": "E",
@@ -3856,7 +4515,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -3866,6 +4526,7 @@
       "nome_lista": "PONTE ARCANO",
       "incantesimi": [
         {
+          "id": "113xgo2x4",
           "numero": 1,
           "nome": "BALZO",
           "tipologia": "A",
@@ -3874,9 +4535,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "s0qpntx0a",
           "numero": 2,
           "nome": "ATTERAGGIO",
           "tipologia": "A",
@@ -3885,9 +4548,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "zmi3c0kvi",
           "numero": 3,
           "nome": "ALLONTANAMENTO",
           "tipologia": "A",
@@ -3896,9 +4561,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "duuzs71uh",
           "numero": 4,
           "nome": "LEVITAZIONE",
           "tipologia": "A",
@@ -3907,9 +4574,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "eqtepfnxn",
           "numero": 5,
           "nome": "VOLO",
           "tipologia": "A",
@@ -3918,9 +4587,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "zk7ub9t9e",
           "numero": 6,
           "nome": "PORTALE",
           "tipologia": "A",
@@ -3929,9 +4600,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "t4drskcd4",
           "numero": 7,
           "nome": "VOLO",
           "tipologia": "A",
@@ -3940,9 +4613,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "911hiae14",
           "numero": 8,
           "nome": "LUNGA VIA",
           "tipologia": "A",
@@ -3951,9 +4626,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "sognwqoas",
           "numero": 9,
           "nome": "ALLONTANAMENTO",
           "tipologia": "A",
@@ -3962,9 +4639,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "hlbpxqbuf",
           "numero": 10,
           "nome": "TELETRASPORTO",
           "tipologia": "A",
@@ -3973,7 +4652,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -3983,6 +4663,7 @@
       "nome_lista": "PROTEZIONI",
       "incantesimi": [
         {
+          "id": "3ooag044g",
           "numero": 1,
           "nome": "PREGHIERA",
           "tipologia": "A",
@@ -3991,9 +4672,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "urxffstav",
           "numero": 2,
           "nome": "BENEDIZIONE",
           "tipologia": "A",
@@ -4002,9 +4685,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "gcckd0pup",
           "numero": 3,
           "nome": "RESISTENZA",
           "tipologia": "A",
@@ -4013,9 +4698,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "rcwlunrjn",
           "numero": 4,
           "nome": "RESISTENZA AGLI ELEMENTI",
           "tipologia": "A",
@@ -4024,9 +4711,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "2nhg4me6c",
           "numero": 5,
           "nome": "FALSA PIANTA",
           "tipologia": "E",
@@ -4035,9 +4724,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "im02aucg7",
           "numero": 6,
           "nome": "RESPIRAZIONE SUBACQUEA",
           "tipologia": "A",
@@ -4046,9 +4737,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "z8x0w6y5w",
           "numero": 7,
           "nome": "FALSO ANIMALE",
           "tipologia": "E",
@@ -4057,9 +4750,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "zgvz5i6d5",
           "numero": 8,
           "nome": "OMBRA",
           "tipologia": "F",
@@ -4068,9 +4763,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "s5lxo03r4",
           "numero": 9,
           "nome": "DEVIAZIONE ORGANICA",
           "tipologia": "F",
@@ -4079,9 +4776,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "1s7mhwq0r",
           "numero": 10,
           "nome": "REPULSIONE ORGANICA",
           "tipologia": "F",
@@ -4090,7 +4789,8 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -4100,6 +4800,7 @@
       "nome_lista": "PURIFICAZIONI",
       "incantesimi": [
         {
+          "id": "p0fx3d2tp",
           "numero": 1,
           "nome": "PURIFICA CIBO/ACQUA",
           "tipologia": "P",
@@ -4108,9 +4809,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "mahifqg6c",
           "numero": 2,
           "nome": "INDIVIDUA MALATTIA",
           "tipologia": "P",
@@ -4119,9 +4822,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "r9o94a611",
           "numero": 3,
           "nome": "CURA MALATTIA",
           "tipologia": "P",
@@ -4130,9 +4835,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "96rdcshr8",
           "numero": 4,
           "nome": "INDIVIDUA VELENO",
           "tipologia": "P",
@@ -4141,9 +4848,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "cnadfwcsb",
           "numero": 5,
           "nome": "CURA VELENO",
           "tipologia": "P",
@@ -4152,9 +4861,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "an51ad79j",
           "numero": 6,
           "nome": "RESISTENZA MALATTIE",
           "tipologia": "A",
@@ -4163,9 +4874,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "ynxqr4e6w",
           "numero": 7,
           "nome": "RESISTENZA VELENO",
           "tipologia": "A",
@@ -4174,9 +4887,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "ua6ex826h",
           "numero": 8,
           "nome": "NEUTRALIZZA MALATTIA",
           "tipologia": "P",
@@ -4185,9 +4900,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "t1zlj0reo",
           "numero": 9,
           "nome": "NEUTRALIZZA VELENO",
           "tipologia": "P",
@@ -4196,9 +4913,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "3ym18lll7",
           "numero": 10,
           "nome": "CURA PAZZIA",
           "tipologia": "P",
@@ -4207,7 +4926,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -4217,6 +4937,7 @@
       "nome_lista": "RIGENERAZIONE ORGANICA",
       "incantesimi": [
         {
+          "id": "u8kfhskdw",
           "numero": 1,
           "nome": "CURA NASO",
           "tipologia": "A",
@@ -4225,9 +4946,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "u9z5v59wd",
           "numero": 2,
           "nome": "NEUROCURA",
           "tipologia": "A",
@@ -4236,9 +4959,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "ph1iczfqg",
           "numero": 3,
           "nome": "CURA ORECCHIO MINORE",
           "tipologia": "A",
@@ -4247,9 +4972,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "3atmtzatn",
           "numero": 4,
           "nome": "CURA OCCHIO MINORE",
           "tipologia": "A",
@@ -4258,9 +4985,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "l8thqqdl8",
           "numero": 5,
           "nome": "NEUROGUARIGIONE",
           "tipologia": "A",
@@ -4269,9 +4998,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "ogfty8gw8",
           "numero": 6,
           "nome": "CURA ORECCHIO",
           "tipologia": "A",
@@ -4280,9 +5011,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "ues8j2a4y",
           "numero": 7,
           "nome": "REUNIONE",
           "tipologia": "A",
@@ -4291,9 +5024,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "stqm7xjeh",
           "numero": 8,
           "nome": "CURA OCCHIO",
           "tipologia": "A",
@@ -4302,9 +5037,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "9jl4akey4",
           "numero": 9,
           "nome": "NEURORIGENERAZIONE",
           "tipologia": "A",
@@ -4313,9 +5050,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "wg7fpooxr",
           "numero": 10,
           "nome": "RIGENERAORGANO",
           "tipologia": "A",
@@ -4324,7 +5063,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -4334,6 +5074,7 @@
       "nome_lista": "SAPIENZA",
       "incantesimi": [
         {
+          "id": "8hyx6tpyg",
           "numero": 1,
           "nome": "STUDIO",
           "tipologia": "A",
@@ -4342,9 +5083,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "z6w88exlu",
           "numero": 2,
           "nome": "I M PA R A LINGUAGGIO II",
           "tipologia": "A",
@@ -4353,9 +5096,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "7ie4qbvs7",
           "numero": 3,
           "nome": "SINTESI TESTUALE ()",
           "tipologia": "I",
@@ -4364,9 +5109,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "h760i4cqk",
           "numero": 4,
           "nome": "SAPIENZA MENTALE I",
           "tipologia": "P",
@@ -4375,9 +5122,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "dq285lmhn",
           "numero": 5,
           "nome": "STUDIO II",
           "tipologia": "U",
@@ -4386,9 +5135,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "wcv1b6n7u",
           "numero": 6,
           "nome": "INTERPRETAZIONÉ",
           "tipologia": "P",
@@ -4397,9 +5148,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "nrqds2r2h",
           "numero": 7,
           "nome": "IMPARA LINGUAGGIO III",
           "tipologia": "U",
@@ -4408,9 +5161,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "5mgstvwjg",
           "numero": 8,
           "nome": "SAPIENZA MENTALE",
           "tipologia": "P",
@@ -4419,9 +5174,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "g56lilicm",
           "numero": 9,
           "nome": "STUDIO III",
           "tipologia": "U",
@@ -4430,9 +5187,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "pgqwxd8jw",
           "numero": 10,
           "nome": "ANALISI TESTUALE",
           "tipologia": "I",
@@ -4441,7 +5200,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -4451,6 +5211,7 @@
       "nome_lista": "SVILUPPO FISICO",
       "incantesimi": [
         {
+          "id": "mpkxct5ly",
           "numero": 1,
           "nome": "RESISTENZA AL CALORE",
           "tipologia": "A",
@@ -4459,9 +5220,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "5eu97m6h8",
           "numero": 2,
           "nome": "RESISTENZA AL FREDDO",
           "tipologia": "A",
@@ -4470,9 +5233,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "kenen6qjw",
           "numero": 3,
           "nome": "IPERUDITO",
           "tipologia": "A",
@@ -4481,9 +5246,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "wdwoqrx0r",
           "numero": 4,
           "nome": "EQUILIBRIO",
           "tipologia": "A",
@@ -4492,9 +5259,11 @@
           "istantaneo": true,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "6cei63oyn",
           "numero": 5,
           "nome": "INFRAVISIONE",
           "tipologia": "A",
@@ -4503,9 +5272,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "3c9beg2k9",
           "numero": 6,
           "nome": "PANVISIONE",
           "tipologia": "A",
@@ -4514,9 +5285,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "3pejsd8ln",
           "numero": 7,
           "nome": "POTENZA VOCALE",
           "tipologia": "A",
@@ -4525,9 +5298,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "jyo6maax5",
           "numero": 8,
           "nome": "IDROVISIONE",
           "tipologia": "U",
@@ -4536,9 +5311,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "bq4pnz32s",
           "numero": 9,
           "nome": "IDROPNEUMIA",
           "tipologia": "U",
@@ -4547,9 +5324,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "f4lnsap7v",
           "numero": 10,
           "nome": "AEROPNEUMIA",
           "tipologia": "U",
@@ -4558,7 +5337,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null
@@ -4568,6 +5348,7 @@
       "nome_lista": "TOPOMANZIA",
       "incantesimi": [
         {
+          "id": "5v52uajyl",
           "numero": 1,
           "nome": "DIREZIONE",
           "tipologia": "I",
@@ -4576,9 +5357,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "rvyuykp2b",
           "numero": 2,
           "nome": "INDIVIDUAZIONE TRAPPOLE",
           "tipologia": "P",
@@ -4587,9 +5370,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "t7ge7279s",
           "numero": 3,
           "nome": "RINTRACCIA",
           "tipologia": "I",
@@ -4598,9 +5383,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "w0p1hdgla",
           "numero": 4,
           "nome": "VOCE CAMMINO",
           "tipologia": "I",
@@ -4609,9 +5396,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "kqieanio2",
           "numero": 5,
           "nome": "ORIENTAMENTO",
           "tipologia": "I",
@@ -4620,9 +5409,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "x24jdycbt",
           "numero": 6,
           "nome": "CONOSCENZA DELLE TRACCE",
           "tipologia": "I",
@@ -4631,9 +5422,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "scini83kv",
           "numero": 7,
           "nome": "CAPTA IMBOSCATA",
           "tipologia": "P",
@@ -4642,9 +5435,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "5r940is08",
           "numero": 8,
           "nome": "PSICOGNOSIA",
           "tipologia": "I",
@@ -4653,9 +5448,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "epp0a0fa8",
           "numero": 9,
           "nome": "ORIENTAMENTO",
           "tipologia": "I",
@@ -4664,9 +5461,11 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         },
         {
+          "id": "61kx80d0k",
           "numero": 10,
           "nome": "ZOOLINGUA",
           "tipologia": "A",
@@ -4675,7 +5474,8 @@
           "istantaneo": false,
           "efficacia": "",
           "durata": "",
-          "raggio_azione": ""
+          "raggio_azione": "",
+          "attivo": true
         }
       ],
       "note": null

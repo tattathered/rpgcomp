@@ -3,6 +3,7 @@ import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
 import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
 import { getAvailableSpellLists } from '../../../utils/magicHelpers';
 import gradiLingue from '../../../data/TGP-1-gradi_conoscenze_lingue.json';
+import secondarySkillsList from '../../../data/Tabella-abilita_secondarie.json';
 
 // Nuove tabelle relazionali normalizzate
 import languagesData from '../../../data/languages.json';
@@ -17,7 +18,9 @@ import {
   fmt,
   getTgp4PoolSize,
   getTb6PoolSize,
-  getRaceId
+  getRaceId,
+  getConsolidatedSecondarySkills,
+  getTgp4CategoryKeyForSecondary
 } from '../../../utils/skillHelpers';
 
 const TGP4_POOLS = [
@@ -100,6 +103,12 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
     return initial;
   });
   const [tgp4Transfers, setTgp4Transfers] = useState(characterData.tgp4Transfers || []);
+  const [tgp4SecondarySkillsDistribution, setTgp4SecondarySkillsDistribution] = useState(() => {
+    return characterData.level1SecondarySkillsTgp4 || {};
+  });
+  const [newSecondarySkills, setNewSecondarySkills] = useState(() => {
+    return characterData.newSecondarySkills || [];
+  });
 
   const [selectedNewList, setSelectedNewList] = useState('');
   const [spellAttemptStatus, setSpellAttemptStatus] = useState(() => characterData.level1SpellAttemptStatus || 'none');
@@ -190,7 +199,7 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
       if (normName === 'resistenza fisica') {
         state['Resistenza fisica'].spentOnSkills += getTgp4Cost(ranks);
       } else if (normName === 'percezione') {
-        state['Percezione'].spentOnSkills += ranks; // 1:1 cost
+        state['Percezione'].spentOnSkills += getTgp4Cost(ranks);
       } else {
         const cat = s.categoria?.toLowerCase()?.trim();
         if (cat === 'di manovra e movimento') {
@@ -215,6 +224,26 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
     const langSpent = Object.values(characterData.background?.languages || {}).reduce((sum, l) => sum + (l.addedLivello1 || 0), 0);
     state['Lingue'].spentOnSkills = langSpent;
 
+    // Add secondary skills spent points (1:1 cost)
+    Object.keys(tgp4SecondarySkillsDistribution).forEach(name => {
+      const ranks = tgp4SecondarySkillsDistribution[name] || 0;
+      if (ranks === 0) return;
+
+      const bgSkill = bgModifiers.secondarySkills?.[name];
+      let category = bgSkill?.categoria;
+      if (!category) {
+        const defSkill = secondarySkillsList.find(s => s.abilita_secondaria === name);
+        category = defSkill?.categoria;
+      }
+
+      if (category) {
+        const poolKey = getTgp4CategoryKeyForSecondary(category);
+        if (poolKey && state[poolKey]) {
+          state[poolKey].spentOnSkills += ranks;
+        }
+      }
+    });
+
     // 4. Calculate adjusted pool and remaining points
     TGP4_POOLS.forEach(p => {
       const s = state[p.key];
@@ -223,7 +252,7 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
     });
 
     return state;
-  }, [tgp4Distribution, tgp4Transfers, profession, characterData.background?.languages]);
+  }, [tgp4Distribution, tgp4Transfers, profession, characterData.background?.languages, tgp4SecondarySkillsDistribution, newSecondarySkills, bgModifiers.secondarySkills]);
 
   const allLanguages = useMemo(() => [...new Set(languagesData.map(l => l.name_it))].sort(), []);
   const languages = characterData.background?.languages || {};
@@ -356,7 +385,9 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
         JSON.stringify(prev.tgp4Transfers) === JSON.stringify(tgp4Transfers) &&
         JSON.stringify(prev.skills) === JSON.stringify(newSkills) &&
         prev.level1SpellAttemptStatus === spellAttemptStatus &&
-        prev.level1SpellAttemptRoll === spellAttemptRoll) {
+        prev.level1SpellAttemptRoll === spellAttemptRoll &&
+        JSON.stringify(prev.level1SecondarySkillsTgp4) === JSON.stringify(tgp4SecondarySkillsDistribution) &&
+        JSON.stringify(prev.newSecondarySkills) === JSON.stringify(newSecondarySkills)) {
         return prev;
       }
       return {
@@ -366,10 +397,24 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
         tgp4Transfers: tgp4Transfers,
         skills: newSkills,
         level1SpellAttemptStatus: spellAttemptStatus,
-        level1SpellAttemptRoll: spellAttemptRoll
+        level1SpellAttemptRoll: spellAttemptRoll,
+        level1SecondarySkillsTgp4: tgp4SecondarySkillsDistribution,
+        newSecondarySkills: newSecondarySkills
       };
     });
-  }, [tb6Distribution, tgp4Distribution, tgp4Transfers, setCharacterData, baseSkills, profession, characterData.skills, spellAttemptStatus, spellAttemptRoll]);
+  }, [
+    tb6Distribution,
+    tgp4Distribution,
+    tgp4Transfers,
+    setCharacterData,
+    baseSkills,
+    profession,
+    characterData.skills,
+    spellAttemptStatus,
+    spellAttemptRoll,
+    tgp4SecondarySkillsDistribution,
+    newSecondarySkills
+  ]);
 
   const handleSpellRoll = (customVal) => {
     let roll;
@@ -439,11 +484,24 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
   const handleAddTgp4 = (skillName, category) => {
     const normCat = category?.toLowerCase()?.trim();
     const isMM = normCat === 'di manovra e movimento' || category === 'Abilità di Movimento e Manovra';
-    const isNoLimit = isMM || skillName.toLowerCase().trim() === 'percezione';
+    const isNoLimit = isMM;
     const currentRanks = tgp4Distribution[skillName] || 0;
 
     // Check max ranks per level
     if (!isNoLimit && currentRanks >= 2) return;
+
+    // Check max total ranks for Movement Maneuvers
+    const max = getMaxRanks(skillName);
+    if (max !== null) {
+      const adRanks = baseSkills[skillName]?.adolescenceRanks || 0;
+      const profFixedRanks = getSpecificTb6Ranks(skillName, profession);
+      const tb6Ranks = tb6Distribution[skillName] || 0;
+      const totalRanks = adRanks + profFixedRanks + tb6Ranks + currentRanks;
+      if (totalRanks >= max) {
+        alert(`Non è possibile aumentare ${skillName} oltre il limite di ${max} gradi totali.`);
+        return;
+      }
+    }
 
     let poolKey;
     if (skillName.toLowerCase().trim() === 'resistenza fisica') {
@@ -478,6 +536,74 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
       setTgp4Distribution(prev => ({
         ...prev,
         [skillName]: prev[skillName] - 1
+      }));
+    }
+  };
+
+  const possessedSecondarySkills = useMemo(() => {
+    const set = new Set();
+    Object.keys(bgModifiers.secondarySkills || {}).forEach(k => set.add(k));
+    newSecondarySkills.forEach(k => set.add(k));
+    return Array.from(set);
+  }, [bgModifiers.secondarySkills, newSecondarySkills]);
+
+  const availableSecondarySkillsForLearn = useMemo(() => {
+    return secondarySkillsList
+      .filter(s => !possessedSecondarySkills.includes(s.abilita_secondaria))
+      .sort((a, b) => a.abilita_secondaria.localeCompare(b.abilita_secondaria));
+  }, [possessedSecondarySkills]);
+
+  const handleLearnSecondarySkill = (skillName) => {
+    if (!skillName) return;
+    if (newSecondarySkills.includes(skillName)) return;
+    setNewSecondarySkills(prev => [...prev, skillName]);
+  };
+
+  const handleRemoveNewSecondarySkill = (skillName) => {
+    if (tgp4SecondarySkillsDistribution[skillName] > 0) {
+      alert("Riduci a 0 i gradi spesi prima di rimuovere l'abilità.");
+      return;
+    }
+    setNewSecondarySkills(prev => prev.filter(s => s !== skillName));
+    setTgp4SecondarySkillsDistribution(prev => {
+      const next = { ...prev };
+      delete next[skillName];
+      return next;
+    });
+  };
+
+  const handleAddSecondaryTgp4 = (skillName, category) => {
+    const currentRanks = tgp4SecondarySkillsDistribution[skillName] || 0;
+
+    if (currentRanks >= 2) {
+      alert("Non puoi sviluppare più di 2 gradi per livello/fase.");
+      return;
+    }
+
+    const poolKey = getTgp4CategoryKeyForSecondary(category);
+    if (!poolKey) return;
+
+    const pool = poolsState[poolKey];
+    if (!pool) return;
+
+    const costOfNextRank = 1;
+
+    if (pool.remaining >= costOfNextRank) {
+      setTgp4SecondarySkillsDistribution(prev => ({
+        ...prev,
+        [skillName]: currentRanks + 1
+      }));
+    } else {
+      alert(`Punti insufficienti nel pool "${poolKey}".`);
+    }
+  };
+
+  const handleSubSecondaryTgp4 = (skillName) => {
+    const currentRanks = tgp4SecondarySkillsDistribution[skillName] || 0;
+    if (currentRanks > 0) {
+      setTgp4SecondarySkillsDistribution(prev => ({
+        ...prev,
+        [skillName]: currentRanks - 1
       }));
     }
   };
@@ -1329,10 +1455,16 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
                       const pool = poolKey ? poolsState[poolKey] : null;
                       const hasTgp4Pool = pool !== null;
                       const isMM = poolKey === 'Manovre in Movimento';
-                      const isNoLimit = isMM || normName === 'percezione';
+                      const isNoLimit = isMM;
 
                       const nextRankCost = isNoLimit ? 1 : (tgp4Ranks === 0 ? 1 : 2);
-                      const canAddTgp4 = pool && (isNoLimit || tgp4Ranks < 2) && (pool.remaining >= nextRankCost);
+                      let meetsLimit = true;
+                      if (max !== null) {
+                        meetsLimit = totalRanks < max;
+                      } else {
+                        meetsLimit = tgp4Ranks < 2;
+                      }
+                      const canAddTgp4 = pool && meetsLimit && (pool.remaining >= nextRankCost);
 
                       // Stat bonus for this skill
                       const carattSiglaMatch = (sk['valore iniziale'] || '').match(/([A-Z]{2})$/);
@@ -1409,6 +1541,144 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
             </div>
           );
         })}
+      </div>
+
+      {/* ── SVILUPPO ABILITA' SECONDARIE ── */}
+      <div className="card rounded-lg overflow-hidden shadow-sm mb-8" style={{ border: '1px solid var(--theme-primary-skills-border)' }}>
+        <div className="border-b flex justify-between items-center" style={{ padding: '0.75rem 1rem', backgroundColor: 'var(--theme-primary-skills-bg)', borderBottomColor: 'var(--theme-primary-skills-border)' }}>
+          <h4 className="font-semibold m-0 text-sm uppercase tracking-wider" style={{ color: 'var(--theme-primary-skills-text)' }}>
+            🌟 Sviluppo Abilità Secondarie (Livello 1)
+          </h4>
+        </div>
+        <div className="card-body" style={{ padding: '1rem' }}>
+          <p className="text-xs text-muted mb-4">
+            Spendi i punti sviluppo delle categorie corrispondenti per migliorare o apprendere abilità secondarie. Il costo è di <strong>1 PS per grado (1:1)</strong>, con un massimo di <strong>2 gradi</strong> per livello/fase.
+          </p>
+
+          {possessedSecondarySkills.length > 0 ? (
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-sm whitespace-nowrap mb-4">
+                <thead className="bg-gray-50/50 border-b border-gray-200 text-[10px] text-gray-500 uppercase tracking-wider">
+                  <tr>
+                    <th className="px-4 py-2">Abilità (Categoria)</th>
+                    <th className="px-2 py-2 text-center">G. background</th>
+                    <th className="px-2 py-2 text-center bg-purple-50/50">G. svil. prof (Liv. 1)</th>
+                    <th className="px-2 py-2 text-center font-bold">G. TOTALE</th>
+                    <th className="px-2 py-2 text-center">Bonus sviluppo</th>
+                    <th className="px-2 py-2 text-center">Bonus caratt.</th>
+                    <th className="px-2 py-2 text-center">Speciale</th>
+                    <th className="px-2 py-2 text-center font-bold">Bonus TOTALE</th>
+                    <th className="px-2 py-2 text-center">Azione</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {possessedSecondarySkills.map(name => {
+                    const bgSkill = bgModifiers.secondarySkills?.[name];
+                    const isNew = newSecondarySkills.includes(name);
+                    
+                    let category = bgSkill?.categoria;
+                    let characteristic = bgSkill?.caratteristica_associata || bgSkill?.caratteristica;
+                    let bgRanks = bgSkill?.bgRanks || 0;
+                    let specialBonus = bgSkill?.specialBonus || 0;
+
+                    if (!bgSkill) {
+                      const defSkill = secondarySkillsList.find(s => s.abilita_secondaria === name);
+                      category = defSkill?.categoria || '';
+                      characteristic = defSkill?.caratteristica_associata || '';
+                      bgRanks = 0;
+                      specialBonus = 0;
+                    }
+
+                    const tgp4Ranks = tgp4SecondarySkillsDistribution[name] || 0;
+                    const totalRanks = bgRanks + tgp4Ranks;
+                    const bonusGradi = getRanksBonus(name, totalRanks);
+                    const carattBonus = characteristic ? (finalStats[characteristic]?.bonusTot || 0) : 0;
+                    const totalBonus = (typeof bonusGradi === 'number' ? bonusGradi : 0) + carattBonus + specialBonus;
+
+                    const poolKey = getTgp4CategoryKeyForSecondary(category);
+                    const pool = poolKey ? poolsState[poolKey] : null;
+                    const canAdd = pool && tgp4Ranks < 2 && pool.remaining >= 1;
+
+                    return (
+                      <tr key={name} className="border-b border-gray-100 last:border-0 hover:bg-gray-50">
+                        <td className="px-4 py-2">
+                          <span className="font-medium text-gray-900">{name}</span>
+                          <span className="block text-[10px] text-gray-500 font-normal">{category} ({characteristic})</span>
+                        </td>
+                        <td className="px-2 py-2 text-center text-gray-500">{bgRanks}</td>
+                        <td className="px-2 py-2 text-center bg-purple-50/50">
+                          <div className="flex items-center justify-center gap-2">
+                            <button
+                              type="button"
+                              onClick={() => handleSubSecondaryTgp4(name)}
+                              disabled={tgp4Ranks === 0}
+                              className="w-5 h-5 flex items-center justify-center rounded-full bg-purple-200 text-purple-800 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-purple-300 font-bold"
+                            >-</button>
+                            <span className="font-bold w-4 text-center text-purple-700">{tgp4Ranks}</span>
+                            <button
+                              type="button"
+                              onClick={() => handleAddSecondaryTgp4(name, category)}
+                              disabled={!canAdd}
+                              className="w-5 h-5 flex items-center justify-center rounded-full bg-purple-200 text-purple-800 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-purple-300 font-bold"
+                            >+</button>
+                          </div>
+                        </td>
+                        <td className="px-2 py-2 text-center font-bold text-gray-800">{totalRanks}</td>
+                        <td className="px-2 py-2 text-center font-bold text-gray-700">{fmt(bonusGradi)}</td>
+                        <td className="px-2 py-2 text-center text-gray-600">
+                          {characteristic ? `${characteristic} ${fmt(carattBonus)}` : '—'}
+                        </td>
+                        <td className="px-2 py-2 text-center text-gray-600">{specialBonus !== 0 ? fmt(specialBonus) : '—'}</td>
+                        <td className="px-2 py-2 text-center font-black text-primary-color">{fmt(totalBonus)}</td>
+                        <td className="px-2 py-2 text-center">
+                          {isNew && (
+                            <button
+                              type="button"
+                              onClick={() => handleRemoveNewSecondarySkill(name)}
+                              className="text-xs text-red-650 hover:text-red-800 hover:underline font-bold"
+                            >
+                              Rimuovi
+                            </button>
+                          )}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <div className="text-xs text-gray-500 italic mb-4">Nessuna abilità secondaria posseduta. Seleziona un'abilità dal menu in basso per apprenderla.</div>
+          )}
+
+          <div className="flex gap-2 items-center pt-3 border-t border-gray-100">
+            <select
+              defaultValue=""
+              id="secondary-add-select-level1"
+              className="flex-1 rounded border-gray-300 text-xs p-2 bg-white"
+            >
+              <option value="" disabled>-- Seleziona nuova abilità secondaria da apprendere --</option>
+              {availableSecondarySkillsForLearn.map(s => (
+                <option key={s.abilita_secondaria} value={s.abilita_secondaria}>
+                  {s.abilita_secondaria} ({s.categoria} - {s.caratteristica_associata})
+                </option>
+              ))}
+            </select>
+            <button
+              type="button"
+              className="bg-indigo-600 text-white font-bold py-1.5 px-3 rounded text-xs hover:bg-indigo-700 transition"
+              onClick={() => {
+                const s = document.getElementById('secondary-add-select-level1');
+                if (s && s.value) {
+                  handleLearnSecondarySkill(s.value);
+                  s.value = '';
+                }
+              }}
+            >
+              + Apprendi
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -17,7 +17,8 @@ import {
   getMagicPointsPerLevel,
   calculateCargoPenalty,
   getCaseInsensitive,
-  getCharacterHpTot
+  getCharacterHpTot,
+  getConsolidatedSecondarySkills
 } from '../../../utils/skillHelpers';
 import { formatMBToCoins, formatCoinsToString } from '../../../utils/moneyHelpers';
 import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
@@ -26,6 +27,67 @@ import { subscribeToCharacterNotes, saveCharacterNotes } from '../../../services
 
 const STAT_KEYS = ['FR', 'AG', 'CO', 'IN', 'IT', 'PR'];
 const STAT_NAMES = { FR: 'Forza', AG: 'Agilità', CO: 'Costituzione', IN: 'Intelligenza', IT: 'Intuizione', PR: 'Presenza' };
+
+const CATEGORY_DISPLAY = {
+  'armi': 'Armi',
+  'armatura': 'Armature e Difese',
+  'abbigliamento': 'Abbigliamento',
+  'proiettili': 'Munizioni / Proiettili',
+  'contenitori': 'Contenitori',
+  'campo': 'Equipaggiamento da Campo',
+  'strumenti': 'Strumenti e Attrezzi',
+  'vitto': 'Vitto / Razioni',
+  'alloggio': 'Alloggio'
+};
+
+const CATEGORY_ORDER = [
+  'armi',
+  'armatura',
+  'abbigliamento',
+  'proiettili',
+  'contenitori',
+  'campo',
+  'strumenti',
+  'vitto',
+  'alloggio'
+];
+
+const getCategorySortIndex = (cat) => {
+  const idx = CATEGORY_ORDER.indexOf(cat);
+  return idx === -1 ? 999 : idx;
+};
+
+const getPrimarySkillTypeAbbr = (name, category) => {
+  const normName = name.toLowerCase().trim();
+  const normCat = (category || '').toLowerCase().trim();
+  
+  if (normCat === 'di manovra e movimento') return 'MM';
+  if (normCat === 'con le armi') return 'BO';
+  
+  // Generali
+  if (normName === 'arrampicarsi' || normName === 'cavalcare' || normName === 'nuotare') return 'MM';
+  if (normName === 'seguire tracce') return 'MS';
+  
+  // Abilità di Sotterfugio
+  if (normName === 'cogliere alle spalle') return 'AS';
+  if (normName === 'muoversi silenziosamente') return 'MM';
+  if (normName === 'nascondersi') return 'MS';
+  if (normName === 'scassinare serrature') return 'MS';
+  if (normName === 'disattivare trappole') return 'MS';
+  
+  // Abilità Magiche
+  if (normName === 'lettura rune' || normName === 'lettura delle rune') return 'MS';
+  if (normName === 'uso oggetti magici' || normName === 'usare oggetti magici') return 'MS';
+  if (normName === 'incantesimi diretti') return 'BO';
+  if (normName === 'incantesimi base') return 'BO';
+  
+  // Bonus e Abilità Varie
+  if (normName === 'percezione') return 'MS';
+  if (normName === 'resistenza fisica') return 'AS';
+  if (normName === 'leadership e influenza') return 'MS';
+  
+  return '';
+};
 
 const getMaxRanks = (skillName) => {
   const limits = {
@@ -79,7 +141,7 @@ const getSkillForWeapon = (item) => {
   return 'taglio a 1 mano';
 };
 
-export default function CharacterSheetStep({ characterData, setCharacterData, readOnly = false }) {
+export default function CharacterSheetStep({ characterData, setCharacterData, readOnly = false, spellCatalog }) {
   const { user, isGM, isPlayer } = useAuth();
   const statsReadOnly = readOnly || isPlayer;
 
@@ -146,6 +208,36 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
     return characterData.equipment?.filter(x => x.qtyEquip > 0) || [];
   }, [characterData.equipment]);
 
+  const groupedEquip = useMemo(() => {
+    const equipItems = (characterData.equipment || []).filter(x => x.qtyEquip > 0);
+    const groups = {};
+    equipItems.forEach(item => {
+      const cat = item.categoria || 'altro';
+      if (!groups[cat]) groups[cat] = [];
+      groups[cat].push(item);
+    });
+    return groups;
+  }, [characterData.equipment]);
+
+  const groupedCarico = useMemo(() => {
+    const caricoItems = (characterData.equipment || []).filter(x => x.qtyCarico > 0);
+    const groups = {};
+    caricoItems.forEach(item => {
+      const cat = item.categoria || 'altro';
+      if (!groups[cat]) groups[cat] = [];
+      groups[cat].push(item);
+    });
+    return groups;
+  }, [characterData.equipment]);
+
+  const sortedEquipEntries = useMemo(() => {
+    return Object.entries(groupedEquip).sort((a, b) => getCategorySortIndex(a[0]) - getCategorySortIndex(b[0]));
+  }, [groupedEquip]);
+
+  const sortedCaricoEntries = useMemo(() => {
+    return Object.entries(groupedCarico).sort((a, b) => getCategorySortIndex(a[0]) - getCategorySortIndex(b[0]));
+  }, [groupedCarico]);
+
   const activeArmor = characterData.equippedArmor || 'Nessuna armatura';
   const activeArmorMM = useMemo(() => {
     const skillName = getArmorSkillName(activeArmor);
@@ -181,11 +273,13 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
     const list = [];
     const items = characterData.equipment || [];
     items.forEach(item => {
-      const name = item.nome.toLowerCase();
-      if (name.includes('grezzo')) list.push('cuoio grezzo');
-      else if (name.includes('rinforzato')) list.push('cuoio rinforzato');
-      else if (name.includes('maglia') || name.includes('maglies')) list.push('corazza di maglia');
-      else if (name.includes('piastre')) list.push('corazza di piastre');
+      if ((item.qtyEquip || 0) > 0 || (item.qtyCarico || 0) > 0) {
+        const name = item.nome.toLowerCase();
+        if (name.includes('grezzo')) list.push('cuoio grezzo');
+        else if (name.includes('rinforzato')) list.push('cuoio rinforzato');
+        else if (name.includes('maglia') || name.includes('maglies')) list.push('corazza di maglia');
+        else if (name.includes('piastre')) list.push('corazza di piastre');
+      }
     });
     return list;
   }, [characterData.equipment]);
@@ -194,7 +288,7 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
     const list = [];
     const items = characterData.equipment || [];
     items.forEach(item => {
-      if (item.categoria === 'armi') {
+      if (item.categoria === 'armi' && ((item.qtyEquip || 0) > 0 || (item.qtyCarico || 0) > 0)) {
         const skillName = getSkillForWeapon(item);
         list.push({ item, skillName });
       }
@@ -346,6 +440,10 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
     });
     return result;
   }, [characterData, profession, finalLevel, levelDevelopments, finalStats, bgModifiers]);
+
+  const consolidatedSecondarySkills = useMemo(() => {
+    return getConsolidatedSecondarySkills(characterData);
+  }, [characterData]);
 
   const highlightedArmorSkill = useMemo(() => {
     if (presentArmors.length === 0) return 'nessuna armatura';
@@ -858,6 +956,7 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
                           <th className="px-2 py-1.5 text-center">Bonus Caratt.</th>
                           <th className="px-2 py-1.5 text-center">Bonus Speciale</th>
                           <th className="px-3 py-1.5 text-center font-bold">Bonus Totale</th>
+                          <th className="px-2 py-1.5 text-center">Tipo</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-gray-50">
@@ -880,11 +979,16 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
                           const displaySpecial = (hasIngombro || hasSpecialBonus) ? (specialBonus + (s.ingombroBonus ?? 0)) : null;
 
                           let rowClass = "hover:bg-gray-50/30 transition-colors";
-                          const isArmorHighlight = cat === 'di manovra e movimento' && sk.nome.toLowerCase() === highlightedArmorSkill.toLowerCase();
-                          const isWeaponHighlight = cat === 'con le armi' && highlightedWeaponSkill && sk.nome.toLowerCase() === highlightedWeaponSkill.toLowerCase();
+                          const isArmorHighlight = cat === 'di manovra e movimento' && (
+                            presentArmors.includes(sk.nome.toLowerCase()) ||
+                            (presentArmors.length === 0 && sk.nome.toLowerCase() === 'nessuna armatura')
+                          );
+                          const isWeaponHighlight = cat === 'con le armi' && presentWeapons.some(
+                            w => w.skillName.toLowerCase() === sk.nome.toLowerCase()
+                          );
                           
                           if (isArmorHighlight || isWeaponHighlight) {
-                            rowClass = "bg-teal-50 hover:bg-teal-100/50 font-medium transition-colors";
+                            rowClass = "bg-green-50 hover:bg-green-100/50 font-medium transition-colors";
                           }
 
                           return (
@@ -899,6 +1003,7 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
                               <td className="px-2 py-2 text-center text-gray-500 font-light">{s.carattSigla} {fmt(s.carattBonus)}</td>
                               <td className="px-2 py-2 text-center text-gray-400">{displaySpecial !== null ? fmt(displaySpecial) : '—'}</td>
                               <td className="px-3 py-2 text-center font-black text-sm text-indigo-950">{totalBonusStr}</td>
+                              <td className="px-2 py-2 text-center text-gray-500 font-semibold">{getPrimarySkillTypeAbbr(sk.nome, cat)}</td>
                             </tr>
                           );
                         })}
@@ -912,7 +1017,7 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
         </div>
 
         {/* Abilità Secondarie consolidata (se presenti) */}
-        {Object.keys(bgModifiers.secondarySkills || {}).length > 0 && (
+        {consolidatedSecondarySkills.length > 0 && (
           <div className="border border-gray-200 rounded-lg overflow-hidden shadow-xs mb-6 print:break-inside-avoid">
             <div className="px-4 py-2 border-b flex items-center gap-1.5" style={{ backgroundColor: 'var(--theme-secondary-skills-bg)', borderBottomColor: 'var(--theme-secondary-skills-border)', color: 'var(--theme-secondary-skills-text)' }}>
               <Shield className="w-4 h-4" style={{ color: 'var(--theme-secondary-skills-text)' }} />
@@ -925,30 +1030,42 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
                     <th className="px-3 py-2">Abilità</th>
                     <th className="px-3 py-2">Descrizione</th>
                     <th className="px-2 py-2 text-center">Bonus Caratteristica</th>
-                    <th className="px-2 py-2 text-center">Bonus BG</th>
+                    <th className="px-2 py-2 text-center">Dettaglio Sviluppo</th>
                     <th className="px-3 py-2 text-center">Bonus Totale</th>
+                    <th className="px-2 py-2 text-center">Tipo</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-100">
-                  {Object.values(bgModifiers.secondarySkills).map(sk => {
-                    const carattSigla = sk.caratteristica_associata;
+                  {consolidatedSecondarySkills.map(sk => {
+                    const carattSigla = sk.caratteristica;
                     const carattBonus = carattSigla ? (finalStats[carattSigla]?.bonusTot || 0) : 0;
-                    const ranksBonus = sk.bgRanks ? getRanksBonus(sk.abilita_secondaria, sk.bgRanks) : 0;
+                    const totalRanks = sk.bgRanks + sk.level1Ranks + sk.levelUpRanks;
+                    const ranksBonus = totalRanks > 0 ? getRanksBonus(sk.nome, totalRanks) : -25;
                     const specialBonus = sk.specialBonus || 0;
 
+                    const defSkill = secondarySkillsList.find(s => s.abilita_secondaria === sk.nome);
+                    const descrizione = defSkill?.descrizione || '—';
+                    const sigla = defSkill?.tipo_abilita_secondaria_sigla || 'MS';
+
                     let bgTextParts = [];
-                    if (sk.bgRanks) bgTextParts.push(`Gradi: ${fmt(ranksBonus)}`);
-                    if (sk.specialBonus) bgTextParts.push(`Spec.: ${fmt(specialBonus)}`);
+                    let ranksParts = [];
+                    if (sk.bgRanks > 0) ranksParts.push(`BG: ${sk.bgRanks}`);
+                    if (sk.level1Ranks > 0) ranksParts.push(`L1: ${sk.level1Ranks}`);
+                    if (sk.levelUpRanks > 0) ranksParts.push(`LUp: ${sk.levelUpRanks}`);
+
+                    bgTextParts.push(`Gradi: ${totalRanks} (${ranksParts.join(', ') || '0'}) → ${fmt(ranksBonus)}`);
+                    if (specialBonus > 0) bgTextParts.push(`Spec.: ${fmt(specialBonus)}`);
 
                     const totalBonus = ranksBonus + specialBonus + carattBonus;
 
                     return (
-                      <tr key={sk.abilita_secondaria} className="hover:bg-gray-50/50">
-                        <td className="px-3 py-2 font-bold text-gray-800">{sk.abilita_secondaria}</td>
-                        <td className="px-3 py-2 text-gray-600 text-[11px] whitespace-normal leading-relaxed">{sk.descrizione}</td>
+                      <tr key={sk.nome} className="hover:bg-gray-50/50">
+                        <td className="px-3 py-2 font-bold text-gray-800">{sk.nome}</td>
+                        <td className="px-3 py-2 text-gray-600 text-[11px] whitespace-normal leading-relaxed">{descrizione}</td>
                         <td className="px-2 py-2 text-center text-gray-700">{carattSigla} {fmt(carattBonus)}</td>
                         <td className="px-2 py-2 text-center text-purple-700 text-[10px]">{bgTextParts.join(', ')}</td>
                         <td className="px-3 py-2 text-center font-black text-indigo-900">{fmt(totalBonus)}</td>
+                        <td className="px-2 py-2 text-center text-gray-500 font-semibold">{sigla}</td>
                       </tr>
                     );
                   })}
@@ -973,7 +1090,7 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
               <div className="space-y-4">
                 {allLearnedLists.map(listName => {
                   const limit = getSpellLimitForProfessionAndRealm(profession.professione, listName, finalLevel);
-                  const rawSpells = getSpellsForList(listName);
+                  const rawSpells = getSpellsForList(listName, spellCatalog);
                   const spells = rawSpells.filter(s => parseInt(s.livello) <= limit);
 
                   const isFromTgp4 = spellListAllocations[listName] !== undefined;
@@ -1058,52 +1175,73 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
                 {/* Colonna EQUIP */}
                 <div className="border border-gray-100 rounded-md p-3 bg-gray-50/30">
                   <h5 className="font-bold text-xs text-gray-700 uppercase tracking-wider mb-2 border-b pb-1">Equipaggiamento Indossato / Pronto (EQUIP)</h5>
-                  <ul className="space-y-1.5 text-xs">
-                    {characterData.equipment.filter(x => x.qtyEquip > 0).map((item, idx) => {
-                      const isScasso = item.nome.toLowerCase().includes('attrezzi da scasso');
-                      return (
-                        <li key={idx} className={`flex justify-between items-start py-1 border-b border-gray-100/50 last:border-0 px-2 rounded ${isScasso ? 'bg-teal-50' : ''}`}>
-                          <div>
-                            <strong className="text-gray-900">{item.nome}</strong> {item.qtyEquip > 1 && <span className="text-gray-500 font-bold">x{item.qtyEquip}</span>}
-                            {item.note && <span className="text-[10px] text-gray-500 block italic">{item.note}</span>}
-                          </div>
-                          <span className="text-[10px] text-gray-450 font-semibold">(Non genera carico)</span>
-                        </li>
-                      );
-                    })}
-                    {characterData.equipment.filter(x => x.qtyEquip > 0).length === 0 && (
-                      <li className="text-gray-400 italic">Nessun oggetto.</li>
+                  <div className="space-y-4">
+                    {sortedEquipEntries.length === 0 ? (
+                      <div className="text-gray-400 italic text-xs">Nessun oggetto pronto o indossato.</div>
+                    ) : (
+                      sortedEquipEntries.map(([cat, items]) => (
+                        <div key={cat} className="space-y-1">
+                          <h6 className="text-[10px] font-bold text-amber-900 uppercase tracking-wider bg-amber-500/10 px-2 py-0.5 rounded border border-amber-200/50">
+                            {CATEGORY_DISPLAY[cat] || (cat.charAt(0).toUpperCase() + cat.slice(1))}
+                          </h6>
+                          <ul className="space-y-1 text-xs">
+                            {items.map((item, idx) => {
+                              const isScasso = item.nome.toLowerCase().includes('attrezzi da scasso');
+                              return (
+                                <li key={idx} className={`flex justify-between items-start py-1 border-b border-gray-100/50 last:border-0 px-2 rounded ${isScasso ? 'bg-teal-50' : ''}`}>
+                                  <div>
+                                    <strong className="text-gray-900">{item.nome}</strong> {item.qtyEquip > 1 && <span className="text-gray-500 font-bold">x{item.qtyEquip}</span>}
+                                    {item.note && <span className="text-[10px] text-gray-500 block italic">{item.note}</span>}
+                                  </div>
+                                  <span className="text-[10px] text-gray-450 font-semibold">(Non genera carico)</span>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        </div>
+                      ))
                     )}
-                  </ul>
+                  </div>
                 </div>
 
                 {/* Colonna CARICO */}
                 <div className="border border-gray-100 rounded-md p-3 bg-gray-50/30">
                   <h5 className="font-bold text-xs text-gray-700 uppercase tracking-wider mb-2 border-b pb-1">Carico Trasportato (Genera Peso)</h5>
-                  <ul className="space-y-1.5 text-xs">
-                    {characterData.equipment.filter(x => x.qtyCarico > 0).map((item, idx) => {
-                      const itemPeso = item["peso in kg"] || 0;
-                      const totPeso = item.qtyCarico * itemPeso;
-                      const isScasso = item.nome.toLowerCase().includes('attrezzi da scasso');
-                      return (
-                        <li key={idx} className={`flex justify-between items-start py-1 border-b border-gray-100/50 last:border-0 px-2 rounded ${isScasso ? 'bg-teal-50' : ''}`}>
-                          <div>
-                            <strong className="text-gray-900">{item.nome}</strong> {item.qtyCarico > 1 && <span className="text-gray-500 font-bold">x{item.qtyCarico}</span>}
-                            {item.note && <span className="text-[10px] text-gray-500 block italic">{item.note}</span>}
-                          </div>
-                          <span className="text-[10px] text-gray-600 font-bold">{totPeso.toFixed(1)} kg</span>
-                        </li>
-                      );
-                    })}
-                    {characterData.equipment.filter(x => x.qtyCarico > 0).length === 0 ? (
-                      <li className="text-gray-400 italic">Nessun oggetto.</li>
+                  <div className="space-y-4">
+                    {sortedCaricoEntries.length === 0 ? (
+                      <div className="text-gray-400 italic text-xs">Nessun oggetto trasportato.</div>
                     ) : (
-                      <li className="flex justify-between items-center pt-2 mt-2 border-t border-gray-200 font-bold text-gray-900">
-                        <span>Peso Totale Trasportato</span>
-                        <span className="text-[10px] text-gray-800">{caricoKg.toFixed(1)} kg</span>
-                      </li>
+                      <>
+                        {sortedCaricoEntries.map(([cat, items]) => (
+                          <div key={cat} className="space-y-1">
+                            <h6 className="text-[10px] font-bold text-blue-900 uppercase tracking-wider bg-blue-500/10 px-2 py-0.5 rounded border border-blue-200/50">
+                              {CATEGORY_DISPLAY[cat] || (cat.charAt(0).toUpperCase() + cat.slice(1))}
+                            </h6>
+                            <ul className="space-y-1 text-xs">
+                              {items.map((item, idx) => {
+                                const itemPeso = item["peso in kg"] || 0;
+                                const totPeso = item.qtyCarico * itemPeso;
+                                const isScasso = item.nome.toLowerCase().includes('attrezzi da scasso');
+                                return (
+                                  <li key={idx} className={`flex justify-between items-start py-1 border-b border-gray-100/50 last:border-0 px-2 rounded ${isScasso ? 'bg-teal-50' : ''}`}>
+                                    <div>
+                                      <strong className="text-gray-900">{item.nome}</strong> {item.qtyCarico > 1 && <span className="text-gray-500 font-bold">x{item.qtyCarico}</span>}
+                                      {item.note && <span className="text-[10px] text-gray-500 block italic">{item.note}</span>}
+                                    </div>
+                                    <span className="text-[10px] text-gray-600 font-bold">{totPeso.toFixed(1)} kg</span>
+                                  </li>
+                                );
+                              })}
+                            </ul>
+                          </div>
+                        ))}
+                        <div className="flex justify-between items-center pt-2 mt-2 border-t border-gray-200 font-bold text-gray-900 text-xs">
+                          <span>Peso Totale Trasportato</span>
+                          <span className="text-[10px] text-gray-800">{caricoKg.toFixed(1)} kg</span>
+                        </div>
+                      </>
                     )}
-                  </ul>
+                  </div>
                 </div>
 
               </div>

@@ -10,7 +10,8 @@ import {
   getIngombroBonus,
   parseBonusValue,
   fmt,
-  getCharacterHpTot
+  getCharacterHpTot,
+  getCharacterSkillBonus
 } from '../utils/skillHelpers';
 
 const WEAPON_SKILL_TO_TABLE = {
@@ -162,33 +163,7 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
       
       const skillBonuses = {};
       weaponSkillNames.forEach(name => {
-        const adRanks = char.adolescenceSkills?.[name]?.adolescenceRanks || 0;
-        const l1Tb6Ranks = char.level1Tb6?.[name] || 0;
-        const baseProfRanks = getSpecificTb6Ranks(name, profession) + l1Tb6Ranks;
-        const professionRanks = getProfessionRanksForLevel(baseProfRanks, finalLevel);
-        
-        const tgp4RanksL1 = char.level1Tgp4?.[name] || 0;
-        const tgp4RanksLater = levelDevelopments.reduce((sum, d) => sum + (d.tgp4Distribution?.[name] || 0), 0);
-        const tgp4Ranks = tgp4RanksL1 + tgp4RanksLater;
-        
-        const bgExtra = bgModifiers.skillBgRanks?.[name] || 0;
-        const totalRanks = adRanks + professionRanks + tgp4Ranks + bgExtra;
-        
-        let caratt = 'FR';
-        if (['taglio a 1 mano', 'da tiro', 'da lancio'].includes(name)) {
-          caratt = 'AG';
-        }
-        
-        const carattBonus = finalStats[caratt]?.bonusTot || 0;
-        const bonusGradi = getRanksBonus(name, totalRanks);
-        const specialBonus = bgModifiers.primarySkillsSpecialBonus?.[name] || 0;
-        const ingombroBonus = getIngombroBonus(name) ?? 0;
-        
-        const totalBonus = (typeof bonusGradi === 'number') 
-          ? (bonusGradi + carattBonus + specialBonus + ingombroBonus) 
-          : 0;
-          
-        skillBonuses[name] = totalBonus;
+        skillBonuses[name] = getCharacterSkillBonus(char, name);
       });
       
       // 3. Bonus Difensivo (BD)

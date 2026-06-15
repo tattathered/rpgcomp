@@ -42,11 +42,11 @@ export function getSpellLimitInfo(professionName) {
   return limitRule.limite_incantesimi;
 }
 
-export function getSpellsForList(listName) {
+export function getSpellsForList(listName, customCatalog) {
   const normalizedListName = (listName || '').toLowerCase().trim();
   
-  // New nested structure: elencoIncantesimi has { liste_incantesimi: [...] }
-  const listData = (elencoIncantesimi.liste_incantesimi || []).find(
+  const catalog = customCatalog || elencoIncantesimi;
+  const listData = (catalog.liste_incantesimi || []).find(
     l => (l.nome_lista || '').toLowerCase().trim() === normalizedListName
   );
   
@@ -55,6 +55,7 @@ export function getSpellsForList(listName) {
   const note = listData.note || undefined;
   
   return (listData.incantesimi || [])
+    .filter(inc => inc.attivo !== false)
     .map(inc => ({
       livello: inc.numero,
       nome_incantesimo: inc.nome,

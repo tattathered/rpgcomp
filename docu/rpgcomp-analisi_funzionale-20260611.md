@@ -1,6 +1,6 @@
 # MERP Companion — Analisi Funzionale e Stato del Sistema
-**Data:** 13 Giugno 2026  
-**Versione:** v2.2.0 (Layout & UI Updates)
+**Data:** 15 Giugno 2026  
+**Versione:** v2.3.0 (Combat, Inventory & Sheet Updates)
 
 
 ---
@@ -248,6 +248,16 @@ gms/{gmId}/
   - Distribuite le 10 fasi su due righe da 5 elementi ciascuna (griglia 5+5).
   - Allargato il corpo principale del wizard per occupare il **95%** dello schermo in tutti gli stage (migliorando la leggibilità su schermi di varie dimensioni).
   - Ridotto il padding orizzontale dei pulsanti e delle tab di navigazione primarie a **8px** (0.5rem) per ottimizzare lo spazio occupato.
+
+### 4.7 Combat Bugfix, Raggruppamento Inventario e Sigle Abilità (15 Giugno 2026)
+- **CombatCalculator**:
+  - Corretto il calcolo del BO (Bonus Offensivo) per "Taglio a 1 mano", ripristinando la Forza (FR) come caratteristica base (in precedenza forzata erroneamente ad Agilità).
+  - Risolto un bug di case-sensitivity che azzerava i gradi di abilità ereditati dalla creazione del personaggio (adolescenza e livelli).
+  - Integrata la funzione centralizzata `getCharacterSkillBonus` per garantire uniformità di calcolo tra la Scheda PG e il Calcolatore Combattimenti.
+- **Riepilogo Scheda (Step 10)**:
+  - **Inventario Raggruppato**: Riorganizzato l'inventario nelle colonne EQUIP e CARICO raggruppando gli oggetti per tipologia (Armi, Armature, Abbigliamento, ecc.) ordinati logicamente.
+  - **Evidenziazione Armi/Armature**: Le righe delle abilità primarie relative ad armi e armature possedute dal PG (con quantità > 0) vengono evidenziate graficamente con uno sfondo verde chiaro (`bg-green-50`).
+  - **Colonna "Tipo"**: Aggiunta una colonna a destra del Bonus Totale per mostrare la sigla del tipo di abilità (MM, MS, BO, AS) sia nella tabella delle abilità primarie che in quella delle secondarie.
 
 ---
 

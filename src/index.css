@@ -692,6 +692,8 @@ input[type=number] {
 /* Additional Background Colors */
 .bg-slate-50 { background-color: #f8fafc !important; }
 .bg-emerald-50 { background-color: #ecfdf5 !important; }
+.bg-green-50 { background-color: #f0fdf4 !important; }
+.bg-green-100 { background-color: #dcfce7 !important; }
 .bg-emerald-600 { background-color: #059669 !important; }
 .bg-emerald-655 { background-color: #047857 !important; }
 .bg-indigo-100 { background-color: #e0e7ff !important; }

@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
+import secondarySkillsList from '../../../data/Tabella-abilita_secondarie.json';
 import gradiLingue from '../../../data/TGP-1-gradi_conoscenze_lingue.json';
 import { getSpellLimitInfo, getSpellsForList } from '../../../utils/magicHelpers';
 import {
@@ -9,7 +10,8 @@ import {
   getIngombroBonus,
   getFinalStats,
   fmt,
-  getCharacterHpTot
+  getCharacterHpTot,
+  getConsolidatedSecondarySkills
 } from '../../../utils/skillHelpers';
 import WalletBox from '../shared/WalletBox';
 import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
@@ -56,7 +58,7 @@ const SectionCard = ({ emoji, title, color, bg, border, children }) => (
 );
 
 // ─── Main component ───────────────────────────────────────────────────────────
-export default function CreationSummaryStep({ characterData, setCharacterData }) {
+export default function CreationSummaryStep({ characterData, setCharacterData, spellCatalog }) {
   const race = characterData.race;
   const profession = characterData.profession;
   const stats = characterData.stats || {};
@@ -163,6 +165,10 @@ export default function CreationSummaryStep({ characterData, setCharacterData })
     });
     return result;
   }, [skillsBase, finalStats, bgModifiers]);
+
+  const consolidatedSecondarySkills = useMemo(() => {
+    return getConsolidatedSecondarySkills(characterData);
+  }, [characterData]);
 
   const rfRanks = finalSkills['Resistenza fisica']?.totalRanks || 0;
   const specialRfBonus = bgModifiers.primarySkillsSpecialBonus?.['Resistenza fisica'] || bgModifiers.primarySkillsSpecialBonus?.['resistenza fisica'] || 0;
@@ -538,7 +544,7 @@ export default function CreationSummaryStep({ characterData, setCharacterData })
         ) : (
           <div style={{ display: 'grid', gap: '1rem' }}>
             {learnedListsArray.map(listName => {
-              const spells = getSpellsForList(listName, spellLimitStr);
+              const spells = getSpellsForList(listName, spellCatalog);
               const isFromTgp4 = spellListAllocations[listName] !== undefined;
               const isFromBg = bgSpellLists.includes(listName);
               
@@ -690,10 +696,10 @@ export default function CreationSummaryStep({ characterData, setCharacterData })
       </SectionCard>
 
       {/* ── ABILITÀ SECONDARIE (se presenti) ── */}
-      {Object.keys(bgModifiers.secondarySkills || {}).length > 0 && (
+      {consolidatedSecondarySkills.length > 0 && (
         <SectionCard emoji="🛠️" title="Abilità Secondarie" color="var(--theme-secondary-skills-text)" bg="var(--theme-secondary-skills-bg)" border="var(--theme-secondary-skills-border)">
           <p style={{ fontSize: '0.8rem', color: '#6b7280', marginBottom: '1rem', marginTop: 0 }}>
-            Abilità acquisite tramite opzioni Background.
+            Abilità secondarie acquisite e sviluppate.
           </p>
           <div style={{ overflowX: 'auto' }}>
             <table style={{ width: '100%', fontSize: '0.8rem', borderCollapse: 'collapse' }}>
@@ -702,28 +708,36 @@ export default function CreationSummaryStep({ characterData, setCharacterData })
                   <th style={{ padding: '0.4rem 1rem', textAlign: 'left', color: '#6b7280', fontWeight: 600, width: '20%' }}>Abilità</th>
                   <th style={{ padding: '0.4rem 1rem', textAlign: 'left', color: '#6b7280', fontWeight: 600, width: '40%' }}>Descrizione</th>
                   <th style={{ padding: '0.4rem 0.5rem', textAlign: 'center', color: '#6b7280', fontWeight: 600 }}>Caratt.</th>
-                  <th style={{ padding: '0.4rem 0.5rem', textAlign: 'center', color: '#7e22ce', fontWeight: 700 }}>Bonus BG</th>
+                  <th style={{ padding: '0.4rem 0.5rem', textAlign: 'center', color: '#7e22ce', fontWeight: 700 }}>Dettaglio Sviluppo</th>
                   <th style={{ padding: '0.4rem 1rem', textAlign: 'right', color: '#047857', fontWeight: 900 }}>Totale</th>
                 </tr>
               </thead>
               <tbody>
-                {Object.values(bgModifiers.secondarySkills).map(sk => {
-                  const carattSigla = sk.caratteristica_associata;
+                {consolidatedSecondarySkills.map(sk => {
+                  const carattSigla = sk.caratteristica;
                   const carattBonus = carattSigla ? (finalStats[carattSigla]?.bonusTot || 0) : 0;
-                  const ranksBonus = sk.bgRanks ? getRanksBonus(sk.abilita_secondaria, sk.bgRanks) : -25;
+                  const totalRanks = sk.bgRanks + sk.level1Ranks + sk.levelUpRanks;
+                  const ranksBonus = totalRanks > 0 ? getRanksBonus(sk.nome, totalRanks) : -25;
                   const specialBonus = sk.specialBonus || 0;
                   
+                  const defSkill = secondarySkillsList.find(s => s.abilita_secondaria === sk.nome);
+                  const descrizione = defSkill?.descrizione || '—';
+
                   let bgTextParts = [];
-                  if (sk.bgRanks) bgTextParts.push(`Gradi: ${fmt(ranksBonus)}`);
+                  let ranksParts = [];
+                  if (sk.bgRanks > 0) ranksParts.push(`BG: ${sk.bgRanks}`);
+                  if (sk.level1Ranks > 0) ranksParts.push(`L1: ${sk.level1Ranks}`);
+                  if (sk.levelUpRanks > 0) ranksParts.push(`LUp: ${sk.levelUpRanks}`);
                   
-                  if (sk.specialBonus) bgTextParts.push(`Speciale: ${fmt(specialBonus)}`);
+                  bgTextParts.push(`Gradi: ${totalRanks} (${ranksParts.join(', ') || '0'}) → ${fmt(ranksBonus)}`);
+                  if (specialBonus > 0) bgTextParts.push(`Speciale: ${fmt(specialBonus)}`);
                   
                   const totalBonus = ranksBonus + specialBonus + carattBonus;
                   
                   return (
-                    <tr key={sk.abilita_secondaria} style={{ borderBottom: '1px solid #f3f4f6' }}>
-                      <td style={{ padding: '0.45rem 1rem', fontWeight: 600, color: '#1f2937' }}>{sk.abilita_secondaria}</td>
-                      <td style={{ padding: '0.45rem 1rem', color: '#4b5563', fontSize: '0.75rem', whiteSpace: 'normal', lineHeight: '1.2' }}>{sk.descrizione}</td>
+                    <tr key={sk.nome} style={{ borderBottom: '1px solid #f3f4f6' }}>
+                      <td style={{ padding: '0.45rem 1rem', fontWeight: 600, color: '#1f2937' }}>{sk.nome}</td>
+                      <td style={{ padding: '0.45rem 1rem', color: '#4b5563', fontSize: '0.75rem', whiteSpace: 'normal', lineHeight: '1.2' }}>{descrizione}</td>
                       <td style={{ padding: '0.45rem 0.5rem', textAlign: 'center', color: '#374151' }}>
                         {carattSigla} {fmt(carattBonus)}
                       </td>

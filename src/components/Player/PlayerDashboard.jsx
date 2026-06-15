@@ -9,6 +9,7 @@ import { subscribeToCompanies } from "../../services/companyService";
 import { subscribeToCampaigns } from "../../services/campaignService";
 import PlayerCharacterSheet from "./PlayerCharacterSheet";
 import { getCharacterHpTot } from "../../utils/skillHelpers";
+import { getSpellCatalog } from "../../services/spellCatalogService";
 
 export default function PlayerDashboard() {
   const { logout, userData, user } = useAuth();
@@ -19,6 +20,7 @@ export default function PlayerDashboard() {
   const [campaignsMap, setCampaignsMap] = useState({});
   const [loading, setLoading] = useState(true);
   const [selectedChar, setSelectedChar] = useState(null);
+  const [activeSpellCatalog, setActiveSpellCatalog] = useState(null);
 
   // 1. Sottoscrizione ai workspace del giocatore
   useEffect(() => {
@@ -130,8 +132,19 @@ export default function PlayerDashboard() {
   }, [workspaces, campaignsMap, allCompanies]);
 
   // Seleziona il PG completo da visualizzare in dettaglio
-  const handleSelectCharacter = (char) => {
+  const handleSelectCharacter = async (char) => {
     setSelectedChar(char);
+    if (char && char.gmId) {
+      try {
+        const catalog = await getSpellCatalog(char.gmId);
+        setActiveSpellCatalog(catalog);
+      } catch (err) {
+        console.error("Errore nel caricamento del catalogo incantesimi del GM:", err);
+        setActiveSpellCatalog(null);
+      }
+    } else {
+      setActiveSpellCatalog(null);
+    }
   };
 
   // Aggiorna lo stato del personaggio selezionato per riflettere i cambiamenti live da Firestore
@@ -144,7 +157,8 @@ export default function PlayerDashboard() {
     return (
       <PlayerCharacterSheet 
         characterData={activeSelectedChar} 
-        onBack={() => setSelectedChar(null)} 
+        onBack={() => { setSelectedChar(null); setActiveSpellCatalog(null); }} 
+        spellCatalog={activeSpellCatalog}
       />
     );
   }

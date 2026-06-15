@@ -501,5 +501,84 @@ export const getCharacterSkillBonus = (char, skillName) => {
   return 0;
 };
 
+export const getConsolidatedSecondarySkills = (characterData) => {
+  if (!characterData) return [];
+  const bgSkills = characterData.background?.compiledModifiers?.secondarySkills || {};
+  const newSec = characterData.newSecondarySkills || [];
+  const level1Ranks = characterData.level1SecondarySkillsTgp4 || {};
+  const levelDevelopments = characterData.levelDevelopments || [];
+
+  const consolidated = {};
+
+  // 1. Aggiungi abilità da background
+  Object.keys(bgSkills).forEach(name => {
+    const sk = bgSkills[name];
+    consolidated[name] = {
+      nome: name,
+      categoria: sk.categoria,
+      caratteristica: sk.caratteristica_associata || sk.caratteristica,
+      bgRanks: sk.bgRanks || 0,
+      specialBonus: sk.specialBonus || 0,
+      level1Ranks: level1Ranks[name] || 0,
+      levelUpRanks: 0,
+    };
+  });
+
+  // 2. Aggiungi nuove abilità apprese al livello 1
+  newSec.forEach(name => {
+    if (!consolidated[name]) {
+      const sk = secondarySkillsList.find(s => s.abilita_secondaria === name);
+      consolidated[name] = {
+        nome: name,
+        categoria: sk?.categoria || '',
+        caratteristica: sk?.caratteristica_associata || '',
+        bgRanks: 0,
+        specialBonus: 0,
+        level1Ranks: level1Ranks[name] || 0,
+        levelUpRanks: 0,
+      };
+    }
+  });
+
+  // 3. Aggiungi incrementi e nuove abilità dei livelli successivi
+  levelDevelopments.forEach(d => {
+    const levelNewSec = d.newSecondarySkills || [];
+    const levelRanks = d.secondarySkillsTgp4 || {};
+
+    levelNewSec.forEach(name => {
+      if (!consolidated[name]) {
+        const sk = secondarySkillsList.find(s => s.abilita_secondaria === name);
+        consolidated[name] = {
+          nome: name,
+          categoria: sk?.categoria || '',
+          caratteristica: sk?.caratteristica_associata || '',
+          bgRanks: 0,
+          specialBonus: 0,
+          level1Ranks: 0,
+          levelUpRanks: 0,
+        };
+      }
+    });
+
+    Object.keys(levelRanks).forEach(name => {
+      if (consolidated[name]) {
+        consolidated[name].levelUpRanks += levelRanks[name];
+      }
+    });
+  });
+
+  return Object.values(consolidated);
+};
+
+export const getTgp4CategoryKeyForSecondary = (categoryName) => {
+  const normCat = categoryName?.toLowerCase()?.trim();
+  if (normCat === 'di manovra e movimento' || normCat === 'abilità di movimento e manovra') return 'Manovre in Movimento';
+  if (normCat === 'con le armi' || normCat === 'abilità con le armi') return 'Abilità armi';
+  if (normCat === 'generali' || normCat === 'abilità generali') return 'Abilità generiche';
+  if (normCat === 'sotterfugio' || normCat === 'abilità di sotterfugio') return 'Abilità sotterfugio';
+  if (normCat === 'magiche' || normCat === 'abilità magiche') return 'Abilità magiche';
+  return null;
+};
+
 
 
