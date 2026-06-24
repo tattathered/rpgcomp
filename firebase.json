@@ -23,6 +23,7 @@
     }
   ],
   "hosting": {
+    "site": "merp-companion-yagni",
     "public": "dist",
     "ignore": [
       "firebase.json",

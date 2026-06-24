@@ -34,3 +34,30 @@ Antigravity aggiorna `docs/backlog.md` quando:
 6. **Update docs** — aggiornare spoke requisiti + backlog
 
 **NON passare mai da 1 direttamente a 4.**
+
+---
+
+## 🚀 Workflow Deploy (Git + Firebase)
+
+> ⚠️ **Vincolo sandbox:** Antigravity NON può eseguire `git push` né `firebase deploy` — queste operazioni richiedono accesso di rete esterno bloccato dal sandbox. L'utente le esegue manualmente.
+
+### Cosa fa Antigravity
+1. `npm run build` — genera `dist/` aggiornato
+2. `git add <file>` — staging dei file modificati
+3. `git commit -m "..."` — commit con messaggio descrittivo
+4. Verifica `firebase.json` — deve avere `"site": "merp-companion-yagni"` nella sezione hosting
+
+### Cosa fa l'utente (in sandbox)
+```bash
+# 1. Push su GitHub
+git push origin main
+
+# 2. Deploy su Firebase Hosting (dist/ già buildato da Antigravity)
+firebase deploy --only hosting
+```
+
+### Note
+- Il `dist/` viene generato da Antigravity con `npm run build` **prima** del commit.
+- Il `firebase deploy` legge il `dist/` già presente — non serve rebuildare.
+- Firebase Auth e Firestore **non richiedono deploy** — le regole e le config sono gestite via Console Firebase o script separati.
+- Progetto Firebase: `merp-companion-yagni` | Repo GitHub: `tattathered/rpgcomp`
