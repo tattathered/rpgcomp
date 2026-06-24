@@ -280,23 +280,10 @@ export const getTgp4PoolSize = (categoryName, skillName, professionName) => {
   const normKey = key.toLowerCase().trim();
   if (normKey === 'percezione') return 0;
 
-  // Mappa le chiavi normalizzate ai nomi categoria italiani usati in TGP-4
-  const mapping = {
-    'manovre in movimento': 'manovre_movimento',
-    'abilità armi': 'abilita_armi',
-    'abilità generiche': 'abilita_generiche',
-    'percezione': 'abilita_generiche',
-    'abilità sotterfugio': 'abilita_sotterfugio',
-    'abilità magiche': 'abilita_magiche',
-    'resistenza fisica': 'resistenza_fisica',
-    'lingue': 'lingue',
-    'liste incantesimi': 'liste_incantesimi'
-  };
-
-  const targetCategory = mapping[normKey] || normKey;
-
-  const record = professionDevelopmentCosts.find(d => d.id_professione === profId && d.categoria_abilita === targetCategory);
-  return record ? record.costo : 0;
+  const record = professionDevelopmentCosts.find(
+    d => d.categoria && d.categoria.toLowerCase().trim() === normKey
+  );
+  return record ? (record[profId] ?? 0) : 0;
 };
 
 export const fmt = (n) => (typeof n === 'number' ? (n >= 0 ? `+${n}` : `${n}`) : n);
