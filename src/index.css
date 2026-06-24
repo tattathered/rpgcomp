@@ -1017,3 +1017,15 @@ input[type=number] {
   color: #f87171;
   border-color: #f87171;
 }
+
+.btn-tiro-dado-critico {
+  background-color: #059669 !important;
+  border-color: #059669 !important;
+  color: #ffffff !important;
+}
+.btn-tiro-dado-critico:hover {
+  background-color: #047857 !important;
+  border-color: #047857 !important;
+  color: #ffffff !important;
+}
+

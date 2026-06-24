@@ -3,6 +3,7 @@ import { Swords, RotateCcw, AlertTriangle, AlertOctagon, Play, HelpCircle, Heart
 import attackTables from '../data/Tabelle-Attacco-TA-1_TA-2_TA-3_TA-4.json';
 import FumbleResolver from './FumbleResolver';
 import CriticalResolver from './CriticalResolver';
+import { resolveSpellAttack } from '../utils/spellHelpers';
 import {
   getFinalStats,
   getSpecificTb6Ranks,
@@ -21,14 +22,18 @@ const WEAPON_SKILL_TO_TABLE = {
   'a 2 mani': 'TA-3',
   'da tiro': 'TA-4',
   'con asta': 'TA-3', // le armi con asta usano armi a due mani TA-3
-  'da lancio': 'TA-1' // default, verrà mappata dinamicamente
+  'da lancio': 'TA-1', // default, verrà mappata dinamicamente
+  'dardo': 'TA-7',
+  'sfera': 'TA-8'
 };
 
 const TABLE_NAMES = {
   'TA-1': 'Armi da Taglio a una Mano (TA-1)',
   'TA-2': 'Armi Contundenti a una Mano (TA-2)',
   'TA-3': 'Armi a Due Mani (TA-3)',
-  'TA-4': 'Armi da Tiro (TA-4)'
+  'TA-4': 'Armi da Tiro (TA-4)',
+  'TA-7': 'Incantesimi Dardo (TA-7)',
+  'TA-8': 'Incantesimi Sfera (TA-8)'
 };
 
 const ARMOR_COLUMNS = {
@@ -61,6 +66,12 @@ const getSkillForWeapon = (item) => {
   const nome = (item.nome || '').toLowerCase();
   const note = (item.note || item.note_base || '').toLowerCase();
   
+  if (nome.includes('dardo') || note.includes('dardo')) {
+    return 'dardo';
+  }
+  if (nome.includes('sfera') || note.includes('sfera')) {
+    return 'sfera';
+  }
   if (note.includes('con asta') || nome.includes('lancia') || nome.includes('giavellotto')) {
     return 'con asta';
   }
@@ -102,6 +113,13 @@ const getCriticalTableForWeapon = (category, name) => {
   const cat = (category || '').toLowerCase();
   const n = (name || '').toLowerCase();
   
+  if (cat === 'dardo' || cat === 'sfera') {
+    if (n.includes('fuoco') || n.includes('calore')) return 'TC-6';
+    if (n.includes('ghiaccio') || n.includes('freddo')) return 'TC-7';
+    if (n.includes('fulmine') || n.includes('elettricità') || n.includes('fulm')) return 'TC-8';
+    if (n.includes('impatto') || n.includes('energia') || n.includes('acqua')) return 'TC-1';
+    return 'TC-6'; // default
+  }
   if (cat === 'contundenti a 1 mano') return 'TC-1'; // Impatto
   if (cat === 'da tiro' || cat === 'da lancio') {
     if (n.includes('fionda') || n.includes('sasso') || n.includes('pietra') || n.includes('bolas')) {
@@ -192,7 +210,9 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
         'a 2 mani',
         'da tiro',
         'da lancio',
-        'con asta'
+        'con asta',
+        'dardo',
+        'sfera'
       ];
       
       const skillBonuses = {};
@@ -321,7 +341,7 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
     ? activeAttackerWeapon.skillName 
     : attackerWeaponCat;
 
-  const isRangedOrThrown = ['da tiro', 'da lancio'].includes(attackerWeaponCategoryResolved);
+  const isRangedOrThrown = ['da tiro', 'da lancio', 'dardo', 'sfera'].includes(attackerWeaponCategoryResolved);
 
   // Forza i modificatori a disabilitarsi se è un'arma da tiro/lancio
   useEffect(() => {
@@ -419,33 +439,47 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
     const armorColName = ARMOR_COLUMNS[defenderArmor] || 'nessuna_armatura';
     const finalResult = finalAttackResult;
 
-    // Cerca nel JSON delle tabelle d'attacco
-    const row = attackTables.find(r => r.tabella === tableCode && r.risultato_del_tiro === finalResult);
+    let cellValue = '';
+    const isSpell = tableCode === 'TA-7' || tableCode === 'TA-8';
 
-    if (!row) {
-      setCombatOutcome({
-        type: 'error',
-        message: `Nessun dato trovato per il tiro ${finalResult} sulla tabella ${tableCode}.`
-      });
-      return;
+    if (isSpell) {
+      const outcome = resolveSpellAttack(finalResult, tableCode, defenderArmor);
+      cellValue = outcome ? String(outcome.valore).trim() : '0';
+      if (cellValue === 'F' && diceRoll > 2) {
+        cellValue = '0'; // treated as miss since natural roll is > 2
+      }
+    } else {
+      // Cerca nel JSON delle tabelle d'attacco
+      const row = attackTables.find(r => r.tabella === tableCode && r.risultato_del_tiro === finalResult);
+
+      if (!row) {
+        setCombatOutcome({
+          type: 'error',
+          message: `Nessun dato trovato per il tiro ${finalResult} sulla tabella ${tableCode}.`
+        });
+        return;
+      }
+      cellValue = String(row[armorColName] || '').trim();
     }
 
-    const cellValue = String(row[armorColName] || '').trim();
+    const isFumble = isSpell ? (diceRoll <= 2) : (cellValue === 'Possibilità di Colpo Maldestro' || diceRoll <= 8);
 
-    if (cellValue === 'Possibilità di Colpo Maldestro' || diceRoll <= 8) {
-      // Fumble! (In MERP, un tiro basso o un esito maldestro genera fumble)
+    if (isFumble) {
+      // Fumble! (In MERP, un tiro basso o un esito maldestro genera fumble; per gli incantesimi è F)
       setCombatOutcome({
         type: 'fumble',
         roll: diceRoll,
         finalResult,
         tableCode,
         armorColName,
-        message: 'FALLIMENTO GRAVE - COLPO MALDESTRO!',
-        details: 'Il colpo è andato malissimo. Il Master chiederà di effettuare un tiro d100 sulla tabella dei Colpi Maldestri per risolverne le conseguenze.'
+        message: isSpell ? 'FALLIMENTO INCANTESIMO!' : 'FALLIMENTO GRAVE - COLPO MALDESTRO!',
+        details: isSpell 
+          ? 'Il lancio dell\'incantesimo è fallito. Il Master chiederà di effettuare un tiro d100 sulla tabella dei Fallimenti Incantesimi (TTM-3) per risolverne le conseguenze.'
+          : 'Il colpo è andato malissimo. Il Master chiederà di effettuare un tiro d100 sulla tabella dei Colpi Maldestri per risolverne le conseguenze.'
       });
       setShowFumbleResolver(true);
       setShowCriticalResolver(false);
-      const fTable = isRangedOrThrown ? 'TTM-2' : 'TTM-1';
+      const fTable = isSpell ? 'TTM-3' : (isRangedOrThrown ? 'TTM-2' : 'TTM-1');
       setFumbleTableCode(fTable);
       const fRoll = Math.floor(Math.random() * 100) + 1;
       setFumbleDiceRoll(fRoll);
@@ -465,7 +499,7 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
       if (match) {
         const damage = parseInt(match[1]);
         const critType = match[2] || null;
-        const critMod = critType ? CRITICAL_MODIFIERS[critType] : 0;
+        const critMod = isSpell ? 0 : (critType ? CRITICAL_MODIFIERS[critType] : 0);
 
         setCombatOutcome({
           type: 'hit',
@@ -630,6 +664,8 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
                       <option value="con asta">Con asta (TA-3)</option>
                       <option value="da tiro">Da tiro (TA-4)</option>
                       <option value="da lancio">Da lancio (Dinamico)</option>
+                      <option value="dardo">Dardo Magico (TA-7)</option>
+                      <option value="sfera">Sfera Magica (TA-8)</option>
                     </select>
                   </div>
                   <div>

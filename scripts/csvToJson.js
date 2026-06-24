@@ -134,6 +134,37 @@ fs.readdirSync(dataDir).forEach(file => {
         });
       });
       parsed.data = flatData;
+    } else if (baseName === 'TA-7-incantesimi-dardo') {
+      parsed.data = parsed.data.map(row => {
+        if (row) {
+          const val = String(row['Risultato del Tiro'] || '').trim();
+          if (val === '46091') row['Risultato del Tiro'] = '03-10';
+          else if (val === '46346') row['Risultato del Tiro'] = '11-20';
+          else row['Risultato del Tiro'] = val;
+        }
+        return row;
+      });
+    } else if (baseName === 'TA-8-incantesimi_sfera') {
+      parsed.data = parsed.data.map(row => {
+        if (row) {
+          const val = String(row['Risultato del Tiro'] || '').trim();
+          if (val === '46150') row['Risultato del Tiro'] = '05-08';
+          else if (val === '46277') row['Risultato del Tiro'] = '09-12';
+          else row['Risultato del Tiro'] = val;
+        }
+        return row;
+      });
+    } else if (baseName === 'TA-9-incantesimi_base') {
+      parsed.data = parsed.data.map(row => {
+        if (row) {
+          const val = String(row['Risultato dei Dadi'] || '').trim();
+          if (val === '46085') row['Risultato dei Dadi'] = '03-05';
+          else if (val === '46150') row['Risultato dei Dadi'] = '06-08';
+          else if (val === '46277') row['Risultato dei Dadi'] = '09-12';
+          else row['Risultato dei Dadi'] = val;
+        }
+        return row;
+      });
     }
 
     const outPath = path.join(outputDir, `${baseName}.json`);

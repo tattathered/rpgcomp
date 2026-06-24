@@ -1,0 +1,218 @@
+[
+  {
+    "Risultato del Tiro": "TI 01-04",
+    "Corazza di Piastre": "F",
+    "Corazza di Maglie": "F",
+    "Cuoio Rinforzato": "F",
+    "Cuoio Grezzo": "F",
+    "Nessuna Armatura": "F"
+  },
+  {
+    "Risultato del Tiro": "05-08",
+    "Corazza di Piastre": 0,
+    "Corazza di Maglie": 0,
+    "Cuoio Rinforzato": 0,
+    "Cuoio Grezzo": 0,
+    "Nessuna Armatura": 1
+  },
+  {
+    "Risultato del Tiro": "09-12",
+    "Corazza di Piastre": 0,
+    "Corazza di Maglie": 0,
+    "Cuoio Rinforzato": 0,
+    "Cuoio Grezzo": 1,
+    "Nessuna Armatura": 2
+  },
+  {
+    "Risultato del Tiro": "13-16",
+    "Corazza di Piastre": 1,
+    "Corazza di Maglie": 1,
+    "Cuoio Rinforzato": 1,
+    "Cuoio Grezzo": 1,
+    "Nessuna Armatura": "3A"
+  },
+  {
+    "Risultato del Tiro": "17-20",
+    "Corazza di Piastre": 1,
+    "Corazza di Maglie": 1,
+    "Cuoio Rinforzato": 1,
+    "Cuoio Grezzo": 1,
+    "Nessuna Armatura": "4A"
+  },
+  {
+    "Risultato del Tiro": "21-24",
+    "Corazza di Piastre": 2,
+    "Corazza di Maglie": 2,
+    "Cuoio Rinforzato": 2,
+    "Cuoio Grezzo": 2,
+    "Nessuna Armatura": "5A"
+  },
+  {
+    "Risultato del Tiro": "25-28",
+    "Corazza di Piastre": 3,
+    "Corazza di Maglie": 3,
+    "Cuoio Rinforzato": 4,
+    "Cuoio Grezzo": 3,
+    "Nessuna Armatura": "6A"
+  },
+  {
+    "Risultato del Tiro": "29-32",
+    "Corazza di Piastre": "4A",
+    "Corazza di Maglie": "4A",
+    "Cuoio Rinforzato": "5A",
+    "Cuoio Grezzo": "4A",
+    "Nessuna Armatura": "7A"
+  },
+  {
+    "Risultato del Tiro": "33-36",
+    "Corazza di Piastre": "5A",
+    "Corazza di Maglie": "5A",
+    "Cuoio Rinforzato": "6A",
+    "Cuoio Grezzo": "5A",
+    "Nessuna Armatura": "8A"
+  },
+  {
+    "Risultato del Tiro": "37-40",
+    "Corazza di Piastre": "6A",
+    "Corazza di Maglie": "6A",
+    "Cuoio Rinforzato": "7A",
+    "Cuoio Grezzo": "6A",
+    "Nessuna Armatura": "9A"
+  },
+  {
+    "Risultato del Tiro": "41-44",
+    "Corazza di Piastre": "7A",
+    "Corazza di Maglie": "7A",
+    "Cuoio Rinforzato": "8A",
+    "Cuoio Grezzo": "7A",
+    "Nessuna Armatura": "10B"
+  },
+  {
+    "Risultato del Tiro": "45-48",
+    "Corazza di Piastre": "8A",
+    "Corazza di Maglie": "8A",
+    "Cuoio Rinforzato": "9A",
+    "Cuoio Grezzo": "8A",
+    "Nessuna Armatura": "11B"
+  },
+  {
+    "Risultato del Tiro": "49-52",
+    "Corazza di Piastre": "9A",
+    "Corazza di Maglie": "9A",
+    "Cuoio Rinforzato": "10A",
+    "Cuoio Grezzo": "9B",
+    "Nessuna Armatura": "12B"
+  },
+  {
+    "Risultato del Tiro": "53-56",
+    "Corazza di Piastre": "10B",
+    "Corazza di Maglie": "10B",
+    "Cuoio Rinforzato": "11B",
+    "Cuoio Grezzo": "10B",
+    "Nessuna Armatura": "13B"
+  },
+  {
+    "Risultato del Tiro": "57-60",
+    "Corazza di Piastre": "11B",
+    "Corazza di Maglie": "11B",
+    "Cuoio Rinforzato": "12B",
+    "Cuoio Grezzo": "11B",
+    "Nessuna Armatura": "14C"
+  },
+  {
+    "Risultato del Tiro": "61-64",
+    "Corazza di Piastre": "12B",
+    "Corazza di Maglie": "12B",
+    "Cuoio Rinforzato": "13B",
+    "Cuoio Grezzo": "12B",
+    "Nessuna Armatura": "15C"
+  },
+  {
+    "Risultato del Tiro": "65-68",
+    "Corazza di Piastre": "12B",
+    "Corazza di Maglie": "13B",
+    "Cuoio Rinforzato": "14B",
+    "Cuoio Grezzo": "13B",
+    "Nessuna Armatura": "16C"
+  },
+  {
+    "Risultato del Tiro": "69-72",
+    "Corazza di Piastre": "13B",
+    "Corazza di Maglie": "14B",
+    "Cuoio Rinforzato": "15B",
+    "Cuoio Grezzo": "14C",
+    "Nessuna Armatura": "17C"
+  },
+  {
+    "Risultato del Tiro": "73-76",
+    "Corazza di Piastre": "14B",
+    "Corazza di Maglie": "14C",
+    "Cuoio Rinforzato": "15C",
+    "Cuoio Grezzo": "15C",
+    "Nessuna Armatura": "18C"
+  },
+  {
+    "Risultato del Tiro": "77-80",
+    "Corazza di Piastre": "14C",
+    "Corazza di Maglie": "15C",
+    "Cuoio Rinforzato": "16C",
+    "Cuoio Grezzo": "16C",
+    "Nessuna Armatura": "19C"
+  },
+  {
+    "Risultato del Tiro": "81-84",
+    "Corazza di Piastre": "15C",
+    "Corazza di Maglie": "16C",
+    "Cuoio Rinforzato": "16C",
+    "Cuoio Grezzo": "17C",
+    "Nessuna Armatura": "20C"
+  },
+  {
+    "Risultato del Tiro": "85-88",
+    "Corazza di Piastre": "16C",
+    "Corazza di Maglie": "17C",
+    "Cuoio Rinforzato": "17C",
+    "Cuoio Grezzo": "18C",
+    "Nessuna Armatura": "21C"
+  },
+  {
+    "Risultato del Tiro": "89-92",
+    "Corazza di Piastre": "17C",
+    "Corazza di Maglie": "18C",
+    "Cuoio Rinforzato": "18C",
+    "Cuoio Grezzo": "19C",
+    "Nessuna Armatura": "22C"
+  },
+  {
+    "Risultato del Tiro": "93-95",
+    "Corazza di Piastre": "18C",
+    "Corazza di Maglie": "19C",
+    "Cuoio Rinforzato": "19D",
+    "Cuoio Grezzo": "20C",
+    "Nessuna Armatura": "22D"
+  },
+  {
+    "Risultato del Tiro": "TI 96-97",
+    "Corazza di Piastre": "19D",
+    "Corazza di Maglie": "20D",
+    "Cuoio Rinforzato": "21E",
+    "Cuoio Grezzo": "24D",
+    "Nessuna Armatura": "26E"
+  },
+  {
+    "Risultato del Tiro": "TI 98-99",
+    "Corazza di Piastre": "20E",
+    "Corazza di Maglie": "21E",
+    "Cuoio Rinforzato": "24E",
+    "Cuoio Grezzo": "27E",
+    "Nessuna Armatura": "29E"
+  },
+  {
+    "Risultato del Tiro": "TI 100",
+    "Corazza di Piastre": "22E",
+    "Corazza di Maglie": "23E",
+    "Cuoio Rinforzato": "27E",
+    "Cuoio Grezzo": "30E",
+    "Nessuna Armatura": "32E"
+  }
+]

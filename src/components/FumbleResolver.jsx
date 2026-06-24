@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { AlertTriangle, Dices, ChevronLeft, ChevronRight, HelpCircle } from 'lucide-react';
 import fumbleTables12 from '../data/Tabella-Colpi_Maldestri-TTM-1-TTM-2.json';
 import fumbleTables34 from '../data/Tabella-Colpi_Maldestri-TTM-3-TTM-4.json';
@@ -41,15 +41,41 @@ export default function FumbleResolver({
   const [selectedMischiaCategory, setSelectedMischiaCategory] = useState('taglio a 1 mano');
   const [selectedTiroWeapon, setSelectedTiroWeapon] = useState('arco composto');
 
+  // Per prevenire reset spuri di fumbleResultOverride a causa di ri-renderizzazioni del padre con le stesse props
+  const prevProps = useRef({
+    initialTableCode,
+    initialManoeuvreDifficulty,
+    initialSpellClass,
+    initialModifierCustom,
+    initialDiceRoll
+  });
+
   // Sincronizza lo stato se le props cambiano (es. quando l'utente clicca il link "Risolvi Fumble su TTM-4")
   useEffect(() => {
-    setFumbleTableCode(initialTableCode);
-    setFumbleManoeuvreDifficulty(initialManoeuvreDifficulty);
-    setFumbleSpellClass(initialSpellClass);
-    setFumbleModifierCustom(initialModifierCustom);
-    setFumbleDiceRoll(initialDiceRoll);
-    setFumbleManualRoll(String(initialDiceRoll));
-    setFumbleResultOverride(null);
+    const hasChanged =
+      prevProps.current.initialTableCode !== initialTableCode ||
+      prevProps.current.initialManoeuvreDifficulty !== initialManoeuvreDifficulty ||
+      prevProps.current.initialSpellClass !== initialSpellClass ||
+      prevProps.current.initialModifierCustom !== initialModifierCustom ||
+      prevProps.current.initialDiceRoll !== initialDiceRoll;
+
+    if (hasChanged) {
+      setFumbleTableCode(initialTableCode);
+      setFumbleManoeuvreDifficulty(initialManoeuvreDifficulty);
+      setFumbleSpellClass(initialSpellClass);
+      setFumbleModifierCustom(initialModifierCustom);
+      setFumbleDiceRoll(initialDiceRoll);
+      setFumbleManualRoll(String(initialDiceRoll));
+      setFumbleResultOverride(null);
+
+      prevProps.current = {
+        initialTableCode,
+        initialManoeuvreDifficulty,
+        initialSpellClass,
+        initialModifierCustom,
+        initialDiceRoll
+      };
+    }
   }, [initialTableCode, initialManoeuvreDifficulty, initialSpellClass, initialModifierCustom, initialDiceRoll]);
 
   // Se ci vengono fornite categorie esterne (es. dal CombatCalculator), sincronizzale
@@ -561,9 +587,20 @@ export default function FumbleResolver({
         <div className="p-5 bg-white border border-red-100 rounded-lg shadow-xs">
           <div className="border-b border-red-50 pb-2 mb-3 flex justify-between items-center">
             <span className="text-xs font-bold text-red-750 uppercase tracking-wider">Effetto del Colpo Maldestro</span>
-            <span className="text-xs font-black px-2 py-0.5 rounded-full bg-red-100 text-red-800">
-              Risultato: {fumbleFinalResult}
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-black px-2 py-0.5 rounded-full bg-red-100 text-red-800">
+                Risultato: {fumbleFinalResult}
+              </span>
+              {fumbleResultOverride !== null && (
+                <button
+                  type="button"
+                  onClick={() => setFumbleResultOverride(null)}
+                  className="text-[10px] text-red-750 underline hover:text-red-600 font-semibold"
+                >
+                  Ripristina Tiro
+                </button>
+              )}
+            </div>
           </div>
           
           {fumbleOutcome ? (

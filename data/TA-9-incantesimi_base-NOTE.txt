@@ -1,0 +1,27 @@
+Nota: il numero ottenuto su questa tabella rappresenta il modificatore per il Tiro Resistenza che il bersaglio deve eseguire (vedi Tab. TRR).
+F indica il fallimento dell’incantesimo e richiede un tiro sulla tabella Fallimento Incantesimi TTM-3. 
+
+Modificatori per la Distanza	
+'+30 a contatto
+'+10 da 0m a 3m
+'0 da 3m a 16m
+'-10 da 16m a 33m
+'-20 da 33m a 100m
+'-30 più di 100m
+	
+Modificatori per l’Attaccante	
+'+ BO incantesimi base dell’attaccante
+'-10 se l’attaccante ha perso più della metà dei suoi PF
+'+20 se l’incantesimo è stato preparato per 4 round
+'+10 se l’incantesimo è stato preparato per 3 round
+'+0 se l’incantesimo è stato preparato per 2 round
+'-15 se l’incantesimo è stato preparato per 1 round
+'-30 se l’incantesimo è stato preparato per 0 round
+	
+Modificatori per il Bersaglio	
+'- Bonus di copertura (Tiro Manovra e decisione del GM)
+'+10 se il bersaglio è statico (colto di sorpresa o prono ed è senza riparo)
+
+
+Tempo necessario per Lanciare Incantesimi:
+Per lanciare un incantesimo occorre almeno un Round anche se si possono spendere fino a 4 round per aumentare le probabilità di riuscita. Più lunga è la preparazione, maggiore è l'efficacia dell'incantesimo. Infatti, a ogni round di preparazione corrisponde una particolare modifica al Tiro per Colpire.

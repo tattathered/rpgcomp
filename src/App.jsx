@@ -9,6 +9,7 @@ import MovementManoeuvreResolver from './components/MovementManoeuvreResolver';
 import FumbleResolver from './components/FumbleResolver';
 import CriticalResolver from './components/CriticalResolver';
 import StaticManoeuvreResolver from './components/StaticManoeuvreResolver';
+import SpellResolver from './components/SpellResolver';
 import { getCharacterHpTot } from './utils/skillHelpers';
 import CsvExportManager from './components/CsvExportManager';
 import { useAuth } from './contexts/AuthContext';
@@ -768,7 +769,6 @@ function App() {
                       alignItems: 'center',
                       justifyContent: 'center',
                       gap: '0.35rem',
-                      opacity: 0.5,
                     }}
                     className="hover:brightness-95"
                   >
@@ -828,19 +828,21 @@ function App() {
                 />
               </ErrorBoundary>
             )}
-            {['spells_base', 'spells_direct'].includes(activeActionSubTab) && (
-              <div className="card p-8 text-center text-gray-500 max-w-lg mx-auto mt-10">
-                <Compass className="w-16 h-16 mx-auto text-blue-500/30 mb-4 animate-pulse" />
-                <h3 className="text-lg font-black text-gray-800 uppercase tracking-wider mb-2">Funzionalità in Arrivo</h3>
-                <p className="text-sm text-gray-500 leading-relaxed mb-6">
-                  La risoluzione di questa specifica azione ({
-                    activeActionSubTab === 'spells_base' ? 'Incantesimi Base' : 'Incantesimi Diretti'
-                  }) sarà sviluppata e resa disponibile nella v2.
-                </p>
-                <button className="btn btn-primary text-xs uppercase font-extrabold px-6" onClick={() => setActiveActionSubTab('combat')}>
-                  Ritorna al Combattimento
-                </button>
-              </div>
+            {activeActionSubTab === 'spells_base' && (
+              <ErrorBoundary>
+                <SpellResolver 
+                  initialType="base"
+                  showTitle={true}
+                />
+              </ErrorBoundary>
+            )}
+            {activeActionSubTab === 'spells_direct' && (
+              <ErrorBoundary>
+                <SpellResolver 
+                  initialType="dardo"
+                  showTitle={true}
+                />
+              </ErrorBoundary>
             )}
           </div>
         )}

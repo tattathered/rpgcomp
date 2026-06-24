@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { AlertOctagon, Dices, ChevronLeft, ChevronRight } from 'lucide-react';
 
 import tc1 from '../data/TC-1-colpi_critici_impatto.json';
@@ -72,14 +72,37 @@ export default function CriticalResolver({
   const [modifierCustom, setModifierCustom] = useState(initialModifierCustom);
   const [resultOverride, setResultOverride] = useState(null);
 
+  // Per prevenire reset spuri di resultOverride a causa di ri-renderizzazioni del padre con le stesse props
+  const prevProps = useRef({
+    tableCode: initialTableCode,
+    severity: initialSeverity,
+    diceRoll: initialDiceRoll,
+    modifierCustom: initialModifierCustom
+  });
+
   // Sync if props change
   useEffect(() => {
-    setTableCode(initialTableCode);
-    setSeverity(initialSeverity);
-    setDiceRoll(initialDiceRoll);
-    setManualRoll(String(initialDiceRoll));
-    setModifierCustom(initialModifierCustom);
-    setResultOverride(null);
+    const hasChanged =
+      prevProps.current.tableCode !== initialTableCode ||
+      prevProps.current.severity !== initialSeverity ||
+      prevProps.current.diceRoll !== initialDiceRoll ||
+      prevProps.current.modifierCustom !== initialModifierCustom;
+
+    if (hasChanged) {
+      setTableCode(initialTableCode);
+      setSeverity(initialSeverity);
+      setDiceRoll(initialDiceRoll);
+      setManualRoll(String(initialDiceRoll));
+      setModifierCustom(initialModifierCustom);
+      setResultOverride(null);
+      
+      prevProps.current = {
+        tableCode: initialTableCode,
+        severity: initialSeverity,
+        diceRoll: initialDiceRoll,
+        modifierCustom: initialModifierCustom
+      };
+    }
   }, [initialTableCode, initialSeverity, initialDiceRoll, initialModifierCustom]);
 
   // Modificatore basato sulla severità (TC-modifiche_al_tiro)
@@ -112,7 +135,7 @@ export default function CriticalResolver({
     const tableData = tcTables[tableCode] || [];
     // Trova la riga in cui il risultato rientra nel range
     const record = tableData.find(r => {
-      const resKey = r['Risultato'] || r['risultato'] || '';
+      const resKey = String(r['Risultato'] || r['risultato'] || '');
       return isInRange(finalResult, resKey);
     });
     
@@ -120,7 +143,7 @@ export default function CriticalResolver({
       // Estrai la descrizione. La chiave può essere il nome della tabella o "descrizione"
       const descKey = Object.keys(record).find(k => k !== 'Risultato' && k !== 'risultato');
       return {
-        range: record['Risultato'] || record['risultato'],
+        range: String(record['Risultato'] || record['risultato'] || ''),
         descrizione: record[descKey] || ''
       };
     }
@@ -151,11 +174,10 @@ export default function CriticalResolver({
 
   const handlePrev = () => {
     const tableData = tcTables[tableCode] || [];
-    const currentDesc = outcome?.descrizione;
     // Filtra ed ordina i record in ordine di range iniziale
     const sortedRecords = [...tableData]
       .map(r => {
-        const key = r['Risultato'] || r['risultato'] || '';
+        const key = String(r['Risultato'] || r['risultato'] || '');
         let min = 0;
         if (key.includes('-')) {
           min = parseInt(key.split('-')[0], 10);
@@ -167,23 +189,32 @@ export default function CriticalResolver({
       .filter(item => !isNaN(item.min))
       .sort((a, b) => a.min - b.min);
 
-    const currentIndex = sortedRecords.findIndex(item => {
-      const k = item.r['Risultato'] || item.r['risultato'];
+    let currentIndex = sortedRecords.findIndex(item => {
+      const k = String(item.r['Risultato'] || item.r['risultato'] || '');
       return isInRange(finalResult, k);
     });
 
+    if (currentIndex === -1) {
+      const firstMin = sortedRecords[0]?.min ?? 1;
+      if (finalResult < firstMin) {
+        // Siamo già sotto il primo range, imposta il minimo del primo
+        setResultOverride(firstMin);
+        return;
+      } else {
+        // Siamo sopra l'ultimo range. Il precedente dell'oltre-limite è l'ultimo record!
+        currentIndex = sortedRecords.length;
+      }
+    }
+
     if (currentIndex > 0) {
       const prevRecord = sortedRecords[currentIndex - 1].r;
-      const key = prevRecord['Risultato'] || prevRecord['risultato'];
-      // Imposta il valore mediano o minimo del range precedente
+      const key = String(prevRecord['Risultato'] || prevRecord['risultato'] || '');
       if (key.includes('-')) {
         const parts = key.split('-');
         setResultOverride(parseInt(parts[0], 10));
       } else {
         setResultOverride(parseInt(key, 10));
       }
-    } else {
-      setResultOverride(1);
     }
   };
 
@@ -191,7 +222,7 @@ export default function CriticalResolver({
     const tableData = tcTables[tableCode] || [];
     const sortedRecords = [...tableData]
       .map(r => {
-        const key = r['Risultato'] || r['risultato'] || '';
+        const key = String(r['Risultato'] || r['risultato'] || '');
         let min = 0;
         if (key.includes('-')) {
           min = parseInt(key.split('-')[0], 10);
@@ -203,24 +234,41 @@ export default function CriticalResolver({
       .filter(item => !isNaN(item.min))
       .sort((a, b) => a.min - b.min);
 
-    const currentIndex = sortedRecords.findIndex(item => {
-      const k = item.r['Risultato'] || item.r['risultato'];
+    let currentIndex = sortedRecords.findIndex(item => {
+      const k = String(item.r['Risultato'] || item.r['risultato'] || '');
       return isInRange(finalResult, k);
     });
 
-    if (currentIndex >= 0 && currentIndex < sortedRecords.length - 1) {
+    if (currentIndex === -1) {
+      const firstMin = sortedRecords[0]?.min ?? 1;
+      if (finalResult < firstMin) {
+        // Siamo sotto il primo range. Il successivo è il primo record!
+        currentIndex = -1; // -1 + 1 = 0
+      } else {
+        // Siamo già sopra l'ultimo range, mantieni l'ultimo valore dell'ultimo record
+        const lastRecord = sortedRecords[sortedRecords.length - 1].r;
+        const key = String(lastRecord['Risultato'] || lastRecord['risultato'] || '');
+        if (key.includes('-')) {
+          setResultOverride(parseInt(key.split('-')[1], 10));
+        } else {
+          setResultOverride(parseInt(key, 10));
+        }
+        return;
+      }
+    }
+
+    if (currentIndex < sortedRecords.length - 1) {
       const nextRecord = sortedRecords[currentIndex + 1].r;
-      const key = nextRecord['Risultato'] || nextRecord['risultato'];
+      const key = String(nextRecord['Risultato'] || nextRecord['risultato'] || '');
       if (key.includes('-')) {
         const parts = key.split('-');
         setResultOverride(parseInt(parts[0], 10));
       } else {
         setResultOverride(parseInt(key, 10));
       }
-    } else {
-      setResultOverride(120);
     }
   };
+
 
   return (
     <div className="card p-5 border border-amber-200 rounded-xl bg-amber-50/10 shadow-sm animate-fadeIn">
@@ -290,11 +338,11 @@ export default function CriticalResolver({
                       setSeverity(sev);
                       setResultOverride(null);
                     }}
-                    className={`py-2 px-0.5 text-xs font-bold rounded border transition text-center flex flex-col justify-center items-center h-12 leading-tight flex-1 min-w-[60px] ${
+                    className={`fumble-btn ${
                       isActive 
-                        ? 'bg-amber-600 border-amber-600 text-white shadow-sm' 
-                        : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
-                    }`}
+                        ? 'fumble-btn-selected-amber' 
+                        : 'fumble-btn-deselected'
+                    } flex-1 min-w-[60px]`}
                   >
                     <span className="uppercase font-black text-sm">{sev}</span>
                     <span className="text-[10px] opacity-75 font-semibold mt-0.5">{fmt(modVal)}</span>
@@ -314,7 +362,7 @@ export default function CriticalResolver({
               <button
                 type="button"
                 onClick={handleRollDice}
-                className="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-lg text-xs transition shrink-0 flex items-center gap-1.5 shadow-sm active:scale-95"
+                className="px-4 py-2 btn-tiro-dado-critico text-white font-bold rounded-lg text-xs transition shrink-0 flex items-center gap-1.5 shadow-sm active:scale-95"
               >
                 <Dices className="w-4 h-4" />
                 Tira Dado
@@ -343,74 +391,73 @@ export default function CriticalResolver({
           </div>
         </div>
 
-        {/* Tabella di calcolo */}
-        <div className="text-center py-2.5 px-4 bg-amber-50 border border-amber-100 rounded-lg flex flex-wrap justify-center items-center gap-2 text-xs md:text-sm font-bold text-amber-950 shadow-inner">
-          <span className="opacity-75">Calcolo:</span>
-          <span className="px-2 py-0.5 bg-white border border-amber-200 rounded text-amber-800">Dado: {diceRoll}</span>
-          <span>+</span>
-          <span className="px-2 py-0.5 bg-white border border-amber-200 rounded text-amber-800">Mod. Severità ({severity}): {fmt(severityModifier)}</span>
-          <span>+</span>
-          <span className="px-2 py-0.5 bg-white border border-amber-200 rounded text-amber-800">Mod. GM: {fmt(modifierCustom)}</span>
-          <span>=</span>
-          <span className="px-2.5 py-0.5 bg-amber-600 border border-amber-700 text-white rounded shadow-sm text-sm font-black">Risultato: {computedResult}</span>
+        {/* Risultato Calcolato e Navigazione Esiti */}
+        <div className="p-4 bg-amber-50 border border-amber-100 rounded-lg flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="text-center md:text-left">
+            <span className="text-[10px] font-bold text-amber-800 uppercase tracking-wider block">Formula Risultato Critico</span>
+            <p className="text-[10px] text-gray-500 mt-0.5 font-medium">
+              Tiro ({diceRoll}) + Mod. Severità ({severityModifier >= 0 ? `+${severityModifier}` : severityModifier}) + Mod. GM ({modifierCustom >= 0 ? `+${modifierCustom}` : modifierCustom})
+            </p>
+            <strong className="text-lg font-black text-amber-950 block mt-1">
+              Risultato Finale: {finalResult} / 120
+            </strong>
+          </div>
+
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={handlePrev}
+              className="px-3 py-2 bg-white hover:bg-gray-50 text-gray-700 border border-gray-250 rounded text-xs font-bold flex items-center gap-1 transition shadow-xs"
+            >
+              <ChevronLeft className="w-3.5 h-3.5" />
+              Esito Prec.
+            </button>
+            <button
+              type="button"
+              onClick={handleNext}
+              className="px-3 py-2 bg-white hover:bg-gray-50 text-gray-700 border border-gray-250 rounded text-xs font-bold flex items-center gap-1 transition shadow-xs"
+            >
+              Esito Succ.
+              <ChevronRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
         </div>
 
-        {/* Esito Box */}
-        <div className="p-5 bg-gradient-to-br from-amber-900 to-amber-950 text-amber-50 rounded-xl border border-amber-950 shadow-md relative overflow-hidden">
-          {/* Sfondo Decorativo */}
-          <div className="absolute right-0 bottom-0 opacity-[0.03] pointer-events-none translate-x-1/4 translate-y-1/4 scale-150">
-            <AlertOctagon className="w-64 h-64 text-amber-100" />
-          </div>
-
-          <div className="relative z-10 space-y-4">
-            <div className="flex justify-between items-center pb-3 border-b border-amber-800/40">
-              <span className="text-xs font-black tracking-widest text-amber-400 uppercase">Esito del Colpo Critico</span>
-              <div className="flex items-center gap-2">
-                <span className="text-xs opacity-60 font-semibold">Range Tabella:</span>
-                <span className="px-2 py-0.5 bg-amber-800/60 rounded text-xs font-black tracking-wide border border-amber-700/50">
-                  {outcome ? outcome.range : finalResult}
-                </span>
-                {resultOverride !== null && (
-                  <button
-                    type="button"
-                    onClick={() => setResultOverride(null)}
-                    className="text-[10px] text-amber-300 underline hover:text-amber-200 font-semibold"
-                  >
-                    Ripristina Tiro
-                  </button>
-                )}
-              </div>
+        {/* Descrizione Esito */}
+        <div className="p-5 bg-white border border-amber-100 rounded-lg shadow-xs">
+          <div className="border-b border-amber-50 pb-2 mb-3 flex justify-between items-center">
+            <span className="text-xs font-bold text-amber-750 uppercase tracking-wider">Effetto del Colpo Critico</span>
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-black px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">
+                Risultato: {finalResult}
+              </span>
+              {resultOverride !== null && (
+                <button
+                  type="button"
+                  onClick={() => setResultOverride(null)}
+                  className="text-[10px] text-amber-750 underline hover:text-amber-600 font-semibold"
+                >
+                  Ripristina Tiro
+                </button>
+              )}
             </div>
-
-            <div className="min-h-[80px] flex items-center justify-center py-2">
-              <p className="text-sm md:text-base font-bold text-center leading-relaxed text-amber-100">
-                {outcome ? outcome.descrizione : 'Tiro fuori range o nessun colpo critico corrispondente trovato.'}
+          </div>
+          
+          {outcome ? (
+            <div className="space-y-3">
+              <p className="text-sm font-semibold text-gray-900 leading-relaxed">
+                {outcome.descrizione}
               </p>
+              {outcome.note && (
+                <div className="p-3 bg-gray-50 rounded border border-gray-150 text-[11px] text-gray-500 whitespace-pre-line leading-relaxed">
+                  <span className="font-bold text-[10px] uppercase text-gray-400 block mb-1">Note Tabella:</span>
+                  {outcome.note}
+                </div>
+              )}
             </div>
-
-            {/* Pulsanti navigazione esiti */}
-            <div className="flex justify-between items-center pt-3 border-t border-amber-800/40">
-              <button
-                type="button"
-                onClick={handlePrev}
-                className="px-3 py-1.5 bg-amber-800/40 hover:bg-amber-800/70 border border-amber-700/50 rounded-lg text-xs font-bold text-amber-200 hover:text-white transition flex items-center gap-1 active:scale-95"
-              >
-                <ChevronLeft className="w-4 h-4" />
-                Precedente
-              </button>
-              <div className="text-[11px] font-black text-amber-400 uppercase tracking-widest bg-amber-950/60 px-2 py-0.5 rounded border border-amber-900">
-                Risultato Attivo: {finalResult}
-              </div>
-              <button
-                type="button"
-                onClick={handleNext}
-                className="px-3 py-1.5 bg-amber-800/40 hover:bg-amber-800/70 border border-amber-700/50 rounded-lg text-xs font-bold text-amber-200 hover:text-white transition flex items-center gap-1 active:scale-95"
-              >
-                Successivo
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
+          ) : (
+            <p className="text-xs italic text-gray-400">Nessun esito trovato per il risultato {finalResult} in {tableCode}.</p>
+          )}
         </div>
       </div>
     </div>

@@ -1,0 +1,19 @@
+MODIFICHE INERENTI AL BERSAGLIO:
+- il bonus di agilità
+da -10 a -60 se trova riparo (tiro Manovra e decisione del GM)
+-20 se ha lo scudo in direzione dell'attacco
+
+MODIFICHE INERENTI ALL'ATTACCANTE:
++ il bonus offensivo "Incantesimo base" dell'attaccante
+- livello dell'incantesimo
++20 se il bersaglio è nel punto centrale scelto dall'attaccante per gli effetti dell'incantesimo
++20: se ha preparato l'incantesimo per 4 round
++10: se ha preparato l'incantesimo per 3 round
++0: se ha preparato l'incantesimo per 2 round
+-15: se ha preparato l'incantesimo per 1 round
+-30: se ha preparato l'incantesimo per 0 round
+
+NOTA: Un risultato (F) indica che l'incantesimo è fallito e richiede un tiro sulla tabella TTM-3 (Fallimenti degli Incantesimi).
+
+Tempo necessario per Lanciare Incantesimi:
+Per lanciare un incantesimo occorre almeno un Round anche se si possono spendere fino a 4 round per aumentare le probabilità di riuscita. Più lunga è la preparazione, maggiore è l'efficacia dell'incantesimo. Infatti, a ogni round di preparazione corrisponde una particolare modifica al Tiro per Colpire.

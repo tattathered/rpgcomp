@@ -1,0 +1,19 @@
+MODIFICHE INERENTI AL BERSAGLIO:
+- il bonus di Agilità, se è consapevole del fatto che l'incantesimo sta per avere effetto.
+OPPURE
+da -10 a -80 se trova riparo (Tiro Manovra e decisione del GM).
+
+MODIFICHE DOVUTE ALLA DISTANZA:
++35 da Om a 3m
+0 da 3m a 16m
+-25 da 17m a 33m
+-40 da 33m a 66m
+-55 da 66m a 100m
+-75 da 100m in sù
+
+VARIE: (decisioni del GM, oggetti speciali, incantesimi o abilità).
+
+NOTA: Un risultato (F) indica che l'incantesimo è fallito e richiede un tiro sulla tabella TTM-3 (Fallimenti degli Incantesimi).
+
+Tempo necessario per Lanciare Incantesimi:
+Per lanciare un incantesimo occorre almeno un Round anche se si possono spendere fino a 4 round per aumentare le probabilità di riuscita. Più lunga è la preparazione, maggiore è l'efficacia dell'incantesimo. Infatti, a ogni round di preparazione corrisponde una particolare modifica al Tiro per Colpire.
