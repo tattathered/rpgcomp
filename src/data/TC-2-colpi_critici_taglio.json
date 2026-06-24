@@ -1,0 +1,86 @@
+[
+  {
+    "Risultato": "01-05",
+    "TC-2 Colpi Critici da Taglio": "Colpo vibrato debolmente. Nessun danno addizionale."
+  },
+  {
+    "Risultato": "06-16",
+    "TC-2 Colpi Critici da Taglio": "Ferita cutanea leggera. +1 PF per round"
+  },
+  {
+    "Risultato": "17-27",
+    "TC-2 Colpi Critici da Taglio": "Colpo alla coscia. +5 PF. Se non è protetta: +3 PF e +2 PF per round"
+  },
+  {
+    "Risultato": "28-38",
+    "TC-2 Colpi Critici da Taglio": "Ferita leggera al torace: +3 PF, +1 PF per round -5 alle attività."
+  },
+  {
+    "Risultato": "39-49",
+    "TC-2 Colpi Critici da Taglio": "Ferita leggera all'avambraccio: +4 PF. +2 PF per round Stordito per 1 round Se non indossa bracciali +2 PF e +1 PF per round"
+  },
+  {
+    "Risultato": "50-60",
+    "TC-2 Colpi Critici da Taglio": "Ferita alla gamba: +6 PF, +1 PF per round -10 alle attività. Stordito per 2 round Se non indossa schinieri +5 PF -25 alle attività."
+  },
+  {
+    "Risultato": "61-70",
+    "TC-2 Colpi Critici da Taglio": "Colpo al fianco: +10 PF e stordito 1 round Se non indossa armatura -10 alle attività e +2 PF per round"
+  },
+  {
+    "Risultato": "71-79",
+    "TC-2 Colpi Critici da Taglio": "Colpo di striscio alla testa: 12 PF e stordito 2 round Se non indossa l'elmo +3 PF per r, -10 alle attività"
+  },
+  {
+    "Risultato": 80,
+    "TC-2 Colpi Critici da Taglio": "Un colpo di taglio al collo trancia la carotide. Il bersaglio muore dopo un r di intensa agonia."
+  },
+  {
+    "Risultato": "81-86",
+    "TC-2 Colpi Critici da Taglio": "Colpo al braccio che regge l'arma. +10 PF. +1 PF per round Se il braccio non ha protezioni: danni ai muscoli e ai tendini. Braccio inutilizzabile."
+  },
+  {
+    "Risultato": "87-89",
+    "TC-2 Colpi Critici da Taglio": "Occhio distrutto, +10 PF. Bersaglio stordito per 30 round"
+  },
+  {
+    "Risultato": 90,
+    "TC-2 Colpi Critici da Taglio": "Bersaglio sventrato. Morte istantanea. 25% che l'arma resti intrappolata per 2 round"
+  },
+  {
+    "Risultato": "91-96",
+    "TC-2 Colpi Critici da Taglio": "Bersaglio K.O. per 6 ore causa colpo alla tempia: +15 PF. Se il bersaglio non ha un elmo, la morte è istantanea."
+  },
+  {
+    "Risultato": "97-99",
+    "TC-2 Colpi Critici da Taglio": "La parte inferiore della gamba viene tranciata dal colpo: +20 PF per round Il bersaglio si accascia e sviene."
+  },
+  {
+    "Risultato": 100,
+    "TC-2 Colpi Critici da Taglio": "Colpo di taglio al fianco. Il bersaglio crolla svenuto e muore in 3 r a causa del grave danno agli organi interni"
+  },
+  {
+    "Risultato": "101-106",
+    "TC-2 Colpi Critici da Taglio": "Grave ferita addominale: +10 PF, +8 PF per round -10 alle attività. Stordito per 4 round"
+  },
+  {
+    "Risultato": "107-109",
+    "TC-2 Colpi Critici da Taglio": "Il braccio che regge l'arma viene amputato: +15 PF per round Il bersaglio crolla a terra privo di sensi."
+  },
+  {
+    "Risultato": 110,
+    "TC-2 Colpi Critici da Taglio": "Bersaglio trapassato all'altezza del cuore. Cuore distrutto. Morte istantanea. 25% che la tua arma resti imprigionata per 3 round"
+  },
+  {
+    "Risultato": "111-116",
+    "TC-2 Colpi Critici da Taglio": "Mano amputata. +12 PF per round Gettato a terra e stordito per 6 round"
+  },
+  {
+    "Risultato": "117-119",
+    "TC-2 Colpi Critici da Taglio": "Colonna vertebrale tranciata. Il bersaglio cade a terra immediatamente. Paralizzato permanentemente dal collo in giù. +20 PF."
+  },
+  {
+    "Risultato": 120,
+    "TC-2 Colpi Critici da Taglio": "Un forte colpo alla testa distrugge il cervello e rende la vita difficile per il poverino. Morte immediata. Un colpo veramente impressionante."
+  }
+]

@@ -1,7 +1,8 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Swords, RotateCcw, AlertTriangle, Play, HelpCircle, Heart, Shield, Sparkles, Target, User } from 'lucide-react';
+import { Swords, RotateCcw, AlertTriangle, AlertOctagon, Play, HelpCircle, Heart, Shield, Sparkles, Target, User } from 'lucide-react';
 import attackTables from '../data/Tabelle-Attacco-TA-1_TA-2_TA-3_TA-4.json';
 import FumbleResolver from './FumbleResolver';
+import CriticalResolver from './CriticalResolver';
 import {
   getFinalStats,
   getSpecificTb6Ranks,
@@ -97,6 +98,33 @@ const getFumbleModifierForWeapon = (category, name) => {
   }
 };
 
+const getCriticalTableForWeapon = (category, name) => {
+  const cat = (category || '').toLowerCase();
+  const n = (name || '').toLowerCase();
+  
+  if (cat === 'contundenti a 1 mano') return 'TC-1'; // Impatto
+  if (cat === 'da tiro' || cat === 'da lancio') {
+    if (n.includes('fionda') || n.includes('sasso') || n.includes('pietra') || n.includes('bolas')) {
+      if (n.includes('bolas')) return 'TC-4'; // Perdita equilibrio
+      return 'TC-1'; // Impatto
+    }
+    return 'TC-3'; // Punta
+  }
+  if (cat === 'con asta') {
+    if (n.includes('ascia') || n.includes('alabarda')) return 'TC-2'; // Taglio
+    return 'TC-3'; // Punta
+  }
+  if (cat === 'a 2 mani') {
+    if (n.includes('martello') || n.includes('mazza')) return 'TC-1'; // Impatto
+    return 'TC-2'; // Taglio
+  }
+  // Taglio a 1 mano
+  if (n.includes('stocco') || n.includes('daga') || n.includes('pugnale')) {
+    return 'TC-3'; // Punta
+  }
+  return 'TC-2'; // Taglio (default)
+};
+
 export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, onUpdateBoSpesoParata, onResetAllParries }) {
   // --- STATO ATTACCANTE ---
   const [attackerId, setAttackerId] = useState('custom');
@@ -122,6 +150,12 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
   const [showFumbleResolver, setShowFumbleResolver] = useState(false);
   const [fumbleTableCode, setFumbleTableCode] = useState('TTM-1');
   const [fumbleDiceRoll, setFumbleDiceRoll] = useState(50);
+
+  // --- STATO CRITICO ---
+  const [showCriticalResolver, setShowCriticalResolver] = useState(false);
+  const [critTableCode, setCritTableCode] = useState('TC-2');
+  const [critSeverity, setCritSeverity] = useState('C');
+  const [critDiceRoll, setCritDiceRoll] = useState(50);
 
   // --- MODIFICATORI E DADO ---
   const [flankAttack, setFlankAttack] = useState(false);
@@ -410,6 +444,7 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
         details: 'Il colpo è andato malissimo. Il Master chiederà di effettuare un tiro d100 sulla tabella dei Colpi Maldestri per risolverne le conseguenze.'
       });
       setShowFumbleResolver(true);
+      setShowCriticalResolver(false);
       const fTable = isRangedOrThrown ? 'TTM-2' : 'TTM-1';
       setFumbleTableCode(fTable);
       const fRoll = Math.floor(Math.random() * 100) + 1;
@@ -448,6 +483,17 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
               : 'Nessun colpo critico generato.'
           }`
         });
+
+        if (critType) {
+          const suggestedTable = getCriticalTableForWeapon(attackerWeaponCategoryResolved, activeAttackerWeapon ? activeAttackerWeapon.nome : attackerWeaponName);
+          setCritTableCode(suggestedTable);
+          setCritSeverity(critType);
+          setCritDiceRoll(Math.floor(Math.random() * 100) + 1);
+          setShowCriticalResolver(true);
+          setShowFumbleResolver(false);
+        } else {
+          setShowCriticalResolver(false);
+        }
       } else {
         // Valore non tipico, mostriamo la stringa così com'è
         setCombatOutcome({
@@ -461,6 +507,7 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
           message: `COLPO A SEGNO: ${cellValue}`,
           details: 'Danni calcolati dal sistema.'
         });
+        setShowCriticalResolver(false);
       }
     }
   };
@@ -492,6 +539,7 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
     setManualRoll('50');
     setCombatOutcome(null);
     setShowFumbleResolver(false);
+    setShowCriticalResolver(false);
     setFumbleDiceRoll(50);
     setFumbleManualRoll('50');
     setFumbleModifierCustom(0);
@@ -1119,14 +1167,26 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
 
                 {/* Box Dettagli Critico */}
                 {combatOutcome.criticalType && (
-                  <div className="p-4 bg-white/70 border border-emerald-250 rounded-lg shadow-sm flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-amber-500 text-white flex items-center justify-center text-xl font-black shadow uppercase">
-                      {combatOutcome.criticalType}
+                  <div className="p-4 bg-white/70 border border-emerald-250 rounded-lg shadow-sm flex flex-col justify-between gap-3 sm:flex-row sm:items-center sm:gap-4 md:col-span-2 lg:col-span-1 animate-fadeIn">
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-full bg-amber-500 text-white flex items-center justify-center text-xl font-black shadow uppercase shrink-0">
+                        {combatOutcome.criticalType}
+                      </div>
+                      <div>
+                        <strong className="block text-sm text-gray-900 font-bold">Colpo Critico (Tipo {combatOutcome.criticalType})</strong>
+                        <span className="text-xs text-amber-800 font-medium">Modificatore Tiro Critico: {fmt(combatOutcome.criticalModifier)}</span>
+                      </div>
                     </div>
-                    <div>
-                      <strong className="block text-sm text-gray-900">Colpo Critico (Tipo {combatOutcome.criticalType})</strong>
-                      <span className="text-xs text-amber-800 font-medium">Modificatore Tiro Critico: {fmt(combatOutcome.criticalModifier)}</span>
-                    </div>
+                    <button
+                      onClick={() => {
+                        setShowCriticalResolver(true);
+                        setShowFumbleResolver(false);
+                      }}
+                      className="px-3 py-1.5 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs uppercase tracking-wider rounded-lg shadow-xs transition active:scale-95 text-center whitespace-nowrap"
+                      style={{ border: 'none', cursor: 'pointer' }}
+                    >
+                      Risolvi Critico
+                    </button>
                   </div>
                 )}
               </div>
@@ -1182,6 +1242,35 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
             initialDiceRoll={fumbleDiceRoll}
             weaponCategory={attackerWeaponCategoryResolved}
             weaponName={activeAttackerWeapon ? activeAttackerWeapon.nome : attackerWeaponName}
+            showTitle={false}
+          />
+        )}
+      </div>
+
+      {/* --- RISOLUTORE COLPI CRITICI --- */}
+      <div className="card p-5 border border-amber-200 rounded-xl bg-amber-50/20 shadow-xs mt-6">
+        <div className="flex items-center justify-between pb-3 border-b border-amber-150 mb-4">
+          <div className="flex items-center gap-2">
+            <div className="p-1.5 rounded-lg bg-amber-100 text-amber-700">
+              <AlertOctagon className="w-4 h-4" />
+            </div>
+            <h4 className="font-bold text-sm text-amber-950 uppercase tracking-wider">Risolutore Colpi Critici</h4>
+          </div>
+          
+          <button
+            onClick={() => setShowCriticalResolver(!showCriticalResolver)}
+            className="px-3 py-1 bg-white hover:bg-gray-100 text-gray-700 border border-gray-250 rounded text-xs font-bold transition"
+          >
+            {showCriticalResolver ? 'Nascondi Risolutore' : 'Mostra Risolutore'}
+          </button>
+        </div>
+
+        {showCriticalResolver && (
+          <CriticalResolver
+            key={`${critTableCode}-${critSeverity}-${critDiceRoll}`}
+            initialTableCode={critTableCode}
+            initialSeverity={critSeverity}
+            initialDiceRoll={critDiceRoll}
             showTitle={false}
           />
         )}

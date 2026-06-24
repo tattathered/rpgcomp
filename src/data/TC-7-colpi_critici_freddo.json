@@ -1,0 +1,86 @@
+[
+  {
+    "Risultato": "01-05",
+    "TC-7 Colpi Critici da Freddo": "Fresco venticello."
+  },
+  {
+    "Risultato": "06-16",
+    "TC-7 Colpi Critici da Freddo": "Ventata gelida: +3 PF. Se il bersaglio non indossa né mantello né armatura: stordito per 1 round"
+  },
+  {
+    "Risultato": "17-27",
+    "TC-7 Colpi Critici da Freddo": "Ustione causata dal gelo: +7 PF. +1 PF per round"
+  },
+  {
+    "Risultato": "28-38",
+    "TC-7 Colpi Critici da Freddo": "Principio di congelamento: +5 PF. +2 PF per r, -10 alle attività."
+  },
+  {
+    "Risultato": "39-49",
+    "TC-7 Colpi Critici da Freddo": "Colpo gelido alla schiena: +9 PF. +2 PF per round Bersaglio stordito per 2 round Ogni oggetto di legno portato all'altezza della schiena diventa fragile ed inutilizzabile."
+  },
+  {
+    "Risultato": "50-60",
+    "TC-7 Colpi Critici da Freddo": "Un'onda di gelo investe la parte inferiore del corpo. Il bersaglio è stordito per 1 round Distrutta qualsiasi copertura dei piedi. Se i piedi sono privi di copertura: congelamento, -30 alle attività."
+  },
+  {
+    "Risultato": "61-70",
+    "TC-7 Colpi Critici da Freddo": "Una mano viene quasi congelata: +10 PF, -10 alle attività per un'ora"
+  },
+  {
+    "Risultato": "71-79",
+    "TC-7 Colpi Critici da Freddo": "Colpito il braccio dell'arma: +13 PF, stordito per 3 round Non può usare il braccio per 1 ora. Se non è protetto, grave danno ai tessuti e braccio inutilizzabile."
+  },
+  {
+    "Risultato": 80,
+    "TC-7 Colpi Critici da Freddo": "Una gelida ventata avvolge la testa del bersaglio. Cade in coma per 1 mese in seguito al congelamento ed allo shock, perde il naso."
+  },
+  {
+    "Risultato": "81-86",
+    "TC-7 Colpi Critici da Freddo": "Il bersaglio è colpito alla gamba. Cade a terra. Stordito per 3 round Se le gambe non sono protette da armatura: congelamento, polpacci fuori uso e -40 alle attività."
+  },
+  {
+    "Risultato": "87-89",
+    "TC-7 Colpi Critici da Freddo": "Violento colpo all'area cervicale. Il bersaglio cade a terra e perde la parte interna dell'orecchio. Se la zona d'impatto non è protetta da armatura: collo congelato e morte dopo 9 r di totale inattività."
+  },
+  {
+    "Risultato": 90,
+    "TC-7 Colpi Critici da Freddo": "Un'ondata gelida congela la testa. Il bersaglio muore in 2 round Il teschio ed il cervello sono completamente disseccati e privi di vita."
+  },
+  {
+    "Risultato": "91-96",
+    "TC-7 Colpi Critici da Freddo": "Coscia congelata e femore rotto. +5 PF per round -30 alle attività. Stordito per 4 round"
+  },
+  {
+    "Risultato": "97-99",
+    "TC-7 Colpi Critici da Freddo": "Un colpo al fianco congela e frantuma le ossa del bacino del bersaglio. Muore in 12 r a causa dello shock e dei danni al sistema nervoso."
+  },
+  {
+    "Risultato": 100,
+    "TC-7 Colpi Critici da Freddo": "Colpo alla testa, occhi congelati. Il bersaglio cade in coma per 3 settimane. Paralizzato dal collo in giù."
+  },
+  {
+    "Risultato": "101-106",
+    "TC-7 Colpi Critici da Freddo": "Congelate entrambe le mani. Il bersaglio perde l'uso delle braccia per un'ora. +6 PF per round Stordito per 5 round"
+  },
+  {
+    "Risultato": "107-109",
+    "TC-7 Colpi Critici da Freddo": "Il cuore ed i polmoni si congelano all'improvviso. Muore a causa dello shock e per asfissia dopo 6 r di totale inattività."
+  },
+  {
+    "Risultato": 110,
+    "TC-7 Colpi Critici da Freddo": "Un violento colpo al petto fracassa la gabbia toracica e congela preziosi fluidi organici. Il bersaglio muore in 3 round"
+  },
+  {
+    "Risultato": "111-116",
+    "TC-7 Colpi Critici da Freddo": "Colpo di ghiaccio alla parte superiore del torace del bersaglio. Cade a terra, fuori combattimento: il cuore diventa di ghiaccio e il personaggio muore in 10 round"
+  },
+  {
+    "Risultato": "117-119",
+    "TC-7 Colpi Critici da Freddo": "Il freddo riduce la vittima ad una statua priva di vita senza dubbio ben conservata, ma irrimediabilmente defunta."
+  },
+  {
+    "Risultato": 120,
+    "TC-7 Colpi Critici da Freddo": "Diventa un blocco di ghiaccio. Poi cade a terra e si frantuma in migliaia di cristalli microscopici."
+  }
+]

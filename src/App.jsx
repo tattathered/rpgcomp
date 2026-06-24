@@ -7,6 +7,7 @@ import SpellCatalogManager from './components/SpellCatalogManager';
 import CombatCalculator from './components/CombatCalculator';
 import MovementManoeuvreResolver from './components/MovementManoeuvreResolver';
 import FumbleResolver from './components/FumbleResolver';
+import CriticalResolver from './components/CriticalResolver';
 import StaticManoeuvreResolver from './components/StaticManoeuvreResolver';
 import { getCharacterHpTot } from './utils/skillHelpers';
 import CsvExportManager from './components/CsvExportManager';
@@ -817,13 +818,22 @@ function App() {
                 />
               </ErrorBoundary>
             )}
-            {['criticals', 'spells_base', 'spells_direct'].includes(activeActionSubTab) && (
+            {activeActionSubTab === 'criticals' && (
+              <ErrorBoundary>
+                <CriticalResolver 
+                  initialTableCode="TC-2"
+                  initialSeverity="C"
+                  initialDiceRoll={50}
+                  showTitle={true}
+                />
+              </ErrorBoundary>
+            )}
+            {['spells_base', 'spells_direct'].includes(activeActionSubTab) && (
               <div className="card p-8 text-center text-gray-500 max-w-lg mx-auto mt-10">
                 <Compass className="w-16 h-16 mx-auto text-blue-500/30 mb-4 animate-pulse" />
                 <h3 className="text-lg font-black text-gray-800 uppercase tracking-wider mb-2">Funzionalità in Arrivo</h3>
                 <p className="text-sm text-gray-500 leading-relaxed mb-6">
                   La risoluzione di questa specifica azione ({
-                    activeActionSubTab === 'criticals' ? 'Colpi Critici' :
                     activeActionSubTab === 'spells_base' ? 'Incantesimi Base' : 'Incantesimi Diretti'
                   }) sarà sviluppata e resa disponibile nella v2.
                 </p>

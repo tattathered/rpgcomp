@@ -1,0 +1,86 @@
+[
+  {
+    "Risultato": "01-05",
+    "TC-5 Colpi Critici da Presa": "Un'opportunità perduta."
+  },
+  {
+    "Risultato": "06-16",
+    "TC-5 Colpi Critici da Presa": "Colpo di striscio: +2 PF."
+  },
+  {
+    "Risultato": "17-27",
+    "TC-5 Colpi Critici da Presa": "Attacco schivato: +3 PF. Se l'armatura copre il braccio: stordito per 1 round"
+  },
+  {
+    "Risultato": "28-38",
+    "TC-5 Colpi Critici da Presa": "Attacco alla coscia. Strattonato, ma si libera dalla presa. Stordito per 1 round"
+  },
+  {
+    "Risultato": "39-49",
+    "TC-5 Colpi Critici da Presa": "Afferrato il braccio dello scudo. -50 alle attività per 1 round Se non ha lo scudo: -50 alle attività finché non sfugge alla presa."
+  },
+  {
+    "Risultato": "50-60",
+    "TC-5 Colpi Critici da Presa": "Afferrato il braccio dell'arma. Disarmato e distorsione al polso. Stordito per 2 round -25 alle attività."
+  },
+  {
+    "Risultato": "61-70",
+    "TC-5 Colpi Critici da Presa": "Afferrato al collo. Stordito per 2 round -40 alle attività finché non sfugge alla presa"
+  },
+  {
+    "Risultato": "71-79",
+    "TC-5 Colpi Critici da Presa": "Afferrata una gamba. +3 PF, -60 alle attività finché non sfugge alla presa."
+  },
+  {
+    "Risultato": 80,
+    "TC-5 Colpi Critici da Presa": "Afferrate entrambe le gambe. Cade a terra. +9 PF. -80 alle attività."
+  },
+  {
+    "Risultato": "81-86",
+    "TC-5 Colpi Critici da Presa": "Afferrato il braccio dell'arma. Legamenti distorti e muscoli stirati. Disarmato e stordito per 3 round -40 alle attività."
+  },
+  {
+    "Risultato": "87-89",
+    "TC-5 Colpi Critici da Presa": "Completamente afferrato ed immobilizzato. Steso a terra, ma ancora cosciente. Nessuna attività. (-100 alle attività)."
+  },
+  {
+    "Risultato": 90,
+    "TC-5 Colpi Critici da Presa": "Violenta stretta al collo. Cade a terra. -60 alle attività"
+  },
+  {
+    "Risultato": "91-96",
+    "TC-5 Colpi Critici da Presa": "Afferrata la testa. Stordito per 9 round Se non indossa l'elmo: teschio fratturato, cade in coma."
+  },
+  {
+    "Risultato": "97-99",
+    "TC-5 Colpi Critici da Presa": "Afferrate entrambe le braccia e strette contro il torace. Finché non si libera dalla presa non si può muovere. -75 alle attività."
+  },
+  {
+    "Risultato": 100,
+    "TC-5 Colpi Critici da Presa": "Afferrato al collo. Se il collo è protetto da armatura: -60 alle attività e stordito per 3 round Altrimenti, muore all'istante, strangolato."
+  },
+  {
+    "Risultato": "101-106",
+    "TC-5 Colpi Critici da Presa": "Stretta al torace, costola fratturata. Stordito per 5 round -10 alle attività."
+  },
+  {
+    "Risultato": "107-109",
+    "TC-5 Colpi Critici da Presa": "Gambe afferrate e completamente immobilizzate. Cade e si spezza il braccio che porta l'arma. Disarmato e fuori combattimento, +20 PF."
+  },
+  {
+    "Risultato": 110,
+    "TC-5 Colpi Critici da Presa": "Afferrato il collo. Se il collo è protetto da armatura: disarmato e stordito per 5 round Altrimenti muore nel giro di 6 round"
+  },
+  {
+    "Risultato": "111-116",
+    "TC-5 Colpi Critici da Presa": "Presa ai piedi. Inciampa, cade, rompe l'arma nell'impatto e resta stordito per 2 round Se il torace non è protetto da armatura: subisce un Critico da Impatto di tipo D."
+  },
+  {
+    "Risultato": "117-119",
+    "TC-5 Colpi Critici da Presa": "Afferrate entrambe le gambe. Cade a terra e si frattura l'anca ed un braccio. -80 alle attività, +20 PF."
+  },
+  {
+    "Risultato": 120,
+    "TC-5 Colpi Critici da Presa": "Spezzata la trachea. Muore all'istante per il terribile shock soffocando orribilmente."
+  }
+]

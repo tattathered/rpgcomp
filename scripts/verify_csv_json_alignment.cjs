@@ -33,7 +33,7 @@ let warnings = [];
 
 // ── 1. TGP-5 ─────────────────────────────────────────────────────────────────
 
-const TGP5_CSV = path.join(DATA_CSV, 'TGP_5-sviluppo_abilita_adolescenza-v2.csv');
+const TGP5_CSV = path.join(DATA_CSV, 'TGP-5-sviluppo_abilita_adolescenza.csv');
 const TGP5_JSON = path.join(DATA_JSON, 'TGP-5-sviluppo_abilita_adolescenza.json');
 
 const tgp5Json = JSON.parse(fs.readFileSync(TGP5_JSON, 'utf8'));
@@ -135,7 +135,7 @@ tgp5Rows.forEach(row => {
 
 // ── 2. TB-6 ──────────────────────────────────────────────────────────────────
 
-const TB6_CSV = path.join(DATA_CSV, 'TB_6-professioni_bonus_abilita-3.csv');
+const TB6_CSV = path.join(DATA_CSV, 'TB-6-professioni_bonus_abilita-3.csv');
 const TB6_JSON = path.join(DATA_JSON, 'TB-6-professioni_bonus_abilita-3.json');
 
 const tb6Json = JSON.parse(fs.readFileSync(TB6_JSON, 'utf8'));

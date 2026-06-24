@@ -28,3 +28,8 @@ npm-debug.log*
 node_modules
 .DS_Store
 scratch_users.json
+
+# Documentation
+docs/
+docs/memory.md
+docs/requirements/

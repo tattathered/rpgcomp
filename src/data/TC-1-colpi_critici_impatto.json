@@ -1,0 +1,86 @@
+[
+  {
+    "Risultato": "01-05",
+    "TC-1 Colpi Critici da Impatto": "Colpo vibrato debolmente. Nessun danno addizionale."
+  },
+  {
+    "Risultato": "06-16",
+    "TC-1 Colpi Critici da Impatto": "Costole incrinate. +5 PF. -5 alle attività."
+  },
+  {
+    "Risultato": "17-27",
+    "TC-1 Colpi Critici da Impatto": "Colpo al fianco. +4 PF. -40 alle attività per 1 round"
+  },
+  {
+    "Risultato": "28-38",
+    "TC-1 Colpi Critici da Impatto": "Colpo all'avambraccio. +5 PF. Stordito per 1 round Se non indossa bracciali +5 PF."
+  },
+  {
+    "Risultato": "39-49",
+    "TC-1 Colpi Critici da Impatto": "Colpo alla spalla sinistra, +10PF. Il bersaglio lascia cadere ciò che ha in mano, scudo compreso. Se non è protetta, spalla rotta e braccio inutilizzabile, +5 PF."
+  },
+  {
+    "Risultato": "50-60",
+    "TC-1 Colpi Critici da Impatto": "Il colpo investe le gambe: +12 PF, stordito per 1 round Se non indossa schinieri, tibia spezzata: -40 alle attività. Stordito per 2 round"
+  },
+  {
+    "Risultato": "61-70",
+    "TC-1 Colpi Critici da Impatto": "Colpo alla fronte: +10 PF, stordito per 2 round Se il bersaglio non indossa un elmo, +8 PF, -10 alle attività e stordito per 6 round"
+  },
+  {
+    "Risultato": "71-79",
+    "TC-1 Colpi Critici da Impatto": "Distorsione al gomito che regge l'arma, -10 alle attività. Se non è protetto: +10 PF, -30 alle attività e stordito per 2 round"
+  },
+  {
+    "Risultato": 80,
+    "TC-1 Colpi Critici da Impatto": "Colpo alla fronte: +30 PF. Un occhio distrutto, stordito per 24 round Se il bersaglio non porta l'elmo, entra in coma per un mese."
+  },
+  {
+    "Risultato": "81-86",
+    "TC-1 Colpi Critici da Impatto": "Il colpo rompe il braccio che regge l'arma. Braccio inutilizzabile. Danno ai tendini: +8 PF. Stordito per 2 round"
+  },
+  {
+    "Risultato": "87-89",
+    "TC-1 Colpi Critici da Impatto": "Ginocchio fratturato: +9 PF, -60 alle attività. Gettato a terra e stordito per 3 round"
+  },
+  {
+    "Risultato": 90,
+    "TC-1 Colpi Critici da Impatto": "Un colpo nella regione cervicale paralizza il bersaglio dalle spalle in giù. +25 PF. Bersaglio stordito per il resto del combattimento."
+  },
+  {
+    "Risultato": "91-96",
+    "TC-1 Colpi Critici da Impatto": "Bersaglio svenuto per 4 ore a causa di un colpo alla tempia. Se il bersaglio non porta un elmo, cranio fratturato. +20 PF."
+  },
+  {
+    "Risultato": "97-99",
+    "TC-1 Colpi Critici da Impatto": "Per un violento colpo alla cassa toracica le costole perforano i polmoni. Il bersaglio si accascia e muore in 6 round Brutto affare."
+  },
+  {
+    "Risultato": 100,
+    "TC-1 Colpi Critici da Impatto": "Colpo alla mascella che rientrando perfora il cervello. Morte istantanea."
+  },
+  {
+    "Risultato": "101-106",
+    "TC-1 Colpi Critici da Impatto": "Il colpo rompe l'anca: +15 PF. -75 alle attività. Il bersaglio è gettato a terra e stordito per 3 round"
+  },
+  {
+    "Risultato": "107-109",
+    "TC-1 Colpi Critici da Impatto": "Un colpo al collo spezza la gola del bersaglio. Respirazione impossibile. Stordito per 12 r prima di morire."
+  },
+  {
+    "Risultato": 110,
+    "TC-1 Colpi Critici da Impatto": "Anca frantumata. +35 PF. Stordito per 2 round Il bersaglio è attivo per i 4 r seguenti, ma poi muore a causa dei danni ricevuti al sistema nervoso."
+  },
+  {
+    "Risultato": "111-116",
+    "TC-1 Colpi Critici da Impatto": "Il gomito del braccio che regge l'arma va in frantumi. Braccio inutilizzabile. Stordito per 5 round"
+  },
+  {
+    "Risultato": "117-119",
+    "TC-1 Colpi Critici da Impatto": "Un colpo al fianco distrugge la gabbia toracica. Il bersaglio si accascia e muore in 3 round"
+  },
+  {
+    "Risultato": 120,
+    "TC-1 Colpi Critici da Impatto": "Colpo violento al petto. Cuore spappolato. Il bersaglio muore immediatamente: +25 PF. Bel colpo!"
+  }
+]

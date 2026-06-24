@@ -1,0 +1,86 @@
+[
+  {
+    "Risultato": "01-05",
+    "TC-8 Colpi Critici da Elettricità": "I capelli del bersaglio si rizzano sul capo. Nemmeno una scalfittura."
+  },
+  {
+    "Risultato": "06-16",
+    "TC-8 Colpi Critici da Elettricità": "Poco più che una leggera scossa: +3 PF. Se il bersaglio indossa un'armatura metallica è stordito per 1 round"
+  },
+  {
+    "Risultato": "17-27",
+    "TC-8 Colpi Critici da Elettricità": "Esplosione di luce. La vittima è stordita per 1 round"
+  },
+  {
+    "Risultato": "28-38",
+    "TC-8 Colpi Critici da Elettricità": "Scarica media: +6 PF. -5 alle attività. Se il bersaglio indossa un'armatura di metallo: stordito per 2 round"
+  },
+  {
+    "Risultato": "39-49",
+    "TC-8 Colpi Critici da Elettricità": "Una forte scarica: +9 PF. -10 alle attività. Stordito per 1 round Se il bersaglio indossa un'armatura di metallo: stordito per 3 round"
+  },
+  {
+    "Risultato": "50-60",
+    "TC-8 Colpi Critici da Elettricità": "Colpo al braccio che regge lo scudo: +12 PF. -20 alle attività. Se il bersaglio indossa un'armatura di metallo e non regge uno scudo: fuori combattimento per 1 giorno."
+  },
+  {
+    "Risultato": "61-70",
+    "TC-8 Colpi Critici da Elettricità": "Violenta scarica distrugge lo scudo e colpisce il torace: +10 PF e stordito 1 round Se non ha lo scudo o se indossa armature metalliche: stordito 5 round"
+  },
+  {
+    "Risultato": "71-79",
+    "TC-8 Colpi Critici da Elettricità": "Colpo alle braccia: +15 PF. Qualsiasi cosa tiene in mano cade. Se indossa bracciali di metallo: +10 PF e stordito per 3 round"
+  },
+  {
+    "Risultato": 80,
+    "TC-8 Colpi Critici da Elettricità": "Una scarica di energia colpisce il sistema nervoso, procurando al bersaglio un grave shock. La vittima cade in coma per un mese."
+  },
+  {
+    "Risultato": "81-86",
+    "TC-8 Colpi Critici da Elettricità": "Colpo al braccio che regge l'arma, maciulla il muscolo e le cartilagini. Braccio fuori uso. +2 PF per round Stordito per 6 round"
+  },
+  {
+    "Risultato": "87-89",
+    "TC-8 Colpi Critici da Elettricità": "Il sistema nervoso del bersaglio, sovraccarico di elettricità, viene totalmente sconvolto. La vittima cade in terra in stato di shock per 12 r prima di morire."
+  },
+  {
+    "Risultato": 90,
+    "TC-8 Colpi Critici da Elettricità": "Scarica alla testa. Se il bersaglio indossa un elmo di cuoio: elmo distrutto e 2 settimane di coma. Altrimenti muore subito per la distruzione dei tessuti cerebrali."
+  },
+  {
+    "Risultato": "91-96",
+    "TC-8 Colpi Critici da Elettricità": "Scarica al torace. Se il bersaglio indossa un'armatura di metallo questa si fonde e lo immobilizza. Altrimenti il bersaglio resta fuori combattimento per 6 ore."
+  },
+  {
+    "Risultato": "97-99",
+    "TC-8 Colpi Critici da Elettricità": "Esperienza elettrizzante! Il cervello è vittima di un grave shock e di ustioni superficiali. Il bersaglio resta fuori combattimento e muore dopo 6 round"
+  },
+  {
+    "Risultato": 100,
+    "TC-8 Colpi Critici da Elettricità": "Il sistema nervoso del bersaglio agisce da superconduttore. La vittima muore all'istante in uno sfavillio di luci."
+  },
+  {
+    "Risultato": "101-106",
+    "TC-8 Colpi Critici da Elettricità": "Violenta scarica al volto. Il bersaglio perde il naso. Stordito per 8 r e accecato per 2 settimane. Se non indossa un elmo è in ogni caso fuori combattimento."
+  },
+  {
+    "Risultato": "107-109",
+    "TC-8 Colpi Critici da Elettricità": "Violenta scarica al petto, che distrugge cuore e polmoni. Se indossa un'armatura di metallo, questa si fonde e muore in 6 round Altrimenti: muore all'istante."
+  },
+  {
+    "Risultato": 110,
+    "TC-8 Colpi Critici da Elettricità": "La testa del bersaglio non è più utilizzabile. Il corpo senza vita giace a terra circondato da fumo e ozono."
+  },
+  {
+    "Risultato": "111-116",
+    "TC-8 Colpi Critici da Elettricità": "Violenta scarica all'addome. Il bersaglio è stordito per 7 round 6 PF per round Se l'addome non è protetto da armatura: muore in seguito allo shock e per dissanguamento nel giro di 12 round"
+  },
+  {
+    "Risultato": "117-119",
+    "TC-8 Colpi Critici da Elettricità": "Violentissima scarica al petto che distrugge i polmoni. Il bersaglio viene letteralmente tagliato a metà. La scarica prosegue per altri 3 metri in linea retta, infliggendo un Colpo Critico di tipo A a chi si trova sul suo percorso."
+  },
+  {
+    "Risultato": 120,
+    "TC-8 Colpi Critici da Elettricità": "La scarica distrugge la struttura cellulare del bersaglio. L'intero corpo si riduce in polvere."
+  }
+]
