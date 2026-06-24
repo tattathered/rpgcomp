@@ -1,31 +1,32 @@
-popolo,note,bonus a FR,bonus a AG,bonus a CO,bonus a IN,bonus a IT,bonus a PR,bonus a TR-ESS,bonus a TR-FLS,bonus a TR-VEL,bonus a TR-MAL,bonus a MEN (non considerare)
-Dúnedain,umani,+10,0,+10,0,0,+5,0,0,+5,+15,0
-Uomini delle Città Eriadoriani,umani,+5,0,0,0,0,0,0,0,0,0,0
-Uomini delle Città Gondoriani,umani,+5,0,0,0,0,0,0,0,0,0,0
-Uomini delle Città Rohirrim,umani,+5,0,0,0,0,0,0,0,0,0,0
-Uomini delle Campagne Eriadoriani,umani,+5,0,0,0,0,0,0,0,0,0,0
-Uomini delle Campagne Gondoriani,umani,+5,0,0,0,0,0,0,0,0,0,0
-Uomini delle Campagne Rohirrim,umani,+5,0,0,0,0,0,0,0,0,0,0
-Uomini dei Boschi,umani,+5,0,0,0,0,0,0,0,0,0,0
-Dunlandiani,umani,+5,0,0,0,0,0,0,0,0,0,0
-Esterling,umani,+5,0,0,0,0,0,0,0,0,0,0
-Beorniani,umani,+5,0,0,0,0,0,0,0,0,0,0
-Dorwinrim,umani,+5,0,0,0,0,0,0,0,0,0,0
-Haradrim,umani,+5,0,0,0,0,0,0,0,0,0,0
-Corsari,umani,+5,0,0,0,0,0,0,0,0,0,0
-Númenóreani Neri,umani,+5,0,0,0,0,0,0,0,0,0,0
-Lossoth,umani,+5,0,0,0,0,0,0,0,0,0,0
-Wose,umani,0,0,+5,0,+5,-5,+20,0,0,0,0
-Mezzelfi,non umani,+5,+5,+5,0,0,+5,-5,-5,+5,+50,-5
-Elfi Sindar,non umani,0,+10,+5,0,+5,+10,-5,-5,+10,+100,-5
-Elfi Silvani,non umani,0,+10,0,+5,+5,+5,-5,-5,+10,+100,-5
-Elfi Noldor,non umani,0,+15,+10,+5,+5,+15,-5,-5,+10,+100,-5
-Hobbit,non umani,-20,+15,+15,0,-5,-5,+50,+20,+30,+15,+40
-Nani,non umani,+5,-5,+15,0,-5,-5,+40,0,+20,+10,+40
-Umli,non umani,+5,0,+10,0,-5,-5,+20,0,+5,+5,+20
-Mezzorchi,non umani,+5,0,+5,0,0,-5,0,0,+10,0,0
-Orchetti,non umani,+5,-5,+15,-10,-10,-10,0,0,+20,+5,0
-Uruk-hai,non umani,+10,0,+20,0,-5,-10,0,0,+20,+5,0
-Mezzotroll,non umani,+10,-5,+10,-5,-5,-5,0,0,+15,+5,0
-Troll,non umani,+15,-10,+15,-15,-15,-10,0,0,+30,+10,0
-Olog-hai,non umani,+20,-5,+15,-5,-10,-10,0,0,+20,+10,0
+id_popolo,nome,categoria,umano,mod_fr,mod_ag,mod_co,mod_in,mod_it,mod_pr,mod_tr_ess,mod_tr_fls,mod_tr_vel,mod_tr_mal,punti_background,punti_lingue_extra,probabilita_apprendimento_liste,descrizione
+dunedain,Dúnedain,umani,true,10,0,10,0,0,5,0,0,5,15,3,6,10,Popolo della Terra di Mezzo: Dúnedain.
+uomini_citta_eriadoriani,Uomini delle Città Eriadoriani,umani,true,5,0,0,0,0,0,0,0,0,0,5,4,3,Popolo della Terra di Mezzo: Uomini delle Città Eriadoriani.
+uomini_citta_gondoriani,Uomini delle Città Gondoriani,umani,true,5,0,0,0,0,0,0,0,0,0,5,5,15,Popolo della Terra di Mezzo: Uomini delle Città Gondoriani.
+uomini_citta_rohirrim,Uomini delle Città Rohirrim,umani,true,5,0,0,0,0,0,0,0,0,0,5,4,3,Popolo della Terra di Mezzo: Uomini delle Città Rohirrim.
+uomini_campagna_eriadoriani,Uomini delle Campagne Eriadoriani,umani,true,5,0,0,0,0,0,0,0,0,0,5,4,3,Popolo della Terra di Mezzo: Uomini delle Campagne Eriadoriani.
+uomini_campagna_gondoriani,Uomini delle Campagne Gondoriani,umani,true,5,0,0,0,0,0,0,0,0,0,5,5,15,Popolo della Terra di Mezzo: Uomini delle Campagne Gondoriani.
+uomini_campagna_rohirrim,Uomini delle Campagne Rohirrim,umani,true,5,0,0,0,0,0,0,0,0,0,5,4,3,Popolo della Terra di Mezzo: Uomini delle Campagne Rohirrim.
+uomini_dei_boschi,Uomini dei Boschi,umani,true,5,0,0,0,0,0,0,0,0,0,5,2,3,Popolo della Terra di Mezzo: Uomini dei Boschi.
+dunlandiani,Dunlandiani,umani,true,5,0,0,0,0,0,0,0,0,0,4,2,2,Popolo della Terra di Mezzo: Dunlandiani.
+esterling,Esterling,umani,true,5,0,0,0,0,0,0,0,0,0,4,2,2,Popolo della Terra di Mezzo: Esterling.
+beorniani,Beorniani,umani,true,5,0,0,0,0,0,0,0,0,0,5,3,3,Popolo della Terra di Mezzo: Beorniani.
+dorwinrim,Dorwinrim,umani,true,5,0,0,0,0,0,0,0,0,0,5,5,10,Popolo della Terra di Mezzo: Dorwinrim.
+haradrim,Haradrim,umani,true,5,0,0,0,0,0,0,0,0,0,5,3,2,Popolo della Terra di Mezzo: Haradrim.
+corsari,Corsari,umani,true,5,0,0,0,0,0,0,0,0,0,5,5,5,Popolo della Terra di Mezzo: Corsari.
+numenoreani_neri,Númenóreani Neri,umani,true,5,0,0,0,0,0,0,0,0,0,3,6,10,Popolo della Terra di Mezzo: Númenóreani Neri.
+lossoth,Lossoth,umani,true,5,0,0,0,0,0,0,0,0,0,4,1,5,Popolo della Terra di Mezzo: Lossoth.
+wose,Wose,umani,true,0,0,5,0,5,-5,20,0,0,0,5,2,5,Popolo della Terra di Mezzo: Wose.
+mezzelfi,Mezzelfi,non umani,false,5,5,5,0,0,5,-5,-5,5,50,3,4,10,Popolo della Terra di Mezzo: Mezzelfi.
+elfi_sindar,Elfi Sindar,non umani,false,0,10,5,0,5,10,-5,-5,10,100,3,8,30,Popolo della Terra di Mezzo: Elfi Sindar.
+elfi_silvani,Elfi Silvani,non umani,false,0,10,0,5,5,5,-5,-5,10,100,4,6,20,Popolo della Terra di Mezzo: Elfi Silvani.
+elfi_noldor,Elfi Noldor,non umani,false,0,15,10,5,5,15,-5,-5,10,100,2,10,40,Popolo della Terra di Mezzo: Elfi Noldor.
+hobbit,Hobbit,non umani,false,-20,15,15,0,-5,-5,50,20,30,15,5,3,0,Popolo della Terra di Mezzo: Hobbit.
+nani,Nani,non umani,false,5,-5,15,0,-5,-5,40,0,20,10,4,4,3,Popolo della Terra di Mezzo: Nani.
+umli,Umli,non umani,false,5,0,10,0,-5,-5,20,0,5,5,4,3,5,Popolo della Terra di Mezzo: Umli.
+mezzorchi,Mezzorchi,non umani,false,5,0,5,0,0,-5,0,0,10,0,4,2,0,Popolo della Terra di Mezzo: Mezzorchi.
+orchi,Orchetti,non umani,false,5,-5,15,-10,-10,-10,0,0,20,5,2,2,0,Popolo della Terra di Mezzo: Orchetti.
+uruk_hai,Uruk-hai,non umani,false,10,0,20,0,-5,-10,0,0,20,5,3,2,0,Popolo della Terra di Mezzo: Uruk-hai.
+mezzitroll,Mezzotroll,non umani,false,10,-5,10,-5,-5,-5,0,0,15,5,2,2,0,Popolo della Terra di Mezzo: Mezzotroll.
+troll,Troll,non umani,false,15,-10,15,-15,-15,-10,0,0,30,10,1,2,0,Popolo della Terra di Mezzo: Troll.
+olog_hai,Olog-hai,non umani,false,20,-5,15,-5,-10,-10,0,0,20,10,1,2,0,Popolo della Terra di Mezzo: Olog-hai.
+variag,Variag,umani,true,5,0,0,0,0,0,0,0,0,0,4,3,5,Popolo della Terra di Mezzo: Variag.
