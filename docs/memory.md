@@ -21,10 +21,11 @@ Per evitare la saturazione del contesto di Antigravity, i dettagli delle funzion
 - 📂 **[req_05_critical_hits.md](file:///Users/yagni/Geek/antigravity/merpcomp/docs/requirements/req_05_critical_hits.md)** — Risoluzione colpi critici (TC-1..TC-9) ed integrazione combattimento.
 - 📂 **[req_06_spells_resolution.md](file:///Users/yagni/Geek/antigravity/merpcomp/docs/requirements/req_06_spells_resolution.md)** — Risoluzione lancio incantesimi (TA-7..TA-9), dardi, sfere ed incantesimi base.
 - 📂 **[req_07_creatures_npc.md](file:///Users/yagni/Geek/antigravity/merpcomp/docs/requirements/req_07_creatures_npc.md)** — PNG e Mostri/Creature: cataloghi, roster campagna, integrazione calcolatori.
+- 📂 **[req_08_codex_tooltips.md](file:///Users/yagni/Geek/antigravity/merpcomp/docs/requirements/req_08_codex_tooltips.md)** — Codex & Tooltips: dizionario termini di gioco, console GM e posizionamento dinamico.
 
 ## 4. Stato Globale Avanzamento
 
-- **Funzionalità Implementate:** 46 (REQ-01 → REQ-07 completati al 100%).
+- **Funzionalità Implementate:** 47 (REQ-01 → REQ-08 completati al 100%).
 - **In Corso / In Revisione:** 0.
 - **In Backlog (analizzati, non implementati):** 0.
 - **CR aperte:** 1 — CR-001 (Combat Calculator v2 — attacchi multipli per round).

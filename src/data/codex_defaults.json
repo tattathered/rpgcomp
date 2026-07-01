@@ -1,0 +1,177 @@
+[
+  {
+    "id": "forza",
+    "keyword": "Forza",
+    "synonyms": ["FR", "st", "forza fisica", "forz"],
+    "description": "La Forza misura la potenza fisica del personaggio. Influenza direttamente le abilità di combattimento con armi da taglio, contundenti e a due mani, e la capacità di carico fisico.",
+    "category": "caratteristiche"
+  },
+  {
+    "id": "agilita",
+    "keyword": "Agilità",
+    "synonyms": ["AG", "agilita", "destrezza"],
+    "description": "L'Agilità misura la coordinazione motoria, i riflessi e l'equilibrio. Determina il bonus difensivo (BD) naturale, le manovre di movimento (MM) e l'efficacia con le armature.",
+    "category": "caratteristiche"
+  },
+  {
+    "id": "costituzione",
+    "keyword": "Costituzione",
+    "synonyms": ["CO", "cost", "resistenza fisica"],
+    "description": "La Costituzione misura la salute, la robustezza e la resistenza del personaggio. Determina i Punti Ferita (PF) di partenza, il recupero e i Tiri Resistenza (TR) contro Veleni e Malattie.",
+    "category": "caratteristiche"
+  },
+  {
+    "id": "intelligenza",
+    "keyword": "Intelligenza",
+    "synonyms": ["IN", "ig", "intelletto"],
+    "description": "L'Intelligenza rappresenta la memoria, la capacità di apprendimento e la logica. È la caratteristica principale per la magia dell'Essenza (Mago) e influenza lo sviluppo delle lingue.",
+    "category": "caratteristiche"
+  },
+  {
+    "id": "intuizione",
+    "keyword": "Intuizione",
+    "synonyms": ["IT", "intuito", "saggezza"],
+    "description": "L'Intuizione rappresenta la percezione spirituale, il sesto senso e la vicinanza alla natura. È la caratteristica fondamentale per la magia del Flusso (Animista/Ranger) e influenza l'abilità di Percezione.",
+    "category": "caratteristiche"
+  },
+  {
+    "id": "presenza",
+    "keyword": "Presenza",
+    "synonyms": ["PR", "aspetto", "carisma", "forza di volonta"],
+    "description": "La Presenza indica la forza della personalità, il carisma e il coraggio. È la caratteristica principale per i Bardi e influenza i Tiri Resistenza contro la paura e gli attacchi mentali.",
+    "category": "caratteristiche"
+  },
+  {
+    "id": "nessuna_armatura",
+    "keyword": "Nessuna Armatura",
+    "synonyms": ["NA", "nessuna armatura", "senza armatura"],
+    "description": "Classe di Armatura 1 (o TA 1-4). Nessuna protezione metallica o di cuoio. Non comporta alcuna penalità di movimento (MM) o di lancio incantesimi, ma espone al massimo danno da colpo critico.",
+    "category": "oggetti"
+  },
+  {
+    "id": "cuoio_grezzo",
+    "keyword": "Cuoio Grezzo",
+    "synonyms": ["CG", "cuoio morbido", "cuoio grezzo", "pelle"],
+    "description": "Classe di Armatura 2 (o TA 5-8). Armatura di cuoio flessibile o giubba imbottita. Offre una protezione di base contro i colpi di taglio, applicando una penalità minima alle manovre.",
+    "category": "oggetti"
+  },
+  {
+    "id": "cuoio_rinforzato",
+    "keyword": "Cuoio Rinforzato",
+    "synonyms": ["CR", "cuoio borchiato", "cuoio rinforzato"],
+    "description": "Classe di Armatura 3 (o TA 9-12). Cuoio indurito, spesso borchiato o rinforzato con piastre di metallo. Equilibrio ottimale tra mobilità e protezione per classi come Scout e Ranger.",
+    "category": "oggetti"
+  },
+  {
+    "id": "cotta_di_maglia",
+    "keyword": "Cotta di Maglia",
+    "synonyms": ["CM", "cotta di maglia", "corazza di maglia", "maglia"],
+    "description": "Classe di Armatura 4 (o TA 13-16). Maglia di ferro ad anelli intrecciati. Offre eccellente protezione da colpi da taglio e da punta, ma comporta significative penalità di movimento (-15 MM) e al lancio di incantesimi.",
+    "category": "oggetti"
+  },
+  {
+    "id": "arrampicarsi",
+    "keyword": "Arrampicarsi",
+    "synonyms": ["Arrampicarsi", "scalare", "climbing"],
+    "description": "Abilità secondaria utilizzata per scalare pareti verticali, alberi o fortificazioni. È influenzata negativamente dall'ingombro dell'armatura attiva e dal carico.",
+    "category": "abilita"
+  },
+  {
+    "id": "nuotare",
+    "keyword": "Nuotare",
+    "synonyms": ["Nuotare", "nuoto", "swimming"],
+    "description": "Abilità primaria utilizzata per muoversi in acqua profonda. Indossare armature metalliche (come Cotta di Maglia) rende questa abilità estremamente difficile e pericolosa.",
+    "category": "abilita"
+  },
+  {
+    "id": "cavalcare",
+    "keyword": "Cavalcare",
+    "synonyms": ["Cavalcare", "riding", "equitazione"],
+    "description": "Abilità secondaria che misura la capacità di controllare un destriero in situazioni ordinarie o durante combattimenti e manovre rapide in sella.",
+    "category": "abilita"
+  },
+  {
+    "id": "percezione",
+    "keyword": "Percezione",
+    "synonyms": ["Percezione", "percepire", "osservare", "ascoltare", "percept"],
+    "description": "Abilità primaria cruciale per individuare trappole, nemici nascosti, suoni sospetti o indizi ambientali. È basata principalmente sul modificatore di Intuizione (IT).",
+    "category": "abilita"
+  },
+  {
+    "id": "incantesimi",
+    "keyword": "Incantesimi",
+    "synonyms": ["Incantesimi", "spells", "magia", "lancio incantesimi", "lanciare incantesimi"],
+    "description": "Abilità primaria utilizzata per canalizzare e lanciare incantesimi dalle liste apprese. Consente di superare i Tiri Resistenza avversari o di mirare incantesimi diretti.",
+    "category": "abilita"
+  },
+  {
+    "id": "lingue",
+    "keyword": "Lingue",
+    "synonyms": ["Lingue", "lingue conosciute", "lingue extra", "linguaggio"],
+    "description": "Misura il livello di competenza (comprensione, parlato e scritto) nei vari linguaggi della Terra di Mezzo (es. Ovestron, Sindarin, Quenya, Khuzdul, Nero Parlato).",
+    "category": "abilita"
+  },
+  {
+    "id": "guerriero",
+    "keyword": "Guerriero",
+    "synonyms": ["guerriero", "guerrieri", "warrior"],
+    "description": "Professione incentrata sul combattimento fisico e sull'uso delle armature pesanti. Gode di eccellenti bonus di sviluppo per tutte le abilità di armi e manovre di movimento.",
+    "category": "professioni"
+  },
+  {
+    "id": "mago",
+    "keyword": "Mago",
+    "synonyms": ["mago", "maghi", "mage"],
+    "description": "Professione dedita allo studio e alla manipolazione del regno dell'Essenza. Ha accesso a incantesimi offensivi devastanti ma è limitato all'uso di nessuna armatura (NA).",
+    "category": "professioni"
+  },
+  {
+    "id": "scout",
+    "keyword": "Scout",
+    "synonyms": ["scout", "esploratore", "esploratori"],
+    "description": "Professione specializzata nell'infiltrazione, elusione, disattivazione trappole e combattimento rapido. Predilige armature di cuoio e armi da taglio o da tiro.",
+    "category": "professioni"
+  },
+  {
+    "id": "ranger",
+    "keyword": "Ranger",
+    "synonyms": ["ranger", "ramingo", "raminghi"],
+    "description": "Professione ibrida che unisce eccezionali capacità di sopravvivenza nei boschi (tracce, orientamento) con una parziale conoscenza del regno del Flusso (magia della natura).",
+    "category": "professioni"
+  },
+  {
+    "id": "animista",
+    "keyword": "Animista",
+    "synonyms": ["animista", "chierico", "animisti"],
+    "description": "Professione incentrata sulla manipolazione del regno del Flusso per incantesimi di cura, protezione e connessione con gli animali e la natura.",
+    "category": "professioni"
+  },
+  {
+    "id": "bardo",
+    "keyword": "Bardo",
+    "synonyms": ["bardo", "bardi", "bard"],
+    "description": "Professione versatile che unisce abilità sociali, conoscenze storiche ed incantesimi di influenza mentale basati sulla Presenza (PR).",
+    "category": "professioni"
+  },
+  {
+    "id": "dunedain",
+    "keyword": "Dúnedain",
+    "synonyms": ["dunedain", "dunedin", "ramingo del nord"],
+    "description": "Uomini dell'Ovest dotati di grande nobiltà e longevità. Hanno eccezionali bonus di partenza alle caratteristiche fisiche e mentali, e ottengono molti punti background.",
+    "category": "popoli"
+  },
+  {
+    "id": "nani",
+    "keyword": "Nani",
+    "synonyms": ["nani", "nano", "dwarf"],
+    "description": "Creature robuste, tenaci e abili artigiani della pietra e dei metalli. Altamente resistenti alla magia, al veleno e al freddo, ma incapaci di nuotare agevolmente.",
+    "category": "popoli"
+  },
+  {
+    "id": "hobbit",
+    "keyword": "Hobbit",
+    "synonyms": ["hobbit", "mezzouomini", "mezzouomo"],
+    "description": "Creature pacifiche, di piccola statura, dotate di un'incredibile capacità di muoversi silenziosamente e di un'eccezionale resistenza innata alla magia ed ai veleni.",
+    "category": "popoli"
+  }
+]

@@ -50,6 +50,7 @@ nuove funzionalità (FEAT), change request UX/UI (CR) e bug/fix tecnici (FIX).
 
 | ID | Tipo | Descrizione | Completato il |
 |----|------|-------------|---------------|
+| BL-002 | FEAT | Codex Tooltips Trasversali — Dizionario termini di gioco, console GM e attivazione dinamica per categoria/pagina | 2026-07-01 |
 | BL-001 | FEAT | PNG e Mostri/Creature — Catalogo e gestione schede | 2026-07-01 |
 | FIX-008 | FIX | Combat Calculator — Aggiunta l'indicazione della percentuale di BO allocato per parare di fianco alla quota BO spesa dal difensore. | 2026-06-30 |
 | FEAT-007 | DATA | Importazione orchi nel catalogo creature: integrati Orco guerriero debole/medio/forte da CSV e rigenerato database JSON. | 2026-06-30 |

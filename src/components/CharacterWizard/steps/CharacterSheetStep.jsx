@@ -24,6 +24,7 @@ import { formatMBToCoins, formatCoinsToString } from '../../../utils/moneyHelper
 import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
 import { useAuth } from '../../../contexts/AuthContext';
 import { subscribeToCharacterNotes, saveCharacterNotes } from '../../../services/playerService';
+import CodexLabel from '../../Shared/CodexLabel';
 
 const STAT_KEYS = ['FR', 'AG', 'CO', 'IN', 'IT', 'PR'];
 const STAT_NAMES = { FR: 'Forza', AG: 'Agilità', CO: 'Costituzione', IN: 'Intelligenza', IT: 'Intuizione', PR: 'Presenza' };
@@ -614,12 +615,16 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginTop: '1rem' }}>
             <div style={{ padding: '1rem', border: '1px solid var(--theme-race-border)', borderRadius: '0.6rem', background: 'var(--theme-race-bg)' }}>
               <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-race-text)' }}>Popolo</div>
-              <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-race-text)', marginTop: '0.2rem' }}>{race?.nome || race?.popolo}</div>
+              <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-race-text)', marginTop: '0.2rem' }}>
+                <CodexLabel term={race?.nome || race?.popolo} category="popoli" page="scheda_riepilogo" />
+              </div>
               <div style={{ fontSize: '0.75rem', color: 'var(--theme-race-text)', opacity: 0.85, marginTop: '0.15rem' }}>{race?.categoria || race?.['note (umani/non umani)']}</div>
             </div>
             <div style={{ padding: '1rem', border: '1px solid var(--theme-profession-border)', borderRadius: '0.6rem', background: 'var(--theme-profession-bg)' }}>
               <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-profession-text)' }}>Professione</div>
-              <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-profession-text)', marginTop: '0.2rem' }}>{profession?.professione} (Liv. {finalLevel})</div>
+              <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-profession-text)', marginTop: '0.2rem' }}>
+                <CodexLabel term={profession?.professione} category="professioni" page="scheda_riepilogo" /> (Liv. {finalLevel})
+              </div>
               <div style={{ fontSize: '0.75rem', color: 'var(--theme-profession-text)', opacity: 0.85, marginTop: '0.15rem' }}>
                 {profession && `Primaria: ${profession.primaria} | Secondaria: ${profession.secondaria}`}
               </div>
@@ -660,7 +665,9 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
                     const s = finalStats[k];
                     return (
                       <tr key={k} className="hover:bg-gray-50/50">
-                        <td className="px-3 py-2 font-bold text-gray-800">{STAT_NAMES[k]} ({k})</td>
+                        <td className="px-3 py-2 font-bold text-gray-800">
+                          <CodexLabel term={STAT_NAMES[k]} category="caratteristiche" page="scheda_riepilogo" /> ({k})
+                        </td>
                         <td className="px-2 py-2 text-center font-bold text-gray-900">{s.raw + s.bgMod}</td>
                         <td className="px-2 py-2 text-center text-purple-700">{s.bgMod !== 0 ? fmt(s.bgMod) : '—'}</td>
                         <td className="px-2 py-2 text-center font-semibold text-gray-700">{fmt(s.bonusNaturale)}</td>
@@ -993,7 +1000,9 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
 
                           return (
                             <tr key={sk.nome} className={rowClass}>
-                              <td className="px-3 py-2 font-medium text-gray-800">{sk.nome}</td>
+                              <td className="px-3 py-2 font-medium text-gray-800">
+                                <CodexLabel term={sk.nome} category="abilita" page="scheda_riepilogo" />
+                              </td>
                               <td className="px-2 py-2 text-center text-gray-400">{s.adRanks}</td>
                               <td className="px-2 py-2 text-center text-blue-700">{s.profRanks}</td>
                               <td className="px-2 py-2 text-center text-purple-700">{s.tgp4Ranks}</td>
@@ -1060,7 +1069,9 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
 
                     return (
                       <tr key={sk.nome} className="hover:bg-gray-50/50">
-                        <td className="px-3 py-2 font-bold text-gray-800">{sk.nome}</td>
+                        <td className="px-3 py-2 font-bold text-gray-800">
+                          <CodexLabel term={sk.nome} category="abilita" page="scheda_riepilogo" />
+                        </td>
                         <td className="px-3 py-2 text-gray-600 text-[11px] whitespace-normal leading-relaxed">{descrizione}</td>
                         <td className="px-2 py-2 text-center text-gray-700">{carattSigla} {fmt(carattBonus)}</td>
                         <td className="px-2 py-2 text-center text-purple-700 text-[10px]">{bgTextParts.join(', ')}</td>

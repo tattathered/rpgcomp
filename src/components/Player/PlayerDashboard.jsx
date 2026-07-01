@@ -10,9 +10,11 @@ import { subscribeToCampaigns } from "../../services/campaignService";
 import PlayerCharacterSheet from "./PlayerCharacterSheet";
 import { getCharacterHpTot } from "../../utils/skillHelpers";
 import { getSpellCatalog } from "../../services/spellCatalogService";
+import { useCodex } from "../../contexts/CodexContext";
 
 export default function PlayerDashboard() {
   const { logout, userData, user } = useAuth();
+  const { setGmIdOverride } = useCodex();
   
   const [workspaces, setWorkspaces] = useState([]);
   const [charactersMap, setCharactersMap] = useState({});
@@ -21,6 +23,13 @@ export default function PlayerDashboard() {
   const [loading, setLoading] = useState(true);
   const [selectedChar, setSelectedChar] = useState(null);
   const [activeSpellCatalog, setActiveSpellCatalog] = useState(null);
+
+  // Sincronizza il GM ID attivo per caricare il Codex corrispondente
+  useEffect(() => {
+    if (workspaces.length > 0 && workspaces[0].gmId) {
+      setGmIdOverride(workspaces[0].gmId);
+    }
+  }, [workspaces]);
 
   // 1. Sottoscrizione ai workspace del giocatore
   useEffect(() => {

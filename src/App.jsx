@@ -42,6 +42,7 @@ import {
 import NpcCatalogTab from './components/GM/NpcCatalogTab';
 import CreatureCatalogTab from './components/GM/CreatureCatalogTab';
 import CampaignRosterManager from './components/GM/CampaignRosterManager';
+import CodexAdminTab from './components/GM/CodexAdminTab';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -926,6 +927,7 @@ function App() {
               {[
                 { id: 'equipment', label: 'Equipaggiamento' },
                 { id: 'spells', label: 'Incantesimi' },
+                { id: 'codex', label: 'Codex & Tooltips' },
                 { id: 'export', label: 'Esportazione (CSV)' },
               ].map(tab => (
                 <button
@@ -965,6 +967,9 @@ function App() {
                   catalog={spellCatalog}
                   onUpdate={handleUpdateSpellCatalog}
                 />
+              )}
+              {activeSettingsSubTab === 'codex' && (
+                <CodexAdminTab />
               )}
               {activeSettingsSubTab === 'export' && (
                 <CsvExportManager />
