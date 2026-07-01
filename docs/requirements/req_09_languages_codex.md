@@ -46,3 +46,7 @@ L'obiettivo è nascondere la descrizione testuale diretta e integrarla all'inter
   - Rimozione del tag di descrizione statica.
   - Sostituzione dell'etichetta del grado con `<CodexLabel>` specificando `category="gradi_lingue"`.
   - Sostituzione del nome della lingua con `<CodexLabel>` specificando `category="lingue"`.
+- **`src/components/CharacterWizard/steps/CreationSummaryStep.jsx` [MODIFY]:**
+  - Modifica label titolo in `"Gradi di conoscenza delle lingue"`.
+  - Rimozione del tag di descrizione statica.
+  - Integrazione di `<CodexLabel>` con tooltip al mouseover sia sulle lingue che sui gradi.
