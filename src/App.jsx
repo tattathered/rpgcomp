@@ -348,7 +348,14 @@ function App() {
 
   const handleExportCharacter = (char) => {
     try {
-      const dataStr = JSON.stringify(char, null, 2);
+      // Per rendere esplicito l'ID del PG all'utente, nel file JSON
+      // rinominiamo la chiave radice "id" in "pgId" (evitando di sporcare il database).
+      const { id, ...rest } = char;
+      const exportData = {
+        pgId: id,
+        ...rest
+      };
+      const dataStr = JSON.stringify(exportData, null, 2);
       const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
       
       const level = 1 + (char.levelDevelopments || []).length;
@@ -381,13 +388,22 @@ function App() {
             return;
           }
           
-          const idExists = savedCharacters.some(c => c.id === parsed.id);
+          // Mappiamo pgId (o id per compatibilità con vecchi file) su una variabile locale
+          const charId = parsed.pgId || parsed.id;
+          
+          const idExists = savedCharacters.some(c => c.id === charId);
           const nameExists = savedCharacters.some(c => c.name.toLowerCase() === parsed.name.toLowerCase());
           
           let importedChar = { ...parsed };
           
+          // Ripristiniamo la proprietà interna "id" rimuovendo "pgId"
+          if (charId) {
+            importedChar.id = charId;
+          }
+          delete importedChar.pgId;
+          
           if (idExists) {
-            const existingCharById = savedCharacters.find(c => c.id === parsed.id);
+            const existingCharById = savedCharacters.find(c => c.id === charId);
             if (existingCharById.name.toLowerCase() !== parsed.name.toLowerCase()) {
               const choice = confirm(`Il file importato ha lo stesso ID interno di "${existingCharById.name}" ma nome diverso "${parsed.name}".\n\nClicca OK per SOVRASCRIVERE "${existingCharById.name}".\nClicca ANNULLA per importarlo come NUOVO personaggio.`);
               if (choice) {
@@ -397,7 +413,7 @@ function App() {
                 importedChar.id = doc(collection(db, "temp")).id;
               }
             } else {
-              // Stesso ID e stesso nome: sovrascrittura implicita o chiedi conferma
+              // Stesso ID e stesso nome: sovrascrittura implicita
               importedChar.id = existingCharById.id;
             }
           } else if (nameExists) {
@@ -418,7 +434,7 @@ function App() {
               importedChar.id = doc(collection(db, "temp")).id;
             }
           } else {
-            importedChar.id = parsed.id || doc(collection(db, "temp")).id;
+            importedChar.id = charId || doc(collection(db, "temp")).id;
           }
           
           await saveCharacter(user.uid, importedChar);
