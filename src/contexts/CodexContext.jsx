@@ -86,7 +86,11 @@ export function CodexProvider({ children }) {
     if (!config || !config[pageId]) {
       return defaultConfig[pageId]?.[category] ?? false;
     }
-    return config[pageId][category] ?? false;
+    // Se la categoria non è ancora definita su Firestore, usa il default
+    if (config[pageId][category] === undefined) {
+      return defaultConfig[pageId]?.[category] ?? false;
+    }
+    return config[pageId][category];
   };
 
   // Restituisce la descrizione di un termine (ricerca normalizzata sia su keyword che su sinonimi)
@@ -94,23 +98,10 @@ export function CodexProvider({ children }) {
     if (!term) return null;
     const normalizedQuery = term.trim().toLowerCase();
 
-    // Se Firestore non ha voci, usa i default locali. Altrimenti usa le voci caricate
-    const activeItems = items.length > 0 ? items : defaultItems;
-
-    // 1. Cerca nella categoria specificata
-    let matched = activeItems.find(item => {
-      if (item.category !== category) return false;
-      const normalizedKeyword = item.keyword.trim().toLowerCase();
-      if (normalizedKeyword === normalizedQuery) return true;
-      if (item.synonyms && Array.isArray(item.synonyms)) {
-        return item.synonyms.some(syn => syn.trim().toLowerCase() === normalizedQuery);
-      }
-      return false;
-    });
-
-    // 2. Fallback globale (cerca in qualsiasi categoria se non trovato nella specifica)
-    if (!matched) {
-      matched = activeItems.find(item => {
+    const findMatch = (list) => {
+      // 1. Cerca prima nella categoria specifica
+      let found = list.find(item => {
+        if (item.category !== category) return false;
         const normalizedKeyword = item.keyword.trim().toLowerCase();
         if (normalizedKeyword === normalizedQuery) return true;
         if (item.synonyms && Array.isArray(item.synonyms)) {
@@ -118,6 +109,27 @@ export function CodexProvider({ children }) {
         }
         return false;
       });
+
+      // 2. Se non trovato, effettua una ricerca globale in qualsiasi categoria come fallback
+      if (!found) {
+        found = list.find(item => {
+          const normalizedKeyword = item.keyword.trim().toLowerCase();
+          if (normalizedKeyword === normalizedQuery) return true;
+          if (item.synonyms && Array.isArray(item.synonyms)) {
+            return item.synonyms.some(syn => syn.trim().toLowerCase() === normalizedQuery);
+          }
+          return false;
+        });
+      }
+      return found;
+    };
+
+    // Ricerca nei dati di Firestore (GM)
+    let matched = findMatch(items);
+
+    // Fallback nei dati locali predefiniti (codex_defaults.json)
+    if (!matched) {
+      matched = findMatch(defaultItems);
     }
 
     return matched ? matched.description : null;
