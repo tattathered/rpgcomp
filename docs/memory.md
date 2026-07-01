@@ -32,6 +32,7 @@ Per evitare la saturazione del contesto di Antigravity, i dettagli delle funzion
 - **CR aperte:** 1 — CR-001 (Combat Calculator v2 — attacchi multipli per round).
 
 > Per il dettaglio di tutti i task aperti, CR e fix: **[docs/backlog.md](file:///Users/yagni/Geek/antigravity/merpcomp/docs/backlog.md)**
+> Per la pianificazione a lungo termine: **[docs/roadmap.md](file:///Users/yagni/Geek/antigravity/merpcomp/docs/roadmap.md)**
 
 ## 5. Backlog — Analizzato / In Attesa
 
