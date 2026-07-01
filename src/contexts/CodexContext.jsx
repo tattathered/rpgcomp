@@ -13,7 +13,9 @@ const defaultConfig = {
     popoli: true,
     professioni: true,
     oggetti: true,
-    creature: true
+    creature: true,
+    lingue: true,
+    gradi_lingue: true
   }
 };
 

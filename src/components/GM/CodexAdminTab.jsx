@@ -38,7 +38,9 @@ export default function CodexAdminTab() {
     { id: 'popoli', label: 'Popoli (es: Nani, Elfi)' },
     { id: 'professioni', label: 'Professioni (es: Guerriero, Mago)' },
     { id: 'oggetti', label: 'Oggetti (es: Cotta di maglia, Armi)' },
-    { id: 'creature', label: 'Animali e Creature' }
+    { id: 'creature', label: 'Animali e Creature' },
+    { id: 'lingue', label: 'Lingue (es: Sindarin, Ovestron)' },
+    { id: 'gradi_lingue', label: 'Gradi di Lingua (es: Grado 1, Grado 2)' }
   ];
 
   // Pagine/Sezioni supportate (Fase 1: solo scheda_riepilogo)

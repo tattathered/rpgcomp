@@ -173,5 +173,187 @@
     "synonyms": ["hobbit", "mezzouomini", "mezzouomo"],
     "description": "Creature pacifiche, di piccola statura, dotate di un'incredibile capacità di muoversi silenziosamente e di un'eccezionale resistenza innata alla magia ed ai veleni.",
     "category": "popoli"
+  },
+  {
+    "id": "grado_1",
+    "keyword": "Grado 1",
+    "synonyms": ["1", "grado 1", "grado1"],
+    "description": "Semplici frasi che permettono una comunicazione a livello elementare (E buono da mangiare? C'è pericolo? Quanto costa? Dov'è il bagno?, ecc.). Nessuna conoscenza di lettura e scrittura.",
+    "category": "gradi_lingue"
+  },
+  {
+    "id": "grado_2",
+    "keyword": "Grado 2",
+    "synonyms": ["2", "grado 2", "grado2"],
+    "description": "Se entrambi i colloquianti parlano lentamente, scandendo le parole, consente di discutere su semplici concetti, senza troppi giri di parole. Uno sguardo ad una scrittura può far capire i concetti generali e singole frasi, ma non i particolari. Nessuna conoscenza della scrittura.",
+    "category": "gradi_lingue"
+  },
+  {
+    "id": "grado_3",
+    "keyword": "Grado 3",
+    "synonyms": ["3", "grado 3", "grado3"],
+    "description": "Consente di parlare, in modo scorrevole, come i madrelinqua di media educazione, ma con frequenti inflessioni dialettali (sbaglio di accenti, di tonalità, ecc.); di leggere e scrivere frasi non troppo difficili, ma non i concetti più complessi.",
+    "category": "gradi_lingue"
+  },
+  {
+    "id": "grado_4",
+    "keyword": "Grado 4",
+    "synonyms": ["4", "grado 4", "grado4"],
+    "description": "Consente di parlare come per il grado 3 e di leggere e scrivere come un uomo di buona cultura.",
+    "category": "gradi_lingue"
+  },
+  {
+    "id": "grado_5",
+    "keyword": "Grado 5",
+    "synonyms": ["5", "grado 5", "grado5"],
+    "description": "Conoscenza perfetta della lingua, che consente di parlare senza alcun accento e di avere una padronanza totale nello scrivere e nel leggere.",
+    "category": "gradi_lingue"
+  },
+  {
+    "id": "sindarin",
+    "keyword": "Sindarin",
+    "synonyms": ["sindarin", "grigio elfico", "lingua grigia"],
+    "description": "Il Sindarin, conosciuto anche come grigio elfico, è una delle principali lingue parlate nella Terra di Mezzo. Parlata dagli Elfi del Beleriand e derivata dall'idioma primordiale. Divenne la lingua ufficiale dei regni di Gondor e Arnor accanto all'Ovestron.",
+    "category": "lingue"
+  },
+  {
+    "id": "quenya",
+    "keyword": "Quenya",
+    "synonyms": ["quenya", "alto elfico", "antica lingua"],
+    "description": "Il Quenya, anche chiamato Alto Elfico o Antica Lingua, è una lingua la cui origine deriva dall’Elfico Primordiale. Viene parlato dalle due stirpi elfiche che erano giunte sino a Valinor: i Vanyar e i Noldor.",
+    "category": "lingue"
+  },
+  {
+    "id": "silvano",
+    "keyword": "Silvano (Bethteur)",
+    "synonyms": ["silvano", "bethteur", "nandorin", "danian", "silvano (bethteur)"],
+    "description": "Il Silvano (Nandorin) è la lingua parlata dal popolo dei Nandor, quei Teleri che durante il Grande Viaggio scelsero di non proseguire e stabilirsi invece sulle rive dell'Anduin. Chiamato anche Danian.",
+    "category": "lingue"
+  },
+  {
+    "id": "adunaico",
+    "keyword": "Adunaico",
+    "synonyms": ["adunaico", "adûnaico", "lingua degli uomini dell'ovest"],
+    "description": "L'Adûnaico era l'antica lingua dei Dúnedain di Númenor derivata dalla lingua degli Uomini della Casa di Hador e della Casa di Bëor. Finì per sostituire il Quenya durante il regno degli Uomini del Re.",
+    "category": "lingue"
+  },
+  {
+    "id": "apysaico",
+    "keyword": "Apysaico",
+    "synonyms": ["apysaico", "apisaico"],
+    "description": "Apysaico (spesso scritto anche Apisaico) è una lingua parlata dalle tribù umane del Far Harad. Diviso in Apysaico classico (uso storico/culturale) e Apysaico moderno (comunicazione e commercio).",
+    "category": "lingue"
+  },
+  {
+    "id": "atliduk",
+    "keyword": "Atliduk",
+    "synonyms": ["atliduk"],
+    "description": "L'Atliduk è la lingua parlata dai Beorniani (mutatori di pelle che discendono da Beorn). Parlato principalmente nelle valli dell'Anduin, con forti influenze dall'Ovestron.",
+    "category": "lingue"
+  },
+  {
+    "id": "linguaggio_nero",
+    "keyword": "Linguaggio Nero (Morbeth)",
+    "synonyms": ["linguaggio nero", "morbeth", "lingua nera", "linguaggio nero (morbeth)"],
+    "description": "Il Linguaggio Nero (Morbeth) è la lingua ufficiale delle forze di Mordor, creata da Sauron. Requisito per il lancio di incantesimi da parte di incantatori malvagi. La forma pura è usata dai Nazgûl, mentre gli Orchi usano una versione degradata.",
+    "category": "lingue"
+  },
+  {
+    "id": "dunael",
+    "keyword": "Dunael",
+    "synonyms": ["dunael"],
+    "description": "È la lingua madre della cultura dei Dunlandiani. Lingua indipendente dall'Ovestron, dai suoni duri e gutturali, ispirata storicamente alle lingue celtiche.",
+    "category": "lingue"
+  },
+  {
+    "id": "haradaico",
+    "keyword": "Haradaico",
+    "synonyms": ["haradaico", "haradaic"],
+    "description": "L'Haradaico è la famiglia linguistica dominante nel Vicino Harad (Harad Settentrionale) ed è l'idioma principale associato agli Haradrim (i Sudroni). Lingua della diplomazia, guerra e commerci.",
+    "category": "lingue"
+  },
+  {
+    "id": "khuzdul",
+    "keyword": "Khuzdul (Nanesco)",
+    "synonyms": ["khuzdul", "nanesco", "dwarvish", "khuzdul (nanesco)"],
+    "description": "Il Khuzdul (Nanesco) è la lingua nativa dei Nani, considerata un segreto sacro e mai insegnata agli stranieri. Scritta usando le rune Cirth. I Nani usano anche l'Iglishmêk (linguaggio dei segni).",
+    "category": "lingue"
+  },
+  {
+    "id": "kuduk",
+    "keyword": "Kuduk (Variante dell'Ovestron usata dagli Hobbit)",
+    "synonyms": ["kuduk", "hobbitish", "parlata degli hobbit", "lingua degli hobbit", "kuduk (variante dell'ovestron usata dagli hobbit)"],
+    "description": "Il Kuduk è la variante dell'Ovestron parlata esclusivamente dagli Hobbit nella Contea. Un dialetto più morbido, colloquiale e amichevole, ricco di termini agricoli.",
+    "category": "lingue"
+  },
+  {
+    "id": "labba",
+    "keyword": "Labba",
+    "synonyms": ["labba", "lossothren", "lingua delle nevi"],
+    "description": "Il Labba (noto anche come Lossothren) è la lingua parlata dai Lossoth (Uomini delle Nevi). Riflette l'isolamento e la dura vita nelle distese congelate del Forodwaith.",
+    "category": "lingue"
+  },
+  {
+    "id": "logathig",
+    "keyword": "Logathig",
+    "synonyms": ["logathig"],
+    "description": "Il Logathig è la principale famiglia linguistica associata agli Esterling e ai popoli dell'est (nomadi delle steppe oltre il Mare di Rhûn, e Dorwiniani).",
+    "category": "lingue"
+  },
+  {
+    "id": "nahaiduk",
+    "keyword": "Nahaiduk",
+    "synonyms": ["nahaiduk"],
+    "description": "Il Nahaiduk è la lingua ufficiale dei Boscaioli di Bosco Atro. Rappresenta il legame culturale dei popoli liberi delle terre selvagge del Nord ed è strettamente imparentato con l'Atliduk.",
+    "category": "lingue"
+  },
+  {
+    "id": "orchesco",
+    "keyword": "Orchesco",
+    "synonyms": ["orchesco", "orcish", "orkish"],
+    "description": "L'Orchesco non è un'unica lingua coesa, ma un insieme di dialetti brutali e frammentati parlati dalle diverse comunità di Orchi, spesso costretti a usare l'Ovestron per comunicare tra loro.",
+    "category": "lingue"
+  },
+  {
+    "id": "pukael",
+    "keyword": "Pukael",
+    "synonyms": ["pukael", "púkael"],
+    "description": "Il Pukael è la lingua ancestrale parlata dai Woses (Uomini Selvatici), completamente indipendente, dai suoni gutturali e priva di un alfabeto scritto (tramandata su statue di pietra).",
+    "category": "lingue"
+  },
+  {
+    "id": "rohirric",
+    "keyword": "Rohirric",
+    "synonyms": ["rohirric", "rohirrim", "lingua dei cavalli"],
+    "description": "Il Rohirric è la lingua dei Signori dei Cavalli (Rohirrim), derivata dall'Éothrik delle alte valli dell'Anduin. Ricca di termini legati all'equitazione e al combattimento in sella.",
+    "category": "lingue"
+  },
+  {
+    "id": "umitico",
+    "keyword": "Umitico",
+    "synonyms": ["umitico", "umitic"],
+    "description": "L'Umitico è la lingua nativa degli Umli (Mezzo-Nani), un ibrido tra il Khuzdul (Nanesco) e il Labba (Lossoth), parlata nelle regioni glaciali del Forodwaith e delle Montagne Grigie.",
+    "category": "lingue"
+  },
+  {
+    "id": "varadja",
+    "keyword": "Varadja",
+    "synonyms": ["varadja", "khandish"],
+    "description": "Il Varadja (Khandish) è la lingua madre dei Variag di Khand. Un mosaico linguistico con fortes influenze dal Linguaggio Nero, dai dialetti orcheschi e dall'Haradaico.",
+    "category": "lingue"
+  },
+  {
+    "id": "waildyth",
+    "keyword": "Waildyth (Segnali naturali)",
+    "synonyms": ["waildyth", "segnali naturali", "waildyth (segnali naturali)"],
+    "description": "Il Waildyth è un sistema codificato di segnali naturali e gestuali utilizzato dai Beorniani per comunicare in silenzio nelle Terre Selvagge manipolando elementi dell'ambiente.",
+    "category": "lingue"
+  },
+  {
+    "id": "ovestron",
+    "keyword": "Ovestron (Linguaggio Comune)",
+    "synonyms": ["ovestron", "linguaggio comune", "westron", "lingua comune", "ovestron (linguaggio comune)"],
+    "description": "L'Ovestron (Lingua Comune) è l'idioma dominante, commerciale e diplomatico della Terra di Mezzo. Si divide in Ovestron Alto (formale a Gondor) e Ovestron Basso (colloquiale).",
+    "category": "lingue"
   }
 ]

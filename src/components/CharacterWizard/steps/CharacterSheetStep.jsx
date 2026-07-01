@@ -1267,7 +1267,7 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
           <div className="border border-gray-200 rounded-lg overflow-hidden shadow-xs">
             <div className="px-4 py-2 border-b flex items-center gap-1.5" style={{ backgroundColor: 'var(--theme-languages-bg)', borderBottomColor: 'var(--theme-languages-border)', color: 'var(--theme-languages-text)' }}>
               <Globe className="w-4 h-4" style={{ color: 'var(--theme-languages-text)' }} />
-              <span className="text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--theme-languages-text)' }}>Gradi di Lingue</span>
+              <span className="text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--theme-languages-text)' }}>Gradi di conoscenza delle lingue</span>
             </div>
             <div className="p-4">
               <div className="grid gap-2">
@@ -1275,16 +1275,16 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
                   // Recupera la somma dei gradi (base + aggiunti in creazione + acquistati in activeLevels)
                   const lvlDevelopmentsLangs = levelDevelopments.reduce((sum, d) => sum + (d.languages?.[lang] || 0), 0);
                   const total = (data.base || 0) + (data.added || 0) + lvlDevelopmentsLangs;
-                  const desc = gradiLingue.find(g => g.grado === Math.min(5, Math.max(1, total)));
 
                   return (
-                    <div key={lang} className="bg-gray-50 border border-gray-100 rounded-lg p-2.5 flex items-start justify-between gap-3 text-xs">
+                    <div key={lang} className="bg-gray-50 border border-gray-100 rounded-lg p-2.5 flex items-center justify-between gap-3 text-xs">
                       <div>
-                        <span className="font-bold text-gray-800 block">{lang}</span>
-                        {desc && <span className="text-[10px] text-gray-500 leading-snug block mt-0.5">{desc.conoscenza}</span>}
+                        <span className="font-bold text-gray-800 block">
+                          <CodexLabel term={lang} category="lingue" page="scheda_riepilogo" />
+                        </span>
                       </div>
-                      <span className="text-[11px] font-black bg-indigo-100 text-indigo-800 px-2.5 py-0.5 rounded-full whitespace-nowrap self-start">
-                        Grado {total}
+                      <span className="text-[10px] font-black bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded-full whitespace-nowrap self-center">
+                        <CodexLabel term={`Grado ${total}`} category="gradi_lingue" page="scheda_riepilogo" fallbackText={`Grado ${total}`} />
                       </span>
                     </div>
                   );

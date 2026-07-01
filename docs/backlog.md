@@ -50,6 +50,7 @@ nuove funzionalità (FEAT), change request UX/UI (CR) e bug/fix tecnici (FIX).
 
 | ID | Tipo | Descrizione | Completato il |
 |----|------|-------------|---------------|
+| BL-003 | FEAT | Codex Lingue e Gradi — Integrazione delle definizioni di lingue e gradi di conoscenza nel Codex con attivazione dei tooltips nella scheda PG | 2026-07-01 |
 | FIX-009 | FIX | Importazione PG — Risolto bug di sovrascrittura accidentale per PG con ID identici e nome modificato, mappando l'ID come 'pgId' nel JSON per chiarezza e inserendo la scelta utente (sovrascrittura vs nuovo PG). | 2026-07-01 |
 | BL-002 | FEAT | Codex Tooltips Trasversali — Dizionario termini di gioco, console GM e attivazione dinamica per categoria/pagina | 2026-07-01 |
 | BL-001 | FEAT | PNG e Mostri/Creature — Catalogo e gestione schede | 2026-07-01 |
