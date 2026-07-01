@@ -226,7 +226,7 @@ export default function CodexAdminTab() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 pl-6">
                       {CATEGORIES.map(cat => {
-                        const isEnabled = config[page.id]?.[cat.id] ?? defaultConfig[page.id]?.[cat.id] ?? false;
+                        const isEnabled = config[page.id]?.[cat.id] ?? true;
                         return (
                           <label
                             key={cat.id}
