@@ -376,20 +376,35 @@ function App() {
         try {
           const parsed = JSON.parse(event.target.result);
           
-          if (!parsed.name || !parsed.race || !parsed.profession) {
+           if (!parsed.name || !parsed.race || !parsed.profession) {
             alert("File JSON non valido: il file deve contenere almeno nome, popolo e professione del personaggio.");
             return;
           }
           
+          const idExists = savedCharacters.some(c => c.id === parsed.id);
           const nameExists = savedCharacters.some(c => c.name.toLowerCase() === parsed.name.toLowerCase());
           
           let importedChar = { ...parsed };
           
-          if (nameExists) {
+          if (idExists) {
+            const existingCharById = savedCharacters.find(c => c.id === parsed.id);
+            if (existingCharById.name.toLowerCase() !== parsed.name.toLowerCase()) {
+              const choice = confirm(`Il file importato ha lo stesso ID interno di "${existingCharById.name}" ma nome diverso "${parsed.name}".\n\nClicca OK per SOVRASCRIVERE "${existingCharById.name}".\nClicca ANNULLA per importarlo come NUOVO personaggio.`);
+              if (choice) {
+                importedChar.id = existingCharById.id;
+              } else {
+                // Genera un nuovo ID unico per aggiungerlo come nuovo
+                importedChar.id = doc(collection(db, "temp")).id;
+              }
+            } else {
+              // Stesso ID e stesso nome: sovrascrittura implicita o chiedi conferma
+              importedChar.id = existingCharById.id;
+            }
+          } else if (nameExists) {
             const choice = confirm(`Un personaggio con il nome "${parsed.name}" esiste già nel roster.\nVuoi sovrascriverlo (OK) o importarlo come copia con nome diverso (Annulla)?`);
             if (choice) {
               const existingChar = savedCharacters.find(c => c.name.toLowerCase() === parsed.name.toLowerCase());
-              importedChar.id = existingChar.id; // Mantieni lo stesso ID per sovrascrivere
+              importedChar.id = existingChar.id;
               await saveCharacter(user.uid, importedChar);
               alert(`Personaggio "${parsed.name}" sovrascritto con successo!`);
               return;
