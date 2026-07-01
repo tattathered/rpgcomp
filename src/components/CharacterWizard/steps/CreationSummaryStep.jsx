@@ -15,6 +15,7 @@ import {
 } from '../../../utils/skillHelpers';
 import WalletBox from '../shared/WalletBox';
 import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
+import CodexLabel from '../../Shared/CodexLabel';
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 const STAT_KEYS = ['FR', 'AG', 'CO', 'IN', 'IT', 'PR'];
@@ -757,19 +758,21 @@ export default function CreationSummaryStep({ characterData, setCharacterData, s
       )}
 
       {/* ── LINGUE ── */}
-      <SectionCard emoji="🌐" title="Lingue Conosciute" color="var(--theme-languages-text)" bg="var(--theme-languages-bg)" border="var(--theme-languages-border)">
+      <SectionCard emoji="🌐" title="Gradi di conoscenza delle lingue" color="var(--theme-languages-text)" bg="var(--theme-languages-bg)" border="var(--theme-languages-border)">
         {langEntries.length === 0 ? (
           <div style={{ color: '#9ca3af', textAlign: 'center', padding: '1rem' }}>Nessuna lingua registrata.</div>
         ) : (
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
             {langEntries.map(([lang, data]) => {
               const total = (data.base || 0) + (data.added || 0);
-              const gradeInfo = gradiLingue.find(g => g.grado === total);
               return (
                 <div key={lang} style={{ padding: '0.4rem 0.85rem', border: '1px solid var(--theme-languages-border)', borderRadius: '99px', background: data.fromBg ? 'var(--theme-background-bg)' : 'var(--theme-languages-bg)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                  <span style={{ fontWeight: 700, fontSize: '0.85rem', color: 'var(--theme-languages-text)' }}>{lang}</span>
-                  <span style={{ fontSize: '0.75rem', background: '#dbeafe', color: '#1d4ed8', padding: '0.1rem 0.4rem', borderRadius: '99px', fontWeight: 700 }}>Gr.{total}</span>
-                  {gradeInfo && <span style={{ fontSize: '0.7rem', color: '#6b7280' }}>{gradeInfo.conoscenza}</span>}
+                  <span style={{ fontWeight: 700, fontSize: '0.85rem', color: 'var(--theme-languages-text)' }}>
+                    <CodexLabel term={lang} category="lingue" page="scheda_riepilogo" />
+                  </span>
+                  <span style={{ fontSize: '0.75rem', background: '#dbeafe', color: '#1d4ed8', padding: '0.1rem 0.4rem', borderRadius: '99px', fontWeight: 700 }}>
+                    <CodexLabel term={`Grado ${total}`} category="gradi_lingue" page="scheda_riepilogo" fallbackText={`Gr.${total}`} />
+                  </span>
                   {data.fromBg && <span style={{ fontSize: '0.65rem', background: 'var(--theme-background-border)', color: 'var(--theme-background-text)', padding: '0.1rem 0.3rem', borderRadius: '99px', fontWeight: 700 }}>BG</span>}
                 </div>
               );
