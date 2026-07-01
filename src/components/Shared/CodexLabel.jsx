@@ -94,7 +94,7 @@ export default function CodexLabel({ term, category, page, fallbackText }) {
         ref={triggerRef}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className="border-b border-dashed border-slate-400 dark:border-slate-500 cursor-help inline-block"
+        className="border-b border-emerald-600 border-t-0 border-l-0 border-r-0 cursor-help inline-block"
       >
         {displayLabel}
       </span>
