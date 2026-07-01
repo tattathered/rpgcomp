@@ -1,0 +1,44 @@
+[
+  {
+    "tipo_incantesimo": "Dardo di energia",
+    "colpo_critico_primario": "EL",
+    "colpo_critico_secondario": null,
+    "modifiche speciali": "contro corazza di piastre e di maglia"
+  },
+  {
+    "tipo_incantesimo": "Dardo d'acqua",
+    "colpo_critico_primario": "IM",
+    "colpo_critico_secondario": null,
+    "modifiche speciali": "contro corazze di piastre e di cuoio rigido"
+  },
+  {
+    "tipo_incantesimo": "Dardo di ghiaccio",
+    "colpo_critico_primario": "IM",
+    "colpo_critico_secondario": "FR",
+    "modifiche speciali": "-5 BO contro corazze di piastre e di cuoio rinforzato"
+  },
+  {
+    "tipo_incantesimo": "Dardo di fuoco",
+    "colpo_critico_primario": "CA",
+    "colpo_critico_secondario": null,
+    "modifiche speciali": null
+  },
+  {
+    "tipo_incantesimo": "Dardo elettrico",
+    "colpo_critico_primario": "EL",
+    "colpo_critico_secondario": "IM",
+    "modifiche speciali": "+10 BO contro corazze di piastre e di maglia"
+  },
+  {
+    "tipo_incantesimo": "Sfera d i freddo",
+    "colpo_critico_primario": "FR",
+    "colpo_critico_secondario": null,
+    "modifiche speciali": null
+  },
+  {
+    "tipo_incantesimo": "Sfera di fuoco",
+    "colpo_critico_primario": "CA",
+    "colpo_critico_secondario": null,
+    "modifiche speciali": null
+  }
+]

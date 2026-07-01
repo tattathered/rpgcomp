@@ -57,7 +57,29 @@ const SKILL_TIPOLOGIA_MAP = {
   'Oratoria': 2
 };
 
-export default function StaticManoeuvreResolver({ savedCharacters }) {
+const SKILL_CHAR_MAP = {
+  'Arrampicarsi': 'AG',
+  'Cavalcare': 'IT',
+  'Nuotare': 'AG',
+  'Seguire tracce': 'IN',
+  'Cogliere alle spalle': 'PR',
+  'Muoversi silenziosamente': 'PR',
+  'Nascondersi': 'PR',
+  'Scassinare serrature': 'IN',
+  'Disattivare trappole': 'IT',
+  'Lettura rune': 'IN',
+  'Uso oggetti magici': 'IT',
+  'Incantesimi diretti': 'AG',
+  'Percezione': 'IT',
+  'Resistenza fisica (PF)': 'CO'
+};
+
+const getSkillCharacteristic = (skName) => {
+  const name = String(skName || '').trim();
+  return SKILL_CHAR_MAP[name] || 'IN'; // default per secondarie
+};
+
+export default function StaticManoeuvreResolver({ savedCharacters, campaignNpcs = [] }) {
   const [characterId, setCharacterId] = useState('custom');
   const [customCharacterName, setCustomCharacterName] = useState('');
   const [selectedSkills, setSelectedSkills] = useState([]);
@@ -144,28 +166,63 @@ export default function StaticManoeuvreResolver({ savedCharacters }) {
     return groups;
   }, [filteredSecondaryMSSkills]);
 
-  // Recupera il personaggio attivo
+  // Recupera il personaggio attivo (PG o PNG)
   const activeChar = useMemo(() => {
     if (characterId === 'custom') return null;
     return savedCharacters.find(c => c.id === characterId) || null;
   }, [characterId, savedCharacters]);
 
+  const activeNpc = useMemo(() => {
+    if (characterId === 'custom') return null;
+    return (campaignNpcs || []).find(n => n.id === characterId) || null;
+  }, [characterId, campaignNpcs]);
+
+  // Helper per recuperare il bonus abilità del PG o PNG attivo
+  const getSelectedActorSkillBonus = (actorChar, actorNpc, skName, isSecondary = false) => {
+    if (actorChar) {
+      let bonus = getCharacterSkillBonus(actorChar, skName);
+      // Controllo elmo in metallo (-5 Percezione)
+      const lowerSk = skName.toLowerCase();
+      const isPerceptionSkill = lowerSk.includes('percezione') || lowerSk.includes('tracce') || lowerSk.includes('osservare');
+      if (isPerceptionSkill) {
+        const equipped = actorChar.equipment || [];
+        const hasMetalElmo = equipped.some(x => 
+          (x.qtyEquip || 0) > 0 && 
+          x.nome.toLowerCase().includes('elmo') && 
+          x.nome.toLowerCase().includes('metallo')
+        );
+        if (hasMetalElmo) {
+          bonus -= 5;
+        }
+      }
+      return bonus;
+    }
+    if (actorNpc) {
+      if (actorNpc.skills && actorNpc.skills[skName] !== undefined) {
+        return actorNpc.skills[skName];
+      }
+      const charKey = getSkillCharacteristic(skName);
+      const statBonus = actorNpc.stats ? (actorNpc.stats[charKey] || 0) : 0;
+      return isSecondary ? (-25 + statBonus) : statBonus;
+    }
+    return isSecondary ? -25 : 0;
+  };
+
   // Sincronizza ed inizializza i bonus delle abilità quando cambia il personaggio
   useEffect(() => {
     const initialOverrides = {};
     primaryMSSkills.forEach(sk => {
-      const bonus = activeChar ? getCharacterSkillBonus(activeChar, sk.nome_abilita_primaria) : 0;
+      const bonus = getSelectedActorSkillBonus(activeChar, activeNpc, sk.nome_abilita_primaria, false);
       initialOverrides[sk.nome_abilita_primaria] = bonus;
     });
     secondaryMSSkills.forEach(sk => {
-      // Le abilità secondarie non addestrate hanno per default -25
-      const bonus = activeChar ? getCharacterSkillBonus(activeChar, sk.nome_abilita_secondaria) : -25;
+      const bonus = getSelectedActorSkillBonus(activeChar, activeNpc, sk.nome_abilita_secondaria, true);
       initialOverrides[sk.nome_abilita_secondaria] = bonus;
     });
     setSkillBonusesOverride(initialOverrides);
     // Azzera la selezione abilità
     setSelectedSkills([]);
-  }, [activeChar, primaryMSSkills, secondaryMSSkills]);
+  }, [activeChar, activeNpc, primaryMSSkills, secondaryMSSkills]);
 
   // Gestione modifica input di bonus abilità singola da parte del GM
   const handleUpdateSkillBonus = (skillName, value) => {
@@ -360,12 +417,23 @@ export default function StaticManoeuvreResolver({ savedCharacters }) {
                   value={characterId}
                   onChange={e => setCharacterId(e.target.value)}
                 >
-                  <option value="custom">-- Personaggio Personalizzato / PNG --</option>
-                  {savedCharacters.map(char => (
-                    <option key={char.id} value={char.id}>
-                      {char.name} (Liv. {1 + (char.levelDevelopments || []).length} - {char.race?.nome || char.race?.popolo} {char.profession?.professione})
-                    </option>
-                  ))}
+                  <option value="custom">-- Personaggio Personalizzato --</option>
+                  <optgroup label="Personaggi Giocanti (PG)">
+                    {savedCharacters.map(char => (
+                      <option key={char.id} value={char.id}>
+                        {char.name} (Liv. {1 + (char.levelDevelopments || []).length} - {char.race?.nome || char.race?.popolo} {char.profession?.professione})
+                      </option>
+                    ))}
+                  </optgroup>
+                  {campaignNpcs.length > 0 && (
+                    <optgroup label="Personaggi Non Giocanti (PNG)">
+                      {campaignNpcs.map(npc => (
+                        <option key={npc.id} value={npc.id}>
+                          {npc.name} (Liv. {npc.livello} - {npc.professione})
+                        </option>
+                      ))}
+                    </optgroup>
+                  )}
                 </select>
               </div>
 
@@ -380,10 +448,20 @@ export default function StaticManoeuvreResolver({ savedCharacters }) {
                     onChange={e => setCustomCharacterName(e.target.value)}
                   />
                 </div>
-              ) : (
+              ) : activeChar ? (
                 <div className="bg-blue-50/30 p-2.5 border border-blue-100 rounded flex flex-col justify-center">
                   <span className="text-[10px] text-blue-850 font-bold uppercase tracking-wider block">PG Roster Attivo</span>
-                  <span className="text-sm font-black text-blue-950">{activeChar?.name}</span>
+                  <span className="text-sm font-black text-blue-950">{activeChar.name}</span>
+                  {activeChar.equipment && activeChar.equipment.some(x => (x.qtyEquip || 0) > 0 && x.nome.toLowerCase().includes('elmo') && x.nome.toLowerCase().includes('metallo')) && (
+                    <span className="text-[10px] text-red-600 font-bold mt-1">
+                      ⚠️ Elmo di metallo attivo: -5 Percezione applicato ad abilità sensoriali.
+                    </span>
+                  )}
+                </div>
+              ) : (
+                <div className="bg-purple-50/30 p-2.5 border border-purple-100 rounded flex flex-col justify-center">
+                  <span className="text-[10px] text-purple-850 font-bold uppercase tracking-wider block">PNG Campagna</span>
+                  <span className="text-sm font-black text-purple-950">{activeNpc?.name}</span>
                 </div>
               )}
             </div>

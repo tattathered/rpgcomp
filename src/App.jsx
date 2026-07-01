@@ -32,6 +32,16 @@ import { getEquipmentCatalog, saveEquipmentCatalog } from './services/settingsSe
 import { getSpellCatalog, saveSpellCatalog } from './services/spellCatalogService';
 import { subscribeToCompanies } from './services/companyService';
 import { subscribeToCampaigns } from './services/campaignService';
+import {
+  subscribeToCampaignNpcs,
+  subscribeToCampaignCreatures,
+  deleteCampaignNpc,
+  deleteCampaignCreature,
+  updateCampaignActorHp
+} from './services/npcService';
+import NpcCatalogTab from './components/GM/NpcCatalogTab';
+import CreatureCatalogTab from './components/GM/CreatureCatalogTab';
+import CampaignRosterManager from './components/GM/CampaignRosterManager';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -87,7 +97,11 @@ function App() {
   const [activeTab, setActiveTab] = useState('creation');
   const [activeActionSubTab, setActiveActionSubTab] = useState('static');
   const [activeSettingsSubTab, setActiveSettingsSubTab] = useState('equipment');
+  const [activeCreaturesSubTab, setActiveCreaturesSubTab] = useState('npccatalog');
   const [fumbleRedirectData, setFumbleRedirectData] = useState(null);
+
+  const [campaignNpcs, setCampaignNpcs] = useState([]);
+  const [campaignCreatures, setCampaignCreatures] = useState([]);
 
   const handleRedirectToFumble = (data) => {
     setFumbleRedirectData(data);
@@ -164,6 +178,48 @@ function App() {
     if (!activeCampaign) return null;
     return campaigns.find(c => c.id === activeCampaign.id) || activeCampaign;
   }, [activeCampaign, campaigns]);
+
+  // Sincronizzazione in tempo reale di NPG e Creature della campagna attiva
+  useEffect(() => {
+    if (!user || role !== 'GM' || !currentActiveCampaign) {
+      setCampaignNpcs([]);
+      setCampaignCreatures([]);
+      return;
+    }
+    const unsubNpcs = subscribeToCampaignNpcs(user.uid, currentActiveCampaign.id, setCampaignNpcs);
+    const unsubCreatures = subscribeToCampaignCreatures(user.uid, currentActiveCampaign.id, setCampaignCreatures);
+    return () => {
+      unsubNpcs();
+      unsubCreatures();
+    };
+  }, [user, role, currentActiveCampaign]);
+
+  const handleDeleteNpc = async (npcId) => {
+    try {
+      await deleteCampaignNpc(user.uid, npcId);
+    } catch (err) {
+      console.error(err);
+      alert("Errore durante l'eliminazione del PNG: " + err.message);
+    }
+  };
+
+  const handleDeleteCreature = async (creatureId) => {
+    try {
+      await deleteCampaignCreature(user.uid, creatureId);
+    } catch (err) {
+      console.error(err);
+      alert("Errore durante l'eliminazione della creatura: " + err.message);
+    }
+  };
+
+  const handleUpdateActorHp = async (type, actorId, newHp) => {
+    try {
+      await updateCampaignActorHp(user.uid, type, actorId, newHp);
+    } catch (err) {
+      console.error(err);
+      alert("Errore durante l'aggiornamento dei PF: " + err.message);
+    }
+  };
 
   // Filtra i personaggi sulla base delle compagnie associate alla campagna attiva
   const activeCampaignCharacters = useMemo(() => {
@@ -433,6 +489,13 @@ function App() {
             >
               <Swords className="w-4 h-4" />
               Risoluzione azioni
+            </button>
+            <button 
+              className={`nav-tab ${activeTab === 'creatures' ? 'active' : ''}`}
+              onClick={() => setActiveTab('creatures')}
+            >
+              <Users className="w-4 h-4" />
+              PNG & Mostri
             </button>
             <button 
               className={`nav-tab ${activeTab === 'settings' ? 'active' : ''}`}
@@ -784,6 +847,9 @@ function App() {
               <ErrorBoundary>
                 <CombatCalculator 
                   savedCharacters={activeCampaignCharacters}
+                  campaignNpcs={campaignNpcs}
+                  campaignCreatures={campaignCreatures}
+                  onUpdateActorHp={handleUpdateActorHp}
                   equipmentCatalog={equipmentCatalog}
                   onUpdateHpSubiti={handleUpdateCharacterHpSubiti}
                   onUpdateBoSpesoParata={handleUpdateCharacterBoSpesoParata}
@@ -795,6 +861,8 @@ function App() {
               <ErrorBoundary>
                 <MovementManoeuvreResolver 
                   savedCharacters={activeCampaignCharacters}
+                  campaignNpcs={campaignNpcs}
+                  campaignCreatures={campaignCreatures}
                   onRedirectToFumble={handleRedirectToFumble}
                 />
               </ErrorBoundary>
@@ -815,6 +883,7 @@ function App() {
               <ErrorBoundary>
                 <StaticManoeuvreResolver 
                   savedCharacters={activeCampaignCharacters}
+                  campaignNpcs={campaignNpcs}
                 />
               </ErrorBoundary>
             )}
@@ -901,6 +970,83 @@ function App() {
                 <CsvExportManager />
               )}
             </ErrorBoundary>
+          </div>
+        )}
+        {activeTab === 'creatures' && (
+          <div>
+            {!currentActiveCampaign ? (
+              <div className="card p-8 text-center" style={{ color: 'var(--text-muted)' }}>
+                <Compass className="w-12 h-12" style={{ margin: '0 auto 1rem auto', opacity: 0.5 }} />
+                <h3 className="text-lg font-bold mb-2">Nessuna Campagna Attiva</h3>
+                <p className="max-w-md mx-auto text-sm">
+                  Devi prima selezionare o creare una Campagna attiva dal menu <strong>Campagne</strong> per poter gestire, creare ed associare PNG o Mostri.
+                </p>
+              </div>
+            ) : (
+              <div>
+                {/* Sotto-tab Navigazione */}
+                <div style={{
+                  display: 'flex',
+                  gap: '0.5rem',
+                  marginBottom: '1.5rem',
+                }}>
+                  {[
+                    { id: 'npccatalog', label: 'Crea PNG Standard (ST-3)' },
+                    { id: 'creaturecatalog', label: 'Catalogo Creature & Mostri' },
+                    { id: 'campaignroster', label: `Roster Attivo (${campaignNpcs.length + campaignCreatures.length} Attori)` },
+                  ].map(tab => (
+                    <button
+                      key={tab.id}
+                      onClick={() => setActiveCreaturesSubTab(tab.id)}
+                      style={{
+                        padding: '0.6rem 1.25rem',
+                        fontSize: '0.85rem',
+                        fontWeight: activeCreaturesSubTab === tab.id ? 800 : 600,
+                        textAlign: 'center',
+                        border: `2px solid ${activeCreaturesSubTab === tab.id ? 'var(--primary-color)' : 'var(--border-color)'}`,
+                        borderRadius: '8px',
+                        backgroundColor: activeCreaturesSubTab === tab.id ? 'var(--primary-light)' : '#fafafa',
+                        color: activeCreaturesSubTab === tab.id ? 'var(--primary-color)' : 'var(--text-muted)',
+                        cursor: 'pointer',
+                        transition: 'all 0.15s',
+                        flex: 1,
+                        maxWidth: '280px',
+                      }}
+                      className="hover:brightness-95"
+                    >
+                      {tab.label}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Contenuto Condizionale Sotto-tab */}
+                <ErrorBoundary>
+                  {activeCreaturesSubTab === 'npccatalog' && (
+                    <NpcCatalogTab 
+                      gmId={user.uid}
+                      campaignId={currentActiveCampaign.id}
+                      onSaveSuccess={() => setActiveCreaturesSubTab('campaignroster')}
+                    />
+                  )}
+                  {activeCreaturesSubTab === 'creaturecatalog' && (
+                    <CreatureCatalogTab 
+                      gmId={user.uid}
+                      campaignId={currentActiveCampaign.id}
+                      onSaveSuccess={() => setActiveCreaturesSubTab('campaignroster')}
+                    />
+                  )}
+                  {activeCreaturesSubTab === 'campaignroster' && (
+                    <CampaignRosterManager 
+                      activeNpcs={campaignNpcs}
+                      activeCreatures={campaignCreatures}
+                      onDeleteNpc={handleDeleteNpc}
+                      onDeleteCreature={handleDeleteCreature}
+                      onUpdateHp={handleUpdateActorHp}
+                    />
+                  )}
+                </ErrorBoundary>
+              </div>
+            )}
           </div>
         )}
       </main>

@@ -1,0 +1,251 @@
+[
+  {
+    "tipologia_arma": "armi da taglio a una mano",
+    "arma": "Spada",
+    "colpo_maldestro": 3,
+    "critico_primario": "TA",
+    "critico_secondario": null,
+    "gittata_base": null,
+    "modificatori_speciali": null,
+    "note": "Possono essere utilizzate insieme a uno scudo"
+  },
+  {
+    "tipologia_arma": "armi da taglio a una mano",
+    "arma": "Pugnale",
+    "colpo_maldestro": 1,
+    "critico_primario": "PU (C)",
+    "critico_secondario": null,
+    "gittata_base": 5,
+    "modificatori_speciali": "-15 al BO (contro piastre/maglia)",
+    "note": "Possono essere utilizzate insieme a uno scudo"
+  },
+  {
+    "tipologia_arma": "armi da taglio a una mano",
+    "arma": "Accetta",
+    "colpo_maldestro": 4,
+    "critico_primario": "TA",
+    "critico_secondario": null,
+    "gittata_base": 5,
+    "modificatori_speciali": "+5 al BO (contro piastre/maglia)",
+    "note": "Possono essere utilizzate insieme a uno scudo"
+  },
+  {
+    "tipologia_arma": "armi da taglio a una mano",
+    "arma": "Scimitarra",
+    "colpo_maldestro": 4,
+    "critico_primario": "TA",
+    "critico_secondario": null,
+    "gittata_base": null,
+    "modificatori_speciali": "-5 al BO (contro piastre/maglia)",
+    "note": "Possono essere utilizzate insieme a uno scudo"
+  },
+  {
+    "tipologia_arma": "armi da taglio a una mano",
+    "arma": "Spada corta",
+    "colpo_maldestro": 2,
+    "critico_primario": "TA",
+    "critico_secondario": null,
+    "gittata_base": 1,
+    "modificatori_speciali": "-10 al BO (contro piastre/maglia) +10 al BO (altre)",
+    "note": "Possono essere utilizzate insieme a uno scudo"
+  },
+  {
+    "tipologia_arma": "armi da taglio a una mano",
+    "arma": "Frusta",
+    "colpo_maldestro": 6,
+    "critico_primario": "PU (C)",
+    "critico_secondario": "TA (A)",
+    "gittata_base": null,
+    "modificatori_speciali": "-10 al BO, non può essere usata a distanza minore di 3m",
+    "note": "Possono essere utilizzate insieme a uno scudo"
+  },
+  {
+    "tipologia_arma": "armi contundenti a una mano",
+    "arma": "Randello",
+    "colpo_maldestro": 4,
+    "critico_primario": "IM (D)",
+    "critico_secondario": null,
+    "gittata_base": 1,
+    "modificatori_speciali": "-10 al BO",
+    "note": "Possono essere utilizzate insieme a uno scudo"
+  },
+  {
+    "tipologia_arma": "armi contundenti a una mano",
+    "arma": "Mazza",
+    "colpo_maldestro": 2,
+    "critico_primario": "IM",
+    "critico_secondario": null,
+    "gittata_base": 1,
+    "modificatori_speciali": null,
+    "note": "Possono essere utilizzate insieme a uno scudo"
+  },
+  {
+    "tipologia_arma": "armi contundenti a una mano",
+    "arma": "Mazzafrusto",
+    "colpo_maldestro": 8,
+    "critico_primario": "IM",
+    "critico_secondario": "PU (A)",
+    "gittata_base": null,
+    "modificatori_speciali": "+10 al BO. In caso di Colpo Mald. procura un Critico \"B\";\"Possono essere utilizzate insieme a uno scudo"
+  },
+  {
+    "tipologia_arma": "armi contundenti a una mano",
+    "arma": "Rete",
+    "colpo_maldestro": 6,
+    "critico_primario": "PR",
+    "critico_secondario": null,
+    "gittata_base": 3,
+    "modificatori_speciali": "Usate tabella TA-6, Attacco Medio",
+    "note": "Possono essere utilizzate insieme a uno scudo"
+  },
+  {
+    "tipologia_arma": "armi contundenti a una mano",
+    "arma": "Martello da guerra",
+    "colpo_maldestro": 4,
+    "critico_primario": "IM",
+    "critico_secondario": null,
+    "gittata_base": 3,
+    "modificatori_speciali": "+5 al BO",
+    "note": "Possono essere utilizzate insieme a uno scudo"
+  },
+  {
+    "tipologia_arma": "armi ad asta a una mano",
+    "arma": "Giavellotto",
+    "colpo_maldestro": 4,
+    "critico_primario": "PU",
+    "critico_secondario": null,
+    "gittata_base": 10,
+    "modificatori_speciali": "-10 al BO, non può essere usato a distanza minore di 2m",
+    "note": "Da utilizzare anche con uno scudo secondo la tab. TA-1 oppure a due mani sulla tab.TA-3 con +10 al BO"
+  },
+  {
+    "tipologia_arma": "armi ad asta a una mano",
+    "arma": "Lancia",
+    "colpo_maldestro": 5,
+    "critico_primario": "PU",
+    "critico_secondario": "TA (A)",
+    "gittata_base": 7,
+    "modificatori_speciali": "-5 al BO, non può essere usato a distanza minore di 2m",
+    "note": "Da utilizzare anche con uno scudo secondo la tab. TA-1 oppure a due mani sulla tab.TA-3 con +10 al BO"
+  },
+  {
+    "tipologia_arma": "armi ad asta a due mani",
+    "arma": "Lancia da cavaliere",
+    "colpo_maldestro": 7,
+    "critico_primario": "PU",
+    "critico_secondario": "PE",
+    "gittata_base": null,
+    "modificatori_speciali": "+15 al BO; in caso di Colpo Mald, subisce un Critico \"B\".",
+    "note": "Utilizzano la tabella d'attacco AT-3"
+  },
+  {
+    "tipologia_arma": "armi ad asta a due mani",
+    "arma": "Alabarda",
+    "colpo_maldestro": 7,
+    "critico_primario": "TA",
+    "critico_secondario": "PU",
+    "gittata_base": null,
+    "modificatori_speciali": "-5 al BO, non può essere usata a distanza minore di 2m",
+    "note": "Utilizzano la tabella d'attacco AT-3"
+  },
+  {
+    "tipologia_arma": "armi a due mani",
+    "arma": "Ascia da battaglia",
+    "colpo_maldestro": 5,
+    "critico_primario": "TA",
+    "critico_secondario": "IM",
+    "gittata_base": null,
+    "modificatori_speciali": "+5 al BO (contro piastre/maglia); -5 altre",
+    "note": "Non possono essere utilizzate insieme a uno scudo"
+  },
+  {
+    "tipologia_arma": "armi a due mani",
+    "arma": "Flagello",
+    "colpo_maldestro": 8,
+    "critico_primario": "IM",
+    "critico_secondario": "PU",
+    "gittata_base": null,
+    "modificatori_speciali": "+10 al BO; in caso di Colpo Mald. procura un Critico C",
+    "note": "Non possono essere utilizzate insieme a uno scudo"
+  },
+  {
+    "tipologia_arma": "armi a due mani",
+    "arma": "Bastone a 2 mani",
+    "colpo_maldestro": 3,
+    "critico_primario": "IM",
+    "critico_secondario": null,
+    "gittata_base": null,
+    "modificatori_speciali": "-10 al BO",
+    "note": "Non possono essere utilizzate insieme a uno scudo"
+  },
+  {
+    "tipologia_arma": "armi a due mani",
+    "arma": "Spadone a 2 mani",
+    "colpo_maldestro": 5,
+    "critico_primario": "TA",
+    "critico_secondario": "IM",
+    "gittata_base": null,
+    "modificatori_speciali": null,
+    "note": "Non possono essere utilizzate insieme a uno scudo"
+  },
+  {
+    "tipologia_arma": "armi da lancio",
+    "arma": "Bola",
+    "colpo_maldestro": 7,
+    "critico_primario": "PR",
+    "critico_secondario": "IM (A)",
+    "gittata_base": 13,
+    "modificatori_speciali": "-5 al BO; in caso di Colpo Maldestro procura un Critico B",
+    "note": "Non possono essere utilizzate nel combattimento di mischia"
+  },
+  {
+    "tipologia_arma": "armi da lancio",
+    "arma": "Arco a Doppia Curva",
+    "colpo_maldestro": 4,
+    "critico_primario": "PU",
+    "critico_secondario": null,
+    "gittata_base": 25,
+    "modificatori_speciali": "Carica (1), oppure Ricarica (0) con -25 al al BO",
+    "note": "Non possono essere utilizzate nel combattimento di mischia. Non ci si può muovere con l'arma pronta a tirare. Possono essere portate in mano ed usate con la stessa penalità dovuta all'azione del Ricaricare."
+  },
+  {
+    "tipologia_arma": "armi da lancio",
+    "arma": "Balestra",
+    "colpo_maldestro": 5,
+    "critico_primario": "PU",
+    "critico_secondario": null,
+    "gittata_base": 30,
+    "modificatori_speciali": "Carica (2); fino a 15 m, +20 al al BO",
+    "note": "Non possono essere utilizzate nel combattimento di mischia. "
+  },
+  {
+    "tipologia_arma": "armi da lancio",
+    "arma": "Arco lungo",
+    "colpo_maldestro": 5,
+    "critico_primario": "PU",
+    "critico_secondario": null,
+    "gittata_base": 33,
+    "modificatori_speciali": "Carica (1); oppure Ricarica (0) con -35 al al BO",
+    "note": "Non possono essere utilizzate nel combattimento di mischia. Non ci si può muovere con l'arma pronta a tirare. Possono essere portate in mano ed usate con la stessa penalità dovuta all'azione del Ricaricare."
+  },
+  {
+    "tipologia_arma": "armi da lancio",
+    "arma": "Arco corto",
+    "colpo_maldestro": 4,
+    "critico_primario": "PU",
+    "critico_secondario": null,
+    "gittata_base": 20,
+    "modificatori_speciali": "Carica (1); oppure Ricarica (0) con -10 al al BO",
+    "note": "Non possono essere utilizzate nel combattimento di mischia. Non ci si può muovere con l'arma pronta a tirare. Possono essere portate in mano ed usate con la stessa penalità dovuta all'azione del Ricaricare."
+  },
+  {
+    "tipologia_arma": "armi da lancio",
+    "arma": "Fionda",
+    "colpo_maldestro": 6,
+    "critico_primario": "IM (D)",
+    "critico_secondario": null,
+    "gittata_base": 17,
+    "modificatori_speciali": "Carica (1), compatibile con lo scudo",
+    "note": "Non possono essere utilizzate nel combattimento di mischia. Non ci si può muovere con l'arma pronta a tirare. Possono essere portate in mano ed usate con la stessa penalità dovuta all'azione del Ricaricare."
+  }
+]

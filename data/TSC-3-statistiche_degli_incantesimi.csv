@@ -1,0 +1,8 @@
+"tipo_incantesimo";"colpo_critico_primario";"colpo_critico_secondario";"modifiche speciali"
+"Dardo di energia";"EL";"";"contro corazza di piastre e di maglia"
+"Dardo d'acqua";"IM";"";"contro corazze di piastre e di cuoio rigido"
+"Dardo di ghiaccio";"IM";"FR";"-5 BO contro corazze di piastre e di cuoio rinforzato"
+"Dardo di fuoco";"CA";"";""
+"Dardo elettrico";"EL";"IM";"+10 BO contro corazze di piastre e di maglia"
+"Sfera d i freddo";"FR";"";""
+"Sfera di fuoco";"CA";"";""

@@ -448,7 +448,7 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
       // Auto-calculate MO
       if (merged.category === "7. Denaro extra" && patch.roll !== undefined) {
         const r = parseInt(patch.roll) || 0;
-        const rec = findBgRecord("7. Denaro extra", r);
+        const rec = findBgRecord("denaro: monete d'oro", r);
         merged.calculatedMO = rec ? parseInt(rec.opzione) : 0;
       }
       // Auto-lookup text for abilità speciali / oggetti speciali

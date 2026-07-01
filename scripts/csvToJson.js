@@ -134,6 +134,46 @@ fs.readdirSync(dataDir).forEach(file => {
         });
       });
       parsed.data = flatData;
+    } else if (baseName === 'TA-5-zanne_e_artigli' || baseName === 'TA-6-immobilizzazione_sbilanciamento') {
+      parsed.data = parsed.data.map(row => {
+        if (row) {
+          const newRow = {};
+          Object.keys(row).forEach(key => {
+            const normalizedKey = key.trim().toLowerCase().replace(/\s+/g, '_');
+            newRow[normalizedKey] = row[key];
+          });
+          if (newRow.risultato_del_tiro) {
+            // Normalize "TI 01-02" style strings and other ranges
+            newRow.risultato_del_tiro = String(newRow.risultato_del_tiro).trim();
+          }
+          return newRow;
+        }
+        return row;
+      });
+    } else if (baseName === 'TS-2-animali_TdM') {
+      parsed.data = parsed.data.map(row => {
+        if (row) {
+          // Convert Excel date serial numbers in 'quantita' column
+          let quant = row.quantita;
+          if (typeof quant === 'number' && quant >= 40000 && quant <= 50000) {
+            const date = new Date((quant - 25569) * 86400 * 1000);
+            if (!isNaN(date.getTime())) {
+              const day = date.getUTCDate();
+              const month = date.getUTCMonth() + 1;
+              quant = `${month}-${day}`;
+            }
+          }
+          row.quantita = String(quant || '').trim();
+          
+          if (row.Dimensioni_animale) {
+            row.Dimensioni_animale = String(row.Dimensioni_animale).trim().toLowerCase();
+          }
+          if (row.critico_animale) {
+            row.critico_animale = String(row.critico_animale).trim().toLowerCase();
+          }
+        }
+        return row;
+      });
     } else if (baseName === 'TA-7-incantesimi-dardo') {
       parsed.data = parsed.data.map(row => {
         if (row) {

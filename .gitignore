@@ -30,6 +30,6 @@ node_modules
 scratch_users.json
 
 # Documentation
-docs/
-docs/memory.md
-docs/requirements/
+# docs/
+# docs/memory.md
+# docs/requirements/

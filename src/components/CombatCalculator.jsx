@@ -1,6 +1,9 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Swords, RotateCcw, AlertTriangle, AlertOctagon, Play, HelpCircle, Heart, Shield, Sparkles, Target, User } from 'lucide-react';
 import attackTables from '../data/Tabelle-Attacco-TA-1_TA-2_TA-3_TA-4.json';
+import ta5ZanneArtigli from '../data/TA-5-zanne_e_artigli.json';
+import ta6ImmobilizzSbilanc from '../data/TA-6-immobilizzazione_sbilanciamento.json';
+import animalAttackStats from '../data/TSC-2-statistiche_degli_animali.json';
 import FumbleResolver from './FumbleResolver';
 import CriticalResolver from './CriticalResolver';
 import { resolveSpellAttack } from '../utils/spellHelpers';
@@ -24,7 +27,9 @@ const WEAPON_SKILL_TO_TABLE = {
   'con asta': 'TA-3', // le armi con asta usano armi a due mani TA-3
   'da lancio': 'TA-1', // default, verrà mappata dinamicamente
   'dardo': 'TA-7',
-  'sfera': 'TA-8'
+  'sfera': 'TA-8',
+  'zanne_e_artigli': 'TA-5',
+  'immobilizzazione_sbilanciamento': 'TA-6'
 };
 
 const TABLE_NAMES = {
@@ -32,6 +37,8 @@ const TABLE_NAMES = {
   'TA-2': 'Armi Contundenti a una Mano (TA-2)',
   'TA-3': 'Armi a Due Mani (TA-3)',
   'TA-4': 'Armi da Tiro (TA-4)',
+  'TA-5': 'Zanne e Artigli (TA-5)',
+  'TA-6': 'Immobilizzazione e Sbilanciamento (TA-6)',
   'TA-7': 'Incantesimi Dardo (TA-7)',
   'TA-8': 'Incantesimi Sfera (TA-8)'
 };
@@ -143,7 +150,16 @@ const getCriticalTableForWeapon = (category, name) => {
   return 'TC-2'; // Taglio (default)
 };
 
-export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, onUpdateBoSpesoParata, onResetAllParries }) {
+export default function CombatCalculator({ 
+  savedCharacters, 
+  campaignNpcs = [], 
+  campaignCreatures = [], 
+  onUpdateActorHp, 
+  equipmentCatalog = [], 
+  onUpdateHpSubiti, 
+  onUpdateBoSpesoParata, 
+  onResetAllParries 
+}) {
   // --- STATO ATTACCANTE ---
   const [attackerId, setAttackerId] = useState('custom');
   const [customAttackerName, setCustomAttackerName] = useState('Attaccante Generico');
@@ -152,6 +168,7 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
   const [attackerWeaponName, setAttackerWeaponName] = useState('Spada Larga');
   const [attackerHpTot, setAttackerHpTot] = useState(40);
   const [attackerHpSubiti, setAttackerHpSubiti] = useState(0);
+  const [selectedCreatureAttackIdx, setSelectedCreatureAttackIdx] = useState(0); // 0 per Attacco_uno, 1 per Attacco_due
 
   // --- STATO DIFENSORE ---
   const [defenderId, setDefenderId] = useState('custom');
@@ -163,6 +180,7 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
   const [defenderHpSubiti, setDefenderHpSubiti] = useState(0);
   const [selectedDefenderWeaponIdx, setSelectedDefenderWeaponIdx] = useState(0);
   const [customDefenderBO, setCustomDefenderBO] = useState(50);
+  const [useShield, setUseShield] = useState(false);
 
   // --- STATO FUMBLE ---
   const [showFumbleResolver, setShowFumbleResolver] = useState(false);
@@ -236,9 +254,13 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
       // 5. HP Totali
       const hpTot = getCharacterHpTot(char);
       
-      // 6. Inventory weapons list
+      // 6. Inventory weapons list (case-insensitive category match & qty check)
       const inventoryWeapons = (char.equipment || [])
-        .filter(item => item.categoria === 'armi')
+        .filter(item => {
+          const isWeapon = (item.categoria || '').toLowerCase().trim() === 'armi';
+          const hasQty = (item.qtyEquip || 0) > 0 || (item.qtyCarico || 0) > 0 || (item.qty || 0) > 0;
+          return isWeapon && hasQty;
+        })
         .map(item => {
           const skillName = getSkillForWeapon(item);
           const baseBO = skillBonuses[skillName] || 0;
@@ -261,6 +283,19 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
           }
         });
       }
+
+      // Rilevamento protezioni aggiuntive (scudo, bracciali metallo, schinieri metallo, elmo metallo)
+      const equippedItems = (char.equipment || []).filter(x => (x.qtyEquip || 0) > 0);
+      const hasShield = equippedItems.some(x => x.nome.toLowerCase().includes('scudo'));
+      
+      const braccialiItem = equippedItems.find(x => x.nome.toLowerCase().includes('bracciali'));
+      const hasMetalBracciali = braccialiItem ? braccialiItem.nome.toLowerCase().includes('metallo') : false;
+      
+      const schinieriItem = equippedItems.find(x => x.nome.toLowerCase().includes('schinieri'));
+      const hasMetalSchinieri = schinieriItem ? schinieriItem.nome.toLowerCase().includes('metallo') : false;
+      
+      const elmoItem = equippedItems.find(x => x.nome.toLowerCase().includes('elmo'));
+      const hasMetalElmo = elmoItem ? elmoItem.nome.toLowerCase().includes('metallo') : false;
       
       return {
         id: char.id,
@@ -271,75 +306,381 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
         hpSubiti: char.hpSubiti || 0,
         boSpesoParata: char.boSpesoParata || 0,
         weapons: inventoryWeapons,
-        skillBonuses
+        skillBonuses,
+        hasShield,
+        hasMetalBracciali,
+        hasMetalSchinieri,
+        hasMetalElmo
       };
     });
   }, [savedCharacters]);
 
-  // Seleziona personaggio attivo attaccante
-  const activeAttackerCharacter = useMemo(() => {
-    return processedRoster.find(c => c.id === attackerId) || null;
-  }, [processedRoster, attackerId]);
+  // Helper per determinare la taglia e la sua riga massima (capping)
+  const getCreatureSizeCap = (sizeStr) => {
+    const norm = (sizeStr || '').toLowerCase().trim();
+    if (norm.includes('piccolissimo') || norm === 'minuscolo') return 85;
+    if (norm.includes('piccolo')) return 105;
+    if (norm.includes('medio')) return 120;
+    if (norm.includes('grande')) return 135;
+    if (norm.includes('enorme')) return 150;
+    return 150;
+  };
 
-  // Seleziona personaggio attivo difensore
-  const activeDefenderCharacter = useMemo(() => {
-    return processedRoster.find(c => c.id === defenderId) || null;
-  }, [processedRoster, defenderId]);
+  // Helper per mappare la taglia della creatura all'armatura MERP standard
+  const mapCreatureArmor = (armorStr) => {
+    const norm = (armorStr || '').toLowerCase().trim();
+    if (norm.includes('piastra') || norm.includes('piastre')) return 'piastre';
+    if (norm.includes('maglia') || norm.includes('maglie')) return 'maglia';
+    if (norm.includes('rinforzato') || norm.includes('rinforzata')) return 'cuoio_rinforzato';
+    if (norm.includes('grezzo') || norm.includes('morbido') || norm.includes('morbida') || norm.includes('cuoio')) return 'cuoio_grezzo';
+    return 'nessuna';
+  };
+
+  // Helper per trovare l'attacco della creatura nel dataset TSC-2
+  const getCreatureAttackDetails = (attackString) => {
+    if (!attackString) return null;
+    const match = attackString.match(/\(([^)]+)\)/);
+    if (!match) return null;
+    const abbr = match[1].toLowerCase().trim();
+    
+    const stat = animalAttackStats.find(s => {
+      const sAbbr = (s["(Abbreviazione)"] || "").replace(/[()]/g, "").toLowerCase().trim();
+      return sAbbr === abbr;
+    });
+    return stat || null;
+  };
+
+  // Helper per mappare abbreviazione critico creatura alla tabella MERP
+  const mapCreatureCritToTable = (critStr) => {
+    const norm = (critStr || '').trim().toUpperCase();
+    if (norm.startsWith('IM')) return 'TC-1';
+    if (norm.startsWith('TA')) return 'TC-2';
+    if (norm.startsWith('PU')) return 'TC-3';
+    if (norm.startsWith('PE')) return 'TC-4';
+    if (norm.startsWith('PR')) return 'TC-5';
+    return 'TC-2';
+  };
+
+  // Helper per cercare il risultato per range (TA-5 e TA-6)
+  const findRangeRow = (jsonList, rollResult) => {
+    return jsonList.find(row => {
+      const rawRange = row.risultato_del_tiro;
+      if (!rawRange) return false;
+      
+      let cleanRange = rawRange.replace(/[a-zA-Z]/g, "").trim();
+      const parts = cleanRange.split('-');
+      if (parts.length === 2) {
+        const min = parseInt(parts[0], 10);
+        const max = parseInt(parts[1], 10);
+        return rollResult >= min && rollResult <= max;
+      }
+      
+      const parsedVal = parseInt(cleanRange, 10);
+      if (!isNaN(parsedVal)) {
+        return rollResult === parsedVal;
+      }
+      
+      return false;
+    });
+  };
 
   // Seleziona arma per attaccante da roster
   const [selectedWeaponIdx, setSelectedWeaponIdx] = useState(0);
-  const activeAttackerWeapon = useMemo(() => {
-    if (!activeAttackerCharacter) return null;
-    return activeAttackerCharacter.weapons[selectedWeaponIdx] || activeAttackerCharacter.weapons[0] || null;
-  }, [activeAttackerCharacter, selectedWeaponIdx]);
 
-  // Seleziona arma per difensore da roster
-  const activeDefenderWeapon = useMemo(() => {
-    if (!activeDefenderCharacter) return null;
-    return activeDefenderCharacter.weapons[selectedDefenderWeaponIdx] || activeDefenderCharacter.weapons[0] || null;
-  }, [activeDefenderCharacter, selectedDefenderWeaponIdx]);
+  // Risoluzione compatta dell'attaccante attivo (PG, PNG o Creatura)
+  const attackerInfo = useMemo(() => {
+    if (attackerId === 'custom') {
+      return {
+        type: 'custom',
+        name: customAttackerName,
+        bo: attackerBO,
+        hpTot: attackerHpTot,
+        hpSubiti: attackerHpSubiti,
+        weapons: [],
+        size: 'medio'
+      };
+    }
+    
+    if (attackerId.startsWith('pc-')) {
+      const pcId = attackerId.substring(3);
+      const pc = processedRoster.find(c => c.id === pcId);
+      if (!pc) return null;
+      return {
+        type: 'pc',
+        id: pc.id,
+        name: pc.name,
+        bo: pc.weapons[selectedWeaponIdx]?.bo || 0,
+        hpTot: pc.hpTot,
+        hpSubiti: pc.hpSubiti || 0,
+        boSpesoParata: pc.boSpesoParata || 0,
+        weapons: pc.weapons,
+        size: 'medio',
+        hasShield: pc.hasShield,
+        hasMetalBracciali: pc.hasMetalBracciali,
+        hasMetalSchinieri: pc.hasMetalSchinieri,
+        hasMetalElmo: pc.hasMetalElmo
+      };
+    }
+    
+    if (attackerId.startsWith('npc-')) {
+      const npcId = attackerId.substring(4);
+      const npc = campaignNpcs.find(n => n.id === npcId);
+      if (!npc) return null;
+      
+      const npcWeapons = [];
+      if (npc.skills) {
+        if (npc.skills["Arma primaria"] !== undefined) {
+          npcWeapons.push({ nome: `Arma Primaria`, bo: npc.skills["Arma primaria"], skillName: "taglio a 1 mano" });
+        }
+        if (npc.skills["Arma secondaria"] !== undefined) {
+          npcWeapons.push({ nome: `Arma Secondaria`, bo: npc.skills["Arma secondaria"], skillName: "taglio a 1 mano" });
+        }
+        if (npc.skills["Arma terziaria"] !== undefined) {
+          npcWeapons.push({ nome: `Arma Terziaria`, bo: npc.skills["Arma terziaria"], skillName: "taglio a 1 mano" });
+        }
+        if (npc.skills["Arma altre"] !== undefined) {
+          npcWeapons.push({ nome: `Arma Altre`, bo: npc.skills["Arma altre"], skillName: "taglio a 1 mano" });
+        }
+        if (npc.skills["Incantesimi diretti"] !== undefined) {
+          npcWeapons.push({ nome: `Incantesimi Diretti`, bo: npc.skills["Incantesimi diretti"], skillName: "dardo" });
+        }
+      }
+      
+      if (npcWeapons.length === 0) {
+        npcWeapons.push({ nome: "Attacco Base", bo: 0, skillName: "taglio a 1 mano" });
+      }
+      
+      const selectedW = npcWeapons[selectedWeaponIdx] || npcWeapons[0];
+      
+      return {
+        type: 'npc',
+        id: npc.id,
+        name: npc.name,
+        bo: selectedW.bo,
+        hpTot: npc.hpMax || 0,
+        hpSubiti: (npc.hpMax || 0) - (npc.hpCorrenti !== undefined ? npc.hpCorrenti : (npc.hpMax || 0)),
+        weapons: npcWeapons,
+        size: 'medio'
+      };
+    }
+    
+    if (attackerId.startsWith('creature-')) {
+      const creatureId = attackerId.substring(9);
+      const creature = campaignCreatures.find(c => c.id === creatureId);
+      if (!creature) return null;
+      
+      const creatureWeapons = [];
+      if (creature.Attacco_uno) {
+        creatureWeapons.push({
+          nome: creature.Attacco_uno,
+          bo: creature.Attacco_uno_BO || 0,
+          isCreatureAttack: true,
+          attackType: 'Attacco_uno'
+        });
+      }
+      if (creature.Attacco_due) {
+        creatureWeapons.push({
+          nome: creature.Attacco_due,
+          bo: creature.Attacco_due_BO || 0,
+          isCreatureAttack: true,
+          attackType: 'Attacco_due'
+        });
+      }
+      
+      if (creatureWeapons.length === 0) {
+        creatureWeapons.push({ nome: "Attacco Base", bo: 0, isCreatureAttack: true, attackType: 'Attacco_uno' });
+      }
+      
+      const selectedW = creatureWeapons[selectedWeaponIdx] || creatureWeapons[0];
+      
+      return {
+        type: 'creature',
+        id: creature.id,
+        name: creature.Nome,
+        bo: selectedW.bo,
+        hpTot: creature.punti_ferita || 0,
+        hpSubiti: (creature.punti_ferita || 0) - (creature.hpCorrenti !== undefined ? creature.hpCorrenti : (creature.punti_ferita || 0)),
+        weapons: creatureWeapons,
+        size: creature.Dimensioni_animale || 'medio'
+      };
+    }
+    
+    return null;
+  }, [attackerId, customAttackerName, attackerBO, attackerHpTot, attackerHpSubiti, processedRoster, campaignNpcs, campaignCreatures, selectedWeaponIdx]);
+
+  // Risoluzione compatta del difensore attivo (PG, PNG o Creatura)
+  const defenderInfo = useMemo(() => {
+    if (defenderId === 'custom') {
+      return {
+        type: 'custom',
+        name: customDefenderName,
+        bd: defenderBD,
+        armor: defenderArmor,
+        hpTot: defenderHpTot,
+        hpSubiti: defenderHpSubiti
+      };
+    }
+    
+    if (defenderId.startsWith('pc-')) {
+      const pcId = defenderId.substring(3);
+      const pc = processedRoster.find(c => c.id === pcId);
+      if (!pc) return null;
+      return {
+        type: 'pc',
+        id: pc.id,
+        name: pc.name,
+        bd: pc.bd,
+        armor: pc.equippedArmor,
+        hpTot: pc.hpTot,
+        hpSubiti: pc.hpSubiti || 0,
+        weapons: pc.weapons,
+        hasShield: pc.hasShield,
+        hasMetalBracciali: pc.hasMetalBracciali,
+        hasMetalSchinieri: pc.hasMetalSchinieri,
+        hasMetalElmo: pc.hasMetalElmo
+      };
+    }
+    
+    if (defenderId.startsWith('npc-')) {
+      const npcId = defenderId.substring(4);
+      const npc = campaignNpcs.find(n => n.id === npcId);
+      if (!npc) return null;
+      
+      const npcWeapons = [];
+      if (npc.skills) {
+        if (npc.skills["Arma primaria"] !== undefined) npcWeapons.push({ nome: `Arma Primaria`, bo: npc.skills["Arma primaria"] });
+        if (npc.skills["Arma secondaria"] !== undefined) npcWeapons.push({ nome: `Arma Secondaria`, bo: npc.skills["Arma secondaria"] });
+        if (npc.skills["Arma terziaria"] !== undefined) npcWeapons.push({ nome: `Arma Terziaria`, bo: npc.skills["Arma terziaria"] });
+        if (npc.skills["Arma altre"] !== undefined) npcWeapons.push({ nome: `Arma Altre`, bo: npc.skills["Arma altre"] });
+      }
+      
+      return {
+        type: 'npc',
+        id: npc.id,
+        name: npc.name,
+        bd: npc.db || 0,
+        armor: npc.equippedArmor || 'nessuna',
+        hpTot: npc.hpMax || 0,
+        hpSubiti: (npc.hpMax || 0) - (npc.hpCorrenti !== undefined ? npc.hpCorrenti : (npc.hpMax || 0)),
+        weapons: npcWeapons
+      };
+    }
+    
+    if (defenderId.startsWith('creature-')) {
+      const creatureId = defenderId.substring(9);
+      const creature = campaignCreatures.find(c => c.id === creatureId);
+      if (!creature) return null;
+      
+      const creatureWeapons = [];
+      if (creature.Attacco_uno) {
+        creatureWeapons.push({
+          nome: creature.Attacco_uno,
+          bo: creature.Attacco_uno_BO || 0,
+          isCreatureAttack: true,
+          attackType: 'Attacco_uno'
+        });
+      }
+      if (creature.Attacco_due) {
+        creatureWeapons.push({
+          nome: creature.Attacco_due,
+          bo: creature.Attacco_due_BO || 0,
+          isCreatureAttack: true,
+          attackType: 'Attacco_due'
+        });
+      }
+      if (creatureWeapons.length === 0) {
+        creatureWeapons.push({ nome: "Attacco Base", bo: 0, isCreatureAttack: true, attackType: 'Attacco_uno' });
+      }
+
+      return {
+        type: 'creature',
+        id: creature.id,
+        name: creature.Nome,
+        bd: creature.bonus_difensivo || 0,
+        armor: mapCreatureArmor(creature.tipo_armatura),
+        hpTot: creature.punti_ferita || 0,
+        hpSubiti: (creature.punti_ferita || 0) - (creature.hpCorrenti !== undefined ? creature.hpCorrenti : (creature.punti_ferita || 0)),
+        weapons: creatureWeapons
+      };
+    }
+    
+    return null;
+  }, [defenderId, customDefenderName, defenderBD, defenderArmor, defenderHpTot, defenderHpSubiti, processedRoster, campaignNpcs, campaignCreatures]);
 
   const defenderWeaponBO = useMemo(() => {
     if (defenderId === 'custom') {
       return customDefenderBO;
     }
-    return activeDefenderWeapon ? activeDefenderWeapon.bo : 0;
-  }, [defenderId, customDefenderBO, activeDefenderWeapon]);
+    if (defenderInfo?.type === 'pc') {
+      const activeDefenderWeapon = defenderInfo.weapons?.[selectedDefenderWeaponIdx] || defenderInfo.weapons?.[0];
+      return activeDefenderWeapon ? activeDefenderWeapon.bo : 0;
+    }
+    if (defenderInfo?.type === 'npc') {
+      const activeW = defenderInfo.weapons?.[selectedDefenderWeaponIdx] || defenderInfo.weapons?.[0];
+      return activeW ? activeW.bo : 0;
+    }
+    if (defenderInfo?.type === 'creature') {
+      const activeW = defenderInfo.weapons?.[selectedDefenderWeaponIdx] || defenderInfo.weapons?.[0];
+      return activeW ? activeW.bo : 0;
+    }
+    return 0;
+  }, [defenderId, customDefenderBO, defenderInfo, selectedDefenderWeaponIdx]);
 
-  // BO effettivo dell'attaccante detratto del BO speso per parare in precedenza
-  const attackerBoSpesoParata = activeAttackerCharacter ? (activeAttackerCharacter.boSpesoParata || 0) : 0;
-  
+  // BO speso per la parata precedentemente dall'attaccante
+  const attackerBoSpesoParata = attackerInfo?.type === 'pc' ? (attackerInfo.boSpesoParata || 0) : 0;
+
   const attackerBOEffective = useMemo(() => {
     return Math.max(0, attackerBO - attackerBoSpesoParata);
   }, [attackerBO, attackerBoSpesoParata]);
 
   // --- SINCRONIZZAZIONE DATI ROSTER IN INPUTS ---
   useEffect(() => {
-    if (activeAttackerCharacter) {
-      setAttackerHpTot(activeAttackerCharacter.hpTot);
-      setAttackerHpSubiti(activeAttackerCharacter.hpSubiti || 0);
-      if (activeAttackerWeapon) {
-        setAttackerBO(activeAttackerWeapon.bo);
-        setAttackerWeaponCat(activeAttackerWeapon.skillName);
-        setAttackerWeaponName(activeAttackerWeapon.nome);
+    if (attackerInfo && attackerId !== 'custom') {
+      setAttackerHpTot(attackerInfo.hpTot);
+      setAttackerHpSubiti(attackerInfo.hpSubiti);
+      setAttackerBO(attackerInfo.bo);
+      
+      const activeWeapon = attackerInfo.weapons?.[selectedWeaponIdx] || attackerInfo.weapons?.[0];
+      if (activeWeapon) {
+        setAttackerWeaponName(activeWeapon.nome);
+        if (attackerInfo.type === 'pc' || attackerInfo.type === 'npc') {
+          setAttackerWeaponCat(activeWeapon.skillName || 'taglio a 1 mano');
+        } else if (attackerInfo.type === 'creature') {
+          const details = getCreatureAttackDetails(activeWeapon.nome);
+          if (details) {
+            const tableStr = details["Tabella d’Attacco"] || "";
+            if (tableStr.includes("TA-6") || tableStr.includes("Immobilizz") || tableStr.includes("Sbilanc")) {
+              setAttackerWeaponCat("immobilizzazione_sbilanciamento");
+            } else {
+              setAttackerWeaponCat("zanne_e_artigli");
+            }
+          } else {
+            setAttackerWeaponCat("zanne_e_artigli");
+          }
+        }
       }
     }
-  }, [activeAttackerCharacter, activeAttackerWeapon]);
+  }, [attackerId, selectedWeaponIdx, attackerInfo]);
 
   useEffect(() => {
-    if (activeDefenderCharacter) {
-      setDefenderBD(activeDefenderCharacter.bd);
-      setDefenderArmor(activeDefenderCharacter.equippedArmor);
-      setDefenderHpTot(activeDefenderCharacter.hpTot);
-      setDefenderHpSubiti(activeDefenderCharacter.hpSubiti || 0);
-      setDefenderParry(activeDefenderCharacter.boSpesoParata || 0); 
+    if (defenderInfo && defenderId !== 'custom') {
+      setDefenderBD(defenderInfo.bd);
+      setDefenderArmor(defenderInfo.armor);
+      setDefenderHpTot(defenderInfo.hpTot);
+      setDefenderHpSubiti(defenderInfo.hpSubiti);
+      if (defenderInfo.type === 'pc') {
+        setUseShield(!!defenderInfo.hasShield);
+      } else {
+        setUseShield(false);
+      }
+    } else if (defenderId === 'custom') {
+      // Don't override user choice for custom defender, but clean up if no defender
+    } else {
+      setUseShield(false);
     }
-  }, [activeDefenderCharacter]);
+  }, [defenderId, defenderInfo]);
 
-  // Calcolo del BO effettivo dell'arma selezionata
-  const attackerWeaponCategoryResolved = activeAttackerCharacter && activeAttackerWeapon
-    ? activeAttackerWeapon.skillName 
-    : attackerWeaponCat;
+  const attackerWeaponCategoryResolved = attackerWeaponCat;
 
   const isRangedOrThrown = ['da tiro', 'da lancio', 'dardo', 'sfera'].includes(attackerWeaponCategoryResolved);
 
@@ -376,9 +717,14 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
     if (drawOrSwapWeapon) mods -= 30;
     if (isAttackerGravelyInjured) mods -= 20;
     
+    // Malus bracciali metallo: -5 BO
+    if (attackerInfo?.hasMetalBracciali) {
+      mods -= 5;
+    }
+    
     mods += parseInt(gmBonus) || 0;
     return mods;
-  }, [flankAttack, backAttack, surprisedDefender, stunnedDefender, movementMetres, drawOrSwapWeapon, isAttackerGravelyInjured, gmBonus, isRangedOrThrown]);
+  }, [flankAttack, backAttack, surprisedDefender, stunnedDefender, movementMetres, drawOrSwapWeapon, isAttackerGravelyInjured, gmBonus, isRangedOrThrown, attackerInfo]);
 
   // Calcolo del risultato finale del tiro
   const finalAttackResult = useMemo(() => {
@@ -387,9 +733,16 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
     const bd = parseInt(defenderBD) || 0;
     const parry = parseInt(defenderParry) || 0;
     
-    let result = roll + bo - bd - parry + computedModifiers;
+    const shieldBonus = (useShield && !backAttack) ? 25 : 0;
+    let result = roll + bo - (bd + shieldBonus) - parry + computedModifiers;
+    
+    if (attackerInfo?.type === 'creature') {
+      const cap = getCreatureSizeCap(attackerInfo.size);
+      result = Math.min(cap, result);
+    }
+    
     return Math.min(150, Math.max(1, result));
-  }, [diceRoll, attackerBOEffective, defenderBD, defenderParry, computedModifiers]);
+  }, [diceRoll, attackerBOEffective, defenderBD, defenderParry, computedModifiers, attackerInfo, useShield, backAttack]);
 
 
   // Sincronizzazione ed eventuale clamp del valore di parata del difensore
@@ -398,18 +751,18 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
     if (defenderParry > maxBO) {
       const clamped = maxBO;
       setDefenderParry(clamped);
-      if (defenderId !== 'custom' && onUpdateBoSpesoParata) {
-        onUpdateBoSpesoParata(defenderId, clamped);
+      if (defenderInfo?.type === 'pc' && onUpdateBoSpesoParata) {
+        onUpdateBoSpesoParata(defenderInfo.id, clamped);
       }
     }
-  }, [defenderWeaponBO, defenderId, defenderParry, onUpdateBoSpesoParata]);
+  }, [defenderWeaponBO, defenderId, defenderParry, onUpdateBoSpesoParata, defenderInfo]);
 
   const handleDefenderParryChange = (val) => {
     const maxBO = defenderWeaponBO;
     const clamped = Math.max(0, Math.min(maxBO, val));
     setDefenderParry(clamped);
-    if (defenderId !== 'custom' && onUpdateBoSpesoParata) {
-      onUpdateBoSpesoParata(defenderId, clamped);
+    if (defenderInfo?.type === 'pc' && onUpdateBoSpesoParata) {
+      onUpdateBoSpesoParata(defenderInfo.id, clamped);
     }
   };
 
@@ -426,7 +779,7 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
     
     // Per le armi da lancio determiniamo specificamente in base al nome
     if (attackerWeaponCategoryResolved === 'da lancio') {
-      const wName = (activeAttackerWeapon ? activeAttackerWeapon.nome : attackerWeaponName).toLowerCase();
+      const wName = attackerWeaponName.toLowerCase();
       if (wName.includes('lancia') || wName.includes('giavellotto')) {
         tableCode = 'TA-3'; // due mani / asta
       } else if (wName.includes('bolas')) {
@@ -441,6 +794,7 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
 
     let cellValue = '';
     const isSpell = tableCode === 'TA-7' || tableCode === 'TA-8';
+    const isCreatureTable = tableCode === 'TA-5' || tableCode === 'TA-6';
 
     if (isSpell) {
       const outcome = resolveSpellAttack(finalResult, tableCode, defenderArmor);
@@ -448,6 +802,17 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
       if (cellValue === 'F' && diceRoll > 2) {
         cellValue = '0'; // treated as miss since natural roll is > 2
       }
+    } else if (isCreatureTable) {
+      const jsonList = tableCode === 'TA-5' ? ta5ZanneArtigli : ta6ImmobilizzSbilanc;
+      const row = findRangeRow(jsonList, finalResult);
+      if (!row) {
+        setCombatOutcome({
+          type: 'error',
+          message: `Nessun dato trovato per il tiro ${finalResult} sulla tabella ${tableCode}.`
+        });
+        return;
+      }
+      cellValue = String(row[armorColName] || '').trim();
     } else {
       // Cerca nel JSON delle tabelle d'attacco
       const row = attackTables.find(r => r.tabella === tableCode && r.risultato_del_tiro === finalResult);
@@ -462,7 +827,9 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
       cellValue = String(row[armorColName] || '').trim();
     }
 
-    const isFumble = isSpell ? (diceRoll <= 2) : (cellValue === 'Possibilità di Colpo Maldestro' || diceRoll <= 8);
+    const isFumble = isSpell 
+      ? (diceRoll <= 2) 
+      : (cellValue === 'fallimento' || cellValue === 'Possibilità di Colpo Maldestro' || diceRoll <= 8);
 
     if (isFumble) {
       // Fumble! (In MERP, un tiro basso o un esito maldestro genera fumble; per gli incantesimi è F)
@@ -499,7 +866,53 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
       if (match) {
         const damage = parseInt(match[1]);
         const critType = match[2] || null;
+        
+        // Calcolo moltiplicatori per creature
+        let damageMultiplier = 1;
+        let matchedTsc2Attack = null;
+        if (attackerInfo?.type === 'creature') {
+          matchedTsc2Attack = getCreatureAttackDetails(attackerWeaponName);
+          const attackNameLower = attackerWeaponName.toLowerCase();
+          const tsc2NameLower = (matchedTsc2Attack?.["Tipo di Attacco"] || '').toLowerCase();
+          
+          if (attackNameLower.includes('§') || tsc2NameLower.includes('§')) {
+            damageMultiplier = 2;
+          } else if (attackNameLower.includes('$$') || tsc2NameLower.includes('$$')) {
+            damageMultiplier = 0.5;
+          }
+        }
+        
+        const finalDamage = Math.max(0, Math.floor(damage * damageMultiplier));
         const critMod = isSpell ? 0 : (critType ? CRITICAL_MODIFIERS[critType] : 0);
+
+        // Risoluzione tipo e tabella critico primario e secondario
+        let suggestedTable = 'TC-2';
+        let secondaryCritSeverity = null;
+        let secondaryCritTable = null;
+        let hasSecondaryCrit = false;
+
+        if (attackerInfo?.type === 'creature' && matchedTsc2Attack) {
+          suggestedTable = mapCreatureCritToTable(matchedTsc2Attack["Critico Primario"]);
+          
+          const secCrit = matchedTsc2Attack["Critico Secondario"] || "";
+          if (secCrit && secCrit !== "-") {
+            const hasAsterisk = secCrit.includes('*') || (matchedTsc2Attack["nota crit_secondario"] || "").includes('*');
+            const size = (attackerInfo.size || '').toLowerCase();
+            const sizeIsLargeOrHuge = size === 'grande' || size === 'enorme';
+            
+            if (!hasAsterisk || sizeIsLargeOrHuge) {
+              const severityOrder = ['A', 'B', 'C', 'D', 'E'];
+              const primIndex = severityOrder.indexOf(critType);
+              if (primIndex > 0) {
+                secondaryCritSeverity = severityOrder[primIndex - 1];
+                secondaryCritTable = mapCreatureCritToTable(secCrit);
+                hasSecondaryCrit = true;
+              }
+            }
+          }
+        } else {
+          suggestedTable = getCriticalTableForWeapon(attackerWeaponCategoryResolved, attackerWeaponName);
+        }
 
         setCombatOutcome({
           type: 'hit',
@@ -507,19 +920,26 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
           finalResult,
           tableCode,
           armorColName,
-          damage,
+          damage: finalDamage,
           criticalType: critType,
           criticalModifier: critMod,
           message: `COLPO A SEGNO! (${cellValue})`,
-          details: `Il colpo infligge ${damage} PF al difensore. ${
+          details: `Il colpo infligge ${finalDamage} PF${damageMultiplier !== 1 ? ` (applicato moltiplicatore x${damageMultiplier})` : ''} al difensore. ${
             critType 
-              ? `Genera un Colpo Critico di tipo ${critType}. L'attaccante effettuerà un secondo tiro d100 con modificatore ${fmt(critMod)} per determinare le conseguenze del critico.`
+              ? `Genera un Colpo Critico di tipo ${critType} sulla tabella ${TABLE_NAMES[suggestedTable] || suggestedTable}.${
+                  hasSecondaryCrit 
+                    ? ` Conseguente Colpo Critico Secondario di tipo ${secondaryCritSeverity} sulla tabella ${TABLE_NAMES[secondaryCritTable] || secondaryCritTable}.` 
+                    : ''
+                }`
               : 'Nessun colpo critico generato.'
-          }`
+          }`,
+          suggestedTable,
+          hasSecondaryCrit,
+          secondaryCritSeverity,
+          secondaryCritTable
         });
 
         if (critType) {
-          const suggestedTable = getCriticalTableForWeapon(attackerWeaponCategoryResolved, activeAttackerWeapon ? activeAttackerWeapon.nome : attackerWeaponName);
           setCritTableCode(suggestedTable);
           setCritSeverity(critType);
           setCritDiceRoll(Math.floor(Math.random() * 100) + 1);
@@ -530,13 +950,14 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
         }
       } else {
         // Valore non tipico, mostriamo la stringa così com'è
+        const damage = parseInt(cellValue) || 0;
         setCombatOutcome({
           type: 'hit',
           roll: diceRoll,
           finalResult,
           tableCode,
           armorColName,
-          damage: parseInt(cellValue) || 0,
+          damage,
           criticalType: null,
           message: `COLPO A SEGNO: ${cellValue}`,
           details: 'Danni calcolati dal sistema.'
@@ -624,18 +1045,46 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
             <div className="space-y-4">
               {/* Selezione Attaccante */}
               <div>
-                <label className="block text-xs font-bold text-blue-900 mb-1">Seleziona Attaccante dal Roster:</label>
+                <label className="block text-xs font-bold text-blue-900 mb-1">Seleziona Attaccante:</label>
                 <select
-                  className="w-full p-2 border border-blue-250 rounded text-sm bg-white focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full p-2 border border-blue-250 rounded text-sm bg-white focus:ring-blue-500 focus:border-blue-500 font-medium"
                   value={attackerId}
-                  onChange={e => setAttackerId(e.target.value)}
+                  onChange={e => {
+                    setAttackerId(e.target.value);
+                    setSelectedWeaponIdx(0);
+                  }}
                 >
                   <option value="custom">- Inserimento Manuale (Custom) -</option>
-                  {processedRoster.map(char => (
-                    <option key={char.id} value={char.id}>
-                      {char.name} (HP: {char.hpTot})
-                    </option>
-                  ))}
+                  
+                  {processedRoster.length > 0 && (
+                    <optgroup label="Personaggi Giocanti (PG)">
+                      {processedRoster.map(char => (
+                        <option key={char.id} value={`pc-${char.id}`}>
+                          {char.name} (HP: {char.hpTot - (char.hpSubiti || 0)}/{char.hpTot})
+                        </option>
+                      ))}
+                    </optgroup>
+                  )}
+                  
+                  {campaignNpcs.length > 0 && (
+                    <optgroup label="Personaggi Non Giocanti (PNG)">
+                      {campaignNpcs.map(npc => (
+                        <option key={npc.id} value={`npc-${npc.id}`}>
+                          {npc.name} (HP: {npc.hpCorrenti !== undefined ? npc.hpCorrenti : npc.hpMax}/{npc.hpMax})
+                        </option>
+                      ))}
+                    </optgroup>
+                  )}
+                  
+                  {campaignCreatures.length > 0 && (
+                    <optgroup label="Creature / Mostri">
+                      {campaignCreatures.map(creature => (
+                        <option key={creature.id} value={`creature-${creature.id}`}>
+                          {creature.Nome} (HP: {creature.hpCorrenti !== undefined ? creature.hpCorrenti : creature.punti_ferita}/{creature.punti_ferita})
+                        </option>
+                      ))}
+                    </optgroup>
+                  )}
                 </select>
               </div>
 
@@ -701,41 +1150,69 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
                 <div className="p-4 bg-blue-50/30 border border-blue-100 rounded-lg grid grid-cols-2 gap-4">
                   <div className="col-span-2">
                     <label className="block text-[10px] font-bold text-blue-900 uppercase">Nome Attaccante:</label>
-                    <p className="text-sm font-bold text-gray-900 mt-0.5">{activeAttackerCharacter?.name}</p>
+                    <p className="text-sm font-bold text-gray-900 mt-0.5">
+                      {attackerInfo?.name} <span className="text-[10px] text-gray-500 font-normal uppercase">({attackerInfo?.type === 'pc' ? 'PG' : attackerInfo?.type === 'npc' ? 'PNG' : attackerInfo?.type === 'creature' ? 'Creatura' : attackerInfo?.type})</span>
+                    </p>
                   </div>
-                  {activeAttackerCharacter && activeAttackerCharacter.weapons.length > 0 ? (
+                  {attackerInfo?.hasMetalBracciali && (
                     <div className="col-span-2">
-                      <label className="block text-[10px] font-bold text-blue-900 uppercase mb-1">Seleziona Arma in Inventario:</label>
+                      <span className="text-[10px] text-red-600 font-bold bg-red-50/50 px-2 py-1 rounded border border-red-200 block">
+                        ⚠️ Bracciali di metallo equipaggiati: -5 BO applicato.
+                      </span>
+                    </div>
+                  )}
+                  {attackerInfo && attackerInfo.weapons && attackerInfo.weapons.length > 0 ? (
+                    <div className="col-span-2">
+                      <label className="block text-[10px] font-bold text-blue-900 uppercase mb-1">Seleziona Attacco / Arma:</label>
                       <select
                         className="w-full p-1.5 border border-blue-200 rounded text-xs bg-white font-medium focus:ring-blue-500 focus:border-blue-500"
                         value={selectedWeaponIdx}
                         onChange={e => setSelectedWeaponIdx(parseInt(e.target.value))}
                       >
-                        {activeAttackerCharacter.weapons.map((w, idx) => (
+                        {attackerInfo.weapons.map((w, idx) => (
                           <option key={idx} value={idx}>
-                            {w.nome} (BO: {fmt(w.bo)} | {w.skillName})
+                            {w.nome} (BO: {fmt(w.bo)}{w.skillName ? ` | ${w.skillName}` : ''})
                           </option>
                         ))}
                       </select>
                     </div>
                   ) : (
                     <div className="col-span-2">
-                      <p className="text-xs italic text-orange-600">Nessuna arma in inventario. Caricata skill predefinita.</p>
+                      <p className="text-xs italic text-orange-600">Nessun attacco/arma disponibile.</p>
+                    </div>
+                  )}
+                  {attackerInfo?.type === 'npc' && (
+                    <div className="col-span-2">
+                      <label className="block text-[10px] font-bold text-blue-900 uppercase mb-1">Mappa a Tabella Attacco:</label>
+                      <select
+                        className="w-full p-1.5 border border-blue-200 rounded text-xs bg-white font-medium focus:ring-blue-500 focus:border-blue-500"
+                        value={attackerWeaponCat}
+                        onChange={e => setAttackerWeaponCat(e.target.value)}
+                      >
+                        <option value="taglio a 1 mano">Taglio ad una mano (TA-1)</option>
+                        <option value="contundenti a 1 mano">Contundenti una mano (TA-2)</option>
+                        <option value="a 2 mani">A due mani (TA-3)</option>
+                        <option value="con asta">Con asta (TA-3)</option>
+                        <option value="da tiro">Da tiro (TA-4)</option>
+                        <option value="da lancio">Da lancio (Dinamico)</option>
+                        <option value="dardo">Dardo Magico (TA-7)</option>
+                        <option value="sfera">Sfera Magica (TA-8)</option>
+                      </select>
                     </div>
                   )}
                   <div>
-                    <span className="block text-[9px] font-bold text-gray-500 uppercase">BO Disponibile</span>
+                    <span className="block text-[9px] font-bold text-gray-550 uppercase">BO Disponibile</span>
                     <strong className="text-sm text-gray-950 block font-bold">{fmt(attackerBOEffective)}</strong>
                     {attackerBoSpesoParata > 0 && (
                       <span className="text-[9px] text-blue-700 block leading-tight">({fmt(attackerBO)} base - {attackerBoSpesoParata} parata)</span>
                     )}
                   </div>
                   <div>
-                    <span className="block text-[9px] font-bold text-gray-500 uppercase">HP Totali PG</span>
+                    <span className="block text-[9px] font-bold text-gray-550 uppercase">HP Totali</span>
                     <strong className="text-sm text-gray-900 block">{attackerHpTot}</strong>
                   </div>
                   <div>
-                    <span className="block text-[9px] font-bold text-gray-500 uppercase mb-1">HP Subiti (Ferite)</span>
+                    <span className="block text-[9px] font-bold text-gray-555 uppercase mb-1">HP Subiti (Ferite)</span>
                     <input
                       type="number"
                       min="0"
@@ -745,8 +1222,13 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
                       onChange={e => {
                         const val = Math.max(0, parseInt(e.target.value) || 0);
                         setAttackerHpSubiti(val);
-                        if (attackerId !== 'custom' && onUpdateHpSubiti) {
-                          onUpdateHpSubiti(attackerId, val);
+                        if (attackerInfo) {
+                          if (attackerInfo.type === 'pc') {
+                            if (onUpdateHpSubiti) onUpdateHpSubiti(attackerInfo.id, val);
+                          } else {
+                            const newHp = Math.max(0, attackerInfo.hpTot - val);
+                            if (onUpdateActorHp) onUpdateActorHp(attackerInfo.type, attackerInfo.id, newHp);
+                          }
                         }
                       }}
                     />
@@ -776,18 +1258,46 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
             <div className="space-y-4">
               {/* Selezione Difensore */}
               <div>
-                <label className="block text-xs font-bold text-red-900 mb-1">Seleziona Difensore dal Roster:</label>
+                <label className="block text-xs font-bold text-red-900 mb-1">Seleziona Difensore:</label>
                 <select
-                  className="w-full p-2 border border-red-250 rounded text-sm bg-white focus:ring-red-500 focus:border-red-500"
+                  className="w-full p-2 border border-red-250 rounded text-sm bg-white focus:ring-red-500 focus:border-red-500 font-medium"
                   value={defenderId}
-                  onChange={e => setDefenderId(e.target.value)}
+                  onChange={e => {
+                    setDefenderId(e.target.value);
+                    setSelectedDefenderWeaponIdx(0);
+                  }}
                 >
                   <option value="custom">- Inserimento Manuale (Custom) -</option>
-                  {processedRoster.map(char => (
-                    <option key={char.id} value={char.id}>
-                      {char.name} (Armatura: {ARMOR_DISPLAY[char.equippedArmor] || 'Nessuna'})
-                    </option>
-                  ))}
+                  
+                  {processedRoster.length > 0 && (
+                    <optgroup label="Personaggi Giocanti (PG)">
+                      {processedRoster.map(char => (
+                        <option key={char.id} value={`pc-${char.id}`}>
+                          {char.name} (Armatura: {ARMOR_DISPLAY[char.equippedArmor] || 'Nessuna'})
+                        </option>
+                      ))}
+                    </optgroup>
+                  )}
+                  
+                  {campaignNpcs.length > 0 && (
+                    <optgroup label="Personaggi Non Giocanti (PNG)">
+                      {campaignNpcs.map(npc => (
+                        <option key={npc.id} value={`npc-${npc.id}`}>
+                          {npc.name} (Armatura: {ARMOR_DISPLAY[npc.equippedArmor] || 'Nessuna'})
+                        </option>
+                      ))}
+                    </optgroup>
+                  )}
+                  
+                  {campaignCreatures.length > 0 && (
+                    <optgroup label="Creature / Mostri">
+                      {campaignCreatures.map(creature => (
+                        <option key={creature.id} value={`creature-${creature.id}`}>
+                          {creature.Nome} (Armatura: {creature.tipo_armatura})
+                        </option>
+                      ))}
+                    </optgroup>
+                  )}
                 </select>
               </div>
 
@@ -859,9 +1369,11 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
                 <div className="p-4 bg-red-50/30 border border-red-100 rounded-lg grid grid-cols-2 gap-4">
                   <div className="col-span-2">
                     <label className="block text-[10px] font-bold text-red-900 uppercase">Nome Difensore:</label>
-                    <p className="text-sm font-bold text-gray-900 mt-0.5">{activeDefenderCharacter?.name}</p>
+                    <p className="text-sm font-bold text-gray-900 mt-0.5">
+                      {defenderInfo?.name} <span className="text-[10px] text-gray-500 font-normal uppercase">({defenderInfo?.type === 'pc' ? 'PG' : defenderInfo?.type === 'npc' ? 'PNG' : defenderInfo?.type === 'creature' ? 'Creatura' : defenderInfo?.type})</span>
+                    </p>
                   </div>
-                  {activeDefenderCharacter && activeDefenderCharacter.weapons.length > 0 ? (
+                  {defenderInfo && defenderInfo.weapons && defenderInfo.weapons.length > 0 ? (
                     <div className="col-span-2">
                       <label className="block text-[10px] font-bold text-red-900 uppercase mb-1">Seleziona Arma per Parare:</label>
                       <select
@@ -869,28 +1381,53 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
                         value={selectedDefenderWeaponIdx}
                         onChange={e => setSelectedDefenderWeaponIdx(parseInt(e.target.value))}
                       >
-                        {activeDefenderCharacter.weapons.map((w, idx) => (
+                        {defenderInfo.weapons.map((w, idx) => (
                           <option key={idx} value={idx}>
-                            {w.nome} (BO: {fmt(w.bo)} | {w.skillName})
+                            {w.nome} (BO: {fmt(w.bo)})
                           </option>
                         ))}
                       </select>
                     </div>
                   ) : (
-                    <div className="col-span-2">
-                      <p className="text-xs italic text-orange-600">Nessuna arma in inventario. Caricata skill predefinita.</p>
-                    </div>
+                    defenderInfo?.type !== 'creature' && (
+                      <div className="col-span-2">
+                        <p className="text-xs italic text-orange-600">Nessuna arma in inventario. Caricata skill predefinita.</p>
+                      </div>
+                    )
                   )}
+                  
+                  {/* Controllo Scudo */}
+                  <div className="col-span-2 flex items-center gap-1.5 mt-1 border-t border-red-100 pt-2 pb-1">
+                    <input
+                      type="checkbox"
+                      id="useShieldCheckbox"
+                      className="rounded border-red-300 text-red-600 focus:ring-red-500 w-3.5 h-3.5"
+                      checked={useShield}
+                      disabled={backAttack}
+                      onChange={e => setUseShield(e.target.checked)}
+                    />
+                    <label htmlFor="useShieldCheckbox" className={`text-xs font-bold ${backAttack ? 'text-gray-400 line-through' : 'text-red-950'} select-none`}>
+                      Usa Scudo (+25 BD)
+                      {backAttack && <span className="text-[10px] text-gray-400 font-normal italic ml-1">(Non applicabile alle spalle)</span>}
+                      {defenderInfo?.type === 'pc' && defenderInfo?.hasShield && (
+                        <span className="text-[10px] text-emerald-600 font-normal ml-1">(Equipaggiato)</span>
+                      )}
+                    </label>
+                  </div>
+
                   <div>
                     <span className="block text-[9px] font-bold text-gray-550 uppercase">Armatura Attiva</span>
-                    <strong className="text-sm text-gray-900 block font-semibold">{ARMOR_DISPLAY[defenderArmor] || 'Nessuna'}</strong>
+                    <strong className="text-sm text-gray-900 block font-semibold">{ARMOR_DISPLAY[defenderArmor] || defenderArmor || 'Nessuna'}</strong>
                   </div>
                   <div>
                     <span className="block text-[9px] font-bold text-gray-555 uppercase">BD Consolidato</span>
-                    <strong className="text-sm text-gray-900 block font-semibold">{fmt(defenderBD)}</strong>
+                    <strong className="text-sm text-gray-900 block font-semibold">
+                      {fmt(defenderBD + ((useShield && !backAttack) ? 25 : 0))}
+                      {(useShield && !backAttack) && <span className="text-[10px] text-emerald-600 font-normal ml-1">(+25 Scudo)</span>}
+                    </strong>
                   </div>
                   <div>
-                    <span className="block text-[9px] font-bold text-gray-555 uppercase">HP Totali PG</span>
+                    <span className="block text-[9px] font-bold text-gray-555 uppercase">HP Totali</span>
                     <strong className="text-sm text-gray-900 block">{defenderHpTot}</strong>
                   </div>
                   <div>
@@ -904,8 +1441,13 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
                       onChange={e => {
                         const val = Math.max(0, parseInt(e.target.value) || 0);
                         setDefenderHpSubiti(val);
-                        if (defenderId !== 'custom' && onUpdateHpSubiti) {
-                          onUpdateHpSubiti(defenderId, val);
+                        if (defenderInfo) {
+                          if (defenderInfo.type === 'pc') {
+                            if (onUpdateHpSubiti) onUpdateHpSubiti(defenderInfo.id, val);
+                          } else {
+                            const newHp = Math.max(0, defenderInfo.hpTot - val);
+                            if (onUpdateActorHp) onUpdateActorHp(defenderInfo.type, defenderInfo.id, newHp);
+                          }
                         }
                       }}
                     />
@@ -917,7 +1459,9 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
               <div className="p-3 bg-red-500/5 border border-red-100 rounded-lg">
                 <div className="flex justify-between items-center mb-1">
                   <label className="text-[11px] font-bold text-red-900 uppercase">Quota BO spesa per Parare:</label>
-                  <span className="text-xs font-bold text-red-700">-{defenderParry} al tiro</span>
+                  <span className="text-xs font-bold text-red-700">
+                    -{defenderParry} al tiro ({defenderWeaponBO > 0 ? Math.round((defenderParry / defenderWeaponBO) * 100) : 0}%)
+                  </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <input
@@ -948,7 +1492,7 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
           <div className="mt-4 pt-3 border-t border-red-200/50 flex justify-between items-center text-xs">
             <span className="text-gray-555 font-medium">Colonna Armatura:</span>
             <span className="font-bold text-red-900 bg-red-50 px-2 py-0.5 rounded border border-red-200">
-              {ARMOR_DISPLAY[defenderArmor] || 'Nessuna'}
+              {ARMOR_DISPLAY[defenderArmor] || defenderArmor || 'Nessuna'}
             </span>
           </div>
         </div>
@@ -1121,7 +1665,7 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
           <div className="text-center md:text-right bg-slate-50 border border-gray-150 rounded-xl p-3 px-6 w-full md:w-auto">
             <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">Formula Risultato Attacco</span>
             <p className="text-[10px] text-gray-500 mt-0.5">
-              Tiro ({diceRoll}) + BO ({attackerBO}) - BD ({defenderBD}) - Parata ({defenderParry}) {computedModifiers >= 0 ? `+ Mod. (${computedModifiers})` : `- Mod. (${Math.abs(computedModifiers)})`}
+              Tiro ({diceRoll}) + BO ({attackerBO}) - BD ({defenderBD}{useShield && !backAttack ? ' + 25 Scudo' : ''}) - Parata ({defenderParry}) {computedModifiers >= 0 ? `+ Mod. (${computedModifiers})` : `- Mod. (${Math.abs(computedModifiers)})`}
             </p>
             <strong className="text-2xl font-black text-indigo-950 block mt-1">
               Risultato Finale: {finalAttackResult}
@@ -1173,7 +1717,7 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
             
             {combatOutcome.type === 'hit' && (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                {/* Box Danni HP */}
+                {/* Box HP Danni */}
                 <div className="p-4 bg-white/70 border border-emerald-200 rounded-lg shadow-sm flex flex-col justify-between gap-3 sm:flex-row sm:items-center sm:gap-4 md:col-span-2 lg:col-span-1">
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xl font-black shadow shrink-0">
@@ -1185,18 +1729,30 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
                     </div>
                   </div>
                   
-                  {defenderId !== 'custom' && onUpdateHpSubiti && (
+                  {defenderId !== 'custom' && defenderInfo && (
                     <button
                       onClick={() => {
-                        const newHpSubiti = Math.min(defenderHpTot, defenderHpSubiti + combatOutcome.damage);
-                        onUpdateHpSubiti(defenderId, newHpSubiti);
+                        const currentHp = defenderInfo.hpTot - defenderHpSubiti;
+                        const newHp = Math.max(0, currentHp - combatOutcome.damage);
+                        const newHpSubiti = defenderInfo.hpTot - newHp;
+                        
+                        if (defenderInfo.type === 'pc') {
+                          if (onUpdateHpSubiti) {
+                            onUpdateHpSubiti(defenderInfo.id, newHpSubiti);
+                          }
+                        } else {
+                          if (onUpdateActorHp) {
+                            onUpdateActorHp(defenderInfo.type, defenderInfo.id, newHp);
+                          }
+                        }
+                        
                         setDefenderHpSubiti(newHpSubiti);
-                        alert(`Applicati ${combatOutcome.damage} danni a ${activeDefenderCharacter?.name}. PF Subiti totali: ${newHpSubiti}/${defenderHpTot}.`);
+                        alert(`Applicati ${combatOutcome.damage} PF di danno a ${defenderInfo.name}. HP rimanenti: ${newHp}/${defenderInfo.hpTot}.`);
                       }}
                       className="w-full sm:w-auto px-3 py-1.5 bg-emerald-655 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider rounded-lg shadow-xs transition active:scale-95 text-center whitespace-nowrap"
                       style={{ backgroundColor: 'var(--success-color, #10b981)', border: 'none', cursor: 'pointer' }}
                     >
-                      Applica Danni al PG
+                      Applica Danni a {defenderInfo.name}
                     </button>
                   )}
                 </div>
@@ -1204,25 +1760,64 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
                 {/* Box Dettagli Critico */}
                 {combatOutcome.criticalType && (
                   <div className="p-4 bg-white/70 border border-emerald-250 rounded-lg shadow-sm flex flex-col justify-between gap-3 sm:flex-row sm:items-center sm:gap-4 md:col-span-2 lg:col-span-1 animate-fadeIn">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-full bg-amber-500 text-white flex items-center justify-center text-xl font-black shadow uppercase shrink-0">
-                        {combatOutcome.criticalType}
+                    <div className="flex flex-col gap-3 w-full">
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-full bg-amber-500 text-white flex items-center justify-center text-xl font-black shadow uppercase shrink-0">
+                          {combatOutcome.criticalType}
+                        </div>
+                        <div>
+                          <strong className="block text-sm text-gray-900 font-bold">
+                            Colpo Critico Primario (Severità {combatOutcome.criticalType})
+                          </strong>
+                          <span className="text-xs text-amber-800 font-medium block">
+                            Modificatore Tiro Critico: {fmt(combatOutcome.criticalModifier)} | Tabella: {TABLE_NAMES[combatOutcome.suggestedTable] || combatOutcome.suggestedTable}
+                          </span>
+                        </div>
                       </div>
-                      <div>
-                        <strong className="block text-sm text-gray-900 font-bold">Colpo Critico (Tipo {combatOutcome.criticalType})</strong>
-                        <span className="text-xs text-amber-800 font-medium">Modificatore Tiro Critico: {fmt(combatOutcome.criticalModifier)}</span>
-                      </div>
+
+                      {combatOutcome.hasSecondaryCrit && (
+                        <div className="pl-16 border-t border-gray-200/50 pt-3 mt-1 flex flex-col gap-2">
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-full bg-amber-600 text-white flex items-center justify-center text-sm font-bold shadow uppercase shrink-0">
+                              {combatOutcome.secondaryCritSeverity}
+                            </div>
+                            <div>
+                              <strong className="block text-xs text-gray-950">
+                                Colpo Critico Secondario (Severità {combatOutcome.secondaryCritSeverity})
+                              </strong>
+                              <span className="text-[11px] text-amber-900 block">
+                                Tabella: {TABLE_NAMES[combatOutcome.secondaryCritTable] || combatOutcome.secondaryCritTable}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="flex gap-2 mt-1">
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setCritTableCode(combatOutcome.suggestedTable);
+                                setCritSeverity(combatOutcome.criticalType);
+                                setCritDiceRoll(Math.floor(Math.random() * 100) + 1);
+                              }}
+                              className="px-2.5 py-1 bg-amber-100 hover:bg-amber-200 text-amber-900 rounded text-xs font-bold transition active:scale-95 cursor-pointer"
+                            >
+                              Carica Primario
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setCritTableCode(combatOutcome.secondaryCritTable);
+                                setCritSeverity(combatOutcome.secondaryCritSeverity);
+                                setCritDiceRoll(Math.floor(Math.random() * 100) + 1);
+                              }}
+                              className="px-2.5 py-1 bg-amber-655 hover:bg-amber-700 text-white rounded text-xs font-bold transition active:scale-95 cursor-pointer"
+                              style={{ backgroundColor: '#d97706' }}
+                            >
+                              Carica Secondario
+                            </button>
+                          </div>
+                        </div>
+                      )}
                     </div>
-                    <button
-                      onClick={() => {
-                        setShowCriticalResolver(true);
-                        setShowFumbleResolver(false);
-                      }}
-                      className="px-3 py-1.5 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs uppercase tracking-wider rounded-lg shadow-xs transition active:scale-95 text-center whitespace-nowrap"
-                      style={{ border: 'none', cursor: 'pointer' }}
-                    >
-                      Risolvi Critico
-                    </button>
                   </div>
                 )}
               </div>
@@ -1277,7 +1872,7 @@ export default function CombatCalculator({ savedCharacters, onUpdateHpSubiti, on
             initialTableCode={fumbleTableCode}
             initialDiceRoll={fumbleDiceRoll}
             weaponCategory={attackerWeaponCategoryResolved}
-            weaponName={activeAttackerWeapon ? activeAttackerWeapon.nome : attackerWeaponName}
+            weaponName={attackerWeaponName}
             showTitle={false}
           />
         )}

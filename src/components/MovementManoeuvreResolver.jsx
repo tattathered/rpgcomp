@@ -17,7 +17,29 @@ const COMPLEXITY_SCALES = [
   { value: '9. Assurda', text: 'Assurda', activeClass: 'btn-complexity-assurda-active', inactiveClass: 'btn-complexity-assurda-inactive' }
 ];
 
-export default function MovementManoeuvreResolver({ savedCharacters, onRedirectToFumble }) {
+const SKILL_CHAR_MAP = {
+  'Arrampicarsi': 'AG',
+  'Cavalcare': 'IT',
+  'Nuotare': 'AG',
+  'Seguire tracce': 'IN',
+  'Cogliere alle spalle': 'PR',
+  'Muoversi silenziosamente': 'PR',
+  'Nascondersi': 'PR',
+  'Scassinare serrature': 'IN',
+  'Disattivare trappole': 'IT',
+  'Lettura rune': 'IN',
+  'Uso oggetti magici': 'IT',
+  'Incantesimi diretti': 'AG',
+  'Percezione': 'IT',
+  'Resistenza fisica (PF)': 'CO'
+};
+
+const getSkillCharacteristic = (skName) => {
+  const name = String(skName || '').trim();
+  return SKILL_CHAR_MAP[name] || 'IN'; // default per secondarie
+};
+
+export default function MovementManoeuvreResolver({ savedCharacters, campaignNpcs = [], campaignCreatures = [], onRedirectToFumble }) {
   const [characterId, setCharacterId] = useState('custom');
   const [customCharacterName, setCustomCharacterName] = useState('');
   const [selectedSkills, setSelectedSkills] = useState([]);
@@ -80,28 +102,68 @@ export default function MovementManoeuvreResolver({ savedCharacters, onRedirectT
     return groups;
   }, [filteredSecondaryMMSkills]);
 
-  // Recupera il personaggio attivo
+  // Recupera l'attore attivo (PG, NPG o Creatura)
   const activeChar = useMemo(() => {
     if (characterId === 'custom') return null;
     return savedCharacters.find(c => c.id === characterId) || null;
   }, [characterId, savedCharacters]);
 
+  const activeNpc = useMemo(() => {
+    if (characterId === 'custom') return null;
+    return (campaignNpcs || []).find(n => n.id === characterId) || null;
+  }, [characterId, campaignNpcs]);
+
+  const activeCreature = useMemo(() => {
+    if (characterId === 'custom') return null;
+    return (campaignCreatures || []).find(c => c.id === characterId) || null;
+  }, [characterId, campaignCreatures]);
+
+  // Helper per recuperare il bonus abilità del PG o PNG o Creatura attivo
+  const getSelectedActorSkillBonus = (actorChar, actorNpc, actorCreature, skName, isSecondary = false) => {
+    if (actorChar) {
+      let bonus = getCharacterSkillBonus(actorChar, skName);
+      // Controllo schinieri in metallo (-5 MM)
+      const equipped = actorChar.equipment || [];
+      const hasMetalSchinieri = equipped.some(x => 
+        (x.qtyEquip || 0) > 0 && 
+        x.nome.toLowerCase().includes('schinieri') && 
+        x.nome.toLowerCase().includes('metallo')
+      );
+      if (hasMetalSchinieri) {
+        bonus -= 5;
+      }
+      return bonus;
+    }
+    if (actorNpc) {
+      if (actorNpc.skills && actorNpc.skills[skName] !== undefined) {
+        return actorNpc.skills[skName];
+      }
+      const charKey = getSkillCharacteristic(skName);
+      const statBonus = actorNpc.stats ? (actorNpc.stats[charKey] || 0) : 0;
+      return isSecondary ? (-25 + statBonus) : statBonus;
+    }
+    if (actorCreature) {
+      // Per le creature il bonus è fisso pari a VM_bonus_MM
+      return parseInt(actorCreature.VM_bonus_MM || 0, 10);
+    }
+    return isSecondary ? -25 : 0;
+  };
+
   // Sincronizza ed inizializza i bonus delle abilità quando cambia il personaggio
   useEffect(() => {
     const initialOverrides = {};
     primaryMMSkills.forEach(sk => {
-      const bonus = activeChar ? getCharacterSkillBonus(activeChar, sk.nome_abilita_primaria) : 0;
+      const bonus = getSelectedActorSkillBonus(activeChar, activeNpc, activeCreature, sk.nome_abilita_primaria, false);
       initialOverrides[sk.nome_abilita_primaria] = bonus;
     });
     secondaryMMSkills.forEach(sk => {
-      // Le abilità secondarie non addestrate hanno per default -25
-      const bonus = activeChar ? getCharacterSkillBonus(activeChar, sk.nome_abilita_secondaria) : -25;
+      const bonus = getSelectedActorSkillBonus(activeChar, activeNpc, activeCreature, sk.nome_abilita_secondaria, true);
       initialOverrides[sk.nome_abilita_secondaria] = bonus;
     });
     setSkillBonusesOverride(initialOverrides);
     // Azzera la selezione abilità
     setSelectedSkills([]);
-  }, [activeChar, primaryMMSkills, secondaryMMSkills]);
+  }, [activeChar, activeNpc, activeCreature, primaryMMSkills, secondaryMMSkills]);
 
   // Gestione modifica input di bonus abilità singola da parte del GM
   const handleUpdateSkillBonus = (skillName, value) => {
@@ -245,16 +307,34 @@ export default function MovementManoeuvreResolver({ savedCharacters, onRedirectT
                 <select
                   className="w-full p-2 border border-gray-300 rounded text-sm bg-white font-medium text-gray-800"
                   value={characterId}
-                  onChange={e => {
-                    setCharacterId(e.target.value);
-                  }}
+                  onChange={e => setCharacterId(e.target.value)}
                 >
-                  <option value="custom">-- Personaggio Personalizzato / PNG --</option>
-                  {savedCharacters.map(char => (
-                    <option key={char.id} value={char.id}>
-                      {char.name} (Liv. {1 + (char.levelDevelopments || []).length} - {char.race?.nome || char.race?.popolo} {char.profession?.professione})
-                    </option>
-                  ))}
+                  <option value="custom">-- Personaggio Personalizzato --</option>
+                  <optgroup label="Personaggi Giocanti (PG)">
+                    {savedCharacters.map(char => (
+                      <option key={char.id} value={char.id}>
+                        {char.name} (Liv. {1 + (char.levelDevelopments || []).length} - {char.race?.nome || char.race?.popolo} {char.profession?.professione})
+                      </option>
+                    ))}
+                  </optgroup>
+                  {campaignNpcs.length > 0 && (
+                    <optgroup label="Personaggi Non Giocanti (PNG)">
+                      {campaignNpcs.map(npc => (
+                        <option key={npc.id} value={npc.id}>
+                          {npc.name} (Liv. {npc.livello} - {npc.professione})
+                        </option>
+                      ))}
+                    </optgroup>
+                  )}
+                  {campaignCreatures.length > 0 && (
+                    <optgroup label="Creature e Mostri">
+                      {campaignCreatures.map(c => (
+                        <option key={c.id} value={c.id}>
+                          {c.Nome} (Lvl {c.Livello} - {c.Categoria})
+                        </option>
+                      ))}
+                    </optgroup>
+                  )}
                 </select>
               </div>
 
@@ -269,10 +349,25 @@ export default function MovementManoeuvreResolver({ savedCharacters, onRedirectT
                     onChange={e => setCustomCharacterName(e.target.value)}
                   />
                 </div>
-              ) : (
+              ) : activeChar ? (
                 <div className="bg-blue-50/30 p-2.5 border border-blue-100 rounded flex flex-col justify-center">
                   <span className="text-[10px] text-blue-850 font-bold uppercase tracking-wider block">PG Roster Attivo</span>
-                  <span className="text-sm font-black text-blue-950">{activeChar?.name}</span>
+                  <span className="text-sm font-black text-blue-950">{activeChar.name}</span>
+                  {activeChar.equipment && activeChar.equipment.some(x => (x.qtyEquip || 0) > 0 && x.nome.toLowerCase().includes('schinieri') && x.nome.toLowerCase().includes('metallo')) && (
+                    <span className="text-[10px] text-red-600 font-bold mt-1">
+                      ⚠️ Schinieri di metallo attivi: -5 MM applicato alle abilità.
+                    </span>
+                  )}
+                </div>
+              ) : activeNpc ? (
+                <div className="bg-purple-50/30 p-2.5 border border-purple-100 rounded flex flex-col justify-center">
+                  <span className="text-[10px] text-purple-850 font-bold uppercase tracking-wider block">PNG Campagna</span>
+                  <span className="text-sm font-black text-purple-950">{activeNpc.name}</span>
+                </div>
+              ) : (
+                <div className="bg-emerald-50/30 p-2.5 border border-emerald-100 rounded flex flex-col justify-center">
+                  <span className="text-[10px] text-emerald-850 font-bold uppercase tracking-wider block">Creatura Campagna (Bonus MM Fisso)</span>
+                  <span className="text-sm font-black text-emerald-950">{activeCreature?.Nome}</span>
                 </div>
               )}
             </div>
@@ -583,12 +678,11 @@ export default function MovementManoeuvreResolver({ savedCharacters, onRedirectT
 
       {/* RISOLUZIONE E RISULTATO - DESTRA */}
       <div className="lg:col-span-4 space-y-6">
-        
         {/* Pannello Riepilogo Calcolo */}
-        <div className="card p-5 border border-gray-250 rounded-xl bg-gray-900 text-gray-100 shadow-md">
-          <div className="border-b border-gray-800 pb-3 mb-4 flex items-center justify-between">
-            <span className="text-xs font-bold text-blue-400 uppercase tracking-wider">Tabella Risoluzione</span>
-            <span className="text-xs px-2.5 py-0.5 rounded-full bg-blue-900/50 text-blue-300 font-bold border border-blue-800/40">
+        <div className="card p-5 border border-blue-150 bg-white text-gray-800 shadow-sm">
+          <div className="border-b border-blue-100 pb-3 mb-4 flex items-center justify-between">
+            <span className="text-xs font-bold text-blue-900 uppercase tracking-wider">Tabella Risoluzione</span>
+            <span className="text-xs px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-800 font-bold border border-blue-100">
               {manoeuvreComplexity}
             </span>
           </div>
@@ -597,17 +691,17 @@ export default function MovementManoeuvreResolver({ savedCharacters, onRedirectT
             {/* Visualizzazione Formula Matematica */}
             <div className="space-y-2">
               <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider block">Dettagli Formula</span>
-              <div className="grid grid-cols-2 gap-y-2 text-xs font-medium border-b border-gray-800 pb-3">
-                <span className="text-gray-400">Tiro Aperto:</span>
-                <span className="text-right text-white font-bold">{diceRollResult}</span>
+              <div className="grid grid-cols-2 gap-y-2 text-xs font-medium border-b border-blue-100 pb-3">
+                <span className="text-gray-500">Tiro Aperto:</span>
+                <span className="text-right text-gray-900 font-bold">{diceRollResult}</span>
 
-                <span className="text-gray-400">Bonus Abilità MM:</span>
-                <span className="text-right text-blue-400 font-bold">+{totalAppliedSkillBonus}</span>
+                <span className="text-gray-500">Bonus Abilità MM:</span>
+                <span className="text-right text-blue-600 font-bold">+{totalAppliedSkillBonus}</span>
 
                 {totalModifiers !== 0 && (
                   <>
-                    <span className="text-gray-400">Modificatori Situazionali:</span>
-                    <span className={`text-right font-bold ${totalModifiers >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                    <span className="text-gray-500">Modificatori Situazionali:</span>
+                    <span className={`text-right font-bold ${totalModifiers >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                       {totalModifiers >= 0 ? `+${totalModifiers}` : totalModifiers}
                     </span>
                   </>
@@ -615,39 +709,39 @@ export default function MovementManoeuvreResolver({ savedCharacters, onRedirectT
               </div>
 
               <div className="flex justify-between items-center pt-2">
-                <span className="text-xs text-gray-300 font-bold uppercase">Risultato Finale Calcolato:</span>
-                <strong className="text-2xl font-black text-white tracking-tight">
+                <span className="text-xs text-gray-700 font-bold uppercase">Risultato Finale Calcolato:</span>
+                <strong className="text-2xl font-black text-blue-950 tracking-tight">
                   {finalResult}
                 </strong>
               </div>
               {finalResult !== clampedResult && (
-                <div className="text-[10px] text-yellow-500 italic text-right">
+                <div className="text-[10px] text-yellow-600 italic text-right">
                   (Ricalcolato a {clampedResult} per limite tabella)
                 </div>
               )}
             </div>
 
             {/* Esito Risoluzione */}
-            <div className="bg-gray-800 border border-gray-700 rounded-xl p-5 text-center shadow-inner">
-              <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider block mb-2">Esito Verificato su Tabella TM-1</span>
+            <div className="bg-blue-50/30 border border-blue-100 rounded-xl p-5 text-center shadow-xs">
+              <span className="text-[10px] text-blue-800 font-bold uppercase tracking-wider block mb-2">Esito Verificato su Tabella TM-1</span>
               
               {outcomeValue === null ? (
-                <div className="py-6 text-gray-500 italic text-sm">Nessun dato trovato per tiro {clampedResult}</div>
+                <div className="py-6 text-gray-400 italic text-sm">Nessun dato trovato per tiro {clampedResult}</div>
               ) : outcomeValue === 'F' ? (
                 <div className="space-y-4 py-2 animate-bounce">
-                  <div className="w-16 h-16 rounded-full bg-red-950 border border-red-500 flex items-center justify-center text-red-500 font-black text-2xl mx-auto shadow-lg shadow-red-900/20">
+                  <div className="w-16 h-16 rounded-full bg-red-50 border border-red-200 flex items-center justify-center text-red-650 font-black text-2xl mx-auto shadow-sm">
                     F
                   </div>
                   <div>
-                    <h4 className="font-extrabold text-red-400 text-lg uppercase tracking-wider">Fallimento Grave!</h4>
-                    <p className="text-xs text-gray-300 mt-1 max-w-xs mx-auto leading-relaxed">
+                    <h4 className="font-extrabold text-red-700 text-sm uppercase tracking-wider">Fallimento Grave!</h4>
+                    <p className="text-xs text-gray-600 mt-1 max-w-xs mx-auto leading-relaxed">
                       La manovra è fallita in modo disastroso. È necessario lanciare sulla tabella dei Colpi Maldestri delle Manovre in Movimento.
                     </p>
                   </div>
 
                   <button
                     onClick={handleTriggerFumble}
-                    className="w-full py-2.5 px-4 bg-red-700 hover:bg-red-650 text-white font-extrabold rounded-lg text-xs transition flex items-center justify-center gap-1.5 shadow-md shadow-red-950/50 uppercase tracking-wider border border-red-600"
+                    className="w-full py-2.5 px-4 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-lg text-xs transition flex items-center justify-center gap-1.5 shadow-sm uppercase tracking-wider border border-red-500"
                   >
                     <AlertTriangle className="w-4 h-4" />
                     Risolvi Colpo Maldestro su TTM-4
@@ -656,26 +750,25 @@ export default function MovementManoeuvreResolver({ savedCharacters, onRedirectT
                 </div>
               ) : (
                 <div className="space-y-4 py-2">
-                  <div className="w-20 h-20 rounded-full bg-blue-950 border border-blue-500 flex flex-col items-center justify-center text-blue-400 font-black text-2xl mx-auto shadow-lg shadow-blue-900/25">
-                    <span>{outcomeValue}</span>
-                    <span className="text-[10px] font-semibold text-blue-300/80 -mt-1">%</span>
+                  <div className="w-24 h-24 rounded-full bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600 font-black text-3xl mx-auto shadow-md">
+                    <span>{outcomeValue}%</span>
                   </div>
 
                   <div>
-                    <h4 className="font-extrabold text-blue-400 text-base uppercase tracking-wider">Manovra Riuscita</h4>
-                    <p className="text-xs text-gray-300 mt-1 max-w-xs mx-auto font-medium">
+                    <h4 className="font-extrabold text-blue-900 text-sm uppercase tracking-wider">Manovra Riuscita</h4>
+                    <p className="text-xs text-gray-600 mt-1 max-w-xs mx-auto font-medium">
                       La manovra è stata completata con un punteggio di successo pari a {outcomeValue}.
                     </p>
                   </div>
 
                   {/* Descrizione dei 3 significati dell'esito numerico */}
-                  <div className="text-left space-y-3 bg-gray-900/60 p-4 border border-gray-800 rounded-lg text-[11px] text-gray-400 leading-relaxed shadow-inner">
+                  <div className="text-left space-y-3 bg-white p-4 border border-blue-100 rounded-lg text-[11px] text-gray-550 leading-relaxed shadow-xs">
                     <div className="flex gap-2">
-                      <div className="p-1 rounded-full bg-blue-950/80 text-blue-400 border border-blue-900/40 shrink-0 h-5 w-5 flex items-center justify-center font-bold">1</div>
+                      <div className="p-1 rounded-full bg-blue-50 text-blue-800 border border-blue-100 shrink-0 h-5 w-5 flex items-center justify-center font-bold">1</div>
                       <p>
-                        <strong className="text-gray-200">Percentuale di Riuscita:</strong> la manovra è riuscita al <strong className="text-blue-400 font-bold">{outcomeValue}%</strong>. 
+                        <strong className="text-gray-700">Percentuale di Riuscita:</strong> la manovra è riuscita al <strong className="text-blue-600 font-bold">{outcomeValue}%</strong>. 
                         {parseInt(outcomeValue) > 100 && (
-                          <span className="text-green-400 block mt-0.5">
+                          <span className="text-emerald-600 block mt-0.5 font-bold">
                             Completata! Hai il {parseInt(outcomeValue) - 100}% di attività residua utilizzabile in questo round.
                           </span>
                         )}
@@ -683,16 +776,16 @@ export default function MovementManoeuvreResolver({ savedCharacters, onRedirectT
                     </div>
 
                     <div className="flex gap-2">
-                      <div className="p-1 rounded-full bg-blue-950/80 text-blue-400 border border-blue-900/40 shrink-0 h-5 w-5 flex items-center justify-center font-bold">2</div>
+                      <div className="p-1 rounded-full bg-blue-50 text-blue-800 border border-blue-100 shrink-0 h-5 w-5 flex items-center justify-center font-bold">2</div>
                       <p>
-                        <strong className="text-gray-200">Successo Completo:</strong> indica una probabilità del <strong className="text-blue-400 font-bold">{outcomeValue}%</strong> di successo completo del compito specifico.
+                        <strong className="text-gray-700">Successo Completo:</strong> indica una probabilità del <strong className="text-blue-600 font-bold">{outcomeValue}%</strong> di successo completo del compito specifico.
                       </p>
                     </div>
 
                     <div className="flex gap-2">
-                      <div className="p-1 rounded-full bg-blue-950/80 text-blue-400 border border-blue-900/40 shrink-0 h-5 w-5 flex items-center justify-center font-bold">3</div>
+                      <div className="p-1 rounded-full bg-blue-50 text-blue-800 border border-blue-100 shrink-0 h-5 w-5 flex items-center justify-center font-bold">3</div>
                       <p>
-                        <strong className="text-gray-200">Riduzione Attività Round Successivo:</strong> penalità pari a <strong className="text-red-400 font-bold">-{Math.max(0, 100 - parseInt(outcomeValue))}</strong> all'attività del prossimo round (100 - {outcomeValue}).
+                        <strong className="text-gray-700">Riduzione Attività Round Successivo:</strong> penalità pari a <strong className="text-red-650 font-bold">-{Math.max(0, 100 - parseInt(outcomeValue))}</strong> all'attività del prossimo round (100 - {outcomeValue}).
                       </p>
                     </div>
                   </div>
@@ -701,8 +794,8 @@ export default function MovementManoeuvreResolver({ savedCharacters, onRedirectT
             </div>
 
             {/* Note sulle Regole del Tiro Aperto */}
-            <div className="p-4 bg-gray-800/30 border border-gray-800 rounded-xl text-[10px] text-gray-400 space-y-2 leading-relaxed shadow-sm">
-              <div className="flex items-center gap-1.5 text-blue-400 font-bold uppercase tracking-wider mb-1">
+            <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl text-[10px] text-gray-500 space-y-2 leading-relaxed shadow-sm">
+              <div className="flex items-center gap-1.5 text-blue-800 font-bold uppercase tracking-wider mb-1">
                 <Info className="w-3.5 h-3.5" />
                 <span>Regole del Tiro Aperto:</span>
               </div>

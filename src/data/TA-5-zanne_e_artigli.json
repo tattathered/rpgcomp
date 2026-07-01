@@ -1,0 +1,209 @@
+[
+  {
+    "risultato_del_tiro": "TI 01-02",
+    "corazza_di_piastre": "fallimento",
+    "corazza_di_maglie": "fallimento",
+    "cuoio_rinforzato": "fallimento",
+    "cuoio_grezzo": "fallimento",
+    "nessuna_armatura": "fallimento",
+    "note": null
+  },
+  {
+    "risultato_del_tiro": "03-45",
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 0,
+    "nessuna_armatura": 0,
+    "note": null
+  },
+  {
+    "risultato_del_tiro": "46-50",
+    "corazza_di_piastre": 0,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 0,
+    "cuoio_grezzo": 1,
+    "nessuna_armatura": 1,
+    "note": null
+  },
+  {
+    "risultato_del_tiro": "51-55",
+    "corazza_di_piastre": 1,
+    "corazza_di_maglie": 0,
+    "cuoio_rinforzato": 1,
+    "cuoio_grezzo": 1,
+    "nessuna_armatura": 2,
+    "note": null
+  },
+  {
+    "risultato_del_tiro": "56-60",
+    "corazza_di_piastre": 1,
+    "corazza_di_maglie": 1,
+    "cuoio_rinforzato": 1,
+    "cuoio_grezzo": 2,
+    "nessuna_armatura": 4,
+    "note": null
+  },
+  {
+    "risultato_del_tiro": "61-65",
+    "corazza_di_piastre": 2,
+    "corazza_di_maglie": 1,
+    "cuoio_rinforzato": 2,
+    "cuoio_grezzo": 3,
+    "nessuna_armatura": 5,
+    "note": null
+  },
+  {
+    "risultato_del_tiro": "66-70",
+    "corazza_di_piastre": 2,
+    "corazza_di_maglie": 2,
+    "cuoio_rinforzato": 3,
+    "cuoio_grezzo": 4,
+    "nessuna_armatura": "6T",
+    "note": null
+  },
+  {
+    "risultato_del_tiro": "71-75",
+    "corazza_di_piastre": 3,
+    "corazza_di_maglie": 3,
+    "cuoio_rinforzato": 4,
+    "cuoio_grezzo": 5,
+    "nessuna_armatura": "8T",
+    "note": null
+  },
+  {
+    "risultato_del_tiro": "76-80",
+    "corazza_di_piastre": 4,
+    "corazza_di_maglie": 4,
+    "cuoio_rinforzato": 5,
+    "cuoio_grezzo": "6T",
+    "nessuna_armatura": "9T",
+    "note": null
+  },
+  {
+    "risultato_del_tiro": "81-85",
+    "corazza_di_piastre": 5,
+    "corazza_di_maglie": 5,
+    "cuoio_rinforzato": "6T",
+    "cuoio_grezzo": "7T",
+    "nessuna_armatura": "10T",
+    "note": "Risultati Massimi con Attacchi Minuscoli"
+  },
+  {
+    "risultato_del_tiro": "86-90",
+    "corazza_di_piastre": 6,
+    "corazza_di_maglie": "6T",
+    "cuoio_rinforzato": "7T",
+    "cuoio_grezzo": "9A",
+    "nessuna_armatura": "10A",
+    "note": null
+  },
+  {
+    "risultato_del_tiro": "91-95",
+    "corazza_di_piastre": "7T",
+    "corazza_di_maglie": "7T",
+    "cuoio_rinforzato": "8A",
+    "cuoio_grezzo": "10A",
+    "nessuna_armatura": "12B",
+    "note": null
+  },
+  {
+    "risultato_del_tiro": "96-100",
+    "corazza_di_piastre": "8A",
+    "corazza_di_maglie": "8A",
+    "cuoio_rinforzato": "9A",
+    "cuoio_grezzo": "11B",
+    "nessuna_armatura": "14B",
+    "note": null
+  },
+  {
+    "risultato_del_tiro": "101-105",
+    "corazza_di_piastre": "9A",
+    "corazza_di_maglie": "10B",
+    "cuoio_rinforzato": "11B",
+    "cuoio_grezzo": "13B",
+    "nessuna_armatura": "15B",
+    "note": "Risultati Massimi con Attacchi Piccoli"
+  },
+  {
+    "risultato_del_tiro": "106-110",
+    "corazza_di_piastre": "10A",
+    "corazza_di_maglie": "11B",
+    "cuoio_rinforzato": "12B",
+    "cuoio_grezzo": "14C",
+    "nessuna_armatura": "16C",
+    "note": null
+  },
+  {
+    "risultato_del_tiro": "111-115",
+    "corazza_di_piastre": "11B",
+    "corazza_di_maglie": "12C",
+    "cuoio_rinforzato": "13C",
+    "cuoio_grezzo": "15C",
+    "nessuna_armatura": "17D",
+    "note": null
+  },
+  {
+    "risultato_del_tiro": "116-120",
+    "corazza_di_piastre": "12B",
+    "corazza_di_maglie": "13C",
+    "cuoio_rinforzato": "14C",
+    "cuoio_grezzo": "16D",
+    "nessuna_armatura": "18D",
+    "note": "Risultati Massimi con Attacchi Medi"
+  },
+  {
+    "risultato_del_tiro": "121-125",
+    "corazza_di_piastre": "13C",
+    "corazza_di_maglie": "14D",
+    "cuoio_rinforzato": "15D",
+    "cuoio_grezzo": "17D",
+    "nessuna_armatura": "19E",
+    "note": null
+  },
+  {
+    "risultato_del_tiro": "126-130",
+    "corazza_di_piastre": "14C",
+    "corazza_di_maglie": "15D",
+    "cuoio_rinforzato": "16D",
+    "cuoio_grezzo": "18D",
+    "nessuna_armatura": "20E",
+    "note": null
+  },
+  {
+    "risultato_del_tiro": "131-135",
+    "corazza_di_piastre": "15D",
+    "corazza_di_maglie": "16D",
+    "cuoio_rinforzato": "17D",
+    "cuoio_grezzo": "19E",
+    "nessuna_armatura": "21E",
+    "note": "Risultati Massimi con Attacchi Grandi "
+  },
+  {
+    "risultato_del_tiro": "136-140",
+    "corazza_di_piastre": "16D",
+    "corazza_di_maglie": "17E",
+    "cuoio_rinforzato": "18E",
+    "cuoio_grezzo": "21E",
+    "nessuna_armatura": "22E",
+    "note": null
+  },
+  {
+    "risultato_del_tiro": "141-145",
+    "corazza_di_piastre": "17E",
+    "corazza_di_maglie": "18E",
+    "cuoio_rinforzato": "19E",
+    "cuoio_grezzo": "22E",
+    "nessuna_armatura": "23E",
+    "note": null
+  },
+  {
+    "risultato_del_tiro": "146-150",
+    "corazza_di_piastre": "18E",
+    "corazza_di_maglie": "19E",
+    "cuoio_rinforzato": "20E",
+    "cuoio_grezzo": "23E",
+    "nessuna_armatura": "24E",
+    "note": "Risultati Massimi con Attacchi Enormi"
+  }
+]

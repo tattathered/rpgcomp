@@ -1,0 +1,5 @@
+Colpo Critico PRIMARIO: È il colpo Critico normalmente conseguente all'attacco (dove non c'è indicazione il massimo è "B").
+
+Colpo Critico SECONDARIO: Se il Colpo Critico Primario è maggiore di "B", ad esso consegue un Colpo Critico "secondario". 11 Critico Secondario è sempre di due gradi minore di quello primario, come indicato dalle tabelle d'attacco (es.: Se il primario è di tipo " " , il secondario è di tipo "A", ece.).	
+
+Colpi Critici: CA=da calore; FR=da freddo; EL=da elettricità; IM=da impatto.	
