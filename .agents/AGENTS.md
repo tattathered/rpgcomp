@@ -61,3 +61,9 @@ firebase deploy --only hosting
 - Il `firebase deploy` legge il `dist/` già presente — non serve rebuildare.
 - Firebase Auth e Firestore **non richiedono deploy** — le regole e le config sono gestite via Console Firebase o script separati.
 - Progetto Firebase: `merp-companion-yagni` | Repo GitHub: `tattathered/rpgcomp`
+
+# Agent Execution Rules
+- NEVER repeat phrases of hesitation or intent (e.g., "I am ready", "Let's do this").
+- Once a plan is approved or a parameter is validated, execute the corresponding tool IMMEDIATELY.
+- Minimize text explanations in the thought process. If a tool call is required, transition to the tool invoke state within a single turn.
+- If you detect yourself repeating a phrase or an intent more than twice, trigger a fallback mechanism, state the blocker clearly, and stop execution until human intervention.
