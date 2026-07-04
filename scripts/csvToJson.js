@@ -14,9 +14,9 @@ if (!fs.existsSync(outputDir)) {
 }
 
 const IGNORED_CSVS = new Set([
-  'TB_4.1-avanzamento_abilita',
-  'TB_4.2-sviluppo_bonus_professione',
-  'TS_1-lingue_della_terra_di_mezzo-v2'
+  'TB-4.1-avanzamento_abilita',
+  'TB-4.2-sviluppo_bonus_professione',
+  'TS-1-lingue_della_terra_di_mezzo-v2'
 ]);
 
 fs.readdirSync(dataDir).forEach(file => {
