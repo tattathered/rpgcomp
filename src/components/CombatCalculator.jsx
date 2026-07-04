@@ -83,403 +83,20 @@ export default function CombatCalculator({
 
   // --- DATI ROSTER COMPUTATI ---
   const processedRoster = useMemo(() => {
-    return savedCharacters.map(char => {
-      const race = char.race;
-      const profession = char.profession;
-      const stats = char.stats || {};
-      const levelDevelopments = char.levelDevelopments || [];
-      const finalLevel = 1 + levelDevelopments.length;
-      
-      const bgData = char.background || { languages: {}, options: [] };
-      const bgModifiers = bgData.compiledModifiers || { statsBonus: {}, skillBgRanks: {}, secondarySkills: {}, gold: 0 };
-      
-      // 1. Final stats
-      const finalStats = getFinalStats(stats, race, bgModifiers);
-      
-      // 2. Weapon skills
-      const weaponSkillNames = [
-        'taglio a 1 mano',
-        'contundenti a 1 mano',
-        'a 2 mani',
-        'da tiro',
-        'da lancio',
-        'con asta',
-        'dardo',
-        'sfera'
-      ];
-      
-      const skillBonuses = {};
-      weaponSkillNames.forEach(name => {
-        skillBonuses[name] = getCharacterSkillBonus(char, name);
-      });
-      
-      // 3. Bonus Difensivo (BD)
-      const bdBase = finalStats['AG']?.bonusTot || 0;
-      const bdSpecial = bgModifiers.bdSpecialBonus || 0;
-      const finalBD = bdBase + bdSpecial;
-      
-      // 4. Equipped Armor type mapping
-      let mappedArmor = 'nessuna';
-      const eqArmor = (char.equippedArmor || '').toLowerCase();
-      if (eqArmor.includes('grezzo')) mappedArmor = 'cuoio_grezzo';
-      else if (eqArmor.includes('rinforzato')) mappedArmor = 'cuoio_rinforzato';
-      else if (eqArmor.includes('maglia')) mappedArmor = 'maglia';
-      else if (eqArmor.includes('piastre')) mappedArmor = 'piastre';
-      
-      // 5. HP Totali
-      const hpTot = getCharacterHpTot(char);
-      
-      // 6. Inventory weapons list (case-insensitive category match & qty check)
-      const inventoryWeapons = (char.equipment || [])
-        .filter(item => {
-          const isWeapon = (item.categoria || '').toLowerCase().trim() === 'armi';
-          const hasQty = (item.qtyEquip || 0) > 0 || (item.qtyCarico || 0) > 0 || (item.qty || 0) > 0;
-          return isWeapon && hasQty;
-        })
-        .map(item => {
-          const skillName = getSkillForWeapon(item);
-          const baseBO = skillBonuses[skillName] || 0;
-          return {
-            nome: item.nome,
-            skillName,
-            bo: baseBO
-          };
-        });
-      
-      // Fallback armi generiche se l'inventario è vuoto
-      if (inventoryWeapons.length === 0) {
-        weaponSkillNames.forEach(skillName => {
-          if (skillBonuses[skillName] > 0 || skillName === 'taglio a 1 mano') {
-            inventoryWeapons.push({
-              nome: `Arma da ${skillName} (Generica)`,
-              skillName,
-              bo: skillBonuses[skillName] || 0
-            });
-          }
-        });
-      }
-
-      // Rilevamento protezioni aggiuntive (scudo, bracciali metallo, schinieri metallo, elmo metallo)
-      const equippedItems = (char.equipment || []).filter(x => (x.qtyEquip || 0) > 0);
-      const hasShield = equippedItems.some(x => x.nome.toLowerCase().includes('scudo'));
-      
-      const braccialiItem = equippedItems.find(x => x.nome.toLowerCase().includes('bracciali'));
-      const hasMetalBracciali = braccialiItem ? braccialiItem.nome.toLowerCase().includes('metallo') : false;
-      
-      const schinieriItem = equippedItems.find(x => x.nome.toLowerCase().includes('schinieri'));
-      const hasMetalSchinieri = schinieriItem ? schinieriItem.nome.toLowerCase().includes('metallo') : false;
-      
-      const elmoItem = equippedItems.find(x => x.nome.toLowerCase().includes('elmo'));
-      const hasMetalElmo = elmoItem ? elmoItem.nome.toLowerCase().includes('metallo') : false;
-      
-      return {
-        id: char.id,
-        name: char.name,
-        equippedArmor: mappedArmor,
-        bd: finalBD,
-        hpTot,
-        hpSubiti: char.hpSubiti || 0,
-        boSpesoParata: char.boSpesoParata || 0,
-        weapons: inventoryWeapons,
-        skillBonuses,
-        hasShield,
-        hasMetalBracciali,
-        hasMetalSchinieri,
-        hasMetalElmo
-      };
-    });
+    return processPcRoster(savedCharacters);
   }, [savedCharacters]);
-
-  // Helper per determinare la taglia e la sua riga massima (capping)
-  const getCreatureSizeCap = (sizeStr) => {
-    const norm = (sizeStr || '').toLowerCase().trim();
-    if (norm.includes('piccolissimo') || norm === 'minuscolo') return 85;
-    if (norm.includes('piccolo')) return 105;
-    if (norm.includes('medio')) return 120;
-    if (norm.includes('grande')) return 135;
-    if (norm.includes('enorme')) return 150;
-    return 150;
-  };
-
-  // Helper per mappare la taglia della creatura all'armatura MERP standard
-  const mapCreatureArmor = (armorStr) => {
-    const norm = (armorStr || '').toLowerCase().trim();
-    if (norm.includes('piastra') || norm.includes('piastre')) return 'piastre';
-    if (norm.includes('maglia') || norm.includes('maglie')) return 'maglia';
-    if (norm.includes('rinforzato') || norm.includes('rinforzata')) return 'cuoio_rinforzato';
-    if (norm.includes('grezzo') || norm.includes('morbido') || norm.includes('morbida') || norm.includes('cuoio')) return 'cuoio_grezzo';
-    return 'nessuna';
-  };
-
-  // Helper per trovare l'attacco della creatura nel dataset TSC-2
-  const getCreatureAttackDetails = (attackString) => {
-    if (!attackString) return null;
-    const match = attackString.match(/\(([^)]+)\)/);
-    if (!match) return null;
-    const abbr = match[1].toLowerCase().trim();
-    
-    const stat = animalAttackStats.find(s => {
-      const sAbbr = (s["(Abbreviazione)"] || "").replace(/[()]/g, "").toLowerCase().trim();
-      return sAbbr === abbr;
-    });
-    return stat || null;
-  };
-
-  // Helper per mappare abbreviazione critico creatura alla tabella MERP
-  const mapCreatureCritToTable = (critStr) => {
-    const norm = (critStr || '').trim().toUpperCase();
-    if (norm.startsWith('IM')) return 'TC-1';
-    if (norm.startsWith('TA')) return 'TC-2';
-    if (norm.startsWith('PU')) return 'TC-3';
-    if (norm.startsWith('PE')) return 'TC-4';
-    if (norm.startsWith('PR')) return 'TC-5';
-    return 'TC-2';
-  };
-
-  // Helper per cercare il risultato per range (TA-5 e TA-6)
-  const findRangeRow = (jsonList, rollResult) => {
-    return jsonList.find(row => {
-      const rawRange = row.risultato_del_tiro;
-      if (!rawRange) return false;
-      
-      let cleanRange = rawRange.replace(/[a-zA-Z]/g, "").trim();
-      const parts = cleanRange.split('-');
-      if (parts.length === 2) {
-        const min = parseInt(parts[0], 10);
-        const max = parseInt(parts[1], 10);
-        return rollResult >= min && rollResult <= max;
-      }
-      
-      const parsedVal = parseInt(cleanRange, 10);
-      if (!isNaN(parsedVal)) {
-        return rollResult === parsedVal;
-      }
-      
-      return false;
-    });
-  };
 
   // Seleziona arma per attaccante da roster
   const [selectedWeaponIdx, setSelectedWeaponIdx] = useState(0);
 
   // Risoluzione compatta dell'attaccante attivo (PG, PNG o Creatura)
   const attackerInfo = useMemo(() => {
-    if (attackerId === 'custom') {
-      return {
-        type: 'custom',
-        name: customAttackerName,
-        bo: attackerBO,
-        hpTot: attackerHpTot,
-        hpSubiti: attackerHpSubiti,
-        weapons: [],
-        size: 'medio'
-      };
-    }
-    
-    if (attackerId.startsWith('pc-')) {
-      const pcId = attackerId.substring(3);
-      const pc = processedRoster.find(c => c.id === pcId);
-      if (!pc) return null;
-      return {
-        type: 'pc',
-        id: pc.id,
-        name: pc.name,
-        bo: pc.weapons[selectedWeaponIdx]?.bo || 0,
-        hpTot: pc.hpTot,
-        hpSubiti: pc.hpSubiti || 0,
-        boSpesoParata: pc.boSpesoParata || 0,
-        weapons: pc.weapons,
-        size: 'medio',
-        hasShield: pc.hasShield,
-        hasMetalBracciali: pc.hasMetalBracciali,
-        hasMetalSchinieri: pc.hasMetalSchinieri,
-        hasMetalElmo: pc.hasMetalElmo
-      };
-    }
-    
-    if (attackerId.startsWith('npc-')) {
-      const npcId = attackerId.substring(4);
-      const npc = campaignNpcs.find(n => n.id === npcId);
-      if (!npc) return null;
-      
-      const npcWeapons = [];
-      if (npc.skills) {
-        if (npc.skills["Arma primaria"] !== undefined) {
-          npcWeapons.push({ nome: `Arma Primaria`, bo: npc.skills["Arma primaria"], skillName: "taglio a 1 mano" });
-        }
-        if (npc.skills["Arma secondaria"] !== undefined) {
-          npcWeapons.push({ nome: `Arma Secondaria`, bo: npc.skills["Arma secondaria"], skillName: "taglio a 1 mano" });
-        }
-        if (npc.skills["Arma terziaria"] !== undefined) {
-          npcWeapons.push({ nome: `Arma Terziaria`, bo: npc.skills["Arma terziaria"], skillName: "taglio a 1 mano" });
-        }
-        if (npc.skills["Arma altre"] !== undefined) {
-          npcWeapons.push({ nome: `Arma Altre`, bo: npc.skills["Arma altre"], skillName: "taglio a 1 mano" });
-        }
-        if (npc.skills["Incantesimi diretti"] !== undefined) {
-          npcWeapons.push({ nome: `Incantesimi Diretti`, bo: npc.skills["Incantesimi diretti"], skillName: "dardo" });
-        }
-      }
-      
-      if (npcWeapons.length === 0) {
-        npcWeapons.push({ nome: "Attacco Base", bo: 0, skillName: "taglio a 1 mano" });
-      }
-      
-      const selectedW = npcWeapons[selectedWeaponIdx] || npcWeapons[0];
-      
-      return {
-        type: 'npc',
-        id: npc.id,
-        name: npc.name,
-        bo: selectedW.bo,
-        hpTot: npc.hpMax || 0,
-        hpSubiti: (npc.hpMax || 0) - (npc.hpCorrenti !== undefined ? npc.hpCorrenti : (npc.hpMax || 0)),
-        weapons: npcWeapons,
-        size: 'medio'
-      };
-    }
-    
-    if (attackerId.startsWith('creature-')) {
-      const creatureId = attackerId.substring(9);
-      const creature = campaignCreatures.find(c => c.id === creatureId);
-      if (!creature) return null;
-      
-      const creatureWeapons = [];
-      if (creature.Attacco_uno) {
-        creatureWeapons.push({
-          nome: creature.Attacco_uno,
-          bo: creature.Attacco_uno_BO || 0,
-          isCreatureAttack: true,
-          attackType: 'Attacco_uno'
-        });
-      }
-      if (creature.Attacco_due) {
-        creatureWeapons.push({
-          nome: creature.Attacco_due,
-          bo: creature.Attacco_due_BO || 0,
-          isCreatureAttack: true,
-          attackType: 'Attacco_due'
-        });
-      }
-      
-      if (creatureWeapons.length === 0) {
-        creatureWeapons.push({ nome: "Attacco Base", bo: 0, isCreatureAttack: true, attackType: 'Attacco_uno' });
-      }
-      
-      const selectedW = creatureWeapons[selectedWeaponIdx] || creatureWeapons[0];
-      
-      return {
-        type: 'creature',
-        id: creature.id,
-        name: creature.Nome,
-        bo: selectedW.bo,
-        hpTot: creature.punti_ferita || 0,
-        hpSubiti: (creature.punti_ferita || 0) - (creature.hpCorrenti !== undefined ? creature.hpCorrenti : (creature.punti_ferita || 0)),
-        weapons: creatureWeapons,
-        size: creature.Dimensioni_animale || 'medio'
-      };
-    }
-    
-    return null;
+    return buildAttackerInfo(attackerId, customAttackerName, attackerBO, attackerHpTot, attackerHpSubiti, processedRoster, campaignNpcs, campaignCreatures, selectedWeaponIdx);
   }, [attackerId, customAttackerName, attackerBO, attackerHpTot, attackerHpSubiti, processedRoster, campaignNpcs, campaignCreatures, selectedWeaponIdx]);
 
   // Risoluzione compatta del difensore attivo (PG, PNG o Creatura)
   const defenderInfo = useMemo(() => {
-    if (defenderId === 'custom') {
-      return {
-        type: 'custom',
-        name: customDefenderName,
-        bd: defenderBD,
-        armor: defenderArmor,
-        hpTot: defenderHpTot,
-        hpSubiti: defenderHpSubiti
-      };
-    }
-    
-    if (defenderId.startsWith('pc-')) {
-      const pcId = defenderId.substring(3);
-      const pc = processedRoster.find(c => c.id === pcId);
-      if (!pc) return null;
-      return {
-        type: 'pc',
-        id: pc.id,
-        name: pc.name,
-        bd: pc.bd,
-        armor: pc.equippedArmor,
-        hpTot: pc.hpTot,
-        hpSubiti: pc.hpSubiti || 0,
-        weapons: pc.weapons,
-        hasShield: pc.hasShield,
-        hasMetalBracciali: pc.hasMetalBracciali,
-        hasMetalSchinieri: pc.hasMetalSchinieri,
-        hasMetalElmo: pc.hasMetalElmo
-      };
-    }
-    
-    if (defenderId.startsWith('npc-')) {
-      const npcId = defenderId.substring(4);
-      const npc = campaignNpcs.find(n => n.id === npcId);
-      if (!npc) return null;
-      
-      const npcWeapons = [];
-      if (npc.skills) {
-        if (npc.skills["Arma primaria"] !== undefined) npcWeapons.push({ nome: `Arma Primaria`, bo: npc.skills["Arma primaria"] });
-        if (npc.skills["Arma secondaria"] !== undefined) npcWeapons.push({ nome: `Arma Secondaria`, bo: npc.skills["Arma secondaria"] });
-        if (npc.skills["Arma terziaria"] !== undefined) npcWeapons.push({ nome: `Arma Terziaria`, bo: npc.skills["Arma terziaria"] });
-        if (npc.skills["Arma altre"] !== undefined) npcWeapons.push({ nome: `Arma Altre`, bo: npc.skills["Arma altre"] });
-      }
-      
-      return {
-        type: 'npc',
-        id: npc.id,
-        name: npc.name,
-        bd: npc.db || 0,
-        armor: npc.equippedArmor || 'nessuna',
-        hpTot: npc.hpMax || 0,
-        hpSubiti: (npc.hpMax || 0) - (npc.hpCorrenti !== undefined ? npc.hpCorrenti : (npc.hpMax || 0)),
-        weapons: npcWeapons
-      };
-    }
-    
-    if (defenderId.startsWith('creature-')) {
-      const creatureId = defenderId.substring(9);
-      const creature = campaignCreatures.find(c => c.id === creatureId);
-      if (!creature) return null;
-      
-      const creatureWeapons = [];
-      if (creature.Attacco_uno) {
-        creatureWeapons.push({
-          nome: creature.Attacco_uno,
-          bo: creature.Attacco_uno_BO || 0,
-          isCreatureAttack: true,
-          attackType: 'Attacco_uno'
-        });
-      }
-      if (creature.Attacco_due) {
-        creatureWeapons.push({
-          nome: creature.Attacco_due,
-          bo: creature.Attacco_due_BO || 0,
-          isCreatureAttack: true,
-          attackType: 'Attacco_due'
-        });
-      }
-      if (creatureWeapons.length === 0) {
-        creatureWeapons.push({ nome: "Attacco Base", bo: 0, isCreatureAttack: true, attackType: 'Attacco_uno' });
-      }
-
-      return {
-        type: 'creature',
-        id: creature.id,
-        name: creature.Nome,
-        bd: creature.bonus_difensivo || 0,
-        armor: mapCreatureArmor(creature.tipo_armatura),
-        hpTot: creature.punti_ferita || 0,
-        hpSubiti: (creature.punti_ferita || 0) - (creature.hpCorrenti !== undefined ? creature.hpCorrenti : (creature.punti_ferita || 0)),
-        weapons: creatureWeapons
-      };
-    }
-    
-    return null;
+    return buildDefenderInfo(defenderId, customDefenderName, defenderBD, defenderArmor, defenderHpTot, defenderHpSubiti, processedRoster, campaignNpcs, campaignCreatures);
   }, [defenderId, customDefenderName, defenderBD, defenderArmor, defenderHpTot, defenderHpSubiti, processedRoster, campaignNpcs, campaignCreatures]);
 
   const defenderWeaponBO = useMemo(() => {
@@ -664,43 +281,19 @@ export default function CombatCalculator({
       }
     }
 
-    const armorColName = ARMOR_COLUMNS[defenderArmor] || 'nessuna_armatura';
     const finalResult = finalAttackResult;
 
-    let cellValue = '';
-    const isSpell = tableCode === 'TA-7' || tableCode === 'TA-8';
-    const isCreatureTable = tableCode === 'TA-5' || tableCode === 'TA-6';
+    let cellValue = resolveTableValue(tableCode, finalResult, defenderArmor);
 
-    if (isSpell) {
-      const outcome = resolveSpellAttack(finalResult, tableCode, defenderArmor);
-      cellValue = outcome ? String(outcome.valore).trim() : '0';
-      if (cellValue === 'F' && diceRoll > 2) {
-        cellValue = '0'; // treated as miss since natural roll is > 2
-      }
-    } else if (isCreatureTable) {
-      const jsonList = tableCode === 'TA-5' ? ta5ZanneArtigli : ta6ImmobilizzSbilanc;
-      const row = findRangeRow(jsonList, finalResult);
-      if (!row) {
-        setCombatOutcome({
-          type: 'error',
-          message: `Nessun dato trovato per il tiro ${finalResult} sulla tabella ${tableCode}.`
-        });
-        return;
-      }
-      cellValue = String(row[armorColName] || '').trim();
-    } else {
-      // Cerca nel JSON delle tabelle d'attacco
-      const row = attackTables.find(r => r.tabella === tableCode && r.risultato_del_tiro === finalResult);
-
-      if (!row) {
-        setCombatOutcome({
-          type: 'error',
-          message: `Nessun dato trovato per il tiro ${finalResult} sulla tabella ${tableCode}.`
-        });
-        return;
-      }
-      cellValue = String(row[armorColName] || '').trim();
+    if (cellValue === null || cellValue === undefined) {
+      setCombatOutcome({
+        type: 'error',
+        message: `Nessun dato trovato per il tiro ${finalResult} sulla tabella ${tableCode}.`
+      });
+      return;
     }
+
+    const isSpell = tableCode === 'TA-7' || tableCode === 'TA-8';
 
     const isFumble = isSpell 
       ? (diceRoll <= 2) 
@@ -713,7 +306,6 @@ export default function CombatCalculator({
         roll: diceRoll,
         finalResult,
         tableCode,
-        armorColName,
         message: isSpell ? 'FALLIMENTO INCANTESIMO!' : 'FALLIMENTO GRAVE - COLPO MALDESTRO!',
         details: isSpell 
           ? 'Il lancio dell\'incantesimo è fallito. Il Master chiederà di effettuare un tiro d100 sulla tabella dei Fallimenti Incantesimi (TTM-3) per risolverne le conseguenze.'
@@ -731,7 +323,6 @@ export default function CombatCalculator({
         roll: diceRoll,
         finalResult,
         tableCode,
-        armorColName,
         message: 'COLPO MANCATO',
         details: 'L\'attacco non è abbastanza forte da superare le difese o l\'armatura del bersaglio. Nessun danno inflitto.'
       });
@@ -794,7 +385,6 @@ export default function CombatCalculator({
           roll: diceRoll,
           finalResult,
           tableCode,
-          armorColName,
           damage: finalDamage,
           criticalType: critType,
           criticalModifier: critMod,
@@ -831,7 +421,6 @@ export default function CombatCalculator({
           roll: diceRoll,
           finalResult,
           tableCode,
-          armorColName,
           damage,
           criticalType: null,
           message: `COLPO A SEGNO: ${cellValue}`,
@@ -871,11 +460,6 @@ export default function CombatCalculator({
     setShowFumbleResolver(false);
     setShowCriticalResolver(false);
     setFumbleDiceRoll(50);
-    setFumbleManualRoll('50');
-    setFumbleModifierCustom(0);
-    setFumbleResultOverride(null);
-    setFumbleSpellClass('P');
-    setFumbleManoeuvreDifficulty('Difficile');
   };
 
   return (
