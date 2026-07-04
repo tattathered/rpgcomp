@@ -2,6 +2,9 @@ import { db } from "../firebase";
 import {
   doc,
   getDoc,
+  getDocs,
+  collection,
+  addDoc,
   updateDoc,
   writeBatch,
   serverTimestamp
@@ -33,6 +36,59 @@ export const deleteCharacter = async (gmId, charId) => {
 // Sottoscrizione in tempo reale alla lista dei personaggi del GM
 export const subscribeToCharacters = (gmId, callback) => {
   return subscribeToCollection(gmId, SUBCOLLECTION, callback, { sortBy: "name" });
+};
+
+// Fetch one-shot di tutti i personaggi del GM
+export const fetchCharacters = async (gmId) => {
+  const colRef = collection(db, "gms", gmId, SUBCOLLECTION);
+  const snap = await getDocs(colRef);
+  return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+};
+
+// Duplica un personaggio
+export const duplicateCharacter = async (gmId, char) => {
+  const { id, ...data } = char;
+  const colRef = collection(db, "gms", gmId, SUBCOLLECTION);
+  const docRef = await addDoc(colRef, {
+    ...data,
+    name: `${data.name} (Copia)`,
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp()
+  });
+  return { id: docRef.id, ...data, name: `${data.name} (Copia)` };
+};
+
+// Esporta un personaggio come file JSON scaricabile
+export const exportCharacter = (char) => {
+  const blob = new Blob([JSON.stringify(char, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `${char.name || "personaggio"}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+};
+
+// Importa un personaggio da file JSON
+export const importCharacter = async (user, savedCharacters, setSavedCharacters) => {
+  const input = document.createElement("input");
+  input.type = "file";
+  input.accept = ".json";
+  input.onchange = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    try {
+      const text = await file.text();
+      const data = JSON.parse(text);
+      const charData = { ...data, id: undefined };
+      const saved = await saveCharacter(user.uid, charData);
+      setSavedCharacters(prev => [...prev, saved]);
+    } catch (err) {
+      console.error("Errore importazione personaggio:", err);
+      alert("Errore durante l'importazione del personaggio.");
+    }
+  };
+  input.click();
 };
 
 // Aggiorna gli HP subiti di un personaggio

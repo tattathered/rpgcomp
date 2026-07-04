@@ -101,3 +101,6 @@ export const saveSpellCatalog = async (gmId, catalog) => {
     updatedAt: serverTimestamp()
   });
 };
+
+// Alias per compatibilità con App.jsx
+export const fetchSpellCatalog = (gmId) => getSpellCatalog(gmId);

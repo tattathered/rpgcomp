@@ -1,6 +1,8 @@
 import { db } from "../firebase";
 import {
   doc,
+  getDocs,
+  collection,
   updateDoc,
   serverTimestamp
 } from "firebase/firestore";
@@ -79,3 +81,21 @@ export const updateCampaignActorHp = async (gmId, type, actorId, newHp) => {
     updatedAt: serverTimestamp()
   });
 };
+
+// Fetch one-shot di tutti i PNG del GM
+export const fetchNpcs = async (gmId) => {
+  const colRef = collection(db, "gms", gmId, NPC_SUBCOLLECTION);
+  const snap = await getDocs(colRef);
+  return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+};
+
+// Fetch one-shot di tutte le Creature del GM
+export const fetchCreatures = async (gmId) => {
+  const colRef = collection(db, "gms", gmId, CREATURE_SUBCOLLECTION);
+  const snap = await getDocs(colRef);
+  return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+};
+
+// Alias per compatibilità
+export const deleteNpc = deleteCampaignNpc;
+export const deleteCreature = deleteCampaignCreature;

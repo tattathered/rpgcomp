@@ -32,3 +32,6 @@ export const saveEquipmentCatalog = async (gmId, catalog) => {
     updatedAt: serverTimestamp()
   });
 };
+
+// Alias per compatibilità con App.jsx
+export const fetchEquipmentCatalog = (gmId) => getEquipmentCatalog(gmId);
