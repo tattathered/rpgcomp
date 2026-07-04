@@ -1,6 +1,11 @@
 # MERP Companion — Analisi Funzionale e Stato del Sistema
-**Data:** 15 Giugno 2026  
-**Versione:** v2.3.0 (Combat, Inventory & Sheet Updates)
+
+> [!WARNING]
+> **DOCUMENTO STORICO / BASELINE:** Questo documento rappresenta l'analisi funzionale e lo stato di sviluppo del sistema alla data del **15 Giugno 2026**. 
+> Per lo stato del sistema corrente, i dettagli tecnologici aggiornati e l'avanzamento complessivo, fare riferimento alla memoria centrale [**`docs/memory.md`**](file:///Users/yagni/Geek/antigravity/merpcomp/docs/memory.md) e agli spoke dei requisiti dedicati in [**`docs/requirements/`**](file:///Users/yagni/Geek/antigravity/merpcomp/docs/requirements/).
+
+**Data:** 15 Giugno 2026 (Aggiornato storicamente il 4 Luglio 2026)  
+**Versione:** v2.3.0 (Storica, allineata a v3.0.0 per i moduli critici/lanci)
 
 
 ---
@@ -95,7 +100,7 @@ gms/{gmId}/
 
 ## 3. Funzionalità — Stato di Implementazione
 
-### ✅ IMPLEMENTATE (34)
+### ✅ IMPLEMENTATE (41)
 
 #### Autenticazione e Utenti
 | Funzionalità | Componente | Note |
@@ -116,13 +121,13 @@ gms/{gmId}/
 | Generazione caratteristiche | `StatsStep.jsx` | 3 metodi: classico, punti, manuale |
 | Calcolo bonus caratteristiche | `StatsStep.jsx` | Da TB-1 |
 | Sviluppo adolescenza | `AdolescenceStep.jsx` | Gradi fissi per popolo (TGP-5) |
-| Sviluppo Livello 1 | `ApprenticeshipLevel1Step.jsx` | Gradi TB-6 + Punti Sviluppo TGP-4 |
+| Sviluppo Livello 1 | `ApprenticeshipLevel1Step.jsx` | Gradi TB-6 + Punti Sviluppo TGP-4 (validati) |
 | Background e lingue | `BackgroundStep.jsx` | 7 categorie opzioni (TGP-2) |
 | Liste incantesimi | `BackgroundStep.jsx` + `ApprenticeshipLevel1Step.jsx` | Tiro 1d100, credito %, accumulo |
 | Equipaggiamento iniziale | `EquipmentStep.jsx` | Catalogo, quantità, carico, costo, acquisto |
 | Calcolo penalità carico | `EquipmentStep.jsx` | Da TB-5 |
 | Riepilogo creazione | `CreationSummaryStep.jsx` | Statistiche finali, bonus skill, HP, TR |
-| Apprendimento (livelli) | `LearningStep.jsx` | Sviluppo livelli consecutivi |
+| Apprendimento (livelli) | `LearningStep.jsx` | Sviluppo livelli consecutivi (revisionati e integrati) |
 | Scheda personaggio finale | `CharacterSheetStep.jsx` | Vista completa |
 
 #### Gestione GM (Roster e Organizzazione)
@@ -138,6 +143,7 @@ gms/{gmId}/
 | Catalogo equipaggiamento GM | `EquipmentCatalogManager.jsx` | CRUD, Firestore persistenza |
 | Catalogo incantesimi GM | `SpellCatalogManager.jsx` | CRUD, Firestore persistenza |
 | Visualizzazione incantesimi | `SpellCatalogViewer.jsx` | Ordinamento canonico |
+| Visualizzazione note liste incantesimi | `SpellCatalogManager.jsx` | Note integrate e verificate |
 
 #### Risoluzione Azioni
 | Funzionalità | Componente | Note |
@@ -147,6 +153,9 @@ gms/{gmId}/
 | Combattimento | `CombatCalculator.jsx` | Calcolatore attacchi completo |
 | Colpi maldestri (fumble) | `FumbleResolver.jsx` | Tabelle TTM-1..TTM-4 |
 | Azzeramento parate (Nuovo Round) | `CombatCalculator.jsx` + `characterService.js` | Batch Firestore |
+| Risoluzione colpi critici (TC-1..TC-9) | `CriticalResolver.jsx` | Completato ed integrato in CombatCalculator |
+| Risoluzione incantesimi base (TA-9) | `SpellResolver.jsx` | Completato (tab autonoma GM) |
+| Risoluzione incantesimi diretti (TA-7/8) | `SpellResolver.jsx` | Completato (dardi/sfere, integrato in CombatCalculator) |
 
 #### Player Side
 | Funzionalità | Componente | Note |
@@ -159,22 +168,13 @@ gms/{gmId}/
 |---|---|---|
 | Export CSV dati di gioco | `CsvExportManager.jsx` | |
 
-### 🔄 DA RIVEDERE / MIGLIORARE (4)
+### 🔄 DA RIVEDERE / MIGLIORARE (0)
 
-| Funzionalità | Problema | Priorità |
-|---|---|---|
-| **ApprenticeshipLevel1Step** | Logica di distribuzione gradi TB-6 e Punti Sviluppo TGP-4 da riesaminare per correttezza regolistica | Alta |
-| **LearningStep** | Sviluppo livelli successivi: validazione regole e test | Media |
-| **CombatCalculator** | Integrazione colpi critici dopo il tiro (attualmente solo notifica del tipo) | Media |
-| **SpellCatalogManager note** | Visualizzazione note liste incantesimi (rifatta recentemente, da testare) | Bassa |
+*Nessuna funzionalità da rivedere o migliorare al momento.*
 
-### ❌ DA SVILUPPARE (3)
+### ❌ DA SVILUPPARE (0)
 
-| Funzionalità | Note | Priorità |
-|---|---|---|
-| **Colpi Critici (TC-1..TC-9)** | Risolutore dedicato con tabelle complete. Placeholder attuale | Alta |
-| **Incantesimi Base (risoluzione)** | Risoluzione incantesimi base con tabelle | Media |
-| **Incantesimi Diretti (risoluzione)** | Risoluzione incantesimi diretti con tabelle | Media |
+*Tutte le funzionalità pianificate sono state sviluppate.*
 
 ---
 
@@ -300,15 +300,15 @@ gms/{gmId}/
 ## 6. Raccomandazioni per Prossimi Sviluppi
 
 ### 6.1 Priorità Alta
-1. **Risoluzione colpi critici** — Implementare risolutore basato su `data/TC-*.csv` (già presenti nel progetto)
-2. **Revisione ApprenticeshipLevel1Step** — Verifica distribuzione gradi e costi PS
+1. **Supporto Attacchi Multipli (CR-001)** — Supporto attacchi multipli per round nel CombatCalculator (Mostri/Animali).
+2. **Gestione Inventario Dinamico** — Modifica dell'equipaggiamento direttamente dalla scheda PG attiva con ricalcolo bonus.
 
 ### 6.2 Priorità Media
-3. **LearningStep** — Validazione regole crescita multi-livello
-4. **Integrazione colpi critici** nel flusso CombatCalculator
-5. **Test automatici** — Vitest + Testing Library per flusso creazione PG
+3. **Combat Tracker & Iniziativa** — Tracciamento turni ed iniziativa sul server.
+4. **Test automatici** — Vitest + Testing Library per flusso creazione PG.
 
 ### 6.3 Priorità Bassa
-6. **Incantesimi base/diretti** — Risolutori dedicati
-7. **Export PDF** dalla scheda personaggio
-8. **localStorage** backup automatico creazione PG
+5. **Parser Automatico CodexText** — Wrapper per linkare in automatico parole nei testi descrittivi.
+6. **Glossario Ricercabile** — Interfaccia per la ricerca libera nel Codex.
+7. **Export PDF** dalla scheda personaggio.
+8. **localStorage** backup automatico creazione PG.
