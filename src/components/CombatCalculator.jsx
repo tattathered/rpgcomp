@@ -1,154 +1,29 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Swords, RotateCcw, AlertTriangle, AlertOctagon, Play, HelpCircle, Heart, Shield, Sparkles, Target, User } from 'lucide-react';
-import attackTables from '../data/Tabelle-Attacco-TA-1_TA-2_TA-3_TA-4.json';
-import ta5ZanneArtigli from '../data/TA-5-zanne_e_artigli.json';
-import ta6ImmobilizzSbilanc from '../data/TA-6-immobilizzazione_sbilanciamento.json';
-import animalAttackStats from '../data/TSC-2-statistiche_degli_animali.json';
 import FumbleResolver from './FumbleResolver';
 import CriticalResolver from './CriticalResolver';
-import { resolveSpellAttack } from '../utils/spellHelpers';
+import { fmt } from '../utils/skillHelpers';
 import {
-  getFinalStats,
-  getSpecificTb6Ranks,
-  getProfessionRanksForLevel,
-  getRanksBonus,
-  getIngombroBonus,
-  parseBonusValue,
-  fmt,
-  getCharacterHpTot,
-  getCharacterSkillBonus
-} from '../utils/skillHelpers';
-
-const WEAPON_SKILL_TO_TABLE = {
-  'taglio a 1 mano': 'TA-1',
-  'contundenti a 1 mano': 'TA-2',
-  'a 2 mani': 'TA-3',
-  'da tiro': 'TA-4',
-  'con asta': 'TA-3', // le armi con asta usano armi a due mani TA-3
-  'da lancio': 'TA-1', // default, verrà mappata dinamicamente
-  'dardo': 'TA-7',
-  'sfera': 'TA-8',
-  'zanne_e_artigli': 'TA-5',
-  'immobilizzazione_sbilanciamento': 'TA-6'
-};
-
-const TABLE_NAMES = {
-  'TA-1': 'Armi da Taglio a una Mano (TA-1)',
-  'TA-2': 'Armi Contundenti a una Mano (TA-2)',
-  'TA-3': 'Armi a Due Mani (TA-3)',
-  'TA-4': 'Armi da Tiro (TA-4)',
-  'TA-5': 'Zanne e Artigli (TA-5)',
-  'TA-6': 'Immobilizzazione e Sbilanciamento (TA-6)',
-  'TA-7': 'Incantesimi Dardo (TA-7)',
-  'TA-8': 'Incantesimi Sfera (TA-8)'
-};
-
-const ARMOR_COLUMNS = {
-  'nessuna': 'nessuna_armatura',
-  'cuoio_grezzo': 'cuoio_grezzo',
-  'cuoio_rinforzato': 'cuoio_rinforzato',
-  'maglia': 'corazza_di_maglie',
-  'piastre': 'corazza_di_piastre'
-};
-
-const ARMOR_DISPLAY = {
-  'nessuna': 'Nessuna Armatura',
-  'cuoio_grezzo': 'Cuoio Grezzo',
-  'cuoio_rinforzato': 'Cuoio Rinforzato',
-  'maglia': 'Corazza di Maglia',
-  'piastre': 'Corazza di Piastre'
-};
-
-const CRITICAL_MODIFIERS = {
-  'A': -20,
-  'B': -10,
-  'C': 0,
-  'D': 10,
-  'E': 20,
-  'T': -50
-};
-
-// Helper per determinare la categoria di skill associata ad un'arma
-const getSkillForWeapon = (item) => {
-  const nome = (item.nome || '').toLowerCase();
-  const note = (item.note || item.note_base || '').toLowerCase();
-  
-  if (nome.includes('dardo') || note.includes('dardo')) {
-    return 'dardo';
-  }
-  if (nome.includes('sfera') || note.includes('sfera')) {
-    return 'sfera';
-  }
-  if (note.includes('con asta') || nome.includes('lancia') || nome.includes('giavellotto')) {
-    return 'con asta';
-  }
-  if (note.includes('2 mani') || note.includes('due mani') || nome.includes('a 2 mani') || nome.includes('a due mani')) {
-    return 'a 2 mani';
-  }
-  if (note.includes('da tiro') || note.includes('tiro') || nome.includes('arco') || nome.includes('balestra') || nome.includes('fionda')) {
-    return 'da tiro';
-  }
-  if (note.includes('lancio') || note.includes('da lancio') || nome.includes('bolas')) {
-    return 'da lancio';
-  }
-  if (note.includes('contundente') || nome.includes('randello') || nome.includes('mazzafrusto') || nome.includes('rete') || nome.includes('martello')) {
-    return 'contundenti a 1 mano';
-  }
-  return 'taglio a 1 mano';
-};
-
-const getFumbleModifierForWeapon = (category, name) => {
-  const cat = (category || '').toLowerCase();
-  const n = (name || '').toLowerCase();
-  if (cat === 'da tiro' || cat === 'da lancio') {
-    if (n.includes('balestra')) return 20;
-    if (n.includes('arco lungo')) return 10;
-    if (n.includes('arco composto')) return 0;
-    if (n.includes('arco corto')) return -10;
-    if (n.includes('fionda')) return -20;
-    return 0;
-  } else {
-    if (cat === 'taglio a 1 mano') return -10;
-    if (cat === 'contundenti a 1 mano') return -20;
-    if (cat === 'con asta') return 10;
-    if (cat === 'a 2 mani') return 0;
-    return 0;
-  }
-};
-
-const getCriticalTableForWeapon = (category, name) => {
-  const cat = (category || '').toLowerCase();
-  const n = (name || '').toLowerCase();
-  
-  if (cat === 'dardo' || cat === 'sfera') {
-    if (n.includes('fuoco') || n.includes('calore')) return 'TC-6';
-    if (n.includes('ghiaccio') || n.includes('freddo')) return 'TC-7';
-    if (n.includes('fulmine') || n.includes('elettricità') || n.includes('fulm')) return 'TC-8';
-    if (n.includes('impatto') || n.includes('energia') || n.includes('acqua')) return 'TC-1';
-    return 'TC-6'; // default
-  }
-  if (cat === 'contundenti a 1 mano') return 'TC-1'; // Impatto
-  if (cat === 'da tiro' || cat === 'da lancio') {
-    if (n.includes('fionda') || n.includes('sasso') || n.includes('pietra') || n.includes('bolas')) {
-      if (n.includes('bolas')) return 'TC-4'; // Perdita equilibrio
-      return 'TC-1'; // Impatto
-    }
-    return 'TC-3'; // Punta
-  }
-  if (cat === 'con asta') {
-    if (n.includes('ascia') || n.includes('alabarda')) return 'TC-2'; // Taglio
-    return 'TC-3'; // Punta
-  }
-  if (cat === 'a 2 mani') {
-    if (n.includes('martello') || n.includes('mazza')) return 'TC-1'; // Impatto
-    return 'TC-2'; // Taglio
-  }
-  // Taglio a 1 mano
-  if (n.includes('stocco') || n.includes('daga') || n.includes('pugnale')) {
-    return 'TC-3'; // Punta
-  }
-  return 'TC-2'; // Taglio (default)
-};
+  WEAPON_SKILL_TO_TABLE,
+  TABLE_NAMES,
+  ARMOR_COLUMNS,
+  ARMOR_DISPLAY,
+  CRITICAL_MODIFIERS,
+  getSkillForWeapon,
+  getFumbleModifierForWeapon,
+  getCriticalTableForWeapon,
+  getCreatureSizeCap,
+  mapCreatureArmor,
+  getCreatureAttackDetails,
+  mapCreatureCritToTable,
+  findRangeRow,
+  resolveTableValue
+} from '../utils/combatHelpers';
+import {
+  processPcRoster,
+  buildAttackerInfo,
+  buildDefenderInfo
+} from '../utils/combatRosterProcessor';
 
 export default function CombatCalculator({ 
   savedCharacters, 
