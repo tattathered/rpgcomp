@@ -1,27 +1,47 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import {
   Upload, Plus, Users, FolderOpen, Download, Copy, Trash2,
   Compass, Swords
 } from 'lucide-react';
 import ErrorBoundary from './ErrorBoundary';
-import CharacterWizard from './CharacterWizard/CharacterWizard';
-import PlayerManager from './GM/PlayerManager';
-import CompanyManager from './GM/CompanyManager';
-import CampaignManager from './GM/CampaignManager';
-import CombatCalculator from './CombatCalculator';
-import MovementManoeuvreResolver from './MovementManoeuvreResolver';
-import FumbleResolver from './FumbleResolver';
-import StaticManoeuvreResolver from './StaticManoeuvreResolver';
-import CriticalResolver from './CriticalResolver';
-import SpellResolver from './SpellResolver';
-import EquipmentCatalogManager from './EquipmentCatalogManager';
-import SpellCatalogManager from './SpellCatalogManager';
-import CodexAdminTab from './GM/CodexAdminTab';
-import CsvExportManager from './CsvExportManager';
-import NpcCatalogTab from './GM/NpcCatalogTab';
-import CreatureCatalogTab from './GM/CreatureCatalogTab';
-import CampaignRosterManager from './GM/CampaignRosterManager';
 import { getCharacterHpTot } from '../utils/skillHelpers';
+
+// Lazy-loaded components — caricati solo quando il tab è attivo
+const CharacterWizard = lazy(() => import('./CharacterWizard/CharacterWizard'));
+const PlayerManager = lazy(() => import('./GM/PlayerManager'));
+const CompanyManager = lazy(() => import('./GM/CompanyManager'));
+const CampaignManager = lazy(() => import('./GM/CampaignManager'));
+const CombatCalculator = lazy(() => import('./CombatCalculator'));
+const MovementManoeuvreResolver = lazy(() => import('./MovementManoeuvreResolver'));
+const FumbleResolver = lazy(() => import('./FumbleResolver'));
+const StaticManoeuvreResolver = lazy(() => import('./StaticManoeuvreResolver'));
+const CriticalResolver = lazy(() => import('./CriticalResolver'));
+const SpellResolver = lazy(() => import('./SpellResolver'));
+const EquipmentCatalogManager = lazy(() => import('./EquipmentCatalogManager'));
+const SpellCatalogManager = lazy(() => import('./SpellCatalogManager'));
+const CodexAdminTab = lazy(() => import('./GM/CodexAdminTab'));
+const CsvExportManager = lazy(() => import('./CsvExportManager'));
+const NpcCatalogTab = lazy(() => import('./GM/NpcCatalogTab'));
+const CreatureCatalogTab = lazy(() => import('./GM/CreatureCatalogTab'));
+const CampaignRosterManager = lazy(() => import('./GM/CampaignRosterManager'));
+
+const SuspenseFallback = () => (
+  <div style={{ padding: '3rem', textAlign: 'center', color: 'var(--text-muted)' }}>
+    <div style={{
+      width: '32px', height: '32px', margin: '0 auto 1rem',
+      border: '3px solid rgba(2, 132, 199, 0.1)',
+      borderTop: '3px solid var(--primary-color)',
+      borderRadius: '50%', animation: 'spin 0.8s linear infinite'
+    }} />
+    <span>Caricamento...</span>
+  </div>
+);
+
+const Lazy = ({ children }) => (
+  <Suspense fallback={<SuspenseFallback />}>
+    {children}
+  </Suspense>
+);
 
 const ACTION_SUB_TABS = [
   { id: 'static', label: 'Manovre Statiche', icon: Swords },
@@ -72,14 +92,16 @@ export default function AppTabs({
       {/* TAB: CREAZIONE PG */}
       {activeTab === 'creation' && (
         <ErrorBoundary>
-          <CharacterWizard
-            key={activeCharacter?.id || 'new'}
-            initialData={activeCharacter}
-            initialStepIndex={activeStepIndex}
-            onSave={handleStartNewCharacter}
-            equipmentCatalog={equipmentCatalog}
-            spellCatalog={spellCatalog}
-          />
+          <Lazy>
+            <CharacterWizard
+              key={activeCharacter?.id || 'new'}
+              initialData={activeCharacter}
+              initialStepIndex={activeStepIndex}
+              onSave={handleStartNewCharacter}
+              equipmentCatalog={equipmentCatalog}
+              spellCatalog={spellCatalog}
+            />
+          </Lazy>
         </ErrorBoundary>
       )}
 
@@ -186,21 +208,27 @@ export default function AppTabs({
       {/* TAB: GIOCATORI */}
       {activeTab === 'players' && (
         <ErrorBoundary>
-          <PlayerManager savedCharacters={savedCharacters} />
+          <Lazy>
+            <PlayerManager savedCharacters={savedCharacters} />
+          </Lazy>
         </ErrorBoundary>
       )}
 
       {/* TAB: COMPAGNIE */}
       {activeTab === 'companies' && (
         <ErrorBoundary>
-          <CompanyManager savedCharacters={savedCharacters} />
+          <Lazy>
+            <CompanyManager savedCharacters={savedCharacters} />
+          </Lazy>
         </ErrorBoundary>
       )}
 
       {/* TAB: CAMPAGNE */}
       {activeTab === 'campaigns' && (
         <ErrorBoundary>
-          <CampaignManager activeCampaign={currentActiveCampaign} onSetActiveCampaign={handleSetActiveCampaign} />
+          <Lazy>
+            <CampaignManager activeCampaign={currentActiveCampaign} onSetActiveCampaign={handleSetActiveCampaign} />
+          </Lazy>
         </ErrorBoundary>
       )}
 
@@ -236,58 +264,72 @@ export default function AppTabs({
 
           {activeActionSubTab === 'combat' && (
             <ErrorBoundary>
-              <CombatCalculator
-                savedCharacters={activeCampaignCharacters}
-                campaignNpcs={campaignNpcs}
-                campaignCreatures={campaignCreatures}
-                onUpdateActorHp={handleUpdateActorHp}
-                equipmentCatalog={equipmentCatalog}
-                onUpdateHpSubiti={handleUpdateCharacterHpSubiti}
-                onUpdateBoSpesoParata={handleUpdateCharacterBoSpesoParata}
-                onResetAllParries={handleResetAllParries}
-              />
+              <Lazy>
+                <CombatCalculator
+                  savedCharacters={activeCampaignCharacters}
+                  campaignNpcs={campaignNpcs}
+                  campaignCreatures={campaignCreatures}
+                  onUpdateActorHp={handleUpdateActorHp}
+                  equipmentCatalog={equipmentCatalog}
+                  onUpdateHpSubiti={handleUpdateCharacterHpSubiti}
+                  onUpdateBoSpesoParata={handleUpdateCharacterBoSpesoParata}
+                  onResetAllParries={handleResetAllParries}
+                />
+              </Lazy>
             </ErrorBoundary>
           )}
           {activeActionSubTab === 'movement' && (
             <ErrorBoundary>
-              <MovementManoeuvreResolver
-                savedCharacters={activeCampaignCharacters}
-                campaignNpcs={campaignNpcs}
-                campaignCreatures={campaignCreatures}
-                onRedirectToFumble={handleRedirectToFumble}
-              />
+              <Lazy>
+                <MovementManoeuvreResolver
+                  savedCharacters={activeCampaignCharacters}
+                  campaignNpcs={campaignNpcs}
+                  campaignCreatures={campaignCreatures}
+                  onRedirectToFumble={handleRedirectToFumble}
+                />
+              </Lazy>
             </ErrorBoundary>
           )}
           {activeActionSubTab === 'fumbles' && (
             <ErrorBoundary>
-              <FumbleResolver
-                key={fumbleRedirectData ? `${fumbleRedirectData.tableCode}-${fumbleRedirectData.difficulty}-${fumbleRedirectData.diceRoll}` : 'fumble-resolver-standalone'}
-                initialTableCode={fumbleRedirectData?.tableCode || 'TTM-1'}
-                initialManoeuvreDifficulty={fumbleRedirectData?.difficulty || 'Normale'}
-                initialDiceRoll={fumbleRedirectData?.diceRoll || 50}
-                initialModifierCustom={fumbleRedirectData?.modifierCustom || 0}
-                showTitle={true}
-              />
+              <Lazy>
+                <FumbleResolver
+                  key={fumbleRedirectData ? `${fumbleRedirectData.tableCode}-${fumbleRedirectData.difficulty}-${fumbleRedirectData.diceRoll}` : 'fumble-resolver-standalone'}
+                  initialTableCode={fumbleRedirectData?.tableCode || 'TTM-1'}
+                  initialManoeuvreDifficulty={fumbleRedirectData?.difficulty || 'Normale'}
+                  initialDiceRoll={fumbleRedirectData?.diceRoll || 50}
+                  initialModifierCustom={fumbleRedirectData?.modifierCustom || 0}
+                  showTitle={true}
+                />
+              </Lazy>
             </ErrorBoundary>
           )}
           {activeActionSubTab === 'static' && (
             <ErrorBoundary>
-              <StaticManoeuvreResolver savedCharacters={activeCampaignCharacters} campaignNpcs={campaignNpcs} />
+              <Lazy>
+                <StaticManoeuvreResolver savedCharacters={activeCampaignCharacters} campaignNpcs={campaignNpcs} />
+              </Lazy>
             </ErrorBoundary>
           )}
           {activeActionSubTab === 'criticals' && (
             <ErrorBoundary>
-              <CriticalResolver initialTableCode="TC-2" initialSeverity="C" initialDiceRoll={50} showTitle={true} />
+              <Lazy>
+                <CriticalResolver initialTableCode="TC-2" initialSeverity="C" initialDiceRoll={50} showTitle={true} />
+              </Lazy>
             </ErrorBoundary>
           )}
           {activeActionSubTab === 'spells_base' && (
             <ErrorBoundary>
-              <SpellResolver initialType="base" showTitle={true} />
+              <Lazy>
+                <SpellResolver initialType="base" showTitle={true} />
+              </Lazy>
             </ErrorBoundary>
           )}
           {activeActionSubTab === 'spells_direct' && (
             <ErrorBoundary>
-              <SpellResolver initialType="dardo" showTitle={true} />
+              <Lazy>
+                <SpellResolver initialType="dardo" showTitle={true} />
+              </Lazy>
             </ErrorBoundary>
           )}
         </div>
@@ -323,14 +365,16 @@ export default function AppTabs({
             ))}
           </div>
           <ErrorBoundary>
-            {activeSettingsSubTab === 'equipment' && (
-              <EquipmentCatalogManager catalog={equipmentCatalog} onUpdate={handleUpdateCatalog} />
-            )}
-            {activeSettingsSubTab === 'spells' && spellCatalog && (
-              <SpellCatalogManager catalog={spellCatalog} onUpdate={handleUpdateSpellCatalog} />
-            )}
-            {activeSettingsSubTab === 'codex' && <CodexAdminTab />}
-            {activeSettingsSubTab === 'export' && <CsvExportManager />}
+            <Lazy>
+              {activeSettingsSubTab === 'equipment' && (
+                <EquipmentCatalogManager catalog={equipmentCatalog} onUpdate={handleUpdateCatalog} />
+              )}
+              {activeSettingsSubTab === 'spells' && spellCatalog && (
+                <SpellCatalogManager catalog={spellCatalog} onUpdate={handleUpdateSpellCatalog} />
+              )}
+              {activeSettingsSubTab === 'codex' && <CodexAdminTab />}
+              {activeSettingsSubTab === 'export' && <CsvExportManager />}
+            </Lazy>
           </ErrorBoundary>
         </div>
       )}
@@ -374,19 +418,21 @@ export default function AppTabs({
                 ))}
               </div>
               <ErrorBoundary>
-                {activeCreaturesSubTab === 'npccatalog' && (
-                  <NpcCatalogTab gmId={user.uid} campaignId={currentActiveCampaign.id}
-                    onSaveSuccess={() => setActiveCreaturesSubTab('campaignroster')} />
-                )}
-                {activeCreaturesSubTab === 'creaturecatalog' && (
-                  <CreatureCatalogTab gmId={user.uid} campaignId={currentActiveCampaign.id}
-                    onSaveSuccess={() => setActiveCreaturesSubTab('campaignroster')} />
-                )}
-                {activeCreaturesSubTab === 'campaignroster' && (
-                  <CampaignRosterManager activeNpcs={campaignNpcs} activeCreatures={campaignCreatures}
-                    onDeleteNpc={handleDeleteNpc} onDeleteCreature={handleDeleteCreature}
-                    onUpdateHp={handleUpdateActorHp} />
-                )}
+                <Lazy>
+                  {activeCreaturesSubTab === 'npccatalog' && (
+                    <NpcCatalogTab gmId={user.uid} campaignId={currentActiveCampaign.id}
+                      onSaveSuccess={() => setActiveCreaturesSubTab('campaignroster')} />
+                  )}
+                  {activeCreaturesSubTab === 'creaturecatalog' && (
+                    <CreatureCatalogTab gmId={user.uid} campaignId={currentActiveCampaign.id}
+                      onSaveSuccess={() => setActiveCreaturesSubTab('campaignroster')} />
+                  )}
+                  {activeCreaturesSubTab === 'campaignroster' && (
+                    <CampaignRosterManager activeNpcs={campaignNpcs} activeCreatures={campaignCreatures}
+                      onDeleteNpc={handleDeleteNpc} onDeleteCreature={handleDeleteCreature}
+                      onUpdateHp={handleUpdateActorHp} />
+                  )}
+                </Lazy>
               </ErrorBoundary>
             </div>
           )}
