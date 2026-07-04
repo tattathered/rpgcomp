@@ -4,12 +4,12 @@ import { getAuth } from "firebase/auth";
 import { getFunctions } from "firebase/functions";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCwBedMnlEupSIZbAekr8kDXeiDD9m5Bh0",
-  authDomain: "merp-companion-yagni.firebaseapp.com",
-  projectId: "merp-companion-yagni",
-  storageBucket: "merp-companion-yagni.firebasestorage.app",
-  messagingSenderId: "383158262538",
-  appId: "1:383158262538:web:fc798bf118a149f632b8f3"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
 // Initialize Firebase
