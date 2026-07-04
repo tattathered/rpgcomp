@@ -112,9 +112,12 @@ export default function StaticManoeuvreResolver({ savedCharacters, campaignNpcs 
   // Filtro ricerca testuale per le abilità
   const [skillSearch, setSkillSearch] = useState('');
 
-  // 1. Filtra solo abilità Primarie MS
+  // 1. Filtra abilità Primarie: MS (Manovre Statiche) + AS (Azioni Speciali)
   const primaryMSSkills = useMemo(() => {
-    return primarySkillsList.filter(sk => sk.tipo_abilita_primaria === 'Manovre Statiche (MS)');
+    return primarySkillsList.filter(sk => 
+      sk.tipo_abilita_primaria === 'Manovre Statiche (MS)' || 
+      sk.tipo_abilita_primaria === 'Azioni Speciali (AS)'
+    );
   }, []);
 
   // 2. Filtra solo abilità Secondarie MS
@@ -665,10 +668,10 @@ export default function StaticManoeuvreResolver({ savedCharacters, campaignNpcs 
                 <div className="border border-gray-200 rounded-lg p-3 bg-white shadow-inner max-h-[360px] overflow-y-auto">
                   <h4 className="font-bold text-xs text-orange-950 uppercase tracking-wider mb-2 pb-1.5 border-b border-orange-100 flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-orange-500" />
-                    Abilità Primarie (MS)
+                    Abilità Primarie (MS/AS)
                   </h4>
                   {Object.keys(groupedPrimary).length === 0 ? (
-                    <p className="text-xs italic text-gray-400 p-4 text-center">Nessuna abilità primaria MS trovata.</p>
+                    <p className="text-xs italic text-gray-400 p-4 text-center">Nessuna abilità primaria MS/AS trovata.</p>
                   ) : (
                     Object.keys(groupedPrimary).map(catName => (
                       <div key={catName} className="mb-4">
