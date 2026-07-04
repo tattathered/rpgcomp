@@ -30,7 +30,15 @@ nuove funzionalità (FEAT), change request UX/UI (CR) e bug/fix tecnici (FIX).
 
 | ID | Tipo | Descrizione | Priorità | Stato | Note / Spoke |
 |----|------|-------------|----------|-------|--------------|
-| - | - | Nessun task attivo nel backlog | - | - | - |
+| REQ-10-01 | FEAT | Comando 1 — Modifica Inventario (pulsante → InventoryEditor) — già implementato ✅ | Alta | ✅ Fatto | req_10 |
+| REQ-10-02 | FEAT | Comando 2 — Aggiunta rapida oggetto inline dalla scheda PG | Alta | 🟢 In Sviluppo | req_10 |
+| REQ-10-03 | FEAT | Comando 3 — Modifica portafoglio inline + servizio Firestore | Media | 🔵 In Analisi | req_10 |
+| REQ-10-04 | FEAT | Comando 4 — Scarica inventario CSV | Bassa | 🔵 In Analisi | req_10 |
+| REQ-10-05 | FEAT | InventoryEditor — flag ACQUISTO e gestione delta costo su portafoglio | Alta | 🔵 In Analisi | req_10 |
+| REQ-10-06 | FEAT | Player — note modificabili sugli oggetti dell'inventario | Media | 🔵 In Analisi | req_10 |
+| FIX-011 | FIX | Equipment Editor — Refactoring: estrarre logica inline da CharacterSheetStep.jsx in componente separato. Bug sintassi (extra `}`) da risolvere. | Alta | 🔴 Bloccato | req_10 |
+
+| CR-002 | CR | Scheda Personaggio Standalone — CharacterSheetStep diventa un tab autonomo 'sheet' in AppTabs. Carica PG dal roster apre la scheda, non il wizard. 4 pulsanti contestuali per modifiche mirate. Vedi req_10_character_sheet_standalone.md | 2026-07-13 | 🟢 In Sviluppo (implementato, in attesa di verifica utente) |
 
 ---
 
@@ -41,6 +49,7 @@ nuove funzionalità (FEAT), change request UX/UI (CR) e bug/fix tecnici (FIX).
 | ID | Tipo | Descrizione | Segnalato il | Stato |
 |----|------|-------------|--------------|-------|
 | CR-001 | CR | Combat Calculator v2 — Supporto attacchi multipli per round (Mostri/Animali hanno spesso 2 attacchi nello stesso round, PG e PNG ne fanno uno alla volta). Rivedere il flusso di risoluzione per gestire sequenza di attacchi multipli. | 2026-06-26 | ⏳ In Attesa |
+| FIX-011 | FIX | Equipment Editor — Refactoring: estrarre logica inline da `CharacterSheetStep.jsx` in componente separato. Bug sintassi (extra `}`) da risolvere. | 2026-07-13 | 🔴 Bloccato |
 
 ---
 
@@ -51,6 +60,7 @@ nuove funzionalità (FEAT), change request UX/UI (CR) e bug/fix tecnici (FIX).
 | ID | Tipo | Descrizione | Completato il |
 |----|------|-------------|---------------|
 | BL-003 | FEAT | Codex Lingue e Gradi — Integrazione delle definizioni di lingue e gradi di conoscenza nel Codex con attivazione dei tooltips nella scheda PG | 2026-07-01 |
+| FIX-010 | FIX | Spell List Category Mapping — `categoryMap` in `magicHelpers.js` allineata ai valori reali del JSON `Tabella-liste_incantesimi.json`. | 2026-07-13 |
 | FIX-009 | FIX | Importazione PG — Risolto bug di sovrascrittura accidentale per PG con ID identici e nome modificato, mappando l'ID come 'pgId' nel JSON per chiarezza e inserendo la scelta utente (sovrascrittura vs nuovo PG). | 2026-07-01 |
 | BL-002 | FEAT | Codex Tooltips Trasversali — Dizionario termini di gioco, console GM e attivazione dinamica per categoria/pagina | 2026-07-01 |
 | BL-001 | FEAT | PNG e Mostri/Creature — Catalogo e gestione schede | 2026-07-01 |

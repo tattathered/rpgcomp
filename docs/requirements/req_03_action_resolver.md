@@ -1,6 +1,6 @@
 # [REQ-03] Action Resolver & Combattimento
 
-## Stato: [Parzialmente Approvato]
+## Stato: [Approvato — Completato]
 **Ultimo aggiornamento:** 2026-06-30 da Antigravity
 
 ---
@@ -41,12 +41,12 @@ Questo modulo raccoglie le regole di gioco e le formule matematiche necessarie a
   - [x] Risoluzione automatica dei tiri maldestri in base ai risultati d'attacco o di manovra falliti.
   - [x] Mappatura delle conseguenze tramite le tabelle `Tabella-Colpi_Maldestri-TTM-1-TTM-2.json` (armi e incantesimi) e `Tabella-Colpi_Maldestri-TTM-3-TTM-4.json` (manovre).
 
-### 4. Risoluzioni da Sviluppare (Backlog / In Corso)
-- [x] **Risolutore Colpi Critici (TC-1..TC-9):** Spostato e gestito nel modulo dedicato [req_05_critical_hits.md](file:///Users/yagni/Geek/antigravity/merpcomp/docs/requirements/req_05_critical_hits.md).
+### 4. Risoluzioni Completate
+- [x] **Risolutore Colpi Critici (TC-1..TC-9):** Spostato e gestito nel modulo dedicato [req_05_critical_hits.md](docs/requirements/req_05_critical_hits.md).
 - [x] **Risoluzione Incantesimi Base — Completato**
-  - [x] Risolutore stand-alone `SpellResolver.jsx` (tab "Incantesimi Base") con tabella `TA-9`. Dettagli in [req_06_spells_resolution.md](file:///Users/yagni/Geek/antigravity/merpcomp/docs/requirements/req_06_spells_resolution.md).
+  - [x] Risolutore stand-alone `SpellResolver.jsx` (tab "Incantesimi Base") con tabella `TA-9`. Dettagli in [req_06_spells_resolution.md](docs/requirements/req_06_spells_resolution.md).
 - [x] **Risoluzione Incantesimi Diretti — Completato**
-  - [x] Risolutore stand-alone `SpellResolver.jsx` (tab "Incantesimi Diretti") + integrazione in `CombatCalculator.jsx` con tabelle `TA-7` e `TA-8`. Dettagli in [req_06_spells_resolution.md](file:///Users/yagni/Geek/antigravity/merpcomp/docs/requirements/req_06_spells_resolution.md).
+  - [x] Risolutore stand-alone `SpellResolver.jsx` (tab "Incantesimi Diretti") + integrazione in `CombatCalculator.jsx` con tabelle `TA-7` e `TA-8`. Dettagli in [req_06_spells_resolution.md](docs/requirements/req_06_spells_resolution.md).
 
 ---
 
@@ -54,10 +54,10 @@ Questo modulo raccoglie le regole di gioco e le formule matematiche necessarie a
 
 Le logiche di calcolo e risoluzione risiedono nei seguenti moduli:
 *   **Componenti di Risoluzione:**
-    *   [CombatCalculator.jsx](file:///Users/yagni/Geek/antigravity/merpcomp/src/components/CombatCalculator.jsx) (calcolo attacchi, gestione parate, azzeramento round)
-    *   [StaticManoeuvreResolver.jsx](file:///Users/yagni/Geek/antigravity/merpcomp/src/components/StaticManoeuvreResolver.jsx) (risolutore manovre statiche)
-    *   [MovementManoeuvreResolver.jsx](file:///Users/yagni/Geek/antigravity/merpcomp/src/components/MovementManoeuvreResolver.jsx) (risolutore manovre di movimento)
-    *   [FumbleResolver.jsx](file:///Users/yagni/Geek/antigravity/merpcomp/src/components/FumbleResolver.jsx) (risolutore dei colpi maldestri)
+    *   [CombatCalculator.jsx](src/components/CombatCalculator.jsx) (calcolo attacchi, gestione parate, azzeramento round)
+    *   [StaticManoeuvreResolver.jsx](src/components/StaticManoeuvreResolver.jsx) (risolutore manovre statiche)
+    *   [MovementManoeuvreResolver.jsx](src/components/MovementManoeuvreResolver.jsx) (risolutore manovre di movimento)
+    *   [FumbleResolver.jsx](src/components/FumbleResolver.jsx) (risolutore dei colpi maldestri)
 *   **Servizi e Helper:**
-    *   [characterService.js](file:///Users/yagni/Geek/antigravity/merpcomp/src/services/characterService.js) (batch reset di parata)
-    *   [skillHelpers.js](file:///Users/yagni/Geek/antigravity/merpcomp/src/utils/skillHelpers.js) (funzione `getCharacterSkillBonus` per i calcoli centralizzati)
+    *   [characterService.js](src/services/characterService.js) (batch reset di parata)
+    *   [skillHelpers.js](src/utils/skillHelpers.js) (funzione `getCharacterSkillBonus` per i calcoli centralizzati)

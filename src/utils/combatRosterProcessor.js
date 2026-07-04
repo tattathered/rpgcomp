@@ -58,7 +58,8 @@ export const processPcRoster = (savedCharacters) => {
       .map(item => {
         const skillName = getSkillForWeapon(item);
         return { nome: item.nome, skillName, bo: skillBonuses[skillName] || 0 };
-      });
+      })
+      .sort((a, b) => b.bo - a.bo);
 
     if (inventoryWeapons.length === 0) {
       weaponSkillNames.forEach(skillName => {

@@ -114,6 +114,8 @@ export default function App() {
       await saveCharacter(user.uid, charData);
       const chars = await fetchCharacters(user.uid);
       setSavedCharacters(chars);
+      // Aggiorna anche il personaggio attivo se corrisponde
+      setActiveCharacter(prev => (prev?.id === charData?.id ? charData : prev));
     } catch (err) {
       console.error('Errore salvataggio personaggio:', err);
     }
@@ -151,7 +153,7 @@ export default function App() {
   const handleLoadCharacter = useCallback((char) => {
     setActiveCharacter(char);
     setActiveStepIndex(0);
-    setActiveTab('creation');
+    setActiveTab('sheet');
   }, []);
 
   const handleStartNewCharacter = useCallback(() => {
@@ -159,6 +161,28 @@ export default function App() {
     setActiveStepIndex(0);
     setActiveTab('creation');
   }, []);
+
+  // --- NAVIGAZIONE SCHEDA -> WIZARD (per modifica creazione / upgrade livello) ---
+  const handleNavigateToWizardStep = useCallback((charData, stepIndex) => {
+    setActiveCharacter(charData);
+    setActiveStepIndex(stepIndex);
+    setActiveTab('creation');
+  }, []);
+
+  // --- SALVATAGGIO DA WIZARD CON RITORNO ALLA SCHEDA ---
+  const handleWizardSaveAndReturn = useCallback(async (charData) => {
+    if (!user) return;
+    try {
+      await saveCharacter(user.uid, charData);
+      const chars = await fetchCharacters(user.uid);
+      setSavedCharacters(chars);
+      setActiveCharacter(charData);
+      setActiveStepIndex(0);
+      setActiveTab('sheet');
+    } catch (err) {
+      console.error('Errore salvataggio personaggio da wizard:', err);
+    }
+  }, [user]);
 
   // --- HANDLER HP ---
   const handleUpdateCharacterHpSubiti = useCallback(async (charId, hpSubiti) => {
@@ -320,6 +344,10 @@ export default function App() {
         handleDeleteNpc={handleDeleteNpc}
         handleDeleteCreature={handleDeleteCreature}
         user={user}
+        // --- NUOVE PROPS PER REQ-10 ---
+        onSaveCharacter={handleSaveCharacter}
+        onNavigateToWizardStep={handleNavigateToWizardStep}
+        onWizardSaveAndReturn={handleWizardSaveAndReturn}
       />
     </div>
   );

@@ -70,7 +70,7 @@ Il GM potrà duplicare e personalizzare questi template associandoli a una speci
 - [x] **Attori Liberi in Combattimento:**
   - Il `CombatCalculator` permette di selezionare qualsiasi combinazione di Attaccante e Difensore (PG vs PG, PG vs PNG, PNG vs PG, PNG vs PNG, Creatura vs PG, ecc.) attivi per la Campagna selezionata.
 - [x] **Integrazione Tabelle `TA-5` (Zanne e Artigli) e `TA-6` (Immobilizz. e Sbilanciamento):**
-  - Integrazione di [TA-5](file:///Users/yagni/Geek/antigravity/merpcomp/data/TA-5-zanne_e_artigli.csv) e [TA-6](file:///Users/yagni/Geek/antigravity/merpcomp/data/TA-6-immobilizzazione_sbilanciamento.csv) per la risoluzione degli attacchi delle creature.
+  - Integrazione di [TA-5](data/TA-5-zanne_e_artigli.csv) e [TA-6](data/TA-6-immobilizzazione_sbilanciamento.csv) per la risoluzione degli attacchi delle creature.
   - Applicazione automatica dei moltiplicatori di danno PF ricavati da `TSC-2`:
     - Danno **Doppio** (`§`) per attacchi come *Morso*, *Calpestare*, *Caduta/Stritolamento*.
     - Danno **Dimezzato** (`$$`) per attacchi come *Pungiglioni*, *Piccoli Animali*.
@@ -101,13 +101,13 @@ Il GM potrà duplicare e personalizzare questi template associandoli a una speci
 - **Modifiche Parser (`csvToJson.js`):**
   - Aggiunta delle pipeline per compilare `TA-5`, `TA-6`, `TS-2-animali_TdM` (con decodifica date Excel in stringhe range quantità), `TS-3-personaggi_standard`, `TSC-1-statistiche_delle_armi`, `TSC-2-statistiche_degli_animali`, `TSC-3-statistiche_degli_incantesimi`.
 - **Nuovi Componenti UI (Cataloghi Admin):**
-  - [NpcCatalogTab.jsx](file:///Users/yagni/Geek/antigravity/merpcomp/src/components/GM/NpcCatalogTab.jsx) — Creazione e configurazione schede PNG.
-  - [CreatureCatalogTab.jsx](file:///Users/yagni/Geek/antigravity/merpcomp/src/components/GM/CreatureCatalogTab.jsx) — Catalogo bestiario con ricerca, filtri per categoria e associazione a campagna.
-  - [CampaignRosterManager.jsx](file:///Users/yagni/Geek/antigravity/merpcomp/src/components/GM/CampaignRosterManager.jsx) — Gestione roster PNG e Creature della campagna attiva con gestione HP live.
+  - [NpcCatalogTab.jsx](src/components/GM/NpcCatalogTab.jsx) — Creazione e configurazione schede PNG.
+  - [CreatureCatalogTab.jsx](src/components/GM/CreatureCatalogTab.jsx) — Catalogo bestiario con ricerca, filtri per categoria e associazione a campagna.
+  - [CampaignRosterManager.jsx](src/components/GM/CampaignRosterManager.jsx) — Gestione roster PNG e Creature della campagna attiva con gestione HP live.
 - **Nuovo Servizio Firestore:**
-  - [npcService.js](file:///Users/yagni/Geek/antigravity/merpcomp/src/services/npcService.js) — CRUD e sottoscrizioni Firestore per `campaign_npcs` e `campaign_creatures` sotto `gms/{gmId}/`.
+  - [npcService.js](src/services/npcService.js) — CRUD e sottoscrizioni Firestore per `campaign_npcs` e `campaign_creatures` sotto `gms/{gmId}/`.
 - **Modifiche a Componenti Esistenti:**
-  - [CombatCalculator.jsx](file:///Users/yagni/Geek/antigravity/merpcomp/src/components/CombatCalculator.jsx) — Selettore attori (PG/PNG/Creature), lookup TA-5/TA-6 con `findRangeRow`, capping taglia, moltiplicatori §/$$, critico primario/secondario creature, Applica Danni.
-  - [MovementManoeuvreResolver.jsx](file:///Users/yagni/Geek/antigravity/merpcomp/src/components/MovementManoeuvreResolver.jsx) — Selettore creature con bonus fisso `VM_bonus_MM`.
-  - [StaticManoeuvreResolver.jsx](file:///Users/yagni/Geek/antigravity/merpcomp/src/components/StaticManoeuvreResolver.jsx) — Selettore solo PNG (creature escluse).
-  - [App.jsx](file:///Users/yagni/Geek/antigravity/merpcomp/src/App.jsx) — Tab "NPG & Mostri" con sotto-tab, passaggio props `campaignNpcs` e `campaignCreatures` ai resolver.
+  - [CombatCalculator.jsx](src/components/CombatCalculator.jsx) — Selettore attori (PG/PNG/Creature), lookup TA-5/TA-6 con `findRangeRow`, capping taglia, moltiplicatori §/$$, critico primario/secondario creature, Applica Danni.
+  - [MovementManoeuvreResolver.jsx](src/components/MovementManoeuvreResolver.jsx) — Selettore creature con bonus fisso `VM_bonus_MM`.
+  - [StaticManoeuvreResolver.jsx](src/components/StaticManoeuvreResolver.jsx) — Selettore solo PNG (creature escluse).
+  - [App.jsx](src/App.jsx) — Tab "NPG & Mostri" con sotto-tab, passaggio props `campaignNpcs` e `campaignCreatures` ai resolver.

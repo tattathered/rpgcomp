@@ -20,8 +20,15 @@ export default function DefenderPanel({
   defenderParry, handleDefenderParryChange,
   defenderWeaponBO,
   onUpdateHpSubiti,
-  onUpdateActorHp
+  onUpdateActorHp,
+  overrideBracciali, setOverrideBracciali,
+  overrideSchinieri, setOverrideSchinieri,
+  overrideElmo, setOverrideElmo
 }) {
+  const isPc = defenderInfo?.type === 'pc';
+  const hasMetalBracciali = defenderInfo?.hasMetalBracciali || false;
+  const hasMetalSchinieri = defenderInfo?.hasMetalSchinieri || false;
+  const hasMetalElmo = defenderInfo?.hasMetalElmo || false;
   return (
     <div className="card p-5 border border-red-200 rounded-xl bg-red-50/15 shadow-xs flex flex-col justify-between">
       <div>
@@ -189,6 +196,42 @@ export default function DefenderPanel({
                   )}
                 </label>
               </div>
+
+              {/* Override Equipaggiamento Difensivo (solo PG) */}
+              {isPc && (
+                <div className="col-span-2 border border-red-100 rounded-lg p-3 bg-red-50/20">
+                  <span className="block text-[9px] font-bold text-red-800 uppercase mb-2">Override Equipaggiamento Difensivo</span>
+                  <div className="grid grid-cols-3 gap-2">
+                    <label className="flex items-center gap-1.5 text-[10px] text-gray-700 cursor-pointer select-none">
+                      <input
+                        type="checkbox"
+                        checked={overrideBracciali}
+                        onChange={e => setOverrideBracciali(e.target.checked)}
+                        className="rounded border-red-300 text-red-600 focus:ring-red-500 w-3 h-3"
+                      />
+                      Bracciali {hasMetalBracciali ? '(Metallo -5 BO)' : '(Cuoio)'}
+                    </label>
+                    <label className="flex items-center gap-1.5 text-[10px] text-gray-700 cursor-pointer select-none">
+                      <input
+                        type="checkbox"
+                        checked={overrideSchinieri}
+                        onChange={e => setOverrideSchinieri(e.target.checked)}
+                        className="rounded border-red-300 text-red-600 focus:ring-red-500 w-3 h-3"
+                      />
+                      Schinieri {hasMetalSchinieri ? '(Metallo -5 MM)' : '(Cuoio)'}
+                    </label>
+                    <label className="flex items-center gap-1.5 text-[10px] text-gray-700 cursor-pointer select-none">
+                      <input
+                        type="checkbox"
+                        checked={overrideElmo}
+                        onChange={e => setOverrideElmo(e.target.checked)}
+                        className="rounded border-red-300 text-red-600 focus:ring-red-500 w-3 h-3"
+                      />
+                      Elmo {hasMetalElmo ? '(Metallo -5 Perc.)' : '(Cuoio)'}
+                    </label>
+                  </div>
+                </div>
+              )}
 
               <div>
                 <span className="block text-[9px] font-bold text-gray-550 uppercase">Armatura Attiva</span>

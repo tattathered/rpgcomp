@@ -1,8 +1,32 @@
-import React from 'react';
-import { ArrowLeft } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowLeft, Package } from 'lucide-react';
 import CharacterSheetStep from '../CharacterWizard/steps/CharacterSheetStep';
+import InventoryEditor from '../Shared/InventoryEditor';
+import { updateCharacterEquipment } from '../../services/characterService';
 
 export default function PlayerCharacterSheet({ characterData, onBack, spellCatalog }) {
+  const [showInventoryEditor, setShowInventoryEditor] = useState(false);
+  const [localCharData, setLocalCharData] = useState(characterData);
+
+  const handleInventorySaved = async (updatedData) => {
+    try {
+      await updateCharacterEquipment(localCharData.id, updatedData);
+      setLocalCharData(prev => ({
+        ...prev,
+        equipment: updatedData.equipment,
+        caricoKg: updatedData.caricoKg,
+        penalitaCarico: updatedData.penalitaCarico,
+        equippedArmor: updatedData.equippedArmor,
+        equippedShield: updatedData.equippedShield,
+        portafoglioMB: updatedData.portafoglioMB
+      }));
+      setShowInventoryEditor(false);
+    } catch (err) {
+      console.error('Errore salvataggio inventario:', err);
+      alert('Errore durante il salvataggio: ' + err.message);
+    }
+  };
+
   return (
     <div style={styles.container}>
       <header style={styles.header}>
@@ -10,16 +34,33 @@ export default function PlayerCharacterSheet({ characterData, onBack, spellCatal
           <ArrowLeft size={16} />
           Torna alla Dashboard
         </button>
-        <span style={styles.charName}>Scheda di {characterData.name}</span>
+        <span style={styles.charName}>Scheda di {localCharData.name}</span>
+        <button
+          onClick={() => setShowInventoryEditor(true)}
+          style={styles.inventoryBtn}
+        >
+          <Package size={14} />
+          Gestisci Inventario
+        </button>
       </header>
       <div style={styles.content}>
         <CharacterSheetStep 
-          characterData={characterData} 
-          setCharacterData={() => {}} 
-          readOnly={true} 
+          characterData={localCharData} 
+          setCharacterData={setLocalCharData} 
+          readOnly={false} 
           spellCatalog={spellCatalog}
         />
       </div>
+
+      {showInventoryEditor && (
+        <InventoryEditor
+          characterData={localCharData}
+          gmId={localCharData.gmId || ''}
+          onClose={() => setShowInventoryEditor(false)}
+          onSaved={handleInventorySaved}
+          mode="player"
+        />
+      )}
     </div>
   );
 }
@@ -60,6 +101,21 @@ const styles = {
     fontSize: '1.1rem',
     fontWeight: '700',
     color: 'var(--text-main)',
+    flex: 1,
+  },
+  inventoryBtn: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.4rem',
+    padding: '0.5rem 1rem',
+    fontSize: '0.8rem',
+    fontWeight: '600',
+    backgroundColor: '#d97706',
+    border: '1px solid #b45309',
+    borderRadius: '8px',
+    color: '#fff',
+    cursor: 'pointer',
+    transition: 'background-color 0.2s',
   },
   content: {
     backgroundColor: 'var(--surface-color)',

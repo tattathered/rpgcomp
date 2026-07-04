@@ -90,9 +90,9 @@ Il sistema guida il GM o il Giocatore nella creazione completa di un personaggio
 
 Le logiche e l'interfaccia del wizard risiedono nei seguenti moduli:
 *   **Componenti UI:**
-    *   [CharacterWizard.jsx](file:///Users/yagni/Geek/antigravity/merpcomp/src/components/CharacterWizard/CharacterWizard.jsx) (struttura a griglia 5+5 e layout)
-    *   Cartella [steps/](file:///Users/yagni/Geek/antigravity/merpcomp/src/components/CharacterWizard/steps/) contenente i singoli file dei passaggi (`RaceStep.jsx`, `ProfessionStep.jsx`, `StatsStep.jsx`, `AdolescenceStep.jsx`, `ApprenticeshipLevel1Step.jsx`, `BackgroundStep.jsx`, `EquipmentStep.jsx`, `LearningStep.jsx`, `CreationSummaryStep.jsx`, `CharacterSheetStep.jsx`).
+    *   [CharacterWizard.jsx](src/components/CharacterWizard/CharacterWizard.jsx) (struttura a griglia 5+5 e layout)
+    *   Cartella [steps/](src/components/CharacterWizard/steps/) contenente i singoli file dei passaggi (`RaceStep.jsx`, `ProfessionStep.jsx`, `StatsStep.jsx`, `AdolescenceStep.jsx`, `ApprenticeshipLevel1Step.jsx`, `BackgroundStep.jsx`, `EquipmentStep.jsx`, `LearningStep.jsx`, `CreationSummaryStep.jsx`, `CharacterSheetStep.jsx`).
 *   **Helper e Utility di Calcolo:**
-    *   [skillHelpers.js](file:///Users/yagni/Geek/antigravity/merpcomp/src/utils/skillHelpers.js) (calcolo gradi, bonus, penalità armatura/carico, HP).
-    *   [magicHelpers.js](file:///Users/yagni/Geek/antigravity/merpcomp/src/utils/magicHelpers.js) (calcoli per reami magici, apprendimento liste incantesimi).
-    *   [moneyHelpers.js](file:///Users/yagni/Geek/antigravity/merpcomp/src/utils/moneyHelpers.js) (conversioni monetarie).
+    *   [skillHelpers.js](src/utils/skillHelpers.js) (calcolo gradi, bonus, penalità armatura/carico, HP).
+    *   [magicHelpers.js](src/utils/magicHelpers.js) (calcoli per reami magici, apprendimento liste incantesimi).
+    *   [moneyHelpers.js](src/utils/moneyHelpers.js) (conversioni monetarie).

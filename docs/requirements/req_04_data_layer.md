@@ -69,17 +69,17 @@ I dati regolistici e le tabelle di gioco ufficiali hanno come sorgente originari
 
 La gestione dei dati statici, dinamici e della pipeline è distribuita in:
 *   **Directory Dati Statici e Sorgenti:**
-    *   Cartella [data/](file:///Users/yagni/Geek/antigravity/merpcomp/data/) contenente le tabelle regolamento originali in formato CSV (Source of Truth).
-    *   Cartella [src/data/](file:///Users/yagni/Geek/antigravity/merpcomp/src/data/) contenente i file JSON importati dal frontend.
+    *   Cartella [data/](data/) contenente le tabelle regolamento originali in formato CSV (Source of Truth).
+    *   Cartella [src/data/](src/data/) contenente i file JSON importati dal frontend.
 *   **Script di Pipeline e Build:**
-    *   [csvToJson.js](file:///Users/yagni/Geek/antigravity/merpcomp/scripts/csvToJson.js) (script di conversione PapaParse)
-    *   [verify_csv_json_alignment.cjs](file:///Users/yagni/Geek/antigravity/merpcomp/scripts/verify_csv_json_alignment.cjs) (script di validazione consistenza)
+    *   [csvToJson.js](scripts/csvToJson.js) (script di conversione PapaParse)
+    *   [verify_csv_json_alignment.cjs](scripts/verify_csv_json_alignment.cjs) (script di validazione consistenza)
 *   **Componenti Gestionali e di Export UI:**
-    *   [CsvExportManager.jsx](file:///Users/yagni/Geek/antigravity/merpcomp/src/components/CsvExportManager.jsx) (esportatore CSV dati di gioco)
-    *   [EquipmentCatalogManager.jsx](file:///Users/yagni/Geek/antigravity/merpcomp/src/components/EquipmentCatalogManager.jsx) (gestione catalogo oggetti)
-    *   [SpellCatalogManager.jsx](file:///Users/yagni/Geek/antigravity/merpcomp/src/components/SpellCatalogManager.jsx) (gestione catalogo incantesimi)
-    *   [SpellCatalogViewer.jsx](file:///Users/yagni/Geek/antigravity/merpcomp/src/components/SpellCatalogViewer.jsx) (visualizzatore ordinato incantesimi)
+    *   [CsvExportManager.jsx](src/components/CsvExportManager.jsx) (esportatore CSV dati di gioco)
+    *   [EquipmentCatalogManager.jsx](src/components/EquipmentCatalogManager.jsx) (gestione catalogo oggetti)
+    *   [SpellCatalogManager.jsx](src/components/SpellCatalogManager.jsx) (gestione catalogo incantesimi)
+    *   [SpellCatalogViewer.jsx](src/components/SpellCatalogViewer.jsx) (visualizzatore ordinato incantesimi)
 *   **Servizi di Persistenza:**
-    *   [spellCatalogService.js](file:///Users/yagni/Geek/antigravity/merpcomp/src/services/spellCatalogService.js) (persistenza catalogo incantesimi)
-    *   [settingsService.js](file:///Users/yagni/Geek/antigravity/merpcomp/src/services/settingsService.js) (persistenza impostazioni ed equipaggiamento GM)
-    *   [npcService.js](file:///Users/yagni/Geek/antigravity/merpcomp/src/services/npcService.js) (CRUD e sottoscrizioni Firestore per PNG e Creature di campagna)
+    *   [spellCatalogService.js](src/services/spellCatalogService.js) (persistenza catalogo incantesimi)
+    *   [settingsService.js](src/services/settingsService.js) (persistenza impostazioni ed equipaggiamento GM)
+    *   [npcService.js](src/services/npcService.js) (CRUD e sottoscrizioni Firestore per PNG e Creature di campagna)

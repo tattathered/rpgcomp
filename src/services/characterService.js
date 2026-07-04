@@ -13,7 +13,6 @@ import { saveDocument, deleteDocument, subscribeToCollection } from "./firestore
 
 const SUBCOLLECTION = "characters";
 
-// Salva o aggiorna un personaggio
 export const saveCharacter = async (gmId, charData) => {
   return saveDocument(gmId, SUBCOLLECTION, charData, {
     nameField: "name",
@@ -21,31 +20,26 @@ export const saveCharacter = async (gmId, charData) => {
   });
 };
 
-// Carica un singolo personaggio
 export const getCharacter = async (gmId, charId) => {
   const docRef = doc(db, "gms", gmId, SUBCOLLECTION, charId);
   const snap = await getDoc(docRef);
   return snap.exists() ? snap.data() : null;
 };
 
-// Elimina un personaggio
 export const deleteCharacter = async (gmId, charId) => {
   return deleteDocument(gmId, SUBCOLLECTION, charId);
 };
 
-// Sottoscrizione in tempo reale alla lista dei personaggi del GM
 export const subscribeToCharacters = (gmId, callback) => {
   return subscribeToCollection(gmId, SUBCOLLECTION, callback, { sortBy: "name" });
 };
 
-// Fetch one-shot di tutti i personaggi del GM
 export const fetchCharacters = async (gmId) => {
   const colRef = collection(db, "gms", gmId, SUBCOLLECTION);
   const snap = await getDocs(colRef);
   return snap.docs.map(d => ({ id: d.id, ...d.data() }));
 };
 
-// Duplica un personaggio
 export const duplicateCharacter = async (gmId, char) => {
   const { id, ...data } = char;
   const colRef = collection(db, "gms", gmId, SUBCOLLECTION);
@@ -58,7 +52,6 @@ export const duplicateCharacter = async (gmId, char) => {
   return { id: docRef.id, ...data, name: `${data.name} (Copia)` };
 };
 
-// Esporta un personaggio come file JSON scaricabile
 export const exportCharacter = (char) => {
   const blob = new Blob([JSON.stringify(char, null, 2)], { type: "application/json" });
   const url = URL.createObjectURL(blob);
@@ -69,7 +62,6 @@ export const exportCharacter = (char) => {
   URL.revokeObjectURL(url);
 };
 
-// Importa un personaggio da file JSON
 export const importCharacter = async (user, savedCharacters, setSavedCharacters) => {
   const input = document.createElement("input");
   input.type = "file";
@@ -91,27 +83,35 @@ export const importCharacter = async (user, savedCharacters, setSavedCharacters)
   input.click();
 };
 
-// Aggiorna gli HP subiti di un personaggio
 export const updateCharacterHp = async (gmId, charId, hpSubiti) => {
   const docRef = doc(db, "gms", gmId, SUBCOLLECTION, charId);
   await updateDoc(docRef, { hpSubiti, updatedAt: serverTimestamp() });
 };
 
-// Aggiorna la parata attiva (B.O. speso per parare) di un personaggio
 export const updateCharacterParry = async (gmId, charId, boSpesoParata) => {
   const docRef = doc(db, "gms", gmId, SUBCOLLECTION, charId);
   await updateDoc(docRef, { boSpesoParata, updatedAt: serverTimestamp() });
 };
 
-// Resetta tutte le parate dei personaggi indicati
 export const resetAllParries = async (gmId, characterIds) => {
   if (!characterIds || characterIds.length === 0) return;
   const batch = writeBatch(db);
-
   characterIds.forEach((charId) => {
     const docRef = doc(db, "gms", gmId, SUBCOLLECTION, charId);
     batch.update(docRef, { boSpesoParata: 0, updatedAt: serverTimestamp() });
   });
-
   await batch.commit();
+};
+
+export const updateCharacterEquipment = async (gmId, charId, equipmentData) => {
+  const docRef = doc(db, "gms", gmId, SUBCOLLECTION, charId);
+  await updateDoc(docRef, {
+    equipment: equipmentData.equipment,
+    caricoKg: equipmentData.caricoKg,
+    penalitaCarico: equipmentData.penalitaCarico,
+    equippedArmor: equipmentData.equippedArmor,
+    equippedShield: equipmentData.equippedShield,
+    portafoglioMB: equipmentData.portafoglioMB,
+    updatedAt: serverTimestamp()
+  });
 };

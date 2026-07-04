@@ -63,6 +63,6 @@ Questo modulo gestisce la risoluzione automatica e l'interpretazione dei Colpi C
 *   **Tabelle Dati:**
     *   I file JSON `TC-1-colpi_critici_impatto.json` fino a `TC-9-colpi_critici_impatto_magico.json` e `TC-modifiche_al_tiro.json` in `src/data/`.
 *   **Componenti UI:**
-    *   [CriticalResolver.jsx](file:///Users/yagni/Geek/antigravity/merpcomp/src/components/CriticalResolver.jsx) (Componente di risoluzione — Completato)
-    *   [CombatCalculator.jsx](file:///Users/yagni/Geek/antigravity/merpcomp/src/components/CombatCalculator.jsx) (Integrazione pulsante e logica di attivazione — Completato)
-    *   [App.jsx](file:///Users/yagni/Geek/antigravity/merpcomp/src/App.jsx) (Integrazione nel menu principale del GM — Completato)
+    *   [CriticalResolver.jsx](src/components/CriticalResolver.jsx) (Componente di risoluzione — Completato)
+    *   [CombatCalculator.jsx](src/components/CombatCalculator.jsx) (Integrazione pulsante e logica di attivazione — Completato)
+    *   [App.jsx](src/App.jsx) (Integrazione nel menu principale del GM — Completato)

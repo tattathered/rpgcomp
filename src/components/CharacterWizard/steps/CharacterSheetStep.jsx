@@ -1,10 +1,10 @@
-import { useState, useMemo, useEffect } from 'react';
-import { Printer, Sparkles, AlertCircle, Heart, Zap, Shield, User, Globe, BookOpen, Scroll, Save } from 'lucide-react';
+import { useState, useMemo, useEffect, useCallback } from 'react';
+import { Printer, Sparkles, AlertCircle, Heart, Zap, Shield, User, Globe, BookOpen, Scroll, Save, Package, Edit3, PlusCircle, ArrowLeftRight, Search, AlertTriangle, Minus, Plus } from 'lucide-react';
 import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
 import secondarySkillsList from '../../../data/Tabella-abilita_secondarie.json';
 
 import gradiLingue from '../../../data/TGP-1-gradi_conoscenze_lingue.json';
-import { getSpellLimitInfo, getSpellsForList } from '../../../utils/magicHelpers';
+import { getSpellLimitInfo, getSpellsForList, getAvailableSpellLists } from '../../../utils/magicHelpers';
 import {
   getBonus,
   parseBonusValue,
@@ -142,7 +142,20 @@ const getSkillForWeapon = (item) => {
   return 'taglio a 1 mano';
 };
 
-export default function CharacterSheetStep({ characterData, setCharacterData, readOnly = false, spellCatalog }) {
+export default function CharacterSheetStep({ characterData, setCharacterData, readOnly = false, spellCatalog, equipmentCatalog = [], onNavigateToStep, onSaveCharacter }) {
+  const displayData = characterData;
+
+  // In modalità standalone (onSaveCharacter presente), setCharacterData salva su Firestore
+  // In modalità wizard, usa il setCharacterData normale del parent
+  const handleSetData = useCallback((updater) => {
+    if (onSaveCharacter) {
+      const base = displayData;
+      const updated = typeof updater === 'function' ? updater(base) : updater;
+      onSaveCharacter(updated);
+    } else {
+      setCharacterData(updater);
+    }
+  }, [displayData, setCharacterData, onSaveCharacter]);
   const { user, isGM, isPlayer } = useAuth();
   const statsReadOnly = readOnly || isPlayer;
 
@@ -150,10 +163,14 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
   const [notesText, setNotesText] = useState("");
   const [savingNotes, setSavingNotes] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
+  const [editMode, setEditMode] = useState(null); // null | 'equipment' | 'spellLists'
+  const [equipSearchQuery, setEquipSearchQuery] = useState('');
+  const [equipActiveCategory, setEquipActiveCategory] = useState('all');
+  const [equipItemsState, setEquipItemsState] = useState({});
 
   useEffect(() => {
     if (!characterData?.id) return;
-    const unsub = subscribeToCharacterNotes(characterData.id, (notesData) => {
+    const unsub = subscribeToCharacterNotes(displayData.id, (notesData) => {
       setNotes(notesData);
       setNotesText(notesData?.content || "");
     });
@@ -165,9 +182,9 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
     setSavingNotes(true);
     setSaveSuccess(false);
     try {
-      const gmId = characterData.gmId || "";
+      const gmId = displayData.gmId || "";
       const playerId = user?.uid || "";
-      await saveCharacterNotes(characterData.id, gmId, playerId, notesText);
+      await saveCharacterNotes(displayData.id, gmId, playerId, notesText);
       setSaveSuccess(true);
       setTimeout(() => setSaveSuccess(false), 3000);
     } catch (err) {
@@ -178,39 +195,39 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
     }
   };
 
-  const race = characterData.race;
-  const profession = characterData.profession;
-  const stats = characterData.stats || {};
-  const magicRealm = characterData.magicRealm || 'Essenza';
-  const levelDevelopments = characterData.levelDevelopments || [];
+  const race = displayData.race;
+  const profession = displayData.profession;
+  const stats = displayData.stats || {};
+  const magicRealm = displayData.magicRealm || 'Essenza';
+  const levelDevelopments = displayData.levelDevelopments || [];
   const finalLevel = 1 + levelDevelopments.length;
 
-  const bgData = characterData.background || { languages: {}, options: [] };
+  const bgData = displayData.background || { languages: {}, options: [] };
   const bgOptions = bgData.options || [];
   const bgModifiers = bgData.compiledModifiers || { statsBonus: {}, skillBgRanks: {}, secondarySkills: {}, gold: 0 };
 
   // Calcolo in tempo reale peso del carico e penalità di carico
   const caricoKg = useMemo(() => {
-    const items = characterData.equipment || [];
+    const items = displayData.equipment || [];
     let tot = 0;
     items.forEach(item => {
       tot += (item.qtyCarico || 0) * (item["peso in kg"] || 0);
     });
     return tot;
-  }, [characterData.equipment]);
+  }, [displayData.equipment]);
 
   const { penalitaCarico, caricoBloccato } = useMemo(() => {
-    const pesoPG = characterData.peso || 70;
+    const pesoPG = displayData.peso || 70;
     const { penalita, caricoBloccato } = calculateCargoPenalty(pesoPG, caricoKg);
     return { penalitaCarico: penalita, caricoBloccato };
-  }, [characterData.peso, caricoKg]);
+  }, [displayData.peso, caricoKg]);
 
   const equippedItems = useMemo(() => {
-    return characterData.equipment?.filter(x => x.qtyEquip > 0) || [];
-  }, [characterData.equipment]);
+    return displayData.equipment?.filter(x => x.qtyEquip > 0) || [];
+  }, [displayData.equipment]);
 
   const groupedEquip = useMemo(() => {
-    const equipItems = (characterData.equipment || []).filter(x => x.qtyEquip > 0);
+    const equipItems = (displayData.equipment || []).filter(x => x.qtyEquip > 0);
     const groups = {};
     equipItems.forEach(item => {
       const cat = item.categoria || 'altro';
@@ -218,10 +235,10 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
       groups[cat].push(item);
     });
     return groups;
-  }, [characterData.equipment]);
+  }, [displayData.equipment]);
 
   const groupedCarico = useMemo(() => {
-    const caricoItems = (characterData.equipment || []).filter(x => x.qtyCarico > 0);
+    const caricoItems = (displayData.equipment || []).filter(x => x.qtyCarico > 0);
     const groups = {};
     caricoItems.forEach(item => {
       const cat = item.categoria || 'altro';
@@ -229,7 +246,7 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
       groups[cat].push(item);
     });
     return groups;
-  }, [characterData.equipment]);
+  }, [displayData.equipment]);
 
   const sortedEquipEntries = useMemo(() => {
     return Object.entries(groupedEquip).sort((a, b) => getCategorySortIndex(a[0]) - getCategorySortIndex(b[0]));
@@ -239,7 +256,9 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
     return Object.entries(groupedCarico).sort((a, b) => getCategorySortIndex(a[0]) - getCategorySortIndex(b[0]));
   }, [groupedCarico]);
 
-  const activeArmor = characterData.equippedArmor || 'Nessuna armatura';
+
+
+  const activeArmor = displayData.equippedArmor || 'Nessuna armatura';
   const activeArmorMM = useMemo(() => {
     const skillName = getArmorSkillName(activeArmor);
     return getIngombroBonus(skillName) ?? 0;
@@ -272,7 +291,7 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
 
   const presentArmors = useMemo(() => {
     const list = [];
-    const items = characterData.equipment || [];
+    const items = displayData.equipment || [];
     items.forEach(item => {
       if ((item.qtyEquip || 0) > 0 || (item.qtyCarico || 0) > 0) {
         const name = item.nome.toLowerCase();
@@ -283,11 +302,11 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
       }
     });
     return list;
-  }, [characterData.equipment]);
+  }, [displayData.equipment]);
 
   const presentWeapons = useMemo(() => {
     const list = [];
-    const items = characterData.equipment || [];
+    const items = displayData.equipment || [];
     items.forEach(item => {
       if (item.categoria === 'armi' && ((item.qtyEquip || 0) > 0 || (item.qtyCarico || 0) > 0)) {
         const skillName = getSkillForWeapon(item);
@@ -295,7 +314,7 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
       }
     });
     return list;
-  }, [characterData.equipment]);
+  }, [displayData.equipment]);
 
   // Calcolo caratteristiche finali consolidando i bonus del background
   const finalStats = useMemo(() => {
@@ -311,33 +330,33 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
   const rfRanksLevel1 = useMemo(() => {
     if (!profession) return 0;
     const name = 'Resistenza fisica';
-    const base = getCaseInsensitive(characterData.skills, name) || {};
+    const base = getCaseInsensitive(displayData.skills, name) || {};
     const adRanks = base.adolescenceRanks || 0;
-    const level1Tb6 = characterData.level1Tb6 || {};
+    const level1Tb6 = displayData.level1Tb6 || {};
     const profRanks = getSpecificTb6Ranks(name, profession) + (getCaseInsensitive(level1Tb6, name) || 0);
-    const tgp4RanksL1 = getCaseInsensitive(characterData.level1Tgp4, name) || 0;
+    const tgp4RanksL1 = getCaseInsensitive(displayData.level1Tgp4, name) || 0;
     const bgExtra = getCaseInsensitive(bgModifiers.skillBgRanks, name) || 0;
     return adRanks + profRanks + tgp4RanksL1 + bgExtra;
-  }, [characterData.skills, characterData.level1Tb6, characterData.level1Tgp4, profession, bgModifiers]);
+  }, [displayData.skills, displayData.level1Tb6, displayData.level1Tgp4, profession, bgModifiers]);
 
   // Gestione tiro HP del Livello 1
-  const level1HpRoll = characterData.level1HpRoll ?? null;
+  const level1HpRoll = displayData.level1HpRoll ?? null;
 
   const handleRollLevel1Hp = () => {
     const numD10 = rfRanksLevel1;
     if (numD10 <= 0) {
-      setCharacterData(prev => ({ ...prev, level1HpRoll: 0 }));
+      handleSetData(prev => ({ ...prev, level1HpRoll: 0 }));
       return;
     }
     let sum = 0;
     for (let i = 0; i < numD10; i++) {
       sum += Math.floor(Math.random() * 10) + 1;
     }
-    setCharacterData(prev => ({ ...prev, level1HpRoll: sum }));
+    handleSetData(prev => ({ ...prev, level1HpRoll: sum }));
   };
 
   const handleManualLevel1Hp = (val) => {
-    setCharacterData(prev => ({ ...prev, level1HpRoll: val }));
+    handleSetData(prev => ({ ...prev, level1HpRoll: val }));
   };
 
   // Somma roll HP di tutti i livelli
@@ -351,20 +370,20 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
   const totalRanksRf = useMemo(() => {
     if (!profession) return 0;
     const name = 'Resistenza fisica';
-    const base = getCaseInsensitive(characterData.skills, name) || {};
+    const base = getCaseInsensitive(displayData.skills, name) || {};
     const adRanks = base.adolescenceRanks || 0;
     const profRanks = base.professionRanks || 0; // fissi + L1 distribuiti
-    const tgp4RanksL1 = getCaseInsensitive(characterData.level1Tgp4, name) || 0;
+    const tgp4RanksL1 = getCaseInsensitive(displayData.level1Tgp4, name) || 0;
     const tgp4RanksLater = levelDevelopments.reduce((sum, d) => sum + (getCaseInsensitive(d.tgp4Distribution, name) || 0), 0);
     const bgExtra = getCaseInsensitive(bgModifiers.skillBgRanks, name) || 0;
     return adRanks + profRanks + tgp4RanksL1 + tgp4RanksLater + bgExtra;
-  }, [characterData.skills, profession, levelDevelopments, bgModifiers]);
+  }, [displayData.skills, profession, levelDevelopments, bgModifiers]);
 
   // Punti Ferita Totali: tiri HP + bonus CO + 5 + (gradi RF * hpD10Modifier) + specialRfBonus
   const hpD10Modifier = bgModifiers.hpD10Modifier || 0;
   const specialRfBonus = getCaseInsensitive(bgModifiers.primarySkillsSpecialBonus, 'Resistenza fisica') || 0;
   const specialHpBonus = (totalRanksRf * hpD10Modifier) + specialRfBonus;
-  const finalHitPoints = getCharacterHpTot(characterData);
+  const finalHitPoints = getCharacterHpTot(displayData);
 
   // Punti Magia Totali: livello * PM per livello
   const pmPerLevel = useMemo(() => {
@@ -376,6 +395,184 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
 
   // Aspetto has been moved to step 7 (CreationSummaryStep)
 
+  // Reinizializza lo stato dell'editor quando si apre editMode === 'equipment'
+  useEffect(() => {
+    if (editMode === 'equipment') {
+      setEquipSearchQuery('');
+      setEquipActiveCategory('all');
+      const state = {};
+      if (equipmentCatalog && equipmentCatalog.length > 0) {
+        equipmentCatalog.forEach((item, index) => {
+          const key = `${item.categoria}_${item.nome}_${index}`;
+          const saved = (displayData.equipment || []).find(x => x.nome === item.nome && x.categoria === item.categoria);
+          state[key] = {
+            qtyEquip: saved ? (saved.qtyEquip || 0) : 0,
+            qtyCarico: saved ? (saved.qtyCarico || 0) : 0,
+            acquisto: false,
+            note: saved ? (saved.note || '') : ''
+          };
+        });
+      }
+      setEquipItemsState(state);
+    }
+  }, [editMode, equipmentCatalog, displayData.equipment]);
+
+  const equipHandleQtyChange = (key, field, val) => {
+    setEquipItemsState(prev => ({
+      ...prev,
+      [key]: {
+        ...prev[key],
+        [field]: Math.max(0, parseInt(val) || 0)
+      }
+    }));
+  };
+
+  const equipHandleAcquistoChange = (key, val) => {
+    setEquipItemsState(prev => ({
+      ...prev,
+      [key]: {
+        ...prev[key],
+        acquisto: val
+      }
+    }));
+  };
+
+  const equipHandleNoteChange = (key, val) => {
+    setEquipItemsState(prev => ({
+      ...prev,
+      [key]: {
+        ...prev[key],
+        note: val
+      }
+    }));
+  };
+
+  // Riepilogo costi e carico per l'editor equipaggiamento
+  const equipSummary = useMemo(() => {
+    let costoTotaleMB = 0;
+    let pesoCaricoKg = 0;
+
+    if (!equipmentCatalog) return { costoTotaleMB: 0, pesoCaricoKg: 0, caricoArrotondato: 0, penalita: 0, caricoBloccato: false };
+
+    equipmentCatalog.forEach((item, index) => {
+      const key = `${item.categoria}_${item.nome}_${index}`;
+      const state = equipItemsState[key];
+      if (!state) return;
+
+      const newTotal = (state.qtyEquip || 0) + (state.qtyCarico || 0);
+      const saved = (displayData.equipment || []).find(x => x.nome === item.nome && x.categoria === item.categoria);
+      const oldTotal = saved ? ((saved.qtyEquip || 0) + (saved.qtyCarico || 0)) : 0;
+
+      // Costo incrementale solo se ACQUISTO è spuntata
+      if (state.acquisto && newTotal > oldTotal) {
+        const delta = newTotal - oldTotal;
+        costoTotaleMB += delta * (item.costo_MB || 0);
+      }
+
+      // Peso di carico
+      const pesoUnitario = item["peso in kg"] || 0;
+      pesoCaricoKg += (state.qtyCarico || 0) * pesoUnitario;
+    });
+
+    const caricoArrotondato = Math.floor(pesoCaricoKg);
+    const pesoPG = displayData.peso || 70;
+    const { penalita, caricoBloccato } = calculateCargoPenalty(pesoPG, pesoCaricoKg);
+
+    return { costoTotaleMB, pesoCaricoKg, caricoArrotondato, penalita, caricoBloccato };
+  }, [equipItemsState, equipmentCatalog, displayData.equipment, displayData.peso]);
+
+  const equipHandleSave = () => {
+    if (equipSummary.caricoBloccato) {
+      alert("Impossibile salvare: il carico del personaggio è insostenibile (NA).");
+      return;
+    }
+
+    const currentPortafoglio = displayData.portafoglioMB || 0;
+    const nextPortafoglio = Math.round((currentPortafoglio - equipSummary.costoTotaleMB) * 100) / 100;
+
+    if (nextPortafoglio < 0) {
+      const confirmProceed = window.confirm(
+        `Attenzione: la spesa totale (${equipSummary.costoTotaleMB.toFixed(2)} MB) supera il denaro posseduto (${currentPortafoglio.toFixed(2)} MB).\nIl portafoglio andrà in negativo (${nextPortafoglio.toFixed(2)} MB). Vuoi procedere?`
+      );
+      if (!confirmProceed) return;
+    }
+
+    // Costruisce la lista equipaggiamento salvata
+    const equipmentList = [];
+    let armorEquipped = displayData.equippedArmor || null;
+    let shieldEquipped = displayData.equippedShield || false;
+
+    equipmentCatalog.forEach((item, index) => {
+      const key = `${item.categoria}_${item.nome}_${index}`;
+      const state = equipItemsState[key];
+      if (state && ((state.qtyEquip || 0) > 0 || (state.qtyCarico || 0) > 0)) {
+        equipmentList.push({
+          nome: item.nome,
+          categoria: item.categoria,
+          abbreviazione: item.abbreviazione,
+          costo_MB: item.costo_MB,
+          "peso in kg": item["peso in kg"],
+          note_base: item.note,
+          qtyEquip: state.qtyEquip,
+          qtyCarico: state.qtyCarico,
+          note: state.note.trim()
+        });
+
+        if (item.categoria === 'armatura') {
+          if (item.nome.toLowerCase().includes('scudo')) {
+            shieldEquipped = true;
+          } else if (item.note && item.note.toLowerCase().includes('armatura')) {
+            armorEquipped = item.nome;
+          }
+        }
+      }
+    });
+
+    const newData = {
+      ...displayData,
+      portafoglioMB: nextPortafoglio,
+      equipment: equipmentList,
+      caricoKg: equipSummary.pesoCaricoKg,
+      penalitaCarico: equipSummary.penalita,
+      equippedArmor: armorEquipped,
+      equippedShield: shieldEquipped
+    };
+
+    handleSetData(newData);
+
+    // Resetta checkbox acquisto
+    setEquipItemsState(prev => {
+      const next = { ...prev };
+      Object.keys(next).forEach(k => {
+        next[k] = { ...next[k], acquisto: false };
+      });
+      return next;
+    });
+
+    setEditMode(null);
+    alert("Equipaggiamento salvato e consolidato con successo!");
+  };
+
+  // Catalogo filtrato per l'editor
+  const equipFilteredItems = useMemo(() => {
+    if (!equipmentCatalog) return [];
+    return equipmentCatalog
+      .map((item, index) => ({ item, index, key: `${item.categoria}_${item.nome}_${index}` }))
+      .filter(x => {
+        if (equipSearchQuery.trim()) {
+          const q = equipSearchQuery.toLowerCase().trim();
+          return (x.item.nome || '').toLowerCase().includes(q) ||
+                 (x.item.note || '').toLowerCase().includes(q);
+        }
+        return equipActiveCategory === 'all' || x.item.categoria === equipActiveCategory;
+      });
+  }, [equipmentCatalog, equipSearchQuery, equipActiveCategory]);
+
+  const equipCategories = useMemo(() => {
+    if (!equipmentCatalog) return [];
+    return [...new Set(equipmentCatalog.map(item => item.categoria))];
+  }, [equipmentCatalog]);
+
   // Consolidamento finale abilità primarie
   const finalSkills = useMemo(() => {
     const result = {};
@@ -385,16 +582,16 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
 
       // Adolescenza
       const adRanks = isCogliereAlleSpalle ? 0 : (baseSkills => {
-        return characterData.adolescenceSkills?.[name]?.adolescenceRanks || 0;
+        return displayData.adolescenceSkills?.[name]?.adolescenceRanks || 0;
       })();
 
       // Base Professione scalata al livello finale
-      const l1Tb6Ranks = characterData.level1Tb6?.[name] || 0;
+      const l1Tb6Ranks = displayData.level1Tb6?.[name] || 0;
       const baseProfRanks = isCogliereAlleSpalle ? 0 : (getSpecificTb6Ranks(name, profession) + l1Tb6Ranks);
       const professionRanks = isCogliereAlleSpalle ? 0 : getProfessionRanksForLevel(baseProfRanks, finalLevel);
 
       // Gradi TGP_4 Livello 1 + Livelli Successivi
-      const tgp4RanksL1 = characterData.level1Tgp4?.[name] || 0;
+      const tgp4RanksL1 = displayData.level1Tgp4?.[name] || 0;
       const tgp4RanksLater = levelDevelopments.reduce((sum, d) => sum + (d.tgp4Distribution?.[name] || 0), 0);
       const tgp4Ranks = tgp4RanksL1 + tgp4RanksLater;
 
@@ -440,11 +637,11 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
       };
     });
     return result;
-  }, [characterData, profession, finalLevel, levelDevelopments, finalStats, bgModifiers]);
+  }, [displayData, profession, finalLevel, levelDevelopments, finalStats, bgModifiers]);
 
   const consolidatedSecondarySkills = useMemo(() => {
-    return getConsolidatedSecondarySkills(characterData);
-  }, [characterData]);
+    return getConsolidatedSecondarySkills(displayData);
+  }, [displayData]);
 
   const highlightedArmorSkill = useMemo(() => {
     if (presentArmors.length === 0) return 'nessuna armatura';
@@ -487,7 +684,7 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
   // Consolidamento lingue finali
   const finalLanguages = useMemo(() => {
     const langs = {};
-    const baseLangs = characterData.background?.languages || {};
+    const baseLangs = displayData.background?.languages || {};
 
     Object.keys(baseLangs).forEach(l => {
       langs[l] = {
@@ -502,10 +699,10 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
       const totA = (a[1].base || 0) + (a[1].added || 0);
       return totB - totA;
     });
-  }, [characterData.background]);
+  }, [displayData.background]);
 
   // Liste Incantesimi apprese e filtri per incantesimi
-  const spellListAllocations = characterData.spellListAllocations || {};
+  const spellListAllocations = displayData.spellListAllocations || {};
   const bgSpellLists = bgModifiers.bgSpellLists || [];
   const allLearnedLists = useMemo(() => {
     const list = new Set([...Object.keys(spellListAllocations), ...bgSpellLists]);
@@ -522,9 +719,9 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
         </div>
       );
     }
-    const inheritedChance = characterData.levelDevelopments?.length > 0
-      ? characterData.levelDevelopments[characterData.levelDevelopments.length - 1].spellListChanceAccumulated
-      : (characterData.spellListChanceAccumulated || 0);
+    const inheritedChance = displayData.levelDevelopments?.length > 0
+      ? displayData.levelDevelopments[displayData.levelDevelopments.length - 1].spellListChanceAccumulated
+      : (displayData.spellListChanceAccumulated || 0);
       
     return <div>Nessuna lista incantesimi appresa - Credito ereditato: {inheritedChance}%</div>;
   };
@@ -584,13 +781,24 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
             Visualizza, esporta o stampa la scheda finale del tuo personaggio MERP.
           </p>
         </div>
-        <button
-          onClick={handlePrint}
-          className="btn btn-primary bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2 text-sm rounded-lg flex items-center gap-1.5 shadow-md"
-        >
-          <Printer className="w-4 h-4" />
-          Stampa Scheda / PDF
-        </button>
+        <div className="flex gap-2">
+          {onNavigateToStep && (
+            <button
+              onClick={() => onNavigateToStep(7)} // step 8: creation_summary
+              className="btn btn-outline border-indigo-300 text-indigo-700 hover:bg-indigo-50 font-bold px-4 py-2 text-sm rounded-lg flex items-center gap-1.5 shadow-xs"
+            >
+              <Edit3 className="w-4 h-4" />
+              Modifica Creazione
+            </button>
+          )}
+          <button
+            onClick={handlePrint}
+            className="btn btn-primary bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2 text-sm rounded-lg flex items-center gap-1.5 shadow-md"
+          >
+            <Printer className="w-4 h-4" />
+            Stampa Scheda / PDF
+          </button>
+        </div>
       </div>
 
       {/* SCHEDA PERSONAGGIO DI GIOCO */}
@@ -609,7 +817,7 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
             </div>
           </div>
 
-          <AnagraficaReadOnlyBox characterData={characterData} simple={false} />
+          <AnagraficaReadOnlyBox characterData={displayData} simple={false} />
 
           {/* ── HEADER BANNER ── */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginTop: '1rem' }}>
@@ -622,8 +830,18 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
             </div>
             <div style={{ padding: '1rem', border: '1px solid var(--theme-profession-border)', borderRadius: '0.6rem', background: 'var(--theme-profession-bg)' }}>
               <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-profession-text)' }}>Professione</div>
-              <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-profession-text)', marginTop: '0.2rem' }}>
+              <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-profession-text)', marginTop: '0.2rem', display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
                 <CodexLabel term={profession?.professione} category="professioni" page="scheda_riepilogo" /> (Liv. {finalLevel})
+                {onNavigateToStep && (
+                  <button
+                    onClick={() => onNavigateToStep(8)}
+                    className="text-[10px] font-bold bg-emerald-600 hover:bg-emerald-700 text-white px-2 py-0.5 rounded flex items-center gap-1 transition-colors"
+                    title="Aggiungi un livello di sviluppo"
+                  >
+                    <PlusCircle className="w-3 h-3" />
+                    +1 Livello
+                  </button>
+                )}
               </div>
               <div style={{ fontSize: '0.75rem', color: 'var(--theme-profession-text)', opacity: 0.85, marginTop: '0.15rem' }}>
                 {profession && `Primaria: ${profession.primaria} | Secondaria: ${profession.secondaria}`}
@@ -631,7 +849,7 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
             </div>
             <div style={{ padding: '1rem', border: '1px solid var(--theme-spell-lists-border)', borderRadius: '0.6rem', background: 'var(--theme-spell-lists-bg)' }}>
               <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-spell-lists-text)' }}>Reame Magico</div>
-              <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-spell-lists-text)', marginTop: '0.2rem' }}>{characterData.magicRealm || 'Nessuno'}</div>
+              <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--theme-spell-lists-text)', marginTop: '0.2rem' }}>{displayData.magicRealm || 'Nessuno'}</div>
               <div style={{ fontSize: '0.75rem', color: 'var(--theme-spell-lists-text)', opacity: 0.85, marginTop: '0.15rem', fontWeight: 500 }}>
                 {getMagicRealmSummaryStep10()}
               </div>
@@ -681,7 +899,7 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
                       Aspetto Fisico {prBonus !== 0 ? '(PR)' : ''}
                     </td>
                     <td className="px-2 py-2 text-center font-bold" style={{ color: '#0f5132' }}>
-                      {characterData.aspetto || '—'}
+                      {displayData.aspetto || '—'}
                     </td>
                     <td className="px-2 py-2 text-center">—</td>
                     <td className="px-2 py-2 text-center">—</td>
@@ -792,20 +1010,20 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
                             type="number"
                             min="0"
                             max={finalHitPoints}
-                            value={characterData.hpSubiti || 0}
+                            value={displayData.hpSubiti || 0}
                             disabled={statsReadOnly}
                             onChange={(e) => {
                                 const val = Math.max(0, parseInt(e.target.value) || 0);
-                                setCharacterData(prev => ({ ...prev, hpSubiti: val }));
+                                handleSetData(prev => ({ ...prev, hpSubiti: val }));
                             }}
                             className="w-16 p-1 border border-red-300 rounded text-center text-xs font-bold text-red-750 bg-white"
                             style={statsReadOnly ? { opacity: 0.8, backgroundColor: '#f1f5f9', color: '#64748b', cursor: 'not-allowed' } : {}}
                           />
                           <span className="text-[10px] text-red-800 font-medium">
-                            PF Rimanenti: <strong>{Math.max(0, finalHitPoints - (characterData.hpSubiti || 0))}</strong>
+                            PF Rimanenti: <strong>{Math.max(0, finalHitPoints - (displayData.hpSubiti || 0))}</strong>
                           </span>
                         </div>
-                        {(characterData.hpSubiti || 0) > (finalHitPoints / 2) && (
+                        {(displayData.hpSubiti || 0) > (finalHitPoints / 2) && (
                           <div className="text-[10px] text-red-700 font-bold mt-1.5 flex items-center gap-1 animate-pulse">
                             ⚠️ Gravemente Ferito (-20 BO)
                           </div>
@@ -1088,9 +1306,24 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
 
         {/* Liste Incantesimi consolidata */}
         <div className="border border-gray-200 rounded-lg overflow-hidden shadow-xs mb-6 print:break-inside-avoid">
-          <div className="px-4 py-2 border-b flex items-center gap-1.5" style={{ backgroundColor: 'var(--theme-spell-lists-bg)', borderBottomColor: 'var(--theme-spell-lists-border)', color: 'var(--theme-spell-lists-text)' }}>
-            <BookOpen className="w-4 h-4" style={{ color: 'var(--theme-spell-lists-text)' }} />
-            <span className="text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--theme-spell-lists-text)' }}>Liste e Incantesimi Appresi</span>
+          <div className="px-4 py-2 border-b flex items-center justify-between" style={{ backgroundColor: 'var(--theme-spell-lists-bg)', borderBottomColor: 'var(--theme-spell-lists-border)', color: 'var(--theme-spell-lists-text)' }}>
+            <div className="flex items-center gap-1.5">
+              <BookOpen className="w-4 h-4" style={{ color: 'var(--theme-spell-lists-text)' }} />
+              <span className="text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--theme-spell-lists-text)' }}>Liste e Incantesimi Appresi</span>
+            </div>
+            {onNavigateToStep && (
+              <button
+                onClick={() => setEditMode(editMode === 'spellLists' ? null : 'spellLists')}
+                className={`text-[10px] font-bold px-2.5 py-1 rounded flex items-center gap-1 transition-colors ${
+                  editMode === 'spellLists'
+                    ? 'bg-purple-800 text-white'
+                    : 'bg-purple-600 hover:bg-purple-700 text-white'
+                }`}
+              >
+                <BookOpen size={12} />
+                {editMode === 'spellLists' ? 'Chiudi Modifica' : 'Modifica Liste'}
+              </button>
+            )}
           </div>
           <div className="p-4 space-y-4">
             {allLearnedLists.length === 0 ? (
@@ -1099,7 +1332,46 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
               </div>
             ) : (
               <div className="space-y-4">
-                {allLearnedLists.map(listName => {
+                {editMode === 'spellLists' && (
+                  <div className="mb-4 p-3 border-2 border-dashed border-purple-300 rounded-lg bg-purple-50/20 space-y-3">
+                    <h5 className="text-xs font-bold text-purple-800">Sostituzione Liste Incantesimi</h5>
+                    <p className="text-[10px] text-purple-600">
+                      Per ogni lista appresa, puoi scegliere una sostituzione tra quelle disponibili per la professione "{profession?.professione}" e il reame "{magicRealm}".
+                    </p>
+                    {allLearnedLists.map(listName => {
+                      const available = getAvailableSpellLists(profession?.professione, magicRealm)
+                        .map(l => l.nome_lista)
+                        .filter(n => !allLearnedLists.includes(n) || n === listName);
+
+                      return (
+                        <div key={listName} className="flex items-center gap-2 bg-white rounded border border-purple-200 p-2">
+                          <span className="text-xs font-bold text-gray-800 w-48 shrink-0">{listName}</span>
+                          <ArrowLeftRight className="w-4 h-4 text-purple-400 shrink-0" />
+                          <select
+                            className="flex-1 text-xs p-1.5 border rounded bg-white"
+                            value={listName}
+                            onChange={(e) => {
+                              const newList = e.target.value;
+                              if (newList === listName) return;
+                              const newAllocations = { ...(displayData.spellListAllocations || {}) };
+                              const source = newAllocations[listName];
+                              delete newAllocations[listName];
+                              newAllocations[newList] = source || 'Manuale';
+                              handleSetData(prev => ({ ...prev, spellListAllocations: newAllocations }));
+                            }}
+                          >
+                            <option value={listName}>{listName} (attuale)</option>
+                            {available.filter(n => n !== listName).map(n => (
+                              <option key={n} value={n}>{n}</option>
+                            ))}
+                          </select>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+
+            {allLearnedLists.map(listName => {
                   const limit = getSpellLimitForProfessionAndRealm(profession.professione, listName, finalLevel);
                   const rawSpells = getSpellsForList(listName, spellCatalog);
                   const spells = rawSpells.filter(s => parseInt(s.livello) <= limit);
@@ -1173,12 +1445,28 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
             <div className="flex items-center gap-1.5">
               <span className="text-xs font-bold uppercase tracking-wider">Inventario & Equipaggiamento</span>
             </div>
-            <span className="text-[10px] font-bold bg-amber-100 text-amber-850 px-2.5 py-0.5 rounded">
-              Portafoglio Residuo: {formatCoinsToString(formatMBToCoins(characterData.portafoglioMB || 0))}
-            </span>
+            <div className="flex items-center gap-2">
+              {!statsReadOnly && (
+                <button
+                  type="button"
+                  onClick={() => setEditMode(editMode === 'equipment' ? null : 'equipment')}
+                  className={`text-[10px] font-bold px-2.5 py-1 rounded flex items-center gap-1 transition-colors ${
+                    editMode === 'equipment'
+                      ? 'bg-amber-800 text-white'
+                      : 'bg-amber-600 hover:bg-amber-700 text-white'
+                  }`}
+                >
+                  <Package size={12} />
+                  {editMode === 'equipment' ? 'Chiudi Modifica' : 'Modifica Equipaggiamento'}
+                </button>
+              )}
+              <span className="text-[10px] font-bold bg-amber-100 text-amber-850 px-2.5 py-0.5 rounded">
+                Portafoglio Residuo: {formatCoinsToString(formatMBToCoins(displayData.portafoglioMB || 0))}
+              </span>
+            </div>
           </div>
           <div className="p-4">
-            {(!characterData.equipment || characterData.equipment.length === 0) ? (
+            {(!displayData.equipment || displayData.equipment.length === 0) ? (
               <div className="text-center py-6 text-gray-400 italic text-xs">Inventario vuoto. Acquista oggetti nello step di Equipaggiamento.</div>
             ) : (
               <div className="grid md:grid-cols-2 gap-4">
@@ -1191,25 +1479,79 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
                       <div className="text-gray-400 italic text-xs">Nessun oggetto pronto o indossato.</div>
                     ) : (
                       sortedEquipEntries.map(([cat, items]) => (
-                        <div key={cat} className="space-y-1">
-                          <h6 className="text-[10px] font-bold text-amber-900 uppercase tracking-wider bg-amber-500/10 px-2 py-0.5 rounded border border-amber-200/50">
-                            {CATEGORY_DISPLAY[cat] || (cat.charAt(0).toUpperCase() + cat.slice(1))}
-                          </h6>
-                          <ul className="space-y-1 text-xs">
-                            {items.map((item, idx) => {
-                              const isScasso = item.nome.toLowerCase().includes('attrezzi da scasso');
-                              return (
-                                <li key={idx} className={`flex justify-between items-start py-1 border-b border-gray-100/50 last:border-0 px-2 rounded ${isScasso ? 'bg-teal-50' : ''}`}>
-                                  <div>
-                                    <strong className="text-gray-900">{item.nome}</strong> {item.qtyEquip > 1 && <span className="text-gray-500 font-bold">x{item.qtyEquip}</span>}
-                                    {item.note && <span className="text-[10px] text-gray-500 block italic">{item.note}</span>}
-                                  </div>
-                                  <span className="text-[10px] text-gray-450 font-semibold">(Non genera carico)</span>
-                                </li>
-                              );
-                            })}
-                          </ul>
-                        </div>
+                  <div key={cat} className="space-y-1">
+                    <h6 className="text-[10px] font-bold text-amber-900 uppercase tracking-wider bg-amber-500/10 px-2 py-0.5 rounded border border-amber-200/50">
+                      {CATEGORY_DISPLAY[cat] || (cat.charAt(0).toUpperCase() + cat.slice(1))}
+                    </h6>
+                    <ul className="space-y-1 text-xs">
+                      {items.map((item, idx) => {
+                        const isScasso = item.nome.toLowerCase().includes('attrezzi da scasso');
+                        // In editMode, leggi qty da equipItemsState
+                        const equipStateKey = editMode === 'equipment' ? Object.keys(equipItemsState).find(k => k.startsWith(`${item.categoria}_${item.nome}_`)) : null;
+                        const equipState = equipStateKey ? equipItemsState[equipStateKey] : null;
+                        const editQtyEquip = equipState ? equipState.qtyEquip : item.qtyEquip;
+                        return (
+                          <li key={idx} className={`flex justify-between items-start py-1 border-b border-gray-100/50 last:border-0 px-2 rounded ${isScasso ? 'bg-teal-50' : ''}`}>
+                            <div>
+                              <strong className="text-gray-900">{item.nome}</strong> {editQtyEquip > 1 && <span className="text-gray-500 font-bold">x{editQtyEquip}</span>}
+                              {item.note && <span className="text-[10px] text-gray-500 block italic">{item.note}</span>}
+                            </div>
+                            {editMode === 'equipment' ? (
+                              <div className="flex items-center gap-1">
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    if (equipStateKey) {
+                                      setEquipItemsState(prev => ({
+                                        ...prev,
+                                        [equipStateKey]: { ...prev[equipStateKey], qtyEquip: Math.max(0, (prev[equipStateKey]?.qtyEquip || 0) - 1) }
+                                      }));
+                                    }
+                                  }}
+                                  className="px-1 py-0.5 text-[11px] font-bold rounded bg-red-100 text-red-700 hover:bg-red-200 leading-none"
+                                  title="Rimuovi 1"
+                                >
+                                  −
+                                </button>
+                                <span className="text-[11px] font-bold text-gray-700 min-w-[20px] text-center">{editQtyEquip}</span>
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    if (equipStateKey) {
+                                      setEquipItemsState(prev => ({
+                                        ...prev,
+                                        [equipStateKey]: { ...prev[equipStateKey], qtyEquip: (prev[equipStateKey]?.qtyEquip || 0) + 1 }
+                                      }));
+                                    }
+                                  }}
+                                  className="px-1 py-0.5 text-[11px] font-bold rounded bg-emerald-100 text-emerald-700 hover:bg-emerald-200 leading-none"
+                                  title="Aggiungi 1"
+                                >
+                                  +
+                                </button>
+                                <button
+                                  onClick={() => {
+                                    if (equipStateKey) {
+                                      setEquipItemsState(prev => ({
+                                        ...prev,
+                                        [equipStateKey]: { ...prev[equipStateKey], qtyEquip: 0 }
+                                      }));
+                                    }
+                                  }}
+                                  className="text-red-600 hover:text-red-800 ml-1 text-[11px] leading-none"
+                                  title="Rimuovi tutto"
+                                >
+                                  ✕
+                                </button>
+                              </div>
+                            ) : (
+                              <span className="text-[10px] text-gray-450 font-semibold">(Non genera carico)</span>
+                            )}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
                       ))
                     )}
                   </div>
@@ -1231,15 +1573,70 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
                             <ul className="space-y-1 text-xs">
                               {items.map((item, idx) => {
                                 const itemPeso = item["peso in kg"] || 0;
-                                const totPeso = item.qtyCarico * itemPeso;
                                 const isScasso = item.nome.toLowerCase().includes('attrezzi da scasso');
+                                // In editMode, leggi qty da equipItemsState
+                                const caricoStateKey = editMode === 'equipment' ? Object.keys(equipItemsState).find(k => k.startsWith(`${item.categoria}_${item.nome}_`)) : null;
+                                const caricoState = caricoStateKey ? equipItemsState[caricoStateKey] : null;
+                                const editQtyCarico = caricoState ? caricoState.qtyCarico : item.qtyCarico;
+                                const editTotPeso = editQtyCarico * itemPeso;
                                 return (
                                   <li key={idx} className={`flex justify-between items-start py-1 border-b border-gray-100/50 last:border-0 px-2 rounded ${isScasso ? 'bg-teal-50' : ''}`}>
                                     <div>
-                                      <strong className="text-gray-900">{item.nome}</strong> {item.qtyCarico > 1 && <span className="text-gray-500 font-bold">x{item.qtyCarico}</span>}
+                                      <strong className="text-gray-900">{item.nome}</strong> {editQtyCarico > 1 && <span className="text-gray-500 font-bold">x{editQtyCarico}</span>}
                                       {item.note && <span className="text-[10px] text-gray-500 block italic">{item.note}</span>}
                                     </div>
-                                    <span className="text-[10px] text-gray-600 font-bold">{totPeso.toFixed(1)} kg</span>
+                                    {editMode === 'equipment' ? (
+                                      <div className="flex items-center gap-2">
+                                        <button
+                                          type="button"
+                                          onClick={() => {
+                                            if (caricoStateKey) {
+                                              setEquipItemsState(prev => ({
+                                                ...prev,
+                                                [caricoStateKey]: { ...prev[caricoStateKey], qtyCarico: Math.max(0, (prev[caricoStateKey]?.qtyCarico || 0) - 1) }
+                                              }));
+                                            }
+                                          }}
+                                          className="px-1 py-0.5 text-[11px] font-bold rounded bg-red-100 text-red-700 hover:bg-red-200 leading-none"
+                                          title="Rimuovi 1"
+                                        >
+                                          −
+                                        </button>
+                                        <span className="text-[11px] font-bold text-gray-700 min-w-[20px] text-center">{editQtyCarico}</span>
+                                        <button
+                                          type="button"
+                                          onClick={() => {
+                                            if (caricoStateKey) {
+                                              setEquipItemsState(prev => ({
+                                                ...prev,
+                                                [caricoStateKey]: { ...prev[caricoStateKey], qtyCarico: (prev[caricoStateKey]?.qtyCarico || 0) + 1 }
+                                              }));
+                                            }
+                                          }}
+                                          className="px-1 py-0.5 text-[11px] font-bold rounded bg-emerald-100 text-emerald-700 hover:bg-emerald-200 leading-none"
+                                          title="Aggiungi 1"
+                                        >
+                                          +
+                                        </button>
+                                        <span className="text-[10px] text-gray-600 font-bold">{editTotPeso.toFixed(1)} kg</span>
+                                        <button
+                                          onClick={() => {
+                                            if (caricoStateKey) {
+                                              setEquipItemsState(prev => ({
+                                                ...prev,
+                                                [caricoStateKey]: { ...prev[caricoStateKey], qtyCarico: 0 }
+                                              }));
+                                            }
+                                          }}
+                                          className="text-red-600 hover:text-red-800 ml-1 text-[11px] leading-none"
+                                          title="Rimuovi tutto"
+                                        >
+                                          ✕
+                                        </button>
+                                      </div>
+                                    ) : (
+                                      <span className="text-[10px] text-gray-600 font-bold">{editTotPeso.toFixed(1)} kg</span>
+                                    )}
                                   </li>
                                 );
                               })}
@@ -1255,6 +1652,177 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
                   </div>
                 </div>
 
+              </div>
+            )}
+            {editMode === 'equipment' && (
+              <div className="mt-4 pt-4 border-t border-amber-200">
+                {/* Filtri per categoria */}
+                <div className="flex flex-wrap gap-1.5 mb-3">
+                  <button
+                    onClick={() => setEquipActiveCategory('all')}
+                    className={`text-[10px] font-bold px-2.5 py-1 rounded-full transition-colors ${
+                      equipActiveCategory === 'all'
+                        ? 'bg-amber-600 text-white'
+                        : 'bg-amber-100 text-amber-800 hover:bg-amber-200'
+                    }`}
+                  >
+                    Tutti
+                  </button>
+                  {equipCategories.map(cat => (
+                    <button
+                      key={cat}
+                      onClick={() => setEquipActiveCategory(cat)}
+                      className={`text-[10px] font-bold px-2.5 py-1 rounded-full transition-colors ${
+                        equipActiveCategory === cat
+                          ? 'bg-amber-600 text-white'
+                          : 'bg-amber-100 text-amber-800 hover:bg-amber-200'
+                      }`}
+                    >
+                      {CATEGORY_DISPLAY[cat] || cat}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Campo di ricerca */}
+                <input
+                  type="text"
+                  id="equip-search-add"
+                  placeholder="Cerca oggetto da aggiungere..."
+                  value={equipSearchQuery}
+                  onChange={(e) => setEquipSearchQuery(e.target.value)}
+                  className="w-full p-2 border rounded text-xs mb-3"
+                />
+
+                {/* Catalogo oggetti filtrato */}
+                {equipFilteredItems.length === 0 ? (
+                  <div className="text-center py-4 text-gray-400 italic text-xs">
+                    Nessun oggetto trovato.
+                  </div>
+                ) : (
+                  <div className="max-h-64 overflow-y-auto border rounded divide-y divide-gray-100">
+                    {equipFilteredItems.map(({ item, index, key }) => {
+                      const state = equipItemsState[key];
+                      if (!state) return null;
+                      const newTotal = (state.qtyEquip || 0) + (state.qtyCarico || 0);
+
+                      return (
+                        <div key={key} className="flex items-center gap-2 p-2 hover:bg-amber-50/50 text-xs">
+                          <div className="flex-1 min-w-0">
+                            <span className="font-bold text-gray-800 block truncate">{item.nome}</span>
+                            <span className="text-[10px] text-gray-500">
+                              {CATEGORY_DISPLAY[item.categoria] || item.categoria}
+                              {item.costo_MB ? ` · ${item.costo_MB} MB` : ''}
+                              {item["peso in kg"] ? ` · ${item["peso in kg"]} kg` : ''}
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-1 shrink-0">
+                            {newTotal > 0 && (
+                              <>
+                                <span className="text-[10px] text-gray-600 font-semibold">Eq: {state.qtyEquip}</span>
+                                <span className="text-[10px] text-gray-600 font-semibold">Ca: {state.qtyCarico}</span>
+                              </>
+                            )}
+                            <button
+                              onClick={() => {
+                                setEquipItemsState(prev => ({
+                                  ...prev,
+                                  [key]: {
+                                    ...prev[key],
+                                    qtyEquip: (prev[key]?.qtyEquip || 0) + 1
+                                  }
+                                }));
+                              }}
+                              className="px-1.5 py-0.5 text-[10px] font-bold rounded bg-amber-100 text-amber-700 hover:bg-amber-200 transition-colors"
+                              title="Aggiungi 1 all'equipaggiamento"
+                            >
+                              + Equip
+                            </button>
+                            <button
+                              onClick={() => {
+                                setEquipItemsState(prev => ({
+                                  ...prev,
+                                  [key]: {
+                                    ...prev[key],
+                                    qtyCarico: (prev[key]?.qtyCarico || 0) + 1
+                                  }
+                                }));
+                              }}
+                              className="px-1.5 py-0.5 text-[10px] font-bold rounded bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors"
+                              title="Aggiungi 1 al carico"
+                            >
+                              + Carico
+                            </button>
+                            {newTotal > 0 && (
+                              <button
+                                onClick={() => {
+                                  const currentState = equipItemsState[key];
+                                  if ((currentState?.qtyCarico || 0) > 0) {
+                                    setEquipItemsState(prev => ({
+                                      ...prev,
+                                      [key]: {
+                                        ...prev[key],
+                                        qtyCarico: Math.max(0, (prev[key]?.qtyCarico || 0) - 1)
+                                      }
+                                    }));
+                                  } else if ((currentState?.qtyEquip || 0) > 0) {
+                                    setEquipItemsState(prev => ({
+                                      ...prev,
+                                      [key]: {
+                                        ...prev[key],
+                                        qtyEquip: Math.max(0, (prev[key]?.qtyEquip || 0) - 1)
+                                      }
+                                    }));
+                                  }
+                                }}
+                                className="w-6 h-6 flex items-center justify-center rounded bg-red-100 text-red-700 hover:bg-red-200 font-bold transition-colors"
+                                title="Rimuovi 1 (dal carico, poi dall'equipaggiamento)"
+                              >
+                                <Minus size={12} />
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+
+                {/* Riepilogo e pulsante Salva */}
+                <div className="mt-3 p-3 bg-amber-50 border border-amber-200 rounded-lg flex items-center justify-between">
+                  <div className="text-[10px] text-gray-700 space-x-3">
+                    <span><strong>Costo:</strong> {equipSummary.costoTotaleMB.toFixed(2)} MB</span>
+                    <span><strong>Peso Carico:</strong> {equipSummary.pesoCaricoKg.toFixed(1)} kg</span>
+                    <span><strong>Penalità:</strong> -{equipSummary.penalita}</span>
+                    {equipSummary.caricoBloccato && (
+                      <span className="text-red-700 font-bold">⛔ CARICO BLOCCATO (NA)</span>
+                    )}
+                  </div>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => {
+                        if (window.confirm('Annullare le modifiche? I cambiamenti non salvati andranno persi.')) {
+                          // Ricarica lo stato iniziale
+                          setEditMode(null);
+                        }
+                      }}
+                      className="px-3 py-1 text-[10px] font-bold rounded border border-gray-300 text-gray-600 hover:bg-gray-100 transition-colors"
+                    >
+                      Annulla
+                    </button>
+                    <button
+                      onClick={equipHandleSave}
+                      disabled={equipSummary.caricoBloccato}
+                      className={`px-3 py-1 text-[10px] font-bold rounded transition-colors flex items-center gap-1 ${
+                        equipSummary.caricoBloccato
+                          ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                          : 'bg-amber-600 hover:bg-amber-700 text-white'
+                      }`}
+                    >
+                      <Save size={12} />
+                      Salva
+                    </button>
+                  </div>
+                </div>
               </div>
             )}
           </div>
@@ -1384,7 +1952,7 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
         )}
 
         {/* Storia del personaggio */}
-        {characterData.history && characterData.history.trim() !== '' && (
+        {displayData.history && displayData.history.trim() !== '' && (
           <div className="border border-gray-200 rounded-lg overflow-hidden shadow-xs mt-6 print:break-inside-avoid">
             <div className="px-4 py-2 border-b flex items-center gap-1.5 text-gray-700 bg-gray-50 border-b-gray-200">
               <Scroll className="w-4 h-4 text-gray-500" />
@@ -1392,14 +1960,14 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
             </div>
             <div className="p-4">
               <p className="text-xs text-gray-750 leading-relaxed whitespace-pre-wrap font-serif italic" style={{ fontStyle: 'italic' }}>
-                {characterData.history}
+                {displayData.history}
               </p>
             </div>
           </div>
         )}
 
         {/* Taccuino Personale / Note del Giocatore */}
-        {characterData.id && (
+        {displayData.id && (
           <div className="border rounded-lg overflow-hidden shadow-xs mt-6 print:break-inside-avoid" style={{ borderColor: 'var(--warning-color)', backgroundColor: 'rgba(217, 119, 6, 0.03)' }}>
             <div className="px-4 py-2 border-b flex items-center justify-between" style={{ backgroundColor: 'rgba(217, 119, 6, 0.08)', borderBottomColor: 'rgba(217, 119, 6, 0.2)' }}>
               <div className="flex items-center gap-1.5 font-bold uppercase tracking-wider text-xs" style={{ color: 'var(--warning-color)' }}>
@@ -1471,6 +2039,7 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
         )}
 
       </div>
+
     </div>
   );
 }

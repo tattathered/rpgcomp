@@ -83,12 +83,12 @@ Questo modulo consente al GM di gestire e risolvere il lancio degli incantesimi 
 ## Impatti sul Codice / Architettura
 
 *   **Tabelle Dati:**
-    *   [NEW] [TA-7-incantesimi-dardo.json](file:///Users/yagni/Geek/antigravity/merpcomp/src/data/TA-7-incantesimi-dardo.json) (Tabella Dardi)
-    *   [NEW] [TA-8-incantesimi_sfera.json](file:///Users/yagni/Geek/antigravity/merpcomp/src/data/TA-8-incantesimi_sfera.json) (Tabella Sfere)
-    *   [NEW] [TA-9-incantesimi_base.json](file:///Users/yagni/Geek/antigravity/merpcomp/src/data/TA-9-incantesimi_base.json) (Tabella Incantesimi Base)
+    *   [NEW] [TA-7-incantesimi-dardo.json](src/data/TA-7-incantesimi-dardo.json) (Tabella Dardi)
+    *   [NEW] [TA-8-incantesimi_sfera.json](src/data/TA-8-incantesimi_sfera.json) (Tabella Sfere)
+    *   [NEW] [TA-9-incantesimi_base.json](src/data/TA-9-incantesimi_base.json) (Tabella Incantesimi Base)
 *   **Pipeline di Build:**
-    *   [MODIFY] [csvToJson.js](file:///Users/yagni/Geek/antigravity/merpcomp/scripts/csvToJson.js) (Aggiunta gestione delle nuove tabelle e correzione anomalie Excel)
+    *   [MODIFY] [csvToJson.js](scripts/csvToJson.js) (Aggiunta gestione delle nuove tabelle e correzione anomalie Excel)
 *   **Componenti UI:**
-    *   [NEW] [SpellResolver.jsx](file:///Users/yagni/Geek/antigravity/merpcomp/src/components/SpellResolver.jsx) (Risolutore autonomo incantesimi)
-    *   [MODIFY] [CombatCalculator.jsx](file:///Users/yagni/Geek/antigravity/merpcomp/src/components/CombatCalculator.jsx) (Integrazione incantesimi d'attacco)
-    *   [MODIFY] [App.jsx](file:///Users/yagni/Geek/antigravity/merpcomp/src/App.jsx) (Integrazione della tab SpellResolver)
+    *   [NEW] [SpellResolver.jsx](src/components/SpellResolver.jsx) (Risolutore autonomo incantesimi)
+    *   [MODIFY] [CombatCalculator.jsx](src/components/CombatCalculator.jsx) (Integrazione incantesimi d'attacco)
+    *   [MODIFY] [App.jsx](src/App.jsx) (Integrazione della tab SpellResolver)

@@ -58,6 +58,9 @@ export default function CombatCalculator({
   const [selectedDefenderWeaponIdx, setSelectedDefenderWeaponIdx] = useState(0);
   const [customDefenderBO, setCustomDefenderBO] = useState(50);
   const [useShield, setUseShield] = useState(false);
+  const [overrideBracciali, setOverrideBracciali] = useState(false);
+  const [overrideSchinieri, setOverrideSchinieri] = useState(false);
+  const [overrideElmo, setOverrideElmo] = useState(false);
 
   // --- STATO FUMBLE ---
   const [showFumbleResolver, setShowFumbleResolver] = useState(false);

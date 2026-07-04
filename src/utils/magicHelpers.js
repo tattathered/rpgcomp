@@ -21,10 +21,10 @@ export function getAvailableSpellLists(professionName, realm) {
   const categoryMap = {
     'ESSENZA': 'Lista Aperta Essenza',
     'FLUSSO': 'Lista Aperta Flusso',
-    'RANGER': 'Ranger',
-    'BARDO': 'Bardo',
-    'MAGO': 'Mago',
-    'ANIMISTA': 'Animista'
+    'RANGER': 'Ranger Ranger',
+    'BARDO': 'Bardi Bardi',
+    'MAGO': 'Maghi Maghi',
+    'ANIMISTA': 'Animisti Animisti'
   };
 
   effectiveRules.forEach(rule => {

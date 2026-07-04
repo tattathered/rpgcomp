@@ -8,6 +8,7 @@ import { getCharacterHpTot } from '../utils/skillHelpers';
 
 // Lazy-loaded components — caricati solo quando il tab è attivo
 const CharacterWizard = lazy(() => import('./CharacterWizard/CharacterWizard'));
+const CharacterSheetStep = lazy(() => import('./CharacterWizard/steps/CharacterSheetStep'));
 const PlayerManager = lazy(() => import('./GM/PlayerManager'));
 const CompanyManager = lazy(() => import('./GM/CompanyManager'));
 const CampaignManager = lazy(() => import('./GM/CampaignManager'));
@@ -82,6 +83,9 @@ export default function AppTabs({
   handleDeleteNpc,
   handleDeleteCreature,
   user,
+  onSaveCharacter,
+  onNavigateToWizardStep,
+  onWizardSaveAndReturn,
 }) {
   const [activeActionSubTab, setActiveActionSubTab] = useState('combat');
   const [activeSettingsSubTab, setActiveSettingsSubTab] = useState('equipment');
@@ -89,7 +93,7 @@ export default function AppTabs({
 
   return (
     <main className="main-content">
-      {/* TAB: CREAZIONE PG */}
+      {/* TAB: CREAZIONE PG (wizard) */}
       {activeTab === 'creation' && (
         <ErrorBoundary>
           <Lazy>
@@ -97,9 +101,29 @@ export default function AppTabs({
               key={activeCharacter?.id || 'new'}
               initialData={activeCharacter}
               initialStepIndex={activeStepIndex}
-              onSave={handleStartNewCharacter}
+              onSave={onWizardSaveAndReturn || handleStartNewCharacter}
               equipmentCatalog={equipmentCatalog}
               spellCatalog={spellCatalog}
+            />
+          </Lazy>
+        </ErrorBoundary>
+      )}
+
+      {/* TAB: SCHEDA PERSONAGGIO (standalone) */}
+      {activeTab === 'sheet' && activeCharacter && (
+        <ErrorBoundary>
+          <Lazy>
+            <CharacterSheetStep
+              characterData={activeCharacter}
+              setCharacterData={(updated) => {
+                // Aggiornamento locale immediato (per evitare salvataggi a ogni keystroke)
+                // Il salvataggio su Firestore avviene tramite pulsanti espliciti o viewMode changes
+                // onSaveCharacter verrà chiamato dal componente per salvataggi espliciti
+              }}
+              onSaveCharacter={onSaveCharacter}
+              spellCatalog={spellCatalog}
+              equipmentCatalog={equipmentCatalog}
+              onNavigateToStep={(stepIndex) => onNavigateToWizardStep(activeCharacter, stepIndex)}
             />
           </Lazy>
         </ErrorBoundary>
