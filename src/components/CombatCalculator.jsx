@@ -1,13 +1,15 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Swords, RotateCcw, AlertTriangle, AlertOctagon, Play, HelpCircle, Heart, Shield, Sparkles, Target, User } from 'lucide-react';
+import { RotateCcw, AlertTriangle, AlertOctagon, Play } from 'lucide-react';
 import FumbleResolver from './FumbleResolver';
 import CriticalResolver from './CriticalResolver';
+import AttackerPanel from './CombatCalculator/AttackerPanel';
+import DefenderPanel from './CombatCalculator/DefenderPanel';
+import ModifiersPanel from './CombatCalculator/ModifiersPanel';
+import CombatOutcomePanel from './CombatCalculator/CombatOutcomePanel';
 import { fmt } from '../utils/skillHelpers';
 import {
   WEAPON_SKILL_TO_TABLE,
   TABLE_NAMES,
-  ARMOR_COLUMNS,
-  ARMOR_DISPLAY,
   CRITICAL_MODIFIERS,
   getSkillForWeapon,
   getFumbleModifierForWeapon,
@@ -43,7 +45,7 @@ export default function CombatCalculator({
   const [attackerWeaponName, setAttackerWeaponName] = useState('Spada Larga');
   const [attackerHpTot, setAttackerHpTot] = useState(40);
   const [attackerHpSubiti, setAttackerHpSubiti] = useState(0);
-  const [selectedCreatureAttackIdx, setSelectedCreatureAttackIdx] = useState(0); // 0 per Attacco_uno, 1 per Attacco_due
+  const [selectedCreatureAttackIdx, setSelectedCreatureAttackIdx] = useState(0);
 
   // --- STATO DIFENSORE ---
   const [defenderId, setDefenderId] = useState('custom');
@@ -86,15 +88,12 @@ export default function CombatCalculator({
     return processPcRoster(savedCharacters);
   }, [savedCharacters]);
 
-  // Seleziona arma per attaccante da roster
   const [selectedWeaponIdx, setSelectedWeaponIdx] = useState(0);
 
-  // Risoluzione compatta dell'attaccante attivo (PG, PNG o Creatura)
   const attackerInfo = useMemo(() => {
     return buildAttackerInfo(attackerId, customAttackerName, attackerBO, attackerHpTot, attackerHpSubiti, processedRoster, campaignNpcs, campaignCreatures, selectedWeaponIdx);
   }, [attackerId, customAttackerName, attackerBO, attackerHpTot, attackerHpSubiti, processedRoster, campaignNpcs, campaignCreatures, selectedWeaponIdx]);
 
-  // Risoluzione compatta del difensore attivo (PG, PNG o Creatura)
   const defenderInfo = useMemo(() => {
     return buildDefenderInfo(defenderId, customDefenderName, defenderBD, defenderArmor, defenderHpTot, defenderHpSubiti, processedRoster, campaignNpcs, campaignCreatures);
   }, [defenderId, customDefenderName, defenderBD, defenderArmor, defenderHpTot, defenderHpSubiti, processedRoster, campaignNpcs, campaignCreatures]);
@@ -103,22 +102,13 @@ export default function CombatCalculator({
     if (defenderId === 'custom') {
       return customDefenderBO;
     }
-    if (defenderInfo?.type === 'pc') {
-      const activeDefenderWeapon = defenderInfo.weapons?.[selectedDefenderWeaponIdx] || defenderInfo.weapons?.[0];
-      return activeDefenderWeapon ? activeDefenderWeapon.bo : 0;
-    }
-    if (defenderInfo?.type === 'npc') {
-      const activeW = defenderInfo.weapons?.[selectedDefenderWeaponIdx] || defenderInfo.weapons?.[0];
-      return activeW ? activeW.bo : 0;
-    }
-    if (defenderInfo?.type === 'creature') {
+    if (defenderInfo?.type === 'pc' || defenderInfo?.type === 'npc' || defenderInfo?.type === 'creature') {
       const activeW = defenderInfo.weapons?.[selectedDefenderWeaponIdx] || defenderInfo.weapons?.[0];
       return activeW ? activeW.bo : 0;
     }
     return 0;
   }, [defenderId, customDefenderBO, defenderInfo, selectedDefenderWeaponIdx]);
 
-  // BO speso per la parata precedentemente dall'attaccante
   const attackerBoSpesoParata = attackerInfo?.type === 'pc' ? (attackerInfo.boSpesoParata || 0) : 0;
 
   const attackerBOEffective = useMemo(() => {
@@ -166,7 +156,7 @@ export default function CombatCalculator({
         setUseShield(false);
       }
     } else if (defenderId === 'custom') {
-      // Don't override user choice for custom defender, but clean up if no defender
+      // Don't override user choice for custom defender
     } else {
       setUseShield(false);
     }
@@ -176,7 +166,6 @@ export default function CombatCalculator({
 
   const isRangedOrThrown = ['da tiro', 'da lancio', 'dardo', 'sfera'].includes(attackerWeaponCategoryResolved);
 
-  // Forza i modificatori a disabilitarsi se è un'arma da tiro/lancio
   useEffect(() => {
     if (isRangedOrThrown) {
       setFlankAttack(false);
@@ -186,13 +175,11 @@ export default function CombatCalculator({
     }
   }, [isRangedOrThrown]);
 
-  // Calcolo automatico della penalità ferite (>50% HP persi)
   const isAttackerGravelyInjured = useMemo(() => {
     if (attackerHpTot <= 0) return false;
     return attackerHpSubiti > (attackerHpTot / 2);
   }, [attackerHpTot, attackerHpSubiti]);
 
-  // Calcolo dei modificatori totali sul BO
   const computedModifiers = useMemo(() => {
     let mods = 0;
     if (flankAttack && !isRangedOrThrown) mods += 15;
@@ -200,7 +187,6 @@ export default function CombatCalculator({
     if (surprisedDefender && !isRangedOrThrown) mods += 20;
     if (stunnedDefender && !isRangedOrThrown) mods += 20;
     
-    // Movimento: -10 per ogni 3 metri
     const movM = parseInt(movementMetres) || 0;
     if (movM >= 3) {
       mods -= Math.floor(movM / 3) * 10;
@@ -209,7 +195,6 @@ export default function CombatCalculator({
     if (drawOrSwapWeapon) mods -= 30;
     if (isAttackerGravelyInjured) mods -= 20;
     
-    // Malus bracciali metallo: -5 BO
     if (attackerInfo?.hasMetalBracciali) {
       mods -= 5;
     }
@@ -218,7 +203,6 @@ export default function CombatCalculator({
     return mods;
   }, [flankAttack, backAttack, surprisedDefender, stunnedDefender, movementMetres, drawOrSwapWeapon, isAttackerGravelyInjured, gmBonus, isRangedOrThrown, attackerInfo]);
 
-  // Calcolo del risultato finale del tiro
   const finalAttackResult = useMemo(() => {
     const roll = parseInt(diceRoll) || 0;
     const bo = parseInt(attackerBOEffective) || 0;
@@ -236,8 +220,6 @@ export default function CombatCalculator({
     return Math.min(150, Math.max(1, result));
   }, [diceRoll, attackerBOEffective, defenderBD, defenderParry, computedModifiers, attackerInfo, useShield, backAttack]);
 
-
-  // Sincronizzazione ed eventuale clamp del valore di parata del difensore
   useEffect(() => {
     const maxBO = defenderWeaponBO;
     if (defenderParry > maxBO) {
@@ -266,18 +248,16 @@ export default function CombatCalculator({
       return;
     }
 
-    // Tabella corretta da cercare
     let tableCode = WEAPON_SKILL_TO_TABLE[attackerWeaponCategoryResolved] || 'TA-1';
     
-    // Per le armi da lancio determiniamo specificamente in base al nome
     if (attackerWeaponCategoryResolved === 'da lancio') {
       const wName = attackerWeaponName.toLowerCase();
       if (wName.includes('lancia') || wName.includes('giavellotto')) {
-        tableCode = 'TA-3'; // due mani / asta
+        tableCode = 'TA-3';
       } else if (wName.includes('bolas')) {
-        tableCode = 'TA-2'; // contundenti
+        tableCode = 'TA-2';
       } else {
-        tableCode = 'TA-1'; // taglio ad una mano (coltello da lancio)
+        tableCode = 'TA-1';
       }
     }
 
@@ -300,7 +280,6 @@ export default function CombatCalculator({
       : (cellValue === 'fallimento' || cellValue === 'Possibilità di Colpo Maldestro' || diceRoll <= 8);
 
     if (isFumble) {
-      // Fumble! (In MERP, un tiro basso o un esito maldestro genera fumble; per gli incantesimi è F)
       setCombatOutcome({
         type: 'fumble',
         roll: diceRoll,
@@ -327,13 +306,11 @@ export default function CombatCalculator({
         details: 'L\'attacco non è abbastanza forte da superare le difese o l\'armatura del bersaglio. Nessun danno inflitto.'
       });
     } else {
-      // Danno riuscito! Analizziamo la cella (es: "12B" o "8")
       const match = cellValue.match(/^(\d+)([A-E])?$/);
       if (match) {
         const damage = parseInt(match[1]);
         const critType = match[2] || null;
         
-        // Calcolo moltiplicatori per creature
         let damageMultiplier = 1;
         let matchedTsc2Attack = null;
         if (attackerInfo?.type === 'creature') {
@@ -351,7 +328,6 @@ export default function CombatCalculator({
         const finalDamage = Math.max(0, Math.floor(damage * damageMultiplier));
         const critMod = isSpell ? 0 : (critType ? CRITICAL_MODIFIERS[critType] : 0);
 
-        // Risoluzione tipo e tabella critico primario e secondario
         let suggestedTable = 'TC-2';
         let secondaryCritSeverity = null;
         let secondaryCritTable = null;
@@ -414,7 +390,6 @@ export default function CombatCalculator({
           setShowCriticalResolver(false);
         }
       } else {
-        // Valore non tipico, mostriamo la stringa così com'è
         const damage = parseInt(cellValue) || 0;
         setCombatOutcome({
           type: 'hit',
@@ -468,7 +443,7 @@ export default function CombatCalculator({
       <div className="border-b border-gray-200 pb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h3 className="text-xl font-bold text-gray-800 flex items-center gap-2">
-            <Swords className="text-indigo-600 w-5 h-5" />
+            <span className="text-indigo-600 w-5 h-5">⚔</span>
             Risoluzione Combattimenti (Calcolatore Attacchi)
           </h3>
           <p className="text-xs text-gray-500 mt-1">
@@ -491,613 +466,89 @@ export default function CombatCalculator({
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* --- PANNELLO ATTACCANTE --- */}
-        <div className="card p-5 border border-blue-200 rounded-xl bg-blue-50/15 shadow-xs flex flex-col justify-between">
-          <div>
-            <div className="flex items-center gap-2 pb-3 border-b border-blue-150 mb-4">
-              <div className="p-1.5 rounded-lg bg-blue-100 text-blue-700">
-                <Swords className="w-4 h-4" />
-              </div>
-              <h4 className="font-bold text-sm text-blue-950 uppercase tracking-wider">Attaccante</h4>
-            </div>
+        <AttackerPanel
+          attackerId={attackerId}
+          setAttackerId={setAttackerId}
+          customAttackerName={customAttackerName}
+          setCustomAttackerName={setCustomAttackerName}
+          attackerBO={attackerBO}
+          setAttackerBO={setAttackerBO}
+          attackerWeaponCat={attackerWeaponCat}
+          setAttackerWeaponCat={setAttackerWeaponCat}
+          attackerWeaponName={attackerWeaponName}
+          attackerHpTot={attackerHpTot}
+          setAttackerHpTot={setAttackerHpTot}
+          attackerHpSubiti={attackerHpSubiti}
+          setAttackerHpSubiti={setAttackerHpSubiti}
+          processedRoster={processedRoster}
+          campaignNpcs={campaignNpcs}
+          campaignCreatures={campaignCreatures}
+          attackerInfo={attackerInfo}
+          selectedWeaponIdx={selectedWeaponIdx}
+          setSelectedWeaponIdx={setSelectedWeaponIdx}
+          attackerBOEffective={attackerBOEffective}
+          attackerBoSpesoParata={attackerBoSpesoParata}
+          onUpdateHpSubiti={onUpdateHpSubiti}
+          onUpdateActorHp={onUpdateActorHp}
+        />
 
-            <div className="space-y-4">
-              {/* Selezione Attaccante */}
-              <div>
-                <label className="block text-xs font-bold text-blue-900 mb-1">Seleziona Attaccante:</label>
-                <select
-                  className="w-full p-2 border border-blue-250 rounded text-sm bg-white focus:ring-blue-500 focus:border-blue-500 font-medium"
-                  value={attackerId}
-                  onChange={e => {
-                    setAttackerId(e.target.value);
-                    setSelectedWeaponIdx(0);
-                  }}
-                >
-                  <option value="custom">- Inserimento Manuale (Custom) -</option>
-                  
-                  {processedRoster.length > 0 && (
-                    <optgroup label="Personaggi Giocanti (PG)">
-                      {processedRoster.map(char => (
-                        <option key={char.id} value={`pc-${char.id}`}>
-                          {char.name} (HP: {char.hpTot - (char.hpSubiti || 0)}/{char.hpTot})
-                        </option>
-                      ))}
-                    </optgroup>
-                  )}
-                  
-                  {campaignNpcs.length > 0 && (
-                    <optgroup label="Personaggi Non Giocanti (PNG)">
-                      {campaignNpcs.map(npc => (
-                        <option key={npc.id} value={`npc-${npc.id}`}>
-                          {npc.name} (HP: {npc.hpCorrenti !== undefined ? npc.hpCorrenti : npc.hpMax}/{npc.hpMax})
-                        </option>
-                      ))}
-                    </optgroup>
-                  )}
-                  
-                  {campaignCreatures.length > 0 && (
-                    <optgroup label="Creature / Mostri">
-                      {campaignCreatures.map(creature => (
-                        <option key={creature.id} value={`creature-${creature.id}`}>
-                          {creature.Nome} (HP: {creature.hpCorrenti !== undefined ? creature.hpCorrenti : creature.punti_ferita}/{creature.punti_ferita})
-                        </option>
-                      ))}
-                    </optgroup>
-                  )}
-                </select>
-              </div>
-
-              {attackerId === 'custom' ? (
-                // Campi Custom Attaccante
-                <div className="grid grid-cols-2 gap-3 p-3 bg-white border border-blue-200 rounded-lg">
-                  <div className="col-span-2">
-                    <label className="block text-[10px] font-bold text-blue-900 uppercase">Nome Attaccante:</label>
-                    <input
-                      type="text"
-                      className="w-full p-1.5 border border-blue-250 rounded text-xs mt-0.5 bg-blue-50/10 focus:ring-blue-500 focus:border-blue-500"
-                      value={customAttackerName}
-                      onChange={e => setCustomAttackerName(e.target.value)}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-[10px] font-bold text-blue-900 uppercase">Arma & Tabella:</label>
-                    <select
-                      className="w-full p-1.5 border border-blue-250 rounded text-xs mt-0.5 bg-white focus:ring-blue-500 focus:border-blue-500"
-                      value={attackerWeaponCat}
-                      onChange={e => setAttackerWeaponCat(e.target.value)}
-                    >
-                      <option value="taglio a 1 mano">Taglio ad una mano (TA-1)</option>
-                      <option value="contundenti a 1 mano">Contundenti una mano (TA-2)</option>
-                      <option value="a 2 mani">A due mani (TA-3)</option>
-                      <option value="con asta">Con asta (TA-3)</option>
-                      <option value="da tiro">Da tiro (TA-4)</option>
-                      <option value="da lancio">Da lancio (Dinamico)</option>
-                      <option value="dardo">Dardo Magico (TA-7)</option>
-                      <option value="sfera">Sfera Magica (TA-8)</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-[10px] font-bold text-blue-900 uppercase">BO Base dell'Attacco:</label>
-                    <input
-                      type="number"
-                      className="w-full p-1.5 border border-blue-250 rounded text-xs mt-0.5 text-center font-bold focus:ring-blue-500 focus:border-blue-500"
-                      value={attackerBO}
-                      onChange={e => setAttackerBO(parseInt(e.target.value) || 0)}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-[10px] font-bold text-blue-900 uppercase">HP Totali PG:</label>
-                    <input
-                      type="number"
-                      className="w-full p-1.5 border border-blue-250 rounded text-xs mt-0.5 text-center focus:ring-blue-500 focus:border-blue-500"
-                      value={attackerHpTot}
-                      onChange={e => setAttackerHpTot(Math.max(1, parseInt(e.target.value) || 1))}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-[10px] font-bold text-blue-900 uppercase">HP Attuali Subiti:</label>
-                    <input
-                      type="number"
-                      className="w-full p-1.5 border border-blue-250 rounded text-xs mt-0.5 text-center font-semibold text-red-650 focus:ring-blue-500 focus:border-blue-500"
-                      value={attackerHpSubiti}
-                      onChange={e => setAttackerHpSubiti(Math.max(0, parseInt(e.target.value) || 0))}
-                    />
-                  </div>
-                </div>
-              ) : (
-                // Dati caricati da Roster Attaccante
-                <div className="p-4 bg-blue-50/30 border border-blue-100 rounded-lg grid grid-cols-2 gap-4">
-                  <div className="col-span-2">
-                    <label className="block text-[10px] font-bold text-blue-900 uppercase">Nome Attaccante:</label>
-                    <p className="text-sm font-bold text-gray-900 mt-0.5">
-                      {attackerInfo?.name} <span className="text-[10px] text-gray-500 font-normal uppercase">({attackerInfo?.type === 'pc' ? 'PG' : attackerInfo?.type === 'npc' ? 'PNG' : attackerInfo?.type === 'creature' ? 'Creatura' : attackerInfo?.type})</span>
-                    </p>
-                  </div>
-                  {attackerInfo?.hasMetalBracciali && (
-                    <div className="col-span-2">
-                      <span className="text-[10px] text-red-600 font-bold bg-red-50/50 px-2 py-1 rounded border border-red-200 block">
-                        ⚠️ Bracciali di metallo equipaggiati: -5 BO applicato.
-                      </span>
-                    </div>
-                  )}
-                  {attackerInfo && attackerInfo.weapons && attackerInfo.weapons.length > 0 ? (
-                    <div className="col-span-2">
-                      <label className="block text-[10px] font-bold text-blue-900 uppercase mb-1">Seleziona Attacco / Arma:</label>
-                      <select
-                        className="w-full p-1.5 border border-blue-200 rounded text-xs bg-white font-medium focus:ring-blue-500 focus:border-blue-500"
-                        value={selectedWeaponIdx}
-                        onChange={e => setSelectedWeaponIdx(parseInt(e.target.value))}
-                      >
-                        {attackerInfo.weapons.map((w, idx) => (
-                          <option key={idx} value={idx}>
-                            {w.nome} (BO: {fmt(w.bo)}{w.skillName ? ` | ${w.skillName}` : ''})
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  ) : (
-                    <div className="col-span-2">
-                      <p className="text-xs italic text-orange-600">Nessun attacco/arma disponibile.</p>
-                    </div>
-                  )}
-                  {attackerInfo?.type === 'npc' && (
-                    <div className="col-span-2">
-                      <label className="block text-[10px] font-bold text-blue-900 uppercase mb-1">Mappa a Tabella Attacco:</label>
-                      <select
-                        className="w-full p-1.5 border border-blue-200 rounded text-xs bg-white font-medium focus:ring-blue-500 focus:border-blue-500"
-                        value={attackerWeaponCat}
-                        onChange={e => setAttackerWeaponCat(e.target.value)}
-                      >
-                        <option value="taglio a 1 mano">Taglio ad una mano (TA-1)</option>
-                        <option value="contundenti a 1 mano">Contundenti una mano (TA-2)</option>
-                        <option value="a 2 mani">A due mani (TA-3)</option>
-                        <option value="con asta">Con asta (TA-3)</option>
-                        <option value="da tiro">Da tiro (TA-4)</option>
-                        <option value="da lancio">Da lancio (Dinamico)</option>
-                        <option value="dardo">Dardo Magico (TA-7)</option>
-                        <option value="sfera">Sfera Magica (TA-8)</option>
-                      </select>
-                    </div>
-                  )}
-                  <div>
-                    <span className="block text-[9px] font-bold text-gray-550 uppercase">BO Disponibile</span>
-                    <strong className="text-sm text-gray-950 block font-bold">{fmt(attackerBOEffective)}</strong>
-                    {attackerBoSpesoParata > 0 && (
-                      <span className="text-[9px] text-blue-700 block leading-tight">({fmt(attackerBO)} base - {attackerBoSpesoParata} parata)</span>
-                    )}
-                  </div>
-                  <div>
-                    <span className="block text-[9px] font-bold text-gray-550 uppercase">HP Totali</span>
-                    <strong className="text-sm text-gray-900 block">{attackerHpTot}</strong>
-                  </div>
-                  <div>
-                    <span className="block text-[9px] font-bold text-gray-555 uppercase mb-1">HP Subiti (Ferite)</span>
-                    <input
-                      type="number"
-                      min="0"
-                      max={attackerHpTot}
-                      className="w-16 p-1 border border-blue-200 rounded text-xs text-center font-bold text-red-655 bg-white focus:ring-blue-500 focus:border-blue-500"
-                      value={attackerHpSubiti}
-                      onChange={e => {
-                        const val = Math.max(0, parseInt(e.target.value) || 0);
-                        setAttackerHpSubiti(val);
-                        if (attackerInfo) {
-                          if (attackerInfo.type === 'pc') {
-                            if (onUpdateHpSubiti) onUpdateHpSubiti(attackerInfo.id, val);
-                          } else {
-                            const newHp = Math.max(0, attackerInfo.hpTot - val);
-                            if (onUpdateActorHp) onUpdateActorHp(attackerInfo.type, attackerInfo.id, newHp);
-                          }
-                        }
-                      }}
-                    />
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-
-          <div className="mt-4 pt-3 border-t border-blue-200/50 flex justify-between items-center text-xs">
-            <span className="text-gray-550 font-medium">Tabella Attacco:</span>
-            <span className="font-bold text-blue-900 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
-              {TABLE_NAMES[WEAPON_SKILL_TO_TABLE[attackerWeaponCategoryResolved]] || TABLE_NAMES['TA-1']}
-            </span>
-          </div>
-        </div>
-             {/* --- PANNELLO DIFENSORE --- */}
-        <div className="card p-5 border border-red-200 rounded-xl bg-red-50/15 shadow-xs flex flex-col justify-between">
-          <div>
-            <div className="flex items-center gap-2 pb-3 border-b border-red-150 mb-4">
-              <div className="p-1.5 rounded-lg bg-red-100 text-red-700">
-                <Shield className="w-4 h-4" />
-              </div>
-              <h4 className="font-bold text-sm text-red-950 uppercase tracking-wider">Difensore</h4>
-            </div>
-
-            <div className="space-y-4">
-              {/* Selezione Difensore */}
-              <div>
-                <label className="block text-xs font-bold text-red-900 mb-1">Seleziona Difensore:</label>
-                <select
-                  className="w-full p-2 border border-red-250 rounded text-sm bg-white focus:ring-red-500 focus:border-red-500 font-medium"
-                  value={defenderId}
-                  onChange={e => {
-                    setDefenderId(e.target.value);
-                    setSelectedDefenderWeaponIdx(0);
-                  }}
-                >
-                  <option value="custom">- Inserimento Manuale (Custom) -</option>
-                  
-                  {processedRoster.length > 0 && (
-                    <optgroup label="Personaggi Giocanti (PG)">
-                      {processedRoster.map(char => (
-                        <option key={char.id} value={`pc-${char.id}`}>
-                          {char.name} (Armatura: {ARMOR_DISPLAY[char.equippedArmor] || 'Nessuna'})
-                        </option>
-                      ))}
-                    </optgroup>
-                  )}
-                  
-                  {campaignNpcs.length > 0 && (
-                    <optgroup label="Personaggi Non Giocanti (PNG)">
-                      {campaignNpcs.map(npc => (
-                        <option key={npc.id} value={`npc-${npc.id}`}>
-                          {npc.name} (Armatura: {ARMOR_DISPLAY[npc.equippedArmor] || 'Nessuna'})
-                        </option>
-                      ))}
-                    </optgroup>
-                  )}
-                  
-                  {campaignCreatures.length > 0 && (
-                    <optgroup label="Creature / Mostri">
-                      {campaignCreatures.map(creature => (
-                        <option key={creature.id} value={`creature-${creature.id}`}>
-                          {creature.Nome} (Armatura: {creature.tipo_armatura})
-                        </option>
-                      ))}
-                    </optgroup>
-                  )}
-                </select>
-              </div>
-
-              {defenderId === 'custom' ? (
-                // Campi Custom Difensore
-                <div className="grid grid-cols-2 gap-3 p-3 bg-white border border-red-200 rounded-lg">
-                  <div className="col-span-2">
-                    <label className="block text-[10px] font-bold text-red-900 uppercase">Nome Difensore:</label>
-                    <input
-                      type="text"
-                      className="w-full p-1.5 border border-red-250 rounded text-xs mt-0.5 bg-red-50/10 focus:ring-red-500 focus:border-red-500"
-                      value={customDefenderName}
-                      onChange={e => setCustomDefenderName(e.target.value)}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-[10px] font-bold text-red-900 uppercase">Tipo Armatura:</label>
-                    <select
-                      className="w-full p-1.5 border border-red-250 rounded text-xs mt-0.5 bg-white focus:ring-red-500 focus:border-red-500"
-                      value={defenderArmor}
-                      onChange={e => setDefenderArmor(e.target.value)}
-                    >
-                      <option value="nessuna">Nessuna Armatura</option>
-                      <option value="cuoio_grezzo">Cuoio Grezzo</option>
-                      <option value="cuoio_rinforzato">Cuoio Rinforzato</option>
-                      <option value="maglia">Cotta di Maglia</option>
-                      <option value="piastre">Armatura a Piastre</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-[10px] font-bold text-red-900 uppercase">BD Base del Difensore:</label>
-                    <input
-                      type="number"
-                      className="w-full p-1.5 border border-red-250 rounded text-xs mt-0.5 text-center font-bold focus:ring-red-500 focus:border-red-500"
-                      value={defenderBD}
-                      onChange={e => setDefenderBD(parseInt(e.target.value) || 0)}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-[10px] font-bold text-red-900 uppercase">BO Base (Parata):</label>
-                    <input
-                      type="number"
-                      className="w-full p-1.5 border border-red-250 rounded text-xs mt-0.5 text-center font-bold focus:ring-red-500 focus:border-red-500"
-                      value={customDefenderBO}
-                      onChange={e => setCustomDefenderBO(parseInt(e.target.value) || 0)}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-[10px] font-bold text-red-900 uppercase">HP Totali PG:</label>
-                    <input
-                      type="number"
-                      className="w-full p-1.5 border border-red-250 rounded text-xs mt-0.5 text-center focus:ring-red-500 focus:border-red-500"
-                      value={defenderHpTot}
-                      onChange={e => setDefenderHpTot(Math.max(1, parseInt(e.target.value) || 1))}
-                    />
-                  </div>
-                  <div className="col-span-2">
-                    <label className="block text-[10px] font-bold text-red-900 uppercase">HP Subiti (Ferite):</label>
-                    <input
-                      type="number"
-                      className="w-full p-1.5 border border-red-250 rounded text-xs mt-0.5 text-center font-semibold text-red-650 focus:ring-red-500 focus:border-red-500"
-                      value={defenderHpSubiti}
-                      onChange={e => setDefenderHpSubiti(Math.max(0, parseInt(e.target.value) || 0))}
-                    />
-                  </div>
-                </div>
-              ) : (
-                // Dati caricati da Roster Difensore
-                <div className="p-4 bg-red-50/30 border border-red-100 rounded-lg grid grid-cols-2 gap-4">
-                  <div className="col-span-2">
-                    <label className="block text-[10px] font-bold text-red-900 uppercase">Nome Difensore:</label>
-                    <p className="text-sm font-bold text-gray-900 mt-0.5">
-                      {defenderInfo?.name} <span className="text-[10px] text-gray-500 font-normal uppercase">({defenderInfo?.type === 'pc' ? 'PG' : defenderInfo?.type === 'npc' ? 'PNG' : defenderInfo?.type === 'creature' ? 'Creatura' : defenderInfo?.type})</span>
-                    </p>
-                  </div>
-                  {defenderInfo && defenderInfo.weapons && defenderInfo.weapons.length > 0 ? (
-                    <div className="col-span-2">
-                      <label className="block text-[10px] font-bold text-red-900 uppercase mb-1">Seleziona Arma per Parare:</label>
-                      <select
-                        className="w-full p-1.5 border border-red-200 rounded text-xs bg-white font-medium focus:ring-red-500 focus:border-red-500"
-                        value={selectedDefenderWeaponIdx}
-                        onChange={e => setSelectedDefenderWeaponIdx(parseInt(e.target.value))}
-                      >
-                        {defenderInfo.weapons.map((w, idx) => (
-                          <option key={idx} value={idx}>
-                            {w.nome} (BO: {fmt(w.bo)})
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  ) : (
-                    defenderInfo?.type !== 'creature' && (
-                      <div className="col-span-2">
-                        <p className="text-xs italic text-orange-600">Nessuna arma in inventario. Caricata skill predefinita.</p>
-                      </div>
-                    )
-                  )}
-                  
-                  {/* Controllo Scudo */}
-                  <div className="col-span-2 flex items-center gap-1.5 mt-1 border-t border-red-100 pt-2 pb-1">
-                    <input
-                      type="checkbox"
-                      id="useShieldCheckbox"
-                      className="rounded border-red-300 text-red-600 focus:ring-red-500 w-3.5 h-3.5"
-                      checked={useShield}
-                      disabled={backAttack}
-                      onChange={e => setUseShield(e.target.checked)}
-                    />
-                    <label htmlFor="useShieldCheckbox" className={`text-xs font-bold ${backAttack ? 'text-gray-400 line-through' : 'text-red-950'} select-none`}>
-                      Usa Scudo (+25 BD)
-                      {backAttack && <span className="text-[10px] text-gray-400 font-normal italic ml-1">(Non applicabile alle spalle)</span>}
-                      {defenderInfo?.type === 'pc' && defenderInfo?.hasShield && (
-                        <span className="text-[10px] text-emerald-600 font-normal ml-1">(Equipaggiato)</span>
-                      )}
-                    </label>
-                  </div>
-
-                  <div>
-                    <span className="block text-[9px] font-bold text-gray-550 uppercase">Armatura Attiva</span>
-                    <strong className="text-sm text-gray-900 block font-semibold">{ARMOR_DISPLAY[defenderArmor] || defenderArmor || 'Nessuna'}</strong>
-                  </div>
-                  <div>
-                    <span className="block text-[9px] font-bold text-gray-555 uppercase">BD Consolidato</span>
-                    <strong className="text-sm text-gray-900 block font-semibold">
-                      {fmt(defenderBD + ((useShield && !backAttack) ? 25 : 0))}
-                      {(useShield && !backAttack) && <span className="text-[10px] text-emerald-600 font-normal ml-1">(+25 Scudo)</span>}
-                    </strong>
-                  </div>
-                  <div>
-                    <span className="block text-[9px] font-bold text-gray-555 uppercase">HP Totali</span>
-                    <strong className="text-sm text-gray-900 block">{defenderHpTot}</strong>
-                  </div>
-                  <div>
-                    <span className="block text-[9px] font-bold text-gray-555 uppercase mb-1">HP Subiti (Ferite)</span>
-                    <input
-                      type="number"
-                      min="0"
-                      max={defenderHpTot}
-                      className="w-16 p-1 border border-red-200 rounded text-xs text-center font-bold text-red-655 bg-white focus:ring-red-500 focus:border-red-500"
-                      value={defenderHpSubiti}
-                      onChange={e => {
-                        const val = Math.max(0, parseInt(e.target.value) || 0);
-                        setDefenderHpSubiti(val);
-                        if (defenderInfo) {
-                          if (defenderInfo.type === 'pc') {
-                            if (onUpdateHpSubiti) onUpdateHpSubiti(defenderInfo.id, val);
-                          } else {
-                            const newHp = Math.max(0, defenderInfo.hpTot - val);
-                            if (onUpdateActorHp) onUpdateActorHp(defenderInfo.type, defenderInfo.id, newHp);
-                          }
-                        }
-                      }}
-                    />
-                  </div>
-                </div>
-              )}
-              
-              {/* Campo di Parata (Dichiarazione di Parata del Difensore) */}
-              <div className="p-3 bg-red-500/5 border border-red-100 rounded-lg">
-                <div className="flex justify-between items-center mb-1">
-                  <label className="text-[11px] font-bold text-red-900 uppercase">Quota BO spesa per Parare:</label>
-                  <span className="text-xs font-bold text-red-700">
-                    -{defenderParry} al tiro ({defenderWeaponBO > 0 ? Math.round((defenderParry / defenderWeaponBO) * 100) : 0}%)
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <input
-                    type="range"
-                    min="0"
-                    max={defenderWeaponBO}
-                    value={defenderParry}
-                    onChange={e => handleDefenderParryChange(parseInt(e.target.value) || 0)}
-                    className="w-full accent-red-600 h-1.5 bg-gray-200 rounded-lg cursor-pointer"
-                  />
-                  <input
-                    type="number"
-                    min="0"
-                    max={defenderWeaponBO}
-                    value={defenderParry}
-                    onChange={e => handleDefenderParryChange(parseInt(e.target.value) || 0)}
-                    className="w-12 p-1 border border-red-300 rounded text-center text-xs font-bold text-red-800 bg-white focus:ring-red-500 focus:border-red-500"
-                  />
-                </div>
-                <p className="text-[9px] text-red-755 mt-1 italic">
-                  BO Max per Parare: {defenderWeaponBO}. Sottrae questo valore dal tiro d'attacco finale.
-                </p>
-              </div>
-
-            </div>
-          </div>
-
-          <div className="mt-4 pt-3 border-t border-red-200/50 flex justify-between items-center text-xs">
-            <span className="text-gray-555 font-medium">Colonna Armatura:</span>
-            <span className="font-bold text-red-900 bg-red-50 px-2 py-0.5 rounded border border-red-200">
-              {ARMOR_DISPLAY[defenderArmor] || defenderArmor || 'Nessuna'}
-            </span>
-          </div>
-        </div>
+        <DefenderPanel
+          defenderId={defenderId}
+          setDefenderId={setDefenderId}
+          customDefenderName={customDefenderName}
+          setCustomDefenderName={setCustomDefenderName}
+          defenderArmor={defenderArmor}
+          setDefenderArmor={setDefenderArmor}
+          defenderBD={defenderBD}
+          setDefenderBD={setDefenderBD}
+          customDefenderBO={customDefenderBO}
+          setCustomDefenderBO={setCustomDefenderBO}
+          defenderHpTot={defenderHpTot}
+          setDefenderHpTot={setDefenderHpTot}
+          defenderHpSubiti={defenderHpSubiti}
+          setDefenderHpSubiti={setDefenderHpSubiti}
+          processedRoster={processedRoster}
+          campaignNpcs={campaignNpcs}
+          campaignCreatures={campaignCreatures}
+          defenderInfo={defenderInfo}
+          selectedDefenderWeaponIdx={selectedDefenderWeaponIdx}
+          setSelectedDefenderWeaponIdx={setSelectedDefenderWeaponIdx}
+          useShield={useShield}
+          setUseShield={setUseShield}
+          backAttack={backAttack}
+          defenderParry={defenderParry}
+          handleDefenderParryChange={handleDefenderParryChange}
+          defenderWeaponBO={defenderWeaponBO}
+          onUpdateHpSubiti={onUpdateHpSubiti}
+          onUpdateActorHp={onUpdateActorHp}
+        />
       </div>
 
-      {/* --- PANNELLO MODIFICATORI DI CONTESTO --- */}
-      <div className="card p-5 border border-gray-200 rounded-xl bg-white shadow-xs">
-        <div className="flex items-center gap-2 pb-2 border-b border-gray-200 mb-4">
-          <div className="p-1.5 rounded-lg bg-gray-100 text-gray-700">
-            <Target className="w-4 h-4" />
-          </div>
-          <h4 className="font-bold text-sm text-gray-900 uppercase tracking-wider">Modificatori Situazionali (Attacco)</h4>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          {/* Attacco sul Fianco */}
-          <label className={`flex items-center gap-2 p-2.5 border rounded-lg text-xs cursor-pointer transition ${isRangedOrThrown ? 'opacity-40 cursor-not-allowed bg-gray-50 border-gray-150' : (flankAttack ? 'bg-sky-100 border-sky-300 font-semibold text-sky-950' : 'bg-sky-50/60 border-sky-150 text-sky-900 hover:bg-sky-100/50')}`}>
-            <input
-              type="checkbox"
-              checked={flankAttack}
-              disabled={isRangedOrThrown}
-              onChange={e => setFlankAttack(e.target.checked)}
-              className="rounded border-sky-300 text-sky-600 focus:ring-sky-500"
-            />
-            <div>
-              <span className="block font-bold">Attacco sul Fianco (+15 BO)</span>
-              <span className="text-[9px] text-sky-750">Non per armi da tiro/lancio</span>
-            </div>
-          </label>
-
-          {/* Attacco da Dietro */}
-          <label className={`flex items-center gap-2 p-2.5 border rounded-lg text-xs cursor-pointer transition ${isRangedOrThrown ? 'opacity-40 cursor-not-allowed bg-gray-50' : (backAttack ? 'bg-purple-100 border-purple-300 font-semibold text-purple-950' : 'bg-purple-50/60 border-purple-150 text-purple-900 hover:bg-purple-100/50')}`}>
-            <input
-              type="checkbox"
-              checked={backAttack}
-              disabled={isRangedOrThrown}
-              onChange={e => setBackAttack(e.target.checked)}
-              className="rounded border-purple-300 text-purple-600 focus:ring-purple-500"
-            />
-            <div>
-              <span className="block font-bold">Attacco da Dietro (+20 BO)</span>
-              <span className="text-[9px] text-purple-750">Oltre a bonus fianco (+35 tot)</span>
-            </div>
-          </label>
-
-          {/* Difensore Sorpreso */}
-          <label className={`flex items-center gap-2 p-2.5 border rounded-lg text-xs cursor-pointer transition ${isRangedOrThrown ? 'opacity-40 cursor-not-allowed bg-gray-50' : (surprisedDefender ? 'bg-amber-100 border-amber-300 font-semibold text-amber-950' : 'bg-amber-50/60 border-amber-150 text-amber-900 hover:bg-amber-100/50')}`}>
-            <input
-              type="checkbox"
-              checked={surprisedDefender}
-              disabled={isRangedOrThrown}
-              onChange={e => setSurprisedDefender(e.target.checked)}
-              className="rounded border-amber-300 text-amber-600 focus:ring-amber-500"
-            />
-            <div>
-              <span className="block font-bold">Difensore Sorpreso (+20 BO)</span>
-              <span className="text-[9px] text-amber-750">Non per armi da tiro/lancio</span>
-            </div>
-          </label>
-
-          {/* Difensore Stordito o a terra */}
-          <label className={`flex items-center gap-2 p-2.5 border rounded-lg text-xs cursor-pointer transition ${isRangedOrThrown ? 'opacity-40 cursor-not-allowed bg-gray-50' : (stunnedDefender ? 'bg-pink-100 border-pink-300 font-semibold text-pink-950' : 'bg-pink-50/60 border-pink-150 text-pink-900 hover:bg-pink-100/50')}`}>
-            <input
-              type="checkbox"
-              checked={stunnedDefender}
-              disabled={isRangedOrThrown}
-              onChange={e => setStunnedDefender(e.target.checked)}
-              className="rounded border-pink-300 text-pink-600 focus:ring-pink-500"
-            />
-            <div>
-              <span className="block font-bold">Stordito o a terra (+20 BO)</span>
-              <span className="text-[9px] text-pink-750">Non per armi da tiro/lancio</span>
-            </div>
-          </label>
-
-          {/* Distanza di Movimento */}
-          <div className="p-2.5 border border-emerald-200 rounded-lg bg-emerald-50/50 text-emerald-950 text-xs flex flex-col justify-between">
-            <label className="block font-bold text-emerald-900 mb-1">Movimento Round (metri):</label>
-            <div className="flex items-center gap-2 justify-between">
-              <input
-                type="number"
-                min="0"
-                step="3"
-                className="w-16 p-1 border border-emerald-300 rounded text-center font-bold bg-white text-emerald-900 focus:ring-emerald-500 focus:border-emerald-500"
-                value={movementMetres}
-                onChange={e => setMovementMetres(Math.max(0, parseInt(e.target.value) || 0))}
-              />
-              <span className="text-[10px] text-red-600 font-bold">
-                -{movementMetres >= 3 ? Math.floor(movementMetres / 3) * 10 : 0} BO
-              </span>
-            </div>
-          </div>
-
-          {/* Cambio Arma */}
-          <label className={`flex items-center gap-2 p-2.5 border rounded-lg text-xs cursor-pointer transition ${drawOrSwapWeapon ? 'bg-indigo-100 border-indigo-300 font-semibold text-indigo-950' : 'bg-indigo-50/60 border-indigo-150 text-indigo-900 hover:bg-indigo-100/50'}`}>
-            <input
-              type="checkbox"
-              checked={drawOrSwapWeapon}
-              onChange={e => setDrawOrSwapWeapon(e.target.checked)}
-              className="rounded border-indigo-300 text-indigo-600 focus:ring-indigo-500"
-            />
-            <div>
-              <span className="block font-bold">Cambio Arma/Scudo (-30 BO)</span>
-              <span className="text-[9px] text-indigo-755">Eseguito nel round</span>
-            </div>
-          </label>
-
-          {/* Attaccante Ferito */}
-          <div className={`p-2.5 border rounded-lg text-xs transition flex justify-between items-center ${isAttackerGravelyInjured ? 'bg-red-100 border-red-300 text-red-950 font-semibold' : 'bg-red-50/40 border-red-150 text-red-900'}`}>
-            <div>
-              <span className="block font-bold">Gravemente Ferito (-20 BO)</span>
-              <span className="text-[9px] text-red-750">HP subiti &gt; 50% HP Totali</span>
-            </div>
-            <span className={`text-[10px] font-black uppercase px-1.5 py-0.5 rounded-full ${isAttackerGravelyInjured ? 'bg-red-200 text-red-800' : 'bg-red-100 text-red-650'}`}>
-              {isAttackerGravelyInjured ? 'SÌ' : 'NO'}
-            </span>
-          </div>
-
-          {/* Modificatore GM Custom */}
-          <div className="p-2.5 border border-slate-200 rounded-lg bg-slate-50 text-slate-950 flex flex-col justify-between">
-            <label className="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-1">GM Custom Modifier:</label>
-            <div className="flex items-center gap-2">
-              <input
-                type="number"
-                className="w-full p-1 border border-slate-350 rounded font-bold text-xs bg-white text-center text-slate-900 focus:ring-slate-500 focus:border-slate-500"
-                placeholder="Es: -10"
-                value={gmBonus}
-                onChange={e => setGmBonus(parseInt(e.target.value) || 0)}
-              />
-              <span className="text-xs text-slate-500 font-medium">BO</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Banner Riepilogo Modificatori */}
-        <div className="mt-4 p-3 bg-indigo-950/5 border border-indigo-200 rounded-lg flex justify-between items-center">
-          <span className="text-xs font-bold text-indigo-950 uppercase tracking-wider">Somma Modificatori Attivi:</span>
-          <strong className="text-base text-indigo-900 font-black">{computedModifiers >= 0 ? `+${computedModifiers}` : computedModifiers} BO</strong>
-        </div>
-      </div>
+      <ModifiersPanel
+        flankAttack={flankAttack}
+        setFlankAttack={setFlankAttack}
+        backAttack={backAttack}
+        setBackAttack={setBackAttack}
+        surprisedDefender={surprisedDefender}
+        setSurprisedDefender={setSurprisedDefender}
+        stunnedDefender={stunnedDefender}
+        setStunnedDefender={setStunnedDefender}
+        movementMetres={movementMetres}
+        setMovementMetres={setMovementMetres}
+        drawOrSwapWeapon={drawOrSwapWeapon}
+        setDrawOrSwapWeapon={setDrawOrSwapWeapon}
+        isRangedOrThrown={isRangedOrThrown}
+        isAttackerGravelyInjured={isAttackerGravelyInjured}
+        gmBonus={gmBonus}
+        setGmBonus={setGmBonus}
+        computedModifiers={computedModifiers}
+      />
 
       {/* --- PANNELLO LANCIO DEL DADO & CALCOLO --- */}
       <div className="card p-6 border-2 border-indigo-600 rounded-xl bg-white shadow-md">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           
           <div className="flex flex-col md:flex-row items-center gap-6 w-full md:w-auto">
-            {/* Pulsante Tira Dado */}
             <button
               onClick={handleRollDice}
               className="w-full md:w-auto px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl flex items-center justify-center gap-2 shadow-lg transition active:scale-95"
@@ -1106,7 +557,6 @@ export default function CombatCalculator({
               Tira Dado (1D100)
             </button>
 
-            {/* Inserimento Manuale Dado */}
             <div className="flex items-center gap-2 w-full md:w-auto justify-center">
               <label className="text-xs font-bold text-gray-700 whitespace-nowrap">Tiro Dado:</label>
               <input
@@ -1140,172 +590,21 @@ export default function CombatCalculator({
         </div>
       </div>
 
-      {/* --- RISULTATO DEL COMBATTIMENTO --- */}
-      {combatOutcome && (
-        <div className={`card p-6 border-2 rounded-xl shadow-lg transition-all animate-fadeIn ${
-          combatOutcome.type === 'fumble' 
-            ? 'bg-red-50 border-red-500 text-red-950' 
-            : combatOutcome.type === 'miss'
-            ? 'bg-slate-50 border-slate-350 text-slate-900'
-            : 'bg-emerald-50 border-emerald-500 text-emerald-950'
-        }`}>
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200/50 pb-4 mb-4">
-            <div>
-              <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">Risoluzione dell'Attacco</span>
-              <h4 className="text-2xl font-black uppercase tracking-tight flex items-center gap-2 mt-0.5">
-                {combatOutcome.type === 'fumble' && <AlertTriangle className="text-red-650 w-7 h-7" />}
-                {combatOutcome.message}
-              </h4>
-            </div>
-            
-            <div className="flex gap-4 text-xs font-bold">
-              <div className="bg-white/70 px-3 py-1 rounded border">
-                Tabella: {combatOutcome.tableCode}
-              </div>
-              <div className="bg-white/70 px-3 py-1 rounded border">
-                Tiro Dado: {combatOutcome.roll}
-              </div>
-              <div className="bg-white/70 px-3 py-1 rounded border">
-                Risultato Finale: {combatOutcome.finalResult}
-              </div>
-            </div>
-          </div>
-
-          <div className="space-y-4">
-            <p className="text-sm font-medium leading-relaxed">{combatOutcome.details}</p>
-            
-            {combatOutcome.type === 'hit' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                {/* Box HP Danni */}
-                <div className="p-4 bg-white/70 border border-emerald-200 rounded-lg shadow-sm flex flex-col justify-between gap-3 sm:flex-row sm:items-center sm:gap-4 md:col-span-2 lg:col-span-1">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xl font-black shadow shrink-0">
-                      {combatOutcome.damage}
-                    </div>
-                    <div>
-                      <strong className="block text-sm text-gray-900 font-bold">Punti Ferita Subiti</strong>
-                      <span className="text-[11px] text-gray-500 block leading-tight">Riduci i PF del difensore di questo valore.</span>
-                    </div>
-                  </div>
-                  
-                  {defenderId !== 'custom' && defenderInfo && (
-                    <button
-                      onClick={() => {
-                        const currentHp = defenderInfo.hpTot - defenderHpSubiti;
-                        const newHp = Math.max(0, currentHp - combatOutcome.damage);
-                        const newHpSubiti = defenderInfo.hpTot - newHp;
-                        
-                        if (defenderInfo.type === 'pc') {
-                          if (onUpdateHpSubiti) {
-                            onUpdateHpSubiti(defenderInfo.id, newHpSubiti);
-                          }
-                        } else {
-                          if (onUpdateActorHp) {
-                            onUpdateActorHp(defenderInfo.type, defenderInfo.id, newHp);
-                          }
-                        }
-                        
-                        setDefenderHpSubiti(newHpSubiti);
-                        alert(`Applicati ${combatOutcome.damage} PF di danno a ${defenderInfo.name}. HP rimanenti: ${newHp}/${defenderInfo.hpTot}.`);
-                      }}
-                      className="w-full sm:w-auto px-3 py-1.5 bg-emerald-655 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider rounded-lg shadow-xs transition active:scale-95 text-center whitespace-nowrap"
-                      style={{ backgroundColor: 'var(--success-color, #10b981)', border: 'none', cursor: 'pointer' }}
-                    >
-                      Applica Danni a {defenderInfo.name}
-                    </button>
-                  )}
-                </div>
-
-                {/* Box Dettagli Critico */}
-                {combatOutcome.criticalType && (
-                  <div className="p-4 bg-white/70 border border-emerald-250 rounded-lg shadow-sm flex flex-col justify-between gap-3 sm:flex-row sm:items-center sm:gap-4 md:col-span-2 lg:col-span-1 animate-fadeIn">
-                    <div className="flex flex-col gap-3 w-full">
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-full bg-amber-500 text-white flex items-center justify-center text-xl font-black shadow uppercase shrink-0">
-                          {combatOutcome.criticalType}
-                        </div>
-                        <div>
-                          <strong className="block text-sm text-gray-900 font-bold">
-                            Colpo Critico Primario (Severità {combatOutcome.criticalType})
-                          </strong>
-                          <span className="text-xs text-amber-800 font-medium block">
-                            Modificatore Tiro Critico: {fmt(combatOutcome.criticalModifier)} | Tabella: {TABLE_NAMES[combatOutcome.suggestedTable] || combatOutcome.suggestedTable}
-                          </span>
-                        </div>
-                      </div>
-
-                      {combatOutcome.hasSecondaryCrit && (
-                        <div className="pl-16 border-t border-gray-200/50 pt-3 mt-1 flex flex-col gap-2">
-                          <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-full bg-amber-600 text-white flex items-center justify-center text-sm font-bold shadow uppercase shrink-0">
-                              {combatOutcome.secondaryCritSeverity}
-                            </div>
-                            <div>
-                              <strong className="block text-xs text-gray-950">
-                                Colpo Critico Secondario (Severità {combatOutcome.secondaryCritSeverity})
-                              </strong>
-                              <span className="text-[11px] text-amber-900 block">
-                                Tabella: {TABLE_NAMES[combatOutcome.secondaryCritTable] || combatOutcome.secondaryCritTable}
-                              </span>
-                            </div>
-                          </div>
-                          <div className="flex gap-2 mt-1">
-                            <button
-                              type="button"
-                              onClick={() => {
-                                setCritTableCode(combatOutcome.suggestedTable);
-                                setCritSeverity(combatOutcome.criticalType);
-                                setCritDiceRoll(Math.floor(Math.random() * 100) + 1);
-                              }}
-                              className="px-2.5 py-1 bg-amber-100 hover:bg-amber-200 text-amber-900 rounded text-xs font-bold transition active:scale-95 cursor-pointer"
-                            >
-                              Carica Primario
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => {
-                                setCritTableCode(combatOutcome.secondaryCritTable);
-                                setCritSeverity(combatOutcome.secondaryCritSeverity);
-                                setCritDiceRoll(Math.floor(Math.random() * 100) + 1);
-                              }}
-                              className="px-2.5 py-1 bg-amber-655 hover:bg-amber-700 text-white rounded text-xs font-bold transition active:scale-95 cursor-pointer"
-                              style={{ backgroundColor: '#d97706' }}
-                            >
-                              Carica Secondario
-                            </button>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
-              </div>
-            )}
-
-            {combatOutcome.type === 'fumble' && (
-              <div className="p-4 bg-white/70 border border-red-200 rounded-lg shadow-sm flex items-center gap-4 mt-4">
-                <div className="w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center text-xl font-black shadow">
-                  F
-                </div>
-                <div>
-                  <strong className="block text-sm text-red-950">Colpo Maldestro Rilevato!</strong>
-                  <span className="text-xs text-red-750">L'attaccante rischia di ferirsi o rompere l'arma.</span>
-                </div>
-              </div>
-            )}
-          </div>
-
-          <div className="mt-6 pt-4 border-t border-gray-200/50 flex justify-end gap-3">
-            <button
-              onClick={handleReset}
-              className="btn btn-outline bg-white hover:bg-gray-100/50 text-gray-700 px-4 py-2 text-xs flex items-center gap-1"
-            >
-              <RotateCcw className="w-3.5 h-3.5" />
-              Reset Campi
-            </button>
-          </div>
-        </div>
-      )}
+      <CombatOutcomePanel
+        combatOutcome={combatOutcome}
+        defenderId={defenderId}
+        defenderInfo={defenderInfo}
+        defenderHpSubiti={defenderHpSubiti}
+        setDefenderHpSubiti={setDefenderHpSubiti}
+        onUpdateHpSubiti={onUpdateHpSubiti}
+        onUpdateActorHp={onUpdateActorHp}
+        setCritTableCode={setCritTableCode}
+        setCritSeverity={setCritSeverity}
+        setCritDiceRoll={setCritDiceRoll}
+        setShowCriticalResolver={setShowCriticalResolver}
+        setShowFumbleResolver={setShowFumbleResolver}
+        handleReset={handleReset}
+      />
 
       {/* --- RISOLUTORE COLPI MALDESTRI (FUMBLE) --- */}
       <div className="card p-5 border border-red-200 rounded-xl bg-red-50/20 shadow-xs mt-6">
