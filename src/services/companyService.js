@@ -1,3 +1,5 @@
+import { db } from "../firebase";
+import { getDocs, collection } from "firebase/firestore";
 import { saveDocument, deleteDocument, subscribeToCollection } from "./firestoreService";
 
 const SUBCOLLECTION = "companies";
@@ -19,4 +21,11 @@ export const deleteCompany = async (gmId, companyId) => {
 // Sottoscrizione in tempo reale alla lista delle compagnie del GM
 export const subscribeToCompanies = (gmId, callback) => {
   return subscribeToCollection(gmId, SUBCOLLECTION, callback, { sortBy: "name" });
+};
+
+// Fetch one-shot di tutte le compagnie del GM
+export const fetchCompanies = async (gmId) => {
+  const colRef = collection(db, "gms", gmId, SUBCOLLECTION);
+  const snap = await getDocs(colRef);
+  return snap.docs.map(d => ({ id: d.id, ...d.data() }));
 };

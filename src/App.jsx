@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { doc, collection } from 'firebase/firestore';
 import { db } from './firebase';
 import { useAuth } from './contexts/AuthContext';
@@ -36,6 +36,7 @@ import {
   fetchSpellCatalog,
   saveSpellCatalog
 } from './services/spellCatalogService';
+import { fetchCompanies } from './services/companyService';
 
 export default function App() {
   const { user, userData, loading, logout, isPlayer } = useAuth();
@@ -52,6 +53,7 @@ export default function App() {
   const [currentActiveCampaign, setCurrentActiveCampaign] = useState(null);
   const [equipmentCatalog, setEquipmentCatalog] = useState([]);
   const [spellCatalog, setSpellCatalog] = useState(null);
+  const [companies, setCompanies] = useState([]);
   const [fumbleRedirectData, setFumbleRedirectData] = useState(null);
 
   // --- CARICAMENTO INIZIALE ---
@@ -59,11 +61,12 @@ export default function App() {
     if (!user) return;
     const loadAll = async () => {
       try {
-        const [chars, npcs, crets, camps, equip, spells] = await Promise.all([
+        const [chars, npcs, crets, camps, comps, equip, spells] = await Promise.all([
           fetchCharacters(user.uid),
           fetchNpcs(user.uid),
           fetchCreatures(user.uid),
           fetchCampaigns(user.uid),
+          fetchCompanies(user.uid),
           fetchEquipmentCatalog(user.uid),
           fetchSpellCatalog(user.uid),
         ]);
@@ -71,6 +74,7 @@ export default function App() {
         setCampaignNpcs(npcs);
         setCampaignCreatures(crets);
         setCampaigns(camps);
+        setCompanies(comps);
         setEquipmentCatalog(equip || []);
         setSpellCatalog(spells);
       } catch (err) {
@@ -87,11 +91,20 @@ export default function App() {
   }, [campaigns]);
 
   // --- PERSONAGGI DELLA CAMPAGNA ATTIVA ---
-  const activeCampaignCharacters = currentActiveCampaign
-    ? savedCharacters.filter(c => {
-        const campaignIds = c.campaignIds || [];
-        return campaignIds.includes(currentActiveCampaign.id);
-      })
+  // Catena: Campagna → companyIds → Compagnie → characterIds → PG
+  const activeCampaignCharacterIds = useMemo(() => {
+    if (!currentActiveCampaign) return null; // null = mostra tutti
+    const companyIds = currentActiveCampaign.companyIds || [];
+    const campaignCompanies = companies.filter(c => companyIds.includes(c.id));
+    const ids = new Set();
+    campaignCompanies.forEach(comp => {
+      (comp.characterIds || []).forEach(charId => ids.add(charId));
+    });
+    return ids;
+  }, [currentActiveCampaign, companies]);
+
+  const activeCampaignCharacters = activeCampaignCharacterIds
+    ? savedCharacters.filter(c => activeCampaignCharacterIds.has(c.id))
     : savedCharacters;
 
   // --- HANDLER PERSONAGGI ---
