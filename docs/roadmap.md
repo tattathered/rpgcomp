@@ -4,6 +4,23 @@ Questo documento delinea la pianificazione delle prossime funzionalità e dei mi
 
 ---
 
+## 🧭 Confine con il Backlog
+
+- **Questo file (Roadmap)** = piano ad alto livello delle **macro funzionalità** da sviluppare, con stato di avanzamento.
+- **Backlog** (`docs/backlog.md`) = task operativi (FEAT/CR/FIX) emersi durante l'implementazione e posticipati.
+- Ogni macro può **riferirsi** ai task del backlog che la compongono (cross-reference), ma ogni voce vive in **un solo** documento.
+
+## 🚦 Stato di Avanzamento
+
+| Stato | Significato |
+|-------|-------------|
+| ✅ Fatto | Implementato e verificato |
+| 🔵 In Corso | Implementazione in corso |
+| 🟢 Pianificato | Prossima iterazione |
+| ⏳ Futuro | Idea, non ancora pianificata nel dettaglio |
+
+---
+
 ## 🚦 Criteri di Valutazione
 
 *   **Urgenza (U):**
@@ -20,18 +37,23 @@ Questo documento delinea la pianificazione delle prossime funzionalità e dei mi
 ## 🗺️ Roadmap delle Funzionalità
 
 ### 1. Supporto Attacchi Multipli Creature (CR-001)
+*   **Stato:** ⏳ Futuro — registrato in backlog, non ancora analizzato.
+*   **Backlog collegato:** `CR-001` (coda, ⏳ In Attesa)
 *   **Descrizione:** Mostri e animali hanno spesso 2 attacchi nello stesso round (es: *Morso* + *Artigli*). L'interfaccia del `CombatCalculator` deve poter selezionare ed eseguire in sequenza attacchi multipli in un solo round senza dover resettare le impostazioni ad ogni tiro.
 *   **Urgenza:** 🔴 **Alta** (Indispensabile per gestire gli scontri con bestie e mostri in modo naturale).
 *   **Criticità:** 🟡 **Media** (Richiede modifiche alla UI del calcolatore e alla gestione dello storico danni, ma non tocca la struttura del PG).
 *   **Impatto sul codice:** [CombatCalculator.jsx](/src/components/CombatCalculator.jsx).
 
 ### 2. Gestione Inventario Dinamico & Equipaggiamento PG
+*   **Stato:** 🔵 In Corso — coperto dai task REQ-10 (in sviluppo/analisi).
+*   **Backlog collegato:** `REQ-10-01` ✅ (fatto) · `REQ-10-02` 🟢 · `REQ-10-03..06` 🔵
 *   **Descrizione:** Abilitare la modifica dell'equipaggiamento direttamente dalla scheda personaggio attiva (compravendita, usura, loot), con ricalcolo in tempo reale di: ingombro totale, penalità al movimento (MM), penalità al lancio incantesimi, B.O. delle armi impugnate e B.D. derivante dalle armature.
 *   **Urgenza:** 🟡 **Media** (I PG evolvono e cambiano armi/armature durante la campagna).
 *   **Criticità:** 🔴 **Alta** (Impatta pesantemente la logica di calcolo del bonus in [skillHelpers.js](/src/utils/skillHelpers.js) e richiede l'aggiornamento dei nodi in Firestore).
 *   **Impatto sul codice:** `CharacterSheetStep.jsx`, `skillHelpers.js`, `characterService.js`.
 
 ### 3. Combat Tracker & Gestione Iniziativa (Roster Turni)
+*   **Stato:** ⏳ Futuro — nessun task nel backlog, da pianificare.
 *   **Descrizione:** Un tab dedicato per la gestione del combattimento a turni:
     *   Calcolo automatico dell'Iniziativa per tutti i partecipanti (PG, PNG, mostri) attivi nella campagna.
     *   Ordinamento automatico e avanzamento dei round.
@@ -41,12 +63,14 @@ Questo documento delinea la pianificazione delle prossime funzionalità e dei mi
 *   **Impatto sul codice:** Nuovi componenti `CombatTracker.jsx` e servizi correlati.
 
 ### 4. Parser Automatico dei Testi Codex (`<CodexText>`)
+*   **Stato:** ⏳ Futuro — nessun task nel backlog, da pianificare.
 *   **Descrizione:** Creazione di un componente wrapper `<CodexText>` che riceve un testo descrittivo lungo (come la descrizione di una professione o di un popolo) ed evidenzia/sottolinea in automatico tramite Regex tutte le parole chiave e i sinonimi presenti nel testo, collegandole ai relativi tooltip del Codex.
 *   **Urgenza:** 🟡 **Media** (Estende enormemente l'utilità del Codex appena implementato).
 *   **Criticità:** 🟢 **Bassa** (Modulo UI puramente locale ed isolato, nessun impatto sul database).
 *   **Impatto sul codice:** Nuovo componente in `Shared/` ed integrazione nei testi descrittivi della scheda.
 
 ### 5. Glossario Ricercabile (Full-Text Search)
+*   **Stato:** ⏳ Futuro — nessun task nel backlog, da pianificare.
 *   **Descrizione:** Un'interfaccia dedicata per consentire al GM e ai giocatori di sfogliare ed effettuare ricerche testuali nell'intero database del Codex (caratteristiche, popoli, regole, ecc.), trasformandolo in un compendio di gioco interattivo consultabile on-demand.
 *   **Urgenza:** 🟢 **Bassa** (I tooltip contestuali coprono già il 90% delle esigenze rapide).
 *   **Criticità:** 🟢 **Bassa** (Nuovo componente indipendente di sola lettura).
