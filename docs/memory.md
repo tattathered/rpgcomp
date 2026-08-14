@@ -49,6 +49,7 @@ Per evitare la saturazione del contesto, i dettagli delle funzionalità e lo sta
 Sintesi cronologica delle modifiche; il dettaglio operativo vive in `docs/backlog.md` e negli spoke dei requisiti.
 
 - **2026-08-14 — Docs & Processo:** rimosso `src/App.css` (file morto); regole agente in `.agents/AGENTS.md` (anti-sicofantia, workflow git/deploy, fine sessione); separazione scope `backlog.md` / `roadmap.md`; generalizzazione "Antigravity" → "agente AI"; path relativi; `memory.md` ristrutturato come stato & changelog; `analisi_funzionale` archiviato in `docs/archive/`.
+- **2026-08-14 — FIX-012 (roster PNG):** attivate le sottoscrizioni real-time `subscribeToCampaignNpcs`/`subscribeToCreatures` in `App.jsx` (campagna attiva) → il Roster Attivo si aggiorna subito dopo il salvataggio di un PNG/creatura, senza uscire/rientrare. Vedi `docs/backlog.md`.
 - **2026-07-13 — FIX-010 (liste incantesimi):** `categoryMap` in `magicHelpers.js` allineata ai dati reali; regole liste per professione → [`req_06`](docs/requirements/req_06_spells_resolution.md).
 - **2026-07-13 — FIX-011 (Equipment Editor):** refactoring necessario di `CharacterSheetStep.jsx` → vedi `docs/backlog.md`.
 

@@ -18,11 +18,13 @@ import {
 } from './services/characterService';
 import {
   fetchNpcs,
-  deleteNpc
+  deleteNpc,
+  subscribeToCampaignNpcs
 } from './services/npcService';
 import {
   fetchCreatures,
-  deleteCreature
+  deleteCreature,
+  subscribeToCreatures
 } from './services/creatureService';
 import {
   fetchCampaigns,
@@ -89,6 +91,22 @@ export default function App() {
     const active = campaigns.find(c => c.active);
     setCurrentActiveCampaign(active || null);
   }, [campaigns]);
+
+  // --- SOTTOSCRIZIONI REAL-TIME: PNG & CREATURE DELLA CAMPAGNA ATTIVA ---
+  // Mantiene il roster allineato a Firestore dopo save/delete/HP update (FIX-012)
+  useEffect(() => {
+    if (!user) return;
+    const campaignId = currentActiveCampaign?.id;
+    if (!campaignId) return;
+
+    const unsubNpcs = subscribeToCampaignNpcs(user.uid, campaignId, setCampaignNpcs);
+    const unsubCreatures = subscribeToCreatures(user.uid, campaignId, setCampaignCreatures);
+
+    return () => {
+      unsubNpcs();
+      unsubCreatures();
+    };
+  }, [user, currentActiveCampaign?.id]);
 
   // --- PERSONAGGI DELLA CAMPAGNA ATTIVA ---
   // Catena: Campagna → companyIds → Compagnie → characterIds → PG
