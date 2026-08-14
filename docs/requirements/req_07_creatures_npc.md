@@ -1,7 +1,7 @@
 # [REQ-07] PNG e Mostri/Creature — Catalogo e Schede
 
 ## Stato: [Approvato]
-**Ultimo aggiornamento:** 2026-07-01 da Antigravity
+**Ultimo aggiornamento:** 2026-07-01 dall'agente AI
 
 ---
 

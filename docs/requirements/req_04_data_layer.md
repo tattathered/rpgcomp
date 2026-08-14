@@ -1,7 +1,7 @@
 # [REQ-04] Data Layer, Tabelle MERP e Cataloghi Custom
 
 ## Stato: [Approvato]
-**Ultimo aggiornamento:** 2026-06-26 da Antigravity
+**Ultimo aggiornamento:** 2026-06-26 dall'agente AI
 
 ---
 

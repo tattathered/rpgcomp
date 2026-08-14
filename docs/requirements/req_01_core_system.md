@@ -1,7 +1,7 @@
 # [REQ-01] Core System (Autenticazione, Ruoli e Gestione GM/Player)
 
 ## Stato: [Approvato]
-**Ultimo aggiornamento:** 2026-06-24 da Antigravity
+**Ultimo aggiornamento:** 2026-06-24 dall'agente AI
 
 ---
 

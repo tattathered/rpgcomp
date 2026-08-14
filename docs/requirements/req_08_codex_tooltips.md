@@ -1,7 +1,7 @@
 # [REQ-08] Codex Tooltips Trasversali
 
 ## Stato: [Approvato]
-**Ultimo aggiornamento:** 2026-07-01 da Antigravity
+**Ultimo aggiornamento:** 2026-07-01 dall'agente AI
 
 ---
 

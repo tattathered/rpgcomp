@@ -1,7 +1,7 @@
 # [REQ-03] Action Resolver & Combattimento
 
 ## Stato: [Approvato — Completato]
-**Ultimo aggiornamento:** 2026-06-30 da Antigravity
+**Ultimo aggiornamento:** 2026-06-30 dall'agente AI
 
 ---
 

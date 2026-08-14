@@ -1,7 +1,7 @@
 # [REQ-06] Risoluzione Lancio Incantesimi (Tabelle TA-7..TA-9)
 
 ## Stato: [Approvato]
-**Ultimo aggiornamento:** 2026-06-24 da Antigravity
+**Ultimo aggiornamento:** 2026-06-24 dall'agente AI
 
 ---
 

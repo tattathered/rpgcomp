@@ -69,7 +69,7 @@ Ogni volta che l'utente esprime un nuovo requisito, una modifica strutturale o u
 # [REQ-XXX] Titolo della Funzionalità
 
 ## Stato: [In Attesa / Backlog | In Analisi | In Corso | Approvato | Obsoleto]
-**Ultimo aggiornamento:** YYYY-MM-DD da Antigravity
+**Ultimo aggiornamento:** YYYY-MM-DD dall'agente AI
 
 ---
 

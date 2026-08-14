@@ -4,7 +4,7 @@ Questo file è il punto unico di verità per tutte le attività **non ancora com
 nuove funzionalità (FEAT), change request UX/UI (CR) e bug/fix tecnici (FIX).
 
 > **Regola:** Ogni task viene inserito qui prima di essere analizzato o implementato.
-> Antigravity deve leggere questo file all'inizio di ogni sessione e aggiornarlo ad ogni avanzamento.
+> L'agente AI deve leggere questo file all'inizio di ogni sessione e aggiornarlo ad ogni avanzamento.
 
 ---
 

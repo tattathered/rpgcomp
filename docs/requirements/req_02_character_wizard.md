@@ -1,7 +1,7 @@
 # [REQ-02] Character Wizard (Creazione Personaggio)
 
 ## Stato: [Approvato]
-**Ultimo aggiornamento:** 2026-06-30 da Antigravity
+**Ultimo aggiornamento:** 2026-06-30 dall'agente AI
 
 ---
 
