@@ -23,12 +23,12 @@ Questo documento delinea la pianificazione delle prossime funzionalità e dei mi
 *   **Descrizione:** Mostri e animali hanno spesso 2 attacchi nello stesso round (es: *Morso* + *Artigli*). L'interfaccia del `CombatCalculator` deve poter selezionare ed eseguire in sequenza attacchi multipli in un solo round senza dover resettare le impostazioni ad ogni tiro.
 *   **Urgenza:** 🔴 **Alta** (Indispensabile per gestire gli scontri con bestie e mostri in modo naturale).
 *   **Criticità:** 🟡 **Media** (Richiede modifiche alla UI del calcolatore e alla gestione dello storico danni, ma non tocca la struttura del PG).
-*   **Impatto sul codice:** [CombatCalculator.jsx](file:///Users/yagni/Geek/antigravity/merpcomp/src/components/CombatCalculator.jsx).
+*   **Impatto sul codice:** [CombatCalculator.jsx](/src/components/CombatCalculator.jsx).
 
 ### 2. Gestione Inventario Dinamico & Equipaggiamento PG
 *   **Descrizione:** Abilitare la modifica dell'equipaggiamento direttamente dalla scheda personaggio attiva (compravendita, usura, loot), con ricalcolo in tempo reale di: ingombro totale, penalità al movimento (MM), penalità al lancio incantesimi, B.O. delle armi impugnate e B.D. derivante dalle armature.
 *   **Urgenza:** 🟡 **Media** (I PG evolvono e cambiano armi/armature durante la campagna).
-*   **Criticità:** 🔴 **Alta** (Impatta pesantemente la logica di calcolo del bonus in [skillHelpers.js](file:///Users/yagni/Geek/antigravity/merpcomp/src/utils/skillHelpers.js) e richiede l'aggiornamento dei nodi in Firestore).
+*   **Criticità:** 🔴 **Alta** (Impatta pesantemente la logica di calcolo del bonus in [skillHelpers.js](/src/utils/skillHelpers.js) e richiede l'aggiornamento dei nodi in Firestore).
 *   **Impatto sul codice:** `CharacterSheetStep.jsx`, `skillHelpers.js`, `characterService.js`.
 
 ### 3. Combat Tracker & Gestione Iniziativa (Roster Turni)

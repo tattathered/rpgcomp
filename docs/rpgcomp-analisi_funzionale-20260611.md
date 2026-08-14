@@ -2,7 +2,7 @@
 
 > [!WARNING]
 > **DOCUMENTO STORICO / BASELINE:** Questo documento rappresenta l'analisi funzionale e lo stato di sviluppo del sistema alla data del **15 Giugno 2026**. 
-> Per lo stato del sistema corrente, i dettagli tecnologici aggiornati e l'avanzamento complessivo, fare riferimento alla memoria centrale [**`docs/memory.md`**](file:///Users/yagni/Geek/antigravity/merpcomp/docs/memory.md) e agli spoke dei requisiti dedicati in [**`docs/requirements/`**](file:///Users/yagni/Geek/antigravity/merpcomp/docs/requirements/).
+> Per lo stato del sistema corrente, i dettagli tecnologici aggiornati e l'avanzamento complessivo, fare riferimento alla memoria centrale [**`docs/memory.md`**](/docs/memory.md) e agli spoke dei requisiti dedicati in [**`docs/requirements/`**](/docs/requirements/).
 
 **Data:** 15 Giugno 2026 (Aggiornato storicamente il 4 Luglio 2026)  
 **Versione:** v2.3.0 (Storica, allineata a v3.0.0 per i moduli critici/lanci)
