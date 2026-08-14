@@ -1,4 +1,6 @@
-# MERP Companion — Project Memory Hub
+# MERP Companion — Memory Hub (Stato & Changelog)
+
+> **Fonti di verità:** task → [`docs/backlog.md`](docs/backlog.md) · requisiti → [`docs/requirements/`](docs/requirements/) · piano → [`docs/roadmap.md`](docs/roadmap.md). Questo file è un **riepilogo navigazionale** (stato + changelog), non la fonte dei dettagli.
 
 ## 1. Visione del Sistema & Attori
 - **GM (Custode):** Gestione PG/PNG, roster, compagnie, campagne, risoluzione azioni, amministrazione cataloghi.
@@ -36,41 +38,19 @@ Per evitare la saturazione del contesto, i dettagli delle funzionalità e lo sta
 ## 4. Stato Globale Avanzamento
 
 - **Funzionalità Implementate:** 49 (REQ-01 → REQ-09 completati al 100%, REQ-10 in verifica).
-- **In Corso / In Revisione:** 2 — REQ-10 (CharacterSheet standalone, 4 pulsanti contestuali), FIX-011 (Equipment Editor).
+- **In Corso / In Revisione:** REQ-10 (CharacterSheet standalone), FIX-011 (Equipment Editor).
 - **In Backlog (analizzati, non implementati):** 0.
-- **CR aperte:** 2 — CR-001 (Combat Calculator v2 — attacchi multipli per round), CR-002 (REQ-10 in verifica).
-- **2026-08-14 — Processo & Cleanup:** rimosso `src/App.css` (file morto, non referenziato da nessuna parte); aggiornate le regole agente in `.agents/AGENTS.md` (sezione anti-sicofantia, workflow git/deploy corretto, checklist fine sessione).
+- **CR aperte:** CR-001 (attacchi multipli), CR-002 (REQ-10 in verifica) — dettaglio in `docs/backlog.md`.
 
-> Per il dettaglio di tutti i task aperti, CR e fix: **[docs/backlog.md](docs/backlog.md)**
-> Per la pianificazione a lungo termine: **[docs/roadmap.md](docs/roadmap.md)**
+> Dettaglio task aperti: **[docs/backlog.md](docs/backlog.md)** · Piano a lungo termine: **[docs/roadmap.md](docs/roadmap.md)**
 
-## 5. Bug Fix Recenti
+## 5. Changelog Recenti
 
-### FIX-010 (2026-07-13): Spell List Category Mapping
-- **File:** `src/utils/magicHelpers.js`
-- **Problema:** `getAvailableSpellLists()` usava `categoryMap` con valori errati (`'Mago'`, `'Ranger'`, `'Bardo'`, `'Animista'`) rispetto ai dati reali in `Tabella-liste_incantesimi.json` (`'Maghi Maghi'`, `'Ranger Ranger'`, `'Bardi Bardi'`, `'Animisti Animisti'`).
-- **Effetto:** Es. Mago vedeva solo 8 liste Essenza anziché 8 Essenza + 8 Maghi.
-- **Fix:** Allineati i valori della `categoryMap` ai dati reali.
-- **Regole (da `data/professioni-descrizione.txt`):**
-  - Mago: Essenza aperte + Liste dei Maghi
-  - Animista: Flusso aperte + Liste degli Animisti
-  - Ranger: Flusso aperte + Liste dei Ranger
-  - Bardo: Essenza aperte + Liste dei Bardi
-  - Scout: Essenza **oppure** Flusso aperte (a scelta)
-  - Guerriero: Essenza **oppure** Flusso aperte (a scelta)
+Sintesi cronologica delle modifiche; il dettaglio operativo vive in `docs/backlog.md` e negli spoke dei requisiti.
 
-### FIX-011 (2026-07-13): Equipment Editor — Refactoring Necessario
-- **File:** `src/components/CharacterWizard/steps/CharacterSheetStep.jsx`
-- **Problema:** Il componente ha superato 2000 righe, diventando difficilmente manutenibile. Le modifiche all'equipment editor (EQUIP +/- inline, doppi pulsanti catalogo, unified state via `equipItemsState`) hanno introdotto errori di sintassi.
-- **Necessario:** Estrarre la logica dell'equipment editor in un componente separato (`InventoryEditorInline.jsx`).
-
----
-
-## 6. Backlog — Analizzato / In Attesa
-
-Feature analizzate o discusse ma non ancora implementate. Aggiornare contestualmente a `docs/backlog.md`.
-
-- 📋 **CR-001 (Combat Calculator v2 — attacchi multipli per round):** `⏳ In Attesa` — Gestione automatica della sequenza di attacchi multipli (es. Morso + Artigli) per round per mostri/animali.
+- **2026-08-14 — Docs & Processo:** rimosso `src/App.css` (file morto); regole agente in `.agents/AGENTS.md` (anti-sicofantia, workflow git/deploy, fine sessione); separazione scope `backlog.md` / `roadmap.md`; generalizzazione "Antigravity" → "agente AI"; path relativi; `memory.md` ristrutturato come stato & changelog; `analisi_funzionale` archiviato in `docs/archive/`.
+- **2026-07-13 — FIX-010 (liste incantesimi):** `categoryMap` in `magicHelpers.js` allineata ai dati reali; regole liste per professione → [`req_06`](docs/requirements/req_06_spells_resolution.md).
+- **2026-07-13 — FIX-011 (Equipment Editor):** refactoring necessario di `CharacterSheetStep.jsx` → vedi `docs/backlog.md`.
 
 ---
 

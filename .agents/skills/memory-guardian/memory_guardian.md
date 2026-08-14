@@ -7,7 +7,7 @@ Prevenire il "context drift" mantenendo la documentazione tecnica, i requisiti e
 
 ```
 docs/
-├── memory.md           ← Hub: tech stack, architettura, indice spoke, roadmap
+├── memory.md           ← Stato & changelog (riepilogo: visione, architettura, indice spoke, avanzamento)
 ├── backlog.md          ← Backlog unico: FEAT / CR / FIX aperti o in attesa
 └── requirements/
     ├── req_01_*.md     ← Spoke per ogni macro-funzionalità completata/approvata
@@ -15,7 +15,7 @@ docs/
     └── ...
 ```
 
-- **`docs/memory.md` (Hub):** Tech Stack, Regole Globali del Progetto, Indice degli Spoke e puntatore al backlog.
+- **`docs/memory.md` (Hub):** Riepilogo navigazionale: visione, tech stack, regole di processo, indice degli spoke, stato/changelog. I dettagli vivono in `docs/backlog.md`, `docs/requirements/` e `docs/roadmap.md`.
 - **`docs/backlog.md` (Backlog):** Unico punto di verità per task aperti. Ogni task ha ID, tipo, priorità, stato.
 - **`docs/requirements/` (Spokes):** File Markdown separati *per ogni macro-funzionalità*, sia completata che in analisi.
 

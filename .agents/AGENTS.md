@@ -4,7 +4,7 @@
 
 Prima di rispondere a qualsiasi richiesta dell'utente, l'agente DEVE:
 
-1. **Leggere [`docs/memory.md`](./docs/memory.md)** — Hub centrale con tech stack, architettura e mappa degli spoke dei requisiti.
+1. **Leggere [`docs/memory.md`](./docs/memory.md)** — Hub di stato & changelog: visione, tech stack, architettura, indice degli spoke dei requisiti e avanzamento.
 2. **Leggere [`docs/backlog.md`](./docs/backlog.md)** — Lista unica di FEAT/CR/FIX aperti, in analisi o in attesa. Questo file contiene task che potrebbero non essere menzionati esplicitamente dall'utente ma sono già stati analizzati e schedati.
 3. **Identificare task aperti** — Verificare se la richiesta dell'utente è già registrata nel backlog o se è nuova e va aggiunta.
 

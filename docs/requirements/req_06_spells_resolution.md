@@ -1,7 +1,7 @@
 # [REQ-06] Risoluzione Lancio Incantesimi (Tabelle TA-7..TA-9)
 
 ## Stato: [Approvato]
-**Ultimo aggiornamento:** 2026-06-24 dall'agente AI
+**Ultimo aggiornamento:** 2026-08-14 dall'agente AI
 
 ---
 
@@ -59,6 +59,16 @@ Questo modulo consente al GM di gestire e risolvere il lancio degli incantesimi 
   - **Fallimento Incantesimo (Fumble):** Il fallimento si verifica quando il **tiro di dado pulito (naturale d100)** è compreso tra **01 e 02** (quindi <= 2), indipendentemente da modificatori o BO del lanciatore. In questo caso il lancio fallisce catastroficamente e viene attivato il risolutore dei fallimenti magici sulla tabella `TTM-3`.
   - **Incantesimi d'Attacco (TA-7, TA-8):** L'esito indica i PF di danno inflitti e la severità dell'eventuale colpo critico associato (es. `12B` = 12 PF e colpo critico B di tipo Calore, Freddo o Elettricità a seconda del tipo di incantesimo). Consente l'apertura del `CriticalResolver` per determinare l'effetto del critico.
   - **Incantesimi Base (TA-9):** L'esito indica il **modificatore al Tiro di Resistenza (TR)** del bersaglio (es. `-15`). Se il bersaglio effettua un tiro di resistenza, il suo bonus di TR subirà questo modificatore.
+
+### 2.2 Liste Incantesimi per Professione
+Regole di accesso alle liste incantesimi (da `data/professioni-descrizione.txt`), usate da `getAvailableSpellLists()` in `src/utils/magicHelpers.js`:
+
+- **Mago:** Essenza aperte + Liste dei Maghi
+- **Animista:** Flusso aperte + Liste degli Animisti
+- **Ranger:** Flusso aperte + Liste dei Ranger
+- **Bardo:** Essenza aperte + Liste dei Bardi
+- **Scout:** Essenza **oppure** Flusso aperte (a scelta)
+- **Guerriero:** Essenza **oppure** Flusso aperte (a scelta)
 
 ### 3. Componenti UI ed Integrazione
 - [x] **Nuovo Componente `SpellResolver.jsx` (Modalità GM Stand-alone):**
