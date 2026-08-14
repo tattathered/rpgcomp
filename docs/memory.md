@@ -11,8 +11,16 @@
 - **Dati statici:** JSON locali (`src/data/`) per tabelle regolamento MERP/GirSA.
 - **Persistenza Dinamica:** Struttura Firestore sotto la radice `gms/{gmId}/`.
 
+## 2.1 Regole di Processo (Come Lavoriamo)
+Le regole operative per l'agente (onboarding obbligatorio, comportamento, workflow git/deploy, checklist fine sessione) sono in:
+
+- 📄 **[`.agents/AGENTS.md`](.agents/AGENTS.md)** — auto-caricato a inizio sessione (standard AGENTS.md): onboarding, regole anti-sicofantia, analisi-prima-del-codice, workflow Git/Firebase, fine sessione.
+- 📄 **[`.agents/skills/memory-guardian/memory_guardian.md`](.agents/skills/memory-guardian/memory_guardian.md)** — protocollo Hub & Spoke + Backlog: ogni FEAT/CR/FIX va prima registrata in `docs/backlog.md`, poi analizzata, poi approvata, poi implementata.
+
+**Regola d'oro:** mai codice prima della documentazione. Analisi → design → approvazione → codice → verifica → update docs.
+
 ## 3. Indice dei Requisiti e delle Funzionalità (Mappa degli Spokes)
-Per evitare la saturazione del contesto di Antigravity, i dettagli delle funzionalità e lo stato di implementazione sono mappati nei seguenti moduli dedicati:
+Per evitare la saturazione del contesto, i dettagli delle funzionalità e lo stato di implementazione sono mappati nei seguenti moduli dedicati:
 
 - 📂 **[req_01_core_system.md](docs/requirements/req_01_core_system.md)** — Autenticazione, Ruoli, Gestione GM e Dashboard Player.
 - 📂 **[req_02_character_wizard.md](docs/requirements/req_02_character_wizard.md)** — Il flusso di creazione del Personaggio in 10 Step e logiche di sviluppo.
@@ -31,9 +39,10 @@ Per evitare la saturazione del contesto di Antigravity, i dettagli delle funzion
 - **In Corso / In Revisione:** 2 — REQ-10 (CharacterSheet standalone, 4 pulsanti contestuali), FIX-011 (Equipment Editor).
 - **In Backlog (analizzati, non implementati):** 0.
 - **CR aperte:** 2 — CR-001 (Combat Calculator v2 — attacchi multipli per round), CR-002 (REQ-10 in verifica).
+- **2026-08-14 — Processo & Cleanup:** rimosso `src/App.css` (file morto, non referenziato da nessuna parte); aggiornate le regole agente in `.agents/AGENTS.md` (sezione anti-sicofantia, workflow git/deploy corretto, checklist fine sessione).
 
 > Per il dettaglio di tutti i task aperti, CR e fix: **[docs/backlog.md](docs/backlog.md)**
-> Per la pianificazione a lungo termine: **[docs/roadmap.md](docs/roadmap.md)
+> Per la pianificazione a lungo termine: **[docs/roadmap.md](docs/roadmap.md)**
 
 ## 5. Bug Fix Recenti
 
