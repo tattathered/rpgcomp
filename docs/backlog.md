@@ -45,7 +45,6 @@ nuove funzionalità (FEAT), change request UX/UI (CR) e bug/fix tecnici (FIX).
 | REQ-10-06 | FEAT | Player — note modificabili sugli oggetti dell'inventario | Media | 🔵 In Analisi | req_10 |
 | FIX-011 | FIX | Equipment Editor — Refactoring: estrarre logica inline da CharacterSheetStep.jsx in componente separato. Bug sintassi (extra `}`) da risolvere. | Alta | 🔴 Bloccato | req_10 |
 | CR-002 | CR | Scheda Personaggio Standalone — CharacterSheetStep diventa un tab autonomo 'sheet' in AppTabs. Carica PG dal roster apre la scheda, non il wizard. 4 pulsanti contestuali per modifiche mirate. Vedi req_10_character_sheet_standalone.md | Alta | 🟢 In Sviluppo (implementato, in attesa di verifica utente) | req_10 |
-| FIX-012 | FIX | PNG Standard (ST-3) non visibile nel Roster Attivo subito dopo il salvataggio in campagna (compare solo uscendo/rientrando). Causa: `campaignNpcs`/`campaignCreatures` caricati una sola volta in App.jsx (`loadAll`, fetch one-shot al mount) senza refresh post-save. Fix applicata (opzione A): attivate in `App.jsx` le sottoscrizioni real-time `subscribeToCampaignNpcs`/`subscribeToCreatures` sulla campagna attiva, con cleanup al cambio campagna → roster sempre allineato a Firestore. Nota: il roster ora mostra solo gli attori della **campagna attiva** (prima mostrava tutti i PNG/creature del GM). Segnalato 2026-08-14. | Bassa | 🟢 In Sviluppo (implementato, in attesa di verifica utente) | req_07 |
 
 ---
 
@@ -56,6 +55,7 @@ nuove funzionalità (FEAT), change request UX/UI (CR) e bug/fix tecnici (FIX).
 | ID | Tipo | Descrizione | Segnalato il | Stato |
 |----|------|-------------|--------------|-------|
 | CR-001 | CR | Combat Calculator v2 — Supporto attacchi multipli per round (Mostri/Animali hanno spesso 2 attacchi nello stesso round, PG e PNG ne fanno uno alla volta). Rivedere il flusso di risoluzione per gestire sequenza di attacchi multipli. | 2026-06-26 | ⏳ In Attesa |
+| CR-003 | CR | Analisi UI/UX completa e armonizzazione (tutta l'app): rendere omogenee e coerenti le viste GM/Player e alzare la QoL percepita (al momento bassina). Richiede test approfonditi per individuare le modifiche da fare; da pianificare. | 2026-08-14 | ⏳ In Attesa |
 
 ---
 
@@ -66,6 +66,7 @@ nuove funzionalità (FEAT), change request UX/UI (CR) e bug/fix tecnici (FIX).
 | ID | Tipo | Descrizione | Completato il |
 |----|------|-------------|---------------|
 | REQ-10-01 | FEAT | Comando 1 — Modifica Inventario (pulsante → InventoryEditor) | 2026-08-14 |
+| FIX-012 | FIX | Roster PNG/Creature sempre aggiornato: attivate le sottoscrizioni real-time `subscribeToCampaignNpcs`/`subscribeToCreatures` in `App.jsx` sulla campagna attiva (cleanup al cambio campagna). Il Roster Attivo mostra subito PNG/creature appena salvati, senza uscire/rientrare. Nota: ora il roster mostra solo gli attori della campagna attiva. | 2026-08-14 |
 | BL-003 | FEAT | Codex Lingue e Gradi — Integrazione delle definizioni di lingue e gradi di conoscenza nel Codex con attivazione dei tooltips nella scheda PG | 2026-07-01 |
 | FIX-010 | FIX | Spell List Category Mapping — `categoryMap` in `magicHelpers.js` allineata ai valori reali del JSON `Tabella-liste_incantesimi.json`. | 2026-07-13 |
 | FIX-009 | FIX | Importazione PG — Risolto bug di sovrascrittura accidentale per PG con ID identici e nome modificato, mappando l'ID come 'pgId' nel JSON per chiarezza e inserendo la scelta utente (sovrascrittura vs nuovo PG). | 2026-07-01 |
