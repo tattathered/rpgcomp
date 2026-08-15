@@ -3,7 +3,6 @@ import { createPortal } from 'react-dom';
 import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
 import { getAvailableSpellLists } from '../../../utils/magicHelpers';
 import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
-import secondarySkillsList from '../../../data/Tabella-abilita_secondarie.json';
 import gradiLingue from '../../../data/TGP-1-gradi_conoscenze_lingue.json';
 import catalogData from '../../../data/TS-4-equipaggiamento.json';
 
@@ -13,8 +12,6 @@ import raceLanguagesData from '../../../data/race_languages.json';
 import racesData from '../../../data/TB-3-modifiche_speciali_popolo.json';
 
 import {
-  getBonus,
-  parseBonusValue,
   getRanksBonus,
   getIngombroBonus,
   getSpecificTb6Ranks,
@@ -22,8 +19,7 @@ import {
   fmt,
   getTgp5AdolescenceRanks,
   getTb6PoolSize,
-  getRaceId,
-  getSkillId
+  getRaceId
 } from '../../../utils/skillHelpers';
 
 const STAT_KEYS = ['FR', 'AG', 'CO', 'IN', 'IT', 'PR'];
@@ -417,7 +413,7 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
     }
   };
 
-  const handleDecreaseTb6 = (skillName, cat) => {
+  const handleDecreaseTb6 = (skillName) => {
     const current = tb6Distribution[skillName] || 0;
     if (current > 0) {
       setCharacterData(prev => {
@@ -530,22 +526,6 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
     }
   }, [baseChance, characterData.spellListChanceAccumulated, setCharacterData]);
 
-  if (!race) {
-    return (
-      <div className="p-8 border border-dashed border-gray-300 rounded flex items-center justify-center text-gray-500 bg-gray-50">
-        Torna allo Step 1 e seleziona un Popolo prima di procedere.
-      </div>
-    );
-  }
-
-  if (!profession) {
-    return (
-      <div className="p-8 border border-dashed border-gray-300 rounded flex items-center justify-center text-gray-500 bg-gray-50">
-        Torna allo Step 2 e seleziona una Professione prima di procedere.
-      </div>
-    );
-  }
-
   const handleRoll = () => {
     const roll = Math.floor(Math.random() * 100) + 1;
     setCharacterData(prev => {
@@ -585,11 +565,12 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
   };
 
   // Check if they already acquired one in adolescence
-  const acquiredListEntry = Object.entries(characterData.spellListAllocations || {}).find(([name, source]) => source === 'Adolescenza');
+  const acquiredListEntry = Object.entries(characterData.spellListAllocations || {}).find(([, source]) => source === 'Adolescenza');
   const hasAcquiredInAdolescence = !!acquiredListEntry;
   const acquiredListName = hasAcquiredInAdolescence ? acquiredListEntry[0] : '';
 
   useEffect(() => {
+    if (!race || !profession) return;
     let err = null;
 
     // 1. Magic realm
@@ -644,9 +625,25 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
     characterData.stepErrors, setCharacterData
   ]);
 
+  if (!race) {
+    return (
+      <div className="p-8 border border-dashed border-gray-300 rounded flex items-center justify-center text-gray-500 bg-gray-50">
+        Torna allo Step 1 e seleziona un Popolo prima di procedere.
+      </div>
+    );
+  }
+
+  if (!profession) {
+    return (
+      <div className="p-8 border border-dashed border-gray-300 rounded flex items-center justify-center text-gray-500 bg-gray-50">
+        Torna allo Step 2 e seleziona una Professione prima di procedere.
+      </div>
+    );
+  }
+
   // Separate regular skills from special points
   const regularCategories = categories.filter(c => c !== 'Altre Abilità ' && c !== 'Altre Abilità' && c !== 'Altro Sviluppo');
-  const otherSkills = Object.entries(skills).filter(([name, data]) => data.category.includes('Altre Abilità'));
+  const otherSkills = Object.entries(skills).filter(([, data]) => data.category.includes('Altre Abilità'));
 
   return (
     <div>

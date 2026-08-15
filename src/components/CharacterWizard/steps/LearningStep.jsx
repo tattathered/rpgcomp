@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
-import { Plus, Minus, Trash2, Check, AlertCircle, ArrowRight, Sparkles, Languages, ArrowLeft } from 'lucide-react';
+import { Plus, Trash2, Check, Sparkles, ArrowLeft } from 'lucide-react';
 import EquipmentStep from './EquipmentStep';
 import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
 import secondarySkillsList from '../../../data/Tabella-abilita_secondarie.json';
@@ -10,16 +10,11 @@ import { getAvailableSpellLists } from '../../../utils/magicHelpers';
 import languagesData from '../../../data/languages.json';
 
 import {
-  getBonus,
-  parseBonusValue,
   getRanksBonus,
-  getIngombroBonus,
   getSpecificTb6Ranks,
-  getFinalStats,
   fmt,
   getTgp4PoolSize,
   getProfessionRanksForLevel,
-  getHpDiceForIncrement,
   getCharacterHpTot,
   getConsolidatedSecondarySkills,
   getTgp4CategoryKeyForSecondary
@@ -173,15 +168,6 @@ export default function LearningStep({ characterData, setCharacterData }) {
         }
       });
 
-      // Calcola la probabilità di incantesimo ripristinata
-      let prevChance = characterData.spellListChanceAccumulated || 0;
-      if (updatedDevelopments.length > 0) {
-        prevChance = updatedDevelopments[updatedDevelopments.length - 1].spellListChanceAccumulated;
-      } else {
-        // Ritorna al livello 1
-        prevChance = characterData.spellListChanceAccumulated;
-      }
-
       // Ripristina le lingue spesa
       const updatedLanguages = { ...characterData.background?.languages };
       if (last.languages) {
@@ -193,7 +179,7 @@ export default function LearningStep({ characterData, setCharacterData }) {
       }
 
       // Ricalcola le abilità globali
-      const newSkills = recalculateSkills(updatedDevelopments, updatedLanguages);
+      const newSkills = recalculateSkills(updatedDevelopments);
 
       setCharacterData(prev => ({
         ...prev,
@@ -209,7 +195,7 @@ export default function LearningStep({ characterData, setCharacterData }) {
   };
 
   // Helper per ricalcolare le abilità consolidando tutto
-  const recalculateSkills = (developments, currentLangsState) => {
+  const recalculateSkills = (developments) => {
     const newSkills = {};
     const finalLevel = 1 + developments.length;
     const bgModifiers = characterData.background?.compiledModifiers || { statsBonus: {}, skillBgRanks: {}, secondarySkills: {}, gold: 0 };
@@ -676,7 +662,6 @@ export default function LearningStep({ characterData, setCharacterData }) {
 
   // Tiro Punti Ferita
   const rfRanksInActiveLevel = activeLevel?.tgp4Distribution['Resistenza fisica'] || 0;
-  const rfTotalRanksInActiveLevel = activeLevelSkillRanks['Resistenza fisica']?.total || 0;
 
   const handleRollHp = () => {
     if (!activeLevel) return;
@@ -1023,7 +1008,7 @@ export default function LearningStep({ characterData, setCharacterData }) {
     };
 
     // Ricalcola le abilità globali
-    const newSkills = recalculateSkills(updatedDevelopments, updatedLanguages);
+    const newSkills = recalculateSkills(updatedDevelopments);
 
     setCharacterData(prev => ({
       ...prev,
@@ -1038,9 +1023,6 @@ export default function LearningStep({ characterData, setCharacterData }) {
 
     // Resetta lo stato attivo
     setActiveLevel(null);
-    setTransferSource('');
-    setTransferDest('');
-    setTransferPoints(1);
   };
 
   if (showEquipmentEditor) {
@@ -1809,7 +1791,6 @@ export default function LearningStep({ characterData, setCharacterData }) {
                         <tbody>
                           {catSkills.map(sk => {
                             const name = sk.nome;
-                            const isCogliereAlleSpalle = name.toLowerCase() === 'cogliere alle spalle';
                             const state = activeLevelSkillRanks[name] || { beforeRanks: 0, profIncrement: 0, currentTgp4: 0, total: 0 };
 
                             // Gestione limiti e costi

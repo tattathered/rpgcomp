@@ -5,7 +5,6 @@ import {
 } from './skillHelpers';
 import {
   getSkillForWeapon,
-  getCreatureAttackDetails,
   mapCreatureArmor
 } from './combatHelpers';
 
@@ -16,10 +15,7 @@ import {
 export const processPcRoster = (savedCharacters) => {
   return savedCharacters.map(char => {
     const race = char.race;
-    const profession = char.profession;
     const stats = char.stats || {};
-    const levelDevelopments = char.levelDevelopments || [];
-    const finalLevel = 1 + levelDevelopments.length;
 
     const bgData = char.background || { languages: {}, options: [] };
     const bgModifiers = bgData.compiledModifiers || { statsBonus: {}, skillBgRanks: {}, secondarySkills: {}, gold: 0 };

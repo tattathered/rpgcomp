@@ -115,7 +115,7 @@ export default function AppTabs({
           <Lazy>
             <CharacterSheetStep
               characterData={activeCharacter}
-              setCharacterData={(updated) => {
+              setCharacterData={() => {
                 // Aggiornamento locale immediato (per evitare salvataggi a ogni keystroke)
                 // Il salvataggio su Firestore avviene tramite pulsanti espliciti o viewMode changes
                 // onSaveCharacter verrà chiamato dal componente per salvataggi espliciti

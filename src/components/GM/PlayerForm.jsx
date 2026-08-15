@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { UserPlus, Mail, Lock, User, X } from "lucide-react";
 
 export default function PlayerForm({ onSubmit, onCancel, loading, initialData }) {

@@ -363,7 +363,7 @@ export default function StatsStep({ characterData, setCharacterData }) {
             ) : (
               <div>
                 <div className="flex gap-2 mb-6 justify-center">
-                  {rolls.map((r, i) => {
+                  {rolls.map((r) => {
                     const isAssigned = Object.values(assignments).includes(r.id);
                     return (
                       <div key={r.id} className={`p-3 rounded border font-bold text-lg ${isAssigned ? 'bg-gray-100 text-gray-400 border-gray-200' : 'bg-primary-light border-primary text-primary-color'}`}>

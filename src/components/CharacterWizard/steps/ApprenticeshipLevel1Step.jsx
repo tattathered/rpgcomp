@@ -9,8 +9,6 @@ import secondarySkillsList from '../../../data/Tabella-abilita_secondarie.json';
 import languagesData from '../../../data/languages.json';
 import raceLanguagesData from '../../../data/race_languages.json';
 import {
-  getBonus,
-  parseBonusValue,
   getRanksBonus,
   getIngombroBonus,
   getSpecificTb6Ranks,
@@ -19,7 +17,6 @@ import {
   getTgp4PoolSize,
   getTb6PoolSize,
   getRaceId,
-  getConsolidatedSecondarySkills,
   getTgp4CategoryKeyForSecondary
 } from '../../../utils/skillHelpers';
 
@@ -140,7 +137,7 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
       setSpellAttemptRoll(null);
       setManualSpellRoll('');
       // If they had acquired a list, remove it
-      const acquiredListEntry = Object.entries(characterData.spellListAllocations || {}).find(([name, source]) => source === 'Apprendistato Liv. 1');
+      const acquiredListEntry = Object.entries(characterData.spellListAllocations || {}).find(([, source]) => source === 'Apprendistato Liv. 1');
       if (acquiredListEntry) {
         const acquiredListName = acquiredListEntry[0];
         setCharacterData(prev => {
@@ -446,8 +443,6 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
     setSpellAttemptRoll(null);
   };
 
-  const isWarriorOrScout = profession ? ['guerriero', 'scout'].includes(profession?.professione?.toLowerCase()) : false;
-
   const selectedRealm = characterData.magicRealm || '';
   const knownLists = useMemo(() => {
     const list = new Set();
@@ -474,10 +469,6 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
   const availableLists = useMemo(() => {
     return rawAvailableLists.filter(l => !knownListsUpper.includes(l.nome_lista.toUpperCase().trim()));
   }, [rawAvailableLists, knownListsUpper]);
-
-  const handleRealmChange = (realm) => {
-    setCharacterData(prev => ({ ...prev, magicRealm: realm }));
-  };
 
   const categories = [...new Set(primarySkillsList.map(s => s.categoria))];
 
@@ -610,11 +601,9 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
 
 
 
-  const acquiredListEntry = Object.entries(characterData.spellListAllocations || {}).find(([name, source]) => source === 'Apprendistato Liv. 1');
+  const acquiredListEntry = Object.entries(characterData.spellListAllocations || {}).find(([, source]) => source === 'Apprendistato Liv. 1');
   const hasAcquiredInApprenticeship = !!acquiredListEntry;
   const acquiredListName = hasAcquiredInApprenticeship ? acquiredListEntry[0] : '';
-
-  const adolescenceListEntry = Object.entries(characterData.spellListAllocations || {}).find(([name, source]) => source === 'Adolescenza');
 
   const handleAcquireList = () => {
     if (!selectedNewList) return;

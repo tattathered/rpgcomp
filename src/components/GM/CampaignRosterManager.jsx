@@ -1,4 +1,3 @@
-import React from "react";
 import { Trash2, Heart, Shield, Sword, User } from "lucide-react";
 
 export default function CampaignRosterManager({

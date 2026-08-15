@@ -41,7 +41,7 @@ export const fetchCharacters = async (gmId) => {
 };
 
 export const duplicateCharacter = async (gmId, char) => {
-  const { id, ...data } = char;
+  const { id: _id, ...data } = char;
   const colRef = collection(db, "gms", gmId, SUBCOLLECTION);
   const docRef = await addDoc(colRef, {
     ...data,

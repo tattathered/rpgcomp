@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import npcDataJson from "../../data/TS-3-personaggi_standard.json";
 import { saveCampaignNpc } from "../../services/npcService";
-import { Shield, Sword, Heart, Save, AlertCircle } from "lucide-react";
+import { Shield, Heart, Save, AlertCircle } from "lucide-react";
 
 const ST3_CHARACTERISTICS = {
   guerriero: { FR: 15, AG: 10, CO: 5, IN: 0, IT: 0, PR: 0 },

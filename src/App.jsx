@@ -1,13 +1,9 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { doc, collection } from 'firebase/firestore';
-import { db } from './firebase';
 import { useAuth } from './contexts/AuthContext';
-import { useCodex } from './contexts/CodexContext';
 import LoginPage from './components/Auth/LoginPage';
 import PlayerDashboard from './components/Player/PlayerDashboard';
 import AppHeader from './components/AppHeader';
 import AppTabs from './components/AppTabs';
-import { getCharacterHpTot } from './utils/skillHelpers';
 import {
   fetchCharacters,
   saveCharacter,
@@ -42,7 +38,6 @@ import { fetchCompanies } from './services/companyService';
 
 export default function App() {
   const { user, userData, loading, logout, isPlayer } = useAuth();
-  const { codexData } = useCodex();
 
   // --- STATO GLOBALE ---
   const [activeTab, setActiveTab] = useState('creation');
@@ -324,7 +319,6 @@ export default function App() {
   return (
     <div className="app-container">
       <AppHeader
-        user={user}
         userData={userData}
         logout={logout}
         activeTab={activeTab}

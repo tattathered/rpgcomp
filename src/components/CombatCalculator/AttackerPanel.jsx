@@ -1,5 +1,5 @@
 import { Swords } from 'lucide-react';
-import { ARMOR_DISPLAY, TABLE_NAMES, WEAPON_SKILL_TO_TABLE } from '../../utils/combatHelpers';
+import { TABLE_NAMES, WEAPON_SKILL_TO_TABLE } from '../../utils/combatHelpers';
 import { fmt } from '../../utils/skillHelpers';
 
 export default function AttackerPanel({
@@ -7,7 +7,6 @@ export default function AttackerPanel({
   customAttackerName, setCustomAttackerName,
   attackerBO, setAttackerBO,
   attackerWeaponCat, setAttackerWeaponCat,
-  attackerWeaponName,
   attackerHpTot, setAttackerHpTot,
   attackerHpSubiti, setAttackerHpSubiti,
   processedRoster,

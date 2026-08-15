@@ -3,7 +3,7 @@ import penalitaCaricoData from '../data/TB-5-penalita_carico.json';
 import raceAdSkillsData from '../data/TGP-5-sviluppo_abilita_adolescenza.json';
 import professionDevelopmentCosts from '../data/TGP-4-sviluppo_abilita.json';
 import professionLevelBonuses from '../data/profession_level_bonuses.json';
-import { getRaceId, getProfessionId, getCaseInsensitive } from './skillLookup';
+import { getRaceId, getProfessionId } from './skillLookup';
 
 /**
  * Calcolatori di bonus, pool, gradi, HP, penalità.

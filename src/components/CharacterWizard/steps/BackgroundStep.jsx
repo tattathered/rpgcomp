@@ -1,8 +1,6 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import bgOpzioni from '../../../data/TGP-2-opzioni_background.json';
-import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
 import secondarySkillsList from '../../../data/Tabella-abilita_secondarie.json';
-import gradiLingue from '../../../data/TGP-1-gradi_conoscenze_lingue.json';
 
 // Nuove tabelle relazionali normalizzate
 import languagesData from '../../../data/languages.json';
@@ -15,7 +13,6 @@ import WalletBox from '../shared/WalletBox';
 import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
 
 const STAT_KEYS = ['FR', 'AG', 'CO', 'IN', 'IT', 'PR'];
-const STAT_NAMES = { FR: 'Forza', AG: 'Agilità', CO: 'Costituzione', IN: 'Intelligenza', IT: 'Intuizione', PR: 'Presenza' };
 const BG_CATEGORIES = [
   '1. Miglioramento caratteristiche',
   '2. Miglioramento abilità',
@@ -136,10 +133,6 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
 
   // All language names
   const allLanguages = useMemo(() => [...new Set(languagesData.map(l => l.name_it))].sort(), []);
-
-  if (!race) return (
-    <div style={{padding:'2rem',color:'#888',textAlign:'center'}}>Torna allo Step 1 e seleziona un Popolo.</div>
-  );
 
   const bgData = characterData.background || { languages: {}, options: [] };
   const languages = bgData.languages || {};
@@ -277,13 +270,6 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
     let bdSpecialBonus = 0;
     let hpD10Modifier = 0;
     const specialNotes = [];
-
-    const mmSkills = [
-      "nessuna armatura", "cuoio grezzo", "cuoio rinforzato",
-      "corazza di maglia", "corazza di piastre",
-      "arrampicarsi", "cavalcare", "nuotare",
-      "muoversi silenziosamente", "nascondersi"
-    ];
 
     const boSkills = [
       "taglio a 1 mano", "contundenti a 1 mano", "a 2 mani",
@@ -497,6 +483,10 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
       : 0;
     return <div>Nessuna lista incantesimi appresa - Credito ereditato: {inheritedChance}%</div>;
   };
+
+  if (!race) return (
+    <div style={{padding:'2rem',color:'#888',textAlign:'center'}}>Torna allo Step 1 e seleziona un Popolo.</div>
+  );
 
   return (
     <div style={{display:'flex',flexDirection:'column',gap:'1.5rem'}}>
