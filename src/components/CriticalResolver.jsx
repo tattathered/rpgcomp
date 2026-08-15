@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { AlertOctagon, Dices, ChevronLeft, ChevronRight } from 'lucide-react';
 
 import tc1 from '../data/TC-1-colpi_critici_impatto.json';

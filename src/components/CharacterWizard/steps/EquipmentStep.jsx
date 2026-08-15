@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, Fragment } from 'react';
-import { Shield, Heart, HelpCircle, Save, Info, AlertTriangle, AlertCircle, Search } from 'lucide-react';
+import { Save, AlertTriangle, AlertCircle, Search } from 'lucide-react';
 import catalogData from '../../../data/TS-4-equipaggiamento.json';
 import WalletBox from '../shared/WalletBox';
 import AnagraficaReadOnlyBox from '../shared/AnagraficaReadOnlyBox';
@@ -534,7 +534,7 @@ export default function EquipmentStep({ characterData, setCharacterData, equipme
                         {groupName}
                       </td>
                     </tr>
-                    {items.map(({ item, index, key }) => {
+                    {items.map(({ item, key }) => {
                       const state = itemsState[key] || { qtyEquip: 0, qtyCarico: 0, acquisto: false, note: '' };
                       const saved = initialEquipment.find(x => x.nome === item.nome && x.categoria === item.categoria);
                       const oldTotal = saved ? ((saved.qtyEquip || 0) + (saved.qtyCarico || 0)) : 0;
@@ -636,7 +636,7 @@ export default function EquipmentStep({ characterData, setCharacterData, equipme
                 );
               })
             ) : (
-              activeItems.map(({ item, index, key }) => {
+              activeItems.map(({ item, key }) => {
                 const state = itemsState[key] || { qtyEquip: 0, qtyCarico: 0, acquisto: false, note: '' };
                 const saved = initialEquipment.find(x => x.nome === item.nome && x.categoria === item.categoria);
                 const oldTotal = saved ? ((saved.qtyEquip || 0) + (saved.qtyCarico || 0)) : 0;

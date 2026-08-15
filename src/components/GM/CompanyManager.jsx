@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { subscribeToCompanies, saveCompany, deleteCompany } from "../../services/companyService";
 import { useAuth } from "../../contexts/AuthContext";
 import { Users, Plus, Trash2, Edit, Shield, Check, X } from "lucide-react";

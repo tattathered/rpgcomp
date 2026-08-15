@@ -33,7 +33,11 @@ fs.readdirSync(dataDir).forEach(file => {
       skipEmptyLines: true,
       dynamicTyping: true
     });
-    
+
+    // Nome file di output: di default coincide con il CSV; alcune tabelle
+    // sono state rinormalizzate a kebab-case (es. TA-8/TA-9 incantesimi).
+    let outName = baseName;
+
     if (baseName === 'Tabella-abilita_primarie') {
       parsed.data = parsed.data.map(row => {
         if (row) {
@@ -185,6 +189,7 @@ fs.readdirSync(dataDir).forEach(file => {
         return row;
       });
     } else if (baseName === 'TA-8-incantesimi_sfera') {
+      outName = 'TA-8-incantesimi-sfera';
       parsed.data = parsed.data.map(row => {
         if (row) {
           const val = String(row['Risultato del Tiro'] || '').trim();
@@ -195,6 +200,7 @@ fs.readdirSync(dataDir).forEach(file => {
         return row;
       });
     } else if (baseName === 'TA-9-incantesimi_base') {
+      outName = 'TA-9-incantesimi-base';
       parsed.data = parsed.data.map(row => {
         if (row) {
           const val = String(row['Risultato dei Dadi'] || '').trim();
@@ -207,8 +213,8 @@ fs.readdirSync(dataDir).forEach(file => {
       });
     }
 
-    const outPath = path.join(outputDir, `${baseName}.json`);
+    const outPath = path.join(outputDir, `${outName}.json`);
     fs.writeFileSync(outPath, JSON.stringify(parsed.data, null, 2), 'utf8');
-    console.log(`Converted ${file} to ${baseName}.json`);
+    console.log(`Converted ${file} to ${outName}.json`);
   }
 });

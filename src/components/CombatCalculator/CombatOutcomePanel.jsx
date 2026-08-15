@@ -1,4 +1,4 @@
-import { AlertTriangle, AlertOctagon, RotateCcw } from 'lucide-react';
+import { AlertTriangle, RotateCcw } from 'lucide-react';
 import { TABLE_NAMES } from '../../utils/combatHelpers';
 import { fmt } from '../../utils/skillHelpers';
 
@@ -12,8 +12,6 @@ export default function CombatOutcomePanel({
   setCritTableCode,
   setCritSeverity,
   setCritDiceRoll,
-  setShowCriticalResolver,
-  setShowFumbleResolver,
   handleReset
 }) {
   if (!combatOutcome) return null;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ArrowLeft, Package } from 'lucide-react';
 import CharacterSheetStep from '../CharacterWizard/steps/CharacterSheetStep';
 import InventoryEditor from '../Shared/InventoryEditor';

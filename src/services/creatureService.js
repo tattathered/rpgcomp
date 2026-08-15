@@ -4,7 +4,6 @@
  */
 import {
   saveCampaignCreature,
-  deleteCampaignCreature,
   subscribeToCampaignCreatures,
   updateCampaignActorHp,
   fetchCreatures as _fetchCreatures,

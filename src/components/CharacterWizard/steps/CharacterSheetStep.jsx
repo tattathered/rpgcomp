@@ -1,12 +1,10 @@
 import { useState, useMemo, useEffect, useCallback } from 'react';
-import { Printer, Sparkles, AlertCircle, Heart, Zap, Shield, User, Globe, BookOpen, Scroll, Save, Package, Edit3, PlusCircle, ArrowLeftRight, Search, AlertTriangle, Minus, Plus } from 'lucide-react';
+import { Printer, Sparkles, Heart, Shield, User, Globe, BookOpen, Scroll, Save, Package, Edit3, PlusCircle, ArrowLeftRight, Minus } from 'lucide-react';
 import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
 import secondarySkillsList from '../../../data/Tabella-abilita_secondarie.json';
 
-import gradiLingue from '../../../data/TGP-1-gradi_conoscenze_lingue.json';
-import { getSpellLimitInfo, getSpellsForList, getAvailableSpellLists } from '../../../utils/magicHelpers';
+import { getSpellsForList, getAvailableSpellLists } from '../../../utils/magicHelpers';
 import {
-  getBonus,
   parseBonusValue,
   getRanksBonus,
   getIngombroBonus,
@@ -90,17 +88,6 @@ const getPrimarySkillTypeAbbr = (name, category) => {
   return '';
 };
 
-const getMaxRanks = (skillName) => {
-  const limits = {
-    'nessuna armatura': 2,
-    'cuoio grezzo': 3,
-    'cuoio rinforzato': 5,
-    'corazza di maglia': 7,
-    'corazza di piastre': 9
-  };
-  return limits[skillName.toLowerCase()] || null;
-};
-
 const TIPO_LABELS = {
   'F': { label: 'Forza', color: '#dc2626' },
   'E': { label: 'Elementale', color: '#2563eb' },
@@ -108,16 +95,6 @@ const TIPO_LABELS = {
   'I': { label: 'Informazione', color: '#7c3aed' },
   'P': { label: 'Passivo', color: '#ca8a04' },
   'U': { label: 'Utilità', color: '#0891b2' },
-};
-
-const getArmorSkillName = (armorName) => {
-  if (!armorName) return 'nessuna armatura';
-  const name = armorName.toLowerCase();
-  if (name.includes('grezzo')) return 'cuoio grezzo';
-  if (name.includes('rinforzato')) return 'cuoio rinforzato';
-  if (name.includes('maglia') || name.includes('maglie')) return 'corazza di maglia';
-  if (name.includes('piastre')) return 'corazza di piastre';
-  return 'nessuna armatura';
 };
 
 const getSkillForWeapon = (item) => {
@@ -258,12 +235,6 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
 
 
 
-  const activeArmor = displayData.equippedArmor || 'Nessuna armatura';
-  const activeArmorMM = useMemo(() => {
-    const skillName = getArmorSkillName(activeArmor);
-    return getIngombroBonus(skillName) ?? 0;
-  }, [activeArmor]);
-
   const activeShield = useMemo(() => {
     return equippedItems.some(x => x.nome.toLowerCase().includes('scudo'));
   }, [equippedItems]);
@@ -323,8 +294,6 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
 
   const coBonus = finalStats['CO']?.bonusTot || 0;
   const prBonus = finalStats['PR']?.bonusTot || 0;
-  const inBonus = finalStats['IN']?.bonusTot || 0;
-  const itBonus = finalStats['IT']?.bonusTot || 0;
 
   // Calcolo Gradi Resistenza Fisica del Livello 1 per calcolare quanti d10 tirare
   const rfRanksLevel1 = useMemo(() => {
@@ -416,36 +385,6 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
       setEquipItemsState(state);
     }
   }, [editMode, equipmentCatalog, displayData.equipment]);
-
-  const equipHandleQtyChange = (key, field, val) => {
-    setEquipItemsState(prev => ({
-      ...prev,
-      [key]: {
-        ...prev[key],
-        [field]: Math.max(0, parseInt(val) || 0)
-      }
-    }));
-  };
-
-  const equipHandleAcquistoChange = (key, val) => {
-    setEquipItemsState(prev => ({
-      ...prev,
-      [key]: {
-        ...prev[key],
-        acquisto: val
-      }
-    }));
-  };
-
-  const equipHandleNoteChange = (key, val) => {
-    setEquipItemsState(prev => ({
-      ...prev,
-      [key]: {
-        ...prev[key],
-        note: val
-      }
-    }));
-  };
 
   // Riepilogo costi e carico per l'editor equipaggiamento
   const equipSummary = useMemo(() => {
@@ -581,7 +520,7 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
       const isCogliereAlleSpalle = name.toLowerCase() === 'cogliere alle spalle';
 
       // Adolescenza
-      const adRanks = isCogliereAlleSpalle ? 0 : (baseSkills => {
+      const adRanks = isCogliereAlleSpalle ? 0 : (() => {
         return displayData.adolescenceSkills?.[name]?.adolescenceRanks || 0;
       })();
 
@@ -643,45 +582,6 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
     return getConsolidatedSecondarySkills(displayData);
   }, [displayData]);
 
-  const highlightedArmorSkill = useMemo(() => {
-    if (presentArmors.length === 0) return 'nessuna armatura';
-    if (presentArmors.length === 1) return presentArmors[0];
-    
-    let bestSkill = presentArmors[0];
-    let maxBonus = -Infinity;
-    presentArmors.forEach(arm => {
-      const skillData = finalSkills[arm];
-      if (skillData) {
-        const bonusVal = typeof skillData.totalBonus === 'number' ? skillData.totalBonus : -999;
-        if (bonusVal > maxBonus) {
-          maxBonus = bonusVal;
-          bestSkill = arm;
-        }
-      }
-    });
-    return bestSkill;
-  }, [presentArmors, finalSkills]);
-
-  const highlightedWeaponSkill = useMemo(() => {
-    if (presentWeapons.length === 0) return null;
-    if (presentWeapons.length === 1) return presentWeapons[0].skillName;
-    
-    let bestSkill = presentWeapons[0].skillName;
-    let maxBonus = -Infinity;
-    presentWeapons.forEach(w => {
-      const skillData = finalSkills[w.skillName];
-      if (skillData) {
-        const bonusVal = typeof skillData.totalBonus === 'number' ? skillData.totalBonus : -999;
-        if (bonusVal > maxBonus) {
-          maxBonus = bonusVal;
-          bestSkill = w.skillName;
-        }
-      }
-    });
-    return bestSkill;
-  }, [presentWeapons, finalSkills]);
-
-  // Consolidamento lingue finali
   const finalLanguages = useMemo(() => {
     const langs = {};
     const baseLangs = displayData.background?.languages || {};
@@ -1700,7 +1600,7 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
                   </div>
                 ) : (
                   <div className="max-h-64 overflow-y-auto border rounded divide-y divide-gray-100">
-                    {equipFilteredItems.map(({ item, index, key }) => {
+                    {equipFilteredItems.map(({ item, key }) => {
                       const state = equipItemsState[key];
                       if (!state) return null;
                       const newTotal = (state.qtyEquip || 0) + (state.qtyCarico || 0);

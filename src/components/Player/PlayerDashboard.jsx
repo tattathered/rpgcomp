@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import { LogOut, BookOpen, Users, Compass, ShieldAlert, ArrowRight, Shield, RefreshCw } from "lucide-react";
 import { 

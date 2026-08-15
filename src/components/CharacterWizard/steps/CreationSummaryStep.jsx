@@ -1,10 +1,8 @@
 import { useState, useMemo, useEffect } from 'react';
 import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
 import secondarySkillsList from '../../../data/Tabella-abilita_secondarie.json';
-import gradiLingue from '../../../data/TGP-1-gradi_conoscenze_lingue.json';
-import { getSpellLimitInfo, getSpellsForList } from '../../../utils/magicHelpers';
+import { getSpellsForList } from '../../../utils/magicHelpers';
 import {
-  getBonus,
   parseBonusValue,
   getRanksBonus,
   getIngombroBonus,
@@ -271,7 +269,6 @@ export default function CreationSummaryStep({ characterData, setCharacterData, s
     ...bgSpellLists
   ]);
   const learnedListsArray = Array.from(allLearnedLists).sort();
-  const spellLimitStr = profession ? getSpellLimitInfo(profession.professione) : null;
 
   const getMagicRealmSummaryStep8 = () => {
     if (learnedListsArray.length > 0) {
@@ -641,7 +638,6 @@ export default function CreationSummaryStep({ characterData, setCharacterData, s
                       {catSkills.map(sk => {
                         const s = finalSkills[sk.nome];
                         if (!s) return null;
-                        const isMM = cat === 'Abilità di Movimento e Manovra';
                         const hasIngombro = s.ingombroBonus !== null;
                         const specialBonus = s.specialBonus || 0;
                         const hasSpecialBonus = specialBonus !== 0;

@@ -1,5 +1,5 @@
 import { db } from "../firebase";
-import { doc, getDocs, collection, writeBatch, serverTimestamp } from "firebase/firestore";
+import { getDocs, collection, writeBatch, serverTimestamp } from "firebase/firestore";
 import { saveDocument, deleteDocument, subscribeToCollection } from "./firestoreService";
 
 const SUBCOLLECTION = "campaigns";

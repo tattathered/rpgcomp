@@ -1,7 +1,6 @@
 import { Book, LogOut, Compass } from 'lucide-react';
 
 export default function AppHeader({
-  user,
   userData,
   logout,
   activeTab,

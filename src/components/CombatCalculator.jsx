@@ -6,19 +6,14 @@ import AttackerPanel from './CombatCalculator/AttackerPanel';
 import DefenderPanel from './CombatCalculator/DefenderPanel';
 import ModifiersPanel from './CombatCalculator/ModifiersPanel';
 import CombatOutcomePanel from './CombatCalculator/CombatOutcomePanel';
-import { fmt } from '../utils/skillHelpers';
 import {
   WEAPON_SKILL_TO_TABLE,
   TABLE_NAMES,
   CRITICAL_MODIFIERS,
-  getSkillForWeapon,
-  getFumbleModifierForWeapon,
   getCriticalTableForWeapon,
   getCreatureSizeCap,
-  mapCreatureArmor,
   getCreatureAttackDetails,
   mapCreatureCritToTable,
-  findRangeRow,
   resolveTableValue
 } from '../utils/combatHelpers';
 import {
@@ -32,7 +27,6 @@ export default function CombatCalculator({
   campaignNpcs = [], 
   campaignCreatures = [], 
   onUpdateActorHp, 
-  equipmentCatalog = [], 
   onUpdateHpSubiti, 
   onUpdateBoSpesoParata, 
   onResetAllParries 
@@ -45,7 +39,6 @@ export default function CombatCalculator({
   const [attackerWeaponName, setAttackerWeaponName] = useState('Spada Larga');
   const [attackerHpTot, setAttackerHpTot] = useState(40);
   const [attackerHpSubiti, setAttackerHpSubiti] = useState(0);
-  const [selectedCreatureAttackIdx, setSelectedCreatureAttackIdx] = useState(0);
 
   // --- STATO DIFENSORE ---
   const [defenderId, setDefenderId] = useState('custom');
@@ -58,9 +51,6 @@ export default function CombatCalculator({
   const [selectedDefenderWeaponIdx, setSelectedDefenderWeaponIdx] = useState(0);
   const [customDefenderBO, setCustomDefenderBO] = useState(50);
   const [useShield, setUseShield] = useState(false);
-  const [overrideBracciali, setOverrideBracciali] = useState(false);
-  const [overrideSchinieri, setOverrideSchinieri] = useState(false);
-  const [overrideElmo, setOverrideElmo] = useState(false);
 
   // --- STATO FUMBLE ---
   const [showFumbleResolver, setShowFumbleResolver] = useState(false);

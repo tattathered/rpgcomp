@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useCodex } from '../../contexts/CodexContext';
 import { Search, Plus, Trash2, Edit2, Check, AlertCircle, RefreshCw, Eye, Settings, HelpCircle, Save } from 'lucide-react';
 

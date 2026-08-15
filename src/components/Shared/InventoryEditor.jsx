@@ -1,6 +1,6 @@
 import { useState, useMemo, Fragment, useRef } from 'react';
 
-import { Search, X, Plus, Minus, Save, AlertTriangle, ArrowLeftRight } from 'lucide-react';
+import { Search, X, Save, AlertTriangle, ArrowLeftRight } from 'lucide-react';
 import catalogData from '../../data/TS-4-equipaggiamento.json';
 import { calculateCargoPenalty } from '../../utils/skillCalculators';
 import { updateCharacterEquipment } from '../../services/characterService';

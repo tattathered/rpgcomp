@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { subscribeToCampaigns, saveCampaign, deleteCampaign } from "../../services/campaignService";
 import { subscribeToCompanies } from "../../services/companyService";
 import { useAuth } from "../../contexts/AuthContext";

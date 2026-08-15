@@ -7,7 +7,6 @@ import {
   getRanksBonus,
   getIngombroBonus,
   getSpecificTb6Ranks,
-  getTgp5AdolescenceRanks,
   getProfessionRanksForLevel,
   calculateCargoPenalty
 } from './skillCalculators';

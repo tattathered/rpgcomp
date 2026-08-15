@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { Compass, Dices, Info, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState, useEffect, useMemo } from 'react';
+import { Compass, Dices, Info, ChevronLeft, ChevronRight } from 'lucide-react';
 import manovreData from '../data/TM-2-manovre_statiche.json';
 import primarySkillsList from '../data/Tabella-abilita_primarie.json';
 import secondarySkillsList from '../data/Tabella-abilita_secondarie.json';

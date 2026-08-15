@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { db, functions } from "../../firebase";
 import { collection, onSnapshot, doc, updateDoc } from "firebase/firestore";
 import { httpsCallable } from "firebase/functions";
 import { useAuth } from "../../contexts/AuthContext";
-import { User, UserCheck, UserX, UserPlus, Plus, Shield, Check, Info, Edit } from "lucide-react";
+import { User, UserCheck, UserX, UserPlus, Shield, Edit } from "lucide-react";
 import PlayerForm from "./PlayerForm";
 
 export default function PlayerManager({ savedCharacters }) {

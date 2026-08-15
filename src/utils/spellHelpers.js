@@ -1,6 +1,6 @@
 import ta7 from '../data/TA-7-incantesimi-dardo.json';
-import ta8 from '../data/TA-8-incantesimi_sfera.json';
-import ta9 from '../data/TA-9-incantesimi_base.json';
+import ta8 from '../data/TA-8-incantesimi-sfera.json';
+import ta9 from '../data/TA-9-incantesimi-base.json';
 
 // Helper per formattare i modificatori con il segno (+ o -)
 export const fmt = (n) => (typeof n === 'number' ? (n >= 0 ? `+${n}` : `${n}`) : n);

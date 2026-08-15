@@ -1,46 +1,8 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 
-import { Book, ChevronDown, ChevronRight, Search, Filter, Sparkles, Swords, Heart, Eye, Shield, Zap, HelpCircle } from 'lucide-react';
+import { Book, ChevronDown, ChevronRight, Search, Filter } from 'lucide-react';
 import elencoIncantesimi from '../data/Tabella-elenco_incantesimi.json';
-import listRegistry from '../data/Tabella-liste_incantesimi.json';
-
-// Ordine canonico delle categorie
-const CATEGORY_ORDER = [
-  'Liste aperte di incantesimi dell\'Essenza',
-  'Liste di incantesimi dei Maghi',
-  'Liste di incantesimi dei Bardi',
-  'Liste di incantesimi dei Ranger',
-  'Liste aperte di incantesimi del Flusso',
-  'Liste di incantesimi degli Animisti',
-];
-
-// Ordine canonico delle liste all\'interno di ciascuna categoria
-const LIST_ORDER_BY_CATEGORY = {
-  'Liste aperte di incantesimi dell\'Essenza': [
-    'SVILUPPO FISICO', 'MANIPOLAZIONE', 'ILLUSIONI',
-    'FORMULE DI PASSAGGIO', 'FORMULE D\'INCANTESIMO', 'FORMULE DELL\'ESSENZA',
-    'CONTROLLO SPIRITUALE', 'PERCEZIONE DELL\'ESSENZA',
-  ],
-  'Liste di incantesimi dei Maghi': [
-    'GEOMANZIA', 'CRIOMANZIA', 'FOTOMANZIA', 'PIROMANZIA',
-    'PONTE ARCANO', 'IDROMANZIA', 'ADATTAMENTO', 'AEROMANZIA',
-  ],
-  'Liste di incantesimi dei Bardi': [
-    'CANTI DEL POTERE', 'CONOSCENZA', 'SAPIENZA', 'CONTROLLO SONICO',
-  ],
-  'Liste di incantesimi dei Ranger': [
-    'TOPOMANZIA', 'FORMULE DI MOVIMENTO', 'ASPETTI NATURALI', 'ARTI NATURALI',
-  ],
-  'Liste aperte di incantesimi del Flusso': [
-    'INDAGINE', 'FORMULE SENSORIE', 'PACIFICAZIONE', 'ARTI DELLA GUARIGIONE',
-    'PROTEZIONI', 'DIFESA MAGICA', 'MOTI NATURALI', 'ECOMANZIA',
-  ],
-  'Liste di incantesimi degli Animisti': [
-    'BOTANOMANZIA', 'FLUSSO DIRETTO', 'CONTROLLO ANIMALE',
-    'FISIORIGENERAZIONE', 'EMORIGENERAZIONE', 'RIGENERAZIONE ORGANICA',
-    'PURIFICAZIONI', 'CREAZIONI',
-  ],
-};
+import { CATEGORY_ORDER, LIST_ORDER_BY_CATEGORY } from '../utils/spellListTypes';
 
 function sortListsByCanonicalOrder(lists, tipoLista) {
   const order = LIST_ORDER_BY_CATEGORY[tipoLista] || [];
@@ -60,15 +22,6 @@ const TIPO_LABELS = {
   'I': { label: 'Informazione', color: '#7c3aed' },
   'P': { label: 'Passivo', color: '#ca8a04' },
   'U': { label: 'Utilità', color: '#0891b2' },
-};
-
-const TIPO_ICONS = {
-  'F': Swords,
-  'E': Zap,
-  'A': Heart,
-  'I': Eye,
-  'P': Shield,
-  'U': Sparkles,
 };
 
 function TipoBadge({ tipo }) {
@@ -101,7 +54,7 @@ function InstantBadge({ istantaneo }) {
   );
 }
 
-function SpellRow({ inc, index, isLast }) {
+function SpellRow({ inc }) {
   const [expanded, setExpanded] = useState(false);
   const hasDetails = inc.descrizione || inc.efficacia || inc.durata || inc.raggio_azione;
 
@@ -244,8 +197,8 @@ function SpellListAccordion({ lista, defaultExpanded }) {
                 </tr>
               </thead>
               <tbody>
-                {lista.incantesimi.map((inc, idx) => (
-                  <SpellRow key={inc.numero} inc={inc} index={idx} isLast={idx === count - 1} />
+                {lista.incantesimi.map((inc) => (
+                  <SpellRow key={inc.numero} inc={inc} />
                 ))}
               </tbody>
             </table>
@@ -461,7 +414,7 @@ export default function SpellCatalogViewer() {
 
         {/* Legenda tipi */}
         <div style={{ display: 'flex', gap: '0.75rem', marginTop: '0.75rem', flexWrap: 'wrap', fontSize: '0.7rem', color: '#64748b' }}>
-          {Object.entries(TIPO_LABELS).map(([code, info]) => (
+          {Object.entries(TIPO_LABELS).map(([code]) => (
             <span key={code} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.2rem' }}>
               <TipoBadge tipo={code} />
             </span>

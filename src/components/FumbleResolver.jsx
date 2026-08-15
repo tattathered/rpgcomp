@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { AlertTriangle, Dices, ChevronLeft, ChevronRight, HelpCircle } from 'lucide-react';
+import { useState, useEffect, useMemo, useRef } from 'react';
+import { AlertTriangle, Dices, ChevronLeft, ChevronRight } from 'lucide-react';
 import fumbleTables12 from '../data/Tabella-Colpi_Maldestri-TTM-1-TTM-2.json';
 import fumbleTables34 from '../data/Tabella-Colpi_Maldestri-TTM-3-TTM-4.json';
 
 const fumbleTables = [...fumbleTables12, ...fumbleTables34];
-
-const fmt = (n) => (typeof n === 'number' ? (n >= 0 ? `+${n}` : `${n}`) : n);
 
 const FUMBLE_COMPLEXITY_SCALES = [
   { value: 'Banale', text: 'Banale', activeClass: 'btn-complexity-banale-active', inactiveClass: 'btn-complexity-banale-inactive' },
