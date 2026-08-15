@@ -3,7 +3,6 @@ import utilizLimiti from '../data/Tabella-elenco_utilizzatori_limiti.json';
 
 
 import listeIncantesimi from '../data/Tabella-liste_incantesimi.json';
-import elencoIncantesimi from '../data/Tabella-elenco_incantesimi.json';
 
 export function getAvailableSpellLists(professionName, realm) {
   const limitRule = utilizLimiti.find(u => u.professione === professionName);
@@ -45,8 +44,8 @@ export function getSpellLimitInfo(professionName) {
 export function getSpellsForList(listName, customCatalog) {
   const normalizedListName = (listName || '').toLowerCase().trim();
   
-  const catalog = customCatalog || elencoIncantesimi;
-  const listData = (catalog.liste_incantesimi || []).find(
+  // Punto di verità: catalogo incantesimi (Firestore). Nessun fallback su JSON statico stale.
+  const listData = (customCatalog?.liste_incantesimi || []).find(
     l => (l.nome_lista || '').toLowerCase().trim() === normalizedListName
   );
   
