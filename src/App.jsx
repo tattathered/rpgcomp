@@ -278,7 +278,7 @@ export default function App() {
   const handleUpdateSpellCatalog = useCallback(async (newCatalog) => {
     if (!user) return;
     try {
-      await saveSpellCatalog(user.uid, newCatalog);
+      await saveSpellCatalog(newCatalog);
       setSpellCatalog(newCatalog);
     } catch (err) {
       console.error('Errore salvataggio catalogo incantesimi:', err);

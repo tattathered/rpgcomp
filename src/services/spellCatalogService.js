@@ -62,42 +62,57 @@ function migrateCatalog(catalog) {
   return migrated;
 }
 
-// Ottiene il catalogo incantesimi personalizzato del GM da Firestore
-export const getSpellCatalog = async (gmId) => {
-  if (!gmId) throw new Error("gmId richiesto per caricare il catalogo incantesimi");
+// Percorso del catalogo incantesimi condiviso (unico per tutti i GM)
+const SHARED_CATALOG_PATH = ['catalogs', 'spellCatalog'];
 
-  const docRef = doc(db, "gms", gmId, "settings", "spellCatalog");
+// Normalizza il catalogo assicurando la struttura {liste_incantesimi: []}
+function normalizeCatalog(catalog) {
+  if (!catalog || Array.isArray(catalog)) return { liste_incantesimi: [] };
+  return catalog;
+}
+
+// Ottiene il catalogo incantesimi condiviso (punto di verità unico).
+// - Se il documento condiviso esiste, lo restituisce (migrando se serve).
+// - Altrimenti fa fallback sul vecchio catalogo per-GM (legacy) e lo promuove a condiviso.
+// - Se non esiste nulla, inizializza con struttura vuota (il GM popolerà dal manager).
+export const getSpellCatalog = async (gmId) => {
+  const sharedRef = doc(db, ...SHARED_CATALOG_PATH);
   try {
-    const snap = await getDoc(docRef);
+    const snap = await getDoc(sharedRef);
     if (snap.exists() && snap.data().catalog) {
-      // Migra vecchi dati se necessario
       const migratedCatalog = migrateCatalog(snap.data().catalog);
-      
-      // Se ci sono state modifiche, risalva su Firestore
       if (JSON.stringify(migratedCatalog) !== JSON.stringify(snap.data().catalog)) {
-        await saveSpellCatalog(gmId, migratedCatalog);
+        await saveSpellCatalog(migratedCatalog);
       }
-      
-      return migratedCatalog;
-    } else {
-      // Se non esiste, salviamo e restituiamo quello di default (già migrato)
-      const migratedDefault = migrateCatalog(defaultSpells);
-      await saveSpellCatalog(gmId, migratedDefault);
-      return migratedDefault;
+      return normalizeCatalog(migratedCatalog);
     }
+
+    // Fallback legacy: vecchio catalogo per-GM (pre-migrazione)
+    if (gmId) {
+      const legacyRef = doc(db, 'gms', gmId, 'settings', 'spellCatalog');
+      const legacySnap = await getDoc(legacyRef);
+      if (legacySnap.exists() && legacySnap.data().catalog) {
+        const migrated = migrateCatalog(legacySnap.data().catalog);
+        await saveSpellCatalog(migrated); // promuove a condiviso
+        return normalizeCatalog(migrated);
+      }
+    }
+
+    // Seed: nessun catalogo presente → struttura vuota (niente dati statici stale)
+    const seeded = normalizeCatalog(migrateCatalog(defaultSpells));
+    await saveSpellCatalog(seeded);
+    return seeded;
   } catch (error) {
-    console.error("Errore nel caricamento del catalogo incantesimi:", error);
-    return migrateCatalog(defaultSpells);
+    console.error('Errore nel caricamento del catalogo incantesimi:', error);
+    return normalizeCatalog(migrateCatalog(defaultSpells));
   }
 };
 
-// Salva il catalogo incantesimi personalizzato del GM su Firestore
-export const saveSpellCatalog = async (gmId, catalog) => {
-  if (!gmId) throw new Error("gmId richiesto per salvare il catalogo incantesimi");
-
-  const docRef = doc(db, "gms", gmId, "settings", "spellCatalog");
-  await setDoc(docRef, {
-    catalog,
+// Salva il catalogo incantesimi condiviso (unico per tutti i GM)
+export const saveSpellCatalog = async (catalog) => {
+  const sharedRef = doc(db, ...SHARED_CATALOG_PATH);
+  await setDoc(sharedRef, {
+    catalog: normalizeCatalog(catalog),
     updatedAt: serverTimestamp()
   });
 };

@@ -53,6 +53,12 @@ service cloud.firestore {
       );
     }
 
+    // Catalogo incantesimi condiviso (unico per tutti i GM; lettura anche per i giocatori)
+    match /catalogs/spellCatalog {
+      allow read: if isAuthenticated();
+      allow write: if isGM();
+    }
+
     // Taccuino del giocatore (Notes)
     match /notes/{charId} {
       // GM del PG può leggere le note; il giocatore assegnato può leggere e scrivere
