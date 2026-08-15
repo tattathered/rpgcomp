@@ -1,9 +1,7 @@
 # [REQ-10] Scheda Personaggio Standalone + 4 Pulsanti Contestuali
 
-## Stato: 🔴 In Corso (bug noto)
-**Ultimo aggiornamento:** 2026-07-13
-
-> ⚠️ **Bug noto:** L'editor equipaggiamento inline (editMode='equipment') è stato modificato per usare `equipItemsState` come unico state con pulsante 
+## Stato: 🟢 In Verifica
+**Ultimo aggiornamento:** 2026-08-14
 
 ---
 
@@ -13,7 +11,7 @@
 - [x] **Carica PG dal roster** → apre tab 'sheet' (non più wizard step 1)
 - [x] **Pulsante "Modifica Creazione"** nell'header della scheda, accanto a "Stampa Scheda / PDF" → apre wizard allo step 8 (Riepilogo Creazione)
 - [x] **Pulsante "Upgrade Livello"** nel box Professione, accanto a "(Liv. {n})" → apre wizard allo step 9 (Apprendimento)
-- [x] **Pulsante "Modifica Equipaggiamento"** nel box Inventario → sostituisce modale InventoryEditor con vista inline (modifica quantità/carico, rimozione, aggiunta con datalist catalogo)
+- [x] **Pulsante "Modifica Equipaggiamento"** nel box Inventario → apre la modale condivisa `Shared/EquipmentEditor` (GM+Player, flag ACQUISTO, armatura attiva, scudo, portafoglio)
 - [x] **Pulsante "Modifica Liste Incantesimi"** nel box Liste Incantesimi Appresi → permette di aggiungere/rimuovere liste (con datalist catalogo)
 - [x] **Flusso salvataggio centralizzato**: wizard → salva su Firestore → torna a tab 'sheet' con dati aggiornati
 - [x] **Modifiche inline** (equip, liste) salvano direttamente su Firestore tramite onSaveCharacter, con refresh della vista
@@ -36,14 +34,16 @@
 - Pulsanti:
   - "Modifica Creazione" → `onNavigateToStep(7)` (step 8: creation_summary)
   - "+1 Livello" → `onNavigateToStep(8)` (step 9: learning)
-  - "Modifica Equipaggiamento" → toggle `editMode='equipment'`: mostra input per quantità carico, rimozione oggetti, datalist per aggiunta
+  - "Modifica Equipaggiamento" → apre modale `EquipmentEditor` (mode='gm'): il componente restituisce il characterData completo aggiornato via `onSave(updatedData)` → `handleSetData` → `onSaveCharacter`
   - "Modifica Liste" → toggle `editMode='spellLists'`: mostra input per aggiunta/rimozione liste con datalist
-- Rimosso `InventoryEditor` (modale) — sostituito da modifica inline
-- Rimosso `showInventoryEditor` state
+  - Rimosso `InventoryEditor` (modale) — sostituito dall'editor condiviso `Shared/EquipmentEditor` (FIX-011)
+  - Rimossi stati inline equip (`equipItemsState`, `equipSearchQuery`, `equipActiveCategory`, `equipSummary`, `equipHandleSave`)
 
 ## Impatti sul Codice / Architettura
 
 ### File modificati:
 - `src/App.jsx` — nuovi handler, modifica handleLoadCharacter, handleSaveCharacter aggiorna activeCharacter
 - `src/components/AppTabs.jsx` — nuovo tab sheet, passaggio nuove props
-- `src/components/CharacterWizard/steps/CharacterSheetStep.jsx` — 4 pulsanti, editMode, handleSetData, rimosso InventoryEditor
+- `src/components/CharacterWizard/steps/CharacterSheetStep.jsx` — 4 pulsanti, handleSetData, editor equip inline rimosso (FIX-011)
+- `src/components/Shared/EquipmentEditor.jsx` — nuovo editor equip unico condiviso GM+Player (FIX-011)
+- `src/components/Player/PlayerCharacterSheet.jsx` — usa `EquipmentEditor` (mode='player') al posto di `InventoryEditor` (FIX-011)

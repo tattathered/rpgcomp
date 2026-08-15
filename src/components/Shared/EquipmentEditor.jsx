@@ -1,11 +1,8 @@
 import { useState, useMemo, Fragment, useRef } from 'react';
 
 import { Search, X, Save, AlertTriangle, ArrowLeftRight } from 'lucide-react';
-import catalogData from '../../data/TS-4-equipaggiamento.json';
+import defaultCatalog from '../../data/TS-4-equipaggiamento.json';
 import { calculateCargoPenalty } from '../../utils/skillCalculators';
-import { updateCharacterEquipment } from '../../services/characterService';
-
-const CATEGORIES = [...new Set(catalogData.map(item => item.categoria))];
 
 const getWeaponGroup = (item) => {
   const nome = (item.nome || '').toLowerCase();
@@ -31,9 +28,12 @@ const btnSmall = {
   fontSize: '0.75rem', color: '#475569', lineHeight: 1
 };
 
-export default function InventoryEditor({ characterData, gmId, onClose, onSaved, mode = 'gm' }) {
+export default function EquipmentEditor({ characterData, equipmentCatalog, onSave, onClose, mode = 'gm' }) {
   const pesoPG = characterData.peso || 70;
   const isReadOnly = mode === 'player';
+
+  // Catalogo: usa quello passato dal chiamante (es. catalogo custom del GM), altrimenti il default
+  const catalog = equipmentCatalog && equipmentCatalog.length > 0 ? equipmentCatalog : defaultCatalog;
 
   const [itemsMap, setItemsMap] = useState(() => {
     const map = {};
@@ -70,7 +70,6 @@ export default function InventoryEditor({ characterData, gmId, onClose, onSaved,
   const [activeTab, setActiveTab] = useState('current');
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
-  const [saving, setSaving] = useState(false);
   const [error, setError] = useState(null);
   // Flag acquisto: oggetti nuovi (non presenti nello snapshot iniziale)
   const [acquistoFlags, setAcquistoFlags] = useState({});
@@ -170,7 +169,7 @@ export default function InventoryEditor({ characterData, gmId, onClose, onSaved,
     setItemsMap(prev => ({ ...prev, [key]: { ...prev[key], note: val } }));
   };
 
-  const handleSave = async () => {
+  const handleSave = () => {
     if (summary.caricoBloccato) {
       setError(`Carico eccessivo (${summary.caricoArrotondato} kg): riduci gli oggetti in CARICO.`);
       return;
@@ -182,28 +181,23 @@ export default function InventoryEditor({ characterData, gmId, onClose, onSaved,
       if (!proceed) return;
     }
     setError(null);
-    setSaving(true);
-    try {
-      const equipmentList = Object.values(itemsMap).filter(item => item.qtyEquip > 0 || item.qtyCarico > 0);
-      const portafoglioFinale = portafoglioMB - summary.costoTotaleAcquisti;
-      const data = {
-        equipment: equipmentList, caricoKg: summary.pesoCaricoKg,
-        penalitaCarico: summary.penalita, equippedArmor, equippedShield, portafoglioMB: portafoglioFinale
-      };
-      if (!isReadOnly) {
-        await updateCharacterEquipment(gmId, characterData.id, data);
-      }
-      if (onSaved) onSaved(data);
-      onClose();
-    } catch (err) {
-      setError('Errore: ' + err.message);
-    } finally {
-      setSaving(false);
-    }
+
+    const equipmentList = Object.values(itemsMap).filter(item => item.qtyEquip > 0 || item.qtyCarico > 0);
+    const portafoglioFinale = portafoglioMB - summary.costoTotaleAcquisti;
+    const updatedData = {
+      ...characterData,
+      equipment: equipmentList,
+      caricoKg: summary.pesoCaricoKg,
+      penalitaCarico: summary.penalita,
+      equippedArmor,
+      equippedShield,
+      portafoglioMB: portafoglioFinale
+    };
+    onSave(updatedData);
   };
 
   const catalogItems = useMemo(() => {
-    return catalogData
+    return catalog
       .map((item, index) => ({ item, index }))
       .filter(x => {
         if (searchQuery.trim()) {
@@ -212,7 +206,9 @@ export default function InventoryEditor({ characterData, gmId, onClose, onSaved,
         }
         return activeCategory === 'all' || x.item.categoria === activeCategory;
       });
-  }, [activeCategory, searchQuery]);
+  }, [catalog, activeCategory, searchQuery]);
+
+  const categories = useMemo(() => [...new Set(catalog.map(item => item.categoria))], [catalog]);
 
   const groupedWeapons = useMemo(() => {
     if (activeCategory !== 'armi') return null;
@@ -317,7 +313,7 @@ export default function InventoryEditor({ characterData, gmId, onClose, onSaved,
                     <label style={{ fontSize: '0.75rem', fontWeight: 700, color: '#475569' }}>Armatura Attiva:</label>
                     <select value={equippedArmor || ''} onChange={e => setEquippedArmor(e.target.value || null)}
                       style={{ width: '100%', padding: '0.4rem', border: '1px solid #cbd5e1', borderRadius: '6px', fontSize: '0.85rem', marginTop: '0.25rem' }}>
-                      <option value="">Nessuna armatura</option>
+                      <option value="">— Nessuna —</option>
                       {ownedArmors.map((a, i) => (
                         <option key={i} value={a.nome}>{a.nome}</option>
                       ))}
@@ -415,7 +411,7 @@ export default function InventoryEditor({ characterData, gmId, onClose, onSaved,
                   style={{ width: '100%', padding: '0.5rem 0.75rem 0.5rem 2rem', fontSize: '0.85rem', border: '1px solid #e2e8f0', borderRadius: '6px', backgroundColor: '#f8fafc', outline: 'none' }} />
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.3rem', borderBottom: '2px solid #e2e8f0', paddingBottom: '0.5rem' }}>
-                {CATEGORIES.map(cat => (
+                {categories.map(cat => (
                   <button key={cat} onClick={() => setActiveCategory(cat)} style={{
                     padding: '0.3rem 0.6rem', fontSize: '0.75rem', fontWeight: 700, border: '1px solid #cbd5e1', borderRadius: '6px',
                     backgroundColor: activeCategory === cat ? '#3b82f6' : 'transparent', color: activeCategory === cat ? '#fff' : '#475569', cursor: 'pointer'
@@ -488,11 +484,11 @@ export default function InventoryEditor({ characterData, gmId, onClose, onSaved,
           <button onClick={onClose} style={{ padding: '0.5rem 1.5rem', backgroundColor: '#f1f5f9', border: '1px solid #cbd5e1', borderRadius: '8px', fontWeight: 600, color: '#475569', cursor: 'pointer', fontSize: '0.85rem' }}>
             {isReadOnly ? 'Chiudi' : 'Annulla'}
           </button>
-          <button onClick={handleSave} disabled={saving || summary.caricoBloccato} style={{
+          <button onClick={handleSave} disabled={summary.caricoBloccato} style={{
             padding: '0.5rem 1.5rem', backgroundColor: summary.caricoBloccato ? '#94a3b8' : '#2563eb', color: '#fff', border: 'none', borderRadius: '8px',
             fontWeight: 700, cursor: summary.caricoBloccato ? 'not-allowed' : 'pointer', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem'
           }}>
-            <Save size={16} />{saving ? 'Salvataggio...' : 'Salva su Firestore'}
+            <Save size={16} />Salva
           </button>
         </div>
       </div>
