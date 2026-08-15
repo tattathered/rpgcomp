@@ -43,8 +43,6 @@ nuove funzionalità (FEAT), change request UX/UI (CR) e bug/fix tecnici (FIX).
 | REQ-10-04 | FEAT | Comando 4 — Scarica inventario CSV | Bassa | 🔵 In Analisi | req_10 |
 | REQ-10-06 | FEAT | Player — note modificabili sugli oggetti dell'inventario | Media | 🔵 In Analisi | req_10 |
 | CR-002 | CR | Scheda Personaggio Standalone — CharacterSheetStep diventa un tab autonomo 'sheet' in AppTabs. Carica PG dal roster apre la scheda, non il wizard. 4 pulsanti contestuali per modifiche mirate. Vedi req_10_character_sheet_standalone.md | Alta | 🟢 In Sviluppo (implementato, in attesa di verifica utente) | req_10 |
-| CR-004 | CR | EquipmentEditor "Aggiungi oggetto": colonna INV prima di Peso con conteggio degli oggetti già in inventario. | Media | 🟢 In Sviluppo | req_10 |
-| CR-005 | CR | Wizard step 7 (Equipaggiamento): filtro "IN INVENTARIO" tra i filtri categoria. | Media | 🟢 In Sviluppo | req_02 |
 
 ---
 
@@ -65,6 +63,8 @@ nuove funzionalità (FEAT), change request UX/UI (CR) e bug/fix tecnici (FIX).
 
 | ID | Tipo | Descrizione | Completato il |
 |----|------|-------------|---------------|
+| CR-004 | CR | EquipmentEditor "Aggiungi oggetto": colonna INV prima di Peso con conteggio degli oggetti già in inventario. | 2026-08-15 |
+| CR-005 | CR | Wizard step 7 (Equipaggiamento): filtro "IN INVENTARIO" tra i filtri categoria. | 2026-08-15 |
 | FIX-011 | FIX | Equipment Editor — Refactoring: estratto `CharacterSheetStep.jsx` l'editor equip inline in componente condiviso `Shared/EquipmentEditor` (modale GM+Player, flag ACQUISTO esposto, onSave full-spread). Rimosso `Shared/InventoryEditor`. Bug sintassi (extra `}`) non riproducibile (build ✅ lint ✅). Verificato via smoke test utente. | 2026-08-15 |
 | REQ-10-05 | FEAT | Editor equip unico `Shared/EquipmentEditor` (GM+Player) — flag ACQUISTO e gestione delta costo su portafoglio | 2026-08-15 |
 | REQ-10-01 | FEAT | Comando 1 — Modifica Inventario (pulsante → InventoryEditor) | 2026-08-14 |
