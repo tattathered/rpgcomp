@@ -1,14 +1,25 @@
 import utilizLimiti from '../data/Tabella-elenco_utilizzatori_limiti.json';
+import {
+  CATEGORIA_ESSENZA, CATEGORIA_FLUSSO, CATEGORIA_MAGHI,
+  CATEGORIA_BARDI, CATEGORIA_RANGER, CATEGORIA_ANIMISTI
+} from './spellListTypes';
 
+// Normalizza un tipo_lista (canonico o legacy) alla categoria canonica
+function normalizeCategory(tipoLista) {
+  const norm = (tipoLista || '').toLowerCase();
+  if (norm.includes('essenza')) return CATEGORIA_ESSENZA;
+  if (norm.includes('flusso')) return CATEGORIA_FLUSSO;
+  if (norm.includes('mag')) return CATEGORIA_MAGHI;
+  if (norm.includes('bard')) return CATEGORIA_BARDI;
+  if (norm.includes('ranger')) return CATEGORIA_RANGER;
+  if (norm.includes('animist')) return CATEGORIA_ANIMISTI;
+  return tipoLista;
+}
 
-
-import listeIncantesimi from '../data/Tabella-liste_incantesimi.json';
-
-export function getAvailableSpellLists(professionName, realm) {
+export function getAvailableSpellLists(professionName, realm, spellCatalog) {
   const limitRule = utilizLimiti.find(u => u.professione === professionName);
   if (!limitRule) return [];
   
-  let allowedCategories = [];
   const rules = limitRule.liste_incantesimi.split(/ e | o /).map(s => s.trim().toUpperCase());
   
   let effectiveRules = rules;
@@ -18,21 +29,24 @@ export function getAvailableSpellLists(professionName, realm) {
   }
 
   const categoryMap = {
-    'ESSENZA': 'Lista Aperta Essenza',
-    'FLUSSO': 'Lista Aperta Flusso',
-    'RANGER': 'Ranger Ranger',
-    'BARDO': 'Bardi Bardi',
-    'MAGO': 'Maghi Maghi',
-    'ANIMISTA': 'Animisti Animisti'
+    'ESSENZA': CATEGORIA_ESSENZA,
+    'FLUSSO': CATEGORIA_FLUSSO,
+    'RANGER': CATEGORIA_RANGER,
+    'BARDO': CATEGORIA_BARDI,
+    'MAGO': CATEGORIA_MAGHI,
+    'ANIMISTA': CATEGORIA_ANIMISTI
   };
 
+  const allowedCategories = [];
   effectiveRules.forEach(rule => {
     if (categoryMap[rule]) {
       allowedCategories.push(categoryMap[rule]);
     }
   });
 
-  return listeIncantesimi.filter(lista => allowedCategories.includes(lista.tipo_lista));
+  // Punto di verità: catalogo condiviso (Firestore). Fallback [] se non ancora caricato.
+  const catalogLists = spellCatalog?.liste_incantesimi || [];
+  return catalogLists.filter(lista => allowedCategories.includes(normalizeCategory(lista.tipo_lista)));
 }
 
 export function getSpellLimitInfo(professionName) {

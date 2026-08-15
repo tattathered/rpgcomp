@@ -85,7 +85,7 @@ const ABILITA_SPECIALI_OPTIONS = [
   { id: 'as11', label: 'Resistente al dolore: +3 per ogni D10 alla Resistenza Fisica (tiro 96-00)', roll_min: 96, roll_max: 100 },
 ];
 
-export default function BackgroundStep({ characterData, setCharacterData }) {
+export default function BackgroundStep({ characterData, setCharacterData, spellCatalog }) {
   const race = characterData.race;
   const profession = characterData.profession;
   const magicRealm = characterData.magicRealm || '—';
@@ -99,8 +99,8 @@ export default function BackgroundStep({ characterData, setCharacterData }) {
   }, [characterData.spellListAllocations]);
 
   const rawAvailableLists = useMemo(() => {
-    return profession ? getAvailableSpellLists(profession.professione, magicRealm) : [];
-  }, [profession, magicRealm]);
+    return profession ? getAvailableSpellLists(profession.professione, magicRealm, spellCatalog) : [];
+  }, [profession, magicRealm, spellCatalog]);
 
   const availableLists = useMemo(() => {
     return rawAvailableLists.filter(l => !knownListsUpper.includes(l.nome_lista.toUpperCase().trim()));

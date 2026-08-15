@@ -171,7 +171,7 @@ function Tooltip({ content }) {
   );
 }
 
-export default function AdolescenceStep({ characterData, setCharacterData, equipmentCatalog }) {
+export default function AdolescenceStep({ characterData, setCharacterData, equipmentCatalog, spellCatalog }) {
   const race = characterData.race;
   const profession = characterData.profession;
   const catalog = equipmentCatalog || catalogData;
@@ -498,8 +498,8 @@ export default function AdolescenceStep({ characterData, setCharacterData, equip
   }, [characterData.spellListAllocations, characterData.background]);
 
   const rawAvailableLists = useMemo(() => {
-    return profession ? getAvailableSpellLists(profession.professione, selectedRealm) : [];
-  }, [profession, selectedRealm]);
+    return profession ? getAvailableSpellLists(profession.professione, selectedRealm, spellCatalog) : [];
+  }, [profession, selectedRealm, spellCatalog]);
 
   const availableLists = useMemo(() => {
     return rawAvailableLists.filter(l => !knownListsUpper.includes(l.nome_lista.toUpperCase().trim()));

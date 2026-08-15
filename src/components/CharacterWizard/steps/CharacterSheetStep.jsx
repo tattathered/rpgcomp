@@ -1090,7 +1090,7 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
                       Per ogni lista appresa, puoi scegliere una sostituzione tra quelle disponibili per la professione "{profession?.professione}" e il reame "{magicRealm}".
                     </p>
                     {allLearnedLists.map(listName => {
-                      const available = getAvailableSpellLists(profession?.professione, magicRealm)
+                      const available = getAvailableSpellLists(profession?.professione, magicRealm, spellCatalog)
                         .map(l => l.nome_lista)
                         .filter(n => !allLearnedLists.includes(n) || n === listName);
 

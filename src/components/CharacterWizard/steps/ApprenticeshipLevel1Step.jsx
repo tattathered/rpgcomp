@@ -53,7 +53,7 @@ const getTgp4Cost = (ranks) => {
 
 const getTgp4CostForMM = (ranks) => ranks; // Movimento e Manovra cost is 1:1
 
-export default function ApprenticeshipLevel1Step({ characterData, setCharacterData }) {
+export default function ApprenticeshipLevel1Step({ characterData, setCharacterData, spellCatalog }) {
   const race = characterData.race;
   const profession = characterData.profession;
   const baseSkills = characterData.adolescenceSkills || {};
@@ -463,8 +463,8 @@ export default function ApprenticeshipLevel1Step({ characterData, setCharacterDa
   }, [knownLists]);
 
   const rawAvailableLists = useMemo(() => {
-    return profession ? getAvailableSpellLists(profession.professione, selectedRealm) : [];
-  }, [profession, selectedRealm]);
+    return profession ? getAvailableSpellLists(profession.professione, selectedRealm, spellCatalog) : [];
+  }, [profession, selectedRealm, spellCatalog]);
 
   const availableLists = useMemo(() => {
     return rawAvailableLists.filter(l => !knownListsUpper.includes(l.nome_lista.toUpperCase().trim()));

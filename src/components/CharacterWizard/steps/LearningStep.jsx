@@ -52,7 +52,7 @@ const getMaxRanks = (skillName) => {
   return limits[skillName.toLowerCase()] || null;
 };
 
-export default function LearningStep({ characterData, setCharacterData }) {
+export default function LearningStep({ characterData, setCharacterData, spellCatalog }) {
   const race = characterData.race;
   const profession = characterData.profession;
   const baseSkills = characterData.adolescenceSkills || {};
@@ -562,9 +562,9 @@ export default function LearningStep({ characterData, setCharacterData }) {
 
   const availableLists = useMemo(() => {
     if (!profession) return [];
-    const raw = getAvailableSpellLists(profession.professione, selectedRealm);
+    const raw = getAvailableSpellLists(profession.professione, selectedRealm, spellCatalog);
     return raw.filter(l => !knownListsUpper.includes(l.nome_lista.toUpperCase().trim()));
-  }, [profession, selectedRealm, knownListsUpper]);
+  }, [profession, selectedRealm, knownListsUpper, spellCatalog]);
 
   const handleAcquireSpellList = () => {
     if (!activeLevel || !activeLevel.selectedNewList) return;

@@ -166,15 +166,15 @@ export default function CharacterWizard({ initialData, onSave, initialStepIndex 
           )}
 
           {currentStep.id === 'adolescence' && (
-            <AdolescenceStep characterData={characterData} setCharacterData={setCharacterData} equipmentCatalog={equipmentCatalog} />
+            <AdolescenceStep characterData={characterData} setCharacterData={setCharacterData} equipmentCatalog={equipmentCatalog} spellCatalog={spellCatalog} />
           )}
 
           {currentStep.id === 'level1' && (
-            <ApprenticeshipLevel1Step characterData={characterData} setCharacterData={setCharacterData} />
+            <ApprenticeshipLevel1Step characterData={characterData} setCharacterData={setCharacterData} spellCatalog={spellCatalog} />
           )}
 
           {currentStep.id === 'background' && (
-            <BackgroundStep characterData={characterData} setCharacterData={setCharacterData} />
+            <BackgroundStep characterData={characterData} setCharacterData={setCharacterData} spellCatalog={spellCatalog} />
           )}
 
           {currentStep.id === 'equipment' && (
@@ -186,7 +186,7 @@ export default function CharacterWizard({ initialData, onSave, initialStepIndex 
           )}
 
           {currentStep.id === 'learning' && (
-            <LearningStep characterData={characterData} setCharacterData={setCharacterData} />
+            <LearningStep characterData={characterData} setCharacterData={setCharacterData} spellCatalog={spellCatalog} />
           )}
 
           {currentStep.id === 'summary' && (
