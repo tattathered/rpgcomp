@@ -1,7 +1,10 @@
 # [REQ-10] Scheda Personaggio Standalone + 4 Pulsanti Contestuali
 
 ## Stato: 🟢 In Verifica
-**Ultimo aggiornamento:** 2026-08-14
+**Ultimo aggiornamento:** 2026-08-15
+
+> ✅ **FIX-011 (editor equipaggiamento) verificato** via smoke test utente (2026-08-15).
+> REQ-10 resta in verifica per i restanti pulsanti (Modifica Creazione, +1 Livello, Modifica Liste Incantesimi).
 
 ---
 

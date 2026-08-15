@@ -41,9 +41,7 @@ nuove funzionalità (FEAT), change request UX/UI (CR) e bug/fix tecnici (FIX).
 | REQ-10-02 | FEAT | Comando 2 — Aggiunta rapida oggetto inline dalla scheda PG | Alta | 🟢 In Sviluppo | req_10 |
 | REQ-10-03 | FEAT | Comando 3 — Modifica portafoglio inline + servizio Firestore | Media | 🔵 In Analisi | req_10 |
 | REQ-10-04 | FEAT | Comando 4 — Scarica inventario CSV | Bassa | 🔵 In Analisi | req_10 |
-| REQ-10-05 | FEAT | Editor equip unico `Shared/EquipmentEditor` (GM+Player) — flag ACQUISTO e gestione delta costo su portafoglio | Alta | 🟢 Coperto da FIX-011 | req_10 |
 | REQ-10-06 | FEAT | Player — note modificabili sugli oggetti dell'inventario | Media | 🔵 In Analisi | req_10 |
-| FIX-011 | FIX | Equipment Editor — Refactoring: estratto `CharacterSheetStep.jsx` l'editor equip inline in componente condiviso `Shared/EquipmentEditor` (modale GM+Player, flag ACQUISTO esposto, onSave full-spread). Rimosso `Shared/InventoryEditor`. Bug sintassi (extra `}`) non riproducibile (build ✅ lint ✅). | Alta | 🟢 In Sviluppo (codice completato, verifica utente) | req_10 |
 | CR-002 | CR | Scheda Personaggio Standalone — CharacterSheetStep diventa un tab autonomo 'sheet' in AppTabs. Carica PG dal roster apre la scheda, non il wizard. 4 pulsanti contestuali per modifiche mirate. Vedi req_10_character_sheet_standalone.md | Alta | 🟢 In Sviluppo (implementato, in attesa di verifica utente) | req_10 |
 
 ---
@@ -65,6 +63,8 @@ nuove funzionalità (FEAT), change request UX/UI (CR) e bug/fix tecnici (FIX).
 
 | ID | Tipo | Descrizione | Completato il |
 |----|------|-------------|---------------|
+| FIX-011 | FIX | Equipment Editor — Refactoring: estratto `CharacterSheetStep.jsx` l'editor equip inline in componente condiviso `Shared/EquipmentEditor` (modale GM+Player, flag ACQUISTO esposto, onSave full-spread). Rimosso `Shared/InventoryEditor`. Bug sintassi (extra `}`) non riproducibile (build ✅ lint ✅). Verificato via smoke test utente. | 2026-08-15 |
+| REQ-10-05 | FEAT | Editor equip unico `Shared/EquipmentEditor` (GM+Player) — flag ACQUISTO e gestione delta costo su portafoglio | 2026-08-15 |
 | REQ-10-01 | FEAT | Comando 1 — Modifica Inventario (pulsante → InventoryEditor) | 2026-08-14 |
 | FIX-012 | FIX | Roster PNG/Creature sempre aggiornato: attivate le sottoscrizioni real-time `subscribeToCampaignNpcs`/`subscribeToCreatures` in `App.jsx` sulla campagna attiva (cleanup al cambio campagna). Il Roster Attivo mostra subito PNG/creature appena salvati, senza uscire/rientrare. Nota: ora il roster mostra solo gli attori della campagna attiva. | 2026-08-14 |
 | BL-003 | FEAT | Codex Lingue e Gradi — Integrazione delle definizioni di lingue e gradi di conoscenza nel Codex con attivazione dei tooltips nella scheda PG | 2026-07-01 |
