@@ -1,7 +1,8 @@
 import { useState, useMemo, useEffect, useCallback } from 'react';
-import { Printer, Sparkles, Heart, Shield, User, Globe, BookOpen, Scroll, Save, Package, Edit3, PlusCircle, ArrowLeftRight, Minus } from 'lucide-react';
+import { Printer, Sparkles, Heart, Shield, User, Globe, BookOpen, Scroll, Save, Package, Edit3, PlusCircle, ArrowLeftRight } from 'lucide-react';
 import primarySkillsList from '../../../data/Tabella-abilita_primarie.json';
 import secondarySkillsList from '../../../data/Tabella-abilita_secondarie.json';
+import EquipmentEditor from '../../Shared/EquipmentEditor';
 
 import { getSpellsForList, getAvailableSpellLists } from '../../../utils/magicHelpers';
 import {
@@ -140,10 +141,8 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
   const [notesText, setNotesText] = useState("");
   const [savingNotes, setSavingNotes] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
-  const [editMode, setEditMode] = useState(null); // null | 'equipment' | 'spellLists'
-  const [equipSearchQuery, setEquipSearchQuery] = useState('');
-  const [equipActiveCategory, setEquipActiveCategory] = useState('all');
-  const [equipItemsState, setEquipItemsState] = useState({});
+  const [editMode, setEditMode] = useState(null); // null | 'spellLists'
+  const [showEquipmentEditor, setShowEquipmentEditor] = useState(false);
 
   useEffect(() => {
     if (!characterData?.id) return;
@@ -363,154 +362,6 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
   const finalMagicPoints = finalLevel * pmPerLevel;
 
   // Aspetto has been moved to step 7 (CreationSummaryStep)
-
-  // Reinizializza lo stato dell'editor quando si apre editMode === 'equipment'
-  useEffect(() => {
-    if (editMode === 'equipment') {
-      setEquipSearchQuery('');
-      setEquipActiveCategory('all');
-      const state = {};
-      if (equipmentCatalog && equipmentCatalog.length > 0) {
-        equipmentCatalog.forEach((item, index) => {
-          const key = `${item.categoria}_${item.nome}_${index}`;
-          const saved = (displayData.equipment || []).find(x => x.nome === item.nome && x.categoria === item.categoria);
-          state[key] = {
-            qtyEquip: saved ? (saved.qtyEquip || 0) : 0,
-            qtyCarico: saved ? (saved.qtyCarico || 0) : 0,
-            acquisto: false,
-            note: saved ? (saved.note || '') : ''
-          };
-        });
-      }
-      setEquipItemsState(state);
-    }
-  }, [editMode, equipmentCatalog, displayData.equipment]);
-
-  // Riepilogo costi e carico per l'editor equipaggiamento
-  const equipSummary = useMemo(() => {
-    let costoTotaleMB = 0;
-    let pesoCaricoKg = 0;
-
-    if (!equipmentCatalog) return { costoTotaleMB: 0, pesoCaricoKg: 0, caricoArrotondato: 0, penalita: 0, caricoBloccato: false };
-
-    equipmentCatalog.forEach((item, index) => {
-      const key = `${item.categoria}_${item.nome}_${index}`;
-      const state = equipItemsState[key];
-      if (!state) return;
-
-      const newTotal = (state.qtyEquip || 0) + (state.qtyCarico || 0);
-      const saved = (displayData.equipment || []).find(x => x.nome === item.nome && x.categoria === item.categoria);
-      const oldTotal = saved ? ((saved.qtyEquip || 0) + (saved.qtyCarico || 0)) : 0;
-
-      // Costo incrementale solo se ACQUISTO è spuntata
-      if (state.acquisto && newTotal > oldTotal) {
-        const delta = newTotal - oldTotal;
-        costoTotaleMB += delta * (item.costo_MB || 0);
-      }
-
-      // Peso di carico
-      const pesoUnitario = item["peso in kg"] || 0;
-      pesoCaricoKg += (state.qtyCarico || 0) * pesoUnitario;
-    });
-
-    const caricoArrotondato = Math.floor(pesoCaricoKg);
-    const pesoPG = displayData.peso || 70;
-    const { penalita, caricoBloccato } = calculateCargoPenalty(pesoPG, pesoCaricoKg);
-
-    return { costoTotaleMB, pesoCaricoKg, caricoArrotondato, penalita, caricoBloccato };
-  }, [equipItemsState, equipmentCatalog, displayData.equipment, displayData.peso]);
-
-  const equipHandleSave = () => {
-    if (equipSummary.caricoBloccato) {
-      alert("Impossibile salvare: il carico del personaggio è insostenibile (NA).");
-      return;
-    }
-
-    const currentPortafoglio = displayData.portafoglioMB || 0;
-    const nextPortafoglio = Math.round((currentPortafoglio - equipSummary.costoTotaleMB) * 100) / 100;
-
-    if (nextPortafoglio < 0) {
-      const confirmProceed = window.confirm(
-        `Attenzione: la spesa totale (${equipSummary.costoTotaleMB.toFixed(2)} MB) supera il denaro posseduto (${currentPortafoglio.toFixed(2)} MB).\nIl portafoglio andrà in negativo (${nextPortafoglio.toFixed(2)} MB). Vuoi procedere?`
-      );
-      if (!confirmProceed) return;
-    }
-
-    // Costruisce la lista equipaggiamento salvata
-    const equipmentList = [];
-    let armorEquipped = displayData.equippedArmor || null;
-    let shieldEquipped = displayData.equippedShield || false;
-
-    equipmentCatalog.forEach((item, index) => {
-      const key = `${item.categoria}_${item.nome}_${index}`;
-      const state = equipItemsState[key];
-      if (state && ((state.qtyEquip || 0) > 0 || (state.qtyCarico || 0) > 0)) {
-        equipmentList.push({
-          nome: item.nome,
-          categoria: item.categoria,
-          abbreviazione: item.abbreviazione,
-          costo_MB: item.costo_MB,
-          "peso in kg": item["peso in kg"],
-          note_base: item.note,
-          qtyEquip: state.qtyEquip,
-          qtyCarico: state.qtyCarico,
-          note: state.note.trim()
-        });
-
-        if (item.categoria === 'armatura') {
-          if (item.nome.toLowerCase().includes('scudo')) {
-            shieldEquipped = true;
-          } else if (item.note && item.note.toLowerCase().includes('armatura')) {
-            armorEquipped = item.nome;
-          }
-        }
-      }
-    });
-
-    const newData = {
-      ...displayData,
-      portafoglioMB: nextPortafoglio,
-      equipment: equipmentList,
-      caricoKg: equipSummary.pesoCaricoKg,
-      penalitaCarico: equipSummary.penalita,
-      equippedArmor: armorEquipped,
-      equippedShield: shieldEquipped
-    };
-
-    handleSetData(newData);
-
-    // Resetta checkbox acquisto
-    setEquipItemsState(prev => {
-      const next = { ...prev };
-      Object.keys(next).forEach(k => {
-        next[k] = { ...next[k], acquisto: false };
-      });
-      return next;
-    });
-
-    setEditMode(null);
-    alert("Equipaggiamento salvato e consolidato con successo!");
-  };
-
-  // Catalogo filtrato per l'editor
-  const equipFilteredItems = useMemo(() => {
-    if (!equipmentCatalog) return [];
-    return equipmentCatalog
-      .map((item, index) => ({ item, index, key: `${item.categoria}_${item.nome}_${index}` }))
-      .filter(x => {
-        if (equipSearchQuery.trim()) {
-          const q = equipSearchQuery.toLowerCase().trim();
-          return (x.item.nome || '').toLowerCase().includes(q) ||
-                 (x.item.note || '').toLowerCase().includes(q);
-        }
-        return equipActiveCategory === 'all' || x.item.categoria === equipActiveCategory;
-      });
-  }, [equipmentCatalog, equipSearchQuery, equipActiveCategory]);
-
-  const equipCategories = useMemo(() => {
-    if (!equipmentCatalog) return [];
-    return [...new Set(equipmentCatalog.map(item => item.categoria))];
-  }, [equipmentCatalog]);
 
   // Consolidamento finale abilità primarie
   const finalSkills = useMemo(() => {
@@ -1349,15 +1200,11 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
               {!statsReadOnly && (
                 <button
                   type="button"
-                  onClick={() => setEditMode(editMode === 'equipment' ? null : 'equipment')}
-                  className={`text-[10px] font-bold px-2.5 py-1 rounded flex items-center gap-1 transition-colors ${
-                    editMode === 'equipment'
-                      ? 'bg-amber-800 text-white'
-                      : 'bg-amber-600 hover:bg-amber-700 text-white'
-                  }`}
+                  onClick={() => setShowEquipmentEditor(true)}
+                  className="text-[10px] font-bold px-2.5 py-1 rounded flex items-center gap-1 transition-colors bg-amber-600 hover:bg-amber-700 text-white"
                 >
                   <Package size={12} />
-                  {editMode === 'equipment' ? 'Chiudi Modifica' : 'Modifica Equipaggiamento'}
+                  Modifica Equipaggiamento
                 </button>
               )}
               <span className="text-[10px] font-bold bg-amber-100 text-amber-850 px-2.5 py-0.5 rounded">
@@ -1386,67 +1233,13 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
                     <ul className="space-y-1 text-xs">
                       {items.map((item, idx) => {
                         const isScasso = item.nome.toLowerCase().includes('attrezzi da scasso');
-                        // In editMode, leggi qty da equipItemsState
-                        const equipStateKey = editMode === 'equipment' ? Object.keys(equipItemsState).find(k => k.startsWith(`${item.categoria}_${item.nome}_`)) : null;
-                        const equipState = equipStateKey ? equipItemsState[equipStateKey] : null;
-                        const editQtyEquip = equipState ? equipState.qtyEquip : item.qtyEquip;
                         return (
                           <li key={idx} className={`flex justify-between items-start py-1 border-b border-gray-100/50 last:border-0 px-2 rounded ${isScasso ? 'bg-teal-50' : ''}`}>
                             <div>
-                              <strong className="text-gray-900">{item.nome}</strong> {editQtyEquip > 1 && <span className="text-gray-500 font-bold">x{editQtyEquip}</span>}
+                              <strong className="text-gray-900">{item.nome}</strong> {item.qtyEquip > 1 && <span className="text-gray-500 font-bold">x{item.qtyEquip}</span>}
                               {item.note && <span className="text-[10px] text-gray-500 block italic">{item.note}</span>}
                             </div>
-                            {editMode === 'equipment' ? (
-                              <div className="flex items-center gap-1">
-                                <button
-                                  type="button"
-                                  onClick={() => {
-                                    if (equipStateKey) {
-                                      setEquipItemsState(prev => ({
-                                        ...prev,
-                                        [equipStateKey]: { ...prev[equipStateKey], qtyEquip: Math.max(0, (prev[equipStateKey]?.qtyEquip || 0) - 1) }
-                                      }));
-                                    }
-                                  }}
-                                  className="px-1 py-0.5 text-[11px] font-bold rounded bg-red-100 text-red-700 hover:bg-red-200 leading-none"
-                                  title="Rimuovi 1"
-                                >
-                                  −
-                                </button>
-                                <span className="text-[11px] font-bold text-gray-700 min-w-[20px] text-center">{editQtyEquip}</span>
-                                <button
-                                  type="button"
-                                  onClick={() => {
-                                    if (equipStateKey) {
-                                      setEquipItemsState(prev => ({
-                                        ...prev,
-                                        [equipStateKey]: { ...prev[equipStateKey], qtyEquip: (prev[equipStateKey]?.qtyEquip || 0) + 1 }
-                                      }));
-                                    }
-                                  }}
-                                  className="px-1 py-0.5 text-[11px] font-bold rounded bg-emerald-100 text-emerald-700 hover:bg-emerald-200 leading-none"
-                                  title="Aggiungi 1"
-                                >
-                                  +
-                                </button>
-                                <button
-                                  onClick={() => {
-                                    if (equipStateKey) {
-                                      setEquipItemsState(prev => ({
-                                        ...prev,
-                                        [equipStateKey]: { ...prev[equipStateKey], qtyEquip: 0 }
-                                      }));
-                                    }
-                                  }}
-                                  className="text-red-600 hover:text-red-800 ml-1 text-[11px] leading-none"
-                                  title="Rimuovi tutto"
-                                >
-                                  ✕
-                                </button>
-                              </div>
-                            ) : (
-                              <span className="text-[10px] text-gray-450 font-semibold">(Non genera carico)</span>
-                            )}
+                            <span className="text-[10px] text-gray-450 font-semibold">(Non genera carico)</span>
                           </li>
                         );
                       })}
@@ -1474,69 +1267,14 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
                               {items.map((item, idx) => {
                                 const itemPeso = item["peso in kg"] || 0;
                                 const isScasso = item.nome.toLowerCase().includes('attrezzi da scasso');
-                                // In editMode, leggi qty da equipItemsState
-                                const caricoStateKey = editMode === 'equipment' ? Object.keys(equipItemsState).find(k => k.startsWith(`${item.categoria}_${item.nome}_`)) : null;
-                                const caricoState = caricoStateKey ? equipItemsState[caricoStateKey] : null;
-                                const editQtyCarico = caricoState ? caricoState.qtyCarico : item.qtyCarico;
-                                const editTotPeso = editQtyCarico * itemPeso;
+                                const totPeso = (item.qtyCarico || 0) * itemPeso;
                                 return (
                                   <li key={idx} className={`flex justify-between items-start py-1 border-b border-gray-100/50 last:border-0 px-2 rounded ${isScasso ? 'bg-teal-50' : ''}`}>
                                     <div>
-                                      <strong className="text-gray-900">{item.nome}</strong> {editQtyCarico > 1 && <span className="text-gray-500 font-bold">x{editQtyCarico}</span>}
+                                      <strong className="text-gray-900">{item.nome}</strong> {item.qtyCarico > 1 && <span className="text-gray-500 font-bold">x{item.qtyCarico}</span>}
                                       {item.note && <span className="text-[10px] text-gray-500 block italic">{item.note}</span>}
                                     </div>
-                                    {editMode === 'equipment' ? (
-                                      <div className="flex items-center gap-2">
-                                        <button
-                                          type="button"
-                                          onClick={() => {
-                                            if (caricoStateKey) {
-                                              setEquipItemsState(prev => ({
-                                                ...prev,
-                                                [caricoStateKey]: { ...prev[caricoStateKey], qtyCarico: Math.max(0, (prev[caricoStateKey]?.qtyCarico || 0) - 1) }
-                                              }));
-                                            }
-                                          }}
-                                          className="px-1 py-0.5 text-[11px] font-bold rounded bg-red-100 text-red-700 hover:bg-red-200 leading-none"
-                                          title="Rimuovi 1"
-                                        >
-                                          −
-                                        </button>
-                                        <span className="text-[11px] font-bold text-gray-700 min-w-[20px] text-center">{editQtyCarico}</span>
-                                        <button
-                                          type="button"
-                                          onClick={() => {
-                                            if (caricoStateKey) {
-                                              setEquipItemsState(prev => ({
-                                                ...prev,
-                                                [caricoStateKey]: { ...prev[caricoStateKey], qtyCarico: (prev[caricoStateKey]?.qtyCarico || 0) + 1 }
-                                              }));
-                                            }
-                                          }}
-                                          className="px-1 py-0.5 text-[11px] font-bold rounded bg-emerald-100 text-emerald-700 hover:bg-emerald-200 leading-none"
-                                          title="Aggiungi 1"
-                                        >
-                                          +
-                                        </button>
-                                        <span className="text-[10px] text-gray-600 font-bold">{editTotPeso.toFixed(1)} kg</span>
-                                        <button
-                                          onClick={() => {
-                                            if (caricoStateKey) {
-                                              setEquipItemsState(prev => ({
-                                                ...prev,
-                                                [caricoStateKey]: { ...prev[caricoStateKey], qtyCarico: 0 }
-                                              }));
-                                            }
-                                          }}
-                                          className="text-red-600 hover:text-red-800 ml-1 text-[11px] leading-none"
-                                          title="Rimuovi tutto"
-                                        >
-                                          ✕
-                                        </button>
-                                      </div>
-                                    ) : (
-                                      <span className="text-[10px] text-gray-600 font-bold">{editTotPeso.toFixed(1)} kg</span>
-                                    )}
+                                    <span className="text-[10px] text-gray-600 font-bold">{totPeso.toFixed(1)} kg</span>
                                   </li>
                                 );
                               })}
@@ -1552,177 +1290,6 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
                   </div>
                 </div>
 
-              </div>
-            )}
-            {editMode === 'equipment' && (
-              <div className="mt-4 pt-4 border-t border-amber-200">
-                {/* Filtri per categoria */}
-                <div className="flex flex-wrap gap-1.5 mb-3">
-                  <button
-                    onClick={() => setEquipActiveCategory('all')}
-                    className={`text-[10px] font-bold px-2.5 py-1 rounded-full transition-colors ${
-                      equipActiveCategory === 'all'
-                        ? 'bg-amber-600 text-white'
-                        : 'bg-amber-100 text-amber-800 hover:bg-amber-200'
-                    }`}
-                  >
-                    Tutti
-                  </button>
-                  {equipCategories.map(cat => (
-                    <button
-                      key={cat}
-                      onClick={() => setEquipActiveCategory(cat)}
-                      className={`text-[10px] font-bold px-2.5 py-1 rounded-full transition-colors ${
-                        equipActiveCategory === cat
-                          ? 'bg-amber-600 text-white'
-                          : 'bg-amber-100 text-amber-800 hover:bg-amber-200'
-                      }`}
-                    >
-                      {CATEGORY_DISPLAY[cat] || cat}
-                    </button>
-                  ))}
-                </div>
-
-                {/* Campo di ricerca */}
-                <input
-                  type="text"
-                  id="equip-search-add"
-                  placeholder="Cerca oggetto da aggiungere..."
-                  value={equipSearchQuery}
-                  onChange={(e) => setEquipSearchQuery(e.target.value)}
-                  className="w-full p-2 border rounded text-xs mb-3"
-                />
-
-                {/* Catalogo oggetti filtrato */}
-                {equipFilteredItems.length === 0 ? (
-                  <div className="text-center py-4 text-gray-400 italic text-xs">
-                    Nessun oggetto trovato.
-                  </div>
-                ) : (
-                  <div className="max-h-64 overflow-y-auto border rounded divide-y divide-gray-100">
-                    {equipFilteredItems.map(({ item, key }) => {
-                      const state = equipItemsState[key];
-                      if (!state) return null;
-                      const newTotal = (state.qtyEquip || 0) + (state.qtyCarico || 0);
-
-                      return (
-                        <div key={key} className="flex items-center gap-2 p-2 hover:bg-amber-50/50 text-xs">
-                          <div className="flex-1 min-w-0">
-                            <span className="font-bold text-gray-800 block truncate">{item.nome}</span>
-                            <span className="text-[10px] text-gray-500">
-                              {CATEGORY_DISPLAY[item.categoria] || item.categoria}
-                              {item.costo_MB ? ` · ${item.costo_MB} MB` : ''}
-                              {item["peso in kg"] ? ` · ${item["peso in kg"]} kg` : ''}
-                            </span>
-                          </div>
-                          <div className="flex items-center gap-1 shrink-0">
-                            {newTotal > 0 && (
-                              <>
-                                <span className="text-[10px] text-gray-600 font-semibold">Eq: {state.qtyEquip}</span>
-                                <span className="text-[10px] text-gray-600 font-semibold">Ca: {state.qtyCarico}</span>
-                              </>
-                            )}
-                            <button
-                              onClick={() => {
-                                setEquipItemsState(prev => ({
-                                  ...prev,
-                                  [key]: {
-                                    ...prev[key],
-                                    qtyEquip: (prev[key]?.qtyEquip || 0) + 1
-                                  }
-                                }));
-                              }}
-                              className="px-1.5 py-0.5 text-[10px] font-bold rounded bg-amber-100 text-amber-700 hover:bg-amber-200 transition-colors"
-                              title="Aggiungi 1 all'equipaggiamento"
-                            >
-                              + Equip
-                            </button>
-                            <button
-                              onClick={() => {
-                                setEquipItemsState(prev => ({
-                                  ...prev,
-                                  [key]: {
-                                    ...prev[key],
-                                    qtyCarico: (prev[key]?.qtyCarico || 0) + 1
-                                  }
-                                }));
-                              }}
-                              className="px-1.5 py-0.5 text-[10px] font-bold rounded bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors"
-                              title="Aggiungi 1 al carico"
-                            >
-                              + Carico
-                            </button>
-                            {newTotal > 0 && (
-                              <button
-                                onClick={() => {
-                                  const currentState = equipItemsState[key];
-                                  if ((currentState?.qtyCarico || 0) > 0) {
-                                    setEquipItemsState(prev => ({
-                                      ...prev,
-                                      [key]: {
-                                        ...prev[key],
-                                        qtyCarico: Math.max(0, (prev[key]?.qtyCarico || 0) - 1)
-                                      }
-                                    }));
-                                  } else if ((currentState?.qtyEquip || 0) > 0) {
-                                    setEquipItemsState(prev => ({
-                                      ...prev,
-                                      [key]: {
-                                        ...prev[key],
-                                        qtyEquip: Math.max(0, (prev[key]?.qtyEquip || 0) - 1)
-                                      }
-                                    }));
-                                  }
-                                }}
-                                className="w-6 h-6 flex items-center justify-center rounded bg-red-100 text-red-700 hover:bg-red-200 font-bold transition-colors"
-                                title="Rimuovi 1 (dal carico, poi dall'equipaggiamento)"
-                              >
-                                <Minus size={12} />
-                              </button>
-                            )}
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
-
-                {/* Riepilogo e pulsante Salva */}
-                <div className="mt-3 p-3 bg-amber-50 border border-amber-200 rounded-lg flex items-center justify-between">
-                  <div className="text-[10px] text-gray-700 space-x-3">
-                    <span><strong>Costo:</strong> {equipSummary.costoTotaleMB.toFixed(2)} MB</span>
-                    <span><strong>Peso Carico:</strong> {equipSummary.pesoCaricoKg.toFixed(1)} kg</span>
-                    <span><strong>Penalità:</strong> -{equipSummary.penalita}</span>
-                    {equipSummary.caricoBloccato && (
-                      <span className="text-red-700 font-bold">⛔ CARICO BLOCCATO (NA)</span>
-                    )}
-                  </div>
-                  <div className="flex gap-2">
-                    <button
-                      onClick={() => {
-                        if (window.confirm('Annullare le modifiche? I cambiamenti non salvati andranno persi.')) {
-                          // Ricarica lo stato iniziale
-                          setEditMode(null);
-                        }
-                      }}
-                      className="px-3 py-1 text-[10px] font-bold rounded border border-gray-300 text-gray-600 hover:bg-gray-100 transition-colors"
-                    >
-                      Annulla
-                    </button>
-                    <button
-                      onClick={equipHandleSave}
-                      disabled={equipSummary.caricoBloccato}
-                      className={`px-3 py-1 text-[10px] font-bold rounded transition-colors flex items-center gap-1 ${
-                        equipSummary.caricoBloccato
-                          ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                          : 'bg-amber-600 hover:bg-amber-700 text-white'
-                      }`}
-                    >
-                      <Save size={12} />
-                      Salva
-                    </button>
-                  </div>
-                </div>
               </div>
             )}
           </div>
@@ -1936,6 +1503,19 @@ export default function CharacterSheetStep({ characterData, setCharacterData, re
               )}
             </div>
           </div>
+        )}
+
+        {showEquipmentEditor && (
+          <EquipmentEditor
+            characterData={displayData}
+            equipmentCatalog={equipmentCatalog}
+            onSave={(updated) => {
+              handleSetData(updated);
+              setShowEquipmentEditor(false);
+            }}
+            onClose={() => setShowEquipmentEditor(false)}
+            mode="gm"
+          />
         )}
 
       </div>

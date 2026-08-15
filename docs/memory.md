@@ -38,7 +38,7 @@ Per evitare la saturazione del contesto, i dettagli delle funzionalità e lo sta
 ## 4. Stato Globale Avanzamento
 
 - **Funzionalità Implementate:** 49 (REQ-01 → REQ-09 completati al 100%, REQ-10 in verifica).
-- **In Corso / In Revisione:** REQ-10 (CharacterSheet standalone), FIX-011 (Equipment Editor).
+- **In Corso / In Revisione:** REQ-10 (CharacterSheet standalone), FIX-011 (Equipment Editor — codice completato, verifica utente).
 - **In Backlog (analizzati, non implementati):** 0.
 - **CR aperte:** CR-001 (attacchi multipli), CR-002 (REQ-10 in verifica) — dettaglio in `docs/backlog.md`.
 
@@ -48,11 +48,11 @@ Per evitare la saturazione del contesto, i dettagli delle funzionalità e lo sta
 
 Sintesi cronologica delle modifiche; il dettaglio operativo vive in `docs/backlog.md` e negli spoke dei requisiti.
 
+- **2026-08-14 — FIX-011 (Equipment Editor implementato):** creato `src/components/Shared/EquipmentEditor.jsx` — unico editor equip modale per GM+Player (`mode='gm'|'player'`), basato sul pattern collaudato di `InventoryEditor` arricchito con le funzionalità dell'inline GM. Non scrive direttamente su Firestore: chiama `onSave(updatedData)` con il characterData completo (full-spread), il chiamante decide il contesto di salvataggio. Esposto il flag ACQUISTO (chiude REQ-10-05). Rimosso da `CharacterSheetStep.jsx` l'editor inline equip (~350 righe: `equipItemsState`, `equipSummary`, `equipHandleSave`, `equipFilteredItems`, `equipCategories`, blocco JSX editMode='equipment'); il box Inventario è ora read-only e il pulsante apre la modale. `PlayerCharacterSheet.jsx` migrato a `EquipmentEditor` mode='player' con fix della chiamata `updateCharacterEquipment(gmId, charId, data)` (prima 2 argomenti). Eliminato `Shared/InventoryEditor.jsx`. Bug sintassi (extra `}`) non riproducibile (build ✅ lint ✅, 0 errori / 48 warning documentati).
 - **2026-08-14 — FIX-011 (analisi scope avviata):** analisi architetturale per il refactoring di `CharacterSheetStep.jsx`. Esito: God component (~2000 righe) con doppio ruolo (step 10 wizard + tab `sheet`); doppio editor equip (modale `Shared/InventoryEditor` per Player + inline per GM); **2.3.3 "forzatura statistiche GM" assente** (caratteristiche read-only, editabili solo HP/PF). Proposta target: `CharacterSheetView` + editor estratti (`InventoryEditorInline`, `SpellListsEditor`, `StatsOverrideEditor`) + orchestratore sottile. **3 decisioni pendenti dall'utente:** (1) 2.3.3 come FEAT separata o inclusa nel refactoring, (2) consolidare o meno i due editor equip, (3) partire dall'estrazione dell'editor equip (consigliato, incrementale).
 - **2026-08-14 — Docs & Processo:** rimosso `src/App.css` (file morto); regole agente in `.agents/AGENTS.md` (anti-sicofantia, workflow git/deploy, fine sessione); separazione scope `backlog.md` / `roadmap.md`; generalizzazione "Antigravity" → "agente AI"; path relativi; `memory.md` ristrutturato come stato & changelog; `analisi_funzionale` archiviato in `docs/archive/`.
 - **2026-08-14 — FIX-012 (roster PNG):** attivate le sottoscrizioni real-time `subscribeToCampaignNpcs`/`subscribeToCreatures` in `App.jsx` (campagna attiva) → il Roster Attivo si aggiorna subito dopo il salvataggio di un PNG/creatura, senza uscire/rientrare. **Completato e verificato dall'utente**; registrata anche CR-003 (review UI/UX trasversale).
 - **2026-07-13 — FIX-010 (liste incantesimi):** `categoryMap` in `magicHelpers.js` allineata ai dati reali; regole liste per professione → [`req_06`](docs/requirements/req_06_spells_resolution.md).
-- **2026-07-13 — FIX-011 (Equipment Editor):** refactoring necessario di `CharacterSheetStep.jsx` → vedi `docs/backlog.md`.
 
 ---
 

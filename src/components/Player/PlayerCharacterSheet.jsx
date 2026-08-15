@@ -1,26 +1,18 @@
 import { useState } from 'react';
 import { ArrowLeft, Package } from 'lucide-react';
 import CharacterSheetStep from '../CharacterWizard/steps/CharacterSheetStep';
-import InventoryEditor from '../Shared/InventoryEditor';
+import EquipmentEditor from '../Shared/EquipmentEditor';
 import { updateCharacterEquipment } from '../../services/characterService';
 
 export default function PlayerCharacterSheet({ characterData, onBack, spellCatalog }) {
-  const [showInventoryEditor, setShowInventoryEditor] = useState(false);
+  const [showEquipmentEditor, setShowEquipmentEditor] = useState(false);
   const [localCharData, setLocalCharData] = useState(characterData);
 
-  const handleInventorySaved = async (updatedData) => {
+  const handleEquipmentSaved = async (updatedData) => {
     try {
-      await updateCharacterEquipment(localCharData.id, updatedData);
-      setLocalCharData(prev => ({
-        ...prev,
-        equipment: updatedData.equipment,
-        caricoKg: updatedData.caricoKg,
-        penalitaCarico: updatedData.penalitaCarico,
-        equippedArmor: updatedData.equippedArmor,
-        equippedShield: updatedData.equippedShield,
-        portafoglioMB: updatedData.portafoglioMB
-      }));
-      setShowInventoryEditor(false);
+      await updateCharacterEquipment(localCharData.gmId || '', localCharData.id, updatedData);
+      setLocalCharData(updatedData);
+      setShowEquipmentEditor(false);
     } catch (err) {
       console.error('Errore salvataggio inventario:', err);
       alert('Errore durante il salvataggio: ' + err.message);
@@ -36,7 +28,7 @@ export default function PlayerCharacterSheet({ characterData, onBack, spellCatal
         </button>
         <span style={styles.charName}>Scheda di {localCharData.name}</span>
         <button
-          onClick={() => setShowInventoryEditor(true)}
+          onClick={() => setShowEquipmentEditor(true)}
           style={styles.inventoryBtn}
         >
           <Package size={14} />
@@ -52,12 +44,11 @@ export default function PlayerCharacterSheet({ characterData, onBack, spellCatal
         />
       </div>
 
-      {showInventoryEditor && (
-        <InventoryEditor
+      {showEquipmentEditor && (
+        <EquipmentEditor
           characterData={localCharData}
-          gmId={localCharData.gmId || ''}
-          onClose={() => setShowInventoryEditor(false)}
-          onSaved={handleInventorySaved}
+          onSave={handleEquipmentSaved}
+          onClose={() => setShowEquipmentEditor(false)}
           mode="player"
         />
       )}
