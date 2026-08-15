@@ -1,7 +1,7 @@
 import utilizLimiti from '../data/Tabella-elenco_utilizzatori_limiti.json';
 import {
   CATEGORIA_ESSENZA, CATEGORIA_FLUSSO, CATEGORIA_MAGHI,
-  CATEGORIA_BARDI, CATEGORIA_RANGER, CATEGORIA_ANIMISTI
+  CATEGORIA_BARDI, CATEGORIA_RANGER, CATEGORIA_ANIMISTI, CATEGORY_ORDER
 } from './spellListTypes';
 
 // Normalizza un tipo_lista (canonico o legacy) alla categoria canonica
@@ -14,6 +14,19 @@ function normalizeCategory(tipoLista) {
   if (norm.includes('ranger')) return CATEGORIA_RANGER;
   if (norm.includes('animist')) return CATEGORIA_ANIMISTI;
   return tipoLista;
+}
+
+// Indice ordine canonico delle categorie
+const CATEGORY_INDEX = new Map(CATEGORY_ORDER.map((c, i) => [c, i]));
+
+// Ordina le liste: categoria (ordine canonico) poi alfabetico per nome lista
+function sortSpellLists(lists) {
+  return [...lists].sort((a, b) => {
+    const ca = CATEGORY_INDEX.get(normalizeCategory(a.tipo_lista)) ?? 999;
+    const cb = CATEGORY_INDEX.get(normalizeCategory(b.tipo_lista)) ?? 999;
+    if (ca !== cb) return ca - cb;
+    return (a.nome_lista || '').localeCompare(b.nome_lista || '', 'it');
+  });
 }
 
 export function getAvailableSpellLists(professionName, realm, spellCatalog) {
@@ -46,7 +59,8 @@ export function getAvailableSpellLists(professionName, realm, spellCatalog) {
 
   // Punto di verità: catalogo condiviso (Firestore). Fallback [] se non ancora caricato.
   const catalogLists = spellCatalog?.liste_incantesimi || [];
-  return catalogLists.filter(lista => allowedCategories.includes(normalizeCategory(lista.tipo_lista)));
+  const filtered = catalogLists.filter(lista => allowedCategories.includes(normalizeCategory(lista.tipo_lista)));
+  return sortSpellLists(filtered);
 }
 
 export function getSpellLimitInfo(professionName) {
