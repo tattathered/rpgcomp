@@ -45,8 +45,8 @@ Questo documento delinea la pianificazione delle prossime funzionalità e dei mi
 *   **Impatto sul codice:** [CombatCalculator.jsx](/src/components/CombatCalculator.jsx).
 
 ### 2. Gestione Inventario Dinamico & Equipaggiamento PG
-*   **Stato:** ✅ Fatto (core) — resta solo export CSV (REQ-10-04, QoL).
-*   **Backlog collegato:** `REQ-10-01..03`, `REQ-10-05`, `REQ-10-06` ✅ · `REQ-10-04` 🔵 (CSV)
+*   **Stato:** ✅ Fatto.
+*   **Backlog collegato:** `REQ-10-01..03`, `REQ-10-05`, `REQ-10-06` ✅ · `REQ-10-04` ❌ (cancellato)
 *   **Descrizione:** Abilitare la modifica dell'equipaggiamento direttamente dalla scheda personaggio attiva (compravendita, usura, loot), con ricalcolo in tempo reale di: ingombro totale, penalità al movimento (MM), penalità al lancio incantesimi, B.O. delle armi impugnate e B.D. derivante dalle armature.
 *   **Urgenza:** 🟡 **Media** (I PG evolvono e cambiano armi/armature durante la campagna).
 *   **Criticità:** 🔴 **Alta** (Impatta pesantemente la logica di calcolo del bonus in [skillHelpers.js](/src/utils/skillHelpers.js) e richiede l'aggiornamento dei nodi in Firestore).

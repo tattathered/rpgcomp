@@ -38,7 +38,7 @@ nuove funzionalità (FEAT), change request UX/UI (CR) e bug/fix tecnici (FIX).
 
 | ID | Tipo | Descrizione | Priorità | Stato | Note / Spoke |
 |----|------|-------------|----------|-------|--------------|
-| REQ-10-04 | FEAT | Comando 4 — Scarica inventario CSV | Bassa | 🔵 In Analisi | req_10 |
+| _(nessun task attivo)_ | — | — | — | — | — |
 
 ---
 
@@ -82,3 +82,13 @@ nuove funzionalità (FEAT), change request UX/UI (CR) e bug/fix tecnici (FIX).
 | FIX-003 | FIX | Combat Calculator & Resolvers — Risolto mancato passaggio delle armi per il PG difensore (sbloccando la parata). Localizzate le label in PG/PNG. Aggiunto supporto automatico e manuale per Scudo (+25 BD), Bracciali metallici (-5 BO), Schinieri metallici (-5 MM), Elmo metallico (-5 Percezione). | 2026-06-30 |
 | FIX-002 | FIX | Character Wizard Step 6 Background — Opzione 4 "Denaro extra": risolto lookup errato sulla tipologia del dataset JSON, abilitando la corretta conversione d100 ➔ MO. | 2026-06-30 |
 | FIX-001 | FIX | Creazione PG: scomparsa la sezione per la selezione di popolo e cultura dopo l'Anagrafica personaggio | 2026-06-24 |
+
+---
+
+## Cancellati / Obsoleti
+
+*Feature rimosse su decisione dell'utente. Non cancellare, solo annotare.*
+
+| ID | Tipo | Descrizione | Cancellato il | Motivo |
+|----|------|-------------|---------------|--------|
+| REQ-10-04 | FEAT | Comando 4 — Scarica inventario CSV | 2026-08-15 | Non necessaria: l'inventario è già visibile nella scheda PG. |

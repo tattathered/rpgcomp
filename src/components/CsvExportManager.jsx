@@ -134,80 +134,22 @@ export default function CsvExportManager() {
     downloadCSV('spell_lists.csv', headers, rows);
   };
 
-  // Build mapping: nome_lista (UPPERCASE) -> spell_lists.json id
-  const listNameToIdMap = {};
-  spellListsData.forEach(reg => {
-    const key = (reg.name_it || '').toUpperCase().trim();
-    listNameToIdMap[key] = reg.id;
-  });
-
-  // Additional manual mappings for lists not present in spell_lists.json
-  // (some lists use slightly different naming conventions)
-  const manualOverrides = {
-    'FORMULE DI PASSAGGIO': 'gateways',
-    'FORMULE D\'INCANTESIMO': 'spell_ways',
-    'FORMULE DELL\'ESSENZA': 'essence_ways',
-    'CONTROLLO SPIRITUALE': 'spirit_mastery',
-    'PERCEZIONE DELL\'ESSENZA': 'essence_perceptions',
-    'PERCEZIONE DELL\'ESSENZA (1)': 'essence_perceptions',
-    'FORMULE SENSORIE': 'detection_mastery',
-    'ARTI DELLA GUARIGIONE': 'surface_ways',
-    'DIFESA MAGICA': 'spell_defense',
-    'MOTI NATURALI': 'nature_movement',
-    'FORMULE DI MOVIMENTO': 'pathways',
-    'ARTI NATURALI': 'nature_lore',
-    'ASPETTI NATURALI': 'nature_ways',
-    'CONTROLLO ANIMALE': 'animal_mastery',
-    'FLUSSO DIRETTO': 'direct_channeling',
-    'RIGENERAZIONE ORGANICA': 'organ_ways',
-    'CANTI DEL POTERE': 'controlling_songs',
-    'CONTROLLO SONICO': 'sound_mastery',
-  };
-
-  const getSpellListId = (nomeLista) => {
-    const key = (nomeLista || '').toUpperCase().trim();
-    return manualOverrides[key] || listNameToIdMap[key] || key;
-  };
-
-  const slugify = (str) => {
-    return (str || '')
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '_')
-      .replace(/^_|_$/g, '');
-  };
-
   const exportSpells = () => {
     const headers = [
-      'id', 'spell_list_id', 'level', 'name_it', 'name_en', 
-      'class_it', 'class_en', 'istantaneo', 'efficacia', 'durata', 'raggio_azione',
-      'description_it', 'description_en'
+      'tipo_lista', 'nome_lista', 'livello', 'nome_incantesimo',
+      'tipo_incantesimo', 'preparazione_incantesimo', 'descrizione_incantesimo'
     ];
-    
-    const rows = [];
-    const lists = spellsData.liste_incantesimi || [];
-    
-    lists.forEach(lista => {
-      const spellListId = getSpellListId(lista.nome_lista);
-      
-      (lista.incantesimi || []).forEach(inc => {
-        rows.push([
-          `${spellListId}_${inc.numero}_${slugify(inc.nome)}`,
-          spellListId,
-          inc.numero,
-          inc.nome,
-          '', // name_en not available
-          inc.tipologia || '',
-          '', // class_en not available
-          inc.istantaneo ? 'yes' : 'no',
-          inc.efficacia || '',
-          inc.durata || '',
-          inc.raggio_azione || '',
-          inc.descrizione || '',
-          ''  // description_en not available
-        ]);
-      });
-    });
-    
+
+    const rows = spellsData.map(s => [
+      s.tipo_lista || '',
+      s.nome_lista || '',
+      s.livello !== undefined && s.livello !== null ? s.livello : '',
+      s.nome_incantesimo || '',
+      s.tipo_incantesimo || '',
+      s.preparazione_incantesimo || '',
+      s.descrizione_incantesimo || ''
+    ]);
+
     downloadCSV('spells.csv', headers, rows);
   };
 
@@ -234,7 +176,7 @@ export default function CsvExportManager() {
     { label: '7. Bonus Livello (profession_level_bonuses.csv)', count: levelBonusesData.length, action: exportLevelBonuses },
     { label: '8. Catalogo Abilità (skills.csv)', count: skillsData.length, action: exportSkills },
     { label: '9. Liste di Incantesimi (spell_lists.csv)', count: spellListsData.length, action: exportSpellLists },
-    { label: '10. Elenco Incantesimi (spells.csv)', count: (spellsData.liste_incantesimi || []).reduce((sum, l) => sum + (l.incantesimi || []).length, 0), action: exportSpells },
+    { label: '10. Elenco Incantesimi (spells.csv)', count: spellsData.length, action: exportSpells },
     { label: '11. Equipaggiamento (TS-4-equipaggiamento.csv)', count: equipmentData.length, action: exportEquipment },
   ];
 
