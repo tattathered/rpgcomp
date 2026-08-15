@@ -1,4 +1,4 @@
-import { useState, useMemo, Fragment, useRef } from 'react';
+import { useState, useMemo, Fragment } from 'react';
 
 import { Search, X, Save, AlertTriangle, ArrowLeftRight } from 'lucide-react';
 import defaultCatalog from '../../data/TS-4-equipaggiamento.json';
@@ -50,7 +50,7 @@ export default function EquipmentEditor({ characterData, equipmentCatalog, onSav
   });
 
   // Snapshot iniziale per calcolare delta (oggetti nuovi = acquisto)
-  const initialItemsMap = useRef(() => {
+  const initialItemsMap = useMemo(() => {
     const map = {};
     (characterData.equipment || []).forEach(item => {
       const key = `${item.categoria}_${item.nome}`;
@@ -62,7 +62,7 @@ export default function EquipmentEditor({ characterData, equipmentCatalog, onSav
       }
     });
     return map;
-  })();
+  }, [characterData.equipment]);
 
   const [portafoglioMB, setPortafoglioMB] = useState(characterData.portafoglioMB || 0);
   const [equippedArmor, setEquippedArmor] = useState(characterData.equippedArmor || null);
@@ -94,7 +94,7 @@ export default function EquipmentEditor({ characterData, equipmentCatalog, onSav
     const { penalita, caricoBloccato } = calculateCargoPenalty(pesoPG, pesoCaricoKg);
     const portafoglioDopoAcquisti = portafoglioMB - costoTotaleAcquisti;
     return { pesoCaricoKg, caricoArrotondato, penalita, caricoBloccato, costoTotaleAcquisti, portafoglioDopoAcquisti };
-  }, [itemsMap, pesoPG, acquistoFlags, portafoglioMB]);
+  }, [itemsMap, pesoPG, acquistoFlags, portafoglioMB, initialItemsMap]);
 
   const ownedArmors = useMemo(() => {
     return Object.values(itemsMap).filter(item =>
