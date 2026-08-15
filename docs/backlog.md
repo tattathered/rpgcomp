@@ -38,7 +38,7 @@ nuove funzionalità (FEAT), change request UX/UI (CR) e bug/fix tecnici (FIX).
 
 | ID | Tipo | Descrizione | Priorità | Stato | Note / Spoke |
 |----|------|-------------|----------|-------|--------------|
-| _(nessun task attivo)_ | — | — | — | — | — |
+| CR-001 | CR | Combat Calculator v2 — Supporto attacchi multipli per round (creature: sequenza Attacco_uno + Attacco_due senza resettare i settaggi). Design: roundResults + auto-advance + pannello "Attacchi del Round". | Alta | 🟢 In Sviluppo | req_03 |
 
 ---
 

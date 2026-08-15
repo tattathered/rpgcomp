@@ -75,6 +75,8 @@ export default function CombatCalculator({
   const [diceRoll, setDiceRoll] = useState(50);
   const [manualRoll, setManualRoll] = useState('50');
   const [combatOutcome, setCombatOutcome] = useState(null);
+  const [roundResults, setRoundResults] = useState([]);
+  const [roundTotalDamage, setRoundTotalDamage] = useState(0);
 
   // --- DATI ROSTER COMPUTATI ---
   const processedRoster = useMemo(() => {
@@ -233,6 +235,29 @@ export default function CombatCalculator({
     }
   };
 
+  // Registra l'esito dell'attacco nel round e avanza al prossimo attacco (se creatura multi-attacco)
+  const recordAttackResult = (type, damage, criticalType) => {
+    setRoundResults(prev => [...prev, {
+      attackName: attackerWeaponName || 'Attacco',
+      roll: diceRoll,
+      finalResult: finalAttackResult,
+      type,
+      damage: damage || 0,
+      criticalType: criticalType || null
+    }]);
+    if (damage) {
+      setRoundTotalDamage(prev => prev + damage);
+    }
+
+    // Auto-avanzamento: solo creature con più attacchi nello stesso round
+    const totalAttacks = attackerInfo?.weapons?.length || 1;
+    if (attackerInfo?.type === 'creature' && selectedWeaponIdx < totalAttacks - 1) {
+      setSelectedWeaponIdx(selectedWeaponIdx + 1);
+      setDiceRoll(50);
+      setManualRoll('50');
+    }
+  };
+
   // --- LOGICA DI RISOLUZIONE ATTACCO ---
   const handleResolveAttack = () => {
     const rollVal = parseInt(diceRoll);
@@ -289,6 +314,7 @@ export default function CombatCalculator({
       setFumbleTableCode(fTable);
       const fRoll = Math.floor(Math.random() * 100) + 1;
       setFumbleDiceRoll(fRoll);
+      recordAttackResult('fumble', 0, null);
     } else if (cellValue === '0' || cellValue === '') {
       setCombatOutcome({
         type: 'miss',
@@ -298,6 +324,7 @@ export default function CombatCalculator({
         message: 'COLPO MANCATO',
         details: 'L\'attacco non è abbastanza forte da superare le difese o l\'armatura del bersaglio. Nessun danno inflitto.'
       });
+      recordAttackResult('miss', 0, null);
     } else {
       const match = cellValue.match(/^(\d+)([A-E])?$/);
       if (match) {
@@ -382,6 +409,7 @@ export default function CombatCalculator({
         } else {
           setShowCriticalResolver(false);
         }
+        recordAttackResult('hit', finalDamage, critType);
       } else {
         const damage = parseInt(cellValue) || 0;
         setCombatOutcome({
@@ -395,6 +423,7 @@ export default function CombatCalculator({
           details: 'Danni calcolati dal sistema.'
         });
         setShowCriticalResolver(false);
+        recordAttackResult('hit', damage, null);
       }
     }
   };
@@ -445,6 +474,10 @@ export default function CombatCalculator({
         </div>
         <button
           onClick={() => {
+            setRoundResults([]);
+            setRoundTotalDamage(0);
+            setSelectedWeaponIdx(0);
+            setCombatOutcome(null);
             if (onResetAllParries) {
               onResetAllParries();
               setDefenderParry(0);
@@ -598,6 +631,31 @@ export default function CombatCalculator({
         setShowFumbleResolver={setShowFumbleResolver}
         handleReset={handleReset}
       />
+
+      {/* --- STORICO ATTACCHI DEL ROUND --- */}
+      {roundResults.length > 0 && (
+        <div className="card p-5 border border-indigo-200 rounded-xl bg-indigo-50/10 shadow-xs">
+          <div className="flex items-center justify-between pb-3 border-b border-indigo-150 mb-3">
+            <h4 className="font-bold text-sm text-indigo-950 uppercase tracking-wider">Attacchi del Round</h4>
+            <span className="text-xs font-bold bg-indigo-100 text-indigo-800 px-2.5 py-0.5 rounded-full">
+              Totale danni: {roundTotalDamage} PF
+            </span>
+          </div>
+          <ul className="space-y-2">
+            {roundResults.map((r, i) => (
+              <li key={i} className="flex items-center justify-between gap-3 text-xs bg-white border border-gray-150 rounded-lg px-3 py-2">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="font-bold text-gray-700">{i + 1}. {r.attackName}</span>
+                  <span className={`font-bold uppercase ${r.type === 'hit' ? 'text-emerald-700' : r.type === 'miss' ? 'text-slate-500' : 'text-red-700'}`}>
+                    {r.type === 'hit' ? `${r.damage} PF${r.criticalType ? ` + Critico ${r.criticalType}` : ''}` : r.type === 'miss' ? 'Mancato' : 'Colpo Maldestro'}
+                  </span>
+                </div>
+                <span className="text-gray-400 whitespace-nowrap">Tiro {r.roll} → {r.finalResult}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {/* --- RISOLUTORE COLPI MALDESTRI (FUMBLE) --- */}
       <div className="card p-5 border border-red-200 rounded-xl bg-red-50/20 shadow-xs mt-6">
