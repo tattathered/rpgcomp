@@ -1,6 +1,5 @@
 import { db } from "../firebase";
 import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
-import defaultSpells from "../data/Tabella-elenco_incantesimi.json";
 
 // Migra un singolo incantesimo dal vecchio formato (F*, A*, P*) al nuovo
 function migrateSpell(spell) {
@@ -98,13 +97,13 @@ export const getSpellCatalog = async (gmId) => {
       }
     }
 
-    // Seed: nessun catalogo presente → struttura vuota (niente dati statici stale)
-    const seeded = normalizeCatalog(migrateCatalog(defaultSpells));
+    // Seed: nessun catalogo presente → struttura vuota (il GM popolerà dal manager)
+    const seeded = { liste_incantesimi: [] };
     await saveSpellCatalog(seeded);
     return seeded;
   } catch (error) {
     console.error('Errore nel caricamento del catalogo incantesimi:', error);
-    return normalizeCatalog(migrateCatalog(defaultSpells));
+    return { liste_incantesimi: [] };
   }
 };
 
