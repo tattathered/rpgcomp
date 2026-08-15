@@ -7,11 +7,12 @@ import professionsData from '../data/professions.json';
 import devCostsData from '../data/TGP-4-sviluppo_abilita.json';
 import levelBonusesData from '../data/profession_level_bonuses.json';
 import skillsData from '../data/skills.json';
-import spellListsData from '../data/spell_lists.json';
-import spellsData from '../data/Tabella-elenco_incantesimi.json';
 import equipmentData from '../data/TS-4-equipaggiamento.json';
 
-export default function CsvExportManager() {
+export default function CsvExportManager({ spellCatalog }) {
+  // Punto di verità: catalogo incantesimi gestibile (Firestore), non i JSON statici
+  const catalogLists = spellCatalog?.liste_incantesimi || [];
+
   const downloadCSV = (filename, headers, rows) => {
     const csvContent = [
       headers.join(','),
@@ -123,32 +124,35 @@ export default function CsvExportManager() {
   };
 
   const exportSpellLists = () => {
-    const headers = [
-      'id', 'name_it', 'name_en', 'realm', 'category', 
-      'profession_id', 'description_it', 'description_en'
-    ];
-    const rows = spellListsData.map(sl => [
-      sl.id, sl.name_it, sl.name_en, sl.realm, sl.category,
-      sl.profession_id || '', sl.description_it || '', sl.description_en || ''
+    const headers = ['nome_lista', 'tipo_lista', 'note', 'num_incantesimi'];
+    const rows = catalogLists.map(l => [
+      l.nome_lista || '', l.tipo_lista || '', l.note || '', (l.incantesimi || []).length
     ]);
     downloadCSV('spell_lists.csv', headers, rows);
   };
 
   const exportSpells = () => {
     const headers = [
-      'tipo_lista', 'nome_lista', 'livello', 'nome_incantesimo',
-      'tipo_incantesimo', 'preparazione_incantesimo', 'descrizione_incantesimo'
+      'nome_lista', 'numero', 'nome', 'tipologia', 'istantaneo',
+      'efficacia', 'durata', 'raggio_azione', 'descrizione'
     ];
 
-    const rows = spellsData.map(s => [
-      s.tipo_lista || '',
-      s.nome_lista || '',
-      s.livello !== undefined && s.livello !== null ? s.livello : '',
-      s.nome_incantesimo || '',
-      s.tipo_incantesimo || '',
-      s.preparazione_incantesimo || '',
-      s.descrizione_incantesimo || ''
-    ]);
+    const rows = [];
+    catalogLists.forEach(l => {
+      (l.incantesimi || []).forEach(inc => {
+        rows.push([
+          l.nome_lista || '',
+          inc.numero !== undefined && inc.numero !== null ? inc.numero : '',
+          inc.nome || '',
+          inc.tipologia || '',
+          inc.istantaneo ? 'sì' : 'no',
+          inc.efficacia || '',
+          inc.durata || '',
+          inc.raggio_azione || '',
+          inc.descrizione || ''
+        ]);
+      });
+    });
 
     downloadCSV('spells.csv', headers, rows);
   };
@@ -175,8 +179,8 @@ export default function CsvExportManager() {
     { label: '6. Costi Sviluppo (TGP-4-sviluppo_abilita.csv)', count: devCostsData.length, action: exportDevCosts },
     { label: '7. Bonus Livello (profession_level_bonuses.csv)', count: levelBonusesData.length, action: exportLevelBonuses },
     { label: '8. Catalogo Abilità (skills.csv)', count: skillsData.length, action: exportSkills },
-    { label: '9. Liste di Incantesimi (spell_lists.csv)', count: spellListsData.length, action: exportSpellLists },
-    { label: '10. Elenco Incantesimi (spells.csv)', count: spellsData.length, action: exportSpells },
+    { label: '9. Liste di Incantesimi (spell_lists.csv)', count: catalogLists.length, action: exportSpellLists },
+    { label: '10. Elenco Incantesimi (spells.csv)', count: catalogLists.reduce((sum, l) => sum + (l.incantesimi || []).length, 0), action: exportSpells },
     { label: '11. Equipaggiamento (TS-4-equipaggiamento.csv)', count: equipmentData.length, action: exportEquipment },
   ];
 

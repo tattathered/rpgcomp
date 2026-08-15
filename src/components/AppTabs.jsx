@@ -397,7 +397,7 @@ export default function AppTabs({
                 <SpellCatalogManager catalog={spellCatalog} onUpdate={handleUpdateSpellCatalog} />
               )}
               {activeSettingsSubTab === 'codex' && <CodexAdminTab />}
-              {activeSettingsSubTab === 'export' && <CsvExportManager />}
+              {activeSettingsSubTab === 'export' && <CsvExportManager spellCatalog={spellCatalog} />}
             </Lazy>
           </ErrorBoundary>
         </div>
