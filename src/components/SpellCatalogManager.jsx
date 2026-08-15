@@ -1,9 +1,9 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import { 
   Book, Plus, Trash2, Copy, Edit2, Save, X, ChevronDown, ChevronRight,
-  AlertTriangle, Check, Search, Filter, ArrowLeft, Sparkles, Swords,
-  Heart, Eye, Shield, Zap, FileText
+  AlertTriangle, Check, Search, FileText
 } from 'lucide-react';
+import { CATEGORY_OPTIONS, CATEGORY_ORDER, LIST_ORDER_BY_CATEGORY, DEFAULT_CATEGORIA } from '../utils/spellListTypes';
 
 // ─── Costanti ───────────────────────────────────────────────────────────────
 
@@ -16,59 +16,12 @@ const TIPO_OPTIONS = [
   { value: 'U', label: 'Utilità' },
 ];
 
-const TIPO_ICONS = { 'F': Swords, 'E': Zap, 'A': Heart, 'I': Eye, 'P': Shield, 'U': Sparkles };
-
 const TIPO_COLORS = {
   'F': '#dc2626', 'E': '#2563eb', 'A': '#059669',
   'I': '#7c3aed', 'P': '#ca8a04', 'U': '#0891b2',
 };
 
-const CATEGORY_OPTIONS = [
-  { value: 'Liste di incantesimi dei Maghi', label: 'Maghi' },
-  { value: 'Liste di incantesimi dei Bardi', label: 'Bardi' },
-  { value: 'Liste di incantesimi degli Animisti', label: 'Animisti' },
-  { value: 'Liste di incantesimi dei Ranger', label: 'Ranger' },
-  { value: 'Liste aperte di incantesimi dell\'Essenza', label: 'Liste Aperte Essenza' },
-  { value: 'Liste aperte di incantesimi del Flusso', label: 'Liste Aperte Flusso' },
-];
-
-// Ordine canonico delle categorie per la visualizzazione
-const CATEGORY_ORDER = [
-  'Liste aperte di incantesimi dell\'Essenza',
-  'Liste di incantesimi dei Maghi',
-  'Liste di incantesimi dei Bardi',
-  'Liste di incantesimi dei Ranger',
-  'Liste aperte di incantesimi del Flusso',
-  'Liste di incantesimi degli Animisti',
-];
-
-// Ordine canonico delle liste all\'interno di ciascuna categoria
-const LIST_ORDER_BY_CATEGORY = {
-  'Liste aperte di incantesimi dell\'Essenza': [
-    'SVILUPPO FISICO', 'MANIPOLAZIONE', 'ILLUSIONI',
-    'FORMULE DI PASSAGGIO', 'FORMULE D\'INCANTESIMO', 'FORMULE DELL\'ESSENZA',
-    'CONTROLLO SPIRITUALE', 'PERCEZIONE DELL\'ESSENZA',
-  ],
-  'Liste di incantesimi dei Maghi': [
-    'GEOMANZIA', 'CRIOMANZIA', 'FOTOMANZIA', 'PIROMANZIA',
-    'PONTE ARCANO', 'IDROMANZIA', 'ADATTAMENTO', 'AEROMANZIA',
-  ],
-  'Liste di incantesimi dei Bardi': [
-    'CANTI DEL POTERE', 'CONOSCENZA', 'SAPIENZA', 'CONTROLLO SONICO',
-  ],
-  'Liste di incantesimi dei Ranger': [
-    'TOPOMANZIA', 'FORMULE DI MOVIMENTO', 'ASPETTI NATURALI', 'ARTI NATURALI',
-  ],
-  'Liste aperte di incantesimi del Flusso': [
-    'INDAGINE', 'FORMULE SENSORIE', 'PACIFICAZIONE', 'ARTI DELLA GUARIGIONE',
-    'PROTEZIONI', 'DIFESA MAGICA', 'MOTI NATURALI', 'ECOMANZIA',
-  ],
-  'Liste di incantesimi degli Animisti': [
-    'BOTANOMANZIA', 'FLUSSO DIRETTO', 'CONTROLLO ANIMALE',
-    'FISIORIGENERAZIONE', 'EMORIGENERAZIONE', 'RIGENERAZIONE ORGANICA',
-    'PURIFICAZIONI', 'CREAZIONI',
-  ],
-};
+// Categorie e ordine delle liste incantesimi → ../utils/spellListTypes.js
 
 function sortListsByCanonicalOrder(lists, tipoLista) {
   const order = LIST_ORDER_BY_CATEGORY[tipoLista] || [];
@@ -85,10 +38,6 @@ function sortListsByCanonicalOrder(lists, tipoLista) {
 
 function generateId() {
   return Math.random().toString(36).substring(2, 11);
-}
-
-function cloneDeep(obj) {
-  return JSON.parse(JSON.stringify(obj));
 }
 
 function safeConfirm(message) {
@@ -119,7 +68,7 @@ function TipoBadge({ tipo, size = 'sm' }) {
 function ListForm({ list, onSave, onCancel }) {
   const [form, setForm] = useState({
     nome_lista: list?.nome_lista || '',
-    tipo_lista: list?.tipo_lista || 'Liste di incantesimi dei Maghi',
+    tipo_lista: list?.tipo_lista || DEFAULT_CATEGORIA,
     note: list?.note || '',
   });
 
@@ -681,24 +630,6 @@ export default function SpellCatalogManager({ catalog, onUpdate }) {
     const newLists = [...lists, newList];
     onUpdate({ ...catalog, liste_incantesimi: newLists });
     setShowNewListForm(false);
-  }, [lists, catalog, onUpdate]);
-
-  const handleDuplicateList = useCallback((lista) => {
-    const baseName = lista.nome_lista;
-    let newName = `${baseName}_COPY`;
-    let counter = 1;
-    while (lists.some(l => l.nome_lista === newName)) {
-      counter++;
-      newName = `${baseName}_COPY${counter}`;
-    }
-    const duplicated = cloneDeep(lista);
-    duplicated.nome_lista = newName;
-    duplicated.incantesimi = (duplicated.incantesimi || []).map(spell => ({
-      ...spell,
-      id: generateId(),
-    }));
-    const newLists = [...lists, duplicated];
-    onUpdate({ ...catalog, liste_incantesimi: newLists });
   }, [lists, catalog, onUpdate]);
 
   const totalSpells = lists.reduce((sum, l) => sum + (l.incantesimi || []).length, 0);

@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { Sparkles, Dices, ChevronLeft, ChevronRight, AlertTriangle, AlertOctagon } from 'lucide-react';
+import { useState, useEffect, useMemo } from 'react';
+import { Sparkles, Dices, ChevronLeft, ChevronRight } from 'lucide-react';
 import { fmt, resolveSpellAttack, resolveBaseSpell, isInRange } from '../utils/spellHelpers';
 import CriticalResolver from './CriticalResolver';
 import FumbleResolver from './FumbleResolver';
 import ta7 from '../data/TA-7-incantesimi-dardo.json';
-import ta8 from '../data/TA-8-incantesimi_sfera.json';
-import ta9 from '../data/TA-9-incantesimi_base.json';
+import ta8 from '../data/TA-8-incantesimi-sfera.json';
+import ta9 from '../data/TA-9-incantesimi-base.json';
 
 const PREPARATION_OPTIONS = [
   { rounds: 0, modifier: -30, text: '0 Round (Istantaneo)' },

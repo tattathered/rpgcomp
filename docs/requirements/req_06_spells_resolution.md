@@ -94,8 +94,8 @@ Regole di accesso alle liste incantesimi (da `data/professioni-descrizione.txt`)
 
 *   **Tabelle Dati:**
     *   [NEW] [TA-7-incantesimi-dardo.json](src/data/TA-7-incantesimi-dardo.json) (Tabella Dardi)
-    *   [NEW] [TA-8-incantesimi_sfera.json](src/data/TA-8-incantesimi_sfera.json) (Tabella Sfere)
-    *   [NEW] [TA-9-incantesimi_base.json](src/data/TA-9-incantesimi_base.json) (Tabella Incantesimi Base)
+    *   [NEW] [TA-8-incantesimi-sfera.json](src/data/TA-8-incantesimi-sfera.json) (Tabella Sfere)
+    *   [NEW] [TA-9-incantesimi-base.json](src/data/TA-9-incantesimi-base.json) (Tabella Incantesimi Base)
 *   **Pipeline di Build:**
     *   [MODIFY] [csvToJson.js](scripts/csvToJson.js) (Aggiunta gestione delle nuove tabelle e correzione anomalie Excel)
 *   **Componenti UI:**
