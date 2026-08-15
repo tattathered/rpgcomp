@@ -223,6 +223,11 @@ export default function EquipmentEditor({ characterData, equipmentCatalog, onSav
     return groups;
   }, [activeCategory, catalogItems]);
 
+  const getInventoryCount = (item) => {
+    const existing = itemsMap[`${item.categoria}_${item.nome}`];
+    return existing ? (existing.qtyEquip || 0) + (existing.qtyCarico || 0) : 0;
+  };
+
   return (
     <div style={{
       position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
@@ -427,6 +432,7 @@ export default function EquipmentEditor({ characterData, equipmentCatalog, onSav
                   <thead>
                     <tr style={{ backgroundColor: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
                       <th style={{ padding: '0.4rem 0.75rem', textAlign: 'left', fontWeight: 700, color: '#64748b', fontSize: '0.7rem', textTransform: 'uppercase' }}>Oggetto</th>
+                      <th style={{ padding: '0.4rem 0.75rem', textAlign: 'center', fontWeight: 700, color: '#64748b', fontSize: '0.7rem', textTransform: 'uppercase', width: '50px' }}>INV</th>
                       <th style={{ padding: '0.4rem 0.75rem', textAlign: 'center', fontWeight: 700, color: '#64748b', fontSize: '0.7rem', textTransform: 'uppercase', width: '60px' }}>Peso</th>
                       <th style={{ padding: '0.4rem 0.75rem', textAlign: 'center', fontWeight: 700, color: '#64748b', fontSize: '0.7rem', textTransform: 'uppercase', width: '60px' }}>Costo</th>
                       <th style={{ padding: '0.4rem 0.75rem', textAlign: 'center', fontWeight: 700, color: '#64748b', fontSize: '0.7rem', textTransform: 'uppercase', width: '70px' }}>+</th>
@@ -440,7 +446,7 @@ export default function EquipmentEditor({ characterData, equipmentCatalog, onSav
                         return (
                           <Fragment key={groupName}>
                             <tr style={{ backgroundColor: '#f1f5f9', borderTop: '1px solid #cbd5e1' }}>
-                              <td colSpan="4" style={{ padding: '0.3rem 0.75rem', fontWeight: 700, color: '#475569', fontSize: '0.7rem', textTransform: 'uppercase' }}>{groupName}</td>
+                              <td colSpan="5" style={{ padding: '0.3rem 0.75rem', fontWeight: 700, color: '#475569', fontSize: '0.7rem', textTransform: 'uppercase' }}>{groupName}</td>
                             </tr>
                             {items.map(({ item, index }) => (
                               <tr key={index} style={{ borderBottom: '1px solid #f1f5f9' }}>
@@ -448,6 +454,7 @@ export default function EquipmentEditor({ characterData, equipmentCatalog, onSav
                                   <div style={{ fontWeight: 600, color: '#1e293b' }}>{item.nome}</div>
                                   {item.note && <div style={{ fontSize: '0.7rem', color: '#94a3b8' }}>{item.note}</div>}
                                 </td>
+                                <td style={{ padding: '0.4rem 0.75rem', textAlign: 'center', color: '#1e40af', fontWeight: 700 }}>{getInventoryCount(item) > 0 ? getInventoryCount(item) : ''}</td>
                                 <td style={{ padding: '0.4rem 0.75rem', textAlign: 'center', color: '#64748b' }}>{(item["peso in kg"] || 0).toFixed(1)}</td>
                                 <td style={{ padding: '0.4rem 0.75rem', textAlign: 'center', color: '#a16207', fontWeight: 600 }}>{(item.costo_MB || 0).toFixed(1)}</td>
                                 <td style={{ padding: '0.4rem 0.75rem', textAlign: 'center' }}>
@@ -465,6 +472,7 @@ export default function EquipmentEditor({ characterData, equipmentCatalog, onSav
                             <div style={{ fontWeight: 600, color: '#1e293b' }}>{item.nome}</div>
                             {item.note && <div style={{ fontSize: '0.7rem', color: '#94a3b8' }}>{item.note}</div>}
                           </td>
+                          <td style={{ padding: '0.4rem 0.75rem', textAlign: 'center', color: '#1e40af', fontWeight: 700 }}>{getInventoryCount(item) > 0 ? getInventoryCount(item) : ''}</td>
                           <td style={{ padding: '0.4rem 0.75rem', textAlign: 'center', color: '#64748b' }}>{(item["peso in kg"] || 0).toFixed(1)}</td>
                           <td style={{ padding: '0.4rem 0.75rem', textAlign: 'center', color: '#a16207', fontWeight: 600 }}>{(item.costo_MB || 0).toFixed(1)}</td>
                           <td style={{ padding: '0.4rem 0.75rem', textAlign: 'center' }}>

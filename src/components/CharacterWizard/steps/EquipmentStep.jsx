@@ -62,6 +62,7 @@ export default function EquipmentStep({ characterData, setCharacterData, equipme
   const categories = [...new Set(catalog.map(item => item.categoria))];
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [inInventoryOnly, setInInventoryOnly] = useState(false);
 
   // Inizializza lo stato locale degli oggetti con i valori già salvati nel personaggio
   const initialEquipment = useMemo(() => {
@@ -272,6 +273,12 @@ export default function EquipmentStep({ characterData, setCharacterData, equipme
     return catalog
       .map((item, index) => ({ item, index, key: `${item.categoria}_${item.nome}_${index}` }))
       .filter(x => {
+        const state = itemsState[x.key];
+        const inInventory = !!state && (state.qtyEquip > 0 || state.qtyCarico > 0);
+
+        // Filtro "IN INVENTARIO": solo oggetti già posseduti
+        if (inInventoryOnly && !inInventory) return false;
+
         // Se c'è ricerca testuale, ignora il filtro categoria
         if (searchQuery.trim()) {
           const q = searchQuery.toLowerCase().trim();
@@ -281,7 +288,7 @@ export default function EquipmentStep({ characterData, setCharacterData, equipme
         // Altrimenti filtra per categoria
         return activeCategory === 'all' || x.item.categoria === activeCategory;
       });
-  }, [activeCategory, catalog, searchQuery]);
+  }, [activeCategory, catalog, searchQuery, inInventoryOnly, itemsState]);
 
   const groupedWeapons = useMemo(() => {
     if (activeCategory !== 'armi') return null;
@@ -504,6 +511,21 @@ export default function EquipmentStep({ characterData, setCharacterData, equipme
           }}
         >
           TUTTI
+        </button>
+        <button
+          onClick={() => setInInventoryOnly(v => !v)}
+          className={`btn ${inInventoryOnly ? 'btn-primary' : 'btn-outline'}`}
+          style={{ 
+            padding: '0.4rem 0.8rem', 
+            fontSize: '0.8rem',
+            textTransform: 'uppercase',
+            fontWeight: 700,
+            backgroundColor: inInventoryOnly ? '#059669' : 'transparent',
+            borderColor: inInventoryOnly ? '#059669' : '#cbd5e1',
+            color: inInventoryOnly ? '#fff' : '#475569'
+          }}
+        >
+          IN INVENTARIO
         </button>
       </div>
 

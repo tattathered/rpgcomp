@@ -43,6 +43,8 @@ nuove funzionalità (FEAT), change request UX/UI (CR) e bug/fix tecnici (FIX).
 | REQ-10-04 | FEAT | Comando 4 — Scarica inventario CSV | Bassa | 🔵 In Analisi | req_10 |
 | REQ-10-06 | FEAT | Player — note modificabili sugli oggetti dell'inventario | Media | 🔵 In Analisi | req_10 |
 | CR-002 | CR | Scheda Personaggio Standalone — CharacterSheetStep diventa un tab autonomo 'sheet' in AppTabs. Carica PG dal roster apre la scheda, non il wizard. 4 pulsanti contestuali per modifiche mirate. Vedi req_10_character_sheet_standalone.md | Alta | 🟢 In Sviluppo (implementato, in attesa di verifica utente) | req_10 |
+| CR-004 | CR | EquipmentEditor "Aggiungi oggetto": colonna INV prima di Peso con conteggio degli oggetti già in inventario. | Media | 🟢 In Sviluppo | req_10 |
+| CR-005 | CR | Wizard step 7 (Equipaggiamento): filtro "IN INVENTARIO" tra i filtri categoria. | Media | 🟢 In Sviluppo | req_02 |
 
 ---
 
