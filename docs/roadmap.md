@@ -37,8 +37,8 @@ Questo documento delinea la pianificazione delle prossime funzionalità e dei mi
 ## 🗺️ Roadmap delle Funzionalità
 
 ### 1. Supporto Attacchi Multipli Creature (CR-001)
-*   **Stato:** ⏳ Futuro — registrato in backlog, non ancora analizzato.
-*   **Backlog collegato:** `CR-001` (coda, ⏳ In Attesa)
+*   **Stato:** ✅ Fatto — implementato e verificato (smoke test utente).
+*   **Backlog collegato:** `CR-001` ✅
 *   **Descrizione:** Mostri e animali hanno spesso 2 attacchi nello stesso round (es: *Morso* + *Artigli*). L'interfaccia del `CombatCalculator` deve poter selezionare ed eseguire in sequenza attacchi multipli in un solo round senza dover resettare le impostazioni ad ogni tiro.
 *   **Urgenza:** 🔴 **Alta** (Indispensabile per gestire gli scontri con bestie e mostri in modo naturale).
 *   **Criticità:** 🟡 **Media** (Richiede modifiche alla UI del calcolatore e alla gestione dello storico danni, ma non tocca la struttura del PG).

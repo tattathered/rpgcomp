@@ -72,8 +72,8 @@ export default function CombatCalculator({
   const [drawOrSwapWeapon, setDrawOrSwapWeapon] = useState(false);
   const [gmBonus, setGmBonus] = useState(0);
 
-  const [diceRoll, setDiceRoll] = useState(50);
-  const [manualRoll, setManualRoll] = useState('50');
+  const [diceRoll, setDiceRoll] = useState(0);
+  const [manualRoll, setManualRoll] = useState('0');
   const [combatOutcome, setCombatOutcome] = useState(null);
   const [roundResults, setRoundResults] = useState([]);
   const [roundTotalDamage, setRoundTotalDamage] = useState(0);
@@ -253,8 +253,8 @@ export default function CombatCalculator({
     const totalAttacks = attackerInfo?.weapons?.length || 1;
     if (attackerInfo?.type === 'creature' && selectedWeaponIdx < totalAttacks - 1) {
       setSelectedWeaponIdx(selectedWeaponIdx + 1);
-      setDiceRoll(50);
-      setManualRoll('50');
+      setDiceRoll(0);
+      setManualRoll('0');
     }
   };
 
@@ -451,8 +451,8 @@ export default function CombatCalculator({
     setDrawOrSwapWeapon(false);
     setGmBonus(0);
     setDefenderParry(0);
-    setDiceRoll(50);
-    setManualRoll('50');
+    setDiceRoll(0);
+    setManualRoll('0');
     setCombatOutcome(null);
     setShowFumbleResolver(false);
     setShowCriticalResolver(false);

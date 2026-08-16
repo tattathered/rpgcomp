@@ -149,7 +149,7 @@ export default function AttackerPanel({
               {attackerInfo && attackerInfo.weapons && attackerInfo.weapons.length > 0 ? (
                 <div className="col-span-2">
                   {attackerInfo.type === 'creature' && attackerInfo.weapons.length > 1 && (
-                    <span className="inline-block text-[10px] font-bold text-blue-700 bg-blue-100 px-2 py-0.5 rounded border border-blue-200 mb-1.5">
+                    <span className="inline-block text-[10px] font-bold text-white bg-orange-500 px-2 py-0.5 rounded border border-orange-600 mb-1.5">
                       Attacco {selectedWeaponIdx + 1} di {attackerInfo.weapons.length}
                     </span>
                   )}

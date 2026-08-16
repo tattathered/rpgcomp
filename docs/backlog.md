@@ -38,7 +38,7 @@ nuove funzionalità (FEAT), change request UX/UI (CR) e bug/fix tecnici (FIX).
 
 | ID | Tipo | Descrizione | Priorità | Stato | Note / Spoke |
 |----|------|-------------|----------|-------|--------------|
-| CR-001 | CR | Combat Calculator v2 — Supporto attacchi multipli per round (creature: sequenza Attacco_uno + Attacco_due senza resettare i settaggi). Design: roundResults + auto-advance + pannello "Attacchi del Round". | Alta | 🟢 In Sviluppo | req_03 |
+| _(nessun task attivo)_ | — | — | — | — | — |
 
 ---
 
@@ -48,8 +48,9 @@ nuove funzionalità (FEAT), change request UX/UI (CR) e bug/fix tecnici (FIX).
 
 | ID | Tipo | Descrizione | Segnalato il | Stato |
 |----|------|-------------|--------------|-------|
-| CR-001 | CR | Combat Calculator v2 — Supporto attacchi multipli per round (Mostri/Animali hanno spesso 2 attacchi nello stesso round, PG e PNG ne fanno uno alla volta). Rivedere il flusso di risoluzione per gestire sequenza di attacchi multipli. | 2026-06-26 | ⏳ In Attesa |
 | CR-003 | CR | Analisi UI/UX completa e armonizzazione (tutta l'app): rendere omogenee e coerenti le viste GM/Player e alzare la QoL percepita (al momento bassina). Richiede test approfonditi per individuare le modifiche da fare; da pianificare. | 2026-08-14 | ⏳ In Attesa |
+| CR-006 | CR | CombatCalculator: riepilogo esiti/danni da **critici** nel pannello "Attacchi del Round" (oggi mostra solo danni base + tipo critico, non l'esito del tiro critico). Da definire come aggregare. | 2026-08-16 | ⏳ In Attesa |
+| CR-007 | CR | CombatCalculator — Workflow/UX review: (att) "Mappa a Tabella Attacco" come info derivata dall'arma, non select; (att) HP Subiti come info vs editabilità GM; (att) chiarire label "Gravemente Ferito" (è l'attaccante); (dif) "Seleziona Arma per Parare" + opzione "Nessuna" (BO 0); (dif) "Armatura Attiva" come dropdown con classe+bonus; (dif) HP Subiti come info vs editabilità GM. | 2026-08-16 | ⏳ In Attesa |
 
 ---
 
@@ -59,6 +60,7 @@ nuove funzionalità (FEAT), change request UX/UI (CR) e bug/fix tecnici (FIX).
 
 | ID | Tipo | Descrizione | Completato il |
 |----|------|-------------|---------------|
+| CR-001 | CR | Combat Calculator v2 — attacchi multipli per round (creature): roundResults + auto-advance + pannello "Attacchi del Round" con totale danni. Verificato via smoke test. | 2026-08-16 |
 | CR-004 | CR | EquipmentEditor "Aggiungi oggetto": colonna INV prima di Peso con conteggio degli oggetti già in inventario. | 2026-08-15 |
 | CR-005 | CR | Wizard step 7 (Equipaggiamento): filtro "IN INVENTARIO" tra i filtri categoria. | 2026-08-15 |
 | CR-002 | CR | Scheda Personaggio Standalone — tab 'sheet' autonomo, 4 pulsanti contestuali (Creazione, Upgrade Livello, Equipaggiamento, Liste Incantesimi). Verificato via smoke test utente. | 2026-08-15 |
