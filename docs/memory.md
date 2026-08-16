@@ -37,12 +37,16 @@ Per evitare la saturazione del contesto, i dettagli delle funzionalità e lo sta
 
 ## 4. Stato Globale Avanzamento
 
-- **Funzionalità Implementate:** 49 (REQ-01 → REQ-09 completati al 100%, REQ-10 in verifica).
-- **In Corso / In Revisione:** REQ-10 (CharacterSheet standalone).
-- **In Backlog (analizzati, non implementati):** 0.
-- **CR aperte:** CR-001 (attacchi multipli), CR-002 (REQ-10 in verifica) — dettaglio in `docs/backlog.md`.
+- **Funzionalità Implementate:** REQ-01 → REQ-10 completati (49 funzionalità + scheda standalone, inventario dinamico, attacchi multipli creature).
+- **In Corso / In Revisione:** CR-006 (riepilogo critici CombatCalculator, workflow da consolidare).
+- **CR aperte:** CR-003 (review UI/UX trasversale), CR-006, CR-007 (workflow/UX CombatCalculator) — dettaglio in `docs/backlog.md`.
 
 > Dettaglio task aperti: **[docs/backlog.md](docs/backlog.md)** · Piano a lungo termine: **[docs/roadmap.md](docs/roadmap.md)**
+
+## 4.1 Prossimi Passi (pianificato 2026-08-16)
+
+1. **`req_11_combat_calculator_workflow.md`** — analisi + design del workflow di risoluzione del CombatCalculator (subflow: attacco semplice/doppio, critico singolo, critico primario+secondario). **Attende input utente** su use case pen&paper prima di procedere.
+2. **`req_12_uiux_harmonization.md`** — armonizzazione UI/UX trasversale. **On hold** (si affronta dopo req_11).
 
 ## 5. Changelog Recenti
 
