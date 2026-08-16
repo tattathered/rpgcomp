@@ -63,7 +63,8 @@ export default function CriticalResolver({
   initialSeverity = 'C',
   initialDiceRoll = 50,
   initialModifierCustom = 0,
-  showTitle = true
+  showTitle = true,
+  onCritResolved = null
 }) {
   const [tableCode, setTableCode] = useState(initialTableCode);
   const [severity, setSeverity] = useState(initialSeverity);
@@ -149,6 +150,18 @@ export default function CriticalResolver({
     }
     return null;
   }, [tableCode, finalResult]);
+
+  // Notifica il riepilogo dell'esito del critico al padre (per lo storico del round)
+  useEffect(() => {
+    if (onCritResolved && outcome) {
+      onCritResolved({
+        tableCode,
+        severity,
+        finalResult,
+        descrizione: outcome.descrizione || ''
+      });
+    }
+  }, [onCritResolved, outcome, tableCode, severity, finalResult]);
 
   const handleRollDice = () => {
     const roll = Math.floor(Math.random() * 100) + 1;

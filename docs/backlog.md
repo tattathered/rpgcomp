@@ -38,7 +38,7 @@ nuove funzionalità (FEAT), change request UX/UI (CR) e bug/fix tecnici (FIX).
 
 | ID | Tipo | Descrizione | Priorità | Stato | Note / Spoke |
 |----|------|-------------|----------|-------|--------------|
-| _(nessun task attivo)_ | — | — | — | — | — |
+| CR-006 | CR | CombatCalculator: riepilogo esiti/danni da critici nel pannello "Attacchi del Round" (severità + tabella + descrizione esito dal CriticalResolver). | Media | 🟢 In Sviluppo (implementato, in attesa di verifica utente) | req_03 |
 
 ---
 
@@ -49,7 +49,6 @@ nuove funzionalità (FEAT), change request UX/UI (CR) e bug/fix tecnici (FIX).
 | ID | Tipo | Descrizione | Segnalato il | Stato |
 |----|------|-------------|--------------|-------|
 | CR-003 | CR | Analisi UI/UX completa e armonizzazione (tutta l'app): rendere omogenee e coerenti le viste GM/Player e alzare la QoL percepita (al momento bassina). Richiede test approfonditi per individuare le modifiche da fare; da pianificare. | 2026-08-14 | ⏳ In Attesa |
-| CR-006 | CR | CombatCalculator: riepilogo esiti/danni da **critici** nel pannello "Attacchi del Round" (oggi mostra solo danni base + tipo critico, non l'esito del tiro critico). Da definire come aggregare. | 2026-08-16 | ⏳ In Attesa |
 | CR-007 | CR | CombatCalculator — Workflow/UX review: (att) "Mappa a Tabella Attacco" come info derivata dall'arma, non select; (att) HP Subiti come info vs editabilità GM; (att) chiarire label "Gravemente Ferito" (è l'attaccante); (dif) "Seleziona Arma per Parare" + opzione "Nessuna" (BO 0); (dif) "Armatura Attiva" come dropdown con classe+bonus; (dif) HP Subiti come info vs editabilità GM. | 2026-08-16 | ⏳ In Attesa |
 
 ---

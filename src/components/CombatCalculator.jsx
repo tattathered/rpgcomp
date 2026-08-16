@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { RotateCcw, AlertTriangle, AlertOctagon, Play } from 'lucide-react';
 import FumbleResolver from './FumbleResolver';
 import CriticalResolver from './CriticalResolver';
@@ -236,14 +236,19 @@ export default function CombatCalculator({
   };
 
   // Registra l'esito dell'attacco nel round e avanza al prossimo attacco (se creatura multi-attacco)
-  const recordAttackResult = (type, damage, criticalType) => {
+  const recordAttackResult = (type, damage, criticalType, critInfo = null) => {
     setRoundResults(prev => [...prev, {
       attackName: attackerWeaponName || 'Attacco',
       roll: diceRoll,
       finalResult: finalAttackResult,
       type,
       damage: damage || 0,
-      criticalType: criticalType || null
+      criticalType: criticalType || null,
+      critTable: critInfo?.table || null,
+      hasSecondaryCrit: critInfo?.hasSecondary || false,
+      secondaryCritSeverity: critInfo?.secondarySeverity || null,
+      secondaryCritTable: critInfo?.secondaryTable || null,
+      critSummary: null
     }]);
     if (damage) {
       setRoundTotalDamage(prev => prev + damage);
@@ -257,6 +262,15 @@ export default function CombatCalculator({
       setManualRoll('0');
     }
   };
+
+  // Aggiorna l'ultimo attacco del round con l'esito del critico risolto
+  const handleCritResolved = useCallback((summary) => {
+    setRoundResults(prev => {
+      if (prev.length === 0) return prev;
+      const last = prev[prev.length - 1];
+      return [...prev.slice(0, -1), { ...last, critSummary: summary }];
+    });
+  }, []);
 
   // --- LOGICA DI RISOLUZIONE ATTACCO ---
   const handleResolveAttack = () => {
@@ -409,7 +423,7 @@ export default function CombatCalculator({
         } else {
           setShowCriticalResolver(false);
         }
-        recordAttackResult('hit', finalDamage, critType);
+        recordAttackResult('hit', finalDamage, critType, { table: suggestedTable, hasSecondary: hasSecondaryCrit, secondarySeverity: secondaryCritSeverity, secondaryTable: secondaryCritTable });
       } else {
         const damage = parseInt(cellValue) || 0;
         setCombatOutcome({
@@ -643,14 +657,31 @@ export default function CombatCalculator({
           </div>
           <ul className="space-y-2">
             {roundResults.map((r, i) => (
-              <li key={i} className="flex items-center justify-between gap-3 text-xs bg-white border border-gray-150 rounded-lg px-3 py-2">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <span className="font-bold text-gray-700">{i + 1}. {r.attackName}</span>
-                  <span className={`font-bold uppercase ${r.type === 'hit' ? 'text-emerald-700' : r.type === 'miss' ? 'text-slate-500' : 'text-red-700'}`}>
-                    {r.type === 'hit' ? `${r.damage} PF${r.criticalType ? ` + Critico ${r.criticalType}` : ''}` : r.type === 'miss' ? 'Mancato' : 'Colpo Maldestro'}
-                  </span>
+              <li key={i} className="text-xs bg-white border border-gray-150 rounded-lg px-3 py-2">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="font-bold text-gray-700">{i + 1}. {r.attackName}</span>
+                    <span className={`font-bold uppercase ${r.type === 'hit' ? 'text-emerald-700' : r.type === 'miss' ? 'text-slate-500' : 'text-red-700'}`}>
+                      {r.type === 'hit' ? `${r.damage} PF` : r.type === 'miss' ? 'Mancato' : 'Colpo Maldestro'}
+                    </span>
+                  </div>
+                  <span className="text-gray-400 whitespace-nowrap">Tiro {r.roll} → {r.finalResult}</span>
                 </div>
-                <span className="text-gray-400 whitespace-nowrap">Tiro {r.roll} → {r.finalResult}</span>
+                {(r.criticalType || r.critSummary) && (
+                  <div className="mt-1.5 pt-1.5 border-t border-gray-100 text-[11px] space-y-0.5">
+                    {r.criticalType && (
+                      <div className="text-amber-800 font-bold">
+                        Critico {r.criticalType}{r.critTable ? ` (${TABLE_NAMES[r.critTable] || r.critTable})` : ''}
+                        {r.hasSecondaryCrit ? ` + Secondario ${r.secondaryCritSeverity} (${TABLE_NAMES[r.secondaryCritTable] || r.secondaryCritTable})` : ''}
+                      </div>
+                    )}
+                    {r.critSummary && (
+                      <div className="text-amber-900">
+                        Risultato {r.critSummary.finalResult} ({r.critSummary.severity}): {r.critSummary.descrizione}
+                      </div>
+                    )}
+                  </div>
+                )}
               </li>
             ))}
           </ul>
@@ -712,6 +743,7 @@ export default function CombatCalculator({
             initialSeverity={critSeverity}
             initialDiceRoll={critDiceRoll}
             showTitle={false}
+            onCritResolved={handleCritResolved}
           />
         )}
       </div>
