@@ -38,7 +38,7 @@ nuove funzionalità (FEAT), change request UX/UI (CR) e bug/fix tecnici (FIX).
 
 | ID | Tipo | Descrizione | Priorità | Stato | Note / Spoke |
 |----|------|-------------|----------|-------|--------------|
-| CR-006 | CR | CombatCalculator: riepilogo esiti/danni da critici nel pannello "Attacchi del Round" (severità + tabella + descrizione esito dal CriticalResolver). | Media | 🟢 In Sviluppo (implementato, in attesa di verifica utente) | req_03 |
+| CR-006 | CR | CombatCalculator: riepilogo esiti/danni da critici nel pannello "Attacchi del Round". **Feedback smoke test: esito parziale.** Da consolidare l'intero workflow di risoluzione (subflow: attacco semplice, attacco doppio, critico singolo, critico primario+secondario) con review UX/QoL. | Media | 🔵 In Analisi (workflow da consolidare) | req_03 |
 
 ---
 

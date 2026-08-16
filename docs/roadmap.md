@@ -75,3 +75,10 @@ Questo documento delinea la pianificazione delle prossime funzionalità e dei mi
 *   **Urgenza:** 🟢 **Bassa** (I tooltip contestuali coprono già il 90% delle esigenze rapide).
 *   **Criticità:** 🟢 **Bassa** (Nuovo componente indipendente di sola lettura).
 *   **Impatto sul codice:** `CodexAdminTab.jsx` (nuova vista) o pannello Glossario autonomo.
+
+### 6. Refactoring Stile: Tailwind JIT (sostituire index.css hand-written)
+*   **Stato:** ⏳ Futuro — debito tecnico, da pianificare.
+*   **Descrizione:** Il progetto usa un `src/index.css` scritto a mano con classi utility parziali (causa di bug come `bg-orange-500` assente). Migrare a Tailwind JIT completo (`tailwind.config.js` + direttive `@tailwind` + purge automatico) per avere classi utility complete e coerenti.
+*   **Urgenza:** 🟢 **Bassa** (non blocca funzionalità, ma riduce bug di stile futuri).
+*   **Criticità:** 🟡 **Media** (migrazione con rischio regressioni visive: le classi custom di `index.css` vanno mappate/rimosse).
+*   **Impatto sul codice:** `src/index.css`, nuovi `tailwind.config.js` e `postcss.config.js`, revisione classi custom.
